@@ -46,6 +46,41 @@ Discuss what you need to develop this project. This includes background informat
             <sub><b>Ian Tyler Applebaum</b></sub>
         </a>
     </td>
+    <td align="center">
+        <a href="https://github.com/mgclay">
+            <img src="https://avatars.githubusercontent.com/u/65423598?v=4" width="100;" alt="mgclay"/>
+            <br />
+            <sub><b>Mary Clay</b></sub>
+        </a>
+    </td>
+    <td align="center">
+        <a href="https://github.com/ccho-0508">
+            <img src="https://avatars.githubusercontent.com/u/80363779?v=4" width="100;" alt="ccho-0508"/>
+            <br />
+            <sub><b>Christine Cho</b></sub>
+        </a>
+    </td>
+    <td align="center">
+        <a href="https://github.com/Alexander-Russakoff">
+            <img src="https://avatars.githubusercontent.com/u/65423598?v=4" width="100;" alt="Alexander-Russakoff"/>
+            <br />
+            <sub><b>Alexander Russakoff</b></sub>
+        </a>
+    </td>
+    <td align="center">
+        <a href="https://github.com/katrinajaneczko">
+            <img src="https://avatars.githubusercontent.com/u/73796086?v=4" width="100;" alt="katrinajaneczko"/>
+            <br />
+            <sub><b>Katrina Janeczko</b></sub>
+        </a>
+    </td>
+    <td align="center">
+        <a href="https://github.com/harrisonfedor">
+            <img src="https://avatars.githubusercontent.com/u/43662352?v=4" width="100;" alt="harrisonfedor"/>
+            <br />
+            <sub><b>Harrison Fedor</b></sub>
+        </a>
+    </td>
 </table>
 
 [//]: # ( readme: collaborators -end )
