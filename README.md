@@ -81,6 +81,13 @@ Discuss what you need to develop this project. This includes background informat
             <sub><b>Harrison Fedor</b></sub>
         </a>
     </td>
+    <td align="center">
+        <a href="https://github.com/jay-newman">
+            <img src="https://avatars.githubusercontent.com/u/97626791?v=4" width="100;" alt="jay-newman"/>
+            <br />
+            <sub><b>Jay Newman</b></sub>
+        </a>
+    </td>
 </table>
 
 [//]: # ( readme: collaborators -end )
