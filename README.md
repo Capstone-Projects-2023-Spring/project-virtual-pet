@@ -62,7 +62,7 @@ Discuss what you need to develop this project. This includes background informat
     </td>
     <td align="center">
         <a href="https://github.com/Alexander-Russakoff">
-            <img src="https://avatars.githubusercontent.com/u/65423598?v=4" width="100;" alt="Alexander-Russakoff"/>
+            <img src="https://avatars.githubusercontent.com/u/98143670?v=4" width="100;" alt="Alexander-Russakoff"/>
             <br />
             <sub><b>Alexander Russakoff</b></sub>
         </a>
