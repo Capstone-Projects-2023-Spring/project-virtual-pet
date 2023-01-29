@@ -1,0 +1,55 @@
+# spelling.yml is disabled per https://github.com/check-spelling/check-spelling/security/advisories/GHSA-g86g-chm8-7r2p
+name: Spell checking
+on:
+  push:
+    branches: ''
+#   pull_request_target:
+#   push:
+#   issue_comment:
+#     types: [created]
+
+jobs:
+  spelling:
+    name: Spell checking
+    runs-on: ubuntu-latest
+    steps:
+    - name: checkout-merge
+      if: "contains(github.event_name, 'pull_request')"
+      uses: actions/checkout@v2
+      with:
+        ref: refs/pull/${{github.event.pull_request.number}}/merge
+    - name: checkout
+      if: ${{ github.event_name == 'push' ||
+        (
+          contains(github.event.comment.body, '@check-spelling-bot apply')
+        ) }}
+      uses: actions/checkout@v2
+    - uses: check-spelling/check-spelling@v0.0.20
+      id: spelling
+      if: ${{ github.event_name != 'issue_comment' ||
+        (
+          contains(github.event.comment.body, '@check-spelling-bot apply')
+        ) }}
+      with:
+        experimental_apply_changes_via_bot: 1
+        extra_dictionaries:
+            cspell:cpp/cpp.txt
+            cspell:html/html.txt
+            cspell:css/css.txt
+            cspell:filetypes/filetypes.txt
+            cspell:django/django.txt
+            cspell:fullstack/fullstack.txt
+            cspell:npm/npm.txt
+            cspell:aws/aws.txt
+            cspell:golang/go.txt
+            cspell:java/java.txt
+            cspell:csharp/csharp.txt
+            cspell:scala/scala.txt
+            cspell:php/php.txt
+            cspell:lua/lua.txt
+            cspell:dotnet/dotnet.txt
+            cspell:rust/rust.txt
+            cspell:ruby/ruby.txt
+            cspell:python/python.txt
+            cspell:node/node.txt
+
