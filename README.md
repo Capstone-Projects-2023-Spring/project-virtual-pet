@@ -9,6 +9,7 @@
 
 </div>
 
+Google Doc: https://docs.google.com/document/d/1w0gsKcUTctS0SDwcXz6hGZxHH8hA9y2lLZaLArR3K6Y/edit
 
 ## Keywords
 
