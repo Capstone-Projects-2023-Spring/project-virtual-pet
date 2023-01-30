@@ -13,27 +13,29 @@ Google Doc: https://docs.google.com/document/d/1w0gsKcUTctS0SDwcXz6hGZxHH8hA9y2l
 
 ## Keywords
 
-Section #, as well as any words that quickly give your peers insights into the application like programming language, development platform, type of application, etc.
+Section 704, web application, JavaScript, HTML, CSS, Python, Django, education, learning, studying, goals, virtual pet, flash cards
 
 ## Project Abstract
 
-This document proposes a novel application of a text message (SMS or Email) read-out and hands-free call interacted between an Android Smartphone and an infotainment platform (headunit) in a car environment. When a phone receives an SMS or Email, the text message is transferred from the phone to the headunit through a Bluetooth connection. On the headunit, user can control which and when the received SMS or E-mail to be read out through the in-vehicle audio system. The user may press one button on the headunit to activate the hands-free feature to call back the SMS sender.
+This document proposes a progressive web application that combines the benefits of gamification and personal development to enhance the study experience. The application allows users to take care of a virtual pet, which serves as a study companion and motivator. Users can set daily or weekly goals, set reminders, track their progress, connect with their Canvas accounts to track assignments, and make virtual flashcards. Progress on these goals will directly influence the Virtual Pet’s appearance and mood, inspiring feelings of motivation, companionship, responsibility, and solidarity in the user. By using this application, users will have an engaging and effective way to improve their academic performance.
+
 
 ## High Level Requirement
 
-Describe the requirements – i.e., what the product does and how it does it from a user point of view – at a high level.
+The app requires an internet connection to function, and can be accessed on any device with a modern web browser. Users can set study goals, track their progress, and create flash card sets. The user will be rewarded for achieving their study goals through a point system, where the number of points given will depend on the size of the task completed. After reaching a certain number of points, the user’s pet will level up. The app also integrates with Canvas, allowing the user to access and keep track of their assignments. Users can name their pet and interact with it, and perform tasks on their schedule that directly affect their pet’s condition and mood. The pet’s mood and appearance will be influenced by the user’s ability to achieve their goals.
+
 
 ## Conceptual Design
 
-Describe the initial design concept: Hardware/software architecture, programming language, operating system, etc.
+The frontend of the app will be built using JavaScript, React, HTML, and CSS. React will be used to build UI components and manage the state of the application, and JavaScript, HTML, and CSS will be used to create the user interface and handle user interactions. The backend will be built using Python and Django to handle user authentication and authorization, data storage, and the algorithms that determine how the virtual pet's appearance changes based on the student's study habits. MySQL will be used to store the user's data, such as their study goals, progress, and rewards. The application will also integrate with Canvas to allow students to track their assignments and classes and include them as personal study goals.
 
 ## Background
-
-The background will contain a more detailed description of the product and a comparison to existing similar projects/products. A literature search should be conducted and the results listed. Proper citation of sources is required. If there are similar open-source products, you should state whether existing source will be used and to what extent. If there are similar closed-source/proprietary products, you should state how the proposed product will be similar and different.
+Similar products include [My Study Life]([url](https://www.mystudylife.com/)) and [Quizlet]([url](https://quizlet.com/)). These are both closed-source products that aim to help students improve their academic performance. My Study Life is an online student planner which allows students to keep track of their deadlines and classes. Quizlet allows students to create flashcards and quizzes to study for their classes. The Virtual Pet Study Buddy App is similar to these products in that the goal is to provide resources to help students succeed academically and stay on top of their coursework. However, this app also incorporates the unique aspect of a virtual pet companion to help them stay motivated to study. The Virtual Pet Study Buddy app will include some of the same features as Quizlet and My Study Life, like setting reminders or creating flash card sets.
+Another closed-source mobile application, titled [Finch]([url](https://finchcare.com/)), involves taking care of a virtual pet to achieve self-care goals. Incorporating the concept of caring for a pet, as in this application, with the features of a study app, will allow users a more personalized and fun experience to succeed in their academic pursuits.
 
 ## Required Resources
 
-Discuss what you need to develop this project. This includes background information you will need to acquire, hardware resources, and software resources. If these are not part of the standard Computer Science Department lab resources, these must be identified early and discussed with the instructor.
+Research will need to be conducted on the various software resources needed to complete this project, including JavaScript, React, Django, MySQL, and others. Research will need to be conducted on the various software resources needed to complete this project, including JavaScript, React, Django, MySQL, and others. Either an Ubuntu server will be run on an old laptop or a hosting service will be used. No other hardware resources are required.
 
 ## Collaborators
 
