@@ -4,4 +4,5 @@ sidebar_position: 2
 
 # System Block Diagram
 
-<img src="https://github.com/Capstone-Projects-2023-Spring/project-virtual-pet/blob/main/documentation/docs/requirements/system_block_diagram_2-5-23.png" width="500;" height="500;" alt="System Block Diagram"/>
+<img src="https://user-images.githubusercontent.com/73796086/216864836-fb22e91a-367a-49ae-ba17-50d79acb3ad8.png" alt="System Block Diagram"/>
+
