@@ -23,7 +23,7 @@ The app requires an internet connection to function, and can be accessed on any 
 
 ## Conceptual Design
 
-The frontend of the app will be built using JavaScript, React, HTML, and CSS. React will be used to build UI components and manage the state of the application, and JavaScript, HTML, and CSS will be used to create the User interface and handle User interactions. The backend will be built using Python and Django to handle User authentication and authorization, data storage, and the algorithms that determine how the Virtual Pet's appearance changes based on the student's study habits. MySQL will be used to store the User's data, such as their study goals, progress, and rewards. The application will also integrate with Canvas to allow students to track their assignments and classes and include them as personal study goals.
+The frontend of the app will be built using JavaScript, React, HTML, and CSS. React will be used to build UI components and manage the state of the application, and JavaScript, HTML, and CSS will be used to create the User interface and handle User interactions. The backend will be built using Python and Django to handle User authentication and authorization, data storage, and the algorithms that determine how the Virtual Pet's appearance changes based on the student's study habits. SQLite will be used to store the User's data, such as their study goals, progress, and rewards. The application will also integrate with Canvas to allow students to track their assignments and classes and include them as personal study goals.
 
 ## Background
 
@@ -33,7 +33,7 @@ Another closed-source mobile application, titled [Finch](https://finchcare.com/)
 
 ## Required Resources
 
-Research will need to be conducted on the various software resources needed to complete this project, including JavaScript, React, HTML/CSS, Django, MySQL, and Canvas API. React will be used for the front-end, Django for the back-end, and a combination of a SQLite Database with a schema defined and managed by Django and a Static File store. A required resource is an Ubuntu server which will either be run on an old laptop or a hosting service will be used. No other hardware resources are required. 
+Research will need to be conducted on the various software resources needed to complete this project, including JavaScript, React, HTML/CSS, Django, SQLite, and Canvas API. React will be used for the front-end, Django for the back-end, and a combination of a SQLite Database with a schema defined and managed by Django and a Static File store. A required resource is an Ubuntu server which will either be run on an old laptop or a hosting service will be used. No other hardware resources are required. 
 
 ## Collaborators
 
