@@ -8,7 +8,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
  * The URL or reference to your projects logo!
  * @type {string}
  */
-const logo = '/workspaces/project-virtual-pet/documentation/static/img/crabby.jpeg';
+const logo = '/workspaces/project-virtual-pet/documentation/static/img/docusaurus.png';
 
 const main_template_jira_scripts = () => {
   if (process.env.ORG_NAME === 'ApplebaumIan'){
