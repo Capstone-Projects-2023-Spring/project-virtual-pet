@@ -1,5 +1,5 @@
 ## Project Board
-* <a href="https://temple-cis-projects-in-cs.atlassian.net/jira/software/c/projects/SB/boards/32/backlog?view=detail&selectedIssue=SB-6&epics=visible&issueLimit=100" target="_blank">Jira Project Board</a>
+* <a target="_blank" href="https://temple-cis-projects-in-cs.atlassian.net/jira/software/c/projects/SB/boards/32/backlog?view=detail&selectedIssue=SB-6&epics=visible&issueLimit=100">Jira Project Board</a>
 
 ## Sites
 * <a href="https://capstone-projects-2023-spring.github.io/project-virtual-pet/" target="_blank">Docusaurus Site</a>
