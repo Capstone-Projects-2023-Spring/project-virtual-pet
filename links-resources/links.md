@@ -3,7 +3,7 @@
 
 ## Sites
 * <a target="_blank" href="https://capstone-projects-2023-spring.github.io/project-virtual-pet/">Docusaurus Site</a>
-* <a target="_blank" href="https://github.com/ccho-0508/simple-site">Containerized Site</a>
+* <a target="_blank" href="https://github.com/ccho-0508/simple-site">Containerized Simple Site: React+Django+SQLite</a>
 
 ## Documents
 * <a target="_blank" href="https://docs.google.com/document/d/1R3kF0f-yiPbxu7IfqQ-IOnBlch3DSUpk/edit#">Software Development Plan</a>
