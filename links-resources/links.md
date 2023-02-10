@@ -1,9 +1,13 @@
-## Project Board
-* <a target="_blank" href="https://temple-cis-projects-in-cs.atlassian.net/jira/software/c/projects/SB/boards/32/backlog?view=detail&selectedIssue=SB-6&epics=visible&issueLimit=100">Jira Project Board</a>
+## Scheduling
+**When2Meet** - sign in with the same name to update your availability
+* <a target="_blank" href="https://www.when2meet.com/?18707366-tu8Uo">Feb 8-14 (Sprint 0)</a>
 
-## Sites
+## Project Board & Sites
+* <a target="_blank" href="https://temple-cis-projects-in-cs.atlassian.net/jira/software/c/projects/SB/boards/32/backlog?view=detail&selectedIssue=SB-6&epics=visible&issueLimit=100">Jira Project Board</a>
 * <a href="https://capstone-projects-2023-spring.github.io/project-virtual-pet/" target="_blank">Docusaurus Site</a>
 * <a href="https://github.com/ccho-0508/simple-site" target="_blank">Containerized Simple Site: React+Django+SQLite</a>
+* <a href="https://capstone.ianapplebaum.com/" target="_blank">Course Site (syllabus, schedule, etc)</a>
+* <a href="https://templeu.instructure.com/courses/124586" target="_blank">Canvas Course Page</a>
 
 ## Documents
 * <a href="https://docs.google.com/document/d/1R3kF0f-yiPbxu7IfqQ-IOnBlch3DSUpk/edit#" target="_blank">Software Development Plan</a>
