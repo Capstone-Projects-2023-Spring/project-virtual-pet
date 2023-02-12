@@ -30,7 +30,7 @@ gantt
         section Sprint 1
         Research/learn React, Django:  , 2023-02-16, 1d
         section Sprint 1
-        Set up simple site:  , 2023-02-16, 1d
+        Set up development testing environment on local host:  , 2023-02-16, 1d
         section Sprint 1
         Create user account management system:  , 2023-02-16, 1d
         section Sprint 1
@@ -98,7 +98,7 @@ gantt
         section Sprint 5
          Stand Up Meeting Lecture: active , 2023-04-19, 1d
          section Sprint 5
-         Host site: , 2023-04-22, 1d
+         Host site on public host: , 2023-04-22, 1d
         section Sprint 5
          Add more states to pet(s): , 2023-04-22, 1d
         section Sprint 5
