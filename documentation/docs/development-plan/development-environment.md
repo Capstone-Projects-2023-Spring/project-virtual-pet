@@ -8,20 +8,13 @@ sidebar_position: 4
 * VS Code
 
 #### Languages, Frameworks, and Management Systems:
-* React
-* CSS
-* JSX
+* JavaScript/JSX
+    * React
 * Python
     * Django 
     * Django REST Framework
     * Django REST Auth
-* Sqlite Database
-* Sprite Animations
-
-#### Compilers and Interpreters:
-* Python3
-* NPM
-
+* SQLite
 
 #### Documentation Tools:
 * Google Docs
@@ -31,6 +24,10 @@ sidebar_position: 4
 #### Testing Tools:
 * Django Testing Framework
 * Selenium
+* Jest
+* React Testing Library
 
 #### Deployment Platform:
-* Local machine running server/ Docker
+* Docker
+* Linux
+
