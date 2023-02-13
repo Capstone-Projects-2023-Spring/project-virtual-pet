@@ -37,10 +37,8 @@ sidebar_position: 2
     * ‘Integrate Canvas’ page
     * Account information page
 11. Create user account management system
-    * Login page
-Allow users to login to the site
-    * Create account page
-Allow first time users to create an account
+    * Login page: Allow users to login to the site
+    * Create account page: Allow first time users to create an account
 12. Create an account information page 
     * Display user’s information about their account, username, etc 
 13. Setup Canvas Integration 
