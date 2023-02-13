@@ -1,0 +1,126 @@
+---
+confetti_for_assignments:
+  type: setting
+  state: hidden
+  display_name: Confetti for On-Time Submissions
+  description: |-
+    Displays confetti for users that turn in an assignment prior
+    to the set due date.
+  applies_to: RootAccount
+
+confetti_for_valid_links:
+  type: setting
+  state: hidden
+  display_name: Confetti for valid links
+  description: |-
+    Displays confetti for teachers that run the link validator on
+    a course and no issues are found.
+  applies_to: RootAccount
+
+react_discussions_post:
+  state: hidden
+  beta: true
+  display_name: Discussions/Announcements Redesign
+  description:
+    wrapper: <a href="https://community.canvaslms.com/t5/Discussions-Announcements/gh-p/discussions">\1</a>
+    discussion_redesign_description: This feature enhances the Canvas experience
+      within Discussions and Announcements. When this flag is enabled, early access
+      to ongoing improvements will be displayed automatically with every release.
+      For full details, please see the *Discussions/Announcements Redesign user group*
+      in the Canvas Community
+  applies_to: Course
+
+draft_discussions:
+  state: hidden
+  beta: true
+  display_name: Draft Discussion Entries
+  description: |-
+    Will allow for saving drafts as students type their replies to a discussion topic
+    in the discussions redesign
+  applies_to: SiteAdmin
+
+discussion_grading_view:
+  state: hidden
+  beta: true
+  display_name: Discussion Redesign Grading View
+  description: |-
+    Will allow for graders to grade assigned discussions without leaving discussion page
+  applies_to: SiteAdmin
+
+discussion_entry_version_history:
+  state: hidden
+  display_name: Discussion Redesign - Discussion Entry Version History
+  description: |-
+    Will display the version history for edited discussion entries within the Redesign UI
+  applies_to: SiteAdmin
+
+isolated_view:
+  state: hidden
+  display_name: Discussions Redesign - Isolated View
+  description: |-
+    This feature flag enables Isolated View inside the new
+    Discussions Redesign work.
+  applies_to: SiteAdmin
+
+split_screen_view:
+  state: hidden
+  display_name: Discussions Redesign - Split Screen View
+  description: |-
+    This feature flag enables the Split Screen View inside the new
+    Discussions Redesign work.
+  applies_to: SiteAdmin
+
+discussion_create:
+  state: hidden
+  display_name: Discussion Create/Edit Page React Update
+  description: |-
+    This feature flag enables the use of the updated
+    discussion create/edit page
+  applies_to: RootAccount
+
+bbb_modal_update:
+  state: hidden
+  display_name: BBB Modal Update
+  description: |-
+    This update offers enhanced feature functionality for
+    Big Blue Button Conferences. Users will now be able to enable
+    the Waiting Room in their conference settings, they'll be able
+    to add a scheduled conference to their calendar from within a conference,
+    and they'll be able to update/sync conference attendees as new attendees are
+    added or removed.
+  applies_to: SiteAdmin
+
+react_inbox:
+  state: hidden
+  display_name: Update Inbox page to use react/instui
+  description: |-
+    This refactor will make this page more maintainable
+  applies_to: RootAccount
+
+smart_alerts:
+  state: hidden
+  display_name: Smart alerts
+  description: |-
+    Notify students in time of assignments that require their attention.
+  applies_to: RootAccount
+
+show_push_notification_account_setting:
+  state: hidden
+  display_name: Allow push notification opt-out
+  description: |-
+    Enable an account setting which toggles push notifications for that account
+  applies_to: SiteAdmin
+
+apollo_caching:
+  state: hidden
+  display_name: Apollo caching
+  description: |-
+    Allow for Apollo to cache graphQL queries on a users browser to speed up their experience
+  applies_to: SiteAdmin
+
+react_people_page:
+  state: hidden
+  display_name: People Page Upgrade
+  description: |-
+    This feature flag enables the React/InstUI and GraphQL People page upgrade.
+  applies_to: RootAccount

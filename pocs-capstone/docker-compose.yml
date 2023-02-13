@@ -1,0 +1,28 @@
+services:
+  api:
+    # path to build context (dockerfile to create dockerimage)
+    build: 
+      context: ./backend    
+
+    # map port on local machine to port on docker image
+    ports:
+      - "8000:8000"
+    
+    # save changes made to the app to your image (data will persist the next time the container is run?)
+    # ./backend is where to save persistent data, /backend is the directory we're grabbing the changes from
+    volumes:
+      - ./backend:/backend
+
+    # Handles the command used to run the project in the Docker container.  (look at resources for link to stackoverflow explaining when to run commands in Dockerfiles vs docker compose file)
+    command: bash -c "python manage.py runserver 0.0.0.0:8000"
+
+  web:
+    build: 
+      context: ./frontend
+    ports:
+      - "3000:3000"
+
+    # mount our code in a volume so that we can sync our changes with the container while developing - look more into this
+    volumes:
+      - ./frontend/src:/frontend/src
+
