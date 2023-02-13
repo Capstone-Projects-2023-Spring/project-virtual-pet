@@ -55,6 +55,7 @@
 
 # Resources
 - [How to Dockerize a Django and React Application](https://www.honeybadger.io/blog/docker-django-react/)
+- [Using Docker to run Canvas](https://github.com/instructure/canvas-lms/tree/master/doc/docker)
 - [Adding Custom Environment Variables](https://create-react-app.dev/docs/adding-custom-environment-variables/)
 - [Writing your first Django app, part 1](https://docs.djangoproject.com/en/4.1/intro/tutorial01/)
 - [Build a REST API in 30 minutes with Django REST Framework](https://medium.com/swlh/full-stack-with-django-and-react-react-afae36017852)
