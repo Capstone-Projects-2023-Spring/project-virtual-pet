@@ -13,7 +13,7 @@ Research on React, Django, and Docker will be required to create containers that
 2. Create a pet display to help the user keep track of them.
 3. Create a progression system to appropriately reward users for the completion of tasks.
 4. Add a pop up for reminders to finish tasks.
-5.Allow users to access pages for settings unrelated to their pet and tasks like integrating canvas, updating/accessing account information, logging out, etc.
+5. Allow users to access pages for settings unrelated to their pet and tasks like integrating canvas, updating/accessing account information, logging out, etc.
 6. Allow returning users to log in.
 7. Allow first-time users to create an account.
 8. Create the backend communication.
