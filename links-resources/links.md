@@ -1,6 +1,5 @@
 ## Scheduling
 **When2Meet** - sign in with the same name to update your availability
-* <a target="_blank" href="https://www.when2meet.com/?18707366-tu8Uo">Feb 8-14 (Sprint 0)</a>
 * <a target="_blank" href="https://www.when2meet.com/?18802038-sMqA3">General Weekly Availability</a> 
 * Stand-Up dates for Sprint 1:
     * 2/19 - sun 3pm
@@ -34,6 +33,8 @@
 * <a href="https://docs.djangoproject.com/en/4.1/intro/overview/" target="_blank">Django at a glance</a>
 * <a href="https://docs.djangoproject.com/en/4.1/howto/static-files/" target="_blank">How to manage static files - images, JavaScript, CSS</a>
 * <a href="https://docs.djangoproject.com/en/4.1/topics/db/models/" target="_blank">Django models ("for building out database schema the EZ way")</a>
+* <a href="https://www.youtube.com/watch?v=89KrqjqPeZ0&t=1s" target="_blank">Django, React authentication & CSRF overview video</a>
+
 
 **Canvas**
 * <a href="https://github.com/instructure/canvas-lms/wiki/Quick-Start" target="_blank">Canvas quick starter guide</a>
