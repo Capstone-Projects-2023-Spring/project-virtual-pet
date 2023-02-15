@@ -1,12 +1,12 @@
 ## Scheduling
 **When2Meet** - sign in with the same name to update your availability
 * <a target="_blank" href="https://www.when2meet.com/?18802038-sMqA3">General Weekly Availability</a> 
-* Stand-Up dates for Sprint 1:
+* Meeting times for Sprint 1:
+    * 2/15 - wed 3-4pm
     * 2/19 - sun 3pm
     * 2/22 - wed 10-11am
     * 2/26 - sun 3pm
     * 3/1 (last day of sprint) - wed ??
-* 
 
 ## Project Board & Sites
 * <a target="_blank" href="https://temple-cis-projects-in-cs.atlassian.net/jira/software/c/projects/SB/boards/32/backlog?view=detail&selectedIssue=SB-6&epics=visible&issueLimit=100">Jira Project Board</a>
