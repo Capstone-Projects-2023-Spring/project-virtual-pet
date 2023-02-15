@@ -1,0 +1,176 @@
+Datafixup/EagerLoad:
+  Enabled: true
+  Include:
+    - "**/db/migrate/*.rb"
+    - "**/lib/data_fixup/*.rb"
+
+Lint/NoFileUtilsRmRf:
+  Enabled: true
+
+Lint/NoSleep:
+  Enabled: true
+  Exclude:
+    - "**/spec/selenium/test_setup/**/*.rb"
+
+Migration/AddIndex:
+  Enable: true
+  Include:
+    - "**/db/migrate/*.rb"
+
+Migration/AddForeignKey:
+  Enable: true
+  Include:
+    - "**/db/migrate/*.rb"
+
+Migration/BooleanColumns:
+  Enable: true
+  Include:
+    - "**/db/migrate/*.rb"
+
+Migration/ChangeColumn:
+  Enabled: true
+  Include:
+    - "**/db/migrate/*.rb"
+
+Migration/ChangeColumnNull:
+  Enabled: true
+  Include:
+    - "**/db/migrate/*.rb"
+
+Migration/ConcurrentIndex:
+  Enabled: true
+  Include:
+    - "**/db/migrate/*.rb"
+
+Migration/DataFixup:
+  Enabled: true
+  Include:
+    - "**/db/migrate/*.rb"
+
+Migration/Delay:
+  Enabled: true
+  Include:
+    - "**/db/migrate/*.rb"
+
+Migration/Execute:
+  Enabled: true
+  Include:
+    - "**/db/migrate/*.rb"
+
+Migration/IdColumn:
+  Enabled: true
+  Include:
+    - "**/db/migrate/*.rb"
+
+Migration/Predeploy:
+  Enabled: true
+  Include:
+    - "**/db/migrate/*.rb"
+
+Migration/PrimaryKey:
+  Enabled: true
+  Include:
+    - "**/db/migrate/*.rb"
+
+Migration/RemoveColumn:
+  Enabled: true
+  Include:
+    - "**/db/migrate/*.rb"
+
+Migration/RenameTable:
+  Enabled: true
+  Include:
+    - "**/db/migrate/*.rb"
+
+Migration/RootAccountId:
+  Enabled: true
+  Include:
+    - "**/db/migrate/*.rb"
+
+Migration/SendLater:
+  Enabled: true
+  Include:
+    - "**/db/migrate/*.rb"
+
+Rails/SmartTimeZone:
+  Enabled: true
+
+Specs/EnsureSpecExtension:
+  Enabled: true
+  Include:
+    - "**/spec/**/*.rb"
+    - "**/spec_canvas/**/*.rb"
+
+Specs/NoBeforeOnceStubs:
+  Enabled: true
+  Include:
+    - "**/spec/**/*.rb"
+    - "**/spec_canvas/**/*.rb"
+
+Specs/NoDisableImplicitWait:
+  Enabled: true
+  Include:
+    - "**/spec/**/*.rb"
+    - "**/spec_canvas/**/*.rb"
+  Exclude:
+    - "**/spec/selenium/test_setup/**/*.rb"
+
+Specs/NoExecuteScript:
+  Enabled: true
+  Include:
+    - "**/spec/**/*.rb"
+    - "**/spec_canvas/**/*.rb"
+  Exclude:
+    - "**/spec/selenium/test_setup/**/*.rb"
+
+Specs/NoNoSuchElementError:
+  Enabled: true
+  Include:
+    - "**/spec/**/*.rb"
+    - "**/spec_canvas/**/*.rb"
+
+Specs/NoSeleniumWebDriverWait:
+  Enabled: true
+  Include:
+    - "**/spec/**/*.rb"
+    - "**/spec_canvas/**/*.rb"
+  Exclude:
+    - "**/spec/selenium/test_setup/**/*.rb"
+
+Specs/NoSkipWithoutTicket:
+  Enabled: true
+  Include:
+    - "**/spec/**/*.rb"
+    - "**/spec_canvas/**/*.rb"
+
+Specs/NoStrftime:
+  Enabled: true
+  Include:
+    - "**/spec/**/*.rb"
+    - "**/spec_canvas/**/*.rb"
+
+Specs/NoWaitForNoSuchElement:
+  Enabled: true
+  Include:
+    - "**/spec/**/*.rb"
+    - "**/spec_canvas/**/*.rb"
+  Exclude:
+    - "**/spec/selenium/test_setup/**/*.rb"
+
+Specs/PreferFOverFj:
+  Enabled: true
+  Include:
+    - "**/spec/**/*.rb"
+    - "**/spec_canvas/**/*.rb"
+
+Specs/ScopeHelperModules:
+  Enabled: true
+  Include:
+    - "**/spec/**/*.rb"
+    - "**/spec_canvas/**/*.rb"
+
+Specs/ScopeIncludes:
+  Enabled: true
+  Include:
+    - "**/spec/**/*.rb"
+    - "**/spec_canvas/**/*.rb"

@@ -1,0 +1,50 @@
+<% define_content :link do %>
+  <%= polymorphic_url([asset.context, :discussion_topic], id: asset.discussion_topic_id, entry_id: asset.id) %>
+<% end %>
+
+<% define_content :subject do %>
+  <%= t :subject, "Reported reply in %{discussion_topic}, %{course}", discussion_topic: asset.discussion_topic.title, course: asset.context.name %>
+<% end %>
+
+<% define_content :footer_link do %>
+  <a href="<%= content(:link) %>">
+    <%= t :link, "Click to view the discussion" %>
+  </a>
+<% end %>
+<% if avatar_enabled? %>
+  <table border="0" style="border-collapse: collapse">
+    <tr height="30px">
+      <td></td>
+    </tr>
+    <tr >
+      <td align="left" width="50" style="width: 50px"><img style="border-radius: 50px; height: 50px; width: 50px;" height="50" width="50" src="<%=author_avatar_url%>" alt="<%= asset.author_name %>"> </td>
+      <td width="10"></td>
+      <td>
+        <table border="0" style="font-size: 14px; color: #444444; background-color: #ffffff; font-family: 'Open Sans', 'Lucida Grande', 'Segoe UI', Arial, Verdana, 'Lucida Sans Unicode', Tahoma, 'Sans Serif';" valign="top" align="left">
+          <tr>
+            <td valign="bottom" align="left">
+              <b><%= asset.author_name %></b>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+<% else %>
+  <p height="30px"></p>
+  <p>
+    <b><%= asset.author_name %></b>
+  </p>
+<% end %>
+
+<%= t :body, "Reported as %{report_type}: %{user}, %{course}", report_type: data[:report_type], user: asset.author_name, course: asset.context.name %>
+
+<p>
+<%= html_to_simple_html(asset.message, :base_url => dashboard_url) %>
+</p>
+
+<%= t("View the reply in the discussion: ") %>
+<a href="<%= content(:link) %>">
+  <%= content(:link) %>
+</a>
+

@@ -1,0 +1,6 @@
+# see also config/cache_store.yml.example
+production:
+
+development:
+
+test:

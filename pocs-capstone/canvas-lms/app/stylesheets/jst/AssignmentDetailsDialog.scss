@@ -1,0 +1,107 @@
+/*
+ * Copyright (C) 2015 - present Instructure, Inc.
+ *
+ * This file is part of Canvas.
+ *
+ * Canvas is free software: you can redistribute it and/or modify it under
+ * the terms of the GNU Affero General Public License as published by the Free
+ * Software Foundation, version 3 of the License.
+ *
+ * Canvas is distributed in the hope that it will be useful, but WITHOUT ANY
+ * WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
+ * A PARTICULAR PURPOSE. See the GNU Affero General Public License for more
+ * details.
+ *
+ * You should have received a copy of the GNU Affero General Public License along
+ * with this program. If not, see <http://www.gnu.org/licenses/>.
+ */
+
+@import 'base/environment';
+
+#assignment-details-dialog {
+  .distribution {
+    margin: 15px 0;
+    height: 40px;
+    position: relative;
+
+    div {
+      position: absolute;
+      top: 0;
+      #{direction(left)}: 0;
+      width: 0;
+      overflow: hidden;
+      border-style: solid;
+      border-color: #aaa;
+      box-sizing: border-box;
+    }
+
+    .zero, .points-possible{
+      top: 26px;
+      border-width: 0px;
+      width: auto;
+    }
+
+    .points-possible {
+      #{direction(left)}: auto;
+      #{direction(right)}: 0;
+    }
+
+    .zero-point {
+      height: 24px;
+      margin: 0px;
+      border-width: 1px;
+      border-#{direction(right)}-width: 0;
+    }
+
+    .max-point, .min-point {
+      height: 14px;
+      height: 18px;
+      margin: 3px 0px;
+      border-width: 2px;
+      border-#{direction(left)}-width: 0;
+    }
+
+    .whisker {
+      height: 0px;
+      margin-top: 10px;
+      border-width: 2px;
+      border-#{direction(right)}-width: 0;
+    }
+
+    .left-box {
+      height: 24px;
+      border-width: 2px;
+      border-top-#{direction(left)}-radius: 3px;
+      border-bottom-#{direction(left)}-radius: 3px;
+      border-#{direction(right)}-width: 0;
+      background: #fff;
+    }
+
+    .right-box {
+      height: 24px;
+      border-width: 2px;
+      border-top-#{direction(right)}-radius: 3px;
+      border-bottom-#{direction(right)}-radius: 3px;
+      background: #fff;
+    }
+
+    .total-point {
+      height: 24px;
+      margin: 0px 1px;
+      border-width: 1px;
+      border-#{direction(left)}-width: 0;
+    }
+  }
+}
+
+#assignment-details-dialog-stats-table {
+  font-size: 1.2em;
+  th, td {
+    padding: 2px 5px;
+    white-space: nowrap;
+  }
+  td {
+    font-size: 1.1em;
+    font-weight: bold;
+  }
+}

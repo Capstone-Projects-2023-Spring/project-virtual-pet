@@ -1,0 +1,8 @@
+production:
+  domain: "canvas.docker"
+
+test:
+  domain: localhost
+
+development:
+  domain: "canvas.docker"
