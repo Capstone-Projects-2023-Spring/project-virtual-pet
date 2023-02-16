@@ -4,11 +4,11 @@ sidebar_position: 5
 
 # Use-Case Descriptions
 
-### Challenge Oriented (Gamer)
+### Use Case 1
 
-<i> As a User, I like to maximize the progression of in-game characters. I enjoy the process of assigning rewards to these characters and to see them grow.</i>
+<i> As a User, I want to use the resources I've collected in the application to progress my avatar. </i>
 
-1. User navigates to their vatar’s interaction page.
+1. User navigates to their avatar’s interaction page.
 2. User has a set of acquired rewards in the form of ‘candies’ and ‘accessories’ (placeholder names for now).
 User drags ‘accessories’ to the avatar and the animations are now changed to show the avatar wearing the ‘accessory’.
 2. User drags ‘candies’ to the avatar.
@@ -16,9 +16,9 @@ User drags ‘accessories’ to the avatar and the animations are now changed to
 4. A stat (or set of stats, possibly chosen by the User) increases when the ‘candy’ is consumed.
 5. When certain milestones, or ‘levels’, are reached, the avatar changes or ‘grows’.
 
-### Companionship and Comfort
+### Use Case 2
 
-<i> As a User, I want to have a companion to assist in motivating me toward my education goals. I will link Canvas to my Virtual Pet.</i> 
+<i> As a User, I want to link Canvas to my Virtual Pet.</i> 
 
 1. The User creates a profile.
 2. The User selects an avatar from a list of options.
@@ -26,27 +26,27 @@ User drags ‘accessories’ to the avatar and the animations are now changed to
 4. The User signs on through SSO and selects from a list of courses.
 5. The User will now receive rewards for their avatar based on assignment submissions.
 
-### Reliance Based Motivation
+### Use Case 3
 
-<i>As a User, I want to feel like my Virtual Pet is relying on me. When I see the Pet lose progress or become weak as a result of my procrastination, I am motivated to try hard for them.</i>
+<i>As a User, I want to quickly monitor my progress by assessing the mood of my avatar.</i>
 
 1. User has set up Canvas integration and has neglected an assignment.
 2. As the assignment gets closer, the avatar becomes visibly hungry in a comically over-the-top-fashion.
 3. When the due date for the assignment passes, the avatar becomes visibly upset.
-4. A stat (or stats) assigned to the avatar lowers as a result of the due date for the assignment passing.
-5. If a certain milestone is reached in the negative direction, the avatar will revert to a previous state corresponding to lowered progress.
-6. The User can now retroactively complete the assignment and new rewards will be assigned based on results from Canvas Integration.
+4. Experience and rewards gained in the application now have a multiplier that is less than one.
+5. The User can now retroactively complete the assignment and the multiplier will be returned to the previous state.
+6. This will be reflected in the avatar's apparent mood. 
 
-### Autodidact
+### Use Case 4
 
-<i> As a User, I want a place where I can create plans for practicing personal hobbies. I want to create a schedule and be encouraged by my Virtual Pet to adhere to the schedule.</i>
+<i> As a User, I want to create a schedule and be encouraged by my Virtual Pet to adhere to the schedule.</i>
 
 1. The User logs into their profile.
 2. User navigates to the “Create Goal” tab.
 3. User fills out a form with types of milestones and calendar information regarding due dates. These can be explicit calendar entries based on a particular date, or recur on a regular time interval.
 4. The backend for the site builds a set of events for the avatar based on these milestones.
 
-### Updating Goals
+### Use Case 5
 
 <i>As a User, I want to have my study app stay up to date on my progress towards my study goals.</i>
 
@@ -55,7 +55,7 @@ User drags ‘accessories’ to the avatar and the animations are now changed to
 3. After selecting a goal, the User may update their progress by indicating they are halfway through, a quarter of the way through, etc.
 4. After progressing further towards completing a goal, the User’s pet will receive points towards its next level.
 
-### Tracking Progress
+### Use Case 6
 
 <i> As a User, I want to be able to track my pet’s growth and my progress towards reaching my study goals.</i>
 
