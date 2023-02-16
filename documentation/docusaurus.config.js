@@ -125,7 +125,7 @@ const config = {
             activeBaseRegex: `/tutorial/`,
           },
           {
-            to: '/resources/links',
+            to: '/resources/Links',
             label: 'Resources',
             position: 'left',
             activeBaseRegex: `/resources/`,
