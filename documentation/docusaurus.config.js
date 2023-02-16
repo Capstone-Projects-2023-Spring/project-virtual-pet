@@ -125,6 +125,12 @@ const config = {
             activeBaseRegex: `/tutorial/`,
           },
           {
+            to: '/resources/links',
+            label: 'Resources',
+            position: 'left',
+            activeBaseRegex: `/resources/`,
+          },
+          {
             href: 'https://github.com/'+process.env.ORG_NAME+'/'+process.env.PROJECT_NAME,
             label: 'GitHub',
             position: 'right',
@@ -173,7 +179,7 @@ const config = {
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} ${title}, Inc. Built with Docusaurus.`,
+        copyright: `Copyright Â© ${new Date().getFullYear()} ${title}, Inc. Built with Docusaurus.`,
       },
       prism: {
         theme: lightCodeTheme,
@@ -202,6 +208,17 @@ const config = {
         id: 'tutorial',
         path: 'tutorial',
         routeBasePath: 'tutorial',
+        sidebarPath: require.resolve('./sidebars.js'),
+        // ... other options
+      },
+     
+    ],
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'resources',
+        path: 'resources',
+        routeBasePath: 'resources',
         sidebarPath: require.resolve('./sidebars.js'),
         // ... other options
       },
