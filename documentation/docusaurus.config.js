@@ -10,6 +10,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
  */
 const logo = 'https://raw.githubusercontent.com/Capstone-Projects-2023-Spring/project-virtual-pet/main/documentation/resources/gabagoo.jpg';
 
+
 const main_template_jira_scripts = () => {
   if (process.env.ORG_NAME === 'ApplebaumIan'){
     return [    'https://temple-cis-projects-in-cs.atlassian.net/s/d41d8cd98f00b204e9800998ecf8427e-T/azc3hx/b/8/c95134bc67d3a521bb3f4331beb9b804/_/download/batch/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector.js?locale=en-US&collectorId=50af7ec2',
@@ -20,9 +21,11 @@ const main_template_jira_scripts = () => {
 }
 
 // You can change the title here. The default is the name of the repository.
-const title = ''+process.env.PROJECT_NAME.replaceAll('-',' ').split(' ').map((word) => {
-  return word[0].toUpperCase() + word.substring(1);
-}).join(' ');
+//const title = ''+process.env.PROJECT_NAME.replaceAll('-',' ').split(' ').map((word) => {
+//  return word[0].toUpperCase() + word.substring(1);
+//}).join(' ');
+const title = 'My Study Buddy';
+
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -109,7 +112,7 @@ const config = {
         /*TODO: Change to your project's title*/
         title: title,
         logo: {
-          alt: 'My Site Logo',
+          alt: 'Gabagool',
           src: logo,
         },
         items: [
