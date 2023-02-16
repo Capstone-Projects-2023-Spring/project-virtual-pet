@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunktu_cis_4398_docs_template=self.webpackChunktu_cis_4398_docs_template||[]).push([[319],{6062:s=>{s.exports=JSON.parse('{"name":"docusaurus-plugin-content-docs","id":"resources"}')}}]);
