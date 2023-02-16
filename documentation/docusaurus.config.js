@@ -8,7 +8,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
  * The URL or reference to your projects logo!
  * @type {string}
  */
-const logo = '/workspaces/project-virtual-pet/documentation/static/img/docusaurus.png';
+const logo = 'https://raw.githubusercontent.com/Capstone-Projects-2023-Spring/project-virtual-pet/main/documentation/resources/gabagoo.jpg';
 
 const main_template_jira_scripts = () => {
   if (process.env.ORG_NAME === 'ApplebaumIan'){
@@ -205,6 +205,16 @@ const config = {
     [
       '@docusaurus/plugin-content-docs',
       {
+        id: 'resources',
+        path: 'resources',
+        routeBasePath: 'resources',
+        sidebarPath: require.resolve('./sidebars.js'),
+        // ... other options
+      },
+    ],
+    [
+      '@docusaurus/plugin-content-docs',
+      {
         id: 'tutorial',
         path: 'tutorial',
         routeBasePath: 'tutorial',
@@ -212,16 +222,6 @@ const config = {
         // ... other options
       },
      
-    ],
-    [
-      '@docusaurus/plugin-content-docs',
-      {
-        id: 'resources',
-        path: 'resources',
-        routeBasePath: 'resources',
-        sidebarPath: require.resolve('./sidebars.js'),
-        // ... other options
-      },
     ],
     [
       "docusaurus2-dotenv-2",
