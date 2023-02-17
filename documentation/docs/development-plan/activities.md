@@ -65,7 +65,8 @@ Research on React, Django, and Docker will be required to create containers that
     * Set up an API for the site to fetch user information from the SQLite database and Canvas API.
     
 9. Setup SQLite database
-    * 
+    * Use Django Authentication system User model to store user information.
+    * Set up other database models as needed and make migrations to apply changes to database.
 
 10. Implement Canvas' authorization and authentication of Virtual Pet Study Buddy through the OAuth2 process.
     * Users who want to integrate Canvas will be prompted to allow the site access to their Canvas information. 
