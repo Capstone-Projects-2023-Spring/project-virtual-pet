@@ -17,9 +17,10 @@ Research on React, Django, and Docker will be required to create containers that
 6. Allow returning users to log in.
 7. Allow first-time users to create an account.
 8. Create the backend communication.
-9. Implement Canvas' authorization and authentication of Virtual Pet Study Buddy through the OAuth2 process.
-10. Host the site using a cloud service provider.
-11. Containerize the site.
+9. Setup SQLite database.
+10. Implement Canvas' authorization and authentication of Virtual Pet Study Buddy through the OAuth2 process.
+11. Host the site using a cloud service provider.
+12. Containerize the site.
 
 
 ## Detailed Design
@@ -62,15 +63,18 @@ Research on React, Django, and Docker will be required to create containers that
 
 8. Create the backend communication
     * Set up an API for the site to fetch user information from the SQLite database and Canvas API.
+    
+9. Setup SQLite database
+    * 
 
-9. Implement Canvas' authorization and authentication of Virtual Pet Study Buddy through the OAuth2 process.
+10. Implement Canvas' authorization and authentication of Virtual Pet Study Buddy through the OAuth2 process.
     * Users who want to integrate Canvas will be prompted to allow the site access to their Canvas information. 
     * Users’ completion of assignments and their grades from Canvas will be shown on the site and have an impact on their pets.
 
-10. Host the site using a cloud service provider
+11. Host the site using a cloud service provider
     * The site will run on a Linux server.
 
-11. Containerize the site
+12. Containerize the site
     * Use containers to run the site’s backend and frontend. 
 
 
