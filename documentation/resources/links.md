@@ -15,6 +15,20 @@
 * <a href="https://capstone.ianapplebaum.com/" target="_blank">Course Site (syllabus, schedule, etc)</a>
 * <a href="https://templeu.instructure.com/courses/124586" target="_blank">Canvas Course Page</a>
 
+## react-django app using jwt authentication
+Currently the user can register, login, view a home page, and view a protected page(only view when logged in). This app uses django.contrib.auth User model for the username and password. The front end didn't use react-router-dom v6. I updated the front end syntax so it can use v6. At the very least this is good research and provides us with options. 
+
+https://github.com/jay-newman/jwt-react-django-app
+
+Two Part Guide:
+
+https://sushil-kamble.medium.com/django-rest-framework-react-authentication-workflow-2022-part-1-a21f22b3f358
+https://blog.devgenius.io/django-rest-framework-react-authentication-workflow-2022-part-2-d299b7fef875
+
+Here you can see all the fields the user model has:
+
+https://docs.djangoproject.com/en/4.1/ref/contrib/auth/
+
 ## Documents
 * <a href="https://docs.google.com/document/d/1R3kF0f-yiPbxu7IfqQ-IOnBlch3DSUpk/edit#" target="_blank">Software Development Plan</a>
 * <a href="https://docs.google.com/document/d/1XPm3EVNeggNEwHU8skWAMJUmIKoehJBc8fHrWDONbpk/edit?usp=sharing" target="_blank">Project Proposal</a>
@@ -34,7 +48,12 @@
 * <a href="https://docs.djangoproject.com/en/4.1/howto/static-files/" target="_blank">How to manage static files - images, JavaScript, CSS</a>
 * <a href="https://docs.djangoproject.com/en/4.1/topics/db/models/" target="_blank">Django models ("for building out database schema the EZ way")</a>
 * <a href="https://www.youtube.com/watch?v=89KrqjqPeZ0&t=1s" target="_blank">Django, React authentication & CSRF overview video</a>
+
+* <a href="https://www.digitalocean.com/community/tutorials/how-to-send-web-push-notifications-from-django-applications" target="_blank">How To Send Web Push Notifications from Django Applications</a>
+* <a href="https://css-tricks.com/creating-scheduled-push-notifications/" target="_blank">Creating Scheduled Push Notifications - CSS-Tricks</a>
+
 * <a href="https://www.django-rest-framework.org/api-guide/relations/#hyperlinkedidentityfield" target = "_blank">Django RESTful nested serializers</a>
+
 
 
 **Canvas**
@@ -48,5 +67,6 @@
 * <a href="https://templeu.instructure.com/courses/124586/files/22142094?module_item_id=5202422" target="_blank">System overview slides</a>
 * <a href="https://capstone-projects-2022-fall.github.io/project-collabybot/docs/requirements/use-case-descriptions" target="_blank">Collabybot use case descriptions</a>
 
-**Scripts & Packages**
+**Script, Libraries, Packages**
 * <a href="https://github.com/web-mech/badwords" target="_blank">Bad words filter package</a>
+* <a href="https://react-bootstrap.netlify.app/components/alerts" target="_blank">React-Bootstrap</a>
