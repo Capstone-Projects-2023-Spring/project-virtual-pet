@@ -400,14 +400,6 @@ classDiagram
     }
 ```
 
-*
-*
-*
-***insert diagram***
-*
-*
-*
-
 ### Figure 1.4 UML Class Diagram: Header React Components
 Figure 1.4 shows the components that make up Header. Laying along the top, it displays the site's name and a DropDownMenu component for users to navigate to other pages. 
 
