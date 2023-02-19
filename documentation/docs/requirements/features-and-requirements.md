@@ -4,6 +4,32 @@ sidebar_position: 4
 
 # Features and Requirements
 
+## Features
+Milestone Demo Features
+
+Milestone Demo 1
+* User can create/log in to account
+* User can choose between two pets
+* User can view main page with static image of pet
+* User can link with Canvas (return to user their course names)
+
+Milestone Demo 2
+* User can create and view tasks
+* Canvas assignments are imported as tasks
+* User can use calendar feature
+
+
+Milestone Demo 3
+* Make the pet reactive + Multiple frames for each tier
+* Create the inventory page
+* Implement progression system graphically [move?]
+
+Final Demo
+* Host site [move]
+* Add more states to pet(s)
+* Add pet profile page
+* Create task/assignment reminders
+
 ## Functional Requirements
 
 * Users must make an account to use the Virtual Pet Study Buddy application.
