@@ -357,9 +357,13 @@ The CalendarPage component holds the state 'taskList'. It allows users to intera
 
 The PetProfPage component displays the state 'avatarInfo' and 'taskList', showing the user detailed stats on their pet and their overall progress. 
 
-
+*
+*
+*
 ***insert diagram***
-
+*
+*
+*
 
 ### Figure 1.4 UML Class Diagram (Header React Components)
 
