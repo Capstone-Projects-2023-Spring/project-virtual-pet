@@ -65,4 +65,25 @@ User drags ‘accessories’ to the avatar and the animations are now changed to
 4. Also from this page, the User can select a specific goal to see more information.
 5. After selecting their goal, the User will see a progress bar indicating how close they are to achieving it, as well as the time remaining before the deadline.
 
+### Use Case 7
+
+<i> As a user, I want to be able to log into an account so that my progress and tasks will be saved.</i>
+
+1. The system requests the user to log in or create an account.
+2. The user enters their email address and password.
+3. The system validates the user’s credentials and grants access to the application.
+
+### Use Case 8
+
+<i> As a user, it is important that I can create an account so that I can maintain my pet’s growth and my task progress.</i>
+
+1.  Upon accessing the web application for the first time, the user is given the option to create 
+     an account.
+2.  The user inputs their email address and creates a password to create their account.
+3. After creating the account, the user sees a page allowing them to choose a pet out of a 
+     selection of avatars.
+4. The user selects a pet.
+5. The site automatically navigates to the Canvas Integration tab.
+6. The user chooses whether to integrate with their Canvas account.
+7. The user now has access to creating tasks and growing their pet.
 
