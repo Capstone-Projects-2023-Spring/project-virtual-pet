@@ -53,15 +53,15 @@ User drags ‘accessories’ to the avatar and the animations are now changed to
 1. The User logs into their profile.
 2. From the homepage, the User can select a specific goal to see more information.
 3. After selecting a goal, the User may update their progress by indicating they are halfway through, a quarter of the way through, etc.
-4. After progressing further towards completing a goal, the User’s pet will receive points towards its next level.
+4. After progressing further towards completing a goal, the User’s pet will receive EXP in the form of candy towards its next level.
 
 ### Use Case 6
 
 <i> As a User, I want to be able to track my pet’s growth and my progress towards reaching my study goals.</i>
 
 1. The User logs into their profile.
-2. The User navigates to the ‘Track Progress’ page.
-3. From this page, the User will see a progress bar indicating their pet’s current progress to the next level, including the number of points left to reach the next level.
+2. The User navigates to the ‘Pet Profile’ page.
+3. From this page, the User will see a progress bar indicating their pet’s current progress to the next level.
 4. Also from this page, the User can select a specific goal to see more information.
 5. After selecting their goal, the User will see a progress bar indicating how close they are to achieving it, as well as the time remaining before the deadline.
 
