@@ -201,8 +201,16 @@ classDiagram
 
 ```
 
-### Figure 1.1 UML Class Diagram (All React Components)
+### Figure 1.1 All React Components
 Figure 1.1 shows all the React components that make up the frontend of the StudyBuddy site.
+
+#### App
+* The App component is the entire site broken into smaller components. It first splinters into Main and Header. See [Figure 1.4](#figure-14-header-component) to see the Header component. 
+
+#### Main 
+* The Main component owns the 'avatarInfo' and 'inventory' states so the components below can display and make changes to them. It's broken into the components PetDisplay and PageDisplay.
+    * See [Figure 1.2](#figure-12-petdisplay-component) for the PetDisplay component. 
+    * See [Figure 1.3](#figure-13-pagedisplay-component) for the PageDisplay component.
 
 
 ```mermaid
@@ -235,11 +243,11 @@ classDiagram
     }
 ```
 
-### Figure 1.2 UML Class Diagram (PetDisplay React Components)
+### Figure 1.2 PetDisplay Component
 Figure 1.2 shows the React components that make PetDisplay. This component will be fixed to the left side of the page, allowing users to always see and interact with their pet. 
 
 #### PetSprite
-* The PetSprite component displays a sprite of the user's pet, and allows the user to drag items like candy to it from the InventoryPage (Figure 1.3). Candies will change the pet's 'avatarInfo' state, updating information like total EXP and the last time they were fed/interacted with. The 'inventory' state will also change since the user will have one less item from using the candy. The 'sprite' state will also change since a pet's mood can improve from receiving items. The 'sprite' state is owned by the PetSprite component so those changes will cause only that component to re-render.
+* The PetSprite component displays a sprite of the user's pet, and allows the user to drag items like candy to it from the InventoryPage component (See [Figure 1.3](#figure-13-pagedisplay-component)). Candies will change the pet's 'avatarInfo' state, updating information like total EXP and the last time they were fed/interacted with. The 'inventory' state will also change since the user will have one less item from using the candy. The 'sprite' state will also change since a pet's mood can improve from receiving items. The 'sprite' state is owned by the PetSprite component so those changes will cause only that component to re-render.
 
 #### PetDescription and ProgressBar
 * The components PetDescription and ProgressBar use the state 'avatarInfo' to display information about the user's pet like its name, mood, total EXP, etc. 
@@ -344,7 +352,7 @@ classDiagram
 ```
 
 
-### Figure 1.3 UML Class Diagram: PageDisplay React Components
+### Figure 1.3 PageDisplay Component
 Figure 1.3 shows the React components that make PageDisplay. This component is fixed to the right side of the page, and it provides navigation to different pages that will help the user keep track of their task progress and pet. 
 
 #### NavBar
@@ -400,7 +408,7 @@ classDiagram
     }
 ```
 
-### Figure 1.4 UML Class Diagram: Header React Components
+### Figure 1.4 Header Component
 Figure 1.4 shows the components that make up Header. Laying along the top, it displays the site's name and a DropDownMenu component for users to navigate to other pages. 
 
 #### DropDownMenu
