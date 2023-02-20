@@ -180,12 +180,12 @@ title Check Progress Via Pet Mood
     Main ->> PageDisplay: render
 ```
 
-    User has set up Canvas integration and has neglected an assignment.
-    As the assignment gets closer, the avatar becomes visibly hungry in a comically over-the-top-fashion.
-    When the due date for the assignment passes, the avatar becomes visibly upset.
-    Experience and rewards gained in the application now have a multiplier that is less than one.
-    The user can now retroactively complete the assignment and the multiplier will be returned to the previous state.
-    This will be reflected in the avatar's apparent mood.
+    1. User has set up Canvas integration and has neglected an assignment.
+    2. As the assignment gets closer, the avatar becomes visibly hungry in a comically over-the-top-fashion.
+    3. When the due date for the assignment passes, the avatar becomes visibly upset.
+    4. Experience and rewards gained in the application now have a multiplier that is less than one.
+    5. The user can now retroactively complete the assignment and the multiplier will be returned to the previous state.
+    6. This will be reflected in the avatar's apparent mood.
 
 ## Use Case 4
 ### As a user, I want to create a schedule and be encouraged by my Virtual Pet to adhere to the schedule.
@@ -229,11 +229,11 @@ title Creating a Goal
     TaskPage ->> TaskList: render
 ```
 
-    The user logs into their profile.
-    User navigates to the “Create Task” tab.
-    User fills out a form with types of milestones and calendar information regarding due dates. 
-    These can be explicit calendar entries based on a particular date, or recur on a regular time interval.
-    The backend for the site builds a set of events for the avatar based on these milestones.
+    1. The user logs into their profile.
+    2. User navigates to the “Create Task” tab.
+    3. User fills out a form with types of milestones and calendar information regarding due dates. These can be explicit calendar 
+       entries based on a particular date, or recur on a regular time interval.
+    4. The backend for the site builds a set of events for the avatar based on these milestones.
 
 ## Use Case 5
 ### As a user, I want to have my study app stay up to date on my progress towards my study goals.
@@ -286,10 +286,10 @@ sequenceDiagram
     TaskList->>TaskItem: render
     
 ```
-    The user logs into their profile.
-    From the homepage, the user can select a specific task to see more information.
-    After selecting a task, the user may update their progress by indicating they are halfway through, a quarter of the way through, etc.
-    After progressing further towards completing a task, the user’s pet will receive EXP in the form of candy towards its next level.
+    1. The user logs into their profile.
+    2. From the homepage, the user can select a specific task to see more information.
+    3. After selecting a task, the user may update their progress by indicating they are halfway through, a quarter of the way through, etc.
+    4. After progressing further towards completing a task, the user’s pet will receive EXP in the form of candy towards its next level.
 
 ## Use Case 6
 ### As a user, I want to be able to track my pet’s growth and my progress towards reaching my study goals.
@@ -347,9 +347,9 @@ sequenceDiagram
     User->>HomePage: User is redirected to the home page and has access to the applications
 ```
 
-    The system requests the user to log in or create an account.
-    The user enters their email address and password.
-    The system validates the user’s credentials and grants access to the application.
+    1. The system requests the user to log in or create an account.
+    2. The user enters their email address and password.
+    3. The system validates the user’s credentials and grants access to the application.
 
 ## Use Case 8
 
@@ -394,10 +394,10 @@ title Tracking Task Progress
 
 ```
 
-    Upon accessing the web application for the first time, the user is given the option to create an account.
-    The user inputs their email address and creates a password to create their account.
-    After creating the account, the user sees a page allowing them to choose a pet out of a selection of avatars.
-    The user selects a pet.
-    The site automatically navigates to the Canvas Integration tab.
-    The user chooses whether to integrate with their Canvas account.
-    The user now has access to creating tasks and growing their pet.
+    1. Upon accessing the web application for the first time, the user is given the option to create an account.
+    2. The user inputs their email address and creates a password to create their account.
+    3. After creating the account, the user sees a page allowing them to choose a pet out of a selection of avatars.
+    4. The user selects a pet.
+    5. The site automatically navigates to the Canvas Integration tab.
+    6. The user chooses whether to integrate with their Canvas account.
+    7. The user now has access to creating tasks and growing their pet.
