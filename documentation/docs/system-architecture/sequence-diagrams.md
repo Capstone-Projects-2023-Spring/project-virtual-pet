@@ -5,6 +5,7 @@ sidebar_position: 4
 # Sequence Diagrams
 
 ## Use Case 1
+### As a user, I want to use the resources I've collected in the application to progress my avatar.
 ```mermaid
 sequenceDiagram
 title Feeding Candies to Progress
@@ -70,10 +71,10 @@ This sequence diagram displays the way in which the user can feed candies collec
 4. The avatarInfo is updated which contains the EXP data, which causes the progress bar to update, increasing when the ‘candy’ is consumed.
 
 ## Use Case 2
+### As a user, I want to link Canvas to my Virtual Pet.
 
 ```mermaid
 sequenceDiagram
-title Integrating With Canvas
     actor User
     participant App
     participant Main
@@ -209,6 +210,8 @@ sequenceDiagram
 ```
 
 ## Use Case 6
+### As a user, I want to be able to track my pet’s growth and my progress towards reaching my study goals.
+
 ```mermaid
 sequenceDiagram
 title Tracking Task Progress
@@ -242,7 +245,8 @@ This sequence diagram displays the way in which the user can use the Pet Profile
 4. The user selects 'Pet Profile' page, and selects a specific task to see more information.
 5. The pet profile page renders the task list, task item, and task details components.
 
-## Use Case 7: As a user, I want to be able to log into an account so that my progress and tasks will be saved.
+## Use Case 7: 
+### As a user, I want to be able to log into an account so that my progress and tasks will be saved.
 ```mermaid
 sequenceDiagram
     actor User
@@ -266,6 +270,7 @@ sequenceDiagram
 sequenceDiagram
 
 title Tracking Task Progress
+### As a user, it is important that I can create an account so that I can maintain my pet’s growth and my task progress.
 
     actor u as User
     participant a as App
