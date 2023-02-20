@@ -3,7 +3,7 @@ sidebar_position: 2
 ---
 
 # Component Descriptions
-A description the different components and their interfaces. See the [System Block Diagram]([url](https://capstone-projects-2023-spring.github.io/project-virtual-pet/docs/requirements/system-block-diagram)) for a visualization of how these components interact.
+A description the different components and their interfaces. See the [System Block Diagram](https://capstone-projects-2023-spring.github.io/project-virtual-pet/docs/requirements/system-block-diagram) for a visualization of how these components interact.
 
 
 ## React.js
