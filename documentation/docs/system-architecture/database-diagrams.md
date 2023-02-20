@@ -93,6 +93,9 @@ erDiagram
 
 ## Django Class Diagram
 
+
+```
+
 ```mermaid
 ---
 title: Brain Buddies API Class Diagram
