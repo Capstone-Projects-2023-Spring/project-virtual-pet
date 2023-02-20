@@ -48,15 +48,8 @@ https://docs.djangoproject.com/en/4.1/ref/contrib/auth/
 * <a href="https://docs.djangoproject.com/en/4.1/howto/static-files/" target="_blank">How to manage static files - images, JavaScript, CSS</a>
 * <a href="https://docs.djangoproject.com/en/4.1/topics/db/models/" target="_blank">Django models ("for building out database schema the EZ way")</a>
 * <a href="https://www.youtube.com/watch?v=89KrqjqPeZ0&t=1s" target="_blank">Django, React authentication & CSRF overview video</a>
-<<<<<<< HEAD
-
 * <a href="https://www.digitalocean.com/community/tutorials/how-to-send-web-push-notifications-from-django-applications" target="_blank">How To Send Web Push Notifications from Django Applications</a>
 * <a href="https://css-tricks.com/creating-scheduled-push-notifications/" target="_blank">Creating Scheduled Push Notifications - CSS-Tricks</a>
-=======
-* <a href="https://www.django-rest-framework.org/api-guide/relations/#hyperlinkedidentityfield" target = "_blank">Django RESTful nested serializers</a>
-
->>>>>>> 497818c6 (some stuff)
-
 * <a href="https://www.django-rest-framework.org/api-guide/relations/#hyperlinkedidentityfield" target = "_blank">Django RESTful nested serializers</a>
 
 
