@@ -73,6 +73,7 @@ This sequence diagram displays the way in which the user can feed candies collec
 
 ```mermaid
 sequenceDiagram
+title Integrating With Canvas
     actor User
     participant App
     participant Main
