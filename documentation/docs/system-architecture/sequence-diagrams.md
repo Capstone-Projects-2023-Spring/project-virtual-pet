@@ -40,7 +40,7 @@ title Feeding Candies to Progress
     
     %% pick up candies
     User ->> InventoryPage: User picks up candy from inventory
-    InventoryPage ->> APIMiddleware: POST (HTTP) inventory 
+    InventoryPage ->> APIMiddleware: PUT (HTTP) inventory 
     APIMiddleware -->> InventoryPage: HTTP 200 success
     Inventory ->> Inventory: Update inventory to remove candy
     Main ->> InventoryPage: render
@@ -51,7 +51,7 @@ title Feeding Candies to Progress
     Main ->> PetDisplay: render
     PetSprite ->> PetDisplay: trigger eating animation
     PetDisplay ->> ProgressBar: EXP in avatarInfo increases
-    PetDisplay ->> APIMiddleware: POST (HTTP) avatarInfo
+    PetDisplay ->> APIMiddleware: PUT (HTTP) avatarInfo
     APIMiddleware -->> PetDisplay: HTTP 200 success
     deactivate PetDisplay
     Main ->> ProgressBar: render/update
