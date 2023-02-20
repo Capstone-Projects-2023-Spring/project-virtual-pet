@@ -133,6 +133,7 @@ classDiagram
         + setTaskList()
         + setPageView()
         + setInventory()
+        + fetchData()
         + Array taskList
         + Array inventory
         + int pageView
@@ -219,6 +220,7 @@ classDiagram
     }
 
 
+
 ```
 
 #####  Figure 1.1 All React Components
@@ -232,6 +234,11 @@ Figure 1.1 shows all the React components that make up the frontend of the Study
     * See [Figure 1.2](#petdisplay-component) for the PetDisplay component. 
     * See [Figure 1.3](#pagedisplay-component) for the PageDisplay component.
 
+
+### Site Mockup 
+<img src="./mockup.png" alt="Site Mockup"/>
+
+##### Figure 2. Site Mockup
 
 
 ### PetDisplay Component
