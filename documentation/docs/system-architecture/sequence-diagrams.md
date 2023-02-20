@@ -5,7 +5,7 @@ sidebar_position: 4
 # Sequence Diagrams
 
 ## Use Case 1
-### As a user, I want to use the resources I've collected in the application to progress my avatar.
+**As a user, I want to use the resources I've collected in the application to progress my avatar.**
 ```mermaid
 sequenceDiagram
 title Feeding Candies to Progress
@@ -72,7 +72,7 @@ title Feeding Candies to Progress
     5. The avatarInfo is updated which contains the EXP data, which causes the progress bar to update, increasing when the ‘candy’ is consumed.
 
 ## Use Case 2
-### As a user, I want to link Canvas to my Virtual Pet.
+**As a user, I want to link Canvas to my Virtual Pet.**
 
 ```mermaid
 sequenceDiagram
@@ -118,7 +118,7 @@ sequenceDiagram
     4. Courses as assignment data are imported into the user's info.
 
 ## Use Case 3
-### As a user, I want to quickly monitor my progress by assessing the mood of my avatar.
+**As a user, I want to quickly monitor my progress by assessing the mood of my avatar.**
 ```mermaid
 sequenceDiagram
 title Check Progress Via Pet Mood
@@ -188,7 +188,7 @@ title Check Progress Via Pet Mood
     6. This will be reflected in the avatar's apparent mood.
 
 ## Use Case 4
-### As a user, I want to create a schedule and be encouraged by my Virtual Pet to adhere to the schedule.
+**As a user, I want to create a schedule and be encouraged by my Virtual Pet to adhere to the schedule.**
 <!-- <details>
   <summary>Use Case 4 Description</summary>
   <div>
@@ -236,7 +236,7 @@ title Creating a Goal
     4. The backend for the site builds a set of events for the avatar based on these milestones.
 
 ## Use Case 5
-### As a user, I want to have my study app stay up to date on my progress towards my study goals.
+**As a user, I want to have my study app stay up to date on my progress towards my study goals.**
 <!-- <details>
   <summary>Use Case 1 Description</summary>
   <div>
@@ -292,7 +292,7 @@ sequenceDiagram
     4. After progressing further towards completing a task, the user’s pet will receive EXP in the form of candy towards its next level.
 
 ## Use Case 6
-### As a user, I want to be able to track my pet’s growth and my progress towards reaching my study goals.
+**As a user, I want to be able to track my pet’s growth and my progress towards reaching my study goals.**
 
 ```mermaid
 sequenceDiagram
@@ -330,7 +330,7 @@ title Tracking Task Progress
     5. The pet profile page renders the task list, task item, and task details components.
 
 ## Use Case 7 
-### As a user, I want to be able to log into an account so that my progress and tasks will be saved.
+**As a user, I want to be able to log into an account so that my progress and tasks will be saved.**
 ```mermaid
 sequenceDiagram
     actor User
@@ -353,7 +353,7 @@ sequenceDiagram
 
 ## Use Case 8
 
-### As a user, it is important that I can create an account so that I can maintain my pet’s growth and my task progress.
+**As a user, it is important that I can create an account so that I can maintain my pet’s growth and my task progress.**
 
 ```mermaid
 
