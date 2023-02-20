@@ -72,6 +72,21 @@ This sequence diagram displays the way in which the user can use the Pet Profile
 4. The user selects 'Pet Profile' page, and selects a specific task to see more information.
 5. The pet profile page renders the task list, task item, and task details components.
 
-## Use Case 7
+## Use Case 7: As a user, I want to be able to log into an account so that my progress and tasks will be saved.
+```mermaid
+sequenceDiagram
+    actor User
+    participant HomePage
+    participant LoginPage
+    participant APIMiddleware
+
+    User->>+LoginPage: User navigates to the login page and submits their credentials
+    LoginPage->>APIMiddleware: POST (HTTP) username, password
+    APIMiddleware-->>LoginPage: HTTP 200 Content-Type: JSON[] refresh token, access token
+    LoginPage->>LoginPage: Set Auth. Tokens in Local Storage
+    LoginPage->>LoginPage: Set User State in application
+    LoginPage->>-User: User is logged in
+    User->>HomePage: User is redirected to the home page and has access to the applications
+```
 
 ## Use Case 8
