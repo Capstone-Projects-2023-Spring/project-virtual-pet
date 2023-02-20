@@ -13,3 +13,5 @@ def index(request):
 class NoteViewSet(viewsets.ModelViewSet):
     queryset = Note.objects.all().order_by('note_id')
     serializer_class = NoteSerializer
+
+

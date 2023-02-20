@@ -34,6 +34,7 @@
 * <a href="https://docs.djangoproject.com/en/4.1/howto/static-files/" target="_blank">How to manage static files - images, JavaScript, CSS</a>
 * <a href="https://docs.djangoproject.com/en/4.1/topics/db/models/" target="_blank">Django models ("for building out database schema the EZ way")</a>
 * <a href="https://www.youtube.com/watch?v=89KrqjqPeZ0&t=1s" target="_blank">Django, React authentication & CSRF overview video</a>
+* <a href="https://www.django-rest-framework.org/api-guide/relations/#hyperlinkedidentityfield" target = "_blank">Django RESTful nested serializers</a>
 
 
 **Canvas**

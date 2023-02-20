@@ -6,3 +6,4 @@ class NoteSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Note
         fields = ('note_text', 'note_id')
+
