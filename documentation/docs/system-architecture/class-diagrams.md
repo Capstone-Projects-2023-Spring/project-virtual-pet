@@ -225,12 +225,12 @@ classDiagram
 Figure 1.1 shows all the React components that make up the frontend of the StudyBuddy site.
 
 #### App
-* The App component is the entire site broken into smaller components. It first splinters into Main and Header. See [Figure 1.4](#figure-14-header-component) to see the Header component. 
+* The App component is the entire site broken into smaller components. It first splinters into Main and Header. See [Figure 1.4](#header-component) to see the Header component. 
 
 #### Main 
 * The Main component owns the 'avatarInfo' and 'inventory' states so the components below can display and make changes to them. It's broken into the components PetDisplay and PageDisplay.
-    * See [Figure 1.2](#figure-12-petdisplay-component) for the PetDisplay component. 
-    * See [Figure 1.3](#figure-13-pagedisplay-component) for the PageDisplay component.
+    * See [Figure 1.2](#petdisplay-component) for the PetDisplay component. 
+    * See [Figure 1.3](#pagedisplay-component) for the PageDisplay component.
 
 
 
@@ -452,7 +452,7 @@ classDiagram
     }
 ```
 
-### Figure 1.4 Header Component
+##### Figure 1.4 Header Component
 Figure 1.4 shows the components that make up Header. Laying along the top, it displays the site's name and a DropDownMenu component for users to navigate to other pages. 
 
 #### DropDownMenu
