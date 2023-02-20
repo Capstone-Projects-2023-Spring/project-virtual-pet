@@ -619,4 +619,6 @@ classDiagram
 
 
 
-    This class diagram shows the relations between serializer and view classes in our Django backend. Each serializer acts as an adapter for the tables in our database. The view classes represent the functionality of each URL endpoint that will be specified in our API. 
+    This class diagram shows the relations between serializer and view classes in our Django backend. 
+    Each serializer acts as an adapter for the tables in our database. 
+    The view classes represent the functionality of each URL endpoint that will be specified in our API. 
