@@ -12,7 +12,9 @@ sidebar_position: 5
 2. User views a set of acquired rewards in the form of ‘candies’.
 3. User drags a 'candy' to the avatar.
 3. The avatar shows an eating animation and a satisfied animation.
-4. The progress bar increases when the ‘candy’ is consumed.
+4. A stat (or set of stats, possibly chosen by the user) increases when the ‘candy’ is consumed.
+5. When certain milestones, or ‘levels’, are reached, the avatar changes or ‘grows’.
+
 
 ### Use Case 2
 

@@ -50,6 +50,9 @@ https://docs.djangoproject.com/en/4.1/ref/contrib/auth/
 * <a href="https://www.youtube.com/watch?v=89KrqjqPeZ0&t=1s" target="_blank">Django, React authentication & CSRF overview video</a>
 * <a href="https://www.digitalocean.com/community/tutorials/how-to-send-web-push-notifications-from-django-applications" target="_blank">How To Send Web Push Notifications from Django Applications</a>
 * <a href="https://css-tricks.com/creating-scheduled-push-notifications/" target="_blank">Creating Scheduled Push Notifications - CSS-Tricks</a>
+* <a href="https://www.django-rest-framework.org/api-guide/relations/#hyperlinkedidentityfield" target = "_blank">Django RESTful nested serializers</a>
+
+
 
 **Canvas**
 * <a href="https://github.com/instructure/canvas-lms/wiki/Quick-Start" target="_blank">Canvas quick starter guide</a>
