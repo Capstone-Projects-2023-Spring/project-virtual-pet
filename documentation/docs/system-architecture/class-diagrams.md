@@ -133,6 +133,7 @@ classDiagram
         + setTaskList()
         + setPageView()
         + setInventory()
+        + setAvatarInfo()
         + fetchData()
         + Array taskList
         + Array inventory
@@ -154,11 +155,13 @@ classDiagram
 
     class TaskPage {
         + Array taskList
+        + setAvatarInfo()
         + setTaskList()
         + setInventory()
     }
     class TaskList{
         + Array taskList
+        + setAvatarInfo()
         + setTaskList()
         + setInventory()
         + removeTask()
@@ -218,7 +221,6 @@ classDiagram
     class PPTaskDetails {
         + Object taskItem 
     }
-
 
 
 ```
@@ -314,6 +316,7 @@ classDiagram
         + setTaskList()
         + setPageView()
         + setInventory()
+        + setAvatarInfo()
         + fetchData()
         + Array taskList
         + Array inventory
@@ -335,11 +338,13 @@ classDiagram
 
     class TaskPage {
         + Array taskList
+        + setAvatarInfo()
         + setTaskList()
         + setInventory()
     }
     class TaskList{
         + Array taskList
+        + setAvatarInfo()
         + setTaskList()
         + setInventory()
         + removeTask()
