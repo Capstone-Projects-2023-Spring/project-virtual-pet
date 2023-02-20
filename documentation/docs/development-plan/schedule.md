@@ -4,6 +4,8 @@ sidebar_position: 3
 
 # Schedule
 
+## Gantt Chart
+
 ```mermaid
 gantt
     title StudyBuddy Schedule Gantt Chart
@@ -119,3 +121,4 @@ gantt
         section Sprint 5
         Submit Final Software Release Assignment: milestone, , 2023-05-07, 1d
 ```
+## Milestone Demo Features
