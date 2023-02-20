@@ -329,7 +329,7 @@ title Tracking Task Progress
     4. The user selects 'Pet Profile' page, and selects a specific task to see more information.
     5. The pet profile page renders the task list, task item, and task details components.
 
-## Use Case 7: 
+## Use Case 7 
 ### As a user, I want to be able to log into an account so that my progress and tasks will be saved.
 ```mermaid
 sequenceDiagram
