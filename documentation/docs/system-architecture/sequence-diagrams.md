@@ -165,7 +165,7 @@ sequenceDiagram
     PageDisplay->>TaskPage: render
     TaskPage->>TaskList: render
     TaskList->>TaskItem: render
-    s
+    
 ```
 
 ## Use Case 6
