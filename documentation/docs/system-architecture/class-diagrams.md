@@ -20,6 +20,9 @@ classDiagram
     DropDownItem *--"routes to" CanvasIntegrationPage
     DropDownItem *-- "routes to" AccountSettingsPage
 
+    
+    
+
     Main *-- PetDisplay
     Main *-- PageDisplay
 
@@ -28,23 +31,27 @@ classDiagram
     PetDisplay *-- ProgressBar
 
     PageDisplay *-- NavBar
-    NavBar "1" *-- "4" NavButton
     PageDisplay *-- TaskPage
     PageDisplay *-- CalendarPage
     PageDisplay *-- InventoryPage
     PageDisplay *-- PetProfPage
+
+    NavBar "1" *-- "4" NavButton
 
     TaskPage *-- TaskList
     TaskPage *-- CreateTaskForm
 
     TaskList "1" *-- "0.." TaskItem
     TaskItem *-- TaskDetails
-    %% TaskItem *-- TaskOptions
 
     InventoryPage *-- ItemGrid
     ItemGrid "1" *-- "0.."Item
 
     CalendarPage *-- Calendar
+
+    PetProfPage *-- PPTaskList
+    PPTaskList *-- PPTaskItem
+    PPTaskItem *-- PPTaskDetails
 
 
     
@@ -92,6 +99,7 @@ classDiagram
         + Array inventory
         + setAvatarInfo()
         + setInventory()
+        + fetchData()
     }
 
 
@@ -169,6 +177,7 @@ classDiagram
     class CreateTaskForm{
         + setTaskList()
         + addTask()
+        
     }
 
     class InventoryPage {
@@ -196,8 +205,19 @@ classDiagram
         + Object avatarInfo
         + Array taskList 
     }
+    class PPTaskList {
+        + Array taskList 
+    }
 
-    
+    class PPTaskItem {
+        + Object taskItem
+        + handleClick()
+    }
+
+    class PPTaskDetails {
+        + Object taskItem 
+    }
+
 
 ```
 
@@ -254,34 +274,16 @@ Figure 1.2 shows the React components that make PetDisplay. This component will 
 
 ```mermaid
 classDiagram
-    PageDisplay *-- NavBar
-    PageDisplay *-- TaskPage
-    PageDisplay *-- CalendarPage
-    PageDisplay *-- InventoryPage
-    PageDisplay *-- PetProfPage
-
-    NavBar "1" *-- "4" NavButton
-
-    TaskPage *-- TaskList
-    TaskPage *-- CreateTaskForm
-
-    TaskList "1" *-- "0.." TaskItem
-    TaskItem *-- TaskDetails
-
-    InventoryPage *-- ItemGrid
-    ItemGrid "1" *-- "0.."Item
-
-    CalendarPage *-- Calendar
-
 
     class PageDisplay {
-    + setTaskList()
-    + setPageView()
-    + setInventory()
-    + Array taskList
-    + Array inventory
-    + int pageView
-    + Object avatarInfo
+        + setTaskList()
+        + setPageView()
+        + setInventory()
+        + fetchData()
+        + Array taskList
+        + Array inventory
+        + int pageView
+        + Object avatarInfo
     }
 
     class NavBar {
@@ -294,6 +296,7 @@ classDiagram
         + handleClick()
         + int pageView 
     }
+
 
     class TaskPage {
         + Array taskList
@@ -320,7 +323,8 @@ classDiagram
     }
     class CreateTaskForm{
         + setTaskList()
-        + addTask()  
+        + addTask()
+        
     }
 
     class InventoryPage {
@@ -348,6 +352,18 @@ classDiagram
         + Object avatarInfo
         + Array taskList 
     }
+    class PPTaskList {
+        + Array taskList 
+    }
+
+    class PPTaskItem {
+        + Object taskItem
+        + handleClick()
+    }
+
+    class PPTaskDetails {
+        + Object taskItem 
+    }
 
 ```
 
@@ -368,8 +384,7 @@ Figure 1.3 shows the React components that make PageDisplay. This component is f
 * The CalendarPage component holds the state 'taskList'. It allows users to interact with a calendar and select days to see what tasks are due. It will re-render if changes are made to the 'taskList' state, which could be caused by new tasks pulled from the user's Canvas or their interactions with the TaskList component. 
 
 #### PetProfPage
-* The PetProfPage component displays the state 'avatarInfo' and 'taskList', showing the user detailed stats on their pet and their overall progress. 
-
+* The PetProfPage component shows the user detailed stats on their pet and their task progress using the 'avatarInfo' and 'taskList' states. The user's tasks are displayed with a PPTaskList component which is made up of PPTaskItems. When the user clicks on these componenets, a PPTaskDetails component will render, showing the user their progress on the selected task so far. They can not update the task from here. 
 
 
 ```mermaid
