@@ -8,7 +8,8 @@ sidebar_position: 6
 
 ```mermaid
 
-erDiagram
+ER_DIAGRAM 
+
     USER ||--|{ AVATAR : owns
     USER ||--o{ INVENTORY : owns
     USER ||--o{ TASK : owns
