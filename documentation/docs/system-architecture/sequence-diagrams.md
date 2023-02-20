@@ -5,6 +5,69 @@ sidebar_position: 4
 # Sequence Diagrams
 
 ## Use Case 1
+```mermaid
+sequenceDiagram
+title Feeding Candies to Progress
+    actor User
+    participant Main
+    participant PageDisplay
+    participant PetProfPage
+    participant InventoryPage
+    participant PetSprite
+    participant ProgressBar
+    participant APIMiddleware
+
+    %%set up pet display 
+    activate Main
+    Main ->>+ PetDisplay: fetchData
+    activate PetDisplay
+    PetDisplay ->> APIMiddleware: GET (HTTP) avatarInfo
+    activate APIMiddleware
+    APIMiddleware -->> PetDisplay: HTTP 200 Content-Type: JSON avatarInfo
+    Main ->> PetDisplay: render
+
+    activate User
+    User ->>InventoryPage: User navigates to the "Inventory Page"
+
+    %% set up inventory page display
+    Main ->> InventoryPage: fetchData
+    activate InventoryPage
+    InventoryPage ->> APIMiddleware: GET (HTTP) inventory
+    APIMiddleware -->> InventoryPage: HTTP 200 Content-Type: JSON[] inventory
+    Main ->> Inventory: render
+    InventoryPage ->> Inventory: display candies in inventory
+    
+    %% pick up candies
+    User ->> InventoryPage: User picks up candy from inventory
+    InventoryPage ->> APIMiddleware: POST (HTTP) inventory 
+    APIMiddleware -->> InventoryPage: HTTP 200 success
+    Inventory ->> Inventory: Update inventory to remove candy
+    Main ->> InventoryPage: render
+
+    %% drag/drop
+    User ->> PetSprite: User drags and drops candy on avatar
+    activate PetSprite
+    Main ->> PetDisplay: render
+    PetSprite ->> PetDisplay: trigger eating animation
+    PetDisplay ->> ProgressBar: EXP in avatarInfo increases
+    PetDisplay ->> APIMiddleware: POST (HTTP) avatarInfo
+    APIMiddleware -->> PetDisplay: HTTP 200 success
+    deactivate PetDisplay
+    Main ->> ProgressBar: render/update
+
+    deactivate Main
+    deactivate User
+    deactivate APIMiddleware
+    deactivate InventoryPage
+    deactivate PetSprite
+```
+    
+This sequence diagram displays the way in which the user can feed candies collected from completing tasks to their avatar by dragging and dropping candies from the Inventory Page to their avatar which is shown in the Pet Display. 
+1. The user navigates to the InventoryPage in the PageDisplay portion of the screen on the right. The inventory data is fetched through an API call.
+2. The user views a set of acquired rewards on the InventoryPage in the form of ‘candies’ which are contained as Items in an ItemGrid in the Inventory.
+3. The user drags a 'candy' to the avatar, and the Inventory is updated to reflect the removal of a candy. An API call updates the inventory list.
+3. The user drops the 'candy' onto their avatar on the lefthand side of the screen, and it shows an eating animation and a satisfied animation.
+4. The avatarInfo is updated which contains the EXP data, which causes the progress bar to update, increasing when the ‘candy’ is consumed.
 
 ## Use Case 2
 
