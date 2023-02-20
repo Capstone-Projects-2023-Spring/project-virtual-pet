@@ -236,7 +236,7 @@ Figure 1.1 shows all the React components that make up the frontend of the Study
 
 
 ### Site Mockup 
-<img src="./mockup.png" alt="Site Mockup"/>
+<img src="https://github.com/Capstone-Projects-2023-Spring/project-virtual-pet/blob/main/documentation/docs/system-architecture/mockup.png?raw=true" alt="Site Mockup"/>
 
 ##### Figure 2. Site Mockup
 
