@@ -221,7 +221,7 @@ classDiagram
 
 ```
 
-### Figure 1.1 All React Components
+#####  Figure 1.1 All React Components
 Figure 1.1 shows all the React components that make up the frontend of the StudyBuddy site.
 
 #### App
@@ -232,6 +232,9 @@ Figure 1.1 shows all the React components that make up the frontend of the Study
     * See [Figure 1.2](#figure-12-petdisplay-component) for the PetDisplay component. 
     * See [Figure 1.3](#figure-13-pagedisplay-component) for the PageDisplay component.
 
+
+
+### PetDisplay Component
 
 ```mermaid
 classDiagram
@@ -263,7 +266,7 @@ classDiagram
     }
 ```
 
-### Figure 1.2 PetDisplay Component
+#####  Figure 1.2 PetDisplay Component
 Figure 1.2 shows the React components that make PetDisplay. This component will be fixed to the left side of the page, allowing users to always see and interact with their pet. 
 
 #### PetSprite
@@ -272,6 +275,8 @@ Figure 1.2 shows the React components that make PetDisplay. This component will 
 #### PetDescription and ProgressBar
 * The components PetDescription and ProgressBar use the state 'avatarInfo' to display information about the user's pet like its name, mood, total EXP, etc. 
 
+
+### PageDisplay Component
 ```mermaid
 classDiagram
 
@@ -391,7 +396,7 @@ classDiagram
 ```
 
 
-### Figure 1.3 PageDisplay Component
+##### Figure 1.3 PageDisplay Component
 Figure 1.3 shows the React components that make PageDisplay. This component is fixed to the right side of the page, and it provides navigation to different pages that will help the user keep track of their task progress and pet. 
 
 #### NavBar
@@ -410,6 +415,7 @@ Figure 1.3 shows the React components that make PageDisplay. This component is f
 * The PetProfPage component shows the user detailed stats on their pet and their task progress using the 'avatarInfo' and 'taskList' states. The user's tasks are displayed with a PPTaskList component which is made up of PPTaskItems. When the user clicks on these componenets, a PPTaskDetails component will render, showing the user their progress on the selected task so far. They can not update the task from here. 
 
 
+### Header Component
 ```mermaid
 classDiagram
     Header *-- DropDownMenu
