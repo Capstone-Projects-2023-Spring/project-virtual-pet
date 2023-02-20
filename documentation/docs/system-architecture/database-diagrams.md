@@ -6,9 +6,9 @@ sidebar_position: 6
 
 ## Entity-Relation Diagram
 
-```mermaid
+````
 
-ER_DIAGRAM 
+erDiagram
 
     USER ||--|{ AVATAR : owns
     USER ||--o{ INVENTORY : owns
