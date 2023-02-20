@@ -259,3 +259,51 @@ sequenceDiagram
 ```
 
 ## Use Case 8
+
+```mermaid
+
+sequenceDiagram
+
+title Tracking Task Progress
+
+    actor u as User
+    participant a as App
+    participant pf as ProfileCreationView
+    participant ps as PetSelectionView
+    participant pc as PetSelectionCard
+    participant mp as Main
+    participant cv as CanvasIntegrationTab
+    participant api as APIMiddleware
+
+    u ->>+a: navigate to url ://
+    a ->>+pf: render(): route to profile creation page
+    pf ->> api: PUT (HTTP) Content-Type: JSON userObject
+    api --> pf: HTTP 200
+    pf -->-a: return profile created
+    a ->>+ps: render(): route to pet selection page
+    ps ->>+pc: render(): generate pet selection cards and present to user
+    u ->> pc: select pet
+    pc ->> api: PUT (HTTP) Content-Type: JSON {userid:petObject{}}
+    api --> pc: HTTP 200
+    pc -->-ps: return confirmed creation
+    ps -->-a: return confirmed creation
+    a ->>+ mp: render()
+    mp ->> api: GET (HTTP) initialization routine for main page
+    api --> mp: HTTP 200 Content-Type: JSON[] user total contents 
+    mp ->>+cv: render(): canvas integration tab "on no tasks, canvas integration tab is the default"
+
+    deactivate mp
+    deactivate cv
+    deactivate a
+
+```
+
+As a user, it is important that I can create an account so that I can maintain my pet’s growth and my task progress.
+
+    Upon accessing the web application for the first time, the user is given the option to create an account.
+    The user inputs their email address and creates a password to create their account.
+    After creating the account, the user sees a page allowing them to choose a pet out of a selection of avatars.
+    The user selects a pet.
+    The site automatically navigates to the Canvas Integration tab.
+    The user chooses whether to integrate with their Canvas account.
+    The user now has access to creating tasks and growing their pet.
