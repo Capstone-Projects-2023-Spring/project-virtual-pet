@@ -5,10 +5,6 @@ sidebar_position: 4
 # Sequence Diagrams
 
 ## Use Case 1
-
-
-## Use Case 2
-
 ```mermaid
 sequenceDiagram
 title Feeding Candies to Progress
@@ -116,13 +112,50 @@ This sequence diagrams shows how a user can link Canvas to their Virtual Pet Stu
 3. The user signs on through SSO.
 4. Courses as assignment data are imported into the user's info.
 
-
 ## Use Case 3
 
 ## Use Case 4
+### As a user, I want to create a schedule and be encouraged by my Virtual Pet to adhere to the schedule.
+<!-- <details>
+  <summary>Use Case 4 Description</summary>
+  <div>
+    <div>
+
+1. The user logs into their profile. ([See Use Case 7](#use-case-7))
+2. User navigates to the “Create Task” tab.
+3. User fills out a form with types of milestones and calendar information regarding due dates. These can be explicit calendar entries based on a particular date, or recur on a regular time interval.
+4. The backend for the site builds a set of events for the avatar based on these milestones.
+
+    </div>
+  </div>
+</details> -->
+
+```mermaid
+sequenceDiagram
+title Creating a Goal
+    actor u as User
+    participant PageDisplay
+    participant TaskPage
+    participant TaskList
+    participant CreateTaskForm
+    
+    participant APIMiddleware
+    PageDisplay ->> PageDisplay: fetchData
+    PageDisplay ->> APIMiddleware: GET (HTTP) taskList
+    APIMiddleware -->> PageDisplay: HTTP 200 Content-Type: JSON[] taskList
+    PageDisplay ->> TaskPage: render
+    TaskPage ->> TaskList: render
+    u ->>+ CreateTaskForm: User selects the "Create Task" button and fills out form
+    CreateTaskForm -->> CreateTaskForm: addTask()
+    deactivate CreateTaskForm
+    PageDisplay ->> APIMiddleware: CREATE (HTTP) task
+    APIMiddleware -->> PageDisplay: HTTP 200 Content-Type: JSON[] taskList
+    PageDisplay -->> PageDisplay: rerender components
+    PageDisplay ->> TaskPage: render
+    TaskPage ->> TaskList: render
+```
 
 ## Use Case 5
-
 ### As a user, I want to have my study app stay up to date on my progress towards my study goals.
 <!-- <details>
   <summary>Use Case 1 Description</summary>
@@ -151,19 +184,6 @@ sequenceDiagram
     participant TaskDetails
     participant APIMiddleware
     
-    User->>+TaskItem: User selects a task to view details
-    TaskItem->>TaskDetails: render
-    User->>TaskDetails: User updates progress by indicating they're half-way through
-    TaskDetails->>TaskDetails: updateTask()
-    %% Note over TaskDetails 
-    PageDisplay->>APIMiddleware: UPDATE (HTTP) task, inventory
-    APIMiddleware-->>PageDisplay: HTTP 200 Content-Type: JSON[] taskList, JSON[] inventory
-    PageDisplay-->>PageDisplay: rerender
-    PageDisplay->>TaskPage: render
-    TaskPage->>TaskList: render
-    TaskList->>TaskItem: render
-    deactivate TaskItem
-
     PageDisplay ->> PageDisplay: fetchData
     PageDisplay ->> APIMiddleware: GET (HTTP) taskList
     APIMiddleware -->> PageDisplay: HTTP 200 Content-Type: JSON[] taskList
@@ -184,7 +204,7 @@ sequenceDiagram
     PageDisplay->>TaskPage: render
     TaskPage->>TaskList: render
     TaskList->>TaskItem: render
-
+    
 ```
 
 ## Use Case 6
@@ -221,7 +241,6 @@ This sequence diagram displays the way in which the user can use the Pet Profile
 4. The user selects 'Pet Profile' page, and selects a specific task to see more information.
 5. The pet profile page renders the task list, task item, and task details components.
 
-
 ## Use Case 7: As a user, I want to be able to log into an account so that my progress and tasks will be saved.
 ```mermaid
 sequenceDiagram
@@ -240,43 +259,3 @@ sequenceDiagram
 ```
 
 ## Use Case 8
-
-```mermaid
-
-sequenceDiagram
-
-title Tracking Task Progress
-
-    actor u as User
-    participant a as App
-    participant pf as ProfileCreationView
-    participant ps as PetSelectionView
-    participant pc as PetSelectionCard
-    participant mp as Main
-    participant cv as CanvasIntegrationTab
-    participant api as APIMiddleware
-
-    u ->>+a: navigate to url ://
-    a ->>+pf: render(): route to profile creation page
-    pf ->> api: PUT (HTTP) Content-Type: JSON userObject
-    api --> pf: HTTP 200
-    pf -->-a: return profile created
-    a ->>+ps: render(): route to pet selection page
-    ps ->>+pc: render(): generate pet selection cards and present to user
-    u ->> pc: select pet
-    pc ->> api: PUT (HTTP) Content-Type: JSON {userid:petObject{}}
-    api --> pc: HTTP 200
-    pc -->-ps: return confirmed creation
-    ps -->-a: return confirmed creation
-    a ->>+ mp: render()
-    mp ->> api: GET (HTTP) initialization routine for main page
-    api --> mp: HTTP 200 Content-Type: JSON[] user total contents 
-    mp ->>+cv: render(): canvas integration tab "on no tasks, canvas integration tab is the default"
-
-    deactivate mp
-    deactivate cv
-    deactivate a
-
-```
-
-
