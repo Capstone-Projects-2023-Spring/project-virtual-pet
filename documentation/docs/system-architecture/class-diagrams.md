@@ -471,7 +471,7 @@ Figure 1.4 shows the components that make up Header. Laying along the top, it di
 #### AccountSettingsPage
 * The AccountSettingsPage component will display the user's information like username, email, last time logged in, etc, and there will be options for the user to change their email, password, username, and delete their account. 
 
-##Django Class Diagram
+## Django Class Diagram
 
 ```mermaid
 ---
