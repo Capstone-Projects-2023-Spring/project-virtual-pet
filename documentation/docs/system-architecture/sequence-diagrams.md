@@ -121,8 +121,63 @@ sequenceDiagram
 ### As a user, I want to quickly monitor my progress by assessing the mood of my avatar.
 ```mermaid
 sequenceDiagram
+title Check Progress Via Pet Mood
     actor u as User
+    participant Main
+    participant PetDisplay
+    participant PetSprite
+    participant PageDisplay
+    participant TaskPage
+    participant TaskList
+    participant TaskItem
+    participant TaskDetails
+    participant APIMiddleware
+    Main ->> Main: fetchData()
+    Main ->> APIMiddleware: GET (HTTP) avatarInfo
+    APIMiddleware -->> Main: HTTP 200 Content-Type: JSON avatarInfo
+    Main ->> PetDisplay: render
+    PetDisplay ->> PetSprite: render
+    Main ->> PageDisplay: render
 
+    
+    PageDisplay ->> APIMiddleware: GET (HTTP) taskList
+    APIMiddleware -->> PageDisplay: HTTP 200 Content-Type: JSON[] taskList
+   
+    u ->> Main: User has an assignment due in in 24 hours
+    Main ->> PetDisplay: setAvatarInfo()
+    PetDisplay ->> PetSprite: render
+    PetSprite ->> PetSprite: setSprite(hungry)
+    PetSprite ->> PetSprite: render
+    Main ->> PageDisplay: render
+    PageDisplay ->> APIMiddleware: GET (HTTP) taskList
+    APIMiddleware -->> PageDisplay: HTTP 200 Content-Type: JSON[] taskList
+  
+
+    u ->> Main: User has an assignment that is now past due
+    Main ->> PetDisplay: setAvatarInfo()
+    PetDisplay ->> PetSprite: render
+    PetSprite ->> PetSprite: setSprite(upset)
+    PetSprite ->> PetSprite: render
+    Main ->> PageDisplay: render
+    PageDisplay ->> TaskPage: render
+    TaskPage ->> TaskList: render
+    TaskList ->> TaskItem: render
+    u ->>+ TaskItem: User selects a past due task 
+    TaskItem ->>+ TaskDetails: renders
+    deactivate TaskItem
+    u ->>+ TaskDetails: User marks the late task as complete
+    TaskDetails ->> TaskDetails: updateTask()  
+    deactivate TaskDetails
+
+
+
+    PageDisplay->>APIMiddleware: PUT (HTTP) task, inventory
+    APIMiddleware-->>PageDisplay: HTTP 200 Content-Type: JSON[] taskList, JSON[] inventory
+    PageDisplay -->> PageDisplay: rerender components
+    Main ->> PetDisplay: render
+    PetDisplay ->> PetSprite: render
+
+    Main ->> PageDisplay: render
 ```
 
     User has set up Canvas integration and has neglected an assignment.
