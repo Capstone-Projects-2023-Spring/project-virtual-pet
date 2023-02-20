@@ -71,6 +71,47 @@ This sequence diagram displays the way in which the user can feed candies collec
 
 ## Use Case 2
 
+```mermaid
+sequenceDiagram
+    actor User
+    participant App
+    participant Main
+    participant Header
+    participant DropDownMenu
+    participant DropDownItem
+    participant CanvasIntegrationPage
+    participant CanvasAPI
+
+    activate User
+    User ->> DropDownMenu: User clicks to open drop down options
+    activate DropDownMenu 
+    DropDownMenu ->> DropDownItem: handleClick to open page
+    activate DropDownItem
+    DropDownItem ->> CanvasIntegrationPage: routes to Canvas Integration
+    activate CanvasIntegrationPage
+    CanvasIntegrationPage ->> User: Prompt user to sign on through SSO 
+    User ->> CanvasIntegrationPage: User signs in externally and it is accepted
+    CanvasIntegrationPage ->> CanvasAPI: fetch courses and assignments from user's Canvas account
+    activate CanvasAPI
+    CanvasIntegrationPage ->> App: update userInfo
+    activate App
+
+
+    deactivate User
+    deactivate DropDownMenu 
+    deactivate DropDownItem
+    deactivate CanvasIntegrationPage
+    deactivate CanvasAPI
+    deactivate App
+```
+
+This sequence diagrams shows how a user can link Canvas to their Virtual Pet Study Buddy. The user will navigate to the CanvasIntegrationPage (after creating an account and profile). They will be prompted to sign in with SSO authentication. After a successful sign-in, the user's data will be updated such that their assignments and courses will be imported into their account.
+
+1. The user creates an account and profile as described in Use Case 8.
+2. The user navigates to the Canvas Integration section of the site.
+3. The user signs on through SSO.
+4. Courses as assignment data are imported into the user's info.
+
 ## Use Case 3
 
 ## Use Case 4
