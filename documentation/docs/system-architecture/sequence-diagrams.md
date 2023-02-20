@@ -76,6 +76,23 @@ This sequence diagram displays the way in which the user can feed candies collec
 ## Use Case 4
 
 ## Use Case 5
+### As a user, I want to have my study app stay up to date on my progress towards my study goals.
+<details>
+  <summary>Use Case 1 Description</summary>
+  <div>
+    <div>
+
+1. The user logs into their profile. ([See Use Case 7](#use-case-7))
+2. The task list is retrieved with a GET call to the API.
+2. From the homepage, the user can select a specific task to see more information.
+3. After selecting a task, the user may update their progress by indicating they are halfway through, a quarter of the way through, etc.
+4. The task list is updated with a PUT call to the API.
+4. After progressing further towards completing a task, the user’s pet will receive EXP in the form of candy towards its next level.
+
+    </div>
+  </div>
+</details>
+
 ```mermaid
 sequenceDiagram
     title Updating Task Progress
@@ -92,7 +109,7 @@ sequenceDiagram
     User->>TaskDetails: User updates progress by indicating they're half-way through
     TaskDetails->>TaskDetails: updateTask()
     %% Note over TaskDetails 
-    PageDisplay->>APIMiddleware: UPDATE (HTTP) task, inventory
+    PageDisplay->>APIMiddleware: PUT (HTTP) task, inventory
     APIMiddleware-->>PageDisplay: HTTP 200 Content-Type: JSON[] taskList, JSON[] inventory
     PageDisplay-->>PageDisplay: rerender
     PageDisplay->>TaskPage: render
