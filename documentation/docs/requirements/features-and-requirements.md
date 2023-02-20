@@ -4,9 +4,6 @@ sidebar_position: 4
 
 # Features and Requirements
 
-## Features
-Milestone Demo Features
-
 #### Milestone Demo 1
 * User can create/log in to account
 * User can choose between two pets
