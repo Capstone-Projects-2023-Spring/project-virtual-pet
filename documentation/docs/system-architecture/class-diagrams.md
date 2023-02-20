@@ -275,6 +275,29 @@ Figure 1.2 shows the React components that make PetDisplay. This component will 
 ```mermaid
 classDiagram
 
+    PageDisplay *-- NavBar
+    PageDisplay *-- TaskPage
+    PageDisplay *-- CalendarPage
+    PageDisplay *-- InventoryPage
+    PageDisplay *-- PetProfPage
+
+    NavBar "1" *-- "4" NavButton
+
+    TaskPage *-- TaskList
+    TaskPage *-- CreateTaskForm
+
+    TaskList "1" *-- "0.." TaskItem
+    TaskItem *-- TaskDetails
+
+    InventoryPage *-- ItemGrid
+    ItemGrid "1" *-- "0.."Item
+
+    CalendarPage *-- Calendar
+
+    PetProfPage *-- PPTaskList
+    PPTaskList *-- PPTaskItem
+    PPTaskItem *-- PPTaskDetails
+
     class PageDisplay {
         + setTaskList()
         + setPageView()
