@@ -6,8 +6,10 @@ sidebar_position: 6
 
 ## Entity-Relation Diagram
 
-````
 <img src="https://github.com/Capstone-Projects-2023-Spring/project-virtual-pet/blob/e76593c753687652403314ca2000eb3c1ee0aeb8/documentation/docs/system-architecture/database_diagram.png" alt="Entity-Relation Diagram"/>
+
+````
+
 
 erDiagram
 
