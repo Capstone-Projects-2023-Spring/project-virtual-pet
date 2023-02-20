@@ -104,18 +104,27 @@ sequenceDiagram
     participant TaskDetails
     participant APIMiddleware
     
-    User->>+TaskItem: User selects a task to view details
+    PageDisplay ->> PageDisplay: fetchData
+    PageDisplay ->> APIMiddleware: GET (HTTP) taskList
+    APIMiddleware -->> PageDisplay: HTTP 200 Content-Type: JSON[] taskList
+    PageDisplay ->> TaskPage: render
+    TaskPage ->> TaskList: render
+
+    User->>TaskItem: User selects a task to view details
     TaskItem->>TaskDetails: render
-    User->>TaskDetails: User updates progress by indicating they're half-way through
-    TaskDetails->>TaskDetails: updateTask()
-    %% Note over TaskDetails 
-    PageDisplay->>APIMiddleware: PUT (HTTP) task, inventory
-    APIMiddleware-->>PageDisplay: HTTP 200 Content-Type: JSON[] taskList, JSON[] inventory
+
+    User ->>+ TaskDetails: User updates progress by indicating they're half-way through
+    TaskDetails ->> TaskDetails: updateTask()
+    deactivate TaskDetails
+
+    PageDisplay ->> APIMiddleware: UPDATE (HTTP) task, inventory
+    APIMiddleware-->>+PageDisplay: HTTP 200 Content-Type: JSON[] taskList, JSON[] inventory
     PageDisplay-->>PageDisplay: rerender
+    
     PageDisplay->>TaskPage: render
     TaskPage->>TaskList: render
     TaskList->>TaskItem: render
-    deactivate TaskItem
+    s
 ```
 
 ## Use Case 6
