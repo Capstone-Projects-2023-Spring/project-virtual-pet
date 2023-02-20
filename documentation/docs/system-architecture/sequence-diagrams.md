@@ -265,6 +265,8 @@ sequenceDiagram
 
 ## Use Case 8
 
+###As a user, it is important that I can create an account so that I can maintain my pet’s growth and my task progress.
+
 ```mermaid
 
 sequenceDiagram
@@ -303,8 +305,6 @@ title Tracking Task Progress
     deactivate a
 
 ```
-
-As a user, it is important that I can create an account so that I can maintain my pet’s growth and my task progress.
 
     Upon accessing the web application for the first time, the user is given the option to create an account.
     The user inputs their email address and creates a password to create their account.
