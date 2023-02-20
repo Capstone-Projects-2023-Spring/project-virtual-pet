@@ -38,7 +38,32 @@ sequenceDiagram
 ```
 
 ## Use Case 6
-
+```mermaid
+sequenceDiagram
+title Tracking Task Progress
+    actor u as User
+    participant Main
+    participant PageDisplay
+    participant PetProfPage
+    participant PPTaskList
+    participant PPTaskItem
+    participant PPTaskDetails
+    participant APIMiddleware
+    Main ->> Main: fetchData()
+    Main ->> APIMiddleware: GET (HTTP) avatarInfo
+    APIMiddleware -->> Main: HTTP 200 Content-Type: JSON avatarInfo
+    Main ->> PageDisplay: render
+    PageDisplay ->> PageDisplay: fetchData
+    PageDisplay ->> APIMiddleware: GET (HTTP) taskList
+    APIMiddleware -->> PageDisplay: HTTP 200 Content-Type: JSON[] taskList
+    u ->>+PetProfPage: User selects 'Pet Profile' page
+    PetProfPage ->>PPTaskList: render
+    PPTaskList ->>PPTaskItem: render
+    u ->>+ PPTaskItem: User selects a specific task under pet profile
+    PPTaskItem ->> PPTaskDetails: render
+    deactivate PetProfPage
+    deactivate PPTaskItem
+```
 ## Use Case 7
 
 ## Use Case 8
