@@ -8,23 +8,21 @@ sidebar_position: 5
 
 <i> As a user, I want to use the resources I've collected in the application to progress my avatar. </i>
 
-1. User navigates to the "Inventory Page" page.
-2. User views a set of acquired rewards in the form of ‘candies’.
-3. User drags a 'candy' to the avatar.
-3. The avatar shows an eating animation and a satisfied animation.
-4. A stat (or set of stats, possibly chosen by the user) increases when the ‘candy’ is consumed.
-5. When certain milestones, or ‘levels’, are reached, the avatar changes or ‘grows’.
+1. The user navigates to the InventoryPage in the PageDisplay portion of the screen on the right. The inventory data is fetched through an API call.
+2. The user views a set of acquired rewards on the InventoryPage in the form of ‘candies’ which are contained as Items in an ItemGrid in the Inventory.
+3. The user drags a 'candy' to the avatar, and the Inventory is updated to reflect the removal of a candy. An API call updates the inventory list.
+3. The user drops the 'candy' onto their avatar on the lefthand side of the screen, and it shows an eating animation and a satisfied animation.
+4. The avatarInfo is updated which contains the EXP data, which causes the progress bar to update, increasing when the ‘candy’ is consumed.
 
 
 ### Use Case 2
 
 <i> As a user, I want to link Canvas to my Virtual Pet.</i> 
 
-1. The user creates a profile.
-2. The user selects an avatar from a list of options.
-3. The user navigates to the Canvas Integration section of the site.
-4. The user signs on through SSO and selects from a list of courses.
-5. The user will now receive rewards for their avatar based on assignment submissions.
+1. The user creates an account and profile as described in Use Case 8.
+2. The user navigates to the Canvas Integration section of the site.
+3. The user signs on through SSO.
+4. Courses as assignment data are imported into the user's info.
 
 ### Use Case 3
 
