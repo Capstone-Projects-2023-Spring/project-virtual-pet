@@ -68,8 +68,8 @@ title Feeding Candies to Progress
     1. The user navigates to the InventoryPage in the PageDisplay portion of the screen on the right. The inventory data is fetched through an API call.
     2. The user views a set of acquired rewards on the InventoryPage in the form of ‘candies’ which are contained as Items in an ItemGrid in the Inventory.
     3. The user drags a 'candy' to the avatar, and the Inventory is updated to reflect the removal of a candy. An API call updates the inventory list.
-    3. The user drops the 'candy' onto their avatar on the lefthand side of the screen, and it shows an eating animation and a satisfied animation.
-    4. The avatarInfo is updated which contains the EXP data, which causes the progress bar to update, increasing when the ‘candy’ is consumed.
+    4. The user drops the 'candy' onto their avatar on the lefthand side of the screen, and it shows an eating animation and a satisfied animation.
+    5. The avatarInfo is updated which contains the EXP data, which causes the progress bar to update, increasing when the ‘candy’ is consumed.
 
 ## Use Case 2
 ### As a user, I want to link Canvas to my Virtual Pet.
@@ -242,12 +242,12 @@ title Creating a Goal
   <div>
     <div>
 
-1. The user logs into their profile. ([See Use Case 7](#use-case-7))
-2. The task list is retrieved with a GET call to the API.
-2. From the homepage, the user can select a specific task to see more information.
-3. After selecting a task, the user may update their progress by indicating they are halfway through, a quarter of the way through, etc.
-4. The task list is updated with a PUT call to the API.
-4. After progressing further towards completing a task, the user’s pet will receive EXP in the form of candy towards its next level.
+    1. The user logs into their profile. ([See Use Case 7](#use-case-7))
+    2. The task list is retrieved with a GET call to the API.
+    2. From the homepage, the user can select a specific task to see more information.
+    3. After selecting a task, the user may update their progress by indicating they are halfway through, a quarter of the way through, etc.
+    4. The task list is updated with a PUT call to the API.
+    5. After progressing further towards completing a task, the user’s pet will receive EXP in the form of candy towards its next level.
 
     </div>
   </div>
