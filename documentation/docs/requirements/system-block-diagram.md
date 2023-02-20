@@ -4,8 +4,10 @@ sidebar_position: 2
 
 # System Block Diagram
 
-<img src="https://user-images.githubusercontent.com/73796086/216864836-fb22e91a-367a-49ae-ba17-50d79acb3ad8.png" alt="System Block Diagram"/>
-**Figure 1.** High level design of the Virtual Pet Study Buddy application.
+<img src="https://github.com/Capstone-Projects-2023-Spring/project-virtual-pet/blob/main/documentation/resources/block-diagram31.jpg?raw=true" alt="System Block Diagram"/>
+
+**Figure 1.** 
+High level design of the Virtual Pet Study Buddy application.
 
 ## Description
 Our project stack will be composed of the following components: React for the front-end, Django for the back-end, and a combination of a SQLite Database with a schema defined and managed by Django and a Static File store for hosting images and other large files. 
