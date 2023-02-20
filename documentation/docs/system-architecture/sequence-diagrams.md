@@ -118,7 +118,7 @@ This sequence diagrams shows how a user can link Canvas to their Virtual Pet Stu
 
 ## Use Case 5
 ### As a user, I want to have my study app stay up to date on my progress towards my study goals.
-<details>
+<!-- <details>
   <summary>Use Case 1 Description</summary>
   <div>
     <div>
@@ -132,7 +132,7 @@ This sequence diagrams shows how a user can link Canvas to their Virtual Pet Stu
 
     </div>
   </div>
-</details>
+</details> -->
 
 ```mermaid
 sequenceDiagram
