@@ -8,13 +8,11 @@ sidebar_position: 5
 
 <i> As a user, I want to use the resources I've collected in the application to progress my avatar. </i>
 
-1. User navigates to their avatar’s interaction page.
-2. User has a set of acquired rewards in the form of ‘candies’ and ‘accessories’ (placeholder names for now).
-User drags ‘accessories’ to the avatar and the animations are now changed to show the avatar wearing the ‘accessory’.
-2. User drags ‘candies’ to the avatar.
+1. User navigates to the "Inventory Page" page.
+2. User views a set of acquired rewards in the form of ‘candies’.
+3. User drags a 'candy' to the avatar.
 3. The avatar shows an eating animation and a satisfied animation.
-4. A stat (or set of stats, possibly chosen by the user) increases when the ‘candy’ is consumed.
-5. When certain milestones, or ‘levels’, are reached, the avatar changes or ‘grows’.
+4. The progress bar increases when the ‘candy’ is consumed.
 
 ### Use Case 2
 
