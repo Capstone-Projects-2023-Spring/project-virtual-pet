@@ -122,3 +122,52 @@ gantt
         Submit Final Software Release Assignment: milestone, , 2023-05-07, 1d
 ```
 ## Milestone Demo Features
+
+### Milestone Demo 1
+* User can create/log in to account
+    * Task 11 - Create user account management system
+    * Use Case 7 - Log in
+    * Use Case 8 - Account Creation
+* User can choose between two pets
+    * Task 6 - Create pet art
+* User can view main page with static image of pet
+    * Task 7 - Create pet display
+* User can link with Canvas (return to user their course names)
+    * Task 13 - Setup Canvas Integration
+    * Use Case 2 - Link Canvas
+* Host site
+    * Task 15 - Host site
+
+### Milestone Demo 2
+* User can create and view tasks
+    * Task 1 - Create task page
+* User can navigate to pet profile page
+    * Task 4 - Create pet profile page
+* User can interact with their pet (feed candies)
+    * Task 5 - Make the pet reactive
+* Canvas assignments are imported as tasks
+    * Task 1 - Create task page
+    * Use Case 2 - Link Canvas
+* User can use calendar feature
+    * Task 2 - Create calendar page
+* User can choose between more pets
+    * Task 6 - Create pet art
+
+### Milestone Demo 3
+* Make the pet reactive + Multiple frames for each tier
+    * Task 5 - Make the pet reactive
+* User can complete and organize tasks
+    * Task 1 - Create task page
+* Create the inventory page
+    * Task 4 - Create pet profile page
+* Implement progression system graphically
+    * Task 8 - Create progression system
+
+### Final Demo
+* Add more states to pet(s)
+    * Task 5 - Make the pet reactive
+* Add more customization to pet
+    * Task 5 - Make the pet reactive
+* Create task reminders/notifications
+    * Task 9 - Create task/assignment reminders
+
