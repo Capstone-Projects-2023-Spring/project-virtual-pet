@@ -1,4 +1,4 @@
-# Links & Resources
+# ![orange_happy_kitty](https://user-images.githubusercontent.com/73796086/221434200-5ffd71bf-84d5-401c-b294-ab1b2a9ae78f.png) Links & Resources ![gray_happy_kitty](https://user-images.githubusercontent.com/73796086/221434150-8133204f-fff4-4278-805b-1d4c3ffbb0c9.png)
 
 ## Scheduling
 **When2Meet** - sign in with the same name to update your availability
