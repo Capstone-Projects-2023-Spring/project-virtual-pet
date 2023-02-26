@@ -1,5 +1,8 @@
 from rest_framework import serializers
 
+
+
+"""
 from .models import Note
 
 class NoteSerializer(serializers.HyperlinkedModelSerializer):
@@ -7,3 +10,4 @@ class NoteSerializer(serializers.HyperlinkedModelSerializer):
         model = Note
         fields = ('note_text', 'note_id')
 
+"""

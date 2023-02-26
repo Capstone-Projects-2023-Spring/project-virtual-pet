@@ -16,9 +16,12 @@ COPY . .
 # install requirements (should move to requirements.txt?)
 RUN pip install django django-cors-headers
 
+RUN pip install python-decouple
+
 RUN pip install djangorestframework
 
-RUN pip install python-decouple
+RUN pip install djangorestframework-simplejwt 
+
 
 # when the container runs it'll be listening on port 8000
 EXPOSE 8000
