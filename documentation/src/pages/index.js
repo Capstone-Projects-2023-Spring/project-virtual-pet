@@ -14,14 +14,16 @@ function HomepageHeader() {
       <div className="container">
         <h1 className="hero__title">{siteConfig.title}</h1>
         <p className="hero__subtitle">{siteConfig.tagline}</p>
-        <div className={styles.buttons}>
-            {/* TODO: Change me to your project's tutorial*/ }
-          <Link
-            className="button button--secondary button--lg"
-            to="/tutorial/intro">
-            Docusaurus Tutorial - 5min ⏱️
-          </Link>
-        </div>
+
+        <iframe
+          src="https://open.spotify.com/embed/playlist/37i9dQZF1EJMUpbfZ9whOF?utm_source=generator&theme=0"
+          width="100%"
+          height="200"
+          frameBorder="0"
+          allowfullscreen=""
+          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+        ></iframe>
+
       </div>
     </header>
   );

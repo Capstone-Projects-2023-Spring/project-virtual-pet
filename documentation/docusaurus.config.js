@@ -8,8 +8,8 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
  * The URL or reference to your projects logo!
  * @type {string}
  */
-const logo = 'https://raw.githubusercontent.com/Capstone-Projects-2023-Spring/project-virtual-pet/main/documentation/resources/gabagoo.jpg';
-
+const logo = 'https://raw.githubusercontent.com/Capstone-Projects-2023-Spring/project-virtual-pet/6116807a9936c9e2771169cf9201ded2c160d23e/documentation/static/img/logo.svg';
+const logo_small = 'https://github.com/Capstone-Projects-2023-Spring/project-virtual-pet/blob/main/documentation/static/img/baby_kitty_hearts.png?raw=true'
 
 const main_template_jira_scripts = () => {
   if (process.env.ORG_NAME === 'ApplebaumIan'){
@@ -112,7 +112,7 @@ const config = {
         /*TODO: Change to your project's title*/
         title: title,
         logo: {
-          alt: 'Gabagool',
+          alt: 'Kitty logo',
           src: logo,
         },
         items: [
@@ -142,8 +142,8 @@ const config = {
       },
       footer: {
         logo: {
-          alt: 'My Site Logo',
-          src: logo,
+          alt: 'Baby kitty',
+          src: logo_small,
         },
         links: [
           {
@@ -182,7 +182,7 @@ const config = {
             ],
           },
         ],
-        copyright: `Copyright Â© ${new Date().getFullYear()} ${title}, Inc. Built with Docusaurus.`,
+        copyright: `Copyright © ${new Date().getFullYear()} ${title}, Inc. Built with Docusaurus.`,
       },
       prism: {
         theme: lightCodeTheme,
