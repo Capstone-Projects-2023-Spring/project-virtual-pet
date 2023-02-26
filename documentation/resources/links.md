@@ -8,7 +8,8 @@
     * 2/26 - sun 3pm
     * 3/1 (last day of sprint) - wed ??
 
-## Music
+## Creations
+[Unhinged Group Proposal Video](https://youtu.be/oi3PMAiAiwQ)
 [Spotify Blend](https://open.spotify.com/playlist/37i9dQZF1EJMUpbfZ9whOF?si=b0c941500b914e24) 
 
 ## Project Board & Sites
