@@ -8,7 +8,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
  * The URL or reference to your projects logo!
  * @type {string}
  */
-const logo = 'https://raw.githubusercontent.com/Capstone-Projects-2023-Spring/project-virtual-pet/main/documentation/resources/gabagoo.jpg';
+const logo = 'https://raw.githubusercontent.com/Capstone-Projects-2023-Spring/project-virtual-pet/6116807a9936c9e2771169cf9201ded2c160d23e/documentation/static/img/logo.svg';
 
 
 const main_template_jira_scripts = () => {
@@ -182,7 +182,7 @@ const config = {
             ],
           },
         ],
-        copyright: `Copyright Â© ${new Date().getFullYear()} ${title}, Inc. Built with Docusaurus.`,
+        copyright: `Copyright © ${new Date().getFullYear()} ${title}, Inc. Built with Docusaurus.`,
       },
       prism: {
         theme: lightCodeTheme,
