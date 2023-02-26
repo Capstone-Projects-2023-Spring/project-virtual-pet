@@ -38,7 +38,7 @@
 
 
 # Folders:
-## frontned 
+## frontend 
 - React app
 - Run: ```npm start```
 
