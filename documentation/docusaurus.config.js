@@ -8,7 +8,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
  * The URL or reference to your projects logo!
  * @type {string}
  */
-const logo = 'https://raw.githubusercontent.com/Capstone-Projects-2023-Spring/project-virtual-pet/main/documentation/resources/gabagoo.jpg';
+const logo = 'img/logo.svg';
 
 
 const main_template_jira_scripts = () => {
@@ -112,7 +112,7 @@ const config = {
         /*TODO: Change to your project's title*/
         title: title,
         logo: {
-          alt: 'Gabagool',
+          alt: 'Kitty',
           src: logo,
         },
         items: [
