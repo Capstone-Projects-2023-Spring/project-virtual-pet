@@ -8,6 +8,9 @@
     * 2/26 - sun 3pm
     * 3/1 (last day of sprint) - wed ??
 
+## Music
+[Spotify Blend](https://open.spotify.com/playlist/37i9dQZF1EJMUpbfZ9whOF?si=b0c941500b914e24) 
+
 ## Project Board & Sites
 * <a target="_blank" href="https://temple-cis-projects-in-cs.atlassian.net/jira/software/c/projects/SB/boards/32/backlog?view=detail&selectedIssue=SB-6&epics=visible&issueLimit=100">Jira Project Board</a>
 * <a href="https://capstone-projects-2023-spring.github.io/project-virtual-pet/" target="_blank">Docusaurus Site</a>
