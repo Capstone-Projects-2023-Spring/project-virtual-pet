@@ -10,41 +10,29 @@
     * 2/26 - sun 3pm
     * 3/1 (last day of sprint) - wed ??
 
-## Creations
-* [Unhinged Group Proposal Video](https://youtu.be/oi3PMAiAiwQ)
-* [Spotify Blend](https://open.spotify.com/playlist/37i9dQZF1EJMUpbfZ9whOF?si=b0c941500b914e24) 
-
 ## Project Board & Sites
 * <a target="_blank" href="https://temple-cis-projects-in-cs.atlassian.net/jira/software/c/projects/SB/boards/32/backlog?view=detail&selectedIssue=SB-6&epics=visible&issueLimit=100">Jira Project Board</a>
 * <a href="https://capstone-projects-2023-spring.github.io/project-virtual-pet/" target="_blank">Docusaurus Site</a>
-* <a href="https://github.com/ccho-0508/simple-site" target="_blank">Containerized Simple Site: React+Django+SQLite</a>
-* <a href="https://capstone.ianapplebaum.com/" target="_blank">Course Site (syllabus, schedule, etc)</a>
-* <a href="https://templeu.instructure.com/courses/124586" target="_blank">Canvas Course Page</a>
+* <a href="https://capstone.ianapplebaum.com/" target="_blank">Capstone Course Site (syllabus, schedule, etc)</a>
+* <a href="https://templeu.instructure.com/courses/124586" target="_blank">Capstone Canvas Course Page</a>
 
-## react-django app using jwt authentication
-Currently the user can register, login, view a home page, and view a protected page(only view when logged in). This app uses django.contrib.auth User model for the username and password. The front end didn't use react-router-dom v6. I updated the front end syntax so it can use v6. At the very least this is good research and provides us with options. 
+## Other Repos
+* * <a href="https://github.com/ccho-0508/simple-site" target="_blank">Christine's Repo: Containerized Simple Site--React+Django+SQLite</a>
+* <a target="_blank" href="https://github.com/jay-newman/jwt-react-django-app">Jay's Repo: react-django app using jwt authentication</a>
+   * "Currently the user can register, login, view a home page, and view a protected page(only view when logged in). This app uses django.contrib.auth User model for the username and password. The front end didn't use react-router-dom v6. I updated the front end syntax so it can use v6. At the very least this is good research and provides us with options."
+   * Two Part Guide:
+      * <a href="https://sushil-kamble.medium.com/django-rest-framework-react-authentication-workflow-2022-part-1-a21f22b3f358" target="_blank">Part 1</a>
+      * <a href="https://blog.devgenius.io/django-rest-framework-react-authentication-workflow-2022-part-2-d299b7fef875" target="_blank">Part 2</a>
+   * [Here](https://docs.djangoproject.com/en/4.1/ref/contrib/auth/) you can see all the fields the user model has
 
-https://github.com/jay-newman/jwt-react-django-app
-
-Two Part Guide:
-
-https://sushil-kamble.medium.com/django-rest-framework-react-authentication-workflow-2022-part-1-a21f22b3f358
-https://blog.devgenius.io/django-rest-framework-react-authentication-workflow-2022-part-2-d299b7fef875
-
-Here you can see all the fields the user model has:
-
-https://docs.djangoproject.com/en/4.1/ref/contrib/auth/
-
-## Documents
+## Documents & Classwork
 * <a href="https://docs.google.com/document/d/1R3kF0f-yiPbxu7IfqQ-IOnBlch3DSUpk/edit#" target="_blank">Software Development Plan</a>
 * <a href="https://docs.google.com/document/d/1XPm3EVNeggNEwHU8skWAMJUmIKoehJBc8fHrWDONbpk/edit?usp=sharing" target="_blank">Project Proposal</a>
 * <a href="https://docs.google.com/document/d/1G1QB7zqXOPQq4_gtCITBzzxrPv1aDww3/edit?usp=sharing&ouid=116153358400256886765&rtpof=true&sd=true" target="_blank">Requirements Document</a>
 * <a href="https://docs.google.com/document/d/192c1LLYOw-ra5uigirfHT2i3eUqmalnS2BczVaODvVQ/edit?usp=sharing" target="_blank">Feature List</a>
-
-## Brainstorming Stuff
 * <a href="https://miro.com/app/board/uXjVPpHPObc=/?share_link_id=752403146799" target="_blank">Event Storming Activity</a>
 
-## Resources
+## React/Django
 **React/Django/etc**
 * <a href="https://fullstackopen.com/en/part1" target="_blank">UoH Full Stack Open Course (Pt1 goes over React fundamentals)</a>
 * <a href="https://dev.to/koladev/django-rest-authentication-cmh" target="_blank">FullStack React & Django Authentication: Django REST, TypeScript, Axios, Redux & React Router</a>
@@ -75,9 +63,15 @@ https://docs.djangoproject.com/en/4.1/ref/contrib/auth/
 * <a href="https://templeu.instructure.com/courses/124586/files/22142094?module_item_id=5202422" target="_blank">System overview slides</a>
 * <a href="https://capstone-projects-2022-fall.github.io/project-collabybot/docs/requirements/use-case-descriptions" target="_blank">Collabybot use case descriptions</a>
 * <a href="https://youtu.be/mohD-Mme-2g" target="_blank">JavaDoc API Docusaurus Video</a>
+* <a href="https://capstone-projects-2022-fall.github.io/project-sokroban/docs/category/api-specification" target="_blank">Sokroban API doc</a> 
 * <a href="https://youtu.be/qSNqQZZAGas" target="_blank">Docusaurus & GitHub Codespaces Review Video</a>
 * <a href="https://jojozhuang.github.io/tutorial/mermaid-cheat-sheet/" target="_blank">Mermaid Cheat Sheet</a>
 
-**Script, Libraries, Packages**
+**Scripts, Libraries, Packages, etc**
 * <a href="https://github.com/web-mech/badwords" target="_blank">Bad words filter package</a>
 * <a href="https://react-bootstrap.netlify.app/components/alerts" target="_blank">React-Bootstrap</a>
+* <a href="https://sphinx-themes.org/#theme-furo" target=_"blank">Sphinx Themes</a>
+
+## Creations
+* [Unhinged Group Proposal Video](https://youtu.be/oi3PMAiAiwQ)
+* [Spotify Blend](https://open.spotify.com/playlist/37i9dQZF1EJMUpbfZ9whOF?si=b0c941500b914e24) 
