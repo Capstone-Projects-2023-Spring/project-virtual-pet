@@ -95,88 +95,82 @@ Design Document - Part II API (NOT COMPLETE)
 
 ## Main
 ### Data fields
-+ Object avatarInfo
-	+ Avatar info will be a object with fields describing the user's pet like it's name, type, totalXP, last time the user interacted with/fed it. 
-+ Array inventory
-	+ An array of the items the user owns 
+- #### Object avatarInfo
+    - An object with fields describing the user's pet like it's name, type, totalXP, last time the user interacted with/fed it. 
+- #### Array inventory
+    - An array of the items the user owns 
 
 ### Methods
-- setAvatarInfo(avatarObject)
-	- Change the avatarInfo object and rerender components to reflect changes.
-	- Arguments:
-		- avatarObject: the object that will be the new state of avatarInfo
-	- Return none
-- setInventory(inventoryList)
-	-  Change the inventory array and rerender components to reflect changes
-	- Arguments:
-		- inventoryList: the object that will be the new state of inventory
-	- Return none
-- fetchData()
-	- Make requests to the backend to fetch inventory and avatarInfo information and change the state of avatarInfo and inventory with setAvatarInfo() and setInventory()
-	- Return none
+- #### setAvatarInfo(avatarObject)
+    - Changes the avatarInfo object and rerenders components to reflect changes.
+    - Arguments:
+        - avatarObject: the object that will be the new state of avatarInfo
+    - Return none
+- #### setInventory(inventoryList)
+    -  Changes the inventory array and rerenders components to reflect changes
+    - Arguments:
+        - inventoryList: the object that will be the new state of inventory
+    - Return none
+- #### fetchData()
+    - Makes requests to the backend to fetch inventory and avatarInfo information and change the state of avatarInfo and inventory with setAvatarInfo() and setInventory()
+    - Return none
 
 
 
 
 ## PetDisplay
 ### Data fields
-- Object avatarInfo
-- Array inventory
+- #### Object avatarInfo
+    - [click here](#object-avatarinfo)
+- #### Array inventory
+    - [click here](#array-inventory)
 
 ### Methods
-- setInventory()
-- setAvatarInfo()
-
-
-
-
-
-
-
+- #### setInventory(inventoryList)
+    - [click here](#setinventoryinventorylist)
+- #### setAvatarInfo(avatarObject)
+    - [click here](#setavatarinfoavatarobject)
 
 
 
 ## PetSprite
 ### Data fields
-- Object avatarInfo
-- Array inventory
-- Object sprite
+- #### Object avatarInfo
+    - [click here](#object-avatarinfo)
+- #### Array inventory
+    - [click here](#array-inventory)
+- #### Object sprite
+    - An object with fields specifying which frames of the sprite sheet are being used to animate the pet/avatar. 
 
 ### Methods
-- setAvatarInfo()
-- setInventory()
-- setSprite()
-- handleItemRelease()
+- #### setInventory(inventoryList)
+    - [click here](#setinventoryinventorylist)
+- #### setAvatarInfo(avatarObject)
+    - [click here](#setavatarinfoavatarobject)
+- #### setSprite(spriteObject)
+    - Changes the sprite object and rerenders components to reflect changes.
+    - Arguments:
+        - spriteObject: the object that will be the new state of the sprite object.
+    - Return none   
 
-
-
-
-
-
-
-
-
-
+- #### handleItemRelease(inventoryID)
+    - Handles the events triggered when the user feeds their pet. The inventory updates (less item(s)), The pet's EXP increases, and the sprite animation changes. 
 
 
 ## PetDescription
 ### Data fields
-- Object avatarInfo
+- #### Object avatarInfo
+    - [click here](#object-avatarinfo)
 ### Methods
 - No Methods
 
 
 
 
-
-
-
-
-
-
 ## ProgressBar
 ### Data fields
-- Object avatarInfo
+- #### Object avatarInfo
+    - [click here](#object-avatarinfo)
 ### Methods
 - No Methods
 
@@ -188,44 +182,60 @@ Design Document - Part II API (NOT COMPLETE)
 
 ## PageDisplay
 ### Data fields
-+ Array taskList
-+ Array inventory
-+ int pageView
-+ Object avatarInfo
+- #### Array taskList
+    - An array of the user's tasks and tasks imported from Canvas (if integrated)
+- #### int pageView
+    - A number representing the page/componenet the user has selected.
+- #### Object avatarInfo
+    - [click here](#object-avatarinfo)
+- #### Array inventory
+    - [click here](#array-inventory)
 
 ### Methods
-- setTaskList()
-- setPageView()
-- setInventory()
-- setAvatarInfo()
-- fetchData()
+- #### setTaskList(taskListObj)
+    - Changes the taskList state and rerenders the page to display the user's updated/changed list of tasks. 
+    - Arguments:
+        - taskListObj: the new state of taskList
+    - Return none   
 
+- #### setPageView(pageNum)
+    - Changes the pageView state and rerenders the current page to be the TaskPage, InventoryPage, CalendarPage, or PetProfPage depending on the argument.
+    - Arguments:
+        - pageNum: the new state of pageView. Range: [0-3]
+    - Return none   
+
+- #### setInventory(inventoryList)
+    - [click here](#setinventoryinventorylist)
+- #### setAvatarInfo(avatarObject)
+    - [click here](#setavatarinfoavatarobject)
+
+- #### fetchData()
+    - Makes requests to the backend to fetch the user's task information and sets the state of taskList using setTaskList()
+    - Return none  
 
 ## NavBar
 ### Data fields
-- int pageView
+- #### int pageView
+    - [click here](#int-pageview)
 ### Methods
 - setPageView()
-
-
-
-
-
-
-
+    - [click here](#setpageviewpagenum)
 
 
 
 
 ## NavButton
 ### Data fields
-- int pageView
+- #### int pageView
+    - [click here](#int-pageview)
 ### Methods
 - setPageView()
-- handleClick()
+    - [click here](#setpageviewpagenum)
 
-
-
+- #### handleClick()
+    - Handles user's clicks on NavButton component and calls setPageView() to change the page/component rendered. 
+    <!-- - Arguments:
+        - e: The event object that contains information about the NavButton componenet click  -->
 
 
 
@@ -235,36 +245,38 @@ Design Document - Part II API (NOT COMPLETE)
 
 ## TaskPage
 ### Data fields
-- Array taskList
+- #### Array taskList
+    - [click here](#array-tasklist)
 ### Methods
-+ setAvatarInfo()
-+ setTaskList()
-+ setInventory()
 
-
-
-
-
-
+- #### setInventory(inventoryList)
+    - [click here](#setinventoryinventorylist)
+- #### setAvatarInfo(avatarObject)
+    - [click here](#setavatarinfoavatarobject)
+- #### setTaskList(taskListObj)
+    - [click here](#settasklisttasklistobj)
 
 
 
 
 
 ## TaskList
+- The TaskList component displays the user's tasks
+
 ### Data fields
-- Array taskList
+- #### Array taskList
+    - [click here](#array-tasklist)
 ### Methods
-+ setAvatarInfo()
-+ setTaskList()
-+ setInventory()
-+ removeTask()
-+ updateTask()
-
-
-
-
-
+- #### setInventory(inventoryList)
+    - [click here](#setinventoryinventorylist)
+- #### setAvatarInfo(avatarObject)
+    - [click here](#setavatarinfoavatarobject)
+- #### setTaskList(taskListObj)
+    - [click here](#settasklisttasklistobj)
+- #### removeTask(taskID)
+    - Removes a task using setTaskList() and makes a request to the backend to update the user's tasks. 
+- #### updateTask(taskID)
+    - Updates the task information using setTaskList() and makes a request to the backend to update the user's tasks. 
 
 
 
@@ -272,16 +284,15 @@ Design Document - Part II API (NOT COMPLETE)
 
 ## TaskItem
 ### Data fields
-- Object taskItem
+- #### Object taskItem
+    - An object with fields describing the task like the due date, description, recurring info, etc
 ### Methods
-+ handleClick()
-+ removeTask()
-+ updateTask()
-
-
-
-
-
+- #### handleClick()
+    - Displays TaskDetails component with more details about the task 
+- #### removeTask(taskID)
+    - [click here](#removetasktaskid) 
+- #### updateTask(taskID)
+    - [click here](#updatetasktaskid) 
 
 
 
@@ -289,10 +300,15 @@ Design Document - Part II API (NOT COMPLETE)
 
 ## TaskDetails
 ### Data fields
-- Object taskItem
+- #### Object taskItem
+    - [click here](#object-taskitem) 
+
 ### Methods
-+ removeTask()
-+ updateTask()
+- #### removeTask(taskID)
+    - [click here](#removetasktaskid) 
+- #### updateTask(taskID)
+    - [click here](#updatetasktaskid) 
+
 
 
 
@@ -307,21 +323,20 @@ Design Document - Part II API (NOT COMPLETE)
 ### Data fields
 - No Data Fields
 ### Methods
+- #### setTaskList(taskListObj)
+    - [click here](#settasklisttasklistobj)
 
-+ setTaskList()
-+ addTask()
-
-
-
-
-
+- #### addTask()
+    - Creates a new task, updates the task list using setTaskList, and makes a request to the backend to update the user's tasks. 
 
 
 
 
 ## InventoryPage
 ### Data fields
-- Array inventory
+- #### Array inventory
+    - [click here](#array-inventory)
+
 ### Methods
 - No Methods
 
@@ -330,13 +345,11 @@ Design Document - Part II API (NOT COMPLETE)
 
 
 
-
-
-
-
 ## ItemGrid
 ### Data fields
-- Array inventory
+- #### Array inventory
+    - [click here](#array-inventory)
+
 ### Methods
 - No Methods
 
@@ -352,24 +365,18 @@ Design Document - Part II API (NOT COMPLETE)
 
 ## Item
 ### Data fields
-- Object inventoryItem
-
+- #### Object inventoryItem
+    - An object with fields describing an inventory item like its base type, level, and quantity. 
 ### Methods
-- handleClick()
-
-
-
-
-
-
-
+- #### handleClick()
+    - Handles clicks on item components and allows user to drag the item around.  
 
 
 
 ## CalendarPage
-
 ### Data fields
-- Array taskList
+- #### Array taskList
+    - [click here](#array-tasklist)
 ### Methods
 - No Data Fields
 
@@ -377,30 +384,25 @@ Design Document - Part II API (NOT COMPLETE)
 
 
 
-
-
-
-
-
 ## Calendar
 ### Data fields
-- Date currentDate
+- #### Date currentDate
+    - Date object representing the current date. 
+- #### Array taskList
+    - [click here](#array-tasklist)
 ### Methods
-- displayTasks()
-- handleClick
-
-
-
-
-
-
-
-
+- #### displayTasks(dateSelect)
+    - Displays the tasks due given a Date object.
+    - Arguments:
+        - dateSelect: A Date object representing the day the user selects on the calendar.
+    - Returns:
+        - A filtered list of tasks due on the specified date.
 
 
 ## PetProfPage
 ### Data fields
-- Object avatarInfo
+- #### Object avatarInfo
+    - [click here](#object-avatarinfo)
 - Array taskList
 ### Methods
 - No Methods

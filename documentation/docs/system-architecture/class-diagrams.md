@@ -384,8 +384,9 @@ classDiagram
     }
     class Calendar {
         + Date currentDate
+        + Array taskList
         + displayTasks()
-        + handleClick()
+
     }
 
     class PetProfPage {
