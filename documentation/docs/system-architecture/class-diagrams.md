@@ -85,6 +85,7 @@ classDiagram
     class CanvasIntegrationPage {
         + Object userInfo   
         + redirectTo()
+        + setUserInfo()
 
     }
 

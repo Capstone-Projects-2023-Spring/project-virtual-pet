@@ -12,6 +12,10 @@ Design Document - Part II API (NOT COMPLETE)
 
 - [App](#app)
 	- [Header](#header)
+        - [DropDownMenu](#dropdownmenu)
+        - [DropDownItem](#dropdownitem)
+        - [CanvasIntegrationPage](#canvasintegrationpage)
+        - [AccountSettingsPage](#accountsettingspage)
 	- [Main](#main)
 		- [PetDisplay](#petdisplay)
 			- [PetSprite](#petsprite)
@@ -46,30 +50,33 @@ Design Document - Part II API (NOT COMPLETE)
 
 ### Methods
 - #### setUserInfo(userObject)
-    - Changes the userInfo object and rerenders components to reflect changes.
+    - Changes the userInfo state to userObject's values and rerenders components to reflect changes. 
+    - Calls when the App component renders.
+    - Updates the state of userInfo.
     - Arguments:
         - userObject: the object that will be the new state of userInfo.
     - Return none
+
 - #### fetchData()
-    - Makes requests to the backend to fetch the user's information and change the state of userInfo with setUserInfo().
+    - Makes requests to the backend to fetch the user's information.
+    - Calls setUserInfo() to set the value of userInfo.
     - Return none
 
 
 
 ## Header
-- (add description here)
+- This component is the site's header and it shows the name of the site (My Study Buddy) and a DropDownMenu component. 
 ### Data fields
 - #### str title
-    - (add description here)
+    - The name of the site (My Study Buddy).
 - #### Object userInfo
     - [click here](#object-userinfo)
-    
 - ### Methods
-- No Methods
-
+    - #### setUserInfo(userObject)
+        - [click here](#setuserinfouserobject)  
 
 ## DropDownMenu
-    - This component allows users to access the various pages attached to the drop down menu, including integrating with Canvas and account settings.
+- This component allows users to access the various pages attached to the drop down menu, including integrating with Canvas and account settings.
 ### Data fields
 - #### Array pages
     - An array that encompasses all of the pages that exist in the drop down menu.
@@ -80,9 +87,11 @@ Design Document - Part II API (NOT COMPLETE)
 - #### handleClick()
     - Method that manages the click action to allow users to access the correct component.
     - Return none
+- #### setUserInfo(userObject)
+    - [click here](#setuserinfouserobject)  
 
 ## DropDownItem
-
+- Component that handles each individual selection option in the drop down menu.
 ### Data fields
 - #### str title
     - String that includes the name of a specific drop down item.
@@ -94,13 +103,12 @@ Design Document - Part II API (NOT COMPLETE)
     - [click here](#handleClick())
 - #### logOut()
     - Carries out the functionality of logging out of the system, making a call to the backend to save and store the user's data in the database for future use.
-
-
+- #### setUserInfo(userObject)
+    - [click here](#setuserinfouserobject)  
 
 
 ## CanvasIntegrationPage
 - Component that, upon selection, allows users to integrate their Canvas account.
-
 ### Data fields
 - #### Object userInfo
     - [click here](#object-userinfo)
@@ -108,10 +116,11 @@ Design Document - Part II API (NOT COMPLETE)
 ### Methods
 - #### redirectTo()
     - Handles the functionality to redirect the user to the Canvas site.
-    - Return none?
-
-
-
+    - Calls setUserInfo()
+    - Return none
+- #### setUserInfo(userObject)
+    - [click here](#setuserinfouserobject)  
+    - Calls when the user wants to integrate their Canvas account.
 
 
 ## AccountSettingsPage
@@ -125,15 +134,24 @@ Design Document - Part II API (NOT COMPLETE)
 - #### changeEmail()
     - Allows user to change the email address associated with their account, making a call to the backend to update.
     - Return string (verification)
+    - Calls setUserInfo()
+    - Return string (verification message)
 - #### changeUsername()
     - Allows user to change the username associated with their account, making a call to the backend to update.
     - Return string (verification)
+    - Calls setUserInfo()
+    - Return string (verification message)
 - #### changePassword()
     - Allows user to change their password, making a call to the backend to update.
-    - Return none
+    - Calls setUserInfo()
+    - Return string (verification message)
 - #### deleteAccount()
     - Allows user to delete their account and erase all their data, making a call to the backend to update.
+    - Calls setUserInfo()
     - Return string (verification message)
+- #### setUserInfo(userObject)
+    - [click here](#setuserinfouserobject)  
+    - Calls when the user wants to change their account information. 
 
 
 
@@ -147,17 +165,22 @@ Design Document - Part II API (NOT COMPLETE)
 
 ### Methods
 - #### setAvatarInfo(avatarObject)
-    - Changes the avatarInfo object and rerenders components to reflect changes.
+    - Changes the avatarInfo state to the value of avatarObject and rerenders components to reflect changes.
+    - Calls when the Main component renders. 
+    - Updates the state of avatarInfo.
     - Arguments:
         - avatarObject: the object that will be the new state of avatarInfo.
     - Return none
 - #### setInventory(inventoryList)
-    -  Changes the inventory array and rerenders components to reflect changes.
+    - Changes the inventory array and rerenders components to reflect changes.
+    - Calls when the Main component renders.
+    - Updates the state of inventory.
     - Arguments:
         - inventoryList: the object that will be the new state of inventory.
     - Return none
 - #### fetchData()
-    - Makes requests to the backend to fetch inventory and avatarInfo information and change the state of avatarInfo and inventory with setAvatarInfo() and setInventory().
+    - Makes requests to the backend to fetch inventory and avatarInfo information.
+    - Calls setAvatarInfo() and setInventory() to set the values of inventory and avatarInfo().
     - Return none
 
 
@@ -192,16 +215,23 @@ Design Document - Part II API (NOT COMPLETE)
 ### Methods
 - #### setInventory(inventoryList)
     - [click here](#setinventoryinventorylist)
+    - Calls when a user feeds their pet. The user's item (candy) quantity goes down. 
 - #### setAvatarInfo(avatarObject)
     - [click here](#setavatarinfoavatarobject)
+    - Calls when a user feeds their pet. The pet should gain EXP and change mood.
 - #### setSprite(spriteObject)
-    - Changes the sprite object and rerenders components to reflect changes.
+    - Changes the sprite state to the value of spriteObject and rerenders components to reflect changes.
+    - Calls when the PetSprite component renders.
+    - Calls when a user feeds their pet. The pet's sprite should be animated differently to reflect the correct mood. 
+    - Updates the state of sprite.
     - Arguments:
         - spriteObject: the object that will be the new state of the sprite object.
     - Return none   
 
 - #### handleItemRelease(inventoryID)
-    - Handles the event of the user dragging and dropping an item (candy) to their pet. The inventory updates (less item(s)), The pet's EXP increases, and the sprite animation changes.
+    - Handles the event of the user dragging and dropping an item (candy) to their pet. 
+    - Calls the setInventory() and setAvatarInfo() to update the values of avatarInfo and inventory. 
+    - Return none
 
 
 ## PetDescription
@@ -243,13 +273,15 @@ Design Document - Part II API (NOT COMPLETE)
 
 ### Methods
 - #### setTaskList(taskListObj)
-    - Changes the taskList state and rerenders the page to display the user's updated/changed list of tasks. 
+    - Changes the taskList state to the value of taskListObj and rerenders the page to display the user's updated/changed list of tasks. 
+    - Updates the state of taskList. 
+    - Calls when the PageDisplay component renders.
     - Arguments:
         - taskListObj: the new state of taskList.
     - Return none   
 
 - #### setPageView(pageNum)
-    - Changes the pageView state and rerenders the current page to be the TaskPage, InventoryPage, CalendarPage, or PetProfPage depending on the argument.
+    - Changes the pageView state to the value of pageNum and rerenders the current page. 
     - Arguments:
         - pageNum: the new state of pageView. Range: [0-3].
     - Return none  
@@ -260,7 +292,8 @@ Design Document - Part II API (NOT COMPLETE)
     - [click here](#setavatarinfoavatarobject)
 
 - #### fetchData()
-    - Makes requests to the backend to fetch the user's task information and sets the state of taskList using setTaskList().
+    - Makes requests to the backend to fetch the user's task information.
+    - Calls setTaskList() to set the value of taskList. 
     - Return none  
 
 ## NavBar
@@ -276,18 +309,20 @@ Design Document - Part II API (NOT COMPLETE)
 
 
 ## NavButton
-- Component that handles each individual selection option in the navigation bar
+- Component that handles each individual selection option in the navigation bar.
 ### Data fields
 - #### int pageView
     - [click here](#int-pageview)
 ### Methods
-- setPageView()
+- setPageView(pageNum)
     - [click here](#setpageviewpagenum)
-
+    - Calls when the user selects another tab.
+    - Depending on the value of pageView/pageNum, the component rendered could be TaskPage, InventoryPage, CalendarPage, or PetProfPage. 
+    - Return none
 - #### handleClick()
-    - Handles user's clicks on NavButton component and calls setPageView() to change the page/component rendered. 
-
-
+    - Handles user's clicks on NavButton component.
+    - Calls setPageView() to update the value of pageView. 
+    - Return none
 
 
 
@@ -306,15 +341,13 @@ Design Document - Part II API (NOT COMPLETE)
     - [click here](#settasklisttasklistobj)
 
 
-
-
-
 ## TaskList
 - The TaskList component displays the user's tasks.
 
 ### Data fields
 - #### Array taskList
     - [click here](#array-tasklist)
+    - Each task item in the taskList array will be displayed with the TaskList componenet. 
 ### Methods
 - #### setInventory(inventoryList)
     - [click here](#setinventoryinventorylist)
@@ -323,33 +356,35 @@ Design Document - Part II API (NOT COMPLETE)
 - #### setTaskList(taskListObj)
     - [click here](#settasklisttasklistobj)
 - #### removeTask(taskID)
-    - Removes a task using setTaskList() and makes a request to the backend to update the user's tasks. 
+    - Removes a task and makes a request to the backend to update the user's tasks.
+    - Updates value of taskList using setTaskList().
 - #### updateTask(taskID)
-    - Updates the task information using setTaskList() and makes a request to the backend to update the user's tasks. 
-
-
-
+    - Updates the task information and makes a request to the backend to update the user's tasks. 
+    - Updates value of taskList using setTaskList().
+    - Calls setTaskList() to update the value of taskList.
+    - Calls setInventory() to update the value of inventoryList.
 
 
 ## TaskItem
-- Component that displays the information about a specific task.
+- Component for each item in taskList that displays certain information like name, due date, etc. 
 ### Data fields
 - #### Object taskItem
     - An object with fields describing a task like the due date, description, recurring info, how much is completed, etc.
 ### Methods
 - #### handleClick()
-    - Displays TaskDetails component with more details about the task.
+    - Renders the TaskDetails component which has more details about the task.
+    - Return none
 - #### removeTask(taskID)
     - [click here](#removetasktaskid) 
 - #### updateTask(taskID)
     - [click here](#updatetasktaskid) 
-
-
-
+    - Calls when the user updates their progress toward completion. 
+    - Calls setInventory() if user's task completion or progress results in a reward (item/candy)/ 
 
 
 ## TaskDetails
-- Handles the information about a specific task, like deadline, description, etc.
+- Handles the information about a specific task, like deadline, description, etc. 
+- Can be edited. 
 ### Data fields
 - #### Object taskItem
     - [click here](#object-taskitem) 
@@ -357,15 +392,11 @@ Design Document - Part II API (NOT COMPLETE)
 ### Methods
 - #### removeTask(taskID)
     - [click here](#removetasktaskid) 
+    - Calls setTaskList() to remove the task from taskList. 
 - #### updateTask(taskID)
     - [click here](#updatetasktaskid) 
-
-
-
-
-
-
-
+    - Calls when the user changes the task's details.
+    - Calls setTaskList() to update the value of taskList. 
 
 
 
@@ -377,10 +408,12 @@ Design Document - Part II API (NOT COMPLETE)
 ### Methods
 - #### setTaskList(taskListObj)
     - [click here](#settasklisttasklistobj)
+    - Calls when the user adds a new task to include it in taskList. 
+
 - #### addTask()
-    - Creates a new task, updates the task list using setTaskList, and makes a request to the backend to update the user's tasks. 
-
-
+    - Creates a new task and makes a request to the backend to update the user's tasks. 
+    - Calls setTaskList() to update the taskList.
+    - Return none 
 
 
 ## InventoryPage
@@ -388,12 +421,8 @@ Design Document - Part II API (NOT COMPLETE)
 ### Data fields
 - #### Array inventory
     - [click here](#array-inventory)
-
 ### Methods
 - No Methods
-
-
-
 
 
 
@@ -402,18 +431,9 @@ Design Document - Part II API (NOT COMPLETE)
 ### Data fields
 - #### Array inventory
     - [click here](#array-inventory)
-
+    - Each item in inventory will be displayed to the user in a grid. 
 ### Methods
 - No Methods
-
-
-
-
-
-
-
-
-
 
 
 ## Item
@@ -424,6 +444,7 @@ Design Document - Part II API (NOT COMPLETE)
 ### Methods
 - #### handleClick()
     - Handles clicks on item components and allows user to drag the item around.  
+    - Return none
 
 
 
@@ -446,6 +467,7 @@ Design Document - Part II API (NOT COMPLETE)
     - Date object representing the current date. 
 - #### Array taskList
     - [click here](#array-tasklist)
+    - Items in taskList that have a due date will be listed when the user selects that date on the calendar. 
 ### Methods
 - #### displayTasks(dateSelect)
     - Displays the tasks due given a Date object.
@@ -460,47 +482,40 @@ Design Document - Part II API (NOT COMPLETE)
 ### Data fields
 - #### Object avatarInfo
     - [click here](#object-avatarinfo)
+    - Used to display extra information about the pet like the last time it was fed, birthday, etc.
 - #### Array taskList
     - [click here](#array-tasklist)
 ### Methods
 - No Methods
-
-
-
-
-
-
-
-
-
 
 
 ## PPTaskList
+- Component that shows the users all their tasks and the progress they've made. 
 ### Data fields
 - #### Array taskList
     - [click here](#array-tasklist)
+    - Each task item in the taskList array will be displayed with the PPTaskList componenet.
 ### Methods
 - No Methods
 
 
-
-
 ## PPTaskItem
+- Component for each task item in taskList. 
 ### Data fields
 - #### Object ppTaskItem
     - An object with fields describing a task and how much of it is completed.
 ### Methods
 - #### handleClick()
     - Handles user's clicks on the component and renders a PPTaskDetails component to show more details.
-
-
+    - Return none
 
 ## PPTaskDetails
+- This component can not be edited and displays less information than the [TaskItem component](#taskitem). It shows the user how much progress they've made on their tasks.
 ### Data fields
 - #### Object pptaskItem
     - [click here](#object-pptaskitem)
-
 ### Methods
+- No Methods
 
 
 
