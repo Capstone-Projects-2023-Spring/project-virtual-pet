@@ -22,8 +22,10 @@ from rest_framework_simplejwt.views import (
 )
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('db.urls')),
+    path('', include('db.urls',namespace='db')),
     path('api/token/',TokenObtainPairView.as_view(),name='token_obtain_pair'), # get a token
+    path('api/user/',include('db.urls',namespace='db')),
     path('api/token/refresh/',TokenRefreshView.as_view(),name='token_refresh'), # refresh a token
     path('api/token/verify/',TokenVerifyView.as_view(),name='token_verify'), # verify a token without signing key
+
 ]
