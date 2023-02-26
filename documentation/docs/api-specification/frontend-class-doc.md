@@ -39,8 +39,10 @@ Design Document - Part II API (NOT COMPLETE)
 
 
 ## App
+- The root component encompassing all other components
 ### Data fields
-- Object userInfo
+- #### Object userInfo
+    - An object with fields describing the user's information like their username, first name, last name email, last login, etc 
 
 ### Methods
 - No Methods
@@ -48,17 +50,24 @@ Design Document - Part II API (NOT COMPLETE)
 
 
 ## Header
+- (add description here)
 ### Data fields
-- str title
-- Object userInfo
-### Methods
+- #### str title
+    - (add description here)
+- #### Object userInfo
+    - (add description here)
+    
+- ### Methods
 - No Methods
 
 
 ## DropDownMenu
+- (add description here)
 ### Data fields
-- Array pages
-- Object userInfo
+- #### Array pages
+    - (add description here)
+- #### Object userInfo
+    - (add description here)
 
 ### Methods
 - handleClick()
@@ -67,38 +76,62 @@ Design Document - Part II API (NOT COMPLETE)
 ## DropDownItem
 
 ### Data fields
-- str title
-- Object userInfo
+- #### str title
+    - (add description here)
+- #### Object userInfo
+    - (add description here)
+    
 ### Methods
-- handleClick()
-- logOut()
+- #### handleClick()
+    - (add description here)
+- #### logOut()
+    - (add description here)
+
+
+
 
 
 ## CanvasIntegrationPage
+- (add description here)
+
 ### Data fields
-- Object userInfo
+- #### Object userInfo
+    - (add description here)
+
 ### Methods
-- redirectTo()
+- #### redirectTo()
+    - (add description here)
+
+
 
 
 
 ## AccountSettingsPage
+- (add description here)
+
 ### Data fields
-+ Object userInfo
+- #### Object userInfo
+    - (add description here)
+
 ### Methods
-- changeEmail()
-- changeUsername()
-- changePassword()
-- deleteAccount()
+- #### changeEmail()
+    - (add description here)
+- #### changeUsername()
+    - (add description here)
+- #### changePassword()
+    - (add description here)
+- #### deleteAccount()
+    - (add description here)
 
 
 
 ## Main
+- The component displaying everything below the header. It's made up of the PetDisplay and PageDisplay component. 
 ### Data fields
 - #### Object avatarInfo
     - An object with fields describing the user's pet like it's name, type, totalXP, last time the user interacted with/fed it. 
 - #### Array inventory
-    - An array of the items the user owns 
+    - An array of the items the user owns. Primarily consumables for the pet to level up
 
 ### Methods
 - #### setAvatarInfo(avatarObject)
@@ -119,6 +152,7 @@ Design Document - Part II API (NOT COMPLETE)
 
 
 ## PetDisplay
+- The PetDisplay component is fixed to the left side of the screen and it displays the user's pet sprite, EXP level, name, etc 
 ### Data fields
 - #### Object avatarInfo
     - [click here](#object-avatarinfo)
@@ -134,13 +168,14 @@ Design Document - Part II API (NOT COMPLETE)
 
 
 ## PetSprite
+- The PetSprite component is primarily responsible for the avatar animations. It shows the user's pet as a pixel sprite and it can be 'fed' when the user drags items to it. 
 ### Data fields
 - #### Object avatarInfo
     - [click here](#object-avatarinfo)
 - #### Array inventory
     - [click here](#array-inventory)
 - #### Object sprite
-    - An object with fields specifying which frames of the sprite sheet are being used to animate the pet/avatar. 
+    - An object with fields specifying which frames of the sprite sheet are being used to animate the pet/avatar. It will be used to visually depict the pet.
 
 ### Methods
 - #### setInventory(inventoryList)
@@ -154,10 +189,11 @@ Design Document - Part II API (NOT COMPLETE)
     - Return none   
 
 - #### handleItemRelease(inventoryID)
-    - Handles the events triggered when the user feeds their pet. The inventory updates (less item(s)), The pet's EXP increases, and the sprite animation changes. 
+    - Handles the event of the user dragging and dropping an item (candy) to their pet. The inventory updates (less item(s)), The pet's EXP increases, and the sprite animation changes.
 
 
 ## PetDescription
+- (add description here)
 ### Data fields
 - #### Object avatarInfo
     - [click here](#object-avatarinfo)
@@ -168,6 +204,7 @@ Design Document - Part II API (NOT COMPLETE)
 
 
 ## ProgressBar
+- The ProgressBar displays the pet’s progress (experience points/EXP) to the next level.
 ### Data fields
 - #### Object avatarInfo
     - [click here](#object-avatarinfo)
@@ -181,6 +218,7 @@ Design Document - Part II API (NOT COMPLETE)
 
 
 ## PageDisplay
+- (add description here)
 ### Data fields
 - #### Array taskList
     - An array of the user's tasks and tasks imported from Canvas (if integrated)
@@ -214,6 +252,7 @@ Design Document - Part II API (NOT COMPLETE)
     - Return none  
 
 ## NavBar
+- (add description here)
 ### Data fields
 - #### int pageView
     - [click here](#int-pageview)
@@ -225,6 +264,7 @@ Design Document - Part II API (NOT COMPLETE)
 
 
 ## NavButton
+- (add description here)
 ### Data fields
 - #### int pageView
     - [click here](#int-pageview)
@@ -244,6 +284,7 @@ Design Document - Part II API (NOT COMPLETE)
 
 
 ## TaskPage
+- (add description here)
 ### Data fields
 - #### Array taskList
     - [click here](#array-tasklist)
@@ -283,9 +324,10 @@ Design Document - Part II API (NOT COMPLETE)
 
 
 ## TaskItem
+- (add description here)
 ### Data fields
 - #### Object taskItem
-    - An object with fields describing the task like the due date, description, recurring info, etc
+    - An object with fields describing a task like the due date, description, recurring info, how much is completed, etc
 ### Methods
 - #### handleClick()
     - Displays TaskDetails component with more details about the task 
@@ -299,6 +341,7 @@ Design Document - Part II API (NOT COMPLETE)
 
 
 ## TaskDetails
+- (add description here)
 ### Data fields
 - #### Object taskItem
     - [click here](#object-taskitem) 
@@ -320,12 +363,12 @@ Design Document - Part II API (NOT COMPLETE)
 
 
 ## CreateTaskForm
+- (add description here)
 ### Data fields
 - No Data Fields
 ### Methods
 - #### setTaskList(taskListObj)
     - [click here](#settasklisttasklistobj)
-
 - #### addTask()
     - Creates a new task, updates the task list using setTaskList, and makes a request to the backend to update the user's tasks. 
 
@@ -333,6 +376,7 @@ Design Document - Part II API (NOT COMPLETE)
 
 
 ## InventoryPage
+- (add description here)
 ### Data fields
 - #### Array inventory
     - [click here](#array-inventory)
@@ -346,6 +390,7 @@ Design Document - Part II API (NOT COMPLETE)
 
 
 ## ItemGrid
+- (add description here)
 ### Data fields
 - #### Array inventory
     - [click here](#array-inventory)
@@ -364,6 +409,7 @@ Design Document - Part II API (NOT COMPLETE)
 
 
 ## Item
+- (add description here)
 ### Data fields
 - #### Object inventoryItem
     - An object with fields describing an inventory item like its base type, level, and quantity. 
@@ -374,6 +420,7 @@ Design Document - Part II API (NOT COMPLETE)
 
 
 ## CalendarPage
+- The CalendarPage component allows the user to view their tasks in a calendar format
 ### Data fields
 - #### Array taskList
     - [click here](#array-tasklist)
@@ -385,6 +432,7 @@ Design Document - Part II API (NOT COMPLETE)
 
 
 ## Calendar
+- (add description here)
 ### Data fields
 - #### Date currentDate
     - Date object representing the current date. 
@@ -399,11 +447,13 @@ Design Document - Part II API (NOT COMPLETE)
         - A filtered list of tasks due on the specified date.
 
 
-## PetProfPage
+## ProgressPage
+- (add description here)
 ### Data fields
 - #### Object avatarInfo
     - [click here](#object-avatarinfo)
-- Array taskList
+- #### Array taskList
+    - [click here](#array-tasklist)
 ### Methods
 - No Methods
 
@@ -419,38 +469,29 @@ Design Document - Part II API (NOT COMPLETE)
 
 ## PPTaskList
 ### Data fields
-- Array taskList
+- #### Array taskList
+    - [click here](#array-tasklist)
 ### Methods
 - No Methods
 
 
 
 
-
-
-
-
-
-
 ## PPTaskItem
 ### Data fields
-- Object taskItem
+- #### Object ppTaskItem
+    - An object with fields describing a task and how much of it is completed
 ### Methods
-- handleClick()
-
-
-
-
-
-
-
-
+- #### handleClick()
+    - Handles user's clicks on the component and renders a PPTaskDetails component to show more details 
 
 
 
 ## PPTaskDetails
 ### Data fields
-- Object taskItem
+- #### Object pptaskItem
+    - [click here](#object-pptaskitem)
+
 ### Methods
 
 

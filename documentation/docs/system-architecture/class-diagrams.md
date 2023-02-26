@@ -34,7 +34,7 @@ classDiagram
     PageDisplay *-- TaskPage
     PageDisplay *-- CalendarPage
     PageDisplay *-- InventoryPage
-    PageDisplay *-- PetProfPage
+    PageDisplay *-- ProgressPage
 
     NavBar "1" *-- "4" NavButton
 
@@ -49,7 +49,7 @@ classDiagram
 
     CalendarPage *-- Calendar
 
-    PetProfPage *-- PPTaskList
+    ProgressPage *-- PPTaskList
     PPTaskList *-- PPTaskItem
     PPTaskItem *-- PPTaskDetails
 
@@ -205,7 +205,7 @@ classDiagram
         + handleClick()
     }
 
-    class PetProfPage {
+    class ProgressPage {
         + Object avatarInfo
         + Array taskList 
     }
@@ -293,7 +293,7 @@ classDiagram
     PageDisplay *-- TaskPage
     PageDisplay *-- CalendarPage
     PageDisplay *-- InventoryPage
-    PageDisplay *-- PetProfPage
+    PageDisplay *-- ProgressPage
 
     NavBar "1" *-- "4" NavButton
 
@@ -308,7 +308,7 @@ classDiagram
 
     CalendarPage *-- Calendar
 
-    PetProfPage *-- PPTaskList
+    ProgressPage *-- PPTaskList
     PPTaskList *-- PPTaskItem
     PPTaskItem *-- PPTaskDetails
 
@@ -389,7 +389,7 @@ classDiagram
 
     }
 
-    class PetProfPage {
+    class ProgressPage {
         + Object avatarInfo
         + Array taskList 
     }
@@ -398,12 +398,12 @@ classDiagram
     }
 
     class PPTaskItem {
-        + Object taskItem
+        + Object pptaskItem
         + handleClick()
     }
 
     class PPTaskDetails {
-        + Object taskItem 
+        + Object pptaskItem 
     }
 
 ```
@@ -413,7 +413,7 @@ classDiagram
 Figure 1.3 shows the React components that make PageDisplay. This component is fixed to the right side of the page, and it provides navigation to different pages that will help the user keep track of their task progress and pet. 
 
 #### NavBar
-* By default the TaskPage is shown, but users can interact with the NavBar component to reach the other component pages like InventoryPage, CalendarPage, and PetProfPage. The PageDisplay component holds the state 'pageView', so when the user selects a NavButton component, the 'pageView' state will change and trigger a re-render to show the correct page.
+* By default the TaskPage is shown, but users can interact with the NavBar component to reach the other component pages like InventoryPage, CalendarPage, and ProgressPage. The PageDisplay component holds the state 'pageView', so when the user selects a NavButton component, the 'pageView' state will change and trigger a re-render to show the correct page.
 
 #### TaskPage
 * The TaskPage component's main purpose is to allow users to view, add, delete, and modify their tasks, which is stored in the state 'taskList'. The CreateTaskForm component will allow users to add a new task, and the TaskList component will allow users to select individual TaskItem components to update their progress, change details, or delete them. Further progress on tasks may result in the user receiving a candy, so the state 'inventory' can update due to user interactions with the TaskList component. 
@@ -424,8 +424,8 @@ Figure 1.3 shows the React components that make PageDisplay. This component is f
 #### CalendarPage
 * The CalendarPage component holds the state 'taskList'. It allows users to interact with a calendar and select days to see what tasks are due. It will re-render if changes are made to the 'taskList' state, which could be caused by new tasks pulled from the user's Canvas or their interactions with the TaskList component. 
 
-#### PetProfPage
-* The PetProfPage component shows the user detailed stats on their pet and their task progress using the 'avatarInfo' and 'taskList' states. The user's tasks are displayed with a PPTaskList component which is made up of PPTaskItems. When the user clicks on these componenets, a PPTaskDetails component will render, showing the user their progress on the selected task so far. They can not update the task from here. 
+#### ProgressPage
+* The ProgressPage component shows the user detailed stats on their pet and their task progress using the 'avatarInfo' and 'taskList' states. The user's tasks are displayed with a PPTaskList component which is made up of PPTaskItems. When the user clicks on these componenets, a PPTaskDetails component will render, showing the user their progress on the selected task so far. They can not update the task from here. 
 
 
 ### Header Component
