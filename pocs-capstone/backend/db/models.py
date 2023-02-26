@@ -22,7 +22,7 @@ class CustomAccountManager(BaseUserManager):
             raise ValueError(
                 "Superuser must be superuser! 'is_superuser' must be True"
             )
-        return self.create_superuser(email,user_name,first_name,password,**other_fields)
+        return self.create_user(email,user_name,first_name,password,**other_fields)
     
     def create_user(self,email,user_name,first_name,password,**other_fields):
         if not email:
@@ -41,7 +41,7 @@ class NewUser(AbstractBaseUser,PermissionsMixin): #TODO rename to something less
     user_name = models.CharField(max_length=128,unique=True)
     first_name=models.CharField(max_length=128,unique=True)
     join_date=models.DateTimeField(default=timezone.now)
-    birthday = models.DateField(default=None)
+    birthday = models.DateField(null=True, default=None)
     bio = models.TextField(_('about'),max_length=512,blank=True)
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True) # TODO if we want email verification to activate user we change this to false
