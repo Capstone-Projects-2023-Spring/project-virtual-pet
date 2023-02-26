@@ -70,7 +70,7 @@
 **Scripts, Libraries, Packages, etc**
 * <a href="https://github.com/web-mech/badwords" target="_blank">Bad words filter package</a>
 * <a href="https://react-bootstrap.netlify.app/components/alerts" target="_blank">React-Bootstrap</a>
-* <a href="https://sphinx-themes.org/#theme-furo" target=_"blank">Sphinx Themes</a>
+* <a href="https://sphinx-themes.org/#theme-furo" target="_blank">Sphinx Themes</a>
 
 ## Creations
 * [Unhinged Group Proposal Video](https://youtu.be/oi3PMAiAiwQ)
