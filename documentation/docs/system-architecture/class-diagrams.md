@@ -57,17 +57,21 @@ classDiagram
     
     class App {
         + Object userInfo    
+        + setUserInfo()
+        + fetchData()
     }
 
 
     class Header {
         + str title
-        + Object userInfo   
+        + Object userInfo  
+        + setUserInfo()
     }
     class DropDownMenu {
         + Array pages
         + Object userInfo     
         + handleClick()
+        + setUserInfo()
         
     }
     class DropDownItem {
@@ -75,6 +79,7 @@ classDiagram
         + Object userInfo   
         + handleClick()
         + logout()
+        + setUserInfo()
     }
 
     class CanvasIntegrationPage {
@@ -89,6 +94,7 @@ classDiagram
         + changeUsername()
         + changePassword()
         + deleteAccount()
+        + setUserInfo()
 
         
     }
@@ -440,17 +446,20 @@ classDiagram
     class Header {
         + str title
         + Object userInfo   
+        + setUserInfo()
     }
     class DropDownMenu {
         + Array pages
         + Object userInfo     
         + handleClick()  
+        + setUserInfo()
     }
     class DropDownItem {
         + str title 
         + Object userInfo   
         + handleClick()
         + logout()
+        + setUserInfo()
     }
     class CanvasIntegrationPage {
         + Object userInfo   
@@ -461,7 +470,8 @@ classDiagram
         + changeEmail()
         + changeUsername()
         + changePassword()
-        + deleteAccount()        
+        + deleteAccount()   
+        + setUserInfo()     
     }
 ```
 
