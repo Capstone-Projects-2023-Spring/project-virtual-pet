@@ -20,10 +20,10 @@ This document proposes a progressive web application that combines the benefits 
 <table align="center">
 <tr>
     <td align="center">
-            <img src="https://user-images.githubusercontent.com/73796086/221391195-a3de8590-2e59-4ff5-b24f-513248ee9ad4.jpg" height=300>
+            <img src="https://user-images.githubusercontent.com/73796086/221391195-a3de8590-2e59-4ff5-b24f-513248ee9ad4.jpg" height="300">
     </td>
     <td align="center">
-            <img src="https://user-images.githubusercontent.com/73796086/221391357-8ba86569-f62b-493c-9b7a-a04560773186.png" height=300>
+            <img src="https://user-images.githubusercontent.com/73796086/221391357-8ba86569-f62b-493c-9b7a-a04560773186.png" height="300">
     </td>
 </tr>
 </table>
