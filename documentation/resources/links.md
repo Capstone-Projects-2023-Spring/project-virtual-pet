@@ -1,4 +1,5 @@
-# ![orange_happy_kitty](https://user-images.githubusercontent.com/73796086/221434200-5ffd71bf-84d5-401c-b294-ab1b2a9ae78f.png) Links & Resources ![gray_happy_kitty](https://user-images.githubusercontent.com/73796086/221434150-8133204f-fff4-4278-805b-1d4c3ffbb0c9.png)
+# Links & Resources 
+#### ![orange_happy_kitty](https://user-images.githubusercontent.com/73796086/221434200-5ffd71bf-84d5-401c-b294-ab1b2a9ae78f.png) Resources, tutorials, notes, docs, and other fun stuff, all in one place ![gray_happy_kitty](https://user-images.githubusercontent.com/73796086/221434150-8133204f-fff4-4278-805b-1d4c3ffbb0c9.png)
 
 ## Scheduling
 **When2Meet** - sign in with the same name to update your availability
@@ -17,7 +18,7 @@
 * <a href="https://templeu.instructure.com/courses/124586" target="_blank">Capstone Canvas Course Page</a>
 
 ## Other Repos
-* * <a href="https://github.com/ccho-0508/simple-site" target="_blank">Christine's Repo: Containerized Simple Site--React+Django+SQLite</a>
+* <a href="https://github.com/ccho-0508/simple-site" target="_blank">Christine's Repo: Containerized Simple Site--React+Django+SQLite</a>
 * <a target="_blank" href="https://github.com/jay-newman/jwt-react-django-app">Jay's Repo: react-django app using jwt authentication</a>
    * "Currently the user can register, login, view a home page, and view a protected page(only view when logged in). This app uses django.contrib.auth User model for the username and password. The front end didn't use react-router-dom v6. I updated the front end syntax so it can use v6. At the very least this is good research and provides us with options."
    * Two Part Guide:
