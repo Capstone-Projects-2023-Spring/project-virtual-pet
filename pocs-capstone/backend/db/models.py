@@ -22,7 +22,6 @@ class Choice(models.Model):
 
 
 
-class Note(models.Model):
     def __str__(self):
         return self.note_text
     note_text = models.CharField(max_length=200)
