@@ -9,8 +9,8 @@
     * 3/1 (last day of sprint) - wed ??
 
 ## Creations
-[Unhinged Group Proposal Video](https://youtu.be/oi3PMAiAiwQ)
-[Spotify Blend](https://open.spotify.com/playlist/37i9dQZF1EJMUpbfZ9whOF?si=b0c941500b914e24) 
+* [Unhinged Group Proposal Video](https://youtu.be/oi3PMAiAiwQ)
+* [Spotify Blend](https://open.spotify.com/playlist/37i9dQZF1EJMUpbfZ9whOF?si=b0c941500b914e24) 
 
 ## Project Board & Sites
 * <a target="_blank" href="https://temple-cis-projects-in-cs.atlassian.net/jira/software/c/projects/SB/boards/32/backlog?view=detail&selectedIssue=SB-6&epics=visible&issueLimit=100">Jira Project Board</a>
