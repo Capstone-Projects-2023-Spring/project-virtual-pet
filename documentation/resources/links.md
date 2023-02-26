@@ -1,3 +1,5 @@
+# Links & Resources
+
 ## Scheduling
 **When2Meet** - sign in with the same name to update your availability
 * <a target="_blank" href="https://www.when2meet.com/?18802038-sMqA3">General Weekly Availability</a> 
@@ -56,18 +58,25 @@ https://docs.djangoproject.com/en/4.1/ref/contrib/auth/
 * <a href="https://css-tricks.com/creating-scheduled-push-notifications/" target="_blank">Creating Scheduled Push Notifications - CSS-Tricks</a>
 * <a href="https://www.django-rest-framework.org/api-guide/relations/#hyperlinkedidentityfield" target = "_blank">Django RESTful nested serializers</a>
 
-
+**API in general**
+* <a href="https://www.postman.com/" target="_blank">Postman</a>
 
 **Canvas**
 * <a href="https://github.com/instructure/canvas-lms/wiki/Quick-Start" target="_blank">Canvas quick starter guide</a>
+* <a href="https://community.canvaslms.com/t5/Canvas-Developers-Group/Canvas-APIs-Getting-started-the-practical-ins-and-outs-gotchas/ba-p/263685" target="_blank">Getting Started Blogpost</a>
+* <a href="https://templeu.instructure.com/doc/api/live" target="_blank">Canvas Live API </a>
+* <a href="https://capico.ubc.ca/" target=_"blank">UBC’s Canvas API User Community</a>
 
 **Progression System**
 * <a href="http://library.lol/main/E4C6D18254847647DBB6045F7452911D" target="_blank">Game design textbook with chapters on progression systems</a>
 * <a href="https://bulbapedia.bulbagarden.net/wiki/Experience" target="_blank">Pokemon xp system</a>
 
-**Slideshows/examples from class**
+**Stuff from class**
 * <a href="https://templeu.instructure.com/courses/124586/files/22142094?module_item_id=5202422" target="_blank">System overview slides</a>
 * <a href="https://capstone-projects-2022-fall.github.io/project-collabybot/docs/requirements/use-case-descriptions" target="_blank">Collabybot use case descriptions</a>
+* <a href="https://youtu.be/mohD-Mme-2g" target="_blank">JavaDoc API Docusaurus Video</a>
+* <a href="https://youtu.be/qSNqQZZAGas" target="_blank">Docusaurus & GitHub Codespaces Review Video</a>
+* <a href="https://jojozhuang.github.io/tutorial/mermaid-cheat-sheet/" target="_blank">Mermaid Cheat Sheet</a>
 
 **Script, Libraries, Packages**
 * <a href="https://github.com/web-mech/badwords" target="_blank">Bad words filter package</a>
