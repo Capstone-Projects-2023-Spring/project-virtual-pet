@@ -69,37 +69,37 @@ Design Document - Part II API (NOT COMPLETE)
 
 
 ## DropDownMenu
-- (add description here)
+    - This component allows users to access the various pages attached to the drop down menu, including integrating with Canvas and account settings.
 ### Data fields
 - #### Array pages
-    - (add description here)
+    - An array that encompasses all of the pages that exist in the drop down menu.
 - #### Object userInfo
     - [click here](#object-userinfo)
 
 ### Methods
-- handleClick()
-    - (add description here)
+- #### handleClick()
+    - Method that manages the click action to allow users to access the correct component.
+    - Return none
 
 ## DropDownItem
 
 ### Data fields
 - #### str title
-    - (add description here)
+    - String that includes the name of a specific drop down item.
 - #### Object userInfo
     - [click here](#object-userinfo)
     
 ### Methods
 - #### handleClick()
-    - (add description here)
+    - [click here](#handleClick())
 - #### logOut()
-    - (add description here)
-
+    - Carries out the functionality of logging out of the system, making a call to the backend to save and store the user's data in the database for future use.
 
 
 
 
 ## CanvasIntegrationPage
-- (add description here)
+- Component that, upon selection, allows users to integrate their Canvas account.
 
 ### Data fields
 - #### Object userInfo
@@ -107,14 +107,15 @@ Design Document - Part II API (NOT COMPLETE)
 
 ### Methods
 - #### redirectTo()
-    - (add description here)
+    - Handles the functionality to redirect the user to the Canvas site.
+    - Return none?
 
 
 
 
 
 ## AccountSettingsPage
-- (add description here)
+- Component that grants access to the user's account settings
 
 ### Data fields
 - #### Object userInfo
@@ -122,13 +123,17 @@ Design Document - Part II API (NOT COMPLETE)
 
 ### Methods
 - #### changeEmail()
-    - (add description here)
+    - Allows user to change the email address associated with their account, making a call to the backend to update.
+    - Return string (verification)
 - #### changeUsername()
-    - (add description here)
+    - Allows user to change the username associated with their account, making a call to the backend to update.
+    - Return string (verification)
 - #### changePassword()
-    - (add description here)
+    - Allows user to change their password, making a call to the backend to update.
+    - Return none
 - #### deleteAccount()
-    - (add description here)
+    - Allows user to delete their account and erase all their data, making a call to the backend to update.
+    - Return string (verification message)
 
 
 
@@ -200,7 +205,7 @@ Design Document - Part II API (NOT COMPLETE)
 
 
 ## PetDescription
-- (add description here)
+- The PetDescription displays information about the pet, including their current mood, age, and weight.
 ### Data fields
 - #### Object avatarInfo
     - [click here](#object-avatarinfo)
@@ -225,7 +230,7 @@ Design Document - Part II API (NOT COMPLETE)
 
 
 ## PageDisplay
-- (add description here)
+- Component that includes all of the various pages/tabs that the user can access in order to track their tasks and progress.
 ### Data fields
 - #### Array taskList
     - An array of the user's tasks and tasks imported from Canvas (if integrated).
@@ -259,7 +264,7 @@ Design Document - Part II API (NOT COMPLETE)
     - Return none  
 
 ## NavBar
-- (add description here)
+- Component that manages the navigation bar to allow the user to switch between components
 ### Data fields
 - #### int pageView
     - [click here](#int-pageview)
@@ -271,7 +276,7 @@ Design Document - Part II API (NOT COMPLETE)
 
 
 ## NavButton
-- (add description here)
+- Component that handles each individual selection option in the navigation bar
 ### Data fields
 - #### int pageView
     - [click here](#int-pageview)
@@ -287,7 +292,7 @@ Design Document - Part II API (NOT COMPLETE)
 
 
 ## TaskPage
-- (add description here)
+- Component that displays all of the user's to-do tasks in a list format.
 ### Data fields
 - #### Array taskList
     - [click here](#array-tasklist)
@@ -327,7 +332,7 @@ Design Document - Part II API (NOT COMPLETE)
 
 
 ## TaskItem
-- (add description here)
+- Component that displays the information about a specific task.
 ### Data fields
 - #### Object taskItem
     - An object with fields describing a task like the due date, description, recurring info, how much is completed, etc.
@@ -344,7 +349,7 @@ Design Document - Part II API (NOT COMPLETE)
 
 
 ## TaskDetails
-- (add description here)
+- Handles the information about a specific task, like deadline, description, etc.
 ### Data fields
 - #### Object taskItem
     - [click here](#object-taskitem) 
@@ -366,7 +371,7 @@ Design Document - Part II API (NOT COMPLETE)
 
 
 ## CreateTaskForm
-- (add description here)
+- Component that allows the user to create a new task and add details to the task.
 ### Data fields
 - No Data Fields
 ### Methods
@@ -379,7 +384,7 @@ Design Document - Part II API (NOT COMPLETE)
 
 
 ## InventoryPage
-- (add description here)
+- Handles displaying the contents of the user's inventory.
 ### Data fields
 - #### Array inventory
     - [click here](#array-inventory)
@@ -393,7 +398,7 @@ Design Document - Part II API (NOT COMPLETE)
 
 
 ## ItemGrid
-- (add description here)
+- Displays all of the items in the user's inventory in a grid format.
 ### Data fields
 - #### Array inventory
     - [click here](#array-inventory)
@@ -412,7 +417,7 @@ Design Document - Part II API (NOT COMPLETE)
 
 
 ## Item
-- (add description here)
+- Displays each item with a pixel image to depict it.
 ### Data fields
 - #### Object inventoryItem
     - An object with fields describing an inventory item like its base type, level, and quantity. 
@@ -435,7 +440,7 @@ Design Document - Part II API (NOT COMPLETE)
 
 
 ## Calendar
-- (add description here)
+- Component which handles the functionality of the calendar and all of the tasks that fall on certain dates.
 ### Data fields
 - #### Date currentDate
     - Date object representing the current date. 
@@ -451,7 +456,7 @@ Design Document - Part II API (NOT COMPLETE)
 
 
 ## ProgressPage
-- (add description here)
+- Handles the display of the user's progress towards completion of tasks.
 ### Data fields
 - #### Object avatarInfo
     - [click here](#object-avatarinfo)
