@@ -1,11 +1,12 @@
-
 ---
 sidebar_position: 6
-description: Backend class descriptions
+description: Backend class descriptions.
 ---
 
 Class Documentation
-=============================### MyTokenObtainPairView
+=============================
+
+### MyTokenObtainPairView
 * Class Purpose: Sub class to provide a view to create the access token and the refresh token with custom claims. Class inherits from TokenObtainPairView.
 * Datafields: 
   * serializer_class
