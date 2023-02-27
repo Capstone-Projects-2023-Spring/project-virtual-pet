@@ -44,9 +44,8 @@ Design Document - Part II API (NOT COMPLETE)
 
 ## App
 <details>
-  <summary>The root component encompassing all other components.</summary>
-  <div>
-  
+<summary>The root component encompassing all other components.</summary>
+
 ### Data fields
 - #### Object userInfo
     - An object with fields describing the user's information like their username, first name, last name email, last login, etc.
@@ -66,33 +65,13 @@ Design Document - Part II API (NOT COMPLETE)
     - Return none
 
 
-  </div>
 </details>
 
-## App
-- The root component encompassing all other components.
-### Data fields
-- #### Object userInfo
-    - An object with fields describing the user's information like their username, first name, last name email, last login, etc.
-
-### Methods
-- #### setUserInfo(userObject)
-    - Changes the userInfo state to userObject's values and rerenders components to reflect changes. 
-    - Calls when the App component renders.
-    - Updates the state of userInfo.
-    - Arguments:
-        - userObject: the object that will be the new state of userInfo.
-    - Return none
-
-- #### fetchData()
-    - Makes requests to the backend to fetch the user's information.
-    - Calls setUserInfo() to set the value of userInfo.
-    - Return none
-
-
-
 ## Header
-- This component is the site's header and it shows the name of the site (My Study Buddy) and a DropDownMenu component. 
+
+<details>
+<summary>This component is the site's header and it shows the name of the site (My Study Buddy) and a DropDownMenu component. </summary>
+
 ### Data fields
 - #### str title
     - The name of the site (My Study Buddy).
@@ -102,8 +81,13 @@ Design Document - Part II API (NOT COMPLETE)
     - #### setUserInfo(userObject)
         - [click here](#setuserinfouserobject)  
 
+</details>
+
+
 ## DropDownMenu
-- This component allows users to access the various pages attached to the drop down menu, including integrating with Canvas and account settings.
+<details>
+<summary>This component allows users to access the various pages attached to the drop down menu, including integrating with Canvas and account settings.</summary>
+
 ### Data fields
 - #### Array pages
     - An array that encompasses all of the pages that exist in the drop down menu.
@@ -117,14 +101,18 @@ Design Document - Part II API (NOT COMPLETE)
 - #### setUserInfo(userObject)
     - [click here](#setuserinfouserobject)  
 
+</details>
+
 ## DropDownItem
-- Component that handles each individual selection option in the drop down menu.
+<details>
+<summary>Component that handles each individual selection option in the drop down menu.</summary>
+
 ### Data fields
 - #### str title
     - String that includes the name of a specific drop down item.
 - #### Object userInfo
     - [click here](#object-userinfo)
-    
+
 ### Methods
 - #### handleClick()
     - [click here](#handleClick())
@@ -132,6 +120,10 @@ Design Document - Part II API (NOT COMPLETE)
     - Carries out the functionality of logging out of the system, making a call to the backend to save and store the user's data in the database for future use.
 - #### setUserInfo(userObject)
     - [click here](#setuserinfouserobject)  
+
+
+</details>
+
 
 
 ## CanvasIntegrationPage
