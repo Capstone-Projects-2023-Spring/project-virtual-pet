@@ -22,6 +22,11 @@ RUN pip install djangorestframework
 
 RUN pip install djangorestframework-simplejwt 
 
+RUN pip install pyyaml
+
+RUN pip install uritemplate
+
+RUN pip install coreapi
 
 # when the container runs it'll be listening on port 8000
 EXPOSE 8000
