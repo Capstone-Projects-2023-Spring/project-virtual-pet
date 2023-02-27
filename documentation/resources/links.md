@@ -54,11 +54,7 @@
 * <a href="https://github.com/instructure/canvas-lms/wiki/Quick-Start" target="_blank">Canvas quick starter guide</a>
 * <a href="https://community.canvaslms.com/t5/Canvas-Developers-Group/Canvas-APIs-Getting-started-the-practical-ins-and-outs-gotchas/ba-p/263685" target="_blank">Getting Started Blogpost</a>
 * <a href="https://templeu.instructure.com/doc/api/live" target="_blank">Canvas Live API </a>
-<<<<<<< HEAD
-* <a href="https://capico.ubc.ca/" target="_blank">UBC’s Canvas API User Community</a>
-=======
 * <a href="https://capico.ubc.ca/" target="blank">UBC’s Canvas API User Community</a>
->>>>>>> 341fe922f (link issue?)
 
 **Progression System**
 * <a href="http://library.lol/main/E4C6D18254847647DBB6045F7452911D" target="_blank">Game design textbook with chapters on progression systems</a>
