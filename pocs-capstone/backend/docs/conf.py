@@ -14,7 +14,7 @@ django.setup()
 
 
 project = 'Study Buddies'
-copyright = '2023, Mary Clay, Christine Cho, Katrina Janeczko, Jay Newman, Harrison Fedor, Alexander Russakoff'
+copyright = '2023, Mary Clay, Christine Cho, Katrina Jan, Jay Newman, Harrison Fedor, Alexander Russakoff'
 author = 'Mary Clay, Christine Cho, Jay Newman, Harrison Fedor, Alexander Russakoff'
 release = '0.0.1'
 
