@@ -28,6 +28,8 @@ RUN pip install uritemplate
 
 RUN pip install coreapi
 
+RUN pip install sphinx
+
 # when the container runs it'll be listening on port 8000
 EXPOSE 8000
 
