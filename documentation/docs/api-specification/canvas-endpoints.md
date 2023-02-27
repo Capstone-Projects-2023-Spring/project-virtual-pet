@@ -30,7 +30,7 @@ Canvas API Specs
 * `GET /api/v1/courses/:course_id/assignments`: Returns the paginated list of assignments for the current course or assignment group.
 * Parameters:
   * string `include` submission --> the user's current submission for each assignment (which holds score)
-* Example: `https://templeu.instructure.com/api/v1/courses/124235/assignments?per_page=100&include=submission`
+* Example: `GET https://templeu.instructure.com/api/v1/courses/124235/assignments?per_page=100&include=submission`
 * Returns:
   * integer "id" --> assignment id
   * string "description" --> description of assignment
@@ -42,4 +42,19 @@ Canvas API Specs
   * "submission": 
     * integer "score"
     * boolean "late"
-    * string "workflow_state" --> such as "graded", "submitted", "unsubmitted"
+    * string "workflow_state" --> such as "graded", "submitted", "unsubmitted", "published"
+ 
+### [List the TODO items](https://canvas.instructure.com/doc/api/users.html#method.users.todo_items)
+* `GET /api/v1/users/self/todo`: A paginated list of the current user's list of todo items. There is a limit to the number of items returned. Note: the reason we probably want to use the List courses endpoint then retrieve the list of assignments by each course is because we can better filter through the assignments & include undated assignments. And I am not sure how far out the TODOs go. 
+* Example: `GET https://templeu.instructure.com/api/v1/users/self/todo`
+* Returns:
+  * string "context_name" --> name of associated course
+  * integer "course_id" --> course id for the TODO item
+  * "assignment":
+    * integer "id" --> assignment id
+    * string "description" --> description of assignment
+    * string "due_at" --> date/time in ISO 8601 format for due date of assignment
+    * string "name" --> name of assignment
+    * integer "points_possible"
+  * string "workflow_state" --> such as "graded", "submitted", "unsubmitted", "published"
+  * boolean "is_quiz_assignment" --> tells you whether it's an Assignment or a Quiz
