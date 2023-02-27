@@ -3,7 +3,7 @@ sidebar_position: 6
 description: Backend class descriptions.
 ---
 
-Class Documentation
+Backend Class Documentation
 =============================
 
 ### MyTokenObtainPairView
