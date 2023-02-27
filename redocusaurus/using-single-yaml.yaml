@@ -2,7 +2,7 @@ openapi: 3.0.2
 info:
   title: Study Buddies - User Registration
   version: 0.0.1
-  description: USER Registration, LogIn,LogOut Enpionts
+  description: User Registration, LogIn, and LogOut Endpoints
 paths:
   /register/:
     post:
