@@ -1,12 +1,10 @@
 ---
 sidebar_position: 1
-description: What should be in this section.
+description: Documentation for frontend classes and methods.
 ---
 
-Design Document - Part II API (NOT COMPLETE)
+Frontend Class Documentation
 =============================
-
-
 
 ## Component Hierarchy / Directory 
 
@@ -44,7 +42,7 @@ Design Document - Part II API (NOT COMPLETE)
 <br></br>
 
 ## App
-<details>
+<details open="True">
 <summary>The root component encompassing all other components.</summary>
 
 ### Data fields
@@ -65,14 +63,13 @@ Design Document - Part II API (NOT COMPLETE)
     - Calls setUserInfo() to set the value of userInfo.
     - Return none
 
-
 </details>
 
 <br></br>
 
 ## Header
 
-<details>
+<details open="True">
 <summary>This component is the site's header and it shows the name of the site (My Study Buddy) and a DropDownMenu component. </summary>
 
 ### Data fields
@@ -89,7 +86,7 @@ Design Document - Part II API (NOT COMPLETE)
 <br></br>
 
 ## DropDownMenu
-<details>
+<details open="True">
 <summary>This component allows users to access the various pages attached to the drop down menu, including integrating with Canvas and account settings.</summary>
 
 ### Data fields
@@ -110,7 +107,7 @@ Design Document - Part II API (NOT COMPLETE)
 <br></br>
 
 ## DropDownItem
-<details>
+<details open="True">
 <summary>Component that handles each individual selection option in the drop down menu.</summary>
 
 ### Data fields
@@ -133,7 +130,7 @@ Design Document - Part II API (NOT COMPLETE)
 <br></br>
 
 ## CanvasIntegrationPage
-<details>
+<details open="True">
 <summary>Component that, upon selection, allows users to integrate their Canvas account.</summary>
 
 ### Data fields
@@ -155,7 +152,7 @@ Design Document - Part II API (NOT COMPLETE)
 <br></br>
 
 ## AccountSettingsPage
-<details> 
+<details open="True"> 
 <summary>Component that grants access to the user's account settings</summary>
 
 ### Data fields
@@ -192,7 +189,7 @@ Design Document - Part II API (NOT COMPLETE)
 
 
 ## Main
-<details> 
+<details open="True"> 
 <summary>The component displaying everything below the header. It's made up of the PetDisplay and PageDisplay component. </summary>
 
 ### Data fields
@@ -227,7 +224,7 @@ Design Document - Part II API (NOT COMPLETE)
 <br></br>
 
 ## PetDisplay
-<details> 
+<details open="True"> 
 <summary>The PetDisplay component is fixed to the left side of the screen and it displays the user's pet sprite, EXP level, name, etc.</summary>
 
 ### Data fields
@@ -247,7 +244,7 @@ Design Document - Part II API (NOT COMPLETE)
 <br></br>
 
 ## PetSprite
-<details> 
+<details open="True"> 
 <summary>The PetSprite component is primarily responsible for the avatar animations. It shows the user's pet as a pixel sprite and it can be 'fed' when the user drags items to it. </summary>
 
 ### Data fields
@@ -287,7 +284,7 @@ Design Document - Part II API (NOT COMPLETE)
 
 
 ## PetDescription
-<details> 
+<details open="True"> 
 <summary>The PetDescription displays information about the pet, including their current mood, age, and weight.</summary>
 
 ### Data fields
@@ -305,7 +302,7 @@ Design Document - Part II API (NOT COMPLETE)
 
 
 ## ProgressBar
-<details> 
+<details open="True"> 
 <summary>The ProgressBar displays the pet’s progress (experience points/EXP) to the next level.</summary>
 
 ### Data fields
@@ -321,7 +318,7 @@ Design Document - Part II API (NOT COMPLETE)
 
 
 ## PageDisplay
-<details>
+<details open="True">
 <summary>Component that includes all of the various pages/tabs that the user can access in order to track their tasks and progress.</summary>
 
 ### Data fields
@@ -367,7 +364,7 @@ Design Document - Part II API (NOT COMPLETE)
 
 
 ## NavBar
-<details> 
+<details open="True"> 
 <summary>Component that manages the navigation bar to allow the user to switch between components</summary>
 
 ### Data fields
@@ -391,7 +388,7 @@ Design Document - Part II API (NOT COMPLETE)
 
 
 ## NavButton
-<details> 
+<details open="True"> 
 <summary>Component that handles each individual selection option in the navigation bar.</summary>
 
 ### Data fields
@@ -419,7 +416,7 @@ Design Document - Part II API (NOT COMPLETE)
 
 
 ## TaskPage
-<details> 
+<details open="True"> 
 <summary>Component that displays all of the user's to-do tasks in a list format.</summary>
 
 ### Data fields
@@ -443,7 +440,7 @@ Design Document - Part II API (NOT COMPLETE)
 
 
 ## TaskList
-<details> 
+<details open="True"> 
 <summary>The TaskList component displays the user's tasks.</summary>
 
 ### Data fields
@@ -475,7 +472,7 @@ Design Document - Part II API (NOT COMPLETE)
 
 
 ## TaskItem
-<details> 
+<details open="True"> 
 <summary>Component for each item in taskList that displays certain information like name, due date, etc.</summary>
 
 ### Data fields
@@ -502,7 +499,7 @@ Design Document - Part II API (NOT COMPLETE)
 
 
 ## CreateTaskForm
-<details> 
+<details open="True"> 
 <summary>Component that allows the user to create a new task and add details to the task.</summary>
 
 ### Data fields
@@ -529,7 +526,7 @@ Design Document - Part II API (NOT COMPLETE)
 
 
 ## InventoryPage
-<details> 
+<details open="True"> 
 <summary>Handles displaying the contents of the user's inventory.</summary>
 
 ### Data fields
@@ -549,7 +546,7 @@ Design Document - Part II API (NOT COMPLETE)
 
 
 ## ItemGrid
-<details> 
+<details open="True"> 
 <summary>Displays all of the items in the user's inventory in a grid format.</summary>
 
 ### Data fields
@@ -571,7 +568,7 @@ Design Document - Part II API (NOT COMPLETE)
 
 
 ## Item
-<details> 
+<details open="True"> 
 <summary>Displays each item with a pixel image to depict it.</summary>
 
 ### Data fields
@@ -594,7 +591,7 @@ Design Document - Part II API (NOT COMPLETE)
 
 
 ## CalendarPage
-<details> 
+<details open="True"> 
 <summary>The CalendarPage component allows the user to view their tasks in a calendar format.</summary>
 
 ### Data fields
@@ -615,7 +612,7 @@ Design Document - Part II API (NOT COMPLETE)
 
 
 ## Calendar
-<details> 
+<details open="True"> 
 <summary>Component which handles the functionality of the calendar and all of the tasks that fall on certain dates.</summary>
 
 ### Data fields
@@ -645,7 +642,7 @@ Design Document - Part II API (NOT COMPLETE)
 
 
 ## ProgressPage
-<details> 
+<details open="True"> 
 <summary>Handles the display of the user's progress towards completion of tasks.</summary>
 
 ### Data fields
@@ -667,7 +664,7 @@ Design Document - Part II API (NOT COMPLETE)
 
 
 ## PPTaskList
-<details>
+<details open="True">
 <summary>Component that shows the users all their tasks and the progress they've made. </summary>
 
 ### Data fields
@@ -683,7 +680,7 @@ Design Document - Part II API (NOT COMPLETE)
 
 
 ## PPTaskItem
-<details>
+<details open="True">
 <summary>Component for each task item in taskList. </summary>
 
 ### Data fields
@@ -701,7 +698,7 @@ Design Document - Part II API (NOT COMPLETE)
 <br></br>
 
 ## PPTaskDetails
-<details>
+<details open="True">
 <summary>This component can not be edited and displays less information than the TaskItem component. It shows the user how much progress they've made on their tasks.</summary>
 
 ### Data fields
