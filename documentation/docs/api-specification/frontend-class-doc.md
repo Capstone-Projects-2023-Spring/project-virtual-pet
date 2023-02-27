@@ -43,6 +43,33 @@ Design Document - Part II API (NOT COMPLETE)
 
 
 ## App
+<details>
+  <summary>The root component encompassing all other components.</summary>
+  <div>
+  
+### Data fields
+- #### Object userInfo
+    - An object with fields describing the user's information like their username, first name, last name email, last login, etc.
+
+### Methods
+- #### setUserInfo(userObject)
+    - Changes the userInfo state to userObject's values and rerenders components to reflect changes. 
+    - Calls when the App component renders.
+    - Updates the state of userInfo.
+    - Arguments:
+        - userObject: the object that will be the new state of userInfo.
+    - Return none
+
+- #### fetchData()
+    - Makes requests to the backend to fetch the user's information.
+    - Calls setUserInfo() to set the value of userInfo.
+    - Return none
+
+
+  </div>
+</details>
+
+## App
 - The root component encompassing all other components.
 ### Data fields
 - #### Object userInfo
