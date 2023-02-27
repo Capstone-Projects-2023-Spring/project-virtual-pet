@@ -7,5 +7,5 @@ Canvas Endpoints
 =============================
 
 ### List active courses in an account
-`GET /api/v1/accounts/:account_id/courses`
+## `GET /api/v1/accounts/:account_id/courses`
 Retrieve a paginated list of courses in this account.
