@@ -1,4 +1,5 @@
-# ![orange_happy_kitty](https://user-images.githubusercontent.com/73796086/221434200-5ffd71bf-84d5-401c-b294-ab1b2a9ae78f.png) Links & Resources ![gray_happy_kitty](https://user-images.githubusercontent.com/73796086/221434150-8133204f-fff4-4278-805b-1d4c3ffbb0c9.png)
+# Links & Resources 
+#### ![orange_happy_kitty](https://user-images.githubusercontent.com/73796086/221434200-5ffd71bf-84d5-401c-b294-ab1b2a9ae78f.png) Resources, tutorials, notes, docs, and other fun stuff, all in one place ![gray_happy_kitty](https://user-images.githubusercontent.com/73796086/221434150-8133204f-fff4-4278-805b-1d4c3ffbb0c9.png)
 
 ## Scheduling
 **When2Meet** - sign in with the same name to update your availability
@@ -17,7 +18,7 @@
 * <a href="https://templeu.instructure.com/courses/124586" target="_blank">Capstone Canvas Course Page</a>
 
 ## Other Repos
-* * <a href="https://github.com/ccho-0508/simple-site" target="_blank">Christine's Repo: Containerized Simple Site--React+Django+SQLite</a>
+* <a href="https://github.com/ccho-0508/simple-site" target="_blank">Christine's Repo: Containerized Simple Site--React+Django+SQLite</a>
 * <a target="_blank" href="https://github.com/jay-newman/jwt-react-django-app">Jay's Repo: react-django app using jwt authentication</a>
    * "Currently the user can register, login, view a home page, and view a protected page(only view when logged in). This app uses django.contrib.auth User model for the username and password. The front end didn't use react-router-dom v6. I updated the front end syntax so it can use v6. At the very least this is good research and provides us with options."
    * Two Part Guide:
@@ -53,7 +54,7 @@
 * <a href="https://github.com/instructure/canvas-lms/wiki/Quick-Start" target="_blank">Canvas quick starter guide</a>
 * <a href="https://community.canvaslms.com/t5/Canvas-Developers-Group/Canvas-APIs-Getting-started-the-practical-ins-and-outs-gotchas/ba-p/263685" target="_blank">Getting Started Blogpost</a>
 * <a href="https://templeu.instructure.com/doc/api/live" target="_blank">Canvas Live API </a>
-* <a href="https://capico.ubc.ca/" target=_"blank">UBC’s Canvas API User Community</a>
+* <a href="https://capico.ubc.ca/" target="blank">UBC’s Canvas API User Community</a>
 
 **Progression System**
 * <a href="http://library.lol/main/E4C6D18254847647DBB6045F7452911D" target="_blank">Game design textbook with chapters on progression systems</a>
@@ -70,7 +71,7 @@
 **Scripts, Libraries, Packages, etc**
 * <a href="https://github.com/web-mech/badwords" target="_blank">Bad words filter package</a>
 * <a href="https://react-bootstrap.netlify.app/components/alerts" target="_blank">React-Bootstrap</a>
-* <a href="https://sphinx-themes.org/#theme-furo" target=_"blank">Sphinx Themes</a>
+* <a href="https://sphinx-themes.org/#theme-furo" target="_blank">Sphinx Themes</a>
 
 ## Creations
 * [Unhinged Group Proposal Video](https://youtu.be/oi3PMAiAiwQ)

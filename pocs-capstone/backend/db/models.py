@@ -8,8 +8,24 @@ from django.conf import settings
 import datetime
 
 class CustomAccountManager(BaseUserManager):
+    """Class responsible for the creation of superusers and standard users.
+    Overrides built-in user class and constructor.
+    Extends BaseUserManager.
+    """
     def create_superuser(self,email,user_name,first_name,password,**other_fields):
+        """Returns a superuser User object upon successful creation.
 
+        :param email: user's email, unique
+        :type email: str
+        :param user_name: user's username, unique
+        :type user_name: str
+        :param first_name: user's first name
+        :type first_name: str
+        :param password: user's password, hashed then stored
+        :type password: str
+        :param other_fields: additional keyword arguments: is_staff, is_superuser, is_active
+        :type other_fields: dict
+        """
         other_fields.setdefault('is_staff',True)
         other_fields.setdefault('is_superuser',True)
         other_fields.setdefault('is_active',True)
@@ -25,6 +41,19 @@ class CustomAccountManager(BaseUserManager):
         return self.create_user(email,user_name,first_name,password,**other_fields)
     
     def create_user(self,email,user_name,first_name,password,**other_fields):
+        """Returns a standard User object upon successful creation.
+
+        :param email: user's email, unique
+        :type email: str
+        :param user_name: user's username, unique
+        :type user_name: str
+        :param first_name: user's first name
+        :type first_name: str
+        :param password: user's password, hashed then stored
+        :type password: str
+        :param other_fields: additional keyword arguments: is_staff, is_superuser, is_active
+        :type other_fields: dict
+        """
         if not email:
             raise ValueError(_(
                 'You must provide an Email Address to register!'
@@ -37,6 +66,9 @@ class CustomAccountManager(BaseUserManager):
         return user
 
 class NewUser(AbstractBaseUser,PermissionsMixin): #TODO rename to something less weird!
+    """Class responsible for creating and storing account information for a user
+    Extends AbstractBaseUser and PermissionsMixin.
+    """
     email=models.EmailField(_('email address'),unique=True)
     user_name = models.CharField(max_length=128,unique=True)
     first_name=models.CharField(max_length=128,unique=False)
@@ -52,14 +84,18 @@ class NewUser(AbstractBaseUser,PermissionsMixin): #TODO rename to something less
     REQUIRED_FIELDS = ['user_name','first_name'] 
 
     def __str__(self):
+        """NewUser toString method
+        """
         return self.user_name
 
 # Many to One relationship between user and petprofile
 # If user is deleted so is their pet profile
 
 class Avatar(models.Model):
+    
     #inner class to specify enumerations
     class AvatarType(models.TextChoices):
+
         CAT = 'CT' 
         DOG = "DG"
         CRAB = 'CR'
@@ -78,19 +114,30 @@ class Avatar(models.Model):
     flavour_text = models.TextField(max_length = 256) #should we increase?
     
     def __str__(self):
+        """Avatar toString method
+        """
         return f'{self.pet_name, self.pet_type}'
 
 #Inventory for candies earned, currently no accessories 
 
 class Inventory(models.Model):
+    """Class defining the model for the Inventory
+    Extends models.Model.
+    """
     
     class BaseType(models.TextChoices):
+        """Class defining the model for candy size
+        Extends models.TextChoices.
+        """
         SMALL = 'S',"SMALL"
         MEDIUM = 'M',"MEDIUM"
         LARGE = 'L',"LARGE"
         CAKE = 'C',"CAKE"
     
     class CandyLevel(models.IntegerChoices): #TODO RETURN AND UPDATE WITH DERIVED VALUES
+        """Class defining the model for candy levels
+        Extends models.IntegerChoices.
+        """
         BEGINNER = 1, "Beginner"
         NOVICE = 2, "Novice"
         INTERMEDIATE = 3, "Intermediate"
@@ -105,9 +152,14 @@ class Inventory(models.Model):
 
 
     def __str__(self):
+        """Candy toString method
+        """
         return f'{self.candy_base_type}, {self.candy_level}'
 
 class Task(models.Model):
+    """Class definiing the model for a Task
+    Extends models.Model.
+    """
     class BaseType(models.TextChoices):
         SMALL = 'S',"SMALL"
         MEDIUM = 'M',"MEDIUM"
@@ -127,14 +179,12 @@ class Task(models.Model):
     assignment_id = models.PositiveIntegerField(default=0)
 
 
-"""
-class UserMeta(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
-    birthday = models.DateField
-    description = models.TextField
-    on_vacation = models.BooleanField
-    vacation_end_date = models.DateField
-"""
-
-
+# """
+# class UserMeta(models.Model):
+#     user = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
+#     birthday = models.DateField
+#     description = models.TextField
+#     on_vacation = models.BooleanField
+#     vacation_end_date = models.DateField
+# """
 

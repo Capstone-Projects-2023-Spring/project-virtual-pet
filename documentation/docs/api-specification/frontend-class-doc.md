@@ -12,7 +12,7 @@ Design Document - Part II API (NOT COMPLETE)
 
 - [App](#app)
 	- [Header](#header)
-        - [DropDownMenu](#dropdownmenu)
+    - [DropDownMenu](#dropdownmenu)
         - [DropDownItem](#dropdownitem)
         - [CanvasIntegrationPage](#canvasintegrationpage)
         - [AccountSettingsPage](#accountsettingspage)
