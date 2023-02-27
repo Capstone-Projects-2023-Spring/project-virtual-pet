@@ -76,12 +76,12 @@ Read [this](https://canvas.instructure.com/doc/api/file.oauth.html#accessing-can
           * The app can then extract the code, and use it along with the client_id and client_secret to obtain the final access_key
       
       3. Step 3: Exchange the code for the final access token
-          * <img width="1104" alt="Screen Shot 2023-02-26 at 11 21 46 PM" src="https://user-images.githubusercontent.com/73796086/221473642-377b74f4-b62f-4a7f-b02c-9f4f13ec7159.png">
+          * <img width="1104" alt="Screen Shot 2023-02-26 at 11 21 46 PM" src="https://user-images.githubusercontent.com/73796086/221473642-377b74f4-b62f-4a7f-b02c-9f4f13ec7159.png"/>
           
   * [Using an Access Token to authenticate requests](https://canvas.instructure.com/doc/api/file.oauth.html#using-access-tokens)
-    * <img width="1103" alt="Screen Shot 2023-02-26 at 11 21 30 PM" src="https://user-images.githubusercontent.com/73796086/221473614-9f855814-3a11-43f1-b024-1d2081351fe4.png">
+    * <img width="1103" alt="Screen Shot 2023-02-26 at 11 21 30 PM" src="https://user-images.githubusercontent.com/73796086/221473614-9f855814-3a11-43f1-b024-1d2081351fe4.png"/>
   * [Using a Refresh Token to get a new Access Token](https://canvas.instructure.com/doc/api/file.oauth.html#using-refresh-tokens)
-    * <img width="1089" alt="Screen Shot 2023-02-26 at 11 20 30 PM" src="https://user-images.githubusercontent.com/73796086/221473505-2f36f50e-8bf5-4baf-a992-26a44ac53636.png">
+    * <img width="1089" alt="Screen Shot 2023-02-26 at 11 20 30 PM" src="https://user-images.githubusercontent.com/73796086/221473505-2f36f50e-8bf5-4baf-a992-26a44ac53636.png"/>
   * [Logging Out](https://canvas.instructure.com/doc/api/file.oauth_endpoints.html#delete-login-oauth2-token)
     * Send a DELETE request to login/oauth2/token 
 
