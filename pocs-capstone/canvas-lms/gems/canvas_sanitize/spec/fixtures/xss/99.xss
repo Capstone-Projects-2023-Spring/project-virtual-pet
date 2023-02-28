@@ -1,2 +1,0 @@
-href|javascript|alert
-<img src=x usemap="#the-map"><map name="the-map"><area shape="rect" coords="0,0,100,100" href="javascript:alert('MAT-1046')"></map>

@@ -1,9 +1,0 @@
-FROM local/ruby-runner
-
-RUN --mount=type=bind,from=local/cache-helper,source=/tmp/dst,target=/cache-helper \
-  tar --no-same-owner -xf /cache-helper/yarn-runner.tar -C ${APP_HOME}
-
-RUN set -eux; \
-  (DISABLE_POSTINSTALL=1 yarn install --ignore-optional --pure-lockfile || DISABLE_POSTINSTALL=1 yarn install --ignore-optional --pure-lockfile --network-concurrency 1) \
-  && yarn cache clean \
-  && ./script/fix_inst_esm.js
