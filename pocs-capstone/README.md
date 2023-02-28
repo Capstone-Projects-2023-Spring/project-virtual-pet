@@ -1,9 +1,14 @@
 
 
-# Simple React + Django + SQLite Site with Canvas 
+# Simple React + Django + SQLite Site
 - Three containers running:
     - React frontend
     - Django API+SQLite database
+
+
+# Canvas Instance
+- For notes on how to get an instance of Canvas running read [CANVAS_SETUP.md](./CANVAS_SETUP.md)
+
 
 # How to Run with Docker
 - Make sure docker desktop is installed for non-Linux users!!! (Creates a linux vm so you can run containers).
@@ -21,6 +26,8 @@
 
 ### Error when stopping+removing container:
 - If there are ```Error while Stopping``` issues just rerun the command until it says ```Removed```.
+
+
 
 
 
@@ -48,3 +55,5 @@
 - [Build a REST API in 30 minutes with Django REST Framework](https://medium.com/swlh/full-stack-with-django-and-react-react-afae36017852)
 - [When to run a command in docker compose and when in dockerfile?](https://stackoverflow.com/questions/69036887/when-to-run-a-command-in-docker-compose-and-when-in-dockerfile)
 - [Simplifying docker-compose operations using Makefile](https://medium.com/freestoneinfotech/simplifying-docker-compose-operations-using-makefile-26d451456d63)
+
+- [More notes in NOTES.md](./NOTES.md)
