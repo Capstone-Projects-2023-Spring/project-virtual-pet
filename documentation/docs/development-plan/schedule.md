@@ -148,7 +148,7 @@ R: Users can see a still image of their pet at all times.
 
 F: User can link with Canvas
 
-R: Users will be redirected to a sign on page to connect to their Canvas account.
+R: Users can access a page listing instructions to connect their Canvas account.
 
 R: Users can see a list of their courses.
 
