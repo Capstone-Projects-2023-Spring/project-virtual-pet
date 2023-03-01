@@ -1,0 +1,118 @@
+/* flex container */
+.pet-display {
+    width: 40%;
+    height: 100vh;
+    display: flex;
+    align-items: stretch;
+    justify-content: flex-start;
+    flex-direction: column;
+    background-color: rgb(17, 105, 132);
+    padding: 10px;
+}
+
+.petDis {
+    border-right-style: solid;
+}
+
+.p-sprite-display {
+    display: flex;
+    justify-content: center;
+    height: auto;
+
+}
+
+.bg-sprite {
+    position: relative;
+    flex: 1 1 auto;
+    width: 0;
+    height: auto;
+    /* top: 0;
+    left: 0; */
+    /* width: auto;
+    height: auto; */
+    /* border: 1px solid #000000; */
+}
+
+.p-sprite {
+    /* width: 50%; */
+    position: absolute;
+    /* top: 30px;
+    left: 30px; */
+    top: 220px;
+    width: 50%;
+    /* border: 1px solid #000000; */
+
+}
+
+/* https://www.dafont.com/bitmap.php?page=2 */
+@font-face {
+    font-family: pixelFont;
+    src: url("../../fonts/retrogaming.ttf");
+  }
+
+.pet-name {
+    padding: 15px 0px 5px 0px;
+    font-size: 2vw;
+    text-align: center;
+    font-weight: bold;
+    font-family:  pixelFont;
+    
+}
+
+.pbar-exp {
+    justify-content: center;
+    padding: 10px;
+    border-style: solid none;
+    border-width: 1.5px;
+    border-color: gray;
+}
+
+.pd-position, .pbar-exp {
+    display: flex;
+    align-items: center;
+}
+
+
+.pet-desc {
+    border-radius: 0px 0px 15px 15px;
+    width: 100%;
+    height: auto;
+
+}
+
+
+.pet-desc-text {
+    font-size: 0.75vw;
+    padding: 5px;
+    margin: 5px;
+    text-align: left;
+
+}
+
+.pet-label,
+.pbar-text {
+    font-size: 1vw;
+    font-weight: bold;
+    padding: 0px 5px;
+    font-family:  pixelFont;
+}
+
+
+.pd-bg {
+    background-color: rgb(237, 237, 237);
+}
+
+
+.petDis .card {
+    border-style: none;
+    /* border-color: black; */
+    border-radius: 0px;
+    border-width: 1px;
+    /* background-color: black; */
+}
+
+.progress {
+    border-radius: 0px;
+}
+
+

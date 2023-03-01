@@ -1,0 +1,55 @@
+/* flex container */
+.page-display {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: stretch;
+    justify-content: flex-start;
+    flex-direction: column;
+    background-color: rgb(255, 255, 255);
+    padding: 10px;
+    
+}
+
+
+
+
+.nav-tabs {
+    font-size: 25px;
+    font-weight: bold;
+    margin: 0px;
+    /* font-family:  pixelFont; */
+    letter-spacing: 0.5px;
+}
+
+.nav-link, .nav-link:hover {
+    /* color: rgb(71, 138, 169); */
+
+    color: #75adbc;
+}
+
+
+.mini-page {
+    /* background-color: rgb(235, 235, 235); */
+    /* width: 100vw; */
+    display: flex;
+    justify-content: center;
+    height: auto;
+    align-items: stretch;
+    position: relative;
+
+}
+
+.tasklist-position {
+    /* position: absolute; */
+
+    flex: 1 1 auto;
+    width: 0;
+    /* height: 92vh; */
+}
+
+/* 
+.outline-that {
+    border-style: solid;
+    border-bottom-style: solid;
+} */

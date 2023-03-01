@@ -29,8 +29,7 @@ function getLabelContent(element) {
 function getRealLabels(element) {
   // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition -- types are not aware of older browsers that don't implement `labels`
   if (element.labels !== undefined) {
-    var _labels;
-    return (_labels = element.labels) != null ? _labels : [];
+    return element.labels ?? [];
   }
   if (!isLabelable(element)) return [];
   const labels = element.ownerDocument.querySelectorAll('label');
