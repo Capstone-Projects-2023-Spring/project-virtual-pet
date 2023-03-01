@@ -16,9 +16,9 @@ gantt
         section Software Development Plan
         Sprint 0 Planning Meeting: active, 2023-02-10, 1d
         section Software Development Plan
-        Brainstorm Progression System: , 2023-02-10, 1d
+        Brainstorm Progression System: , 2023-02-10, 2d
         section Software Development Plan
-        Complete Software Development Plan: , 2023-02-11, 1d
+        Complete Software Development Plan: , 2023-02-09, 5d
         section Software Development Plan
         Revise Requirements Document: , 2023-02-11, 1d
         section Software Development Plan
@@ -29,19 +29,19 @@ gantt
         section Account Creation & Pet Selection
         Sprint 1 Planning Meeting: active, 2023-02-15, 1d
         section Account Creation & Pet Selection
-        Research/learn React, Django:  , 2023-02-16, 1d
+        Research/learn React, Django:  , 2023-02-16, 13d
         section Account Creation & Pet Selection
-        Create user account management system:  , 2023-02-16, 1d
+        Create user account management system:  , 2023-02-16, 5d
         section Account Creation & Pet Selection
-        Decide on pet art style:  , 2023-02-16, 1d
+        Decide on pet art style:  , 2023-02-16, 2d
         section Account Creation & Pet Selection
-        Create static pet art:  , 2023-02-16, 1d
+        Create static pet art:  , 2023-02-16, 4d
         section Account Creation & Pet Selection
-        Complete Design Document Part 1:  , 2023-02-18, 1d
+        Complete Design Document Part 1:  , 2023-02-18, 5d
         section Account Creation & Pet Selection
         Submit Design Document Part 1 (Architecture) Assignment: milestone, , 2023-02-19, 1d
         section Account Creation & Pet Selection
-        Complete Design Document Part 2:  , 2023-02-23, 1d
+        Complete Design Document Part 2:  , 2023-02-23, 5d
         section Account Creation & Pet Selection
         Submit Design Document Part 2 (API) Assignment: milestone, , 2023-02-26, 1d
 
@@ -51,23 +51,23 @@ gantt
         section Account Creation & Pet Selection
         Sprint Planning Meeting: active, 2023-03-01, 1d
         section Account Creation & Pet Selection
-        Create API : , 2023-03-02, 1d
+        Create API: , 2023-03-02, 5d
         section Account Creation & Pet Selection
-        Pet naming/selection: , 2023-03-02, 1d
+        Pet naming/selection: , 2023-03-04, 4d
         section Account Creation & Pet Selection
-        Set up Canvas integration: , 2023-03-02, 1d
+        Set up Canvas integration: , 2023-03-05, 5d
         section Account Creation & Pet Selection
-        Create pet display : , 2023-03-02, 1d
+        Create pet display : , 2023-03-05, 5d
         section Account Creation & Pet Selection
-        Create account information page : , 2023-03-02, 1d
+        Create account information page : , 2023-03-07, 5d
         section Account Creation & Pet Selection
-        Viewable task list : , 2023-03-02, 1d
+        Viewable task list : , 2023-03-08, 5d
         section Account Creation & Pet Selection
-        Settings Menu : , 2023-03-02, 1d
+        Settings Menu : , 2023-03-09, 3d
         section Account Creation & Pet Selection
-        Host site: milestone, , 2023-03-05, 1d
+        Host site: milestone, , 2023-03-09, 3d
         section Account Creation & Pet Selection
-        Complete Test Procedures Document: , 2023-03-04, 1d
+        Complete Test Procedures Document: , 2023-03-01, 5d
         section Account Creation & Pet Selection
         Submit Test Procedures Document Assignment: milestone, , 2023-03-05, 1d
         section Account Creation & Pet Selection
@@ -78,17 +78,17 @@ gantt
         section Progression Logic & Calendar Display
         Sprint Planning Meeting: active , 2023-03-15, 1d
         section Progression Logic & Calendar Display
-        User can create Canvas-independent tasks: active , 2023-03-22, 1d
+        User can create Canvas-independent tasks: active , 2023-03-16, 3d
         section Progression Logic & Calendar Display
-        User can import tasks from Canvas: , 2023-03-22, 1d
+        User can import tasks from Canvas: , 2023-03-18, 5d
         section Progression Logic & Calendar Display
-        User can complete and organize tasks: , 2023-03-22, 1d
+        User can complete and organize tasks: , 2023-03-20, 4d
         section Progression Logic & Calendar Display
-        Create the calendar page: , 2023-03-22, 1d
+        Create the calendar page: , 2023-03-22, 5d
         section Progression Logic & Calendar Display
-        Create progress page: , 2023-03-22, 1d
+        Create progress page: , 2023-03-23, 5d
         section Progression Logic & Calendar Display
-        More pet options: , 2023-03-22, 1d
+        More pet options: , 2023-03-24, 3d
         section Progression Logic & Calendar Display
         Milestone Demo 2 :crit, milestone,  , 2023-03-28, 1d
 
@@ -98,13 +98,13 @@ gantt
         section Pet Interaction & Progression
         Sprint Planning Meeting: active , 2023-03-29, 1d
         section Pet Interaction & Progression
-        Make the pet reactive + Multiple frames for each tier: , 2023-04-07, 1d
+        Make the pet reactive + Multiple frames for each tier: , 2023-03-30, 5d
         section Pet Interaction & Progression
-        Pet can be fed candies: active , 2023-04-05, 1d
+        Pet can be fed candies: active , 2023-04-03, 2d
         section Pet Interaction & Progression
-        Create inventory page: , 2023-04-07, 1d
+        Create inventory page: , 2023-04-05, 3d
         section Pet Interaction & Progression
-        Implement progression system graphically: , 2023-04-07, 1d
+        Implement progression system graphically: , 2023-04-04, 1w
         section Pet Interaction & Progression
         Milestone Demo 3 :crit, milestone,  , 2023-04-11, 1d
 
@@ -113,11 +113,11 @@ gantt
         section Final Demo
         Sprint Planning Meeting: active , 2023-04-12, 1d
         section Final Demo
-        Add more detailed animations for pet states.: active , 2023-04-19, 1d
+        Add more detailed animations for pet states.: active , 2023-04-13, 5d
         section Final Demo
-        Add more states/customizations to pet(s): , 2023-04-22, 1d
+        Add more states/customizations to pet(s): , 2023-04-16, 5d
         section Final Demo
-        Create task/assignment reminders:, 2023-04-22, 1d
+        Create task/assignment reminders:, 2023-04-18, 3d
         section Final Demo
         Final Presentation & Demo :crit, milestone,  , 2023-04-27, 1d
         section Final Demo
