@@ -31,13 +31,11 @@ gantt
         section Account Creation & Pet Selection
         Research/learn React, Django:  , 2023-02-16, 1d
         section Account Creation & Pet Selection
-        Set up development testing environment on local host:  , 2023-02-16, 1d
-        section Account Creation & Pet Selection
         Create user account management system:  , 2023-02-16, 1d
         section Account Creation & Pet Selection
         Decide on pet art style:  , 2023-02-16, 1d
         section Account Creation & Pet Selection
-        Create pet art:  , 2023-02-16, 1d
+        Create static pet art:  , 2023-02-16, 1d
         section Account Creation & Pet Selection
         Complete Design Document Part 1:  , 2023-02-18, 1d
         section Account Creation & Pet Selection
@@ -55,13 +53,19 @@ gantt
         section Account Creation & Pet Selection
         Create API : , 2023-03-02, 1d
         section Account Creation & Pet Selection
-        Deliver first pet design: , 2023-03-02, 1d
+        Pet naming/selection: , 2023-03-02, 1d
         section Account Creation & Pet Selection
-        Create settings dropdown: , 2023-03-02, 1d
+        Set up Canvas integration: , 2023-03-02, 1d
         section Account Creation & Pet Selection
         Create pet display : , 2023-03-02, 1d
         section Account Creation & Pet Selection
         Create account information page : , 2023-03-02, 1d
+        section Account Creation & Pet Selection
+        Viewable task list : , 2023-03-02, 1d
+        section Account Creation & Pet Selection
+        Settings Menu : , 2023-03-02, 1d
+        section Account Creation & Pet Selection
+        Host site: milestone, , 2023-03-05, 1d
         section Account Creation & Pet Selection
         Complete Test Procedures Document: , 2023-03-04, 1d
         section Account Creation & Pet Selection
@@ -74,15 +78,19 @@ gantt
         section Progression Logic & Calendar Display
         Sprint Planning Meeting: active , 2023-03-15, 1d
         section Progression Logic & Calendar Display
-        Stand Up Meeting Lecture: active , 2023-03-22, 1d
+        User can create Canvas-independent tasks: active , 2023-03-22, 1d
         section Progression Logic & Calendar Display
-        Create the task page: , 2023-03-22, 1d
+        User can import tasks from Canvas: , 2023-03-22, 1d
+        section Progression Logic & Calendar Display
+        User can complete and organize tasks: , 2023-03-22, 1d
         section Progression Logic & Calendar Display
         Create the calendar page: , 2023-03-22, 1d
         section Progression Logic & Calendar Display
-        Set up Canvas integration: , 2023-03-22, 1d
+        Create progress page: , 2023-03-22, 1d
         section Progression Logic & Calendar Display
-         Milestone Demo 2 :crit, milestone,  , 2023-03-28, 1d
+        More pet options: , 2023-03-22, 1d
+        section Progression Logic & Calendar Display
+        Milestone Demo 2 :crit, milestone,  , 2023-03-28, 1d
 
         
         section Pet Interaction & Progression
@@ -90,9 +98,9 @@ gantt
         section Pet Interaction & Progression
         Sprint Planning Meeting: active , 2023-03-29, 1d
         section Pet Interaction & Progression
-        Stand Up Meeting Lecture: active , 2023-04-05, 1d
-        section Pet Interaction & Progression
         Make the pet reactive + Multiple frames for each tier: , 2023-04-07, 1d
+        section Pet Interaction & Progression
+        Pet can be fed candies: active , 2023-04-05, 1d
         section Pet Interaction & Progression
         Create inventory page: , 2023-04-07, 1d
         section Pet Interaction & Progression
@@ -105,13 +113,9 @@ gantt
         section Final Demo
         Sprint Planning Meeting: active , 2023-04-12, 1d
         section Final Demo
-        Stand Up Meeting Lecture: active , 2023-04-19, 1d
+        Add more detailed animations for pet states.: active , 2023-04-19, 1d
         section Final Demo
-        Host site on public host: , 2023-04-22, 1d
-        section Final Demo
-        Add more states to pet(s): , 2023-04-22, 1d
-        section Final Demo
-        Add pet profile page: , 2023-04-22, 1d
+        Add more states/customizations to pet(s): , 2023-04-22, 1d
         section Final Demo
         Create task/assignment reminders:, 2023-04-22, 1d
         section Final Demo
@@ -161,10 +165,6 @@ F: User can create Canvas-independent tasks
 R: Fill out a task form
 
 R: Save the task form
-
-F: User can import tasks from Canvas
-
-R: Tasks/assignments from the user's courses will be imported as tasks.
 
 F: User can navigate to progress page [formerly pet profile page]
 
