@@ -1,0 +1,64 @@
+.Header {
+
+    /* top: 0;
+    box-sizing: border-box;
+    width: 100%; */
+    top: 0;
+
+    display: flex;
+    justify-content: left;
+    align-items: center;
+
+    /* 
+    padding: 1em;
+
+    
+    color: #fff; */
+}
+
+.header-whole {
+    background-color: rgb(33, 33, 33);
+}
+
+
+
+.gab {
+    width: 50px;
+    height: auto;
+
+}
+
+.header-position {
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(33, 33, 33);
+}
+
+.header-text {
+    padding: 0px 15px;
+    font-weight: bold;
+    font-size: 20px;
+    /* font-family:  pixelFont; */
+}
+
+.dropdown-position {
+    padding: 0px 35px;
+    font-weight: bold;
+    font-size: 20px;
+    color: #b4e3f0;
+    /* font-family:  pixelFont; */
+}
+
+
+.App-link:hover,
+.App-link {
+    color: #b4e3f0;
+    font-weight: bold;
+}
+
+.dropdown-toggle::after {
+    content: none;
+}
+
