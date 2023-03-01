@@ -11,114 +11,114 @@ gantt
     title StudyBuddy Schedule Gantt Chart
     todayMarker stroke-width:10px,stroke:#0f0,opacity:0.4
     dateFormat  YYYY-MM-DD
-        section Sprint 0
-        Software Dev.: , 2023-02-08, 6d
-        section Sprint 0
+        section Software Development Plan
+        Sprint 0: , 2023-02-08, 6d
+        section Software Development Plan
         Sprint 0 Planning Meeting: active, 2023-02-10, 1d
-        section Sprint 0
+        section Software Development Plan
         Brainstorm Progression System: , 2023-02-10, 1d
-        section Sprint 0
+        section Software Development Plan
         Complete Software Development Plan: , 2023-02-11, 1d
-        section Sprint 0
+        section Software Development Plan
         Revise Requirements Document: , 2023-02-11, 1d
-        section Sprint 0
+        section Software Development Plan
         Submit Software Development Plan Assignment: milestone, 2023-02-12, 1d
 
-        section Sprint 1
-        Design Doc & Research: , 2023-02-15, 2w
-        section Sprint 1
+        section Account Creation & Pet Selection
+        Sprint 1: , 2023-02-15, 2w
+        section Account Creation & Pet Selection
         Sprint 1 Planning Meeting: active, 2023-02-15, 1d
-        section Sprint 1
+        section Account Creation & Pet Selection
         Research/learn React, Django:  , 2023-02-16, 1d
-        section Sprint 1
+        section Account Creation & Pet Selection
         Set up development testing environment on local host:  , 2023-02-16, 1d
-        section Sprint 1
+        section Account Creation & Pet Selection
         Create user account management system:  , 2023-02-16, 1d
-        section Sprint 1
+        section Account Creation & Pet Selection
         Decide on pet art style:  , 2023-02-16, 1d
-        section Sprint 1
+        section Account Creation & Pet Selection
         Create pet art:  , 2023-02-16, 1d
-        section Sprint 1
+        section Account Creation & Pet Selection
         Complete Design Document Part 1:  , 2023-02-18, 1d
-        section Sprint 1
+        section Account Creation & Pet Selection
         Submit Design Document Part 1 (Architecture) Assignment: milestone, , 2023-02-19, 1d
-        section Sprint 1
+        section Account Creation & Pet Selection
         Complete Design Document Part 2:  , 2023-02-23, 1d
-        section Sprint 1
+        section Account Creation & Pet Selection
         Submit Design Document Part 2 (API) Assignment: milestone, , 2023-02-26, 1d
 
         
-        section Sprint 2
-        Testing Doc & First Demo: , 2023-03-01, 2w
-        section Sprint 2
+        section Account Creation & Pet Selection
+        Sprint 2: , 2023-03-01, 2w
+        section Account Creation & Pet Selection
         Sprint Planning Meeting: active, 2023-03-01, 1d
-        section Sprint 2
+        section Account Creation & Pet Selection
         Create API : , 2023-03-02, 1d
-        section Sprint 2
+        section Account Creation & Pet Selection
         Deliver first pet design: , 2023-03-02, 1d
-        section Sprint 2
+        section Account Creation & Pet Selection
         Create settings dropdown: , 2023-03-02, 1d
-        section Sprint 2
+        section Account Creation & Pet Selection
         Create pet display : , 2023-03-02, 1d
-        section Sprint 2
+        section Account Creation & Pet Selection
         Create account information page : , 2023-03-02, 1d
-        section Sprint 2
+        section Account Creation & Pet Selection
         Complete Test Procedures Document: , 2023-03-04, 1d
-        section Sprint 2
+        section Account Creation & Pet Selection
         Submit Test Procedures Document Assignment: milestone, , 2023-03-05, 1d
-        section Sprint 2
+        section Account Creation & Pet Selection
         Milestone Demo 1 :crit, milestone,  , 2023-03-14, 1d
 
-        section Sprint 3
-        Goals/Tasks/Reminders: , 2023-03-15, 2w
-        section Sprint 3
+        section Progression Logic & Calendar Display
+        Sprint 3: , 2023-03-15, 2w
+        section Progression Logic & Calendar Display
         Sprint Planning Meeting: active , 2023-03-15, 1d
-        section Sprint 3
+        section Progression Logic & Calendar Display
         Stand Up Meeting Lecture: active , 2023-03-22, 1d
-        section Sprint 3
+        section Progression Logic & Calendar Display
         Create the task page: , 2023-03-22, 1d
-        section Sprint 3
+        section Progression Logic & Calendar Display
         Create the calendar page: , 2023-03-22, 1d
-        section Sprint 3
+        section Progression Logic & Calendar Display
         Set up Canvas integration: , 2023-03-22, 1d
-        section Sprint 3
+        section Progression Logic & Calendar Display
          Milestone Demo 2 :crit, milestone,  , 2023-03-28, 1d
 
         
-        section Sprint 4
-        Graphics/Interactivity: , 2023-03-29, 2w
-        section Sprint 4
+        section Pet Interaction & Progression
+        Sprint 4: , 2023-03-29, 2w
+        section Pet Interaction & Progression
         Sprint Planning Meeting: active , 2023-03-29, 1d
-        section Sprint 4
+        section Pet Interaction & Progression
         Stand Up Meeting Lecture: active , 2023-04-05, 1d
-        section Sprint 4
+        section Pet Interaction & Progression
         Make the pet reactive + Multiple frames for each tier: , 2023-04-07, 1d
-        section Sprint 4
+        section Pet Interaction & Progression
         Create inventory page: , 2023-04-07, 1d
-        section Sprint 4
+        section Pet Interaction & Progression
         Implement progression system graphically: , 2023-04-07, 1d
-        section Sprint 4
+        section Pet Interaction & Progression
         Milestone Demo 3 :crit, milestone,  , 2023-04-11, 1d
 
-        section Sprint 5
-        Final Demo: , 2023-04-12, 16d
-        section Sprint 5
+        section Final Demo
+        Sprint 5: , 2023-04-12, 16d
+        section Final Demo
         Sprint Planning Meeting: active , 2023-04-12, 1d
-        section Sprint 5
+        section Final Demo
         Stand Up Meeting Lecture: active , 2023-04-19, 1d
-        section Sprint 5
+        section Final Demo
         Host site on public host: , 2023-04-22, 1d
-        section Sprint 5
+        section Final Demo
         Add more states to pet(s): , 2023-04-22, 1d
-        section Sprint 5
+        section Final Demo
         Add pet profile page: , 2023-04-22, 1d
-        section Sprint 5
+        section Final Demo
         Create task/assignment reminders:, 2023-04-22, 1d
-        section Sprint 5
+        section Final Demo
         Final Presentation & Demo :crit, milestone,  , 2023-04-27, 1d
-        section Sprint 5
+        section Final Demo
         Submit Test Report Document Assignment: milestone, , 2023-05-06, 1d
-        section Sprint 5
+        section Final Demo
         Submit Final Software Release Assignment: milestone, , 2023-05-07, 1d
 ```
 ## Milestone Demo Features
