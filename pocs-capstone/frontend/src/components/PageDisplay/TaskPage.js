@@ -27,7 +27,6 @@ const TaskPage = () => {
                     <div className="ms-auto">
                     <Button variant="primary" onClick={handleShow}>+ Create Task</Button>
                     </div>
-
                 </Stack>
                 </Card.Header>
 

@@ -18,7 +18,7 @@ const Main = ({userInfo}) => {
             .getAvatarInfo()
             .then(r => {setAvatarInfo(r)})
     }
-    // useHooks(fetchData)
+    
     return(
         <div className="flex-pages">
             <PetDisplay/>
@@ -26,5 +26,4 @@ const Main = ({userInfo}) => {
         </div>
     )
 }
-
 export default Main

@@ -6,13 +6,9 @@
     align-items: stretch;
     justify-content: flex-start;
     flex-direction: column;
-    background-color: rgb(255, 255, 255);
+    background-color: rgb(255, 198, 198);
     padding: 10px;
-    
 }
-
-
-
 
 .nav-tabs {
     font-size: 25px;

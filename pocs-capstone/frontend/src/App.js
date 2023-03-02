@@ -12,10 +12,7 @@ const App = () => {
   return (
 
     <div>
-
-      
-    <Header title="My Study Buddy"/>
-
+      <Header title="My Study Buddy"/>
       <Main userInfo={userInfo}/>
       <Footer userInfo={userInfo}/>
     </div>

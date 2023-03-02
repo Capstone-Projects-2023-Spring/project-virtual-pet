@@ -42,8 +42,6 @@ const Header = (props) => {
                     </NavDropdown>
 
                 </div>
-                {/* <div className="vr" /> */}
-                {/* <div className="bg-light border">Third item</div> */}
             </Stack >
 
 
