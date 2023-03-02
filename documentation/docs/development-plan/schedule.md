@@ -149,8 +149,6 @@ gantt
 
 - F4: User can view tasks
     - R1: User can view a list of their tasks from Canvas LMS.
-    - R2. User can filter tasks by course.
-    - R3: User can sort tasks by date.
     - R4: Tasks will have a name, course with which it is associated, and a description.
 
 
@@ -163,9 +161,18 @@ gantt
     - R4: Users can import tasks from Canvas LMS multiple times.
     - R5: User can import Canvas assignments as tasks.
 
+- F7. Task Organization and Filtering
+    - R2. User can filter tasks by course.
+    - R3: User can sort tasks by date.
+
 - F10: User can view their tasks on a calendar.
     - R1: The system will present the user with a calendar grid view of their upcoming and past due tasks.
     - R2: the system will support the Gregorian calendar format.
+    
+- F13: Create the inventory page
+    - R1: User can view the inventory earned from completing tasks!
+    - R2: User can remove candy and place it on their pet (feed it), influencing their pet’s progress
+    - R3: Inventory includes different sizes of candies and a rare candy
 
 - F14: User can interact with their pet (feed candies)
     - R1: User can give candy to their virtual pet, affecting its mood and level.
@@ -173,16 +180,12 @@ gantt
     - R3: See your pet progress toward the next level with a progress bar
     - R4: See your progress towards completion of specific tasks in the Progress page
 
+
 ### Milestone Demo 3 [Pet Interaction & Visually Representing Progression]
 
 - F12: Make the pet reactive; its mood will visually change
     - R1: User’s progress and task completion will result in virtual pet mood changes.
     - R2: User's virtual pets will be animated.
-
-- F13: Create the inventory page
-    - R1: User can view the inventory earned from completing tasks!
-    - R2: User can remove candy and place it on their pet (feed it), influencing their pet’s progress
-    - R3: Inventory includes different sizes of candies and a rare candy
 
 - F18: Create task reminders/notifications
     - R1: Users receive pop-up notifications when a task’s deadline is near
