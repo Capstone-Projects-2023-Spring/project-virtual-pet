@@ -3,14 +3,29 @@ import "./PageDisplay.css"
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import TaskPage from "./TaskPage";
+import CalendarPage from "./CalendarPage"
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Nav from 'react-bootstrap/Nav';
 
+import tasks from '../../services/tasks'
 
-const PageDisplay = () => {
+
+const PageDisplay = ({avatarInfo, setAvatarInfo, inventory, setInventory}) => {
+    const [taskList, setTaskList] = useState([])
+
+    const fetchData = () => {
+        // tasks
+        //     .getTasks("USERNAME")
+        //     .then(r => {setTaskList(r)})
+        setTaskList(tasks.getTasks("ccho"))
+    }
+
+    useEffect(fetchData, [])
+    console.log("Loading fetch data tasks", taskList, "data fetched ")
+
 
     return (
         <div className="page-display">
@@ -19,13 +34,13 @@ const PageDisplay = () => {
                 id="justify-tab-example"
                 className="mb-3"
                 justify
-
             >
-                <Tab eventKey="tasks" title="Tasks" className="tab-mod">
-                    <TaskPage/>
+        
+                <Tab eventKey="tasks" title="Tasks">
+                    <TaskPage {...{taskList, setAvatarInfo, setInventory, setTaskList}}/>
                 </Tab>
                 <Tab eventKey="calendar" title="Calendar">
-                    {/* <Sonnet /> */}
+                    <CalendarPage/>
                 </Tab>
                 <Tab eventKey="inventory" title="Inventory">
                     {/* <Sonnet /> */}
@@ -35,36 +50,6 @@ const PageDisplay = () => {
                 </Tab>
             </Tabs>
         </div>
-
-
-        // <div>
-        //     <Card>
-        //         <Card.Header>
-        //             <Nav variant="tabs" defaultActiveKey="#first">
-        //                 <Nav.Item>
-        //                     <Nav.Link href="#first">Active</Nav.Link>
-        //                 </Nav.Item>
-        //                 <Nav.Item>
-        //                     <Nav.Link href="#link">Link</Nav.Link>
-        //                 </Nav.Item>
-        //                 <Nav.Item>
-        //                     <Nav.Link href="#disabled" disabled>
-        //                         Disabled
-        //                     </Nav.Link>
-        //                 </Nav.Item>
-        //             </Nav>
-        //         </Card.Header>
-        //         <Card.Body>
-        //             <Card.Title>Special title treatment</Card.Title>
-        //             <Card.Text>
-        //                 With supporting text below as a natural lead-in to additional content.
-        //             </Card.Text>
-        //             <Button variant="primary">Go somewhere</Button>
-        //         </Card.Body>
-        //     </Card>
-        // </div>
-
-
     )
 }
 

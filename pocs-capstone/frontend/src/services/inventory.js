@@ -1,12 +1,14 @@
 
 
 import axios from 'axios'
+import mockUser from '../mockData/info.js'
 
 const baseURL = `${process.env.REACT_APP_DB_URL}/api`
 
-const getInventory = () => {
-    const request = axios.get(baseURL)
-    return request.then(response => response.data)
+const getInventory = (username) => {
+    // const request = axios.get(baseURL)
+    // return request.then(response => response.data)
+    return mockUser.inventory
 }
 
 const createInventoryItem = (newNote) => {
