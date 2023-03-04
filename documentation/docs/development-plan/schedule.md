@@ -142,6 +142,7 @@ gantt
     - R2: User can select between two different cats (color palette).
     - R3: User can name their virtual pet.
     - R4: Users can see a still image of their virtual pet at all times.
+    - R5: User sees the pet's mood change temporarily from neutral to happy when they click on it.
 
 - F3: User can link with Canvas LMS
     - R1: Users can access a page listing instructions to connect their Canvas account.
