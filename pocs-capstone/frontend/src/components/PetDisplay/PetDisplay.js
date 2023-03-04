@@ -5,19 +5,15 @@ import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
 import './PetDisplay.css'
 
-const PetDisplay = () => {
-    return (
-        // <div className="pet-display">
-        //     <PetSprite/>
-        //     <ProgressB/>
-        //     <PetDesc/>
-        // </div>
+const PetDisplay = ({avatarInfo, setAvatarInfo, inventory, setInventory}) => {
 
+
+    return (
         <div className='petDis'>
             <Card style={{ width: '24rem' }}>
-                <Card.Header className='pet-name'>HAMILTON</Card.Header>
-                <PetSprite />
-                <ProgressB />
+                <Card.Header className='pet-name'>{avatarInfo.avatar_name}</Card.Header>
+                <PetSprite {...{avatarInfo, setAvatarInfo, inventory, setInventory}}/>
+                <ProgressB avatarInfo={avatarInfo}/>
                 <Card.Body className='pd-bg'>
                     {/* <Card.Title>Card Title</Card.Title> */}
                     

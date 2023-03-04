@@ -2,7 +2,7 @@ import './PageDisplay.css'
 import TabContent from 'react-bootstrap/TabContent'
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
-import mockTasks from '../../mockData/info'
+
 import TaskItem from './TaskItem'
 import Stack from 'react-bootstrap/Stack';
 import NavDropdown from 'react-bootstrap/NavDropdown';
@@ -11,7 +11,7 @@ import Modal from 'react-bootstrap/Modal';
 import CreateTaskForm from './CreateTaskForm';
 import {useState} from 'react';
 
-const TaskPage = () => {
+const TaskPage = ({taskList, setAvatarInfo, setInventory, setTaskList}) => {
     const [showCreateTask, setShowCreateTask] = useState(false);
     const handleClose = () => setShowCreateTask(false);
     const handleShow = () => setShowCreateTask(true);
@@ -30,9 +30,11 @@ const TaskPage = () => {
                 </Stack>
                 </Card.Header>
 
-                <ListGroup variant="flush">
-                    {mockTasks.map( t => <TaskItem key={t.taskId} task={t} />)}
+                <ListGroup variant="flush" className="task-scroll">
+                    {taskList.map( t => <TaskItem key={t.taskId} task={t} />)}
                 </ListGroup>
+
+                
             </Card>
 
             <CreateTaskForm show={showCreateTask} hide={handleClose}/>

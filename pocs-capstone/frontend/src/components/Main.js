@@ -14,18 +14,25 @@ const Main = ({userInfo}) => {
     const [inventory, setInventory] = useState([])
 
     const fetchData = () => {
-        inventoryService  
-            .getInventory()
-            .then(r => {setInventory(r)})
-        avatarService
-            .getAvatarInfo()
-            .then(r => {setAvatarInfo(r)})
+        // inventoryService  
+        //     .getInventory()
+        //     .then(r => {setInventory(r)})
+        // avatarService
+        //     .getAvatarInfo()
+        //     .then(r => {setAvatarInfo(r)})
+        setAvatarInfo(avatarService.getAvatarInfo("ccho"))
+        setInventory(inventoryService.getInventory("ccho"))
     }
+
+    useEffect(fetchData, [])
+    console.log("Loading fetch data avatar", avatarInfo, "data fetched ")
+    console.log("Loading fetch data inventory ", inventory, "data fetched ")
     
+    const shareData = { avatarInfo, setAvatarInfo, inventory, setInventory }
     return(
         <div className="flex-pages">
-            <PetDisplay/>
-            <PageDisplay/>
+            <PetDisplay {...shareData}/>
+            <PageDisplay {...shareData}/>
         </div>
     )
 }
