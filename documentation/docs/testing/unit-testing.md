@@ -3,36 +3,33 @@ sidebar_position: 1
 ---
 # Frontend Unit Tests
 
-## Mock Objects / Calls 
-- Mock versions of the user's personal information, inventory, tasks, and pet details will be used for the tests.
-- Mock calls will be used to simulate interactions with the backend. 
-
-
-## React Component Tests 
+## For All React Component Tests 
 - Not every React component from the class diagram will have their tests described in this document to avoid repetition.
 - Each React component will have its own test file with at a least one test case. 
 - Every test file will check that the React component has rendered.
 - Every React component that updates state variables will have tests to verify that they are being updated correctly.
+- For example: 
+    - Test component was correctly rendered.
+        - #### Input / User action
+            - User action results in component appearing on screen. 
+        - #### Expected Result
+            - Component is rendered and mounted on the DOM.
 
+    - Test states being updated.
+        - #### Input / User action
+            - Function used to update state is called.
+        - #### Expected Result
+            - The component is re-rendered with updated state value.
 
-- Test component was correctly rendered.
-    - #### Input / User action
-        - User action results in component appearing on screen. 
-    - #### Expected Result
-        - Component is rendered and mounted on the DOM.
+<br/>
 
+## Mock Objects / Calls 
+- Mock versions of the user's personal information, inventory, tasks, and pet details will be used for the tests.
+- Mock calls will be used to simulate interactions with the backend. 
 
-- Test states being updated.
-    - #### Input / User action
-        - Function used to update state is called.
-    - #### Expected Result
-        - The component is re-rendered with updated state value.
+<br/>
 
 ## React Component Unit Tests
-
-
-
-FORMAT: 
 
 ### App
 - Test fetching of user data from backend
