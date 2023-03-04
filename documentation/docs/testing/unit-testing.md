@@ -153,6 +153,8 @@ sidebar_position: 1
 <br/>
 
 ### NavButton
+<details open="True">
+
 - Test user clicking on NavButton component - Task Page button
     - #### Input / User action
         - User clicks on button to view task page
@@ -176,10 +178,14 @@ sidebar_position: 1
        - User clicks on button to view progress page
     - #### Expected Result
         - ProgressPage component is rendered
+
+</details>
        
 <br/>
 
 ### TaskItem
+<details open="True">
+
 - Test user updating task completion status
     - #### Input / User action
         - User indicates how much of the task they have completed
@@ -198,9 +204,13 @@ sidebar_position: 1
     - #### Expected Result
         - TaskDetails component is rendered
 
+</details>
+
 <br/>
 
 ### TaskDetails
+<details open="True">
+
 - Test user editing task details
     - #### Input / User action
         - User clicks on edit button and updates task attributes (name, details, size, date, recurring status)
@@ -213,40 +223,58 @@ sidebar_position: 1
     - #### Expected Result
         - Call to updateTask(), which calls setTaskList() and updates the value of taskList.
 
+</details>
+
 <br/>
 
 ### CreateTaskForm
+<details open="True">
+
 - Test user creating a new task
     - #### Input / User action
         - User fills out form describing task
     - #### Expected Result
         - Call to updateTask(), which calls setTaskList() and updates the value of taskList.
 
+</details>
+
 <br/>
 
 ### Item
+<details open="True">
+
 - Test user picking up and dragging a candy
     - #### Input / User action
         - User selects an item
     - #### Expected Result
         - Item follows user's finger/mouse around the screen
 
+</details>
+
 <br/>
 
 ### Calendar
+<details open="True">
+
 - Test user selecting a calendar date
     - #### Input / User action
         - User clicks on a date in the Calendar component
     - #### Expected Result
         - Call to handleClick(), which calls displayTasks() and shows users a list of tasks due on that date
 
+</details>
+
 <br/>
 
 ### PPTaskItem
+<details open="True">
+
 - Test user clicking on PPTaskItem
     - #### Input / User action
         - User clicks on PPTaskItem component
     - #### Expected Result
         - Renders PPTaskDetails component
+
+</details>
 
 # Backend Unit Tests
