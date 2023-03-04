@@ -21,7 +21,7 @@
    * Two Part Guide:
       * <a href="https://sushil-kamble.medium.com/django-rest-framework-react-authentication-workflow-2022-part-1-a21f22b3f358" target="_blank">Part 1</a>
       * <a href="https://blog.devgenius.io/django-rest-framework-react-authentication-workflow-2022-part-2-d299b7fef875" target="_blank">Part 2</a>
-   * [Here](https://docs.djangoproject.com/en/4.1/ref/contrib/auth/) you can see all the fields the user model has
+   * <a href="https://docs.djangoproject.com/en/4.1/ref/contrib/auth/" target="_blank">here</a> you can see all the fields the user model has
 
 ## Documents & Classwork
 * <a href="https://docs.google.com/document/d/1R3kF0f-yiPbxu7IfqQ-IOnBlch3DSUpk/edit#" target="_blank">Software Development Plan</a>
