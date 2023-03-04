@@ -40,7 +40,7 @@ sidebar_position: 1
     - #### Expected Result
         - Call to fetchData(), which calls setUserInfo()
         - On success, values stored in userInfo is updated
-        
+
 </details>
 
 
@@ -48,15 +48,22 @@ sidebar_position: 1
 <br/>
 
 ### DropDownMenu
+
+<details open="True">
+
 - Test user clicking on DropDownMenu component
     - #### Input / User action
         - User clicks on component
     - #### Expected Result
         - handleClick() is called, DropDownItems are rendered
 
+</details>
+
 <br/>
 
 ### DropDownItem
+
+<details open="True">
 
 - Test user clicking on DropDownItem component - Account Settings option
     - #### Input / User action
@@ -75,10 +82,15 @@ sidebar_position: 1
         - User clicks on option to log out
     - #### Expected Result
         - handleClick() is called, user is logged out
-       
+
+</details>
+
 <br/>
 
 ### CanvasIntegrationPage
+
+<details open="True">
+
 - Test user inputting Canvas access token
     - #### Input / User action
         - User enters key into input field and clicks the submit button
@@ -86,9 +98,14 @@ sidebar_position: 1
         - On success, user is notified that token was validated, setUserInfo() is called and userInfo value is updated
         - On failure, user is notified that token was invalid
 
+</details>
+
 <br/>
 
 ### AccountSettingsPage
+
+<details open="True">
+
 - Test user updating email information
     - #### Input / User action
         - User enters new email into input field and clicks the submit button
@@ -120,9 +137,14 @@ sidebar_position: 1
         - On success, user is notified that their account has been deleted and is securely logged out
         - On failure, user can be notified that the pet's name was entered incorrectly
 
+</details>
+
 <br/>
 
 ### Main
+
+<details open="True">
+
 - Test fetching of user's inventory and pet information
     - #### Input / User action
         - User logs into application
@@ -130,9 +152,14 @@ sidebar_position: 1
         - Call to fetchData(), which calls setInventory() and setAvatarInfo()
         - On success, values stored in inventory and avatarInfo are updated
 
+</details>
+
 <br/>
 
 ### PetSprite
+
+<details open="True">
+
 - Test user feeding pet
     - #### Input / User action
         - User drags a candy from their inventory and drops it on their pet
@@ -146,9 +173,14 @@ sidebar_position: 1
     - #### Expected Result
         - Call to handleClick(), which calls setSprite(), triggering a positive animation
 
+</details>
+
  <br/>
 
 ### PageDisplay
+
+<details open="True">
+
 - Test fetching of user's taskList information
     - #### Input / User action
         - User logs into application
@@ -156,7 +188,12 @@ sidebar_position: 1
         - Call to fetchData(), which calls setTaskList()
         - On success, values stored in taskList are updated     
 
+</details>
+
 <br/>
+
+
+
 
 ### NavButton
 - Test user clicking on NavButton component - Task Page button
