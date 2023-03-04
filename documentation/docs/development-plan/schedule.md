@@ -128,108 +128,64 @@ gantt
 ## Milestone Demo Features
 
 ### Milestone Demo 1 [Account Creation & Pet Selection]
-F: User can create/log in to account
 
-R: User can enter credentials
+- F1: Account Management
+    - R1: User is able to register new account.
+    - R2: User is able to login with an existing account.
+    - R3: User is able to update their account name, and email address.
+    - R4: User is able to view their account information.
+    - R5: Credentials are authenticated via JWT token.
+    - R6: First-time user will be sent a verification email.
 
-R: Credentials are authenticated via JWT token
+- F2: Pet Selection, Customization, and Care
+    - R1: User can choose between two virtual pets.
+    - R2: User can select between two different cats (color palette).
+    - R3: User can name their virtual pet.
+    - R4: Users can see a still image of their virtual pet at all times.
 
-R: First-time user will be sent a verification email
+- F3: User can link with Canvas LMS
+    - R1: Users can access a page listing instructions to connect their Canvas account.
+    - R2: Users can see a list of their courses.
 
-F: User can choose between two pets
-
-R: Select between two different cats (color palette)
-
-R: Name their pet
-
-F: User can view main page with static image of pet
-
-R: Users can see a still image of their pet at all times.
-
-F: User can link with Canvas
-
-R: Users can access a page listing instructions to connect their Canvas account.
-
-R: Users can see a list of their courses.
-
-F: User can view tasks
-
-R: View list of tasks.
-
-R: Sort tasks by date.	
+- F4: User can view tasks
+    - R1: User can view a list of their tasks from Canvas LMS.
+    - R4: Tasks will have a name, course with which it is associated, and a description.
 
 
 ### Milestone Demo 2 [Progression Logic & Calendar Display]
-F: User can create Canvas-independent tasks
 
-R: Fill out a task form
+- F6: Task Completion and Task Creation
+    - R1: User can fill out a form to create a task.
+    - R2: Completion of tasks influences virtual pet progress.
+    - R3: User can organize tasks in a custom order.
+    - R4: Users can import tasks from Canvas LMS multiple times.
+    - R5: User can import Canvas assignments as tasks.
 
-R: Save the task form
+- F7. Task Organization and Filtering
+    - R2. User can filter tasks by course.
+    - R3: User can sort tasks by date.
 
-F: User can navigate to progress page [formerly pet profile page]
+- F10: User can view their tasks on a calendar.
+    - R1: The system will present the user with a calendar grid view of their upcoming and past due tasks.
+    - R2: the system will support the Gregorian calendar format.
+    
+- F13: Create the inventory page
+    - R1: User can view the inventory earned from completing tasks!
+    - R2: User can remove candy and place it on their pet (feed it), influencing their pet’s progress
+    - R3: Inventory includes different sizes of candies and a rare candy
 
-R: View their profile.
+- F14: User can interact with their pet (feed candies)
+    - R1: User can give candy to their virtual pet, affecting its mood and level.
+    - R2: User should be able to view task progress and how it affects their virtual pet.
+    - R3: See your pet progress toward the next level with a progress bar
+    - R4: See your progress towards completion of specific tasks in the Progress page
 
-R: Profile page allows users to view their progress on specific tasks
-
-F: User can complete and organize tasks
-
-R: Completion of tasks influences pet progress
-
-F: Canvas assignments are imported as tasks
-
-R: Tasks will have a name, course with which it is associated, and a description!
-
-R: Users can import tasks multiple times.
-
-F: User can use calendar feature
-
-R: A calendar to show which days a task is due.
-
-F: User can choose between more pets
-
-R: More than one breed of cat.
 
 ### Milestone Demo 3 [Pet Interaction & Visually Representing Progression]
-F: Make the pet reactive; its mood will visually change
 
-R: User’s progress and task completion will result in mood changes!
+- F12: Make the pet reactive; its mood will visually change
+    - R1: User’s progress and task completion will result in virtual pet mood changes.
+    - R2: User's virtual pets will be animated.
 
-R: Pets will be animated.
-
-F: Create the inventory page
-
-R: User can view the inventory earned from completing tasks!
-
-R: User can remove candy and place it on their pet (feed it), influencing their 
-
-pet’s progress
-
-R: Inventory includes different sizes of candies and a rare candy
-
-F: User can interact with their pet (feed candies)
-
-R: More expansive animations
-
-R: User can give candy to their pet, affecting its mood and level
-
-F: Implement progression system visually
-
-R: See your pet progress toward the next level with a progress bar
-
-R: See your progress towards completion of specific tasks in the Progress page
-
-### Final Demo
-F: Add more detailed animations for pet states.
-
-R: Pet is asleep after a certain time.
-
-R: Pet has more options for pets/pet colors.
-
-F: Add more customization to pet
-
-R: Create more items for users to give to their pets
-
-F: Create task reminders/notifications
-
-R: Users receive pop-up notifications when a task’s deadline is near
+- F18: Create task reminders/notifications
+    - R1: Users receive pop-up notifications when a task’s deadline is near
