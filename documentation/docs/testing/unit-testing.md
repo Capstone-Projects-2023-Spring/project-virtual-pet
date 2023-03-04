@@ -32,12 +32,18 @@ sidebar_position: 1
 ## React Component Unit Tests
 
 ### App
+<details open="True">
+
 - Test fetching of user data from backend
      - #### Input / User action
         - Logged in user opens application
     - #### Expected Result
         - Call to fetchData(), which calls setUserInfo()
         - On success, values stored in userInfo is updated
+        
+</details>
+
+
 
 <br/>
 
