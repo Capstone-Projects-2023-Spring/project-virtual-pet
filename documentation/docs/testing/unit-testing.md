@@ -1,30 +1,32 @@
 ---
 sidebar_position: 1
 ---
-# Unit tests
-For each method, one or more test cases.
-
-A test case consists of input parameter values and expected results.
-
-All external classes should be stubbed using mock objects.
+# Frontend Unit Tests
 
 ## Mock Objects / Calls 
 - Mock versions of the user's personal information, inventory, tasks, and pet details will be used for the tests.
-- Mock calls will be used to simulate data being retrieved from the backend. 
+- Mock calls will be used to simulate interactions with the backend. 
 
 
-- ### avatarInfo
-
-- ### tasks
-
-- ### inventory
-
-- ### userInfo
-
-## React Component Tests
+## React Component Tests 
+- Not every React component from the class diagram will have their tests described in this document to avoid repetition.
 - Each React component will have its own test file with at a least one test case. 
-- Every test file will check that the react component has rendered and its children have rendered.
+- Every test file will check that the React component has rendered.
 - Every React component that updates state variables will have tests to verify that they are being updated correctly.
+
+
+- Test component was correctly rendered.
+    - #### Input / User action
+        - User action results in component appearing on screen. 
+    - #### Expected Result
+        - Component is rendered and mounted on the DOM.
+
+
+- Test states being updated.
+    - #### Input / User action
+        - Function used to update state is called.
+    - #### Expected Result
+        - The component is re-rendered with updated state value.
 
 ## React Component Unit Tests
 
@@ -249,3 +251,5 @@ FORMAT:
         - User clicks on PPTaskItem component
     - #### Expected Result
         - Renders PPTaskDetails component
+
+# Backend Unit Tests
