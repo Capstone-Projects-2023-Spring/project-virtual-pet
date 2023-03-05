@@ -20,7 +20,7 @@ class RegisterUserSerializer(serializers.ModelSerializer):
         instance.save()
         return instance 
     
-class updateUserSerializer(serializers.ModelSerializer):
+class UpdateUserSerializer(serializers.ModelSerializer):
     pass
 
 class AvatarSerializer(serializers.ModelSerializer):
