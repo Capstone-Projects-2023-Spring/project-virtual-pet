@@ -1,0 +1,13 @@
+info:
+  description: ''
+  title: ''
+  version: ''
+openapi: 3.0.0
+paths:
+  /register/:
+    post:
+      operationId: register_create
+      tags:
+      - register
+servers:
+- url: ''

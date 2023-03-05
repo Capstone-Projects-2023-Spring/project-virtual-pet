@@ -1,2 +1,0 @@
-FROM scratch
-COPY --from=local/webpack-runner /usr/src/app/node_modules/.cache /node_modules/.cache

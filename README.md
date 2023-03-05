@@ -17,6 +17,17 @@ Section 704, web application, JavaScript, HTML, CSS, Python, Django, education, 
 
 This document proposes a progressive web application that combines the benefits of gamification and personal development to enhance the study experience. The application allows Users to take care of a Virtual Pet, which serves as a study companion and motivator. Users can set daily or weekly goals, set reminders, track their progress, and connect with their Canvas accounts to track assignments. Progress on these goals will directly influence the Virtual Pet’s appearance and mood, inspiring feelings of motivation, companionship, responsibility, and solidarity in the User. By using this application, Users will have an engaging and effective way to improve their academic performance.
 
+<table align="center">
+<tr>
+    <td align="center">
+            <img src="https://user-images.githubusercontent.com/73796086/221391195-a3de8590-2e59-4ff5-b24f-513248ee9ad4.jpg" height="300;"/>
+    </td>
+    <td align="center">
+            <img src="https://user-images.githubusercontent.com/73796086/221391357-8ba86569-f62b-493c-9b7a-a04560773186.png" height="300;"/>
+    </td>
+</tr>
+</table>
+
 ## High Level Requirement
 
 The app requires an internet connection to function, and can be accessed on any device with a modern web browser. Users can set study goals, track their progress, and connect with their Canvas account. The user will be rewarded for achieving their study goals through a point system, where the number of points given will depend on the size of the task completed. After reaching a certain number of points, the user’s pet will level up. The app also integrates with Canvas, allowing the user to access and keep track of their assignments. Users can name their pet and interact with it, and perform tasks on their schedule that directly affect their pet’s condition and mood.The pet’s mood and appearance will be influenced by the user’s ability to achieve their goals.

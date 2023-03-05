@@ -1,2 +1,0 @@
-FROM local/ruby-runner
-COPY --from=local/webpack-runner /usr/src/app/public ${APP_HOME}/public
