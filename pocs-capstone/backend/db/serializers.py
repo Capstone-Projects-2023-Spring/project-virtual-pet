@@ -2,10 +2,6 @@ from rest_framework import serializers
 from db.models import NewUser
 from django.contrib.auth.password_validation import validate_password
 
-
-
-
-
 class RegisterUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = NewUser
