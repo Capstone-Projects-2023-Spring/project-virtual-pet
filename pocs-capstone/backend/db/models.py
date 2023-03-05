@@ -107,10 +107,10 @@ class Avatar(models.Model):
         choices=AvatarType.choices,
         default=AvatarType.CAT
         )
-    total_xp = models.PositiveIntegerField
-    last_interaction = models.DateField
-    last_feed = models.DateField
-    pet_name = models.CharField(max_length=20, default='')
+    total_xp = models.PositiveIntegerField(default = 1)
+    last_interaction = models.DateField(default = None)
+    last_feed = models.DateField(default = None)
+    pet_name = models.CharField(max_length=32, default='')
     flavour_text = models.TextField(max_length = 256) #should we increase?
     
     def __str__(self):
@@ -148,7 +148,7 @@ class Inventory(models.Model):
     inventory_owner = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
     candy_base_type = models.CharField(max_length=1,choices=BaseType.choices)
     candy_level = models.PositiveIntegerField(choices=CandyLevel.choices)
-    quantity = models.PositiveIntegerField
+    quantity = models.PositiveIntegerField(default=0)
 
 
     def __str__(self):
@@ -168,13 +168,13 @@ class Task(models.Model):
     username = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     due_date = models.DateTimeField
     created_date = models.DateField
-    completed_date = models.DateField
-    completed = models.BooleanField
+    completed_date = models.DateField(default=None)
+    completed = models.BooleanField(default=False)
     active = models.BooleanField(default=True)
     type = models.CharField(max_length=1,choices=BaseType.choices)
-    recurring = models.BooleanField
-    recurring_time_delta = models.PositiveIntegerField
-    description = models.TextField
+    recurring = models.BooleanField(default=False)
+    recurring_time_delta = models.PositiveIntegerField(default=0)
+    description = models.TextField(default="A new task!")
     course_id = models.PositiveBigIntegerField(default=0)
     assignment_id = models.PositiveIntegerField(default=0)
 
