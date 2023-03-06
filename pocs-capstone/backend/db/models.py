@@ -171,7 +171,7 @@ class Task(models.Model):
     completed_date = models.DateField(default=None)
     completed = models.BooleanField(default=False)
     active = models.BooleanField(default=True)
-    type = models.CharField(max_length=1,choices=BaseType.choices)
+    type = models.CharField(max_length=1,choices=BaseType.choices, default='S')
     recurring = models.BooleanField(default=False)
     recurring_time_delta = models.PositiveIntegerField(default=0)
     description = models.TextField(default="A new task!")

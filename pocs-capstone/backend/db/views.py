@@ -4,12 +4,11 @@ from django.http import HttpResponse
 
 from rest_framework import viewsets
 from rest_framework.permissions import AllowAny
-from .serializers import RegisterUserSerializer
+from .serializers import *
+from .models import *
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.views import APIView
-
-
 
 """
 from .serializers import NoteSerializer
@@ -36,3 +35,34 @@ class CustomUserCreate(APIView):
         return Response(registration_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
     
+class TaskViewSet(viewsets.ModelViewSet):
+    
+    serializer_class = TaskSerializer
+    
+    # query tasks by user. 
+    def get_queryset(self):
+        user = self.request.user
+        return Task.objects.filter(user)
+    
+class AvatarViewSet(viewsets.ModelViewSet):
+    
+    serializer_class = AvatarSerializer
+    
+    # query tasks by user. 
+    def get_queryset(self):
+        user = self.request.user
+        return Avatar.objects.filter(user)
+
+class InventoryViewSet(viewsets.ModelViewSet):
+    
+    serializer_class = InventorySerializer
+    
+    # query tasks by user. 
+    def get_queryset(self):
+        user = self.request.user
+        return Inventory.objects.filter(user)
+
+
+
+
+
