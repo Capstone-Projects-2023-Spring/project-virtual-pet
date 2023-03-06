@@ -7,46 +7,46 @@ sidebar_position: 4
 
 ### CustomUserInfoViewTests
 
-Procedure: This class will provide the user's data to the frontend <br>
-Tests: Check status codes, url exists at desired location, url reverse lookup, check authentication to allow the user data to sent <br>
-Inputs: url path - String, url name - String <br>
-Expected Results: True for correct status code, true if url exists and can be looked up by name, true if unauthorized to recieve user data object <br>
+Procedure: This class will provide the user's data to the frontend <br/>
+Tests: Check status codes, url exists at desired location, url reverse lookup, check authentication to allow the user data to send <br/>
+Inputs: url path - String, url name - String <br/>
+Expected Results: True for correct status code, true if url exists and can be looked up by name, true if unauthorized to recieve user data object <br/>
 
 ### UserLoginViewTests
 
-Procedure: This class will recieve a user's login credentials and verify with the database if the credentials are valid<br>
-Tests: Check status codes, url exists at desire location, url reverse lookup, if credentials are correct or incorrect<br>
-Inputs: user_name - String, password - String<br>
-Expected Results: True for correct status code, true if url exists and can be looked up by name, true if credential provided are valid, true if credential provided are not valid<br>
+Procedure: This class will receive a user's login credentials and verify with the database if the credentials are valid<br/>
+Tests: Check status codes, url exists at desire location, url reverse lookup, if credentials are correct or incorrect<br/>
+Inputs: user_name - String, password - String<br/>
+Expected Results: True for correct status code, true if url exists and can be looked up by name, true if credential provided are valid, true if credential provided are not valid<br/>
 
 
 ### CustomUserCreateViewTests
 
-Procedure: This class will recieve register data and attempt to register a new user<br>
-Tests:  Check status codes, url exists at desire location, url reverse lookup, if register data already exists<br>
-Inputs: user_name - String, email - String, first_name - String, password - String<br>
-Expected Results: True for correct status code, true if url exists and can be looked up by name, true if register data provided is valid, true if register data provided is not valid<br>
+Procedure: This class will recieve register data and attempt to register a new user<br/>
+Tests:  Check status codes, url exists at desire location, url reverse lookup, if register data already exists<br/>
+Inputs: user_name - String, email - String, first_name - String, password - String<br/>
+Expected Results: True for correct status code, true if url exists and can be looked up by name, true if register data provided is valid, true if register data provided is not valid<br/>
 
 ### PetDataViewTests
 
-Procedure: This class will provide the user's pet data<br>
-Tests: Check status codes, url exists at desired location, url reverse lookup, check authentication to allow pet data to be sent<br>
-Inputs: url path - String, url name - String<br>
-Expected Results: True for correct status code, true if url exists and can be looked up by name, true if unauthorized to recieve pet data object<br>
+Procedure: This class will provide the user's pet data<br/>
+Tests: Check status codes, url exists at desired location, url reverse lookup, check authentication to allow pet data to be sent<br/>
+Inputs: url path - String, url name - String<br/>
+Expected Results: True for correct status code, true if url exists and can be looked up by name, true if unauthorized to recieve pet data object<br/>
 
 ### UserTaskViewTests
 
-Procedure: This class will provide the user's task data<br>
-Tests: Check status codes, url exists at desired location, url reverse lookup, check authentication to allow task data to be sent<br>
-Inputs: url path - String, url name - String<br>
-Expected Results: True for correct status code, true if url exists and can be looked up by name, true if unauthorized to recieve task data object<br>
+Procedure: This class will provide the user's task data<br/>
+Tests: Check status codes, url exists at desired location, url reverse lookup, check authentication to allow task data to be sent<br/>
+Inputs: url path - String, url name - String<br/>
+Expected Results: True for correct status code, true if url exists and can be looked up by name, true if unauthorized to recieve task data object<br/>
 
 ### UserInventoryTests
 
-Procedure: This class will provide the user's inventory data<br>
-Tests: Tests: Check status codes, url exists at desired location, url reverse lookup, check authentication to allow inventory data to be sent<br>
-Inputs: url path - String, url name - String<br>
-Expected Results: True for correct status code, true if url exists and can be looked up by name, true if unauthorized to recieve inventory data object<br>
+Procedure: This class will provide the user's inventory data<br/>
+Tests: Tests: Check status codes, url exists at desired location, url reverse lookup, check authentication to allow inventory data to be sent<br/>
+Inputs: url path - String, url name - String<br/>
+Expected Results: True for correct status code, true if url exists and can be looked up by name, true if unauthorized to recieve inventory data object<br/>
 
 
 
