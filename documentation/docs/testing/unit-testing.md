@@ -423,5 +423,9 @@ Returns: True if the email_address text label matches the expected label output,
 Test: Checks the text for the bio label
 Returns: True if the bio label text label matches the expected label output, otherwise false
 ```
-  
+## CustomAccountManager Model (pending)
+## Avatar Model (pending)
+## Inventory Model (pending)
 ## Task Model (pending)
+
+
