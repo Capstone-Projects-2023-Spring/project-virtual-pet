@@ -10,7 +10,7 @@ Tests to demonstrate each use-case based on the use-case descriptions and the se
 
 ## Overview
 
-We will leverage Selenium to complete our integration testing in a semi-automated fasion. This integration tests will occur in clean version of our production build, with a clean version of our production database. We will reserve a set of user ids in real prod for the purpose of repeating these tests before our final release. We are currently constructing our endpoints using Django Rest Framework, which provides a serializer class that we can leverage to load the production database with mock data. Django provides a shell environment we can use to import our serializers and load data into the database programatically. Therefore, we can pre-prepare a set of scripts and pipe them into the shell using a bash script. For example:
+We will leverage Selenium to complete our integration testing in a semi-automated fashion. This integration tests will occur in clean version of our production build, with a clean version of our production database. We will reserve a set of user ids in real prod for the purpose of repeating these tests before our final release. We are currently constructing our endpoints using Django Rest Framework, which provides a serializer class that we can leverage to load the production database with mock data. Django provides a shell environment we can use to import our serializers and load data into the database programatically. Therefore, we can pre-prepare a set of scripts and pipe them into the shell using a bash script. For example:
 
 ## Sample Python script for loading data
 
