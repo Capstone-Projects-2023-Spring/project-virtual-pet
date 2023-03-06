@@ -1,17 +1,22 @@
 
 
 import axios from 'axios'
-import mockData from '../mockData/info'
+const token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjc4MTE2OTEyLCJpYXQiOjE2NzgxMTY4NTIsImp0aSI6ImNkNzY3MWY2Njg5MzQyY2NiOGE3MjAwNmNiZDFhYjFmIiwidXNlcl9pZCI6NX0.t2m4I1a1Wnv2HWhILYIv5OAHMZs73a-NUYpWwPpVyLE"
+const config = {
+    headers: { Authorization: `Bearer ${token}` }
+};
 const baseURL = `${process.env.REACT_APP_DB_URL}/api`
 
 
 // FIGURE OUT :
 
-const getTasks = (username) => {
-    // console.log(process.env.REACT_APP_DB_URL)
-    // const request = axios.get(`${baseURL}/tasks/username?=${username}`)
-    // return request.then(response => response.data)
-    return mockData.tasks
+const getTasks = () => {
+    console.log(process.env.REACT_APP_DB_URL)
+    const request = axios.get(`${baseURL}`,
+    {
+        headers: config
+    })
+    return request.then(response => response.data)
 }
 
 const createTask = (newNote) => {

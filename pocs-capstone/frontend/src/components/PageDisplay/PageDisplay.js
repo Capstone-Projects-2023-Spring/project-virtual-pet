@@ -17,10 +17,10 @@ const PageDisplay = ({avatarInfo, setAvatarInfo, inventory, setInventory}) => {
     const [taskList, setTaskList] = useState([])
 
     const fetchData = () => {
-        // tasks
-        //     .getTasks("USERNAME")
-        //     .then(r => {setTaskList(r)})
-        setTaskList(tasks.getTasks("ccho"))
+        tasks
+            .getTasks("USERNAME")
+            .then(r => {setTaskList(r)})
+        // setTaskList(tasks.getTasks("ccho"))
     }
 
     useEffect(fetchData, [])
