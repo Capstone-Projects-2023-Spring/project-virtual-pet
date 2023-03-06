@@ -322,7 +322,7 @@ sidebar_position: 1
 
 # Backend Unit Tests
 
-# Views
+## Views
 
 ### CustomUserInfoViewTests
 
@@ -369,56 +369,56 @@ Expected Results: True for correct status code, true if url exists and can be lo
 
 
 
-## Register View
+### Register View
 
-<strong>*def test_view_url_exists_at_desired_location(self)*<strong>
+#### *def test_view_url_exists_at_desired_location(self)*
 ```
  Test: Checks if the url exists for register view
  Returns: True if the response status code is 201, other wise false
 ```
 
 
-# Database Models
+## Database Models
 
-## NewUser Model
+### NewUser Model
 
-<strong>*def test_first_name_label(self)*<strong>
+#### *def test_first_name_label(self)*
 ```
 Test: Checks the text for the first_name label
 Returns: True if the first_name text label matches the expected label output, otherwise false
 ```
 
-<strong>*def test_user_name_max_length(self)*<strong>
+#### *def test_user_name_max_length(self)*
 ```
 Test: Checks the size of the field allocated for the user_name text
 Returns: True if the user_name max length matches the expected max length, otherwise false
 ```
 
-<strong>*def test_first_name_max_length(self)*<strong>
+#### *def test_first_name_max_length(self)*
 ```
 Test: Checks the size of the field allocated for the first_name text
 Returns: True if the first_name max length matches the expected max length, otherwise false
 ```
   
-<strong>*def test_bio_max_length(self)*<strong>
+#### *def test_bio_max_length(self)*
 ```
 Test: Checks the size of the field allocated for the first_name text
 Returns: True if the first_name max length matches the expected max length, otherwise false
 ```
   
-<strong>*def test_object_name_is_user_name(self)*<strong>
+#### *def test_object_name_is_user_name(self)*
 ```
 Test: Checks that the database object's name is the user_name attribute
 Returns: True if the object's name matches the expected user_name output, otherwise false
 ```
        
-<strong>*def test_email_address_label(self)*<strong>
+#### *def test_email_address_label(self)*
 ```
 Test: Checks the text for the email_address label
 Returns: True if the email_address text label matches the expected label output, otherwise false
 ```
 
-<strong>*test_bio_label(self)*<strong>
+#### *test_bio_label(self)*
 ```
 Test: Checks the text for the bio label
 Returns: True if the bio label text label matches the expected label output, otherwise false
