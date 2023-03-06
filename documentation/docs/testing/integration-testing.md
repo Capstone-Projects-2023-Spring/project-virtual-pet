@@ -64,8 +64,8 @@ python3 selenium_script_use_case_2.py
 <br></br>
 
 # Assertions
-1.) Experience shows the expected quantity.
-2.) Inventory is updated to the expected quantity.
+## 1.) Experience shows the expected quantity.
+## 2.) Inventory is updated to the expected quantity.
 
 
 # Use Case 2
@@ -84,8 +84,8 @@ python3 selenium_script_use_case_2.py
 <br></br>
 
 # Assertions 
-1.) Each page contains the correct title, verifying that we are routing through the pages correctly.
-2.) The expected courses are listed under tasks. 
+## 1.) Each page contains the correct title, verifying that we are routing through the pages correctly.
+## 2.) The expected courses are listed under tasks. 
 
 # Use Case 3
 
@@ -105,9 +105,9 @@ python3 selenium_script_use_case_2.py
 <br></br>
 
 # Assertions
-1.) Multiplier reads the correct value when decreased
-2.) Multiplier reads the correct value when increased
-3.) Pet mood is accurate at steps 3 and 6
+## 1.) Multiplier reads the correct value when decreased
+## 2.) Multiplier reads the correct value when increased
+## 3.) Pet mood is accurate at steps 3 and 6
 
 # Use Case 4
 
@@ -125,8 +125,8 @@ python3 selenium_script_use_case_2.py
 <br></br>
 
 # Assertions 
-1.) The task component is viewable, and contains the correct values.
-2.) The calendar component is updated on the correct date.
+## 1.) The task component is viewable, and contains the correct values.
+## 2.) The calendar component is updated on the correct date.
 
 # Use Case 5
 
@@ -144,8 +144,8 @@ python3 selenium_script_use_case_2.py
 <br></br>
 
 # Assertions 
-1.) The task is correctly updated based on level of completion (each stage will be asserted). 
-2.) The inventory is updated with the correct candy.
+## 1.) The task is correctly updated based on level of completion (each stage will be asserted). 
+## 2.) The inventory is updated with the correct candy.
 
 # Use Case 6
 
@@ -164,8 +164,8 @@ python3 selenium_script_use_case_2.py
 <br></br>
 
 # Assertions 
-1.) The correct task information is displayed. 
-2.) The task shows the correct date corresponding to its respective deadlines
+## 1.) The correct task information is displayed. 
+## 2.) The task shows the correct date corresponding to its respective deadlines
 
 
 # Use Case 7
@@ -184,8 +184,8 @@ python3 selenium_script_use_case_2.py
 <br></br>
 
 # Assertions 
-1.) The correct user credentials are displayed on the pet selection page. 
-2.) The updated list of pets is shown, and each picture is aligned with the correct information.
+## 1.) The correct user credentials are displayed on the pet selection page. 
+## 2.) The updated list of pets is shown, and each picture is aligned with the correct information.
 
 # Use Case 8
 
@@ -206,9 +206,9 @@ python3 selenium_script_use_case_2.py
 <br></br>
 
 # Assertions 
-1.) Upon choosing NOT to integrate canvas, the user is routed to the correct landing page.
-2.) Upon choosing to integrate canvas, the user is routed to the integration page. 
-3.) Upon completing canvas integration, the user's information is correctly integrated into the final landing page in the process. 
+## 1.) Upon choosing NOT to integrate canvas, the user is routed to the correct landing page.
+## 2.) Upon choosing to integrate canvas, the user is routed to the integration page. 
+## 3.) Upon completing canvas integration, the user's information is correctly integrated into the final landing page in the process. 
 
 
 
