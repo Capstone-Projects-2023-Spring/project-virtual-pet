@@ -34,7 +34,7 @@ CORS_ALLOW_CREDENTIALS = True
 
 # 0.0.0.0 : docker
 # 127.0.0.1 : local
-ALLOWED_HOSTS = ['0.0.0.0', '127.0.0.1']
+ALLOWED_HOSTS = ['0.0.0.0', '127.0.0.1','localhost','10.0.0.1','*']
 
 
 # Application definition
@@ -49,7 +49,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'corsheaders',
-    
+    'drf_spectacular',
+
 ]
 
 MIDDLEWARE = [
@@ -76,8 +77,10 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+
             ],
         },
+ 
     },
 ]
 
@@ -141,7 +144,7 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
-    'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
 
 }
 
@@ -184,7 +187,7 @@ SIMPLE_JWT = {
 
 
     "SLIDING_TOKEN_REFRESH_EXP_CLAIM": "refresh_exp",
-    "SLIDING_TOKEN_LIFETIME": timedelta(minutes=5),
+    "SLIDING_TOKEN_LIFETIME": timedelta(minutes=500), #TODO shorten after development
     "SLIDING_TOKEN_REFRESH_LIFETIME": timedelta(days=1),
 
     "TOKEN_OBTAIN_SERIALIZER": "rest_framework_simplejwt.serializers.TokenObtainPairSerializer",
@@ -194,4 +197,12 @@ SIMPLE_JWT = {
     "SLIDING_TOKEN_OBTAIN_SERIALIZER": "rest_framework_simplejwt.serializers.TokenObtainSlidingSerializer",
     "SLIDING_TOKEN_REFRESH_SERIALIZER": "rest_framework_simplejwt.serializers.TokenRefreshSlidingSerializer",
 
+}
+
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'Study Buddies API',
+    'DESCRIPTION': 'Capstone',
+    'VERSION': '0.0.2',
+    'SERVE_INCLUDE_SCHEMA': False,
+    # OTHER SETTINGS
 }

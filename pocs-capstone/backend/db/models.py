@@ -4,9 +4,14 @@ from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager
 from django.conf import settings
 
+
 #from django.contrib.auth.models import User
 import datetime
+from django.utils import timezone
+today = timezone.now
 
+
+#add related name = user on my end
 class CustomAccountManager(BaseUserManager):
     """Class responsible for the creation of superusers and standard users.
     Overrides built-in user class and constructor.
@@ -73,7 +78,7 @@ class NewUser(AbstractBaseUser,PermissionsMixin): #TODO rename to something less
     user_name = models.CharField(max_length=128,unique=True)
     first_name=models.CharField(max_length=128,unique=False)
     join_date=models.DateTimeField(default=timezone.now)
-    birthday = models.DateField(null=True, default=None)
+    birthday = models.DateField(null=True,blank=True, default=None)
     bio = models.TextField(_('about'),max_length=512,blank=True)
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True) # TODO if we want email verification to activate user we change this to false
@@ -101,17 +106,17 @@ class Avatar(models.Model):
         CRAB = 'CR'
         ROCK = "RK"
     
-    avatar_owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE) 
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE) 
     avatar_type = models.CharField(
         max_length=2,
         choices=AvatarType.choices,
         default=AvatarType.CAT
         )
-    total_xp = models.PositiveIntegerField
-    last_interaction = models.DateField
-    last_feed = models.DateField
-    pet_name = models.CharField(max_length=20, default='')
-    flavour_text = models.TextField(max_length = 256) #should we increase?
+    total_xp = models.PositiveIntegerField(default = 1)
+    last_interaction = models.DateField(default = None)
+    last_feed = models.DateField(default = None)
+    pet_name = models.CharField(max_length=32, default='')
+    flavour_text = models.TextField(max_length = 256, default = '') #should we increase?
     
     def __str__(self):
         """Avatar toString method
@@ -145,10 +150,10 @@ class Inventory(models.Model):
         EXPERT = 5, "Expert"
 
 
-    inventory_owner = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
     candy_base_type = models.CharField(max_length=1,choices=BaseType.choices)
     candy_level = models.PositiveIntegerField(choices=CandyLevel.choices)
-    quantity = models.PositiveIntegerField
+    quantity = models.PositiveIntegerField(default=0)
 
 
     def __str__(self):
@@ -165,16 +170,27 @@ class Task(models.Model):
         MEDIUM = 'M',"MEDIUM"
         LARGE = 'L',"LARGE"
         CAKE = 'C',"CAKE"
-    username = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    due_date = models.DateTimeField
-    created_date = models.DateField
-    completed_date = models.DateField
-    completed = models.BooleanField
+    class TaskLevel(models.IntegerChoices):
+        """Class defining the model for candy levels
+        Extends models.IntegerChoices.
+        """
+        BEGINNER = 1, "Beginner"
+        NOVICE = 2, "Novice"
+        INTERMEDIATE = 3, "Intermediate"
+        ADVANCED = 4, "Advanced"
+        EXPERT = 5, "Expert"
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    title = models.CharField(max_length=128,default="A new task!")
+    due_date = models.DateField(null=True,blank=True)
+    created_date = models.DateTimeField(default=timezone.now)
+    completed_date = models.DateField(null=True,blank=True)
+    completed = models.BooleanField(default=False)
     active = models.BooleanField(default=True)
-    type = models.CharField(max_length=1,choices=BaseType.choices)
-    recurring = models.BooleanField
-    recurring_time_delta = models.PositiveIntegerField
-    description = models.TextField
+    task_type = models.CharField(max_length=1,choices=BaseType.choices, default='S')
+    task_level = models.PositiveSmallIntegerField(choices=TaskLevel.choices,default=1)
+    recurring = models.BooleanField(default=False)
+    recurring_time_delta = models.PositiveIntegerField(default=0)
+    description = models.TextField(default="A new task!")
     course_id = models.PositiveBigIntegerField(default=0)
     assignment_id = models.PositiveIntegerField(default=0)
 
