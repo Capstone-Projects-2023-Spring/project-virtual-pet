@@ -21,217 +21,405 @@ const avatarInfo = {
     birthday: new Date(2002, 4, 8),
     flavour_text: "emngeing"
 }
+const tasks3 = [
+        {
+            "username": 0,
+            "title": "Milestone 1 Demo",
+            "completed_date": "2023-03-14",
+            "completed": false,
+            "active": true,
+            "type": "S",
+            "recurring": false,
+            "recurring_time_delta": 0,
+            "description": "milestone demo 1kjnjknergkjnergejkrgnngekrjngekrjngdngrkjngerg",
+            "course_id": 1,
+            "assignment_id": 25
+        },
+        {
+            "username": 0,
+            "title": "Milestone 2 Demo",
+            "completed_date": "2023-03-28",
+            "completed": false,
+            "active": true,
+            "type": "S",
+            "recurring": false,
+            "recurring_time_delta": 0,
+            "description": "string",
+            "course_id": 1,
+            "assignment_id": 24
+        },  
+        {
+            "username": 0,
+            "title": "Milestone 2 Demo",
+            "completed_date": "2023-03-28",
+            "completed": false,
+            "active": true,
+            "type": "S",
+            "recurring": false,
+            "recurring_time_delta": 0,
+            "description": "string",
+            "course_id": 1,
+            "assignment_id": 24
+        },  
+        {
+            "username": 0,
+            "title": "Milestone 2 Demo",
+            "completed_date": "2023-03-28",
+            "completed": false,
+            "active": true,
+            "type": "S",
+            "recurring": false,
+            "recurring_time_delta": 0,
+            "description": "string",
+            "course_id": 1,
+            "assignment_id": 24
+        },  
+        {
+            "username": 0,
+            "title": "Milestone 2 Demo",
+            "completed_date": "2023-03-28",
+            "completed": false,
+            "active": true,
+            "type": "S",
+            "recurring": false,
+            "recurring_time_delta": 0,
+            "description": "string",
+            "course_id": 1,
+            "assignment_id": 24
+        },  
+        {
+            "username": 0,
+            "title": "Milestone 2 Demo",
+            "completed_date": "2023-03-28",
+            "completed": false,
+            "active": true,
+            "type": "S",
+            "recurring": false,
+            "recurring_time_delta": 0,
+            "description": "string",
+            "course_id": 1,
+            "assignment_id": 24
+        },  
+        {
+            "username": 0,
+            "title": "Milestone 2 Demo",
+            "completed_date": "2023-03-28",
+            "completed": false,
+            "active": true,
+            "type": "S",
+            "recurring": false,
+            "recurring_time_delta": 0,
+            "description": "string",
+            "course_id": 1,
+            "assignment_id": 24
+        },  
+        {
+            "username": 0,
+            "title": "Milestone 2 Demo",
+            "completed_date": "2023-03-28",
+            "completed": false,
+            "active": true,
+            "type": "S",
+            "recurring": false,
+            "recurring_time_delta": 0,
+            "description": "string",
+            "course_id": 1,
+            "assignment_id": 24
+        },  
+        {
+            "username": 0,
+            "title": "Milestone 2 Demo",
+            "completed_date": "2023-03-28",
+            "completed": false,
+            "active": true,
+            "type": "S",
+            "recurring": false,
+            "recurring_time_delta": 0,
+            "description": "string",
+            "course_id": 1,
+            "assignment_id": 24
+        },  
+        {
+            "username": 0,
+            "title": "Milestone 2 Demo",
+            "completed_date": "2023-03-28",
+            "completed": false,
+            "active": true,
+            "type": "S",
+            "recurring": false,
+            "recurring_time_delta": 0,
+            "description": "string",
+            "course_id": 1,
+            "assignment_id": 24
+        },  
+        {
+            "username": 0,
+            "title": "Milestone 2 Demo",
+            "completed_date": "2023-03-28",
+            "completed": false,
+            "active": true,
+            "type": "S",
+            "recurring": false,
+            "recurring_time_delta": 0,
+            "description": "string",
+            "course_id": 1,
+            "assignment_id": 24
+        },  
+        {
+            "username": 0,
+            "title": "Milestone 2 Demo",
+            "completed_date": "2023-03-28",
+            "completed": false,
+            "active": true,
+            "type": "S",
+            "recurring": false,
+            "recurring_time_delta": 0,
+            "description": "string",
+            "course_id": 1,
+            "assignment_id": 24
+        },  
+        {
+            "username": 0,
+            "title": "Milestone 2 Demo",
+            "completed_date": "2023-03-28",
+            "completed": false,
+            "active": true,
+            "type": "S",
+            "recurring": false,
+            "recurring_time_delta": 0,
+            "description": "string",
+            "course_id": 1,
+            "assignment_id": 24
+        },  
+        {
+            "username": 0,
+            "title": "Milestone 2 Demo",
+            "completed_date": "2023-03-28",
+            "completed": false,
+            "active": true,
+            "type": "S",
+            "recurring": false,
+            "recurring_time_delta": 0,
+            "description": "string",
+            "course_id": 1,
+            "assignment_id": 24
+        },  
+        {
+            "username": 0,
+            "title": "Milestone 2 Demo",
+            "completed_date": "2023-03-28",
+            "completed": false,
+            "active": true,
+            "type": "S",
+            "recurring": false,
+            "recurring_time_delta": 0,
+            "description": "string",
+            "course_id": 1,
+            "assignment_id": 24
+        },  
+]
 
+
+const tasks2 = []
 
 const tasks = [
     {
-        taskId: 0,
-        title: "Club meeting",
-        dueDate: new Date(2023, 1, 28),
-        completed: true,
-        recurring: false,
-        recurrenceTimeDelta: 0,
-        completion_status: 4,
-        course: "None",
-        description: "HW"
+        "username": 0,
+        "title": "Milestone 1 Demo",
+        "completed_date": "2023-03-14",
+        "completed": false,
+        "active": true,
+        "type": "S",
+        "recurring": false,
+        "recurring_time_delta": 0,
+        "description": "milestone demo 1kjnjknergkjnergejkrgnngekrjngekrjngdngrkjngerg",
+        "course_id": 1,
+        "assignment_id": 25
     },
     {
-        taskId: 1,
-        title: "math exam",
-        dueDate: new Date(2023, 2, 5),
-        completed: false,
-        recurring: false,
-        recurrenceTimeDelta: 0,
-        completion_status: 3,
-        course: "None",
-        description: "MATH EXAM 2"
-    },
+        "username": 0,
+        "title": "Milestone 2 Demo",
+        "completed_date": "2023-03-28",
+        "completed": false,
+        "active": true,
+        "type": "S",
+        "recurring": false,
+        "recurring_time_delta": 0,
+        "description": "string",
+        "course_id": 1,
+        "assignment_id": 24
+    },  
     {
-        taskId: 2,
-        title: "bio exam",
-        dueDate: new Date(2023, 2, 30),
-        completed: false,
-        recurring: false,
-        recurrenceTimeDelta: 0,
-        completion_status: 2,
-        course: "None",
-        description: "BIO EXAM 3"
-    },
+        "username": 0,
+        "title": "Milestone 2 Demo",
+        "completed_date": "2023-03-28",
+        "completed": false,
+        "active": true,
+        "type": "S",
+        "recurring": false,
+        "recurring_time_delta": 0,
+        "description": "string",
+        "course_id": 1,
+        "assignment_id": 24
+    },  
     {
-        taskId: 3,
-        title: "feed plants",
-        dueDate: new Date(2023, 2, 30),
-        completed: false,
-        recurring: true,
-        recurrenceTimeDelta: 0,
-        completion_status: 2,
-        course: "None",
-        description: "feed plants"
-    },
+        "username": 0,
+        "title": "Milestone 2 Demo",
+        "completed_date": "2023-03-28",
+        "completed": false,
+        "active": true,
+        "type": "S",
+        "recurring": false,
+        "recurring_time_delta": 0,
+        "description": "string",
+        "course_id": 1,
+        "assignment_id": 24
+    },  
     {
-        taskId: 4,
-        title: "feed cat",
-        dueDate: new Date(2023, 2, 30),
-        completed: false,
-        recurring: true,
-        recurrenceTimeDelta: 0,
-        completion_status: 2,
-        course: "None",
-        description: "feed cat"
-    },
+        "username": 0,
+        "title": "Milestone 2 Demo",
+        "completed_date": "2023-03-28",
+        "completed": false,
+        "active": true,
+        "type": "S",
+        "recurring": false,
+        "recurring_time_delta": 0,
+        "description": "string",
+        "course_id": 1,
+        "assignment_id": 24
+    },  
     {
-        taskId: 5,
-        title: "feed cat",
-        dueDate: new Date(2023, 2, 30),
-        completed: false,
-        recurring: true,
-        recurrenceTimeDelta: 0,
-        completion_status: 2,
-        course: "None",
-        description: "feed cat"
-    },
+        "username": 0,
+        "title": "Milestone 2 Demo",
+        "completed_date": "2023-03-28",
+        "completed": false,
+        "active": true,
+        "type": "S",
+        "recurring": false,
+        "recurring_time_delta": 0,
+        "description": "string",
+        "course_id": 1,
+        "assignment_id": 24
+    },  
     {
-        taskId: 6,
-        title: "feed cat",
-        dueDate: new Date(2023, 2, 30),
-        completed: false,
-        recurring: true,
-        recurrenceTimeDelta: 0,
-        completion_status: 2,
-        course: "None",
-        description: "feed cat"
-    },
+        "username": 0,
+        "title": "Milestone 2 Demo",
+        "completed_date": "2023-03-28",
+        "completed": false,
+        "active": true,
+        "type": "S",
+        "recurring": false,
+        "recurring_time_delta": 0,
+        "description": "string",
+        "course_id": 1,
+        "assignment_id": 24
+    },  
     {
-        taskId: 7,
-        title: "feed cat",
-        dueDate: new Date(2023, 2, 30),
-        completed: false,
-        recurring: true,
-        recurrenceTimeDelta: 0,
-        completion_status: 2,
-        course: "None",
-        description: "feed cat"
-    },
+        "username": 0,
+        "title": "Milestone 2 Demo",
+        "completed_date": "2023-03-28",
+        "completed": false,
+        "active": true,
+        "type": "S",
+        "recurring": false,
+        "recurring_time_delta": 0,
+        "description": "string",
+        "course_id": 1,
+        "assignment_id": 24
+    },  
     {
-        taskId: 8,
-        title: "feed cat",
-        dueDate: new Date(2023, 2, 30),
-        completed: false,
-        recurring: true,
-        recurrenceTimeDelta: 0,
-        completion_status: 2,
-        course: "None",
-        description: "feed cat"
-    },
-    {
-        taskId: 9,
-        title: "feed cat",
-        dueDate: new Date(2023, 2, 30),
-        completed: false,
-        recurring: true,
-        recurrenceTimeDelta: 0,
-        completion_status: 2,
-        course: "None",
-        description: "feed cat"
-    },
-    {
-        taskId: 10,
-        title: "feed cat",
-        dueDate: new Date(2023, 2, 30),
-        completed: false,
-        recurring: true,
-        recurrenceTimeDelta: 0,
-        completion_status: 2,
-        course: "None",
-        description: "feed cat"
-    },
+        "username": 0,
+        "title": "Milestone 2 Demo",
+        "completed_date": "2023-03-28",
+        "completed": false,
+        "active": true,
+        "type": "S",
+        "recurring": false,
+        "recurring_time_delta": 0,
+        "description": "string",
+        "course_id": 1,
+        "assignment_id": 24
+    },  
     // {
-    //     taskId:11,
-    //     title: "feed cat",
-    //     dueDate: new Date(2023, 2, 30),
-    //     completed: false,
-    //     recurring: true,
-    //     recurrenceTimeDelta: 0,
-    //     completion_status: 2,
-    //     course: "None",
-    //     description: "feed cat"
-    // },
+    //     "username": 0,
+    //     "title": "Milestone 2 Demo",
+    //     "completed_date": "2023-03-28",
+    //     "completed": false,
+    //     "active": true,
+    //     "type": "S",
+    //     "recurring": false,
+    //     "recurring_time_delta": 0,
+    //     "description": "string",
+    //     "course_id": 1,
+    //     "assignment_id": 24
+    // },  
     // {
-    //     taskId: 12,
-    //     title: "feed cat",
-    //     dueDate: new Date(2023, 2, 30),
-    //     completed: false,
-    //     recurring: true,
-    //     recurrenceTimeDelta: 0,
-    //     completion_status: 2,
-    //     course: "None",
-    //     description: "feed cat"
-    // },
+    //     "username": 0,
+    //     "title": "Milestone 2 Demo",
+    //     "completed_date": "2023-03-28",
+    //     "completed": false,
+    //     "active": true,
+    //     "type": "S",
+    //     "recurring": false,
+    //     "recurring_time_delta": 0,
+    //     "description": "string",
+    //     "course_id": 1,
+    //     "assignment_id": 24
+    // },  
     // {
-    //     taskId: 13,
-    //     title: "feed cat",
-    //     dueDate: new Date(2023, 2, 30),
-    //     completed: false,
-    //     recurring: true,
-    //     recurrenceTimeDelta: 0,
-    //     completion_status: 2,
-    //     course: "None",
-    //     description: "feed cat"
-    // },
+    //     "username": 0,
+    //     "title": "Milestone 2 Demo",
+    //     "completed_date": "2023-03-28",
+    //     "completed": false,
+    //     "active": true,
+    //     "type": "S",
+    //     "recurring": false,
+    //     "recurring_time_delta": 0,
+    //     "description": "string",
+    //     "course_id": 1,
+    //     "assignment_id": 24
+    // },  
     // {
-    //     taskId: 14,
-    //     title: "feed cat",
-    //     dueDate: new Date(2023, 2, 30),
-    //     completed: false,
-    //     recurring: true,
-    //     recurrenceTimeDelta: 0,
-    //     completion_status: 2,
-    //     course: "None",
-    //     description: "feed cat"
-    // },
+    //     "username": 0,
+    //     "title": "Milestone 2 Demo",
+    //     "completed_date": "2023-03-28",
+    //     "completed": false,
+    //     "active": true,
+    //     "type": "S",
+    //     "recurring": false,
+    //     "recurring_time_delta": 0,
+    //     "description": "string",
+    //     "course_id": 1,
+    //     "assignment_id": 24
+    // },  
     // {
-    //     taskId: 15,
-    //     title: "feed cat",
-    //     dueDate: new Date(2023, 2, 30),
-    //     completed: false,
-    //     recurring: true,
-    //     recurrenceTimeDelta: 0,
-    //     completion_status: 2,
-    //     course: "None",
-    //     description: "feed cat"
-    // },
+    //     "username": 0,
+    //     "title": "Milestone 2 Demo",
+    //     "completed_date": "2023-03-28",
+    //     "completed": false,
+    //     "active": true,
+    //     "type": "S",
+    //     "recurring": false,
+    //     "recurring_time_delta": 0,
+    //     "description": "string",
+    //     "course_id": 1,
+    //     "assignment_id": 24
+    // },  
     // {
-    //     taskId: 16,
-    //     title: "feed cat",
-    //     dueDate: new Date(2023, 2, 30),
-    //     completed: false,
-    //     recurring: true,
-    //     recurrenceTimeDelta: 0,
-    //     completion_status: 2,
-    //     course: "None",
-    //     description: "feed cat"
-    // },
-
+    //     "username": 0,
+    //     "title": "Milestone 2 Demo",
+    //     "completed_date": "2023-03-28",
+    //     "completed": false,
+    //     "active": true,
+    //     "type": "S",
+    //     "recurring": false,
+    //     "recurring_time_delta": 0,
+    //     "description": "string",
+    //     "course_id": 1,
+    //     "assignment_id": 24
+    // },  
+    
 ]
-// int task_id PK
-// charfield username FK
-// datetime due_date "optional"
-// bool completed "default = False"
-// bool recurring "default = False"
-// int recurrence_time_delta "optional default = 0, required if recurring"
-// int completion_status "1-4"
-// charfield course "optional - link Canvas task with course"
-// textfield description "optional field giving notes about task"
-
-
-// -int taskId
-// -String username
-// -datetime dueDate
-// -bool completed
-// -bool recurring
-// -int recurrenceTimeDelta
-// -String course
-// -String description
 
 
 
@@ -267,4 +455,4 @@ const inventory = [
 
 ]
 
-export default {tasks, avatarInfo, inventory, userInfo}
+export default {tasks, tasks2, tasks3, avatarInfo, inventory, userInfo}
