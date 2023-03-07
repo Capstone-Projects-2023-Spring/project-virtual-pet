@@ -1,5 +1,5 @@
 /* flex container */
-.pet-display {
+.pet-display-extra {
     width: 40%;
     /* height: auto; */
     display: flex;
@@ -10,9 +10,11 @@
     padding: 10px;
 }
 
-.petDis {
+.pet-display {
     border-right-style: solid;
+
 }
+
 
 .p-sprite-display {
     display: flex;
@@ -86,6 +88,7 @@
     padding: 5px;
     margin: 5px;
     text-align: left;
+    height: 15vh;
 
 }
 
@@ -103,7 +106,7 @@
 }
 
 
-.petDis .card {
+.pet-display .card {
     border-style: none;
     /* border-color: black; */
     border-radius: 0px;

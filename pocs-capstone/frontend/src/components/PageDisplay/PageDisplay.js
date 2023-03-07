@@ -13,14 +13,14 @@ import Nav from 'react-bootstrap/Nav';
 import tasks from '../../services/tasks'
 
 
-const PageDisplay = ({avatarInfo, setAvatarInfo, inventory, setInventory}) => {
+const PageDisplay = ({ avatarInfo, setAvatarInfo, inventory, setInventory }) => {
     const [taskList, setTaskList] = useState([])
 
     const fetchData = () => {
-        tasks
-            .getTasks("USERNAME")
-            .then(r => {setTaskList(r)})
-        // setTaskList(tasks.getTasks("ccho"))
+        // tasks
+        //     .getTasks("USERNAME")
+        //     .then(r => {setTaskList(r)})
+        setTaskList(tasks.getTasks())
     }
 
     useEffect(fetchData, [])
@@ -35,12 +35,16 @@ const PageDisplay = ({avatarInfo, setAvatarInfo, inventory, setInventory}) => {
                 className="mb-3"
                 justify
             >
-        
+
+
                 <Tab eventKey="tasks" title="Tasks">
-                    <TaskPage {...{taskList, setAvatarInfo, setInventory, setTaskList}}/>
+
+                    <TaskPage {...{ taskList, setAvatarInfo, setInventory, setTaskList }} />
+
+                    
                 </Tab>
                 <Tab eventKey="calendar" title="Calendar">
-                    <CalendarPage/>
+                    <CalendarPage />
                 </Tab>
                 <Tab eventKey="inventory" title="Inventory">
                     {/* <Sonnet /> */}
