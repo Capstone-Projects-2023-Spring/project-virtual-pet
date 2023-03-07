@@ -1,13 +1,758 @@
+openapi: 3.0.3
 info:
-  description: ''
   title: ''
-  version: ''
-openapi: 3.0.0
+  version: 0.0.0
 paths:
+  /api/token/:
+    post:
+      operationId: api_token_create
+      description: |-
+        Takes a set of user credentials and returns an access and refresh JSON web
+        token pair to prove the authentication of those credentials.
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TokenObtainPair'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/TokenObtainPair'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/TokenObtainPair'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenObtainPair'
+          description: ''
+  /api/token/refresh/:
+    post:
+      operationId: api_token_refresh_create
+      description: |-
+        Takes a refresh type JSON web token and returns an access type JSON web
+        token if the refresh token is valid.
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TokenRefresh'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/TokenRefresh'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/TokenRefresh'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenRefresh'
+          description: ''
+  /api/token/verify/:
+    post:
+      operationId: api_token_verify_create
+      description: |-
+        Takes a token and indicates if it is valid.  This view provides no
+        information about a token's fitness for a particular use.
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TokenVerify'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/TokenVerify'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/TokenVerify'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenVerify'
+          description: ''
+  /avatar/:
+    get:
+      operationId: avatar_list
+      tags:
+      - avatar
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Avatar'
+          description: ''
+    post:
+      operationId: avatar_create
+      tags:
+      - avatar
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Avatar'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Avatar'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Avatar'
+        required: true
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Avatar'
+          description: ''
+  /avatar/{id}/:
+    get:
+      operationId: avatar_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - avatar
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Avatar'
+          description: ''
+    put:
+      operationId: avatar_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - avatar
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Avatar'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Avatar'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Avatar'
+        required: true
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Avatar'
+          description: ''
+    patch:
+      operationId: avatar_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - avatar
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedAvatar'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedAvatar'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedAvatar'
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Avatar'
+          description: ''
+    delete:
+      operationId: avatar_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - avatar
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '204':
+          description: No response body
+  /inventory/:
+    get:
+      operationId: inventory_list
+      tags:
+      - inventory
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Inventory'
+          description: ''
+    post:
+      operationId: inventory_create
+      tags:
+      - inventory
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Inventory'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Inventory'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Inventory'
+        required: true
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Inventory'
+          description: ''
+  /inventory/{id}/:
+    get:
+      operationId: inventory_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - inventory
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Inventory'
+          description: ''
+    put:
+      operationId: inventory_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - inventory
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Inventory'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Inventory'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Inventory'
+        required: true
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Inventory'
+          description: ''
+    patch:
+      operationId: inventory_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - inventory
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedInventory'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedInventory'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedInventory'
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Inventory'
+          description: ''
+    delete:
+      operationId: inventory_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - inventory
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '204':
+          description: No response body
   /register/:
     post:
       operationId: register_create
       tags:
       - register
-servers:
-- url: ''
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          description: No response body
+  /tasks/:
+    get:
+      operationId: tasks_list
+      tags:
+      - tasks
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Task'
+          description: ''
+    post:
+      operationId: tasks_create
+      tags:
+      - tasks
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Task'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Task'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Task'
+        required: true
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Task'
+          description: ''
+  /tasks/{id}/:
+    get:
+      operationId: tasks_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - tasks
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Task'
+          description: ''
+    put:
+      operationId: tasks_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - tasks
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Task'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Task'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Task'
+        required: true
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Task'
+          description: ''
+    patch:
+      operationId: tasks_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - tasks
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedTask'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedTask'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedTask'
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Task'
+          description: ''
+    delete:
+      operationId: tasks_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - tasks
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '204':
+          description: No response body
+components:
+  schemas:
+    Avatar:
+      type: object
+      properties:
+        avatar_owner:
+          type: integer
+        avatar_type:
+          $ref: '#/components/schemas/AvatarTypeEnum'
+        total_xp:
+          type: integer
+        last_interaction:
+          type: string
+          format: date
+        last_feed:
+          type: string
+          format: date
+        pet_name:
+          type: string
+          maxLength: 32
+        flavour_text:
+          type: string
+          maxLength: 256
+      required:
+      - avatar_owner
+      - flavour_text
+    AvatarTypeEnum:
+      enum:
+      - CT
+      - DG
+      - CR
+      - RK
+      type: string
+      description: |-
+        * `CT` - Cat
+        * `DG` - Dog
+        * `CR` - Crab
+        * `RK` - Rock
+    CandyBaseTypeEnum:
+      enum:
+      - S
+      - M
+      - L
+      - C
+      type: string
+      description: |-
+        * `S` - SMALL
+        * `M` - MEDIUM
+        * `L` - LARGE
+        * `C` - CAKE
+    CandyLevelEnum:
+      enum:
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      type: integer
+      description: |-
+        * `1` - Beginner
+        * `2` - Novice
+        * `3` - Intermediate
+        * `4` - Advanced
+        * `5` - Expert
+    Inventory:
+      type: object
+      properties:
+        inventory_owner:
+          type: integer
+        candy_base_type:
+          $ref: '#/components/schemas/CandyBaseTypeEnum'
+        candy_level:
+          $ref: '#/components/schemas/CandyLevelEnum'
+        quantity:
+          type: integer
+      required:
+      - candy_base_type
+      - candy_level
+      - inventory_owner
+    PatchedAvatar:
+      type: object
+      properties:
+        avatar_owner:
+          type: integer
+        avatar_type:
+          $ref: '#/components/schemas/AvatarTypeEnum'
+        total_xp:
+          type: integer
+        last_interaction:
+          type: string
+          format: date
+        last_feed:
+          type: string
+          format: date
+        pet_name:
+          type: string
+          maxLength: 32
+        flavour_text:
+          type: string
+          maxLength: 256
+    PatchedInventory:
+      type: object
+      properties:
+        inventory_owner:
+          type: integer
+        candy_base_type:
+          $ref: '#/components/schemas/CandyBaseTypeEnum'
+        candy_level:
+          $ref: '#/components/schemas/CandyLevelEnum'
+        quantity:
+          type: integer
+    PatchedTask:
+      type: object
+      properties:
+        username:
+          type: integer
+        due_date:
+          type: string
+          readOnly: true
+        created_date:
+          type: string
+          readOnly: true
+        completed_date:
+          type: string
+          format: date
+        completed:
+          type: boolean
+        active:
+          type: boolean
+        type:
+          $ref: '#/components/schemas/TypeEnum'
+        recurring:
+          type: boolean
+        recurring_time_delta:
+          type: integer
+        description:
+          type: string
+        course_id:
+          type: integer
+        assignment_id:
+          type: integer
+    Task:
+      type: object
+      properties:
+        username:
+          type: integer
+        due_date:
+          type: string
+          readOnly: true
+        created_date:
+          type: string
+          readOnly: true
+        completed_date:
+          type: string
+          format: date
+        completed:
+          type: boolean
+        active:
+          type: boolean
+        type:
+          $ref: '#/components/schemas/TypeEnum'
+        recurring:
+          type: boolean
+        recurring_time_delta:
+          type: integer
+        description:
+          type: string
+        course_id:
+          type: integer
+        assignment_id:
+          type: integer
+      required:
+      - created_date
+      - due_date
+      - username
+    TokenObtainPair:
+      type: object
+      properties:
+        email:
+          type: string
+          writeOnly: true
+        password:
+          type: string
+          writeOnly: true
+        access:
+          type: string
+          readOnly: true
+        refresh:
+          type: string
+          readOnly: true
+      required:
+      - access
+      - email
+      - password
+      - refresh
+    TokenRefresh:
+      type: object
+      properties:
+        access:
+          type: string
+          readOnly: true
+        refresh:
+          type: string
+          writeOnly: true
+      required:
+      - access
+      - refresh
+    TokenVerify:
+      type: object
+      properties:
+        token:
+          type: string
+          writeOnly: true
+      required:
+      - token
+    TypeEnum:
+      enum:
+      - S
+      - M
+      - L
+      - C
+      type: string
+      description: |-
+        * `S` - SMALL
+        * `M` - MEDIUM
+        * `L` - LARGE
+        * `C` - CAKE
+  securitySchemes:
+    jwtAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
