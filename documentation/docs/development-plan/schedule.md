@@ -24,88 +24,90 @@ gantt
         section Software Development Plan
         Submit Software Development Plan Assignment: milestone, 2023-02-12, 1d
 
-        section Account Creation & Pet Selection
+        section Account Creation, Pet Basics, & Canvas Integration
         Sprint 1: , 2023-02-15, 2w
-        section Account Creation & Pet Selection
+        section Account Creation, Pet Basics, & Canvas Integration
         Sprint 1 Planning Meeting: active, 2023-02-15, 1d
-        section Account Creation & Pet Selection
+        section Account Creation, Pet Basics, & Canvas Integration
         Research/learn React, Django:  , 2023-02-16, 13d
-        section Account Creation & Pet Selection
+        section Account Creation, Pet Basics, & Canvas Integration
         Create user account management system:  , 2023-02-16, 5d
-        section Account Creation & Pet Selection
+        section Account Creation, Pet Basics, & Canvas Integration
         Decide on pet art style:  , 2023-02-16, 2d
-        section Account Creation & Pet Selection
+        section Account Creation, Pet Basics, & Canvas Integration
         Create static pet art:  , 2023-02-16, 4d
-        section Account Creation & Pet Selection
+        section Account Creation, Pet Basics, & Canvas Integration
         Complete Design Document Part 1:  , 2023-02-18, 5d
-        section Account Creation & Pet Selection
+        section Account Creation, Pet Basics, & Canvas Integration
         Submit Design Document Part 1 (Architecture) Assignment: milestone, , 2023-02-19, 1d
-        section Account Creation & Pet Selection
+        section Account Creation, Pet Basics, & Canvas Integration
         Complete Design Document Part 2:  , 2023-02-23, 5d
-        section Account Creation & Pet Selection
+        section Account Creation, Pet Basics, & Canvas Integration
         Submit Design Document Part 2 (API) Assignment: milestone, , 2023-02-26, 1d
 
         
-        section Account Creation & Pet Selection
+        section Account Creation, Pet Basics, & Canvas Integration
         Sprint 2: , 2023-03-01, 2w
-        section Account Creation & Pet Selection
+        section Account Creation, Pet Basics, & Canvas Integration
         Sprint Planning Meeting: active, 2023-03-01, 1d
-        section Account Creation & Pet Selection
+        section Account Creation, Pet Basics, & Canvas Integration
         Create API: , 2023-03-02, 5d
-        section Account Creation & Pet Selection
+        section Account Creation, Pet Basics, & Canvas Integration
         Pet naming/selection: , 2023-03-04, 4d
-        section Account Creation & Pet Selection
+        section Account Creation, Pet Basics, & Canvas Integration
         Set up Canvas integration: , 2023-03-05, 5d
-        section Account Creation & Pet Selection
+        section Account Creation, Pet Basics, & Canvas Integration
         Create pet display : , 2023-03-05, 5d
-        section Account Creation & Pet Selection
+        section Account Creation, Pet Basics, & Canvas Integration
         Create account information page : , 2023-03-07, 5d
-        section Account Creation & Pet Selection
+        section Account Creation, Pet Basics, & Canvas Integration
         Viewable task list : , 2023-03-08, 5d
-        section Account Creation & Pet Selection
+        section Account Creation, Pet Basics, & Canvas Integration
         Settings Menu : , 2023-03-09, 3d
-        section Account Creation & Pet Selection
+        section Account Creation, Pet Basics, & Canvas Integration
+        User can import tasks from Canvas: , 2023-03-07, 5d
+        section Account Creation, Pet Basics, & Canvas Integration
         Host site: milestone, , 2023-03-09, 3d
-        section Account Creation & Pet Selection
+        section Account Creation, Pet Basics, & Canvas Integration
         Complete Test Procedures Document: , 2023-03-01, 5d
-        section Account Creation & Pet Selection
+        section Account Creation, Pet Basics, & Canvas Integration
         Submit Test Procedures Document Assignment: milestone, , 2023-03-05, 1d
-        section Account Creation & Pet Selection
+        section Account Creation, Pet Basics, & Canvas Integration
         Milestone Demo 1 :crit, milestone,  , 2023-03-14, 1d
 
-        section Progression Logic & Calendar Display
+        section Progression System & Full Task Functionality
         Sprint 3: , 2023-03-15, 2w
-        section Progression Logic & Calendar Display
+        section Progression System & Full Task Functionality
         Sprint Planning Meeting: active , 2023-03-15, 1d
-        section Progression Logic & Calendar Display
+        section Progression System & Full Task Functionality
         User can create Canvas-independent tasks: active , 2023-03-16, 3d
-        section Progression Logic & Calendar Display
-        User can import tasks from Canvas: , 2023-03-18, 5d
-        section Progression Logic & Calendar Display
+        section Progression System & Full Task Functionality
         User can complete and organize tasks: , 2023-03-20, 4d
-        section Progression Logic & Calendar Display
+        section Progression System & Full Task Functionality
+        Implement progression system graphically: , 2023-03-20, 1w
+        section Progression System & Full Task Functionality
+        Pet can be fed candies: , 2023-03-21, 2d
+        section Progression System & Full Task Functionality
         Create the calendar page: , 2023-03-22, 5d
-        section Progression Logic & Calendar Display
+        section Progression System & Full Task Functionality
         Create progress page: , 2023-03-23, 5d
-        section Progression Logic & Calendar Display
+        section Progression System & Full Task Functionality
+        Create inventory page: , 2023-03-24, 3d
+        section Progression System & Full Task Functionality
         More pet options: , 2023-03-24, 3d
-        section Progression Logic & Calendar Display
+        section Progression System & Full Task Functionality
         Milestone Demo 2 :crit, milestone,  , 2023-03-28, 1d
 
         
-        section Pet Interaction & Progression
+        section Detailed Pet Interactions & Task Reminders
         Sprint 4: , 2023-03-29, 2w
-        section Pet Interaction & Progression
+        section Detailed Pet Interactions & Task Reminders
         Sprint Planning Meeting: active , 2023-03-29, 1d
-        section Pet Interaction & Progression
+        section Detailed Pet Interactions & Task Reminders
         Make the pet reactive + Multiple frames for each tier: , 2023-03-30, 5d
-        section Pet Interaction & Progression
-        Pet can be fed candies: active , 2023-04-03, 2d
-        section Pet Interaction & Progression
-        Create inventory page: , 2023-04-05, 3d
-        section Pet Interaction & Progression
-        Implement progression system graphically: , 2023-04-04, 1w
-        section Pet Interaction & Progression
+        section Detailed Pet Interactions & Task Reminders
+        Create task/assignment reminders: , 2023-04-05, 5d
+        section Detailed Pet Interactions & Task Reminders
         Milestone Demo 3 :crit, milestone,  , 2023-04-11, 1d
 
         section Final Demo
@@ -117,8 +119,6 @@ gantt
         section Final Demo
         Add more states/customizations to pet(s): , 2023-04-16, 5d
         section Final Demo
-        Create task/assignment reminders:, 2023-04-18, 3d
-        section Final Demo
         Final Presentation & Demo :crit, milestone,  , 2023-04-27, 1d
         section Final Demo
         Submit Test Report Document Assignment: milestone, , 2023-05-06, 1d
@@ -127,7 +127,7 @@ gantt
 ```
 ## Milestone Demo Features
 
-### Milestone Demo 1 [Account Creation & Pet Selection]
+### Milestone Demo 1 [Account Creation, Pet Basics, & Canvas Integration]
 
 - F1: Account Management
     - R1: User is able to register new account.
@@ -153,7 +153,7 @@ gantt
     - R4: Tasks will have a name, course with which it is associated, and a description.
 
 
-### Milestone Demo 2 [Progression Logic & Calendar Display]
+### Milestone Demo 2 [Progression System & Full Task Functionality]
 
 - F6: Task Completion and Task Creation
     - R1: User can fill out a form to create a task.
@@ -182,7 +182,7 @@ gantt
     - R4: See your progress towards completion of specific tasks in the Progress page
 
 
-### Milestone Demo 3 [Pet Interaction & Visually Representing Progression]
+### Milestone Demo 3 [Detailed Pet Interactions & Task Reminders]
 
 - F12: Make the pet reactive; its mood will visually change
     - R1: User’s progress and task completion will result in virtual pet mood changes.
