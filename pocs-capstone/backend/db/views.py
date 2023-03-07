@@ -58,7 +58,6 @@ class AvatarViewSet(viewsets.ModelViewSet):
     # query tasks by user. 
     def get_queryset(self):
         _user = self.request.user
-        print(_user)
         return Avatar.objects.filter(user=_user)
 
 class InventoryViewSet(viewsets.ModelViewSet):
