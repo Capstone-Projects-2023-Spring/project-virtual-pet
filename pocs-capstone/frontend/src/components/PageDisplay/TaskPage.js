@@ -16,7 +16,7 @@ const TaskPage = ({taskList, setAvatarInfo, setInventory, setTaskList}) => {
     const [showCreateTask, setShowCreateTask] = useState(false);
     const handleClose = () => setShowCreateTask(false);
     const handleShow = () => setShowCreateTask(true);
-    console.log(taskList)
+    console.log("??", taskList)
     return (
         <div className="mini-page">
             <Card className='tasklist-position'>
