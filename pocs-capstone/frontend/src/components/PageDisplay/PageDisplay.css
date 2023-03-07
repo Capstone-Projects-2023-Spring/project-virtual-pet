@@ -41,7 +41,7 @@
 
 .task-scroll {
     /* min-height: 20vh; */
-    height: 100vh;
+    max-height: 80vh;
     border-radius: 0px;
 
     margin-bottom: 10px;
