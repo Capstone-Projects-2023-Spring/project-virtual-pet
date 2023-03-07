@@ -23,8 +23,8 @@ const PageDisplay = ({ avatarInfo, setAvatarInfo, inventory, setInventory }) => 
         setTaskList(tasks.getTasks())
     }
 
-    useEffect(fetchData, [])
-    console.log("Loading fetch data tasks", taskList, "data fetched ")
+    // useEffect(fetchData, [])
+    // console.log("Loading fetch data tasks", taskList, "data fetched ")
 
 
     return (
