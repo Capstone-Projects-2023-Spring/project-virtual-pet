@@ -34,33 +34,44 @@ class CustomUserCreate(APIView):
                 return Response(status=status.HTTP_201_CREATED)
         return Response(registration_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
-    
+
+
 class TaskViewSet(viewsets.ModelViewSet):
     
     serializer_class = TaskSerializer
     
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
+        #return super().perform_create(self,serializer)
     # query tasks by user. 
     def get_queryset(self):
-        user = self.request.user
-        return Task.objects.filter(user)
+        _user = self.request.user
+        return Task.objects.filter(user=_user)
     
 class AvatarViewSet(viewsets.ModelViewSet):
     
     serializer_class = AvatarSerializer
-    
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
+        #return super().perform_create(self,serializer)
     # query tasks by user. 
     def get_queryset(self):
-        user = self.request.user
-        return Avatar.objects.filter(user)
+        _user = self.request.user
+        print(_user)
+        return Avatar.objects.filter(user=_user)
 
 class InventoryViewSet(viewsets.ModelViewSet):
     
     serializer_class = InventorySerializer
     
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
+        #return super().perform_create(self,serializer)
     # query tasks by user. 
     def get_queryset(self):
-        user = self.request.user
-        return Inventory.objects.filter(user)
+        _user = self.request.user
+        return Inventory.objects.filter(user=_user)
 
 
 

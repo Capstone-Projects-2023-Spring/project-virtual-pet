@@ -24,7 +24,7 @@ explicitly including all here.
 class AvatarSerializer(serializers.ModelSerializer):
     class Meta:
         model = Avatar
-        fields = ['avatar_owner',
+        fields = [#'avatar_owner',
                  'avatar_type',
                  'total_xp',
                  'last_interaction',
@@ -35,13 +35,14 @@ class TaskSerializer(serializers.ModelSerializer):
     class Meta:
         model = Task
         fields = [
-            'username',
+            #'username',
             'due_date',
             'created_date',
             'completed_date',
             'completed',
             'active',
-            'type',
+            'task_type',
+            'task_level',
             'recurring',
             'recurring_time_delta',
             'description',
@@ -54,7 +55,7 @@ class InventorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Inventory
         fields = [
-            'inventory_owner',
+            #'inventory_owner',
             'candy_base_type',
             'candy_level',
             'quantity'
