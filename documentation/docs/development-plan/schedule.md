@@ -65,6 +65,8 @@ gantt
         section Account Creation & Pet Selection
         Settings Menu : , 2023-03-09, 3d
         section Account Creation & Pet Selection
+        User can import tasks from Canvas: , 2023-03-07, 5d
+        section Account Creation & Pet Selection
         Host site: milestone, , 2023-03-09, 3d
         section Account Creation & Pet Selection
         Complete Test Procedures Document: , 2023-03-01, 5d
@@ -80,13 +82,17 @@ gantt
         section Progression Logic & Calendar Display
         User can create Canvas-independent tasks: active , 2023-03-16, 3d
         section Progression Logic & Calendar Display
-        User can import tasks from Canvas: , 2023-03-18, 5d
-        section Progression Logic & Calendar Display
         User can complete and organize tasks: , 2023-03-20, 4d
+        section Progression Logic & Calendar Display
+        Implement progression system graphically: , 2023-03-20, 1w
+        section Progression Logic & Calendar Display
+        Pet can be fed candies: , 2023-03-21, 2d
         section Progression Logic & Calendar Display
         Create the calendar page: , 2023-03-22, 5d
         section Progression Logic & Calendar Display
         Create progress page: , 2023-03-23, 5d
+        section Progression Logic & Calendar Display
+        Create inventory page: , 2023-03-24, 3d
         section Progression Logic & Calendar Display
         More pet options: , 2023-03-24, 3d
         section Progression Logic & Calendar Display
@@ -100,11 +106,7 @@ gantt
         section Pet Interaction & Progression
         Make the pet reactive + Multiple frames for each tier: , 2023-03-30, 5d
         section Pet Interaction & Progression
-        Pet can be fed candies: active , 2023-04-03, 2d
-        section Pet Interaction & Progression
-        Create inventory page: , 2023-04-05, 3d
-        section Pet Interaction & Progression
-        Implement progression system graphically: , 2023-04-04, 1w
+        Create task/assignment reminders: , 2023-04-05, 5d
         section Pet Interaction & Progression
         Milestone Demo 3 :crit, milestone,  , 2023-04-11, 1d
 
@@ -116,8 +118,6 @@ gantt
         Add more detailed animations for pet states.: active , 2023-04-13, 5d
         section Final Demo
         Add more states/customizations to pet(s): , 2023-04-16, 5d
-        section Final Demo
-        Create task/assignment reminders:, 2023-04-18, 3d
         section Final Demo
         Final Presentation & Demo :crit, milestone,  , 2023-04-27, 1d
         section Final Demo
