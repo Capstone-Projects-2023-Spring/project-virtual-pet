@@ -20,6 +20,35 @@ const PageDisplay = ({ avatarInfo, setAvatarInfo, inventory, setInventory }) => 
     const [newSize, setNewSize] = useState('S')
     const [newDate, setNewDate] = useState('')
 
+
+    const populateTask = () => {
+        const newTask = {
+            title: "testtask",
+            due_date: "2023-03-09",
+            created_date: new Date().toISOString(),
+            completed_date: "2023-03-08",
+            completed: false,
+            active: true,
+            task_type: "S",
+            task_level: 1,
+            recurring: false,
+            recurring_time_delta: 0,
+            description: "test description",
+            course_id: 0,
+            assignment_id: 0
+        }
+
+        for (let i = 0; i < 10; i++) {
+            tasks
+                .createTask(newTask)
+                .then(r => {
+                    setTaskList(taskList.concat(r))
+                })
+        }
+    }
+
+    // populateTask()
+
     const fetchData = () => {
         tasks
             .getTasks()

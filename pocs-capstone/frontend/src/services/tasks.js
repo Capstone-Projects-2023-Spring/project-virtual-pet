@@ -2,7 +2,7 @@
 
 import axios from 'axios'
 import mockUser from '../mockData/info.js'
-const token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjc4MjQxMDU5LCJpYXQiOjE2NzgyMzkyNTksImp0aSI6ImM1ZWNjYjNhZWNhZTRmZDI4NmE0NDVjZjg2YTAyN2VhIiwidXNlcl9pZCI6MX0.ICRmHijTXeTjgKtCrvYfNjd6_mWRcHk9bS7N8ErDMTI"
+const token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjc4MjQyOTY2LCJpYXQiOjE2NzgyNDExNjYsImp0aSI6IjQ0MmExYTBhZmE5NjQwMGNhMmY2NjNhY2RmMTY4NjM2IiwidXNlcl9pZCI6MX0.iGJNnQ1akfNfl5sNyO5kgn7FuaYXy6zVWWk96pWIWT4"
 const config = {
     headers: { Authorization: `Bearer ${token}` }
 };
