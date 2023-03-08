@@ -25,6 +25,7 @@ class AvatarSerializer(serializers.ModelSerializer):
     class Meta:
         model = Avatar
         fields = [#'avatar_owner',
+                'avatar_id',
                  'avatar_type',
                  'total_xp',
                  'last_interaction',
@@ -36,6 +37,8 @@ class TaskSerializer(serializers.ModelSerializer):
         model = Task
         fields = [
             #'username',
+            'task_id',
+            'title',
             'due_date',
             'created_date',
             'completed_date',
@@ -56,8 +59,8 @@ class InventorySerializer(serializers.ModelSerializer):
         model = Inventory
         fields = [
             #'inventory_owner',
+            'inventory_id',
             'candy_base_type',
             'candy_level',
             'quantity'
         ]
-

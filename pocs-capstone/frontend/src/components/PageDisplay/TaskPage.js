@@ -10,32 +10,33 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import CreateTaskForm from './CreateTaskForm';
 import TaskList from './TaskList'
-import {useState} from 'react';
+import { useState } from 'react';
 
-const TaskPage = ({taskList, setAvatarInfo, setInventory, setTaskList}) => {
+const TaskPage = ({ taskList, setAvatarInfo, setInventory, setTaskList, handleCompleteCheck }) => {
     const [showCreateTask, setShowCreateTask] = useState(false);
     const handleClose = () => setShowCreateTask(false);
     const handleShow = () => setShowCreateTask(true);
-    console.log("??", taskList)
+
+    // console.log("??", taskList)
     return (
         <div className="mini-page">
             <Card className='tasklist-position'>
                 <Card.Header>
-                <Stack direction="horizontal" gap={3}>
-                    <div className='to-do-header'>
-                    TO-DO:
-                    </div>
-                    <div className="ms-auto">
-                    <Button variant="primary" onClick={handleShow}>+ Create Task</Button>
-                    </div>
-                </Stack>
+                    <Stack direction="horizontal" gap={3}>
+                        <div className='to-do-header'>
+                            TO-DO:
+                        </div>
+                        <div className="ms-auto">
+                            <Button variant="primary" onClick={handleShow}>+ Create Task</Button>
+                        </div>
+                    </Stack>
                 </Card.Header>
 
-                <TaskList taskList={taskList}/>
-                
+                <TaskList {...{ taskList, handleCompleteCheck }} />
+
             </Card>
 
-            <CreateTaskForm show={showCreateTask} hide={handleClose}/>
+            <CreateTaskForm show={showCreateTask} hide={handleClose} />
         </div>
     )
 }

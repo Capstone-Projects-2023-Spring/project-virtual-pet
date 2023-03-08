@@ -2,7 +2,7 @@
 import ListGroup from 'react-bootstrap/ListGroup';
 import TaskItem from './TaskItem'
 
-const TaskList = ({ taskList }) => {
+const TaskList = ({ taskList, handleCompleteCheck }) => {
 
     if (taskList.length == 0) {
         return (
@@ -11,14 +11,12 @@ const TaskList = ({ taskList }) => {
                     No tasks yet.
                 </ListGroup.Item>
             </ListGroup>
-
-
         )
     }
 
     return (
         <ListGroup className="task-scroll">
-            {taskList.map(t => <TaskItem key={t.assignment_id} task={t} />)}
+            {taskList.map(t => <TaskItem key={t.task_id} task={t} handleCompleteCheck={handleCompleteCheck}/>)}
         </ListGroup>
 
     )

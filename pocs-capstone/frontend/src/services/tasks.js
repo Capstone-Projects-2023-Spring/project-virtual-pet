@@ -6,28 +6,22 @@ const token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNz
 const config = {
     headers: { Authorization: `Bearer ${token}` }
 };
-const baseURL = `${process.env.REACT_APP_DB_URL}/api`
+const baseURL = `${process.env.REACT_APP_DB_URL}/tasks/`
 
-
-// FIGURE OUT :
 
 const getTasks = () => {
-    // console.log(process.env.REACT_APP_DB_URL)
-    // const request = axios.get(`${baseURL}`,
-    // {
-    //     headers: config
-    // })
-    // return request.then(response => response.data)
-    return mockUser.tasks3
-}
-
-const createTask = (newNote) => {
-    const request = axios.post(baseURL, newNote)
+    console.log(process.env.REACT_APP_DB_URL)
+    const request = axios.get(baseURL, config)
     return request.then(response => response.data)
 }
 
-const updateTask = (noteID, updatedNote) => {
-    const request = axios.put(`${baseURL}/${noteID}`, updatedNote)
+const createTask = (newTask) => {
+    const request = axios.post(baseURL, newTask)
+    return request.then(response => response.data)
+}
+
+const updateTask = (taskID, updatedTask) => {
+    const request = axios.put(`${baseURL}${taskID}/`, updatedTask, config)
     return request.then(response => response.data)
 
 }
