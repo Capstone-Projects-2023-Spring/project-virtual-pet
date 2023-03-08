@@ -2,21 +2,21 @@
 
 import axios from 'axios'
 import mockUser from '../mockData/info.js'
-const token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjc4MTE2OTEyLCJpYXQiOjE2NzgxMTY4NTIsImp0aSI6ImNkNzY3MWY2Njg5MzQyY2NiOGE3MjAwNmNiZDFhYjFmIiwidXNlcl9pZCI6NX0.t2m4I1a1Wnv2HWhILYIv5OAHMZs73a-NUYpWwPpVyLE"
+const token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjc4MjQxMDU5LCJpYXQiOjE2NzgyMzkyNTksImp0aSI6ImM1ZWNjYjNhZWNhZTRmZDI4NmE0NDVjZjg2YTAyN2VhIiwidXNlcl9pZCI6MX0.ICRmHijTXeTjgKtCrvYfNjd6_mWRcHk9bS7N8ErDMTI"
 const config = {
     headers: { Authorization: `Bearer ${token}` }
 };
-const baseURL = `${process.env.REACT_APP_DB_URL}/tasks/`
+const baseURL = `${process.env.REACT_APP_DB_URL}tasks/`
 
 
 const getTasks = () => {
-    console.log(process.env.REACT_APP_DB_URL)
+
     const request = axios.get(baseURL, config)
     return request.then(response => response.data)
 }
 
 const createTask = (newTask) => {
-    const request = axios.post(baseURL, newTask)
+    const request = axios.post(baseURL, newTask, config)
     return request.then(response => response.data)
 }
 
@@ -26,6 +26,12 @@ const updateTask = (taskID, updatedTask) => {
 
 }
 
-const exportObj = {getTasks, createTask, updateTask}
+
+const deleteTask = (taskID) => {
+    const request = axios.delete(`${baseURL}${taskID}/`, config)
+    return request.then(response => response.data)
+}
+
+const exportObj = {getTasks, createTask, updateTask, deleteTask}
 export default exportObj
 

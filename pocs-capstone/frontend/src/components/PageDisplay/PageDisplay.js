@@ -15,11 +15,15 @@ import tasks from '../../services/tasks'
 
 const PageDisplay = ({ avatarInfo, setAvatarInfo, inventory, setInventory }) => {
     const [taskList, setTaskList] = useState([])
+    const [newTitle, setNewTitle] = useState('')
+    const [newDesc, setNewDesc] = useState('')
+    const [newSize, setNewSize] = useState('S')
+    const [newDate, setNewDate] = useState('')
 
     const fetchData = () => {
         tasks
             .getTasks()
-            .then(r => {setTaskList(r)})
+            .then(r => { setTaskList(r) })
         // setTaskList(tasks.getTasks())
     }
 
@@ -30,27 +34,81 @@ const PageDisplay = ({ avatarInfo, setAvatarInfo, inventory, setInventory }) => 
     const handleCompleteCheck = (id) => {
         const taskItem = taskList.find(t => t.task_id === id)
         const taskItemChanged = { ...taskItem, completed: !taskItem.completed }
+
         tasks
             .updateTask(id, taskItemChanged)
             .then(r => {
                 setTaskList(taskList.map(t => t.task_id === id ? taskItemChanged : t))
-                console.log('NEW LIST', taskList)
             })
-            // .catch(error => {
-            //     setErrorMessage(
-            //         `Task '${t.title}' was already removed`
-            //     )
-            //     setTimeout(() => {
-            //         setErrorMessage(null)
-            //     }, 5000)
-            //     // alert(`the note '${note.content}' was already deleted from server`)
-
-            //     setTaskList(taskList.filter(t => t.task_id !== id))
-            // })
 
     }
 
-    
+    const addTask = (e) => {
+        e.preventDefault()
+
+        const newTask = {
+            title: newTitle,
+            due_date: newDate,
+            created_date: new Date().toISOString(),
+            completed_date: "2023-03-08",
+            completed: false,
+            active: true,
+            task_type: newSize,
+            task_level: 1,
+            recurring: false,
+            recurring_time_delta: 0,
+            description: newDesc,
+            course_id: 0,
+            assignment_id: 0
+        }
+
+        tasks
+            .createTask(newTask)
+            .then(r => {
+                setTaskList(taskList.concat(r))
+                setNewTitle('')
+                setNewDesc('')
+                setNewSize('S')
+                setNewDate('')
+            })
+    }
+
+
+    const deleteTask = (id) => {
+        const taskItem = taskList.find(t => t.task_id === id)
+        const taskItemChanged = { ...taskItem, completed: !taskItem.completed }
+        tasks
+            .deleteTask(id)
+            .then(r => {
+                setTaskList(taskList.filter(t => t.task_id !== id))
+            })
+    }
+
+    const handleTitleChange = (e) => { setNewTitle(e.target.value) }
+
+    const handleDescChange = (e) => { setNewDesc(e.target.value) }
+
+    const handleSizeChange = (e) => { setNewSize(e.target.value) }
+
+    const handleDateChange = (e) => { setNewDate(e.target.value) }
+
+    const handlers = {
+        taskList,
+        newTitle,
+        newDesc,
+        newSize,
+        newDate,
+        setAvatarInfo,
+        setInventory,
+        setTaskList,
+        handleCompleteCheck,
+        handleTitleChange,
+        handleDescChange,
+        handleSizeChange,
+        handleDateChange,
+        addTask,
+        deleteTask
+    }
 
 
 
@@ -66,7 +124,7 @@ const PageDisplay = ({ avatarInfo, setAvatarInfo, inventory, setInventory }) => 
 
                 <Tab eventKey="tasks" title="Tasks">
 
-                    <TaskPage {...{ taskList, setAvatarInfo, setInventory, setTaskList, handleCompleteCheck }} />
+                    <TaskPage {...handlers} />
 
 
                 </Tab>

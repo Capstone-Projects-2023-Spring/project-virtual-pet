@@ -2,7 +2,7 @@
 import ListGroup from 'react-bootstrap/ListGroup';
 import TaskItem from './TaskItem'
 
-const TaskList = ({ taskList, handleCompleteCheck }) => {
+const TaskList = ({ taskList, handleCompleteCheck, deleteTask }) => {
 
     if (taskList.length == 0) {
         return (
@@ -16,7 +16,7 @@ const TaskList = ({ taskList, handleCompleteCheck }) => {
 
     return (
         <ListGroup className="task-scroll">
-            {taskList.map(t => <TaskItem key={t.task_id} task={t} handleCompleteCheck={handleCompleteCheck}/>)}
+            {taskList.map(t => <TaskItem key={t.task_id} task={t} handleCompleteCheck={handleCompleteCheck} deleteTask={deleteTask}/>)}
         </ListGroup>
 
     )
