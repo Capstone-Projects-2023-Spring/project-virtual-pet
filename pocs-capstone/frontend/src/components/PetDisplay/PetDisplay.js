@@ -1,5 +1,4 @@
 import PetSprite from './PetSprite.js'
-import PetDesc from './PetDesc.js'
 import ProgressB from './ProgressB.js'
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
@@ -14,10 +13,7 @@ const PetDisplay = ({ avatarInfo, setAvatarInfo, inventory, setInventory }) => {
                 <Card.Header className='pet-name'>{avatarInfo.avatar_name}</Card.Header>
                 <PetSprite {...{ avatarInfo, setAvatarInfo, inventory, setInventory }} />
                 <ProgressB avatarInfo={avatarInfo} />
-
-
                     <Card.Body className='pd-bg'>
-                        {/* <Card.Title>Card Title</Card.Title> */}
 
                         <Card.Text className='pet-desc-text'>
                             Some quick example text to build on the card title and make up the
@@ -34,14 +30,7 @@ const PetDisplay = ({ avatarInfo, setAvatarInfo, inventory, setInventory }) => {
                             <div className='pet-label'>WEIGHT: </div>
                             <div>5 Paper Clips</div>
                         </ListGroup.Item>
-                        {/* <ListGroup.Item><div className='pet-label'>Vestibulum at eros</div></ListGroup.Item> */}
                     </ListGroup>
-
-
-                {/* <Card.Body>
-                    <Card.Link href="#">Card Link</Card.Link>
-                    <Card.Link href="#">Another Link</Card.Link>
-                </Card.Body> */}
             </Card>
         </div>
     )

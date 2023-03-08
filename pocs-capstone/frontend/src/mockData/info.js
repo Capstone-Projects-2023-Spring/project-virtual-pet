@@ -21,9 +21,6 @@ const avatarInfo = {
     birthday: new Date(2002, 4, 8),
     flavour_text: "emngeing"
 }
-
-const tasks2 = []
-const tasks3 = []
 const tasks = [
     {
         "task_id": 0,
@@ -238,4 +235,4 @@ const inventory = [
 
 ]
 
-export default {tasks, tasks2, tasks3, avatarInfo, inventory, userInfo}
+export default {tasks, avatarInfo, inventory, userInfo}

@@ -1,10 +1,13 @@
 
 import ListGroup from 'react-bootstrap/ListGroup';
 import TaskItem from './TaskItem'
+import TaskListContext from '../../context/TaskListContext'
+import { useContext } from 'react'
+// { taskList, handleCompleteCheck, deleteTask }
+const TaskList = () => {
+    const handlers = useContext(TaskListContext)
 
-const TaskList = ({ taskList, handleCompleteCheck, deleteTask }) => {
-
-    if (taskList.length == 0) {
+    if (handlers.taskList.length === 0) {
         return (
             <ListGroup variant="flush">
                 <ListGroup.Item className="d-flex justify-content-between align-items-start">
@@ -16,7 +19,7 @@ const TaskList = ({ taskList, handleCompleteCheck, deleteTask }) => {
 
     return (
         <ListGroup className="task-scroll">
-            {taskList.map(t => <TaskItem key={t.task_id} task={t} handleCompleteCheck={handleCompleteCheck} deleteTask={deleteTask}/>)}
+            {handlers.taskList.map(t => <TaskItem key={t.task_id} task={t} updateTask={handlers.updateTask} deleteTask={handlers.deleteTask}/>)}
         </ListGroup>
 
     )
