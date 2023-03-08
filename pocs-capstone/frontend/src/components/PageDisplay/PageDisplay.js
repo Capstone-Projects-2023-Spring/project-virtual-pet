@@ -1,92 +1,48 @@
 import "./PageDisplay.css"
-
+import TaskPage from "./TaskPage";
+import CalendarPage from "./CalendarPage"
+import TaskListContext from '../../context/TaskListContext'
+import tasks from '../../services/tasks'
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 
 import { useState, useEffect } from 'react'
-import TaskPage from "./TaskPage";
-import CalendarPage from "./CalendarPage"
-import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/Card';
-import Nav from 'react-bootstrap/Nav';
-
-import tasks from '../../services/tasks'
 
 
 const PageDisplay = ({ avatarInfo, setAvatarInfo, inventory, setInventory }) => {
     const [taskList, setTaskList] = useState([])
-    const [newTitle, setNewTitle] = useState('')
-    const [newDesc, setNewDesc] = useState('')
-    const [newSize, setNewSize] = useState('S')
-    const [newDate, setNewDate] = useState('')
-
-
-    const populateTask = () => {
-        const newTask = {
-            title: "testtask",
-            due_date: "2023-03-09",
-            created_date: new Date().toISOString(),
-            completed_date: "2023-03-08",
-            completed: false,
-            active: true,
-            task_type: "S",
-            task_level: 1,
-            recurring: false,
-            recurring_time_delta: 0,
-            description: "test description",
-            course_id: 0,
-            assignment_id: 0
-        }
-
-        for (let i = 0; i < 10; i++) {
-            tasks
-                .createTask(newTask)
-                .then(r => {
-                    setTaskList(taskList.concat(r))
-                })
-        }
-    }
-
-    // populateTask()
 
     const fetchData = () => {
         tasks
             .getTasks()
             .then(r => { setTaskList(r) })
-        // setTaskList(tasks.getTasks())
     }
 
     useEffect(fetchData, [])
-    // console.log("Loading fetch data tasks", taskList, "data fetched ")
 
-
-    const handleCompleteCheck = (id) => {
+    const updateTask = (id) => {
         const taskItem = taskList.find(t => t.task_id === id)
         const taskItemChanged = { ...taskItem, completed: !taskItem.completed }
-
         tasks
             .updateTask(id, taskItemChanged)
             .then(r => {
                 setTaskList(taskList.map(t => t.task_id === id ? taskItemChanged : t))
             })
-
     }
 
-    const addTask = (e) => {
-        e.preventDefault()
-
+    const addTask = (formValues) => {
         const newTask = {
-            title: newTitle,
-            due_date: newDate,
+            title: formValues.title,
+            due_date: formValues.due_date,
             created_date: new Date().toISOString(),
             completed_date: "2023-03-08",
             completed: false,
             active: true,
-            task_type: newSize,
+            task_type: formValues.size,
             task_level: 1,
             recurring: false,
             recurring_time_delta: 0,
-            description: newDesc,
+            description: formValues.description,
             course_id: 0,
             assignment_id: 0
         }
@@ -95,17 +51,10 @@ const PageDisplay = ({ avatarInfo, setAvatarInfo, inventory, setInventory }) => 
             .createTask(newTask)
             .then(r => {
                 setTaskList(taskList.concat(r))
-                setNewTitle('')
-                setNewDesc('')
-                setNewSize('S')
-                setNewDate('')
             })
     }
 
-
     const deleteTask = (id) => {
-        const taskItem = taskList.find(t => t.task_id === id)
-        const taskItemChanged = { ...taskItem, completed: !taskItem.completed }
         tasks
             .deleteTask(id)
             .then(r => {
@@ -113,61 +62,39 @@ const PageDisplay = ({ avatarInfo, setAvatarInfo, inventory, setInventory }) => 
             })
     }
 
-    const handleTitleChange = (e) => { setNewTitle(e.target.value) }
-
-    const handleDescChange = (e) => { setNewDesc(e.target.value) }
-
-    const handleSizeChange = (e) => { setNewSize(e.target.value) }
-
-    const handleDateChange = (e) => { setNewDate(e.target.value) }
-
     const handlers = {
         taskList,
-        newTitle,
-        newDesc,
-        newSize,
-        newDate,
         setAvatarInfo,
         setInventory,
-        setTaskList,
-        handleCompleteCheck,
-        handleTitleChange,
-        handleDescChange,
-        handleSizeChange,
-        handleDateChange,
+        updateTask,
         addTask,
         deleteTask
     }
 
-
-
     return (
-        <div className="page-display">
-            <Tabs
-                defaultActiveKey="tasks"
-                id="justify-tab-example"
-                className="mb-3"
-                justify
-            >
-
-
-                <Tab eventKey="tasks" title="Tasks">
-
-                    <TaskPage {...handlers} />
-
-
-                </Tab>
-                <Tab eventKey="calendar" title="Calendar">
-                    <CalendarPage />
-                </Tab>
-                <Tab eventKey="inventory" title="Inventory">
-                    {/* <Sonnet /> */}
-                </Tab>
-                <Tab eventKey="progress" title="Progress">
-                    {/* <Sonnet /> */}
-                </Tab>
-            </Tabs>
-        </div>
+        <TaskListContext.Provider value={handlers}>
+            <div className="page-display">
+                <Tabs
+                    defaultActiveKey="tasks"
+                    id="justify-tab-example"
+                    className="mb-3"
+                    justify
+                >
+                    <Tab eventKey="tasks" title="Tasks">
+                        <TaskPage />
+                    </Tab>
+                    <Tab eventKey="calendar" title="Calendar">
+                        <CalendarPage />
+                    </Tab>
+                    <Tab eventKey="inventory" title="Inventory">
+                        {/* <Sonnet /> */}
+                    </Tab>
+                    <Tab eventKey="progress" title="Progress">
+                        {/* <Sonnet /> */}
+                    </Tab>
+                </Tabs>
+            </div>
+        </TaskListContext.Provider>
     )
 }
 

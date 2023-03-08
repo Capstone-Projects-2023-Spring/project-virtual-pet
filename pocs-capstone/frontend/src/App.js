@@ -3,7 +3,7 @@
 import Header from './components/Header.js'
 import Main from './components/Main.js'
 import Footer from './components/Footer.js'
-import Stack from 'react-bootstrap/Stack';
+
 import { useState, useEffect } from 'react'
 
 import Register from './components/Register'
@@ -19,6 +19,7 @@ function App(){
 
   return (
 
+<<<<<<< HEAD
     <Routes>
       <Route path="/" element = {<Layout/>}>
         
@@ -33,5 +34,9 @@ function App(){
     </Routes>
 
   );
+=======
+    </div>
+  )
+>>>>>>> 22339129c (added context for tasklist and updated task form)
 }
 export default App

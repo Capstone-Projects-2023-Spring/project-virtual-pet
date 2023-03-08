@@ -6,7 +6,7 @@ import Stack from 'react-bootstrap/Stack';
 import CloseButton from 'react-bootstrap/CloseButton';
 
 
-const TaskItem = ({ task, handleCompleteCheck, deleteTask }) => {
+const TaskItem = ({ task, updateTask, deleteTask }) => {
 
 
 
@@ -32,15 +32,12 @@ const TaskItem = ({ task, handleCompleteCheck, deleteTask }) => {
 
 
     return (
-        // <ListGroup.Item className="d-flex justify-content-between align-items-start card-customized"></ListGroup.Item>
         <ListGroup.Item>
-
             <Stack direction="horizontal" gap={3}>
                 <div className='check-box-task'>
                     <Form>
                         <div key="default-checkbox" className="mb-3">
-                            {/* need to add onClick attribute to handle updating tasklist (function should be passed from page display) */}
-                            <Form.Check type="checkbox" id="default-checkbox" onClick={() => handleCompleteCheck(task.task_id)} />
+                            <Form.Check type="checkbox" id="default-checkbox" onClick={() => updateTask(task.task_id)} />
                         </div>
                     </Form>
                 </div>
@@ -49,14 +46,9 @@ const TaskItem = ({ task, handleCompleteCheck, deleteTask }) => {
                     <div>Due {calculateDueDate(task.due_date)}</div>
                 </div>
                 <div>
-                    <CloseButton onClick={() => deleteTask(task.task_id)}/>
+                    <CloseButton onClick={() => deleteTask(task.task_id)} />
                 </div>
-                {/* <div className="bg-light border">Third item</div> */}
             </Stack>
-
-
-
-
         </ListGroup.Item>
 
     )

@@ -1,6 +1,5 @@
 import './PetDisplay.css'
 import ProgressBar from 'react-bootstrap/ProgressBar';
-import Stack from 'react-bootstrap/Stack';
 
 const ProgressB = ({avatarInfo}) => {
     const max = 5000

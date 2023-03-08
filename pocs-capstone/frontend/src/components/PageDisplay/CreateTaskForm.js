@@ -2,10 +2,23 @@ import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
+import TaskListContext from '../../context/TaskListContext'
+import { useContext } from 'react'
+import Stack from 'react-bootstrap/Stack';
+import * as yup from "yup";
+import * as formik from 'formik'
 
-const CreateTaskForm = ({ showCreateTask, handleClose, newTitle, newDesc, newSize, newDate, handleTitleChange, handleDescChange, handleSizeChange, handleDateChange, addTask }) => {
 
+function CreateTaskForm({ showCreateTask, handleClose }) {
+  const handlers = useContext(TaskListContext);
 
+  const { Formik } = formik;
+  const schema = yup.object().shape({
+    title: yup.string().required(),
+    description: yup.string(),
+    size: yup.string().required(),
+    due_date: yup.string().required()
+  });
 
   return (
     <Modal backdrop="static" show={showCreateTask} onHide={handleClose}>
@@ -13,89 +26,120 @@ const CreateTaskForm = ({ showCreateTask, handleClose, newTitle, newDesc, newSiz
         <Modal.Title>Create Task</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <Form onSubmit={addTask}>
-          <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
 
+        <Formik
+          validationSchema={schema}
+          onSubmit={(values) => {
 
-            <Form.Label><b>Title</b></Form.Label>
+            handlers.addTask(values)
+            handleClose()
+          }}
+          initialValues={{
+            title: '',
+            description: '',
+            size: 'S',
+            due_date: '',
+          }}
+        >
+          {({
+            handleSubmit, handleChange, handleBlur, values, touched, isValid, errors,
+          }) => (
+            <Form noValidate onSubmit={handleSubmit}>
+              <Stack gap={2} className="col-md-12 mx-auto">
+                <Form.Group controlId="validationFormik01">
+                  <Form.Label>Title</Form.Label>
+                  <FloatingLabel
+                    controlId="floatingInput"
+                    label="Add a title..."
+                    className="mb-3"
+                  >
+                    <Form.Control
+                      type="text"
+                      placeholder="Add a title"
+                      name="title"
+                      value={values.title}
+                      onChange={handleChange}
+                      isInvalid={!!errors.title} />
 
-            <FloatingLabel
-              controlId="floatingInput"
-              label="Add a title"
-              className="mb-3"
-            >
-              <Form.Control type="title" placeholder="Add a title" value={newTitle} onChange={handleTitleChange} />
-            </FloatingLabel>
+                    <Form.Control.Feedback type="invalid">
+                      {errors.title}
+                    </Form.Control.Feedback>
+                  </FloatingLabel>
+                </Form.Group>
 
+                <br />
 
-          </Form.Group>
+                <Form.Group controlId="validationFormik02">
+                  <Form.Label>Description</Form.Label>
+                  <FloatingLabel controlId="floatingTextarea2" label="Add a description...">
+                    <Form.Control
+                      as="textarea"
+                      type="text"
+                      placeholder="Add a description"
+                      name="description"
+                      style={{ height: '100px' }}
+                      value={values.description}
+                      onChange={handleChange}/>
+                  </FloatingLabel>
+                </Form.Group>
 
-          <br />
+                <br />
 
-          <Form.Group
-            className="mb-3"
-            controlId="exampleForm.ControlTextarea1"
-          >
-            <Form.Label> <b>Description</b></Form.Label>
+                <Form.Group controlId="validationFormik03">
+                  <Form.Label>Task Size</Form.Label>
+                  <Form.Select
 
+                    placeholder="Select Size"
+                    name="size"
+                    value={values.size}
+                    onChange={handleChange}
+                    isInvalid={!!errors.size}
+                  >
+                    <option value="S">Small</option>
+                    <option value="M">Medium</option>
+                    <option value="L">Large</option>
+                    <option value="C">Cake</option>
+                  </Form.Select>
+                  <Form.Control.Feedback type="invalid">
+                    {errors.size}
+                  </Form.Control.Feedback>
+                </Form.Group>
 
-            <FloatingLabel controlId="floatingTextarea2" label="Comments">
-              <Form.Control
-                as="textarea"
-                placeholder="Add a description"
-                style={{ height: '100px' }}
-                value={newDesc}
-                onChange={handleDescChange}
-              />
-            </FloatingLabel>
+                <br />
 
-          </Form.Group>
-
-          <br />
-
-
-          <Form.Group
-            className="mb-3"
-            controlId="exampleForm.ControlTextarea1"
-          >
-            <Form.Label><b> Task Size </b></Form.Label>
-            <Form.Select aria-label="Default select example" value={newSize} onChange={handleSizeChange}>
-              <option value="S">Small</option>
-              <option value="M">Medium</option>
-              <option value="L">Large</option>
-              <option value="C">Cake</option>
-            </Form.Select>
-
-          </Form.Group>
-
-          <Form.Group
-            className="mb-3"
-            controlId="exampleForm.ControlTextarea1"
-          >
-            <br />
-            <Form.Label><b>Due Date</b></Form.Label>
-            {/* <Form.Control type="date" name='date_of_birth' error={errors.date_of_birth} ref={register} /> */}
-            <Form.Control type="date" name='date_of_birth' value={newDate} onChange={handleDateChange} />
-
-
-          </Form.Group>
-          <Modal.Footer>
-            <Button variant="secondary" onClick={handleClose}>
-              Close
-            </Button>
-            <Button type="submit" variant="primary" onClick={handleClose}>
-              Create Task
-            </Button>
-          </Modal.Footer>
-
-
-
-        </Form>
+                <Form.Group controlId="validationFormik04">
+                  <Form.Label>Due Date</Form.Label>
+                  <Form.Control
+                    type="date"
+                    placeholder="due_date"
+                    name="due_date"
+                    value={values.due_date}
+                    onChange={handleChange}
+                    isInvalid={!!errors.due_date} />
+                  <Form.Control.Feedback type="invalid">
+                    {errors.due_date}
+                  </Form.Control.Feedback>
+                </Form.Group>
+                <Button className="col-md-5 mx-auto" type="submit">Submit form</Button>
+              </Stack>
+            </Form>
+          )}
+        </Formik>
       </Modal.Body>
+    </Modal >
 
-    </Modal>
-  )
+
+
+
+
+  );
 }
 
 
 export default CreateTaskForm
+
+
+
+
+
+

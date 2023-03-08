@@ -1,19 +1,17 @@
 import './PageDisplay.css'
-import TabContent from 'react-bootstrap/TabContent'
 import Card from 'react-bootstrap/Card';
-
-
-
 import Stack from 'react-bootstrap/Stack';
-import NavDropdown from 'react-bootstrap/NavDropdown';
 import Button from 'react-bootstrap/Button';
-import Modal from 'react-bootstrap/Modal';
 import CreateTaskForm from './CreateTaskForm';
 import TaskList from './TaskList'
 import { useState } from 'react';
 
-const TaskPage = ({ taskList, newTitle, newDesc, newSize, newDate, setAvatarInfo, setInventory, setTaskList, handleCompleteCheck, handleTitleChange, handleDescChange, handleSizeChange, handleDateChange, addTask, deleteTask }) => {
+
+
+// { taskList, newTitle, newDesc, newSize, newDate, setAvatarInfo, setInventory, setTaskList, handleCompleteCheck, handleTitleChange, handleDescChange, handleSizeChange, handleDateChange, addTask, deleteTask }
+const TaskPage = () => {
     const [showCreateTask, setShowCreateTask] = useState(false);
+
     const handleClose = () => setShowCreateTask(false);
     const handleShow = () => setShowCreateTask(true);
 
@@ -31,10 +29,12 @@ const TaskPage = ({ taskList, newTitle, newDesc, newSize, newDate, setAvatarInfo
                         </div>
                     </Stack>
                 </Card.Header>
-                <TaskList {...{ taskList, handleCompleteCheck, deleteTask }} />
+                {/* <TaskList {...{ taskList, handleCompleteCheck, deleteTask }} /> */}
+                <TaskList/>
             </Card>
 
-            <CreateTaskForm {...{ showCreateTask, handleClose, newTitle, newDesc, newSize, newDate, handleTitleChange, handleDescChange, handleSizeChange, handleDateChange, addTask }} />
+            <CreateTaskForm {...{ showCreateTask, handleClose }}/>
+            {/* <CreateTaskForm {...{ showCreateTask, handleClose, newTitle, newDesc, newSize, newDate, handleTitleChange, handleDescChange, handleSizeChange, handleDateChange, addTask }} /> */}
 
         </div>
     )
