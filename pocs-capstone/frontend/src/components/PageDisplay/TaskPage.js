@@ -12,7 +12,7 @@ import CreateTaskForm from './CreateTaskForm';
 import TaskList from './TaskList'
 import { useState } from 'react';
 
-const TaskPage = ({ taskList, setAvatarInfo, setInventory, setTaskList, handleCompleteCheck }) => {
+const TaskPage = ({ taskList, newTitle, newDesc, newSize, newDate, setAvatarInfo, setInventory, setTaskList, handleCompleteCheck, handleTitleChange, handleDescChange, handleSizeChange, handleDateChange, addTask, deleteTask }) => {
     const [showCreateTask, setShowCreateTask] = useState(false);
     const handleClose = () => setShowCreateTask(false);
     const handleShow = () => setShowCreateTask(true);
@@ -31,12 +31,11 @@ const TaskPage = ({ taskList, setAvatarInfo, setInventory, setTaskList, handleCo
                         </div>
                     </Stack>
                 </Card.Header>
-
-                <TaskList {...{ taskList, handleCompleteCheck }} />
-
+                <TaskList {...{ taskList, handleCompleteCheck, deleteTask }} />
             </Card>
 
-            <CreateTaskForm show={showCreateTask} hide={handleClose} />
+            <CreateTaskForm {...{ showCreateTask, handleClose, newTitle, newDesc, newSize, newDate, handleTitleChange, handleDescChange, handleSizeChange, handleDateChange, addTask }} />
+
         </div>
     )
 }
