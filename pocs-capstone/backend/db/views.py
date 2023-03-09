@@ -32,6 +32,13 @@ class CustomUserCreate(APIView):
             newuser = registration_serializer.save()
             if newuser:
                 return Response(status=status.HTTP_201_CREATED)
+            
+        print(registration_serializer.errors)
+        errors = registration_serializer.errors
+        if('email' in errors.keys()):
+            return Response("Email is taken",status=status.HTTP_409_CONFLICT)
+        if('username' in errors.keys()):
+            return Response("Username is taken",status=status.HTTP_409_CONFLICT)
         return Response(registration_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
 

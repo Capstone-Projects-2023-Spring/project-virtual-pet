@@ -17,13 +17,13 @@ class CustomAccountManager(BaseUserManager):
     Overrides built-in user class and constructor.
     Extends BaseUserManager.
     """
-    def create_superuser(self,email,user_name,first_name,password,**other_fields):
+    def create_superuser(self,email,username,first_name,password,**other_fields):
         """Returns a superuser User object upon successful creation.
 
         :param email: user's email, unique
         :type email: str
-        :param user_name: user's username, unique
-        :type user_name: str
+        :param username: user's username, unique
+        :type username: str
         :param first_name: user's first name
         :type first_name: str
         :param password: user's password, hashed then stored
@@ -43,15 +43,15 @@ class CustomAccountManager(BaseUserManager):
             raise ValueError(
                 "Superuser must be superuser! 'is_superuser' must be True"
             )
-        return self.create_user(email,user_name,first_name,password,**other_fields)
+        return self.create_user(email,username,first_name,password,**other_fields)
     
-    def create_user(self,email,user_name,first_name,password,**other_fields):
+    def create_user(self,email,username,first_name,password,**other_fields):
         """Returns a standard User object upon successful creation.
 
         :param email: user's email, unique
         :type email: str
-        :param user_name: user's username, unique
-        :type user_name: str
+        :param username: user's username, unique
+        :type username: str
         :param first_name: user's first name
         :type first_name: str
         :param password: user's password, hashed then stored
@@ -65,7 +65,7 @@ class CustomAccountManager(BaseUserManager):
             ))
         
         email = self.normalize_email(email)
-        user = self.model(email=email,user_name=user_name,first_name=first_name,**other_fields)
+        user = self.model(email=email,username=username,first_name=first_name,**other_fields)
         user.set_password(password)
         user.save()
         return user
@@ -75,7 +75,7 @@ class NewUser(AbstractBaseUser,PermissionsMixin): #TODO rename to something less
     Extends AbstractBaseUser and PermissionsMixin.
     """
     email=models.EmailField(_('email address'),unique=True)
-    user_name = models.CharField(max_length=128,unique=True)
+    username = models.CharField(max_length=128,unique=True)
     first_name=models.CharField(max_length=128,unique=False)
     join_date=models.DateTimeField(default=timezone.now)
     birthday = models.DateField(null=True,blank=True, default=None)
@@ -86,12 +86,12 @@ class NewUser(AbstractBaseUser,PermissionsMixin): #TODO rename to something less
     objects = CustomAccountManager()
 
     USERNAME_FIELD = 'email' # to log in and authenticate !
-    REQUIRED_FIELDS = ['user_name','first_name'] 
+    REQUIRED_FIELDS = ['username','first_name'] 
 
     def __str__(self):
         """NewUser toString method
         """
-        return self.user_name
+        return self.username
 
 # Many to One relationship between user and petprofile
 # If user is deleted so is their pet profile
@@ -105,7 +105,7 @@ class Avatar(models.Model):
         DOG = "DG"
         CRAB = 'CR'
         ROCK = "RK"
-    
+    avatar_id = models.AutoField(primary_key=True)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE) 
     avatar_type = models.CharField(
         max_length=2,
@@ -149,7 +149,7 @@ class Inventory(models.Model):
         ADVANCED = 4, "Advanced"
         EXPERT = 5, "Expert"
 
-
+    inventory_id = models.AutoField(primary_key=True)
     user = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
     candy_base_type = models.CharField(max_length=1,choices=BaseType.choices)
     candy_level = models.PositiveIntegerField(choices=CandyLevel.choices)
@@ -179,6 +179,7 @@ class Task(models.Model):
         INTERMEDIATE = 3, "Intermediate"
         ADVANCED = 4, "Advanced"
         EXPERT = 5, "Expert"
+    task_id = models.AutoField(primary_key=True)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     title = models.CharField(max_length=128,default="A new task!")
     due_date = models.DateField(null=True,blank=True)

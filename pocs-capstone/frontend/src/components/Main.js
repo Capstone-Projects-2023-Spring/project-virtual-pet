@@ -1,5 +1,8 @@
 import PetDisplay from './PetDisplay/PetDisplay.js'
 import PageDisplay from './PageDisplay/PageDisplay.js'
+import useAuth from '../hooks/useAuth.js'
+import { Link, useNavigate, useLocation } from 'react-router-dom';
+
 import { useState } from 'react'
 
 import './Main.css'
