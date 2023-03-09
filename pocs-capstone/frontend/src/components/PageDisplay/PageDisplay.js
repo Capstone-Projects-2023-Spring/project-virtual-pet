@@ -91,6 +91,7 @@ const PageDisplay = ({ avatarInfo, setAvatarInfo, inventory, setInventory }) => 
                 >
                     <Tab eventKey="tasks" title="Tasks">
                         <TaskPage />
+                        
                     </Tab>
                     <Tab eventKey="calendar" title="Calendar">
                         <CalendarPage />
