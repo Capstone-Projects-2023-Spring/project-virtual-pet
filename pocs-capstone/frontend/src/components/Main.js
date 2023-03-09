@@ -7,7 +7,7 @@ import inventoryService from '../services/inventory'
 import avatarService from '../services/avatarInfo'
 
 const Main = ({userInfo}) => {
-    const [avatarInfo, setAvatarInfo] = useState({})
+    const [avatarInfo, setAvatar] = useState({})
     const [inventory, setInventory] = useState([])
 
     const fetchData = () => {
@@ -17,8 +17,8 @@ const Main = ({userInfo}) => {
         // avatarService
         //     .getAvatarInfo()
         //     .then(r => {setAvatarInfo(r)})
-        setAvatarInfo(avatarService.getAvatarInfo("ccho"))
-        setInventory(inventoryService.getInventory("ccho"))
+        setAvatar(avatarService.getAvatar("ccho"))
+        // setInventory(inventoryService.getInventory("ccho"))
     }
 
     useEffect(fetchData, [])

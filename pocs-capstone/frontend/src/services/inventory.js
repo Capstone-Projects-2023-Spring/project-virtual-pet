@@ -3,12 +3,11 @@
 import axios from 'axios'
 import mockUser from '../mockData/info.js'
 
-const baseURL = `${process.env.REACT_APP_DB_URL}/api`
+const baseURL = `${process.env.REACT_APP_DB_URL}/inventory/`
 
 const getInventory = (username) => {
-    // const request = axios.get(baseURL)
-    // return request.then(response => response.data)
-    return mockUser.inventory
+    const request = axios.get(baseURL)
+    return request.then(response => response.data)
 }
 
 const createInventoryItem = (newNote) => {
@@ -17,9 +16,8 @@ const createInventoryItem = (newNote) => {
 }
 
 const updateInventory = (inventoryID, updatedInvItem) => {
-    const request = axios.put(`${baseURL}/${inventoryID}`, updatedInvItem)
+    const request = axios.put(`${baseURL}${inventoryID}`, updatedInvItem)
     return request.then(response => response.data)
-
 }
 
 const exportObj = {getInventory, createInventoryItem, updateInventory}
