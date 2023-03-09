@@ -10,7 +10,6 @@ const baseURL = `${process.env.REACT_APP_DB_URL}/tasks/`
 
 
 const getTasks = () => {
-    console.log(baseURL)
     const request = axios.get(baseURL, config)  
     return request.then(response => response.data)
 }
