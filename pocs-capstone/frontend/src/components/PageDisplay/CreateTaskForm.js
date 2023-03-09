@@ -15,8 +15,6 @@ function CreateTaskForm(props) {
   const title = props.task ? "Task Details" : "Create Task"
   const buttonText = props.task ? "Save" : "Create Task"
 
-  console.log("CREATE TASKJ FORM", props.task)
-
   const { Formik } = formik;
   const schema = yup.object().shape({
     title: yup.string().required(),

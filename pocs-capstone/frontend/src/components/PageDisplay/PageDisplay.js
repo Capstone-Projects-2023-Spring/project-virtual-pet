@@ -52,8 +52,8 @@ const PageDisplay = ({ avatarInfo, setAvatarInfo, inventory, setInventory }) => 
             recurring: false,
             recurring_time_delta: 0,
             description: formValues.description,
-            course_id: 0,
-            assignment_id: 0
+            course_id: 33,
+            assignment_id: 1234
         }
 
         tasks
