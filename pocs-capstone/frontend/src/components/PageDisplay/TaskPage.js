@@ -29,8 +29,9 @@ const TaskPage = () => {
                         </div>
                     </Stack>
                 </Card.Header>
-                {/* <TaskList {...{ taskList, handleCompleteCheck, deleteTask }} /> */}
+
                 <TaskList/>
+                
             </Card>
 
             <CreateTaskForm {...{ showCreateTask, handleClose }}/>
