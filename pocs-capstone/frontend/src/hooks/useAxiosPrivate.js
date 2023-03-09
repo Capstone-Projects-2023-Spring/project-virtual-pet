@@ -1,4 +1,3 @@
-
 import { axiosPrivate } from "../api/axios";
 import { useEffect } from "react";
 import useRefreshToken from "./useRefreshToken";
@@ -33,7 +32,7 @@ const useAxiosPrivate = () => {
             }
         );
 
-        return () => { //destroy the interceptors for mem safety
+        return () => {
             axiosPrivate.interceptors.request.eject(requestIntercept);
             axiosPrivate.interceptors.response.eject(responseIntercept);
         }
