@@ -77,16 +77,22 @@
 }
 
 
-.check-box-task {
-    padding: 10px;
+.check-box-task, .close-box-task{
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0px !important;
+    
 }
 
 /* the list items in task page */
-.task-scroll .list-group-item {
+.task-item {
     /* border-bottom-width: 3px; */
     border-color: rgb(226, 226, 226);
     border-radius: 0px;
     border-width: 1px 0px;
+    width: 100%;
     /* background-color: rgb(255, 242, 242); */
 
 
@@ -94,4 +100,13 @@
 
 .task-title {
     font-size: 20px;
+}
+
+.form-check-input {
+    width: 3vw;
+    height: 3vw;
+}
+
+.list-group-task {
+    margin: 0px !important;
 }
