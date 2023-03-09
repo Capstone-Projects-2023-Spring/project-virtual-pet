@@ -8,7 +8,7 @@ const LOGIN_URL = '/api/token/';
 
 const Login = () => {
 
-        const {setAuth} = useAuth();
+        const { setAuth} = useAuth();//, persist, setPersist } = useAuth();
 
         const navigate = useNavigate();
         const location = useLocation();
@@ -44,10 +44,11 @@ const Login = () => {
                 console.log(response?.data?.access)
                 //console.log(response?.data?.refresh)
                 console.log(email)
-                const accessToken = response?.data?.access;
+                const access = response?.data?.access;
                 //const refreshToken = response?.data?.refresh;
                 //const roles = response?.data?.roles; //not a thing we have but we could add later if admin
-                setAuth({email,password,accessToken});//,refreshToken});
+                setAuth({email,password,access});//,refreshToken});
+                localStorage.setItem("refresh",response?.data?.refresh)
                 setEmail('');
                 setPassword('');
                 navigate(from, { replace: true });
@@ -69,6 +70,8 @@ const Login = () => {
             }
 
         }
+
+
 
         //using fragment so display success
         return (
@@ -99,6 +102,8 @@ const Login = () => {
                     required
                     />
                     <button>Sign In</button>
+
+                
                 </form>
                 <p>
                     Need an Account?<br/>

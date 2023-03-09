@@ -154,11 +154,13 @@ REST_FRAMEWORK = {
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+
 # Currently this is only available for local host
 # TODO when we serve from no-ip site, we need to add origin here
 CORS_ORIGIN_WHITELIST = [
      'http://localhost:3000',
-     'http://127.0.0.1:3000'
+     'http://127.0.0.1:3000',
+     'http://*'
 ]
 
 # Custom user model # TODO if change name from newuser, re-register here
@@ -199,14 +201,6 @@ SIMPLE_JWT = {
     "SLIDING_TOKEN_OBTAIN_SERIALIZER": "rest_framework_simplejwt.serializers.TokenObtainSlidingSerializer",
     "SLIDING_TOKEN_REFRESH_SERIALIZER": "rest_framework_simplejwt.serializers.TokenRefreshSlidingSerializer",
 
-
-    'AUTH_COOKIE': 'access_token',  # Cookie name. Enables cookies if value is set.
-    'AUTH_COOKIE_DOMAIN': None,     # A string like "example.com", or None for standard domain cookie.
-    'AUTH_COOKIE_SECURE': False,    # Whether the auth cookies should be secure (https:// only).
-    'AUTH_COOKIE_HTTP_ONLY' : True, # Http only cookie flag.It's not fetch by javascript.
-    'AUTH_COOKIE_PATH': '/',        # The path of the auth cookie.
-    'AUTH_COOKIE_SAMESITE': 'Lax',  # Whether to set the flag restricting cookie leaks on cross-site requests.
-                                # This can be 'Lax', 'Strict', or None to disable the flag.
 }
 
 SPECTACULAR_SETTINGS = {

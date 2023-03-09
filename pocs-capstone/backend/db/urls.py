@@ -1,7 +1,7 @@
 from django.urls import include, path
 from rest_framework.routers import DefaultRouter
 from .views import *
-from .views import CookieTokenRefreshView, CookieTokenObtainPairView # Import the above views
+#from .views import CookieTokenRefreshView, CookieTokenObtainPairView # Import the above views
 
 
 router = DefaultRouter()
@@ -18,8 +18,4 @@ app_name = 'db'
 urlpatterns = [
     path('register/',CustomUserCreate.as_view(),name="create_user"),
     path('', include(router.urls)),
-    path('api/token/',CookieTokenObtainPairView.as_view(),name='token_obtain_pair'), # get a token
-    #path('api/user/',include('db.urls',namespace='database')),
-    path('api/token/refresh/',CookieTokenRefreshView.as_view(),name='token_refresh'), # refresh a token
-    
 ]

@@ -30,7 +30,7 @@ class AvatarSerializer(serializers.ModelSerializer):
                  'total_xp',
                  'last_interaction',
                  'last_feed','pet_name',
-                 'flavour_text']
+                 'flavour_text','palette']
 
 class TaskSerializer(serializers.ModelSerializer):
     class Meta:

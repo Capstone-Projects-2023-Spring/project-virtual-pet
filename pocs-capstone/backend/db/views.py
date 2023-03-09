@@ -10,15 +10,14 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.views import APIView
 
-
-from rest_framework_simplejwt.tokens import RefreshToken
-from django.middleware import csrf
-
 from rest_framework_simplejwt.views import TokenRefreshView, TokenObtainPairView
 from rest_framework_simplejwt.serializers import TokenRefreshSerializer
 from rest_framework_simplejwt.exceptions import InvalidToken
 
+
+"""
 class CookieTokenRefreshSerializer(TokenRefreshSerializer):
+    permission_classes = [AllowAny]
     refresh = None
     def validate(self, attrs):
         attrs['refresh'] = self.context['request'].COOKIES.get('refresh_token')
@@ -28,21 +27,36 @@ class CookieTokenRefreshSerializer(TokenRefreshSerializer):
             raise InvalidToken('No valid token found in cookie \'refresh_token\'')
 
 class CookieTokenObtainPairView(TokenObtainPairView):
+  permission_classes = [AllowAny]
   def finalize_response(self, request, response, *args, **kwargs):
+    print("Obtain pair")
+    print(response.headers)
     if response.data.get('refresh'):
         cookie_max_age = 3600 * 24 * 14 # 14 days
         response.set_cookie('refresh_token', response.data['refresh'], max_age=cookie_max_age, httponly=True )
-        del response.data['refresh']
+        #del response.data['refresh']
+        response.headers['Access-Control-Allow-Credentials']='true'
+        response.headers['Access-Control-Allow-Origin']='*'
+        print(response.headers)
     return super().finalize_response(request, response, *args, **kwargs)
 
 class CookieTokenRefreshView(TokenRefreshView):
+    permission_classes = [AllowAny]
     def finalize_response(self, request, response, *args, **kwargs):
+        print("refresh")
+        print(response.headers)
+        
         if response.data.get('refresh'):
             cookie_max_age = 3600 * 24 * 14 # 14 days
             response.set_cookie('refresh_token', response.data['refresh'], max_age=cookie_max_age, httponly=True )
-            del response.data['refresh']
+            #del response.data['refresh']
+            response.headers['Access-Control-Allow-Credentials']=True
+            response.headers['Access-Control-Allow-Origin']='*'
+            print(response.headers)
         return super().finalize_response(request, response, *args, **kwargs)
     serializer_class = CookieTokenRefreshSerializer
+
+"""
 class CustomUserCreate(APIView):
     permission_classes = [AllowAny]
 
@@ -61,6 +75,7 @@ class CustomUserCreate(APIView):
             return Response("Username is taken",status=status.HTTP_409_CONFLICT)
         return Response(registration_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
+
 
 
 class TaskViewSet(viewsets.ModelViewSet):
