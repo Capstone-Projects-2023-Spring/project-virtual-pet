@@ -1,7 +1,6 @@
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import TaskListContext from '../../context/TaskListContext'
 import { useContext } from 'react'
 import Stack from 'react-bootstrap/Stack';
@@ -9,8 +8,14 @@ import * as yup from "yup";
 import * as formik from 'formik'
 
 
-function CreateTaskForm({ showCreateTask, handleClose }) {
+function CreateTaskForm(props) {
   const handlers = useContext(TaskListContext);
+
+  const readOnly = props.task ? true : false
+  const title = props.task ? "Task Details" : "Create Task"
+  const buttonText = props.task ? "Save" : "Create Task"
+
+  console.log("CREATE TASKJ FORM", props.task)
 
   const { Formik } = formik;
   const schema = yup.object().shape({
@@ -21,24 +26,29 @@ function CreateTaskForm({ showCreateTask, handleClose }) {
   });
 
   return (
-    <Modal backdrop="static" show={showCreateTask} onHide={handleClose}>
+    <Modal backdrop="static" show={props.showCreateTask} onHide={props.handleClose}>
       <Modal.Header closeButton>
-        <Modal.Title>Create Task</Modal.Title>
+        <Modal.Title>{title}</Modal.Title>
       </Modal.Header>
       <Modal.Body>
 
         <Formik
           validationSchema={schema}
           onSubmit={(values) => {
+            if (props.task) {
+              handlers.updateTask(props.task.task_id, values)
+            }
+            else {
+              handlers.addTask(values)
+            }
+            props.handleClose()
 
-            handlers.addTask(values)
-            handleClose()
           }}
           initialValues={{
-            title: '',
-            description: '',
-            size: 'S',
-            due_date: '',
+            title: props.task ? props.task.title : '',
+            description: props.task ? props.task.description : '',
+            size: props.task ? props.task.task_type : 'S',
+            due_date: props.task ? props.task.due_date : '',
           }}
         >
           {({
@@ -48,39 +58,37 @@ function CreateTaskForm({ showCreateTask, handleClose }) {
               <Stack gap={2} className="col-md-12 mx-auto">
                 <Form.Group controlId="validationFormik01">
                   <Form.Label>Title</Form.Label>
-                  <FloatingLabel
-                    controlId="floatingInput"
-                    label="Add a title..."
-                    className="mb-3"
-                  >
-                    <Form.Control
-                      type="text"
-                      placeholder="Add a title"
-                      name="title"
-                      value={values.title}
-                      onChange={handleChange}
-                      isInvalid={!!errors.title} />
 
-                    <Form.Control.Feedback type="invalid">
-                      {errors.title}
-                    </Form.Control.Feedback>
-                  </FloatingLabel>
+                  <Form.Control
+
+                    type="text"
+                    placeholder="Add a title"
+                    name="title"
+                    value={values.title}
+                    onChange={handleChange}
+                    isInvalid={!!errors.title} />
+
+                  <Form.Control.Feedback type="invalid">
+                    {errors.title}
+                  </Form.Control.Feedback>
+
                 </Form.Group>
 
                 <br />
 
                 <Form.Group controlId="validationFormik02">
                   <Form.Label>Description</Form.Label>
-                  <FloatingLabel controlId="floatingTextarea2" label="Add a description...">
-                    <Form.Control
-                      as="textarea"
-                      type="text"
-                      placeholder="Add a description"
-                      name="description"
-                      style={{ height: '100px' }}
-                      value={values.description}
-                      onChange={handleChange}/>
-                  </FloatingLabel>
+
+                  <Form.Control
+
+                    as="textarea"
+                    type="text"
+                    placeholder="Add a description"
+                    name="description"
+                    style={{ height: '100px' }}
+                    value={values.description}
+                    onChange={handleChange} />
+
                 </Form.Group>
 
                 <br />
@@ -110,6 +118,7 @@ function CreateTaskForm({ showCreateTask, handleClose }) {
                 <Form.Group controlId="validationFormik04">
                   <Form.Label>Due Date</Form.Label>
                   <Form.Control
+
                     type="date"
                     placeholder="due_date"
                     name="due_date"
@@ -120,7 +129,9 @@ function CreateTaskForm({ showCreateTask, handleClose }) {
                     {errors.due_date}
                   </Form.Control.Feedback>
                 </Form.Group>
-                <Button className="col-md-5 mx-auto" type="submit">Submit form</Button>
+
+                <Button className="col-md-5 mx-auto" type="submit">{buttonText}</Button>
+
               </Stack>
             </Form>
           )}

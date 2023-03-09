@@ -19,7 +19,6 @@ function App(){
 
   return (
 
-<<<<<<< HEAD
     <Routes>
       <Route path="/" element = {<Layout/>}>
         
@@ -34,9 +33,5 @@ function App(){
     </Routes>
 
   );
-=======
-    </div>
-  )
->>>>>>> 22339129c (added context for tasklist and updated task form)
 }
 export default App

@@ -20,14 +20,23 @@ const PageDisplay = ({ avatarInfo, setAvatarInfo, inventory, setInventory }) => 
 
     useEffect(fetchData, [])
 
-    const updateTask = (id) => {
+    const updateTask = (id, newTask) => {
+        console.log(newTask, newTask==null)
         const taskItem = taskList.find(t => t.task_id === id)
-        const taskItemChanged = { ...taskItem, completed: !taskItem.completed }
+        const taskItemChanged = newTask==null ?
+            { ...taskItem, completed: !taskItem.completed } :
+            { ...taskItem, title: newTask.title, due_date: newTask.due_date, task_type: newTask.size, description: newTask.description }
+        
         tasks
             .updateTask(id, taskItemChanged)
             .then(r => {
+                console.log(r)
                 setTaskList(taskList.map(t => t.task_id === id ? taskItemChanged : t))
             })
+
+        console.log(taskList.find(t => t.id===id))
+
+        
     }
 
     const addTask = (formValues) => {
@@ -66,9 +75,9 @@ const PageDisplay = ({ avatarInfo, setAvatarInfo, inventory, setInventory }) => 
         taskList,
         setAvatarInfo,
         setInventory,
-        updateTask,
         addTask,
-        deleteTask
+        deleteTask,
+        updateTask
     }
 
     return (
