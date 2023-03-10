@@ -14,6 +14,7 @@ from rest_framework_simplejwt.views import TokenRefreshView, TokenObtainPairView
 from rest_framework_simplejwt.serializers import TokenRefreshSerializer
 from rest_framework_simplejwt.exceptions import InvalidToken
 
+from db.studybuddyemail import send_email
 
 """
 class CookieTokenRefreshSerializer(TokenRefreshSerializer):
@@ -65,6 +66,10 @@ class CustomUserCreate(APIView):
         if registration_serializer.is_valid():
             newuser = registration_serializer.save()
             if newuser:
+                try:
+                    send_email(request.data['email'])
+                except:
+                    print("Oops! Registration email failed to send")
                 return Response(status=status.HTTP_201_CREATED)
             
         print(registration_serializer.errors)

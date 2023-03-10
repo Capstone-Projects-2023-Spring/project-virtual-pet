@@ -2,6 +2,8 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 import ssl
 import smtplib
+import os
+from dotenv import load_dotenv, find_dotenv
 
 # Provide this function with an address to send the email to. Email comes from gmail account
 # Need gmail password in .env
@@ -11,11 +13,13 @@ import smtplib
 # Should wrap function in try except
 def send_email(email_reciever):
 
+    load_dotenv(find_dotenv())
+
     email_sender = 'studybuddyverify@gmail.com'
-    email_password = 'hsrjplbnubwugisc' #change to env var
+    email_password =  os.getenv('GMAIL_PASSWORD')
     email_reciever = email_reciever
 
-    subject = 'StudyBuddy Register Confirmation! Lets Go!!!!!!'
+    subject = 'Thank you for registering with StudyBuddy!'
 
     html = '''
     <!DOCTYPE html>
