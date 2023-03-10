@@ -1,29 +1,35 @@
 
+import useAxiosPrivate from '../hooks/useAxiosPrivate';
+import axiosPrivate from '../hooks/useAxiosPrivate'
+const baseURL = `${process.env.REACT_APP_DB_URL}/tasks/`
 
-import axios from 'axios'
 
-const baseURL = `${process.env.REACT_APP_DB_URL}/api`
-
-
-// FIGURE OUT :
-
-const getTasks = (taskID, username) => {
-    console.log(process.env.REACT_APP_DB_URL)
-    const request = axios.get(`${baseURL}/tasks/${taskID}/username?=${username}`)
+const getTasks = () => {
+    const axiosPrivate = useAxiosPrivate()
+    const request = axiosPrivate.get(baseURL)  
+    console.log("REQUEST HERE: ", request)
     return request.then(response => response.data)
 }
 
-const createTask = (newNote) => {
-    const request = axios.post(baseURL, newNote)
+const createTask = (newTask) => {
+    const axiosPrivate = useAxiosPrivate()
+    const request = axiosPrivate.post(baseURL, newTask)
     return request.then(response => response.data)
 }
 
-const updateTask = (noteID, updatedNote) => {
-    const request = axios.put(`${baseURL}/${noteID}`, updateNote)
+const updateTask = (taskID, updatedTask) => {
+    const axiosPrivate = useAxiosPrivate()
+    const request = axiosPrivate.put(`${baseURL}${taskID}/`, updatedTask)
     return request.then(response => response.data)
 
 }
 
-const exportObj = {getTasks, createTask, updateTask}
+const deleteTask = (taskID) => {
+    const axiosPrivate = useAxiosPrivate()
+    const request = axiosPrivate.delete(`${baseURL}${taskID}/`)
+    return request.then(response => response.data)
+}
+
+const exportObj = {getTasks, createTask, updateTask, deleteTask}
 export default exportObj
 

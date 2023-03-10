@@ -8,11 +8,11 @@ const useAxiosPrivate = () => {
     const { auth } = useAuth();
 
     useEffect(() => {
-
+        console.log("TOKEN IS HERE: ", auth?.access)
         const requestIntercept = axiosPrivate.interceptors.request.use(
             config => {
                 if (!config.headers['Authorization']) {
-                    config.headers['Authorization'] = `Bearer ${auth?.accessToken}`;
+                    config.headers['Authorization'] = `Bearer ${auth?.access}`;
                 }
                 return config;
             }, (error) => Promise.reject(error)
