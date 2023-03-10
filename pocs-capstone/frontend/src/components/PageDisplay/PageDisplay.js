@@ -16,7 +16,6 @@ const PageDisplay = ({ avatarInfo, setAvatar, inventory, setInventory }) => {
 
     const getTasksB = () => {
         const request = axiosPrivate.get(baseURL)
-        console.log("REQUEST HERE: ", request)
         return request.then(response => response.data)
     }
 
@@ -42,7 +41,6 @@ const PageDisplay = ({ avatarInfo, setAvatar, inventory, setInventory }) => {
     const fetchData = () => {
         getTasksB()
             .then(r => {
-                console.log("TASK LIST RETURN HERE: ", r)
                 setTaskList(r)
             })
     }
