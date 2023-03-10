@@ -10,7 +10,7 @@ const PetDisplay = ({ avatarInfo, setAvatar, inventory, setInventory }) => {
     return (
         <div className='pet-display'>
             <Card style={{ width: '25rem' }}>
-                <Card.Header className='pet-name'>{avatarInfo.avatar_name}</Card.Header>
+                <Card.Header className='pet-name'>{avatarInfo.pet_name}</Card.Header>
                 <PetSprite {...{ avatarInfo, setAvatar, inventory, setInventory }} />
                 <ProgressB avatarInfo={avatarInfo} />
                     <Card.Body className='pd-bg'>
