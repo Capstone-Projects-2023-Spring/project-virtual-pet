@@ -38,6 +38,7 @@ class TaskSerializer(serializers.ModelSerializer):
         fields = [
             #'username',
             'task_id',
+            'title',
             'due_date',
             'created_date',
             'completed_date',
@@ -63,4 +64,3 @@ class InventorySerializer(serializers.ModelSerializer):
             'candy_level',
             'quantity'
         ]
-

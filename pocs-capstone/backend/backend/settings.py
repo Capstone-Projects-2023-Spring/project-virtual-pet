@@ -160,15 +160,29 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CORS_ORIGIN_WHITELIST = [
      'http://localhost:3000',
      'http://127.0.0.1:3000',
-     'http://*'
+     'http://*',
 ]
+
+CORS_ALLOW_HEADERS = [
+    "accept",
+    "accept-encoding",
+    "authorization",
+    "content-type",
+    "dnt",
+    "origin",
+    "user-agent",
+    "x-csrftoken",
+    "x-requested-with",
+    "withCredentials",
+]
+
 
 # Custom user model # TODO if change name from newuser, re-register here
 AUTH_USER_MODEL = "db.NewUser"
 
 
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME':timedelta(minutes=1),
+    'ACCESS_TOKEN_LIFETIME':timedelta(minutes=30),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
     'ROTATE_REFRESH_TOKENS':False,
     'BLACKLIST_AFTER_ROTATION':True,

@@ -1,7 +1,6 @@
 /* flex container */
 .page-display {
     width: 100vw;
-    height: 100vh;
     display: flex;
     align-items: stretch;
     justify-content: flex-start;
@@ -10,42 +9,111 @@
     padding: 10px;
 }
 
-.nav-tabs {
+.nav-tabs .nav-link{
+    background-color: rgba(229, 179, 192, 0.563);
+    color:rgb(217, 91, 91);
     font-size: 25px;
     font-weight: bold;
     margin: 0px;
     /* font-family:  pixelFont; */
     letter-spacing: 0.5px;
-}
-
-.nav-link, .nav-link:hover {
-    /* color: rgb(71, 138, 169); */
-
-    color: #75adbc;
+    border-width: 0px;
 }
 
 
+.nav-link:hover { 
+    color:rgb(217, 91, 91);
+}
 .mini-page {
-    /* background-color: rgb(235, 235, 235); */
-    /* width: 100vw; */
     display: flex;
     justify-content: center;
+    align-items: center;
     height: auto;
-    align-items: stretch;
+    margin: 10px;
     position: relative;
 
 }
 
 .tasklist-position {
-    /* position: absolute; */
-
     flex: 1 1 auto;
     width: 0;
-    /* height: 92vh; */
 }
 
-/* 
-.outline-that {
-    border-style: solid;
-    border-bottom-style: solid;
-} */
+.task-scroll {
+    /* min-height: 20vh; */
+    min-height: 85vh;
+    max-height: 85vh;
+    border-radius: 0px;
+
+    margin-bottom: 10px;
+    overflow:scroll;
+    -webkit-overflow-scrolling: touch;
+}
+
+
+
+.tab-content .calendar-page {
+    /* height: 100%; */
+    background-color: rgb(58, 24, 24);  
+    
+}
+
+/* make the tabs height the max of the parent */
+.tab-content {
+    height: 100%;
+    background-color: rgb(255, 255, 255);    
+
+}
+
+
+.mb-3 {
+    margin-bottom: 0px !important;;
+}
+
+
+.to-do-header{
+    font-weight: bold;
+    font-size: 25px;
+}
+
+
+.check-box-task, .close-box-task, .course-id{
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0px !important;
+    
+}
+
+/* the list items in task page */
+.task-item {
+    /* border-bottom-width: 3px; */
+    border-color: rgb(226, 226, 226);
+    border-radius: 0px;
+    border-width: 1px 0px;
+    width: 100%;
+    /* background-color: rgb(255, 242, 242); */
+}
+
+.task-title {
+    font-size: 20px;
+}
+
+.form-check-input {
+    width: 3vw;
+    height: 3vw;
+}
+
+.list-group-task {
+    margin: 0px !important;
+}
+
+
+.task-description {
+    overflow-wrap: anywhere;
+}
+
+ .course-id{
+    text-align: center;
+ }
