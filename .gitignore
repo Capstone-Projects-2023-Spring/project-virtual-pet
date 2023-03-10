@@ -88,3 +88,13 @@ pocs-capstone/frontend/node_modules/.cache/default-development/7.pack
 pocs-capstone/frontend/node_modules/.cache/default-development/9.pack
 pocs-capstone/frontend/node_modules/.cache/default-development/index.pack
 pocs-capstone/frontend/node_modules/.cache/default-development/index.pack.old
+pocs-capstone/backend/backend/__pycache__/__init__.cpython-310.pyc
+pocs-capstone/backend/backend/__pycache__/settings.cpython-310.pyc
+pocs-capstone/backend/backend/__pycache__/urls.cpython-310.pyc
+pocs-capstone/backend/backend/__pycache__/wsgi.cpython-310.pyc
+pocs-capstone/backend/db/__pycache__/__init__.cpython-310.pyc
+pocs-capstone/backend/db/__pycache__/admin.cpython-310.pyc
+pocs-capstone/backend/db/__pycache__/apps.cpython-310.pyc
+pocs-capstone/backend/db/__pycache__/urls.cpython-310.pyc
+pocs-capstone/backend/db/migrations/__pycache__/__init__.cpython-310.pyc
+pocs-capstone/backend/db/migrations/__pycache__/0002_rename_user_name_newuser_username.cpython-310.pyc
