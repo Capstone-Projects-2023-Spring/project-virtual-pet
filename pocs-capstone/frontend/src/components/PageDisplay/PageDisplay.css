@@ -1,10 +1,11 @@
 /* flex container */
 .page-display {
-    width: 100vw;
+    width: 100%;
     display: flex;
     align-items: stretch;
     justify-content: flex-start;
     flex-direction: column;
+    border-radius: 1px;
     background-color: rgb(255, 198, 198);
     padding: 10px;
 }
@@ -28,8 +29,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    border-radius: 1px;
     height: auto;
-    margin: 10px;
+    margin: 0px;
     position: relative;
 
 }
@@ -44,7 +46,6 @@
     min-height: 85vh;
     max-height: 85vh;
     border-radius: 0px;
-
     margin-bottom: 10px;
     overflow:scroll;
     -webkit-overflow-scrolling: touch;
@@ -62,6 +63,7 @@
 .tab-content {
     height: 100%;
     background-color: rgb(255, 255, 255);    
+    border-radius: 25px;
 
 }
 

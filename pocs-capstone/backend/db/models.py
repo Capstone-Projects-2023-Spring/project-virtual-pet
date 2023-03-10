@@ -111,6 +111,7 @@ class Avatar(models.Model):
         CRAB = 'CR'
         ROCK = "RK"
     
+    avatar_id = models.AutoField(primary_key=True)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE) 
     avatar_type = models.CharField(
         max_length=2,
@@ -127,7 +128,7 @@ class Avatar(models.Model):
     def __str__(self):
         """Avatar toString method
         """
-        return f'{self.pet_name, self.pet_type}'
+        return f'{self.pet_name, self.avatar_type}'
 
 # Inventory for candies earned, currently no accessories
 
