@@ -17,14 +17,41 @@ const PageDisplay = ({ avatarInfo, setAvatarInfo, inventory, setInventory }) => 
     const [taskList, setTaskList] = useState([])
 
     const fetchData = () => {
-        // tasks
-        //     .getTasks("USERNAME")
-        //     .then(r => {setTaskList(r)})
-        setTaskList(tasks.getTasks())
+        tasks
+            .getTasks()
+            .then(r => {setTaskList(r)})
+        // setTaskList(tasks.getTasks())
     }
 
-    // useEffect(fetchData, [])
+    useEffect(fetchData, [])
     // console.log("Loading fetch data tasks", taskList, "data fetched ")
+
+
+    const handleCompleteCheck = (id) => {
+        const taskItem = taskList.find(t => t.task_id === id)
+        const taskItemChanged = { ...taskItem, completed: !taskItem.completed }
+        tasks
+            .updateTask(id, taskItemChanged)
+            .then(r => {
+                setTaskList(taskList.map(t => t.task_id === id ? taskItemChanged : t))
+                console.log('NEW LIST', taskList)
+            })
+            // .catch(error => {
+            //     setErrorMessage(
+            //         `Task '${t.title}' was already removed`
+            //     )
+            //     setTimeout(() => {
+            //         setErrorMessage(null)
+            //     }, 5000)
+            //     // alert(`the note '${note.content}' was already deleted from server`)
+
+            //     setTaskList(taskList.filter(t => t.task_id !== id))
+            // })
+
+    }
+
+    
+
 
 
     return (
@@ -39,9 +66,9 @@ const PageDisplay = ({ avatarInfo, setAvatarInfo, inventory, setInventory }) => 
 
                 <Tab eventKey="tasks" title="Tasks">
 
-                    <TaskPage {...{ taskList, setAvatarInfo, setInventory, setTaskList }} />
+                    <TaskPage {...{ taskList, setAvatarInfo, setInventory, setTaskList, handleCompleteCheck }} />
 
-                    
+
                 </Tab>
                 <Tab eventKey="calendar" title="Calendar">
                     <CalendarPage />
