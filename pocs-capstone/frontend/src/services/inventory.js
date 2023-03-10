@@ -3,6 +3,8 @@
 import axios from 'axios'
 import mockUser from '../mockData/info.js'
 
+// NEED TO FIX: MOVE TO COMPONENTS THEMSELVES SINCE REACT HATES ME 
+
 const baseURL = `${process.env.REACT_APP_DB_URL}/inventory/`
 
 const getInventory = (username) => {

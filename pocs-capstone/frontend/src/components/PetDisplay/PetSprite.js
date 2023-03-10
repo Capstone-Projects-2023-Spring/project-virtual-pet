@@ -1,4 +1,4 @@
-import kittycat from '../../images/orangecat.jpeg';
+import kittycat from '../../images/orangecat.png';
 
 import bgimage from '../../images/bg.gif'
 import "./PetDisplay"

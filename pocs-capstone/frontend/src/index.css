@@ -27,7 +27,7 @@ body {
   padding: 1rem 0.5rem;
 }
 
-section {
+.section-login-register{
     width: 100%;
     max-width: 420px;
     min-height: 400px;
@@ -38,7 +38,7 @@ section {
     background-color: rgba(0,0,0,0.4);
 }
 
-form {
+.form-login-register {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -53,7 +53,8 @@ a, a:visited {
 input[type="text"],
 input[type="password"],
 input[type="email"],
-button,
+
+.button-login-register,
 textarea {
   font-family: 'Nunito', sans-serif;
   font-size: 22px;
@@ -61,12 +62,12 @@ textarea {
   border-radius: 0.5rem;
 }
 
-label,
-button {
+.label-login-register,
+.button-login-register {
   margin-top: 1rem;
 }
 
-button {
+.button-login-register {
   padding: 0.5rem;
 }
 

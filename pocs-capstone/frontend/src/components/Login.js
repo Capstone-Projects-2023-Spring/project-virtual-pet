@@ -77,11 +77,11 @@ const Login = () => {
         return (
 
             
-            <section>
+            <section className='section-login-register'>
                 <p ref={errRef} className={errMsg ? "errmsg":"offscreen"} aria-live="assertive">{errMsg}</p>
                 <h1>Sign-in to visit your buddies!</h1>
-                <form onSubmit={handleSubmit}>
-                    <label htmlFor="email">Email:</label>
+                <form onSubmit={handleSubmit} className="form-login-register">
+                    <label className="label-login-register" htmlFor="email">Email:</label>
                     <input 
                     type="email" 
                     id="email"
@@ -91,7 +91,7 @@ const Login = () => {
                     value={email}
                     required
                     />
-                    <label htmlFor="password">Password:</label>
+                    <label className="label-login-register" htmlFor="password">Password:</label>
                     <input 
                     type="password" 
                     id="password"
@@ -101,7 +101,7 @@ const Login = () => {
                     value={password}
                     required
                     />
-                    <button>Sign In</button>
+                    <button className='button-login-register'>Sign In</button>
 
                 
                 </form>

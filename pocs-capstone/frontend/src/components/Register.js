@@ -107,18 +107,18 @@ const Register = () => {
     return (
         <>
             {success ? (
-                <section>
+                <section className='section-login-register'>
                     <h1>Success!</h1>
                     <p>
                         <a href="/login">Sign In</a>
                     </p>
                 </section>
             ) : (
-                <section>
+                <section className='section-login-register'>
                     <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
                     <h1>Welcome to Study Buddies!</h1>
-                    <form onSubmit={handleSubmit}>
-                        <label htmlFor="username">
+                    <form onSubmit={handleSubmit} className="form-login-register">
+                        <label className="label-login-register" htmlFor="username">
                             Username:
                             <FontAwesomeIcon icon={faCheck} className={validName ? "valid" : "hide"} />
                             <FontAwesomeIcon icon={faTimes} className={validName || !username ? "hide" : "invalid"} />
@@ -143,7 +143,7 @@ const Register = () => {
                             Letters, numbers, underscores, hyphens allowed.
                         </p>
 
-                        <label htmlFor="email">
+                        <label className="label-login-register" htmlFor="email">
                             Email:
                         <span className = {validEmail ? "valid" : "hide"}>
                             <FontAwesomeIcon icon={faCheck} />
@@ -169,7 +169,7 @@ const Register = () => {
                         </p>
 
 
-                        <label htmlFor="password">
+                        <label className="label-login-register" htmlFor="password">
                             Password:
                             <FontAwesomeIcon icon={faCheck} className={validPassword ? "valid" : "hide"} />
                             <FontAwesomeIcon icon={faTimes} className={validPassword || !password ? "hide" : "invalid"} />
@@ -193,7 +193,7 @@ const Register = () => {
                         </p>
 
 
-                        <label htmlFor="confirm_password">
+                        <label className="label-login-register" htmlFor="confirm_password">
                             Confirm Password:
                             <FontAwesomeIcon icon={faCheck} className={validMatch && matchPassword ? "valid" : "hide"} />
                             <FontAwesomeIcon icon={faTimes} className={validMatch || !matchPassword ? "hide" : "invalid"} />
@@ -214,7 +214,7 @@ const Register = () => {
                             Must match the first password input field.
                         </p>
 
-                        <button disabled={!validName || !validPassword || !validEmail || !validMatch ? true : false}>Sign Up</button>
+                        <button disabled={!validName || !validPassword || !validEmail || !validMatch ? true : false} className='button-login-register'>Sign Up</button>
                     </form>
                     <p>
                         Already registered?<br />

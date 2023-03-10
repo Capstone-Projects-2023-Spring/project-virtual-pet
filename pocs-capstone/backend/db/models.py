@@ -110,7 +110,7 @@ class Avatar(models.Model):
         DOG = "DG"
         CRAB = 'CR'
         ROCK = "RK"
-    
+    avatar_id = models.AutoField(primary_key=True)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE) 
     avatar_type = models.CharField(
         max_length=2,
