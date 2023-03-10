@@ -155,8 +155,12 @@ REST_FRAMEWORK = {
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
+# Currently this is only available for local host
+# TODO when we serve from no-ip site, we need to add origin here
 CORS_ORIGIN_WHITELIST = [
-     'http://localhost:3000'
+     'http://localhost:3000',
+     'http://127.0.0.1:3000',
+     'http://*'
 ]
 
 # Custom user model # TODO if change name from newuser, re-register here

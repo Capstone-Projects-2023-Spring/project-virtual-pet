@@ -11,7 +11,6 @@ from drf_spectacular.views import SpectacularAPIView, SpectacularRedocView, Spec
 
 
 
-
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('db.urls',namespace='db')),

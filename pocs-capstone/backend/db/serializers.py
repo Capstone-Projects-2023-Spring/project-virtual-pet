@@ -5,7 +5,7 @@ from django.contrib.auth.password_validation import validate_password
 class RegisterUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = NewUser
-        fields = ('email', 'user_name', 'password')
+        fields = ('email', 'username', 'password')
         extra_kwargs = {'password': {'write_only': True}}
 
     def create(self, validated_data):
@@ -25,17 +25,19 @@ class AvatarSerializer(serializers.ModelSerializer):
     class Meta:
         model = Avatar
         fields = [#'avatar_owner',
+                'avatar_id',
                  'avatar_type',
                  'total_xp',
                  'last_interaction',
                  'last_feed','pet_name',
-                 'flavour_text']
+                 'flavour_text','palette']
 
 class TaskSerializer(serializers.ModelSerializer):
     class Meta:
         model = Task
         fields = [
             #'username',
+            'task_id',
             'due_date',
             'created_date',
             'completed_date',
@@ -56,6 +58,7 @@ class InventorySerializer(serializers.ModelSerializer):
         model = Inventory
         fields = [
             #'inventory_owner',
+            'inventory_id',
             'candy_base_type',
             'candy_level',
             'quantity'
