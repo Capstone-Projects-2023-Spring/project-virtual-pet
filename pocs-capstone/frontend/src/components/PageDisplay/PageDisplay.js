@@ -2,41 +2,70 @@ import "./PageDisplay.css"
 import TaskPage from "./TaskPage";
 import CalendarPage from "./CalendarPage"
 import TaskListContext from '../../context/TaskListContext'
-import tasks from '../../services/tasks'
+// import tasks from '../../services/tasks'
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
-
+import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import { useState, useEffect } from 'react'
 
 
-const PageDisplay = ({ avatarInfo, setAvatarInfo, inventory, setInventory }) => {
+const PageDisplay = ({ avatarInfo, setAvatar, inventory, setInventory }) => {
+
+    const axiosPrivate = useAxiosPrivate()
+    const baseURL = `/tasks/`
+
+    const getTasksB = () => {
+        const request = axiosPrivate.get(baseURL)
+        console.log("REQUEST HERE: ", request)
+        return request.then(response => response.data)
+    }
+
+    const createTaskB = (newTask) => {
+        const request = axiosPrivate.post(baseURL, newTask)
+        return request.then(response => response.data)
+    }
+
+    const updateTaskB = (taskID, updatedTask) => {
+        const request = axiosPrivate.put(`${baseURL}${taskID}/`, updatedTask)
+        return request.then(response => response.data)
+
+    }
+
+    const deleteTaskB = (taskID) => {
+        const request = axiosPrivate.delete(`${baseURL}${taskID}/`)
+        return request.then(response => response.data)
+    }
+
+
     const [taskList, setTaskList] = useState([])
 
     const fetchData = () => {
-        tasks
-            .getTasks()
-            .then(r => { setTaskList(r) })
+        getTasksB()
+            .then(r => {
+                console.log("TASK LIST RETURN HERE: ", r)
+                setTaskList(r)
+            })
     }
 
     useEffect(fetchData, [])
 
     const updateTask = (id, newTask) => {
-        console.log(newTask, newTask==null)
+        console.log(newTask, newTask == null)
         const taskItem = taskList.find(t => t.task_id === id)
-        const taskItemChanged = newTask==null ?
+        const taskItemChanged = newTask == null ?
             { ...taskItem, completed: !taskItem.completed } :
             { ...taskItem, title: newTask.title, due_date: newTask.due_date, task_type: newTask.size, description: newTask.description }
-        
-        tasks
-            .updateTask(id, taskItemChanged)
+
+
+        updateTaskB(id, taskItemChanged)
             .then(r => {
                 console.log(r)
                 setTaskList(taskList.map(t => t.task_id === id ? taskItemChanged : t))
             })
 
-        console.log(taskList.find(t => t.id===id))
+        console.log(taskList.find(t => t.id === id))
 
-        
+
     }
 
     const addTask = (formValues) => {
@@ -52,20 +81,20 @@ const PageDisplay = ({ avatarInfo, setAvatarInfo, inventory, setInventory }) => 
             recurring: false,
             recurring_time_delta: 0,
             description: formValues.description,
-            course_id: 33,
-            assignment_id: 1234
+            course_id: 0,
+            assignment_id: 0
         }
 
-        tasks
-            .createTask(newTask)
+
+        createTaskB(newTask)
             .then(r => {
                 setTaskList(taskList.concat(r))
             })
     }
 
     const deleteTask = (id) => {
-        tasks
-            .deleteTask(id)
+
+        deleteTaskB(id)
             .then(r => {
                 setTaskList(taskList.filter(t => t.task_id !== id))
             })
@@ -73,7 +102,7 @@ const PageDisplay = ({ avatarInfo, setAvatarInfo, inventory, setInventory }) => 
 
     const handlers = {
         taskList,
-        setAvatarInfo,
+        setAvatar,
         setInventory,
         addTask,
         deleteTask,
@@ -91,7 +120,7 @@ const PageDisplay = ({ avatarInfo, setAvatarInfo, inventory, setInventory }) => 
                 >
                     <Tab eventKey="tasks" title="Tasks">
                         <TaskPage />
-                        
+
                     </Tab>
                     <Tab eventKey="calendar" title="Calendar">
                         <CalendarPage />

@@ -78,7 +78,7 @@ class NewUser(AbstractBaseUser, PermissionsMixin):  # TODO rename to something l
     Extends AbstractBaseUser and PermissionsMixin.
     """
     email=models.EmailField(_('email address'),unique=True)
-    user_name = models.CharField(max_length=128,unique=True)
+    username = models.CharField(max_length=128,unique=True)
     first_name=models.CharField(max_length=128,unique=False)
     join_date=models.DateTimeField(default=timezone.now)
     birthday = models.DateField(null=True,blank=True, default=None)

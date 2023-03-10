@@ -7,7 +7,7 @@ import { useContext } from 'react'
 const TaskList = () => {
     const handlers = useContext(TaskListContext)
 
-    if (handlers.taskList.length === 0) {
+    if (handlers?.taskList?.length === 0) {
         return (
             <ListGroup variant="flush">
                 <ListGroup.Item className="d-flex justify-content-between align-items-start">
