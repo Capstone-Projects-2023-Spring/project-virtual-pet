@@ -10,6 +10,8 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.views import APIView
 
+from db.studybuddyemail import send_email
+
 """
 from .serializers import NoteSerializer
 from .models import Note
@@ -31,6 +33,10 @@ class CustomUserCreate(APIView):
         if registration_serializer.is_valid():
             newuser = registration_serializer.save()
             if newuser:
+                try:
+                    send_email(request.data['email'])
+                except:
+                    print("Oops! Registration email failed to send")
                 return Response(status=status.HTTP_201_CREATED)
             
         print(registration_serializer.errors)
