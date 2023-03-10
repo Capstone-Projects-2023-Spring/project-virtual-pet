@@ -13,14 +13,16 @@ const userInfo = {
 }
 
 const avatarInfo = {
-    avatar_name: "BURR",
-    avatar_type: 0,
-    total_xp: 50,
-    last_interaction: new Date(2023, 1, 24),
-    last_feed: new Date(2023, 1, 24),
-    birthday: new Date(2002, 4, 8),
-    flavour_text: "emngeing"
+    avatar_id: 0,
+    avatar_type: "CT",
+    total_xp: 0,    
+    last_interaction: "2023-03-10",
+    last_feed: "2023-03-10",
+    pet_name: "BURR",
+    flavour_text: "emngeing",
+    palette: 0
 }
+
 const tasks = [
     {
         "task_id": 0,

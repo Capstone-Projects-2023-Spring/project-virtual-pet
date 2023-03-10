@@ -76,25 +76,26 @@ const Login = () => {
             localStorage.setItem("persist", persist);
         }, [persist])
 
-        //using fragment so display success
-        return (
 
-            
-            <section>
-                <p ref={errRef} className={errMsg ? "errmsg":"offscreen"} aria-live="assertive">{errMsg}</p>
+    //using fragment so display success
+    return (
+
+        <div className="backg">
+            <section className='section-login-register'>
+                <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
                 <h1>Sign-in to visit your buddies!</h1>
-                <form onSubmit={handleSubmit}>
-                    <label htmlFor="email">Email:</label>
-                    <input 
-                    type="email" 
-                    id="email"
-                    ref={emailRef}
-                    autoComplete="off"
-                    onChange={(e)=>setEmail(e.target.value)}
-                    value={email}
-                    required
+                <form onSubmit={handleSubmit} className="form-login-register">
+                    <label className="label-login-register" htmlFor="email">Email:</label>
+                    <input
+                        type="email"
+                        id="email"
+                        ref={emailRef}
+                        autoComplete="off"
+                        onChange={(e) => setEmail(e.target.value)}
+                        value={email}
+                        required
                     />
-                    <label htmlFor="password">Password:</label>
+                    <label className="label-login-register" htmlFor="password">Password:</label>
                     <input 
                     type="password" 
                     id="password"
@@ -102,7 +103,7 @@ const Login = () => {
                     value={password}
                     required
                     />
-                    <button>Sign In</button>
+                    <button className='button-login-register'>Sign In</button>
                     <div className="persistCheck">
                         <input
                             type="checkbox"
@@ -115,14 +116,15 @@ const Login = () => {
                 
                 </form>
                 <p>
-                    Need an Account?<br/>
+                    Need an Account?<br />
                     <span className="line">
                         <Link to='/register'>Sign Up</Link>
                     </span>
                 </p>
             </section>
-  
-        )
+        </div>
+
+    )
 
 }
 
