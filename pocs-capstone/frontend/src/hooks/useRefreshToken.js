@@ -5,13 +5,22 @@ const useRefreshToken = () => {
     const { setAuth } = useAuth();
 
     const refresh = async () => {
-        const response = await axios.get('api/token/refresh', {
-         //   withCredentials: true
+        const refresh = localStorage.getItem("refresh")
+        console.log("REFRESH -----> ",refresh)
+        const response = await axios.post('api/token/refresh/', 
+        {"refresh":refresh},
+        {
+
+            withCredentials: true
         });
         setAuth(prev => {
             console.log(JSON.stringify(prev));
             console.log(response.data.access);
-            return { ...prev, access: response.data.access }
+            return {
+                ...prev,
+                //roles: response.data.roles,
+                access: response.data.access
+            }
         });
         return response.data.access;
     }
@@ -19,5 +28,4 @@ const useRefreshToken = () => {
 };
 
 export default useRefreshToken;
-
 
