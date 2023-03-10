@@ -8,7 +8,7 @@ const LOGIN_URL = '/api/token/';
 
 const Login = () => {
 
-        const { setAuth} = useAuth();//, persist, setPersist } = useAuth();
+        const { setAuth, persist, setPersist } = useAuth();
 
         const navigate = useNavigate();
         const location = useLocation();
@@ -28,18 +28,15 @@ const Login = () => {
             e.preventDefault();
             
             try {
-                const response = await axios.post(
-                    LOGIN_URL,
-                    JSON.stringify({email: email,password}), //email: email provided for clarity, first is a key for the value
-                        {
-                            headers: {
-                               
-                                'Content-Type':'application/json',
-                                //withCredentials:true //odd we need this out
-                                //TODO - when we serve on a site, we will need to add an origin to cors serverside
-                            }
-                        }
-                    );
+                const response = await axios.post(LOGIN_URL,
+                    JSON.stringify({email,password}), //email: email provided for clarity, first is a key for the value
+                    {
+                        headers: {'Content-Type':'application/json'},
+                        withCredentials:true //odd we need this out
+                        //TODO - when we serve on a site, we will need to add an origin to cors serverside
+                        
+                    }
+                );
                 
                 console.log(response?.data?.access)
                 //console.log(response?.data?.refresh)
@@ -52,7 +49,7 @@ const Login = () => {
                 setEmail('');
                 setPassword('');
                 navigate(from, { replace: true });
-            }catch(err){
+            }catch(err){ //TODO do these error codes really match
                 if (!err?.response){
                     setErrMsg('No Server Response');
                 }
@@ -71,7 +68,13 @@ const Login = () => {
 
         }
 
-
+        const togglePersist = () => {
+            setPersist(prev => !prev);
+        }
+    
+        useEffect(() => {
+            localStorage.setItem("persist", persist);
+        }, [persist])
 
         //using fragment so display success
         return (
@@ -95,14 +98,20 @@ const Login = () => {
                     <input 
                     type="password" 
                     id="password"
-
-
                     onChange={(e)=>setPassword(e.target.value)}
                     value={password}
                     required
                     />
                     <button>Sign In</button>
-
+                    <div className="persistCheck">
+                        <input
+                            type="checkbox"
+                            id="persist"
+                            onChange={togglePersist}
+                            checked={persist}
+                        />
+                        <label htmlFor="persist">Trust This Device</label>
+                    </div>
                 
                 </form>
                 <p>

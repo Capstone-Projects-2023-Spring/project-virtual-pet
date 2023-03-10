@@ -98,3 +98,4 @@ pocs-capstone/backend/db/__pycache__/apps.cpython-310.pyc
 pocs-capstone/backend/db/__pycache__/urls.cpython-310.pyc
 pocs-capstone/backend/db/migrations/__pycache__/__init__.cpython-310.pyc
 pocs-capstone/backend/db/migrations/__pycache__/0002_rename_user_name_newuser_username.cpython-310.pyc
+pocs-capstone/backend/db/__pycache__/authenticate.cpython-310.pyc

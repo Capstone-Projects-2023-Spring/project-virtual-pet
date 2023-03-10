@@ -1,7 +1,6 @@
 from django.urls import include, path
 from rest_framework.routers import DefaultRouter
 from .views import *
-#from .views import CookieTokenRefreshView, CookieTokenObtainPairView # Import the above views
 
 
 router = DefaultRouter()
@@ -17,5 +16,5 @@ app_name = 'db'
 
 urlpatterns = [
     path('register/',CustomUserCreate.as_view(),name="create_user"),
-    path('', include(router.urls)),
+    path('', include(router.urls))
 ]
