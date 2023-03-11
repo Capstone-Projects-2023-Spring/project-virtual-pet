@@ -205,3 +205,9 @@ class Task(models.Model):
     description = models.TextField(default="A new task!")
     course_id = models.PositiveBigIntegerField(default=0)
     assignment_id = models.PositiveIntegerField(default=0)
+
+    def __str__(self):
+        """Task toString method
+        """
+        return f'{self.title}, {self.task_type}, {self.task_level}, {self.description}'
+    
