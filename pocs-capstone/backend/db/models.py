@@ -127,7 +127,7 @@ class Avatar(models.Model):
     def __str__(self):
         """Avatar toString method
         """
-        return f'{self.pet_name, self.pet_type}'
+        return f'{self.pet_name}, {self.pet_type}'
 
 # Inventory for candies earned, currently no accessories
 
