@@ -32,6 +32,8 @@ CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_CREDENTIALS = True
 
 
+
+
 # 0.0.0.0 : docker
 # 127.0.0.1 : local
 ALLOWED_HOSTS = ['0.0.0.0', '127.0.0.1','localhost','10.0.0.1','*']
@@ -159,6 +161,20 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CORS_ORIGIN_WHITELIST = [
      'http://localhost:3000',
      'http://127.0.0.1:3000'
+]
+
+# need to explicitly allow these headers 
+CORS_ALLOW_HEADERS = [
+    "accept",
+    "accept-encoding",
+    "authorization",
+    "content-type",
+    "dnt",
+    "origin",
+    "user-agent",
+    "x-csrftoken",
+    "x-requested-with",
+    "withCredentials", # additional header
 ]
 
 # Custom user model # TODO if change name from newuser, re-register here
