@@ -1,6 +1,6 @@
 const axios = require('axios');
 
-const apiKey = 'insert key here';
+const apiKey = 'insert api key here';
 const apiUrl = 'https://templeu.instructure.com/api/v1';
 
 // Retrieve a user's courses
