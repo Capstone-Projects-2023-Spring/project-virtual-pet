@@ -180,4 +180,3 @@ def send_email(email_reciever):
         # Login and send email
         smtp.login(email_sender, email_password)
         smtp.sendmail(email_sender, email_reciever, email_string)
-        print("email sent!")
