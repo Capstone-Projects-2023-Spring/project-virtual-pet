@@ -1,7 +1,4 @@
-# May need to run commands:
-#   pip install python-decouple
-#   pip install coreapi pyyaml
-#   python3 manage.py test  "This will run the all test files"
+# python3 manage.py test  "This will run the all test files"
 
 from django.test import TestCase
 from django.utils import timezone
