@@ -15,7 +15,7 @@ class CustomUserCreateViewTest(TestCase):
         response = self.client.post( '/register/', registerData)
         self.assertEqual(response.status_code, 201)
     
-    # Not to sure about this test. Trying to reverse lookup view by name but in db/urls.py name=create_user
-    # def test_view_url_accessible_by_name(self):
-    #     response = self.client.get(reverse('openapi-schema'))
-    #     self.assertEqual(response.status_code, 200)
+    # This may be working because 405 means not authorized but also no clue b/ can't anyone register
+    def test_view_url_accessible_by_name(self):
+        response = self.client.get(reverse('db:create_user'))
+        self.assertEqual(response.status_code, 405)
