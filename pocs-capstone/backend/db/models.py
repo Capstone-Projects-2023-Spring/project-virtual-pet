@@ -127,7 +127,7 @@ class Avatar(models.Model):
     def __str__(self):
         """Avatar toString method
         """
-        return f'{self.pet_name, self.pet_type}'
+        return f'{self.pet_name}, {self.pet_type}'
 
 # Inventory for candies earned, currently no accessories
 
@@ -205,3 +205,9 @@ class Task(models.Model):
     description = models.TextField(default="A new task!")
     course_id = models.PositiveBigIntegerField(default=0)
     assignment_id = models.PositiveIntegerField(default=0)
+
+    def __str__(self):
+        """Task toString method
+        """
+        return f'{self.title}, {self.task_type}, {self.task_level}, {self.description}'
+    
