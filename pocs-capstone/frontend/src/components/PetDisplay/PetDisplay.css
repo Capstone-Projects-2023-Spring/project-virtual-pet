@@ -54,7 +54,7 @@
 
 .pet-name {
     padding: 15px 0px 5px 0px;
-    font-size: 2vw;
+    font-size: 3vw;
     text-align: center;
     font-weight: bold;
     font-family:  pixelFont;
@@ -84,7 +84,7 @@
 
 
 .pet-desc-text {
-    font-size: 0.75vw;
+    font-size: 1vw;
     padding: 5px;
     margin: 5px;
     text-align: left;
