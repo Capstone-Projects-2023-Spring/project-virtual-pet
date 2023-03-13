@@ -13,9 +13,20 @@ class RegisterUserSerializer(serializers.ModelSerializer):
         instance = self.Meta.model(**validated_data)
         if password is not None:
             instance.set_password(password)
+        print(instance)
+        print(instance.tutorial)
+        #instance.tutorial=False
+        print(instance.tutorial)
         instance.save()
         return instance 
-    
+
+class UserDataSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = NewUser
+        fields = ['id','tutorial',]
+        
+
+
 """
 Note: not sure if I'll need to only use subsets of fields later so 
 explicitly including all here.
@@ -50,7 +61,8 @@ class TaskSerializer(serializers.ModelSerializer):
             'recurring_time_delta',
             'description',
             'course_id',
-            'assignment_id'
+            'assignment_id',
+            'course_name',
         ]
     
 

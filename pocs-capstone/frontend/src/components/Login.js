@@ -1,18 +1,20 @@
 import {useRef,useState,useEffect} from 'react';
 import useAuth from '../hooks/useAuth'
 import { Link, useNavigate, useLocation } from 'react-router-dom';
-
-
-import axios from '../api/axios';
+import useAxiosPrivate from '../hooks/useAxiosPrivate';
+import axios, { axiosPrivate } from '../api/axios';
 const LOGIN_URL = '/api/token/';
+const USER_DATA_URL = '/user-data/'
 
 const Login = () => {
+
+        const axiosPrivate = useAxiosPrivate()
 
         const { setAuth, persist, setPersist } = useAuth();
 
         const navigate = useNavigate();
         const location = useLocation();
-        const from = location.state?.from?.pathname || "/";
+        const from = location.state?.from?.pathname || "/loading";
 
         const emailRef = useRef()
         const errRef = useRef()
@@ -21,8 +23,54 @@ const Login = () => {
         const [password,setPassword] = useState('');
         const [errMsg, setErrMsg] = useState('');
 
+        const [activeUser,setActiveUser]=useState([false])
+
         useEffect(()=>{emailRef.current.focus();},[])
         useEffect(()=>{setErrMsg('');},[email,password]) //as unreadable as humanly possible like a tru front-end dev
+
+        const TASK_URL = `/tasks/`
+    
+        const getTasksB = () => {
+            const request = axiosPrivate.get(TASK_URL)
+            return request.then(response => response.data)
+        }
+    
+        const createTaskB = (newTask) => {
+            const request = axiosPrivate.post(TASK_URL, newTask)
+            return request
+        }
+        
+        const getUserData = () => {
+            
+            const request = axiosPrivate.get(USER_DATA_URL)
+            return request
+        }
+        
+        const updateUserData = (userId) => {
+            const url = USER_DATA_URL+userId+'/'
+            console.log("URL update tutorial ---> ",url)
+            const request = axiosPrivate.put(url, {"tutorial":false})
+            return request
+    
+        }
+
+        //create this task then update the user to active
+        const tutorialCreateCandy = {
+            title:"Let's try completing a task!",
+            due_date : new Date().toISOString().slice(0, 10),
+            created_date:new Date().toISOString(),
+            completed:false,
+            active:true,
+            task_type:'M',
+            task_level:1,
+            recurring:false,
+            recurring_time_delta:0,
+            description: "You can mark the task as complete in the task list.",
+            course_id:0,
+            assignment_id:0,
+        }
+
+
 
         const handleSubmit = async (e) => {
             e.preventDefault();
@@ -46,10 +94,65 @@ const Login = () => {
                 //const roles = response?.data?.roles; //not a thing we have but we could add later if admin
                 setAuth({email,password,access});//,refreshToken});
                 localStorage.setItem("refresh",response?.data?.refresh)
+                
+                /**
+                const userData = getUserData();
+                console.log("USERDATA----->",(await userData).data[0])
+                console.log("USERDATA TUTORIAL--->",(await userData).data[0].tutorial)       
+                console.log("USERDATA USERID--->",(await userData).data[0].id)            
+                const needsTutorial = (await userData).data[0].tutorial
+                const userId = (await userData).data[0].id
+                const sanity = 0;
+
+                while(needsTutorial){
+                                    //check user is active
+
+                    
+                    console.log("INSIDE WHILE NEEDSTUTORIAL")
+                    const response = await createTaskB(tutorialCreateCandy).then((response)=>{})
+                    //add error checking here!
+                    console.log("RESPONSE CREATE TUTORIAL --->",response)
+                    updateUserData(userId)
+                    sanity = sanity+1;
+                    if (sanity>5)
+                        break;
+                        //TODO - add error handling here
+                    const newData = getUserData();
+                    console.log("NEW DATA ----> ",(await newData).data[0])
+                    console.log("NEW TUTORIAL ----> ",(await newData).data[0].tutorial)
+                    needsTutorial = (await newData).data[0].tutorial
+                    
+                    if(!needsTutorial){
+                        const response2 = await axios.post(LOGIN_URL,
+                            JSON.stringify({email,password}), //email: email provided for clarity, first is a key for the value
+                            {
+                                headers: {'Content-Type':'application/json'},
+                                withCredentials:true //odd we need this out
+                                //TODO - when we serve on a site, we will need to add an origin to cors serverside
+                                
+                            }
+                        );
+                        
+                        console.log(response2?.data?.access)
+                        //console.log(response?.data?.refresh)
+                        console.log(email)
+                        const access = response2?.data?.access;
+                        //const refreshToken = response?.data?.refresh;
+                        //const roles = response?.data?.roles; //not a thing we have but we could add later if admin
+                        setAuth({email,password,access});//,refreshToken});
+                        localStorage.setItem("refresh",response2?.data?.refresh)
+                        setEmail('');
+                        setPassword('');
+                    }
+
+                    
+                }
+                **/
                 setEmail('');
                 setPassword('');
                 navigate(from, { replace: true });
-            }catch(err){ //TODO do these error codes really match
+            
+            } catch(err){ //TODO do these error codes really match
                 if (!err?.response){
                     setErrMsg('No Server Response');
                 }
@@ -77,7 +180,6 @@ const Login = () => {
         }, [persist])
 
 
-    //using fragment so display success
     return (
 
         <div className="backg">

@@ -14,25 +14,29 @@ const PageDisplay = ({ avatarInfo, setAvatar, inventory, setInventory }) => {
     const axiosPrivate = useAxiosPrivate()
     const baseURL = `/tasks/`
 
-    const getTasksB = () => {
+    const getTasksB = async () => {
         const request = axiosPrivate.get(baseURL)
-        return request.then(response => response.data)
+        const response = await request;
+        return response.data;
     }
 
-    const createTaskB = (newTask) => {
+    const createTaskB = async (newTask) => {
         const request = axiosPrivate.post(baseURL, newTask)
-        return request.then(response => response.data)
+        const response = await request;
+        return response.data;
     }
 
-    const updateTaskB = (taskID, updatedTask) => {
+    const updateTaskB = async (taskID, updatedTask) => {
         const request = axiosPrivate.put(`${baseURL}${taskID}/`, updatedTask)
-        return request.then(response => response.data)
+        const response = await request;
+        return response.data;
 
     }
 
-    const deleteTaskB = (taskID) => {
+    const deleteTaskB = async (taskID) => {
         const request = axiosPrivate.delete(`${baseURL}${taskID}/`)
-        return request.then(response => response.data)
+        const response = await request;
+        return response.data;
     }
 
 

@@ -4,10 +4,14 @@ from django.http import HttpResponse
 
 from rest_framework import viewsets
 from rest_framework.permissions import AllowAny
+from rest_framework_simplejwt.authentication import JWTAuthentication
+from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticated
+
 from .serializers import *
 from .models import *
 from rest_framework.response import Response
-from rest_framework import status
+from rest_framework import status   
 from rest_framework.views import APIView
 
 from db.studybuddyemail import send_email
@@ -25,8 +29,11 @@ class NoteViewSet(viewsets.ModelViewSet):
 
 """
 
+JWT_authenticator = JWTAuthentication()
+
 class CustomUserCreate(APIView):
     permission_classes = [AllowAny]
+
 
     def post(self,request):
         registration_serializer = RegisterUserSerializer(data=request.data)
@@ -47,7 +54,15 @@ class CustomUserCreate(APIView):
             return Response("Username is taken",status=status.HTTP_409_CONFLICT)
         return Response(registration_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
-
+class NewUserViewSet(viewsets.ModelViewSet):
+    permission_classes=[IsAuthenticated,]
+    serializer_class = UserDataSerializer
+    
+    # query tasks by user. 
+    def get_queryset(self):
+        #_user = JWTAuthentication(self.request)
+        _user = self.request.user.id
+        return NewUser.objects.filter(id=_user)
 
 class TaskViewSet(viewsets.ModelViewSet):
     

@@ -86,6 +86,7 @@ class NewUser(AbstractBaseUser, PermissionsMixin):  # TODO rename to something l
     is_staff = models.BooleanField(default=False)
     # TODO if we want email verification to activate user we change this to false
     is_active = models.BooleanField(default=True)
+    tutorial=models.BooleanField(default=True)
 
     objects = CustomAccountManager()
 
@@ -96,6 +97,9 @@ class NewUser(AbstractBaseUser, PermissionsMixin):  # TODO rename to something l
         """NewUser toString method
         """
         return self.username
+    
+    def getTutorial(self):
+        return self.tutorial
 
 # Many to One relationship between user and petprofile
 # If user is deleted so is their pet profile
@@ -205,3 +209,4 @@ class Task(models.Model):
     description = models.TextField(default="A new task!")
     course_id = models.PositiveBigIntegerField(default=0)
     assignment_id = models.PositiveIntegerField(default=0)
+    course_name = models.CharField(max_length=128, default="")

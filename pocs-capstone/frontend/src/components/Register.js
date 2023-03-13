@@ -83,12 +83,14 @@ const Register = () => {
             console.log(response?.data);
             console.log(response?.access);
             console.log(JSON.stringify(response))
-            setSuccess(true);
+            //setSuccess(true);
+            Navigate('/')
             //clear state and controlled inputs
             //need value attrib on inputs for this
             setUsername('');
             setPassword('');
             setMatchPassword('');
+        
         } catch (err) {
 
             if (!err?.response) {

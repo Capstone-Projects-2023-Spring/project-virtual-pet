@@ -158,7 +158,21 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # TODO when we serve from no-ip site, we need to add origin here
 CORS_ORIGIN_WHITELIST = [
      'http://localhost:3000',
-     'http://127.0.0.1:3000'
+     'http://127.0.0.1:3000',
+     
+]
+# need to explicitly allow these headers 
+CORS_ALLOW_HEADERS = [
+    "accept",
+    "accept-encoding",
+    "authorization",
+    "content-type",
+    "dnt",
+    "origin",
+    "user-agent",
+    "x-csrftoken",
+    "x-requested-with",
+    "withCredentials", # additional header
 ]
 
 # Custom user model # TODO if change name from newuser, re-register here
