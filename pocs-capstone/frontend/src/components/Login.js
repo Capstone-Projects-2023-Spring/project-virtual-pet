@@ -9,10 +9,9 @@ const LOGIN_URL = '/api/token/';
 const Login = () => {
 
         const { setAuth, persist, setPersist } = useAuth();
-
         const navigate = useNavigate();
         const location = useLocation();
-        const from = location.state?.from?.pathname || "/";
+        const from = location.state?.from?.pathname || "/loader";
 
         const emailRef = useRef()
         const errRef = useRef()
@@ -49,6 +48,8 @@ const Login = () => {
                 setEmail('');
                 setPassword('');
                 navigate(from, { replace: true });
+                navigate('/loader')
+               // navigate('/pet-choice')
             }catch(err){ //TODO do these error codes really match
                 if (!err?.response){
                     setErrMsg('No Server Response');

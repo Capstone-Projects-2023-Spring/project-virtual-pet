@@ -7,6 +7,7 @@
 .env.development.local
 .env.test.local
 .env.production.local
+pocs-capstone/backend/tutorial-env/
 pocs-capstone/backend/db/__pycache__/
 pocs-capstone/backend/db/migrations/
 pocs-capstone/backend/backend/__pycache__/
@@ -106,3 +107,5 @@ pocs-capstone/backend/db/migrations/__pycache__/0002_rename_user_name_newuser_us
 pocs-capstone/backend/db/__pycache__/authenticate.cpython-310.pyc
 pocs-capstone/backend/db.sqlite3
 pocs-capstone/backend/.env
+pocs-capstone/backend/db/__pycache__/studybuddyemail.cpython-310.pyc
+pocs-capstone/backend/db/__pycache__/studybuddyemail.cpython-310.pyc
