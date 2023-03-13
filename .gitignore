@@ -106,3 +106,5 @@ pocs-capstone/backend/db/migrations/__pycache__/0002_rename_user_name_newuser_us
 pocs-capstone/backend/db/__pycache__/authenticate.cpython-310.pyc
 pocs-capstone/backend/db.sqlite3
 pocs-capstone/backend/.env
+pocs-capstone/backend/db/__pycache__/studybuddyemail.cpython-310.pyc
+pocs-capstone/backend/db/__pycache__/studybuddyemail.cpython-310.pyc
