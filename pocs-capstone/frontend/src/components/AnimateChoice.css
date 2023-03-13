@@ -1,0 +1,96 @@
+@font-face {
+    font-family: pixelFont;
+    src: url("../fonts/retrogaming.ttf");
+  }
+  
+  @font-face {
+    font-family: minecraft;
+    src: url("../fonts/Minecraft.ttf");
+  }
+.pet-choice{
+    font-family: pixelFont;
+    background-color:bisque;
+}
+.AnimateChoice{
+    display: grid;
+    place-items: center;
+    align-items: flex-start;
+    height: 100vh;
+}
+
+.pet-name{
+    font-family: pixelFont;
+    font-size: 40px;
+    position: relative;
+    top: -50%;
+}
+
+.sprite-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.sprite-container.selected {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.sprite-container 
+    .hidden {
+    display: none;
+}
+
+.button {
+    cursor: pointer;
+    border: 1px solid #1a202c;
+    padding: 8px;
+    width: 5%;
+    background: transparent;
+    border-radius: 3px;
+    font-size: 20px;
+    transition: all 0.1s ease-in;
+    position: relative;
+  }
+
+  .smallbutton {
+    cursor: pointer;
+    border: 1px solid #1a202c;
+    padding: 8px;
+    width: 5%;
+    background: transparent;
+    border-radius: 3px;
+    font-size: 0.75vw;
+    transition: all 0.1s ease-in;
+    position: relative;
+  }
+
+  .smallbutton:hover {
+    background: #1a202c;
+    color: #ffffff;
+  }
+
+  .button:hover {
+    background: #1a202c;
+    color: #ffffff;
+  }
+
+  .input {
+    border: 1px solid #1a202c;
+    padding: 8px;
+    width: 25%;
+    border-radius: 3px;
+    font-size: 20px;
+    
+    position: relative;
+    background-color: rgba(255,255,255,0.3);
+    transition: 0.3s all;
+  }
+  
+  .input:hover{
+    background-color: rgba(255, 255, 255, 0.45);
+    box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.05);
+  }

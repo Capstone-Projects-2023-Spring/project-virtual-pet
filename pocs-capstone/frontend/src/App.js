@@ -10,9 +10,12 @@ import Register from './components/Register'
 import Login from './components/Login'
 import Layout from './components/Layout'
 
+import Loader from './components/Loader'
+
 import PersistLogin from './components/PersistLogin';
 import RequireAuth from './components/RequireAuth.js';
 
+import AnimateChoice from './components/AnimateChoice.js'
 import {Routes,Route} from 'react-router-dom';
 
 import './App.css'
@@ -31,6 +34,8 @@ function App(){
         <Route element={<PersistLogin />}>
           <Route element = {<RequireAuth/>}>
             <Route path="/" element={<Main/>}/>
+            <Route path = "/loader" element={<Loader/>}/>
+            <Route path = "/pet_selection" element ={<AnimateChoice/>}/>
           </Route>
         </Route>
       
