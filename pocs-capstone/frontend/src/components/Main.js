@@ -4,24 +4,25 @@ import useAuth from '../hooks/useAuth.js'
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 
 import { useState, useEffect } from 'react'
-
+import useAxiosPrivate from '../hooks/useAxiosPrivate.js';
 import './Main.css'
-// import inventoryService from '../services/inventory'
-import avatarService from '../services/avatarInfo'
 
+
+const AVATAR_URL = '/avatar/'
 const Main = ({userInfo}) => {
+    const axiosPrivate = useAxiosPrivate();
     const [avatarInfo, setAvatar] = useState({})
     const [inventory, setInventory] = useState([])
 
     const fetchData = () => {
-        // inventoryService  
-        //     .getInventory()
-        //     .then(r => {setInventory(r)})
-        // avatarService
-        //     .getAvatar()
-        //     .then(r => {setAvatar(r)})
+        axiosPrivate.get(AVATAR_URL)
+        .then((response )=>{
+            setAvatar(response.data[0])
+        })
+        .catch((error) => {
+            console.log(error);
+        });
 
-        setAvatar(avatarService.getAvatar())
         // setInventory(inventoryService.getInventory("ccho"))
     }
 

@@ -16,9 +16,7 @@ const PetDisplay = ({ avatarInfo, setAvatar, inventory, setInventory }) => {
                     <Card.Body className='pd-bg'>
 
                         <Card.Text className='pet-desc-text'>
-                            Some quick example text to build on the card title and make up the
-                            bulk of the card's content.Some quick example text to build on the card title and make up the
-                            bulk of the card's content.
+                            THIS CAT LOVES IAN TYLER APPLEBAUM SO MUCH!!!!!!!!!!!!!!!!!!!!!!!!!
                         </Card.Text>
                     </Card.Body>
                     <ListGroup className="list-group-flush">
