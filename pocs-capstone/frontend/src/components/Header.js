@@ -34,7 +34,7 @@ const Header = (props) => {
                 <div className="ms-auto dropdown-position">
                     <NavDropdown title={UserMenu} id="basic-nav-dropdown">
                         <NavDropdown.Item href="#action/3.1">Settings</NavDropdown.Item>
-                        <NavDropdown.Item href="#action/3.2">Canvas Integration</NavDropdown.Item>
+                        <NavDropdown.Item href="/canvas_integration">Canvas Integration</NavDropdown.Item>
                         <NavDropdown.Divider />
                         <NavDropdown.Item href="#action/3.3">
                             Log out
