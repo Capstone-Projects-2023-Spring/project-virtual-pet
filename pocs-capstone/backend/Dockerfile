@@ -34,6 +34,7 @@ RUN pip install drf-spectacular
 
 RUN pip install coreapi pyyaml
 
+RUN pip install python-dotenv
 
 # when the container runs it'll be listening on port 8000
 EXPOSE 8000
