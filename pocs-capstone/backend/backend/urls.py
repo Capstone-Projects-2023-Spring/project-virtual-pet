@@ -24,6 +24,7 @@ urlpatterns = [
     #path('docs/',include_docs_urls(title="Study Buddies API")),
     path('openapi', get_schema_view(title="Study Buddies - User Registration",description="User Registration, LogIn, LogOut Endpoints",version='0.0.1'),name='openapi-schema'),
     # YOUR PATTERNS
+    
     path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
     # Optional UI:
     path('api/schema/swagger-ui/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
