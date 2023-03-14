@@ -9,19 +9,19 @@ const Loader = () => {
     const axiosPrivate = useAxiosPrivate();
     
     const nav = useNavigate();
-    useEffect(() => {
-        axiosPrivate.get(AVATAR_URL)
+    useEffect(() => {  axiosPrivate.get(AVATAR_URL)
         .then((response )=>{
             console.log(response.data);
             if(response.data.length===0)
                 nav("/pet_selection")
+            else(nav("/"))
         })
         .catch((error) => {
             console.log(error);
         });
-        nav("/")
+        //nav("/")
     })
     
 }
 
-export default Loader
+export default Loader  
