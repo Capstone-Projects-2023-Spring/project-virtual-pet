@@ -1,7 +1,7 @@
 import { useState, useEffect} from "react"
 import useAuth from '../hooks/useAuth.js'
 import useAxiosPrivate from "../hooks/useAxiosPrivate"
-import {LInk, useNavigate} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 
 const AVATAR_URL = '/avatar/'
 
