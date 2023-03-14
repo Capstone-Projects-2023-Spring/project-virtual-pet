@@ -12,7 +12,7 @@
 .nav-tabs .nav-link{
     background-color: rgba(229, 179, 192, 0.563);
     color:rgb(217, 91, 91);
-    font-size: calc(1.3vw + .4vh);
+    font-size: calc(1.3vw + 1vh);
     font-weight: bold;
     margin: 0px;
     /* font-family:  pixelFont; */
@@ -73,7 +73,7 @@
 
 .to-do-header{
     font-weight: bold;
-    font-size: 25px;
+    font-size: calc(3vw+.4vw);
 }
 
 

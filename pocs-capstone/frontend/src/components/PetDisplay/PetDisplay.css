@@ -94,7 +94,7 @@
 
 .pet-label,
 .pbar-text {
-    font-size: 1vw;
+    font-size: calc(.7vw + 1.3vh);
     font-weight: bold;
     padding: 0px 5px;
     font-family:  pixelFont;
@@ -117,5 +117,3 @@
 .progress {
     border-radius: 0px;
 }
-
-
