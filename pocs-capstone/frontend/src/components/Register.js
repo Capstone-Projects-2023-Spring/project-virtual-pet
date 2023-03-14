@@ -38,6 +38,7 @@ const Register = () => {
     const [validEmail, setValidEmail] = useState(false);
     const [emailFocus, setEmailFocus] = useState(false);
 
+    const navigate = useNavigate();
 
     useEffect(() => {
         userRef.current.focus();
@@ -84,6 +85,7 @@ const Register = () => {
             console.log(response?.access);
             console.log(JSON.stringify(response))
             setSuccess(true);
+            //navigate('/login')
             //clear state and controlled inputs
             //need value attrib on inputs for this
             setUsername('');
@@ -109,7 +111,7 @@ const Register = () => {
             {success ? (
                 <div className="backg">
                     <section className='section-login-register'>
-                        <h1>Success!</h1>
+                        <h1> Success! </h1>
                         <p>
                             <a href="/login">Sign In</a>
                         </p>

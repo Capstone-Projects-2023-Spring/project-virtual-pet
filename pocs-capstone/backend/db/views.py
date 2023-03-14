@@ -9,6 +9,8 @@ from .models import *
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.views import APIView
+from rest_framework.permissions import IsAuthenticated
+from rest_framework_simplejwt.authentication import JWTAuthentication
 
 from db.studybuddyemail import send_email
 
@@ -92,6 +94,16 @@ class CanvasTaskViewSet(APIView):
 
     
 
+class NewUserViewSet(viewsets.ModelViewSet):
+    permission_classes=[IsAuthenticated,]
+    serializer_class = UserDataSerializer
+    
+    # query tasks by user. 
+    def get_queryset(self):
+        #_user = JWTAuthentication(self.request)
+        _user = self.request.user.id
+        return NewUser.objects.filter(id=_user)
+    
 
 
 class TaskViewSet(viewsets.ModelViewSet):

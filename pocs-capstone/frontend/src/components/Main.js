@@ -5,23 +5,27 @@ import { Link, useNavigate, useLocation } from 'react-router-dom';
 
 import { useState, useEffect } from 'react'
 
+import { useWindowWidth} from '@react-hook/window-size'
+import useAxiosPrivate from '../hooks/useAxiosPrivate.js';
 import './Main.css'
-// import inventoryService from '../services/inventory'
-import avatarService from '../services/avatarInfo'
 
+
+const AVATAR_URL = '/avatar/'
 const Main = ({userInfo}) => {
+    const axiosPrivate = useAxiosPrivate();
     const [avatarInfo, setAvatar] = useState({})
     const [inventory, setInventory] = useState([])
+    const width = useWindowWidth()
 
     const fetchData = () => {
-        // inventoryService  
-        //     .getInventory()
-        //     .then(r => {setInventory(r)})
-        // avatarService
-        //     .getAvatar()
-        //     .then(r => {setAvatar(r)})
+        axiosPrivate.get(AVATAR_URL)
+        .then((response )=>{
+            setAvatar(response.data[0])
+        })
+        .catch((error) => {
+            console.log(error);
+        });
 
-        setAvatar(avatarService.getAvatar())
         // setInventory(inventoryService.getInventory("ccho"))
     }
 
@@ -30,13 +34,30 @@ const Main = ({userInfo}) => {
     
     // console.log("Loading fetch data avatar", avatarInfo, "data fetched ")
     // console.log("Loading fetch data inventory ", inventory, "data fetched ")
+
+    const isMobile = window.innerWidth <= 700
     
     const shareData = { avatarInfo, setAvatar, inventory, setInventory }
-    return(
-        <div className="flex-pages">
-            <PetDisplay {...shareData}/>
-            <PageDisplay {...shareData}/>
-        </div>
-    )
+
+    if(!isMobile) {
+        return(
+            <div className="flex-pages">
+                <PetDisplay {...shareData}/>
+                <PageDisplay {...shareData}/>
+            </div>
+        )
+    } else {
+        return(
+            <div>
+                <div className="flex-pages">
+                    <PetDisplay {...shareData}/>
+                </div>
+                <div>
+                    <PageDisplay {...shareData}/>
+                </div>
+            </div>
+        )
+    }
+    
 }
 export default Main
