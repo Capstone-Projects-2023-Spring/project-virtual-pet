@@ -2,7 +2,10 @@
 
 ### Meet your adorable new virtual pet companion who will help you reach your academic goals! 
 
-## Set Up
+## How to Begin
+Simply click <a href="http://68.183.30.203:3000/">this link</a> to get to the site! If you would like to host it locally, follow the local set up instructions below.
+
+## Local Set Up
 
 1. Download the zip file in the release and open. 
 2. Open a terminal, then navigate to the project directory.
