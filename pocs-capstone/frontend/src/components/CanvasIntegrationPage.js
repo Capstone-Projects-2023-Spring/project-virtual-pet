@@ -24,16 +24,35 @@ const CanvasIntegrationPage = () => {
       };
     const handleSubmit = (event) => {
         event.preventDefault();
+
         if (canvas_token !== "") {
             setSubmittedText(canvas_token);
+            
+            axiosPrivate.get(CANVAS_URL).then((response) =>{
+                const id = response?.data[0].id
+                console.log("ID---->",response.data[0].id) 
+                if (id<1)
+                    throw("DOPPEEE")
+                const url = CANVAS_URL+id+"/"
+                console.log("-----> ",url)
+                const data = JSON.stringify({canvas_token})
+                axiosPrivate.put(url, data)
+                    .then((response )=>{
+                        console.log(response.data);
+                    })
+            }).catch((err)=>{console.log(err)})
+/*
+            const url = CANVAS_URL+id+"/"
+            console.log("-----> ",url)
             const data = JSON.stringify({canvas_token})
-            axiosPrivate.post(CANVAS_URL, data)
+            axiosPrivate.put(url, data)
             .then((response )=>{
                 console.log(response.data);
             })
             .catch((error) => {
                 console.log(error);
             });
+            */
         }
         else {
             console.log("NO NAME ENTERED")

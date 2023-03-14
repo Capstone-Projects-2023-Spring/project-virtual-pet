@@ -1,7 +1,7 @@
 import PetDisplay from './PetDisplay/PetDisplay.js'
 import PageDisplay from './PageDisplay/PageDisplay.js'
-import useAuth from '../hooks/useAuth.js'
-import { Link, useNavigate, useLocation } from 'react-router-dom';
+//import useAuth from '../hooks/useAuth.js'
+import { useNavigate} from 'react-router-dom';
 
 import { useState, useEffect } from 'react'
 
@@ -15,7 +15,7 @@ const Main = ({userInfo}) => {
     const axiosPrivate = useAxiosPrivate();
     const [avatarInfo, setAvatar] = useState({})
     const [inventory, setInventory] = useState([])
-   // const width = useWindowWidth()
+    const width = useWindowWidth()
     const nav = useNavigate()
 
     const fetchData = () => {
@@ -27,17 +27,17 @@ const Main = ({userInfo}) => {
             console.log(error);
             nav("/login")
         });
-        
+
         // setInventory(inventoryService.getInventory("ccho"))
     }
 
     
-    useEffect(fetchData)
+    useEffect(fetchData,[])
     
     // console.log("Loading fetch data avatar", avatarInfo, "data fetched ")
     // console.log("Loading fetch data inventory ", inventory, "data fetched ")
 
-    const isMobile = window.innerWidth <= 850
+    const isMobile = (width <= 850)
     
     const shareData = { avatarInfo, setAvatar, inventory, setInventory }
 

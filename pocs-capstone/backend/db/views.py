@@ -84,7 +84,9 @@ class CustomUserCreate(APIView):
         if('username' in errors.keys()):
             return Response("Username is taken",status=status.HTTP_409_CONFLICT)
         return Response(registration_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-    
+
+
+"""
 class CanvasTaskViewSet(viewsets.ModelViewSet):
     serializer = TaskSerializer
     
@@ -103,6 +105,8 @@ class CanvasTaskViewSet(viewsets.ModelViewSet):
         return Response("Congrats",status=status.HTTP_201_CREATED)
     def get(self):
         return Response("Invalid Endpoint",status=status.HTTP_401_UNAUTHORIZED)
+"""
+
 
 class CanvasView(APIView):
     permission_classes = (IsAuthenticated, )
