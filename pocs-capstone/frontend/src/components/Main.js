@@ -35,7 +35,7 @@ const Main = ({userInfo}) => {
     // console.log("Loading fetch data avatar", avatarInfo, "data fetched ")
     // console.log("Loading fetch data inventory ", inventory, "data fetched ")
 
-    const isMobile = window.innerWidth <= 700
+    const isMobile = window.innerWidth <= 850
     
     const shareData = { avatarInfo, setAvatar, inventory, setInventory }
 
