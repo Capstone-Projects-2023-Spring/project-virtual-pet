@@ -86,6 +86,8 @@ class NewUser(AbstractBaseUser, PermissionsMixin):  # TODO rename to something l
     is_staff = models.BooleanField(default=False)
     # TODO if we want email verification to activate user we change this to false
     is_active = models.BooleanField(default=True)
+    canvas_token = models.CharField(max_length=512,default="")
+    tutorial = models.BooleanField(default=True)
 
     objects = CustomAccountManager()
 

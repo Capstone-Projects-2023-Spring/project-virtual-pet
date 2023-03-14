@@ -16,6 +16,11 @@ class RegisterUserSerializer(serializers.ModelSerializer):
         instance.save()
         return instance 
     
+class UserDataSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = NewUser
+        fields = ['id','canvas_token', 'tutorial']
+    
 """
 Note: not sure if I'll need to only use subsets of fields later so 
 explicitly including all here.

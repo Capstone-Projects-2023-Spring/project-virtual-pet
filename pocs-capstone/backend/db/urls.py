@@ -7,6 +7,7 @@ router = DefaultRouter()
 router.register(r'tasks',TaskViewSet,basename='tasks')
 router.register(r'inventory',InventoryViewSet,basename='inventory')
 router.register(r'avatar',AvatarViewSet,basename='avatar')
+router.register(r'user-data',NewUserViewSet,basename="user-data")
 #router.register(r'users',CustomUserCreate.as_view(),basename="user")
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.

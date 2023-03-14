@@ -9,6 +9,8 @@ from .models import *
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.views import APIView
+from rest_framework.permissions import IsAuthenticated
+from rest_framework_simplejwt.authentication import JWTAuthentication
 
 from db.studybuddyemail import send_email
 
@@ -46,6 +48,16 @@ class CustomUserCreate(APIView):
         if('username' in errors.keys()):
             return Response("Username is taken",status=status.HTTP_409_CONFLICT)
         return Response(registration_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+class NewUserViewSet(viewsets.ModelViewSet):
+    permission_classes=[IsAuthenticated,]
+    serializer_class = UserDataSerializer
+    
+    # query tasks by user. 
+    def get_queryset(self):
+        #_user = JWTAuthentication(self.request)
+        _user = self.request.user.id
+        return NewUser.objects.filter(id=_user)
     
 
 
