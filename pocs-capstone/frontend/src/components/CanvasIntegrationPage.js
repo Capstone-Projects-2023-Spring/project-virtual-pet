@@ -11,11 +11,12 @@ import {useNavigate }from 'react-router-dom'
 
 
 //not right
-const CANVAS_URL = '/canvas_integration/'
+const CANVAS_URL = '/user-data/'
 const CanvasIntegrationPage = () => {
     const axiosPrivate = useAxiosPrivate();
     const [submittedText, setSubmittedText] = useState(null);
     const [canvas_token, setEnteredText] = useState("");
+    const [nameError, setNameError] = useState('')
 
     const textChangeHandler = (i) => {
         setEnteredText(i.target.value);
@@ -23,15 +24,21 @@ const CanvasIntegrationPage = () => {
       };
     const handleSubmit = (event) => {
         event.preventDefault();
-        setSubmittedText(canvas_token);
-        axiosPrivate.post(CANVAS_URL, canvas_token)
-        .then((response )=>{
-            navigator("/")
-        })
-        .catch((error) => {
-            console.log(error);
-        });
+        if (canvas_token !== "") {
+            setSubmittedText(canvas_token);
+            axiosPrivate.post(CANVAS_URL, canvas_token)
+            .then((response )=>{
+                navigator("/")
+            })
+            .catch((error) => {
+                console.log(error);
+            });
         }
+        else {
+            console.log("NO NAME ENTERED")
+            setNameError('ENTER A FUKCING NAME')
+        }
+    }
     return (
         <div>
             <Card style= {{width: '130rem'}}>
