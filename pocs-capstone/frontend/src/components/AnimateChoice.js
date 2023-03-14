@@ -10,6 +10,8 @@ import {useNavigate }from 'react-router-dom'
 //import selectpet from './selectpet'
 
 const AVATAR_URL = '/avatar/'
+const PETNAME_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
+
 const AnimateChoice = () => {
     const axiosPrivate = useAxiosPrivate();
 //    const handlers = useContext(PetSelectionContext);//
@@ -78,10 +80,13 @@ const AnimateChoice = () => {
 
 //contains sprite sheets
     return (
-        <div>
+        <div className='petsprite-body'>
             <Card style= {{width: '130rem'}}>
             <Card.Header className = 'pet-choice'><center><h1>CHOOSE YOUR PET</h1></center></Card.Header> </Card>
             <hr />
+            <div className='petname-display'>
+
+            
             <div
             className="sprite-container">
             <Spritesheet
@@ -117,12 +122,16 @@ const AnimateChoice = () => {
             />
             </div>
             {showTextBox.map((isShown, index) => isShown && ( 
-                <form key={index} onSubmit={(event) => handleSubmit(event, index)}>
-                    <input className = "input" type="text" placeholder="Name your pet!" value={enteredText} onChange={textChangeHandler}/>
-                    <button className="button" type="submit">Submit</button>
-                </form>
+                
+                    <form key={index} onSubmit={(event) => handleSubmit(event, index)}>
+                        <input className = "input" type="text" placeholder="Name your pet!" value={enteredText} onChange={textChangeHandler}/>
+                        <button className="button" type="submit">Submit</button>
+                    </form>
+                
             ))}
             {submittedText && (<form className = 'pet-name' > {enteredText}</form>)}
+
+            </div>
         </div>
     );
 }

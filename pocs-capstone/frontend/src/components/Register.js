@@ -113,7 +113,7 @@ const Register = () => {
                     <section className='section-login-register'>
                         <h1> Success! </h1>
                         <p>
-                            <a href="/login">Sign In</a>
+                            <a className='link-login-register' href="/login">Sign In</a>
                         </p>
                     </section>
                 </div>
@@ -225,7 +225,7 @@ const Register = () => {
                             Already registered?<br />
                             <span className="line">
                                 {/**can do something else here? but what! */}
-                                <a href="/login">Sign In</a>
+                                <a className='link-login-register' href="/login">Sign In</a>
                             </span>
                         </p>
                     </section>
