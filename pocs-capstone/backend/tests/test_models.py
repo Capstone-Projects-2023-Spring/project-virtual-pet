@@ -1,7 +1,5 @@
-# May need to run commands:
-#   pip install python-decouple
-#   pip install coreapi pyyaml
-#   python3 manage.py test  "This will run the all test files"
+# python3 manage.py test  "This will run the all test files in the tests directory"
+# This file tests the database models
 
 from django.test import TestCase
 from django.utils import timezone
@@ -19,7 +17,9 @@ class NewUserModelTest(TestCase):
             birthday = "2023-05-30",
             bio = "I like turtles",
             is_staff = False,
-            is_active = True
+            is_active = True,
+            canvas_token = "12345",
+            tutorial = True
 
         )
 
@@ -48,10 +48,20 @@ class NewUserModelTest(TestCase):
         field_label = user._meta.get_field('bio').verbose_name
         self.assertEqual(field_label, 'about')
 
+    def test_canvas_token_max_length(self):
+        user = NewUser.objects.get(id=1)
+        max_length = user._meta.get_field('canvas_token').max_length
+        self.assertEqual(max_length, 512)
+
     def test_object_name_is_(self):
         user = NewUser.objects.get(id=1)
         expected_object_name = user.username
         self.assertEqual(expected_object_name, str(user))
+
+    def test_canvas_token_is_returned(self):
+        user = NewUser.objects.get(id=1)
+        expected_token_value = user.canvas_token
+        self.assertEqual(expected_token_value, user.get_canvas_token())
 
 class AvatarModelTest(TestCase):
     @classmethod
@@ -94,10 +104,10 @@ class AvatarModelTest(TestCase):
         max_length = avatar._meta.get_field('flavour_text').max_length
         self.assertEqual(max_length, 256)
 
-    def test_object_name_is_pet_name_and_pet_type(self):
+    def test_object_name_is_actual_name(self):
         avatar = Avatar.objects.get(avatar_id=1)
         expected_object_name = f'{avatar.pet_name}, {avatar.avatar_type}'
-        self.assertEqual(expected_object_name, "Ricky Bobby, CT")
+        self.assertEqual(expected_object_name, str(avatar))
 
 class InventoryModelTest(TestCase):
     @classmethod
@@ -127,10 +137,10 @@ class InventoryModelTest(TestCase):
         max_length = inventory._meta.get_field('candy_base_type').max_length
         self.assertEqual(max_length, 1)
 
-    def test_object_name_is_candy_type_and_level(self):
+    def test_object_name_is_actual_name(self):
         inventory = Inventory.objects.get(inventory_id=1)
         expected_object_name = f'{inventory.candy_base_type}, {inventory.candy_level}'
-        self.assertEqual(expected_object_name, "S, 1")
+        self.assertEqual(expected_object_name, str(inventory))
 
 class TaskModelTest(TestCase):
     @classmethod
@@ -178,4 +188,4 @@ class TaskModelTest(TestCase):
     def test_object_name_is_actual_name_(self):
         task = Task.objects.get(task_id=1)
         expected_object_name = f'{task.title}, {task.task_type}, {task.task_level}, {task.description}'
-        self.assertEqual(expected_object_name, "New Task, S, 1, Quiz 1")
+        self.assertEqual(expected_object_name, str(task))
