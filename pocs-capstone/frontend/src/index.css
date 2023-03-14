@@ -14,7 +14,7 @@ html {
 
 body {
     min-height: 100vh;
-    background-color: dodgerblue;
+    background-color: rgb(255, 255, 255);
 }
 
 .App {
@@ -45,8 +45,8 @@ body {
     padding-bottom: 1rem;
 }
 
-a,
-a:visited {
+.link-login-register,
+.link-login-register:visited {
     color: #fff;
 }
 

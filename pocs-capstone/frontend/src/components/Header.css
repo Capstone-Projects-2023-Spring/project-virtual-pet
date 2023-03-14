@@ -22,10 +22,11 @@
 
 
 
-.gab {
-    width: 50px;
+.logo-sb {
+    width: 70px;
     height: auto;
-
+    justify-content: center;
+    align-items: center;
 }
 
 .header-position {
@@ -54,7 +55,7 @@
 
 .App-link:hover,
 .App-link {
-    color: #b4e3f0;
+    color: #6e7172;
     font-weight: bold;
 }
 
