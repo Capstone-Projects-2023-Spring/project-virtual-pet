@@ -11,7 +11,7 @@ Simply click <a href="http://68.183.30.203:3000/">this link</a> to get to the si
 2. Open a terminal, then navigate to the project directory.
 3. Navigate to the backend: `cd pocs-capstone/backend`.
 4. Activate a Python virtual environment: `source tutorial-env/bin/activate` (MacOS/Unix) or `tutorial-env\Scripts\activate.bat` (Windows).
-5. Run `pip3 install requirements.txt` to install missing Python libraries.
+5. Run `pip install -r requirements.txt` to install required Python libraries.
 6. Run `python3 manage.py makemigrations`, followed by `python3 manage.py migrate`, followed by `python3 manage.py runserver`.
 7. Now, open a new terminal and from the project directory, navigate to the frontend: `cd pocs-capstone/frontend`.
 8. Run `npm install` (it may take a moment). Then run `npm start`. 
