@@ -12,6 +12,8 @@ import {useNavigate }from 'react-router-dom'
 
 //not right
 const CANVAS_URL = '/user-data/'
+const COURSES_URL = '/canvas/'
+
 const CanvasIntegrationPage = () => {
     const axiosPrivate = useAxiosPrivate();
     const [submittedText, setSubmittedText] = useState(null);
@@ -41,6 +43,26 @@ const CanvasIntegrationPage = () => {
                         console.log(response.data);
                     })
             }).catch((err)=>{console.log(err)})
+
+            axiosPrivate.get(COURSES_URL).then((response) => {
+                //console.log("COURSES: ", response.data.courses[0])
+                const canvasTasks = response.data.courses
+
+                for (let i=0; i<canvasTasks.length; i++) {
+                    const newTask = {
+                        'title': canvasTasks[i],
+                        'due_date': '2025-03-08',
+                        'task_type': 'S',
+                        'description': canvasTasks[i]
+                    }
+                    axiosPrivate.post('/tasks/', newTask)
+                        .then((response) => {
+                            console.log("COURSE: ", canvasTasks[0])
+                        }).catch((err)=>{console.log(err)})
+                        
+                }
+        
+            }).catch((err)=>{console.log(err)})
 /*
             const url = CANVAS_URL+id+"/"
             console.log("-----> ",url)
@@ -53,6 +75,8 @@ const CanvasIntegrationPage = () => {
                 console.log(error);
             });
             */
+
+
         }
         else {
             console.log("NO NAME ENTERED")
