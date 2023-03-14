@@ -99,7 +99,7 @@ class NewUser(AbstractBaseUser, PermissionsMixin):  # TODO rename to something l
         """
         return self.username
     def get_canvas_token(self):
-        return self.email
+        return self.canvas_token
 
 # Many to One relationship between user and petprofile
 # If user is deleted so is their pet profile
