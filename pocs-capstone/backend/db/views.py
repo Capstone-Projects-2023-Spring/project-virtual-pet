@@ -25,6 +25,38 @@ class NoteViewSet(viewsets.ModelViewSet):
 
 """
 
+
+import requests as r
+def lololol():
+    token = {"Authorization":"Bearer 9957~7uSFc3Ba2291o6c49fakUCQbIpVnUy2kTYPYkEQ6dPbKlCGPftWsNX9GTyLhJTtZ"}
+
+    response = r.get("https://templeu.instructure.com/api/v1/courses/?enrollment_state=active&per_page=100",headers=token)
+    courses = response.json()
+    course_names = []
+    for course in courses:
+        course_names.append(course['name'])
+    print(course_names)
+    #_userid = self.request.user
+    _user = NewUser.objects.filter(id=1)
+    print(_user[0].get_canvas_token())
+    print(_user)
+    return course_names
+
+
+
+
+
+
+
+
+
+
+
+"""NO WAYYYY"""
+
+
+
+
 class CustomUserCreate(APIView):
     permission_classes = [AllowAny]
 
@@ -47,6 +79,19 @@ class CustomUserCreate(APIView):
             return Response("Username is taken",status=status.HTTP_409_CONFLICT)
         return Response(registration_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
+class CanvasTaskViewSet(APIView):
+    serializer = TaskSerializer
+    
+    def post(self):
+        _userid = self.request.user
+        _user = NewUser.objects.filter(user=_userid)
+        print(_user.meta.get_fields())
+    def perform_create(self, serializer):
+       
+        pass
+
+    
+
 
 
 class TaskViewSet(viewsets.ModelViewSet):
@@ -54,6 +99,7 @@ class TaskViewSet(viewsets.ModelViewSet):
     serializer_class = TaskSerializer
     
     def perform_create(self, serializer):
+        lololol()
         serializer.save(user=self.request.user)
         #return super().perform_create(self,serializer)
     # query tasks by user. 
