@@ -1,12 +1,8 @@
-
-
-
-.header {
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+.header { font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 font-size: 1vw;
 padding: 5px;
 margin: 5px;
-text-align: center;
+text-align:center;
 }
 .text{
 font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
@@ -15,3 +11,14 @@ padding: 5px;
 margin: 5px;
 text-align: center;
 }
+
+.body {
+    min-height: 100vh;
+}
+
+.submit_canvas {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+  }

@@ -26,9 +26,10 @@ const CanvasIntegrationPage = () => {
         event.preventDefault();
         if (canvas_token !== "") {
             setSubmittedText(canvas_token);
-            axiosPrivate.post(CANVAS_URL, canvas_token)
+            const data = JSON.stringify({canvas_token})
+            axiosPrivate.post(CANVAS_URL, data)
             .then((response )=>{
-                navigator("/")
+                console.log(response.data);
             })
             .catch((error) => {
                 console.log(error);
@@ -36,11 +37,11 @@ const CanvasIntegrationPage = () => {
         }
         else {
             console.log("NO NAME ENTERED")
-            setNameError('ENTER A FUKCING NAME')
+            setNameError('You must enter a token!')
         }
     }
     return (
-        <div>
+        <div className = "body">
             <Card style= {{width: '130rem'}}>
             <Card.Header className = 'pet-choice'><center><h1>ADD YOUR CANVAS ACCOUNT!</h1></center></Card.Header> </Card>
             <hr />
@@ -56,13 +57,11 @@ const CanvasIntegrationPage = () => {
              <p></p> 4. Enter a purpose and expiration date (ex. study buddy, and the end of your semester date). 
              <p></p> Select "Generate token", and copy and paste it here! </Card.Body>
 
-             <form onSubmit={(event) => handleSubmit(event)}>
+             <form className = "submit_canvas" onSubmit={(event) => handleSubmit(event)}>
                     <input className = "input" type = "text" placeholder= "Enter token here!" value={canvas_token} onChange={textChangeHandler}/>
-                    <button className="smallbutton" type="submit">Submit</button>
-
-
-                </form>
-
+                    <button className="button" type="submit">Submit</button>
+                    {nameError!=="" ? <p>{nameError}</p> : <></>}
+            </form>
             
         </div>
     )

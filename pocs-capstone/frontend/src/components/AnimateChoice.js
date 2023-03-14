@@ -76,8 +76,7 @@ const AnimateChoice = () => {
         }
 
         else {
-            console.log("NO NAME ENTERED")
-            setNameError('ENTER A FUKCING NAME')
+            setNameError('You must enter a name!')
 
         }
 
