@@ -19,7 +19,8 @@ class RegisterUserSerializer(serializers.ModelSerializer):
 class UserDataSerializer(serializers.ModelSerializer):
     class Meta:
         model = NewUser
-        fields = ['id','canvas_token', 'tutorial']
+        fields = ['id',
+                  'canvas_token', 'tutorial']
     
 """
 Note: not sure if I'll need to only use subsets of fields later so 
@@ -57,7 +58,8 @@ class TaskSerializer(serializers.ModelSerializer):
             'course_id',
             'assignment_id'
         ]
-    
+
+
 
 class InventorySerializer(serializers.ModelSerializer):
     class Meta:

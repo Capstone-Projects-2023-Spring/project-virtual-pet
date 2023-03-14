@@ -15,7 +15,8 @@ const Main = ({userInfo}) => {
     const axiosPrivate = useAxiosPrivate();
     const [avatarInfo, setAvatar] = useState({})
     const [inventory, setInventory] = useState([])
-    const width = useWindowWidth()
+   // const width = useWindowWidth()
+    const nav = useNavigate()
 
     const fetchData = () => {
         axiosPrivate.get(AVATAR_URL)
@@ -24,13 +25,14 @@ const Main = ({userInfo}) => {
         })
         .catch((error) => {
             console.log(error);
+            nav("/login")
         });
-
+        
         // setInventory(inventoryService.getInventory("ccho"))
     }
 
     
-    useEffect(fetchData, [])
+    useEffect(fetchData)
     
     // console.log("Loading fetch data avatar", avatarInfo, "data fetched ")
     // console.log("Loading fetch data inventory ", inventory, "data fetched ")

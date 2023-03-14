@@ -11,7 +11,7 @@ from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework_simplejwt.authentication import JWTAuthentication
-
+from rest_framework.decorators import api_view
 from db.studybuddyemail import send_email
 
 """
@@ -26,6 +26,42 @@ class NoteViewSet(viewsets.ModelViewSet):
     serializer_class = NoteSerializer
 
 """
+
+
+import requests as r
+def lololol(userId):
+
+    _user = NewUser.objects.filter(id=userId)
+    canvas_token=_user[0].get_canvas_token() 
+    
+    token = {"Authorization":"Bearer "+canvas_token}
+
+    response = r.get("https://templeu.instructure.com/api/v1/courses/?enrollment_state=active&per_page=100",headers=token)
+    courses = response.json()
+    course_names = []
+    for course in courses:
+        course_names.append(course['name'])
+    print(course_names)
+    #_userid = self.request.user
+    
+    print(_user[0].get_canvas_token())
+    print(_user)
+    return course_names
+
+
+
+
+
+
+
+
+
+
+
+"""NO WAYYYY"""
+
+
+
 
 class CustomUserCreate(APIView):
     permission_classes = [AllowAny]
@@ -49,6 +85,36 @@ class CustomUserCreate(APIView):
             return Response("Username is taken",status=status.HTTP_409_CONFLICT)
         return Response(registration_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
+class CanvasTaskViewSet(viewsets.ModelViewSet):
+    serializer = TaskSerializer
+    
+    def post(self):
+        _userid = self.request.user
+        courses = lololol(_userid)
+        if not courses:
+            return Response("Invalid Canvas API Token",status=status.HTTP_401_UNAUTHORIZED)
+        for c in courses:
+            s = TaskSerializer(data={
+                "title":c,
+                "due_date":timezone.now,
+                "task_type":'C',
+                "description":c
+            })
+        return Response("Congrats",status=status.HTTP_201_CREATED)
+    def get(self):
+        return Response("Invalid Endpoint",status=status.HTTP_401_UNAUTHORIZED)
+
+class CanvasView(APIView):
+    permission_classes = (IsAuthenticated, )
+  
+
+    def get(self,request):
+        
+        _user=self.request.user.id
+       
+        return Response({"courses": lololol(_user)})
+        
+
 class NewUserViewSet(viewsets.ModelViewSet):
     permission_classes=[IsAuthenticated,]
     serializer_class = UserDataSerializer
