@@ -1,5 +1,5 @@
 import "./Header.css"
-import logo from '../images/gabagoo.jpg';
+import logo from '../images/orangecat.png';
 import usericon from '../images/user_icon.png'
 
 import Navbar from 'react-bootstrap/Navbar';
@@ -27,7 +27,7 @@ const Header = (props) => {
         <div className="header-whole">
             <Stack direction="horizontal" gap={3}>
                 <div className="header-position">
-                    <img className="gab" src={logo} alt="gabagoologo" />
+                    <img className="logo-sb" src={logo} alt="study buddy logo" />
                     <Navbar.Brand className="App-link ml-5 header-text">My Study Buddy</Navbar.Brand>
 
                 </div>
@@ -47,12 +47,6 @@ const Header = (props) => {
 
 
         </div >
-
-
-
-
-
-
     )
 }
 

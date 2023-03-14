@@ -22,10 +22,11 @@
 
 
 
-.gab {
-    width: 50px;
+.logo-sb {
+    width: 70px;
     height: auto;
-
+    justify-content: center;
+    align-items: center;
 }
 
 .header-position {
