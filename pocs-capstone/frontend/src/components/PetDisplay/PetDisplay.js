@@ -16,7 +16,7 @@ const PetDisplay = ({ avatarInfo, setAvatar, inventory, setInventory }) => {
                     <Card.Body className='pd-bg'>
 
                         <Card.Text className='pet-desc-text'>
-                            THIS CAT LOVES IAN TYLER APPLEBAUM SO MUCH!!!!!!!!!!!!!!!!!!!!!!!!!
+                            This cat loves programming and tuna, and hates dogs. 
                         </Card.Text>
                     </Card.Body>
                     <ListGroup className="list-group-flush">
