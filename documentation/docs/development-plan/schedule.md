@@ -161,14 +161,6 @@ gantt
     - R3: User can organize tasks in a custom order.
     - R4: Users can import tasks from Canvas LMS multiple times.
     - R5: User can import Canvas assignments as tasks.
-
-- F7. Task Organization and Filtering
-    - R2. User can filter tasks by course.
-    - R3: User can sort tasks by date.
-
-- F10: User can view their tasks on a calendar.
-    - R1: The system will present the user with a calendar grid view of their upcoming and past due tasks.
-    - R2: the system will support the Gregorian calendar format.
     
 - F13: Create the inventory page
     - R1: User can view the inventory earned from completing tasks!
@@ -190,3 +182,11 @@ gantt
 
 - F18: Create task reminders/notifications
     - R1: Users receive pop-up notifications when a task’s deadline is near
+
+- F7. Task Organization and Filtering
+    - R2. User can filter tasks by course.
+    - R3: User can sort tasks by date.
+
+- F10: User can view their tasks on a calendar.
+    - R1: The system will present the user with a calendar grid view of their upcoming and past due tasks.
+    - R2: the system will support the Gregorian calendar format.
