@@ -27,7 +27,7 @@ const Header = (props) => {
         <div className="header-whole">
             <Stack direction="horizontal" gap={3}>
                 <div className="header-position">
-                    <a href= "http://localhost:3000/">
+                    <a href= "http://68.183.30.203:3000/">
                     <img className="logo-sb" src={logo} alt="study buddy logo"/>
                     </a>
                     <Navbar.Brand className="App-link ml-5 header-text">My Study Buddy</Navbar.Brand>
