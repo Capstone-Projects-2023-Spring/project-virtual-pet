@@ -155,19 +155,19 @@ gantt
 
 ### Milestone Demo 2 [Progression System & Full Task Functionality]
 
-- F6: Task Completion and Task Creation
+- F5: Task Completion and Task Creation
     - R1: User can fill out a form to create a task.
     - R2: Completion of tasks influences virtual pet progress.
     - R3: User can organize tasks in a custom order.
     - R4: Users can import tasks from Canvas LMS multiple times.
     - R5: User can import Canvas assignments as tasks.
     
-- F13: Create the inventory page
+- F6: Create the inventory page
     - R1: User can view the inventory earned from completing tasks!
     - R2: User can remove candy and place it on their pet (feed it), influencing their pet’s progress
     - R3: Inventory includes different sizes of candies and a rare candy
 
-- F14: User can interact with their pet (feed candies)
+- F7: User can interact with their pet (feed candies)
     - R1: User can give candy to their virtual pet, affecting its mood and level.
     - R2: User should be able to view task progress and how it affects their virtual pet.
     - R3: See your pet progress toward the next level with a progress bar
@@ -176,17 +176,17 @@ gantt
 
 ### Milestone Demo 3 [Detailed Pet Interactions & Task Reminders]
 
-- F12: Make the pet reactive; its mood will visually change
+- F8: Make the pet reactive; its mood will visually change
     - R1: User’s progress and task completion will result in virtual pet mood changes.
     - R2: User's virtual pets will be animated.
 
-- F18: Create task reminders/notifications
+- F9: Create task reminders/notifications
     - R1: Users receive pop-up notifications when a task’s deadline is near
 
-- F7. Task Organization and Filtering
+- F10: Task Organization and Filtering
     - R2. User can filter tasks by course.
     - R3: User can sort tasks by date.
 
-- F10: User can view their tasks on a calendar.
+- F11: User can view their tasks on a calendar.
     - R1: The system will present the user with a calendar grid view of their upcoming and past due tasks.
     - R2: the system will support the Gregorian calendar format.
