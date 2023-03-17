@@ -8,15 +8,20 @@ import './Inventory.css'
 function InventoryBox({inventory}) {
 
     // let [count, setCount] = useState(0);
-
+    
 return (
         <>
-            <h1>Goodie Bag</h1>
+            <h1 style={{
+                textAlign: "center",
+                marginTop: 100,
+                marginBottom: -175
+            }}>Goody Bag</h1>
             <div style={{
-                padding: 15,
+                padding: 10,
                 border: "5px solid black",
-                height: 200, width: 1040,
-                margin: 80,         
+                height: 200, width: 950,
+                margin: 200,  
+                backgroundColor: "pink",      
                 }} >
 
                     <div className="Candy"> 
