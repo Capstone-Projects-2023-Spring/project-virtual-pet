@@ -10,7 +10,7 @@ import useAxiosPrivate from '../hooks/useAxiosPrivate.js';
 import './Main.css'
 
 // Wrap here but not 100% sure
-import { DndProvider, useDrop } from "react-dnd";
+import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 
 const initialInventoryState = [
@@ -70,8 +70,6 @@ const Main = ({userInfo}) => {
         // setInventory(inventoryService.getInventory("ccho"))
     }
 
-    
-
     useEffect(fetchData,[])
     
     // console.log("Loading fetch data avatar", avatarInfo, "data fetched ")
@@ -79,24 +77,16 @@ const Main = ({userInfo}) => {
 
     const isMobile = (width <= 850)
 
-    
-    // const [candyList, setCandyList] = useState(initialState);
-
-   
-
-
     // Get inventory here maybe?
     
     const shareData = { avatarInfo, setAvatar, inventory, setInventory }  
 
     if(!isMobile) {
         return(
-            // Could go on outside or just wrap PetDisplay?
+            
             <DndProvider backend={HTML5Backend}>
-
                 <div className="flex-pages">
-                        <PetDisplay {...shareData}/>
-                    {/* <PetDisplay {...shareData}/> */}
+                    <PetDisplay {...shareData}/>
                     <PageDisplay {...shareData}/>
                 </div>
             </DndProvider>      

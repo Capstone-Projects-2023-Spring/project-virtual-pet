@@ -8,9 +8,6 @@ import './Inventory.css'
 function InventoryBox({inventory}) {
 
     // let [count, setCount] = useState(0);
-    console.log("In inventoryBox")
-    console.log(inventory)
-    
 
 return (
         <>
@@ -19,20 +16,19 @@ return (
                 padding: 15,
                 border: "5px solid black",
                 height: 200, width: 1040,
-                margin: 80,
-                
-            }} >
+                margin: 80,         
+                }} >
 
-                <div className="Candy"> 
-                {inventory.map((candy, id) => {
-                    <li>key={id}</li>
-                        return < Candy id={candy.id} 
-                                quantity={candy.quantity}  
-                                candy_base_type={candy.candy_base_type} 
-                                candy_level={candy.candy_level} />            
-                })} 
+                    <div className="Candy"> 
+                    {inventory.map((candy, id) => {
+                            return < Candy key={id} 
+                                    id={candy.id}
+                                    quantity={candy.quantity}  
+                                    candy_base_type={candy.candy_base_type} 
+                                    candy_level={candy.candy_level} />            
+                    })} 
                 
-                </div>
+                    </div>
             </div>
         </>
     )

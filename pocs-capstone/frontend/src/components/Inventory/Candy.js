@@ -5,7 +5,7 @@ import './Inventory.css'
 // Renders Candy component based off props passed from InventoryBox's inventory state
 // Candy is only rendered if quantity > 0
 function Candy ({id, quantity, candy_base_type, candy_level}) {
-    const [{isDragging}, drag] = useDrag(() => ({
+    let [{isDragging}, drag] = useDrag(() => ({
         type: "image",
         item: {id: id},
         // Optional collect function used for accessing isDragging boolean
@@ -14,7 +14,7 @@ function Candy ({id, quantity, candy_base_type, candy_level}) {
         }),
     }));
 
-    const candyImage = (candy) => {
+    let candyImage = (candy) => {
         switch (candy_base_type) {
             case 'S':
                 // Do we need candy level to decide appearance or is that more background stat multiplier?
@@ -25,17 +25,17 @@ function Candy ({id, quantity, candy_base_type, candy_level}) {
                 // }
 
             case 'M':
-                return require('../../images/candy/candy2.jpg')
-            case 'L':
                 return require('../../images/candy/orangecandy_scaled_16x_pngcrushed.png')
-            case 'C':
+            case 'L':
                 return require('../../images/candy/pinkcandy_scaled_16x_pngcrushed.png')
+            case 'C':
+                return require('../../images/candy/orangecandy_scaled_16x_pngcrushed.png')
             // return pink candy
             default:
                 return require('../../images/candy/pinkcandy_scaled_16x_pngcrushed.png')
         }
     }
-
+    // Render if there are candy
     if (quantity !== 0)
     {
         return (

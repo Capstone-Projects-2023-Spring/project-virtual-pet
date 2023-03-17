@@ -2,7 +2,7 @@ import "./PageDisplay.css"
 import TaskPage from "./TaskPage";
 import CalendarPage from "./CalendarPage"
 import TaskListContext from '../../context/TaskListContext'
-import InventoryPage from './InventoryPage';
+import InventoryBox from "../Inventory/InventoryBox";
 // import tasks from '../../services/tasks'
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
@@ -11,9 +11,6 @@ import { useState, useEffect } from 'react'
 
 
 const PageDisplay = ({ avatarInfo, setAvatar, inventory, setInventory }) => {
-
-    console.log(`In PageDisply inv`)
-    console.log(inventory)
 
     const axiosPrivate = useAxiosPrivate()
     const baseURL = `/tasks/`
@@ -128,7 +125,7 @@ const PageDisplay = ({ avatarInfo, setAvatar, inventory, setInventory }) => {
                         <CalendarPage />
                     </Tab>
                     <Tab eventKey="inventory" title="Inventory">
-                        < InventoryPage inventory={inventory}/>
+                        < InventoryBox inventory={inventory}/>
                     </Tab>
                     <Tab eventKey="progress" title="Progress">
                         {/* <Sonnet /> */}
