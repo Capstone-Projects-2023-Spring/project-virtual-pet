@@ -2,6 +2,7 @@ import "./PageDisplay.css"
 import TaskPage from "./TaskPage";
 import CalendarPage from "./CalendarPage"
 import TaskListContext from '../../context/TaskListContext'
+import InventoryPage from './InventoryPage';
 // import tasks from '../../services/tasks'
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
@@ -124,7 +125,7 @@ const PageDisplay = ({ avatarInfo, setAvatar, inventory, setInventory }) => {
                         <CalendarPage />
                     </Tab>
                     <Tab eventKey="inventory" title="Inventory">
-                        {/* <Sonnet /> */}
+                        < InventoryPage />
                     </Tab>
                     <Tab eventKey="progress" title="Progress">
                         {/* <Sonnet /> */}

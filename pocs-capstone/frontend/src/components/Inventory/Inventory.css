@@ -1,0 +1,14 @@
+.Candy {
+    display: flex;
+    flex-direction: row;
+    margin: 10px;
+  }
+img {
+    margin: 5px;
+  }
+.Wrapper {
+  padding: 20;
+  border: "5px solid black";
+  height: 200;
+  width: 1040;
+}
