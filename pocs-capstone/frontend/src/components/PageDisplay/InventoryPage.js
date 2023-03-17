@@ -10,51 +10,67 @@ import { HTML5Backend} from 'react-dnd-html5-backend';
 import InventoryBox from "../Inventory/InventoryBox";
 
 
-const initialState = [
-    {
-        id: 1,
-        size: "small",
-        quantity: 3,
-        candy_base_type: "S",
-        candy_level: 3,
-        
-    },
-    {   
-        id: 2,
-        size: "medium",
-        quantity: 5,
-        candy_base_type: "M",
-        candy_level: 2,
+function InventoryPage ( {inventory}) {
 
-    },
-    {
-        id: 3,
-        size: "large:",
-        quantity: 6,
-        candy_base_type: "L",
-        candy_level: 5,
+    console.log(`In InventoryPage`)
+    console.log(inventory);
 
-    },
-    {
-        id: 4,
-        size: "cake:",
-        quantity: 6,
-        candy_base_type: "C",
-        candy_level: 5,
+    // const [candyList, setCandyList] = useState(inventory);
 
-    },
-]
-function InventoryPage () {
+    // const [{isOver}, drop] = useDrop(() => ({
+    //     // What objects to accept
+    //     accept: "image",
+    //     drop: (item) => changeImage(item.id),
+    
+    //     collect: (monitor) => ({
+    //         isOver: !!monitor.isOver(),
+    //     }),
+    // }))  
 
-    const [candyList, setCandyList] = useState(initialState);
+    const changeImage = (id) => {
+        console.log("in change images");
+        // setPetsrc(cat_happy);
+
+        // let newList = [...candyList];
+        // let candyD = newList.find(
+        //     candy => candy.id === id);
+
+            
+        // // Xp would vary based on calculation of type and level
+        // if (candyD.quantity > 0)
+        //     switch(candyD.candy_base_type)
+        //     {
+        //         case 'S':
+        //             setXp(currxp => currxp + 200);
+        //             break;
+
+        //         case 'M': 
+        //             setXp(currxp => currxp + 600);
+        //             break;
+
+        //         case 'L':
+        //             setXp(currxp => currxp + 850);
+        //             break;
+
+        //         case 'C':
+        //             setXp(currxp => currxp + 1000);
+        //             break
+
+        //     }
+                
+        // if (candyD.quantity !== 0)
+        //     candyD.quantity -= 1;
+
+        // setCandyList(newList);
+
+    };
+
 
     return(
         <>
-            <DndProvider backend={HTML5Backend} >
-                <div>
-                    < InventoryBox candyList={candyList} />
-                </div>
-            </DndProvider >
+            {/* < InventoryBox candyList={candyList} /> */}
+            < InventoryBox inventory={inventory} />
+
         </>
     )
 }

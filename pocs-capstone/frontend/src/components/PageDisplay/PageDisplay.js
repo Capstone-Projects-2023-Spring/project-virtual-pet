@@ -12,6 +12,9 @@ import { useState, useEffect } from 'react'
 
 const PageDisplay = ({ avatarInfo, setAvatar, inventory, setInventory }) => {
 
+    console.log(`In PageDisply inv`)
+    console.log(inventory)
+
     const axiosPrivate = useAxiosPrivate()
     const baseURL = `/tasks/`
 
@@ -125,7 +128,7 @@ const PageDisplay = ({ avatarInfo, setAvatar, inventory, setInventory }) => {
                         <CalendarPage />
                     </Tab>
                     <Tab eventKey="inventory" title="Inventory">
-                        < InventoryPage />
+                        < InventoryPage inventory={inventory}/>
                     </Tab>
                     <Tab eventKey="progress" title="Progress">
                         {/* <Sonnet /> */}

@@ -13,12 +13,47 @@ import './Main.css'
 import { DndProvider, useDrop } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 
+const initialInventoryState = [
+    {
+        id: 1,
+        size: "small",
+        quantity: 2,
+        candy_base_type: "S",
+        candy_level: 3,
+        
+    },
+    {   
+        id: 2,
+        size: "medium",
+        quantity: 2,
+        candy_base_type: "M",
+        candy_level: 2,
+
+    },
+    {
+        id: 3,
+        size: "large:",
+        quantity: 2,
+        candy_base_type: "L",
+        candy_level: 5,
+
+    },
+    {
+        id: 4,
+        size: "cake:",
+        quantity: 2,
+        candy_base_type: "C",
+        candy_level: 5,
+
+    },
+]
+
 
 const AVATAR_URL = '/avatar/'
 const Main = ({userInfo}) => {
     const axiosPrivate = useAxiosPrivate();
     const [avatarInfo, setAvatar] = useState({})
-    const [inventory, setInventory] = useState([])
+    const [inventory, setInventory] = useState(initialInventoryState)
     const width = useWindowWidth()
     const nav = useNavigate()
 
@@ -43,19 +78,29 @@ const Main = ({userInfo}) => {
     // console.log("Loading fetch data inventory ", inventory, "data fetched ")
 
     const isMobile = (width <= 850)
+
+    
+    // const [candyList, setCandyList] = useState(initialState);
+
+   
+
+
+    // Get inventory here maybe?
     
     const shareData = { avatarInfo, setAvatar, inventory, setInventory }  
 
     if(!isMobile) {
         return(
+            // Could go on outside or just wrap PetDisplay?
+            <DndProvider backend={HTML5Backend}>
 
                 <div className="flex-pages">
-                    <DndProvider backend={HTML5Backend}>
                         <PetDisplay {...shareData}/>
-                    </DndProvider>      
                     {/* <PetDisplay {...shareData}/> */}
                     <PageDisplay {...shareData}/>
                 </div>
+            </DndProvider>      
+
             
         )
     } else {

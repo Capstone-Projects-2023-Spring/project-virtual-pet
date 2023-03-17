@@ -3,7 +3,7 @@ import { useState } from "react";
 import Candy from "./Candy";
 import './Inventory.css'
 
-function InventoryBox({candyList}) {
+function InventoryBox({inventory}) {
 
     // let [count, setCount] = useState(0);
     // const wrapper = {
@@ -13,7 +13,9 @@ function InventoryBox({candyList}) {
     // };
 
 
-    console.log(candyList);
+    // console.log(`Inventory: ${candyList}`);
+    console.log("In inventoryBox")
+    console.log(inventory)
     
 
 return (
@@ -26,7 +28,7 @@ return (
             }} >
 
                 <div className="Candy"> 
-                {candyList.map((candy, id) => {
+                {inventory.map((candy, id) => {
                     <li>key={id}</li>
                             return < Candy id={candy.id} quantity={candy.quantity}  
                                     candy_base_type={candy.candy_base_type} 
