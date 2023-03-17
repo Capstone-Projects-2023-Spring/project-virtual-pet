@@ -1,6 +1,8 @@
 import { DndProvider, useDrop } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 
+// Renders and declares the drop area for the candy
+// Can remove css so box is not seen but currently outlines the pet
 function Bucket() {
     const [{ canDrop, isOver }, drop] = useDrop(() => ({
       // The type (or types) to accept - strings or symbols
