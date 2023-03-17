@@ -1,5 +1,6 @@
 import React from "react";
 import { useDrag } from "react-dnd";
+import './Inventory.css'
 
 // Renders Candy component based off props passed from InventoryBox's inventory state
 // Candy is only rendered if quantity > 0
@@ -45,9 +46,10 @@ function Candy ({id, quantity, candy_base_type, candy_level}) {
                 src={candyImage(candy_base_type)}
                 alt="Candy"
                 style={{ border: isDragging ? "5px solid pink" : "0px", width: 150, height: 150 }}/>
-                <h1>{quantity}</h1>
-                <p>{candy_base_type }
-                {candy_level}
+                <p className="Candy-Quantity">
+                    {quantity}
+                    {candy_base_type }
+                    {candy_level}
                 </p>
             </>
             

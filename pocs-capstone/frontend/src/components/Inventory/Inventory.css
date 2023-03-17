@@ -15,9 +15,27 @@ img {
 .Board {
   width: 500px;
   height: 500px;
-  border: 2px solid black;
+  /* border: 2px solid black; */
   display: flex;
   flex-flow: column nowrap;
   align-self: center;
   justify-self: center;
+}
+
+.Candy-Quantity {
+  /* color: red;
+  background-color: aqua
+
+  /* top: -10px;
+  right: -10px; */
+  top: -0.75em;
+  right: -0.75em;
+  width: 2.5em;
+  height: 2.5em;
+  display: flex;
+  justify-content: center;
+  padding: 10px 10px;
+  border-radius: 50%;
+  background: palevioletred;
+  color: white;
 }

@@ -18,8 +18,9 @@ function Bucket() {
             <div
                 ref={drop}
                 role={'Dustbin'}
-                syl
-                style={{  border: "5px solid black", height: 500, width: 500, backgroundColor: isOver ? 'red' : 'white' }}
+                
+                style={{ height: 500, width: 500, backgroundColor: isOver ? 'red' : 'white' }}
+                // style={{  border: "1px solid black", height: 500, width: 500, backgroundColor: isOver ? 'red' : 'white' }}
             >
                 {canDrop ? 'Release to drop' : 'Drag a box here'}
             </div>

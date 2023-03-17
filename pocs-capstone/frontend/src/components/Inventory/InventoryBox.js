@@ -16,9 +16,11 @@ return (
         <>
             <h1>Goodie Bag</h1>
             <div style={{
-                padding: 20,
+                padding: 15,
                 border: "5px solid black",
                 height: 200, width: 1040,
+                margin: 80,
+                
             }} >
 
                 <div className="Candy"> 
