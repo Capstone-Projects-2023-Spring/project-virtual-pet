@@ -9,6 +9,10 @@ import { useWindowWidth} from '@react-hook/window-size'
 import useAxiosPrivate from '../hooks/useAxiosPrivate.js';
 import './Main.css'
 
+// Wrap here but not 100% sure
+import { DndProvider, useDrop } from "react-dnd";
+import { HTML5Backend } from "react-dnd-html5-backend";
+
 
 const AVATAR_URL = '/avatar/'
 const Main = ({userInfo}) => {
@@ -32,6 +36,7 @@ const Main = ({userInfo}) => {
     }
 
     
+
     useEffect(fetchData,[])
     
     // console.log("Loading fetch data avatar", avatarInfo, "data fetched ")
@@ -39,14 +44,19 @@ const Main = ({userInfo}) => {
 
     const isMobile = (width <= 850)
     
-    const shareData = { avatarInfo, setAvatar, inventory, setInventory }
+    const shareData = { avatarInfo, setAvatar, inventory, setInventory }  
 
     if(!isMobile) {
         return(
-            <div className="flex-pages">
-                <PetDisplay {...shareData}/>
-                <PageDisplay {...shareData}/>
-            </div>
+
+                <div className="flex-pages">
+                    <DndProvider backend={HTML5Backend}>
+                        <PetDisplay {...shareData}/>
+                    </DndProvider>      
+                    {/* <PetDisplay {...shareData}/> */}
+                    <PageDisplay {...shareData}/>
+                </div>
+            
         )
     } else {
         return(
