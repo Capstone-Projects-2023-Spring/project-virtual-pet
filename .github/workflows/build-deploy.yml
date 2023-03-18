@@ -1,8 +1,5 @@
-# This is a basic workflow to help you get started with Actions
+name: CI-CD Droplet SSH Test ENV
 
-name: CI-CD Droplet SSH 
-
-# Controls when the workflow will run
 on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -18,13 +15,14 @@ jobs:
     - name: Checkout main branch
       uses: actions/checkout@v3
       
+    - name: Update .env
+      working-directory: ./pocs-capstone/backend
+      run: echo GMAIL_PASSWORD=${{ secrets.GMAIL_PASSWORD }} >> .env
+      
     - name: Build the Docker image
       working-directory: ./pocs-capstone
       run: docker-compose build
       
-#     - name: Display docker images
-#       run: docker images
-    
     - name: Tag Docker Image (frontend)
       run: docker tag pocs-capstone_web:latest ccho508/frontend-sb:latest
       
