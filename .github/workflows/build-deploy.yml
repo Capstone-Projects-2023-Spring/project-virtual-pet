@@ -23,6 +23,9 @@ jobs:
       working-directory: ./pocs-capstone
       run: docker-compose build
       
+    - name: Print Docker images
+      run: docker images
+      
     - name: Tag Docker Image (frontend)
       run: docker tag pocs-capstone_web:latest ccho508/frontend-sb:latest
       
