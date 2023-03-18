@@ -5,53 +5,89 @@ import ListGroup from 'react-bootstrap/ListGroup';
 import './PetDisplay.css'
 import '../Inventory/Inventory.css'
 import { useDrop } from "react-dnd";
+import InventoryContext from '../../context/InventoryContext.js';
+import { useContext, useEffect } from 'react';
 
 const PetDisplay = ({ avatarInfo, setAvatar, inventory, setInventory }) => {
+    // const [ inv, setInv] = useContext(InventoryContext);
+    // setInventory(inv);
+
+    let {inv} = useContext(InventoryContext)
+
     // Accepts images(candy) and calls candyDropped() when a candy is fed
     let [{isOver}, drop] = useDrop(() => ({
         // What objects to accept
         accept: "image",
-        drop: (item) => candyDropped(item.id),
+        drop: (item) => CandyDropped(item.id, inv),
     
         collect: (monitor) => ({
             isOver: !!monitor.isOver(),
         }),
-    }))   
+    })) 
+    
+    useEffect(() => {
+        console.log("Use effect in PetDisply    ")
+        console.log(inv);
+    })
     // Updates inventory and also can calculate and set XP from candy here
-    let candyDropped = (id) => {
+    // console.log("Before Candy")
+    // console.log(inv)
+    let CandyDropped = (id, inv) => {
 
-        let newInventoryList = [...inventory];
-        let candyD = newInventoryList.find(
-            candy => candy.id === id);
+        console.log("In Candy Dropped")
+        console.log(inv)
+        i
+        
+
+        // let newInventoryList = [...inv];
+        // console.log("In Candy Dropped")
+        // let candyD = newInventoryList.find(
+        //         candy => candy.inventory_id === id);
+
+        // if (candyD.quantity !== 0) {
+        //     candyD.quantity -= 1;
+        //     console.log("In quantity")
+        // }
+
+        // console.log(inv)
+        // let newInventoryList = [inv];
+        // console.log("New Inv")
+        // console.log(newInventoryList)
+        // let candyD = newInventoryList.find(
+        //     candy => candy.inventory_id === id);
+        // console.log("In Candy dropped")
+        // console.log(candyD)
 
         // let newInfo = avatarInfo;
             
         // Xp would vary based on calculation of type and level
-        if (candyD.quantity > 0)
-            switch(candyD.candy_base_type)
-            {
-                case 'S':
+        // if (candyD.quantity > 0)
+        //     switch(candyD.candy_base_type)
+        //     {
+        //         case 'S':
                     
-                    break;
+        //             break;
 
-                // case 'M': 
-                //     setXp(currxp => currxp + 600);
-                //     break;
+        //         // case 'M': 
+        //         //     setXp(currxp => currxp + 600);
+        //         //     break;
 
-                // case 'L':
-                //     setXp(currxp => currxp + 850);
-                //     break;
+        //         // case 'L':
+        //         //     setXp(currxp => currxp + 850);
+        //         //     break;
 
-                // case 'C':
-                //     setXp(currxp => currxp + 1000);
-                //     break;
+        //         // case 'C':
+        //         //     setXp(currxp => currxp + 1000);
+        //         //     break;
 
-            }
+        //     }
                 
-        if (candyD.quantity !== 0)
-            candyD.quantity -= 1;
+        
+        
+        // setInv(newInventoryList)
 
-        setInventory(newInventoryList);
+        // setInventory(newInventoryList);
+        // useContext(inventory);
 
     };
 
@@ -60,7 +96,6 @@ const PetDisplay = ({ avatarInfo, setAvatar, inventory, setInventory }) => {
             <Card style={{ width: '25rem' }}>
                 <Card.Header className='pet-name'>{avatarInfo.pet_name}</Card.Header>
                 
-                {/* Feels right wrap PetSprite in bucket */}
                 <div className="Board" ref={drop} >
                     <PetSprite {...{ avatarInfo, setAvatar, inventory, setInventory }} />   
                 </div>

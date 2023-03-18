@@ -23,11 +23,7 @@ img {
 }
 
 .Candy-Quantity {
-  /* color: red;
-  background-color: aqua
-
-  /* top: -10px;
-  right: -10px; */
+  
   top: -0.75em;
   right: -0.75em;
   width: 2.5em;
@@ -36,6 +32,6 @@ img {
   justify-content: center;
   padding: 10px 10px;
   border-radius: 50%;
-  background: palevioletred;
-  color: white;
+  background: aquamarine;
+  color: darkblue;
 }
