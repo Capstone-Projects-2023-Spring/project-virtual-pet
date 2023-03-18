@@ -3,6 +3,11 @@
     flex-direction: row;
     margin: 10px;
   }
+.row {
+  float: left;
+  position: relative;
+  width: 100%;
+}
 img {
     margin: 5px;
   }

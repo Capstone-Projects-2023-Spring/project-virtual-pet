@@ -45,7 +45,7 @@ function Candy ({id, quantity, candy_base_type, candy_level}) {
                 ref={drag}                
                 src={candyImage(candy_base_type)}
                 alt="Candy"
-                style={{ border: isDragging ? "5px solid pink" : "0px", width: 150, height: 150 }}/>
+                style={{ border: isDragging ? "5px solid pink" : "0px", width: 110, height: 110 }}/>
                 <p className="Candy-Quantity">
                     {quantity}
                     {candy_base_type }

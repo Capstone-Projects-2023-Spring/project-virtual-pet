@@ -55,13 +55,15 @@ function InventoryBox() {
 
     let putInventory = () => {
         let data = {
-            inventory_id: 8,
+            inventory_id: 10,
             candy_base_type: "C",
             candy_level: 4,
             quantity: 4,
         }
 
-        let request = axiosPrivate.put(`${baseURL}${data.inventory_id}/`, (data))
+        // let request = axiosPrivate.post(`${baseURL}${data.inventory_id}/`, (data))
+        let request = axiosPrivate.post(`${baseURL}`, (data))
+
         return request.then(response => response.data)
     }
 
@@ -79,12 +81,12 @@ return (
             <div style={{
                 padding: 10,
                 border: "5px solid black",
-                height: 200, width: 950,
+                height: 600, width: 910,
                 margin: 200,  
                 backgroundColor: "pink",      
                 }} >
 
-                    <div className="Candy"> 
+                    <div className="row"> 
                     {handlers?.inv.map((candy, id) => {
                             return < Candy key={id} 
                                     id={candy.inventory_id}
