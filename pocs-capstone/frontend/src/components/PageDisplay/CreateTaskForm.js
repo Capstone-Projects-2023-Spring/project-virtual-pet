@@ -18,7 +18,7 @@ function CreateTaskForm(props) {
   const { Formik } = formik;
   const schema = yup.object().shape({
     title: yup.string().required(),
-    description: yup.string(),
+    description: yup.string().required(),
     size: yup.string().required(),
     due_date: yup.string().required()
   });
@@ -85,7 +85,11 @@ function CreateTaskForm(props) {
                     name="description"
                     style={{ height: '100px' }}
                     value={values.description}
-                    onChange={handleChange} />
+                    onChange={handleChange} 
+                    isInvalid={!!errors.description} />
+                    <Form.Control.Feedback type="invalid">
+                    {errors.description}
+                  </Form.Control.Feedback>
 
                 </Form.Group>
 
