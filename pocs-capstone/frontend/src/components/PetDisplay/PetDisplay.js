@@ -12,14 +12,15 @@ const PetDisplay = ({ avatarInfo, setAvatar, inventory, setInventory }) => {
     // const [ inv, setInv] = useContext(InventoryContext);
     // setInventory(inv);
 
-    let {inv} = useContext(InventoryContext)
+    let handlers = useContext(InventoryContext)
 
     // Accepts images(candy) and calls candyDropped() when a candy is fed
     let [{isOver}, drop] = useDrop(() => ({
         // What objects to accept
         accept: "image",
-        drop: (item) => CandyDropped(item.id, inv),
-    
+        // drop: (item) => CandyDropped(item.id),
+        drop: (item) => handlers?.updateInventory(item.id, handlers?.inv),
+
         collect: (monitor) => ({
             isOver: !!monitor.isOver(),
         }),
@@ -27,16 +28,15 @@ const PetDisplay = ({ avatarInfo, setAvatar, inventory, setInventory }) => {
     
     useEffect(() => {
         console.log("Use effect in PetDisply    ")
-        console.log(inv);
+        console.log(handlers.inv);
     })
     // Updates inventory and also can calculate and set XP from candy here
     // console.log("Before Candy")
     // console.log(inv)
-    let CandyDropped = (id, inv) => {
+    let CandyDropped = (id) => {
 
-        console.log("In Candy Dropped")
-        console.log(inv)
-        i
+        console.log(id);
+        
         
 
         // let newInventoryList = [...inv];

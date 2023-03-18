@@ -16,8 +16,10 @@ function InventoryBox() {
 
     let axiosPrivate = useAxiosPrivate()
     let baseURL = `/inventory/`
-
-    let {inv} = useContext(InventoryContext)
+    let handlers = useContext(InventoryContext)
+    // console.log("Handler inv")
+    // console.log(handlers.inv)
+    // let {inv} = useContext(InventoryContext)
 
     // Get the inventory
     // let getInventory = () => {
@@ -37,19 +39,33 @@ function InventoryBox() {
         
     // }
 
+
+    const fetchData = () => {
+        
+        handlers?.getInventory()
+        .then(inv =>{
+            handlers.setInv(inv)
+            console.log("Inventory fetched in Inventory Box")
+            console.log(inv)
+
+        })
+
+        // setInventory(inventoryService.getInventory("ccho"))
+    }
+
     let putInventory = () => {
         let data = {
-            inventory_id: 5,
-            candy_base_type: "L",
+            inventory_id: 8,
+            candy_base_type: "C",
             candy_level: 4,
-            quantity: 1,
+            quantity: 4,
         }
 
         let request = axiosPrivate.put(`${baseURL}${data.inventory_id}/`, (data))
         return request.then(response => response.data)
     }
 
-    // useEffect(fetchData, [])
+    useEffect(fetchData, [])
 
     // let [count, setCount] = useState(0);
     
@@ -69,7 +85,7 @@ return (
                 }} >
 
                     <div className="Candy"> 
-                    {inv.map((candy, id) => {
+                    {handlers?.inv.map((candy, id) => {
                             return < Candy key={id} 
                                     id={candy.inventory_id}
                                     quantity={candy.quantity}  
@@ -79,7 +95,7 @@ return (
                 
                     </div>
             </div>
-            {/* <button onClick={putInventory}>Click Me</button> */}
+            <button onClick={putInventory}>Click Me</button>
         </>
     )
 }

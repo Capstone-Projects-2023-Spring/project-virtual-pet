@@ -26,22 +26,7 @@ const Main = ({userInfo}) => {
     let [inv, setInv] = useState([]);
 
 
-    let getInventory = () => {
-        let request = axiosPrivate.get('/inventory/')
-        return request.then(response => response.data)
-    }
-
-    let updateInventory = (id, candy) => {
-        // Do axios calls
-        let request = axiosPrivate.put(`/inventory/${id}/`, candy)
-        return request.then(response => request.data)
-    }   
-
-    let handlers = {
-        inv,
-        setInv,
-        updateInventory,
-    }
+    
 
     const fetchData = () => {
         axiosPrivate.get(AVATAR_URL)
@@ -52,13 +37,13 @@ const Main = ({userInfo}) => {
             console.log(error);
             nav("/login")
         });
-        getInventory()
-        .then(inv =>{
-            setInv(inv)
-            console.log("Inventory fetched")
-            console.log(inv)
+        // getInventory()
+        // .then(inv =>{
+        //     setInv(inv)
+        //     console.log("Inventory fetched")
+        //     console.log(inv)
 
-        })
+        // })
 
         // setInventory(inventoryService.getInventory("ccho"))
     }
@@ -74,12 +59,79 @@ const Main = ({userInfo}) => {
 
     const shareData = { avatarInfo, setAvatar, inventory, setInventory }  
 
+    let putInventory = (data) => {
+        // let data = {
+        //     inventory_id: 5,
+        //     candy_base_type: "L",
+        //     candy_level: 4,
+        //     quantity: 1,
+        // }
+
+        let request = axiosPrivate.put(`/inventory/${data.inventory_id}/`, (data))
+        return request.then(response => response.data)
+    }
+
+    let updateInventory = (id, list) => {
+        // Do axios calls
+        // let data = {
+        //     inventory_id: id,
+        //     quantity: 3
+        // }
+        // let request = axiosPrivate.put(`/inventory/${id}/`, data)
+        // return request.then(response => request.data)
+        // let candyD = inv.find(
+        //     candy => candy.inventory_id === id);
+        // console.log("In handler update")
+        // console.log(candyD)
+        // if (candyD.quantity !== 0) {
+        //     candyD.quantity -= 1;
+        //     console.log("In quantity")
+        // }
+        // let candyD = inv.find(
+        //     candy => candy.inventory_id === id);
+        console.log("In update handler")
+        getInventory()
+        .then (inv => {
+            let candyD = inv.find(
+                candy => candy.inventory_id === id);
+            console.log(candyD)
+            if (candyD.quantity !== 0) {
+            candyD.quantity -= 1;
+            console.log(candyD)
+            putInventory(candyD)
+
+            getInventory()
+                .then(inv => {
+                handlers?.setInv(inv)
+            
+
+            })
+
+            }
+        })
+        // console.log([...inv])
+    }   
+    let getInventory = () => {
+        let request = axiosPrivate.get('/inventory/')
+        return request.then(response => response.data)
+    }
+
+
+   
+
+    let handlers = {
+        inv,
+        setInv,
+        getInventory,
+        updateInventory,
+    }
+
 
     if(!isMobile) {
         return(
             
             <DndProvider backend={HTML5Backend}>
-                <InventoryContext.Provider value={{inv, setInv}}>
+                <InventoryContext.Provider value={handlers}>
                 <div className="flex-pages">
                     <PetDisplay {...shareData} />
                     <PageDisplay {...shareData} />
