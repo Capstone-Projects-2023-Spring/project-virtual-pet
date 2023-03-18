@@ -13,6 +13,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from rest_framework.decorators import api_view
 from db.studybuddyemail import send_email
+import db.canvasrequests as canvas
 
 """
 from .serializers import NoteSerializer
@@ -28,25 +29,17 @@ class NoteViewSet(viewsets.ModelViewSet):
 """
 
 
-import requests as r
 def lololol(userId):
 
     _user = NewUser.objects.filter(id=userId)
-    canvas_token=_user[0].get_canvas_token() 
+    canvas_token = _user[0].get_canvas_token() 
     
-    token = {"Authorization":"Bearer "+canvas_token}
-
-    response = r.get("https://templeu.instructure.com/api/v1/courses/?enrollment_state=active&per_page=100",headers=token)
-    courses = response.json()
-    course_names = []
-    for course in courses:
-        course_names.append(course['name'])
-    print(course_names)
+    assignments = canvas.get_all_assignments(canvas_token)
     #_userid = self.request.user
     
     print(_user[0].get_canvas_token())
     print(_user)
-    return course_names
+    return assignments
 
 
 
