@@ -72,7 +72,7 @@ def get_assignment_info(canvas_token, course_id, assignment_id):
         #'task_level': 1,
         #'recurring': 'false',
         #'recurring_time_delta': 0,
-        'description': bs.BeautifulSoup(a['description'],'lxml').get_text() or "No description",
+        'description': bs.BeautifulSoup(a['description'],'lxml').get_text() if a['description'] != None else "No description",
         'course_id': a['course_id'],
         'assignment_id': a['id']
     }
