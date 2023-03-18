@@ -106,9 +106,10 @@ def get_all_assignments(canvas_token):
     
     
 # Tests:
-'''canvas_token = *insert your own token here... see I deleted it this time! wooo*
+'''
+canvas_token = *insert your own token here... see I deleted it this time! wooo*
 
-'''print((get_all_assignments(canvas_token)))
+print((get_all_assignments(canvas_token)))
 
 print("COURSES:")
 print(get_courses(canvas_token))
