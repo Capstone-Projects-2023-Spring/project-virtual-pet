@@ -37,13 +37,13 @@ const Main = ({userInfo}) => {
             console.log(error);
             nav("/login")
         });
-        // getInventory()
-        // .then(inv =>{
-        //     setInv(inv)
-        //     console.log("Inventory fetched")
-        //     console.log(inv)
+        getInventory()
+        .then(inv =>{
+            setInv(inv)
+            console.log("Inventory fetched")
+            console.log(inv)
 
-        // })
+        })
 
         // setInventory(inventoryService.getInventory("ccho"))
     }
@@ -106,6 +106,7 @@ const Main = ({userInfo}) => {
             
 
             })
+            this.forceUpdate();
 
             }
         })

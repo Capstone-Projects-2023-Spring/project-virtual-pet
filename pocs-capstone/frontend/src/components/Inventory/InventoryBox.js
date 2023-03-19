@@ -5,6 +5,7 @@ import './Inventory.css'
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import { useContext } from "react";
 import InventoryContext from "../../context/InventoryContext";
+import PopulateInv from "./PopulateInv";
 
 // Displays the inventory box and renders Candy components inside box based off inventory
 // Need to add css all to css file
@@ -54,12 +55,134 @@ function InventoryBox() {
     }
 
     let putInventory = () => {
-        let data = {
-            inventory_id: 10,
-            candy_base_type: "C",
-            candy_level: 4,
-            quantity: 4,
-        }
+        // let pop = PopulateInv()
+        // let data = pop.getInventory()
+        // console.log(data)
+        let data = 
+            {
+                // inventory_id: 1,
+                candy_base_type: "S",
+                candy_level: 1,
+                quantity: 2,
+    
+            }
+        //     {
+        //         // inventory_id: 2,
+        //         candy_base_type: "S",
+        //         candy_level: 2,
+        //         quantity: 2,
+        //     },
+        //     {
+        //         // inventory_id: 3,
+        //         candy_base_type: "S",
+        //         candy_level: 3,
+        //         quantity: 2,
+        //     },
+        //     {
+        //         // inventory_id: 4,
+        //         candy_base_type: "S",
+        //         candy_level: 4,
+        //         quantity: 2,
+        //     },
+        //     {
+        //         // inventory_id: 5,
+        //         candy_base_type: "S",
+        //         candy_level: 5,
+        //         quantity: 2,
+        //     },
+        //     {
+        //         // inventory_id: 6,
+        //         candy_base_type: "M",
+        //         candy_level: 1,
+        //         quantity: 2,
+        //     },
+        //     {
+        //         // inventory_id: 7,
+        //         candy_base_type: "M",
+        //         candy_level: 2,
+        //         quantity: 2,
+        //     },
+        //     {
+        //         // inventory_id: 8,
+        //         candy_base_type: "M",
+        //         candy_level: 3,
+        //         quantity: 2,
+        //     },
+        //     {
+        //         // inventory_id: 9,
+        //         candy_base_type: "M",
+        //         candy_level: 4,
+        //         quantity: 2,
+        //     },
+        //     {
+        //         // inventory_id: 10,
+        //         candy_base_type: "M",
+        //         candy_level: 5,
+        //         quantity: 2,
+        //     },
+        //     {
+        //         // inventory_id: 11,
+        //         candy_base_type: "L",
+        //         candy_level: 1,
+        //         quantity: 2,
+        //     },
+        //     {
+        //         // inventory_id: 12,
+        //         candy_base_type: "L",
+        //         candy_level: 2,
+        //         quantity: 2,
+        //     },
+        //     {
+        //         // inventory_id: 13,
+        //         candy_base_type: "L",
+        //         candy_level: 3,
+        //         quantity: 2,
+        //     },
+        //     {
+        //         // inventory_id: 14,
+        //         candy_base_type: "L",
+        //         candy_level: 4,
+        //         quantity: 2,
+        //     },
+        //     {
+        //         // inventory_id: 15,
+        //         candy_base_type: "L",
+        //         candy_level: 5,
+        //         quantity: 2,
+        //     },
+        //     {
+        //         // inventory_id: 16,
+        //         candy_base_type: "C",
+        //         candy_level: 1,
+        //         quantity: 2,
+        //     },
+        //     {
+        //         // inventory_id: 17,
+        //         candy_base_type: "C",
+        //         candy_level: 2,
+        //         quantity: 2,
+        //     },
+        //     {
+        //         // inventory_id: 18,
+        //         candy_base_type: "C",
+        //         candy_level: 3,
+        //         quantity: 2,
+        //     },
+        //     {
+        //         inventory_id: 19,
+        //         candy_base_type: "C",
+        //         candy_level: 4,
+        //         quantity: 2,
+        //     },
+        //     {
+        //         inventory_id: 20,
+        //         candy_base_type: "C",
+        //         candy_level: 5,
+        //         quantity: 2,
+        //     },   
+        // }
+        
+
 
         // let request = axiosPrivate.post(`${baseURL}${data.inventory_id}/`, (data))
         let request = axiosPrivate.post(`${baseURL}`, (data))
@@ -67,7 +190,7 @@ function InventoryBox() {
         return request.then(response => response.data)
     }
 
-    useEffect(fetchData, [])
+    // useEffect(fetchData, [])
 
     // let [count, setCount] = useState(0);
     
