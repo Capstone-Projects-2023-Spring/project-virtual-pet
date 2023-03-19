@@ -1,7 +1,7 @@
 import { DndProvider, useDrop } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 
-// Renders and declares the drop area for the candy
+// Renders and declares the drop zone for the candy
 function Bucket() {
     let [{ canDrop, isOver }, drop] = useDrop(() => ({
       // The type (or types) to accept - strings or symbols

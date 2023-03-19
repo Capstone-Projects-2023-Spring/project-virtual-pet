@@ -9,7 +9,6 @@ import Tabs from 'react-bootstrap/Tabs';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import { useState, useEffect, useContext } from 'react'
 import { getIn, setIn } from "formik";
-import InventoryContext from "../../context/InventoryContext";
 
 
 const PageDisplay = ({ avatarInfo, setAvatar, inventory, setInventory }) => {
@@ -39,14 +38,7 @@ const PageDisplay = ({ avatarInfo, setAvatar, inventory, setInventory }) => {
     }
 
 
-    const [taskList, setTaskList] = useState([])
-
-    // For inventory
-    // let getInventory = () => {
-    //     let request = axiosPrivate.get('/inventory/')
-    //     return request.then(response => response.data)
-    // }
-    
+    const [taskList, setTaskList] = useState([])    
 
     const fetchData = () => {
         getTasksB()
@@ -118,8 +110,6 @@ const PageDisplay = ({ avatarInfo, setAvatar, inventory, setInventory }) => {
         updateTask
     }
     
-    // let {inv, setInv} = useContext(InventoryContext)
-
     return (
         <TaskListContext.Provider value={handlers}>
             <div className="page-display">
@@ -137,9 +127,7 @@ const PageDisplay = ({ avatarInfo, setAvatar, inventory, setInventory }) => {
                         <CalendarPage />
                     </Tab>
                     <Tab eventKey="inventory" title="Inventory">
-                        {/* <InventoryContext.Provider> */}
                             < InventoryBox />
-                        {/* </InventoryContext.Provider> */}
                     </Tab>
                     <Tab eventKey="progress" title="Progress">
                         {/* <Sonnet /> */}

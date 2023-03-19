@@ -12,12 +12,13 @@ function Candy ({id, quantity, candy_base_type, candy_level}) {
         collect: (monitor) => ({
             isDragging: !!monitor.isDragging(),
         }),
+        
     }));
 
-    let candyImage = (candy) => {
+    let candyImage = () => {
         switch (candy_base_type) {
             case 'S':
-                // Do we need candy level to decide appearance or is that more background stat multiplier?
+                // Need to check candy level
                 // switch (candy.candy_level) {
                     // case 0:
                         return require('../../images/candy/pinkcandy_scaled_16x_pngcrushed.png')
@@ -40,17 +41,23 @@ function Candy ({id, quantity, candy_base_type, candy_level}) {
     {
         return (
             <>
+                {/* <div
+                style={{border: "2px solid black", width: 120, height: 120}}> */}
+
+                
                 {/* Need to work on the styling of the candy  */}
+                
                 <img className="candy-photo" 
                 ref={drag}                
                 src={candyImage(candy_base_type)}
                 alt="Candy"
-                style={{ border: isDragging ? "5px solid pink" : "0px", width: 110, height: 110 }}/>
+                style={{ border: isDragging ? "5px solid pink" : "0px solid black", width: 110, height: 110 }}/>
                 <p className="Candy-Quantity">
                     {quantity}
                     {candy_base_type }
                     {candy_level}
                 </p>
+                {/* </div> */}
             </>
             
         )

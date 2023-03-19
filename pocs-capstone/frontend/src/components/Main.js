@@ -2,17 +2,12 @@ import PetDisplay from './PetDisplay/PetDisplay.js'
 import PageDisplay from './PageDisplay/PageDisplay.js'
 //import useAuth from '../hooks/useAuth.js'
 import { useNavigate} from 'react-router-dom';
-
-import { useState, useEffect, createContext } from 'react'
-
+import { useState, useEffect } from 'react'
 import { useWindowWidth} from '@react-hook/window-size'
 import useAxiosPrivate from '../hooks/useAxiosPrivate.js';
 import './Main.css'
-// Wrap here but not 100% sure
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
-import { useContext } from 'react';
-import InventoryBox from './Inventory/InventoryBox.js';
 import InventoryContext from '../context/InventoryContext';
 
 const AVATAR_URL = '/avatar/'
@@ -25,9 +20,6 @@ const Main = ({userInfo}) => {
 
     let [inv, setInv] = useState([]);
 
-
-    
-
     const fetchData = () => {
         axiosPrivate.get(AVATAR_URL)
         .then((response )=>{
@@ -37,13 +29,6 @@ const Main = ({userInfo}) => {
             console.log(error);
             nav("/login")
         });
-        getInventory()
-        .then(inv =>{
-            setInv(inv)
-            console.log("Inventory fetched")
-            console.log(inv)
-
-        })
 
         // setInventory(inventoryService.getInventory("ccho"))
     }
@@ -55,70 +40,37 @@ const Main = ({userInfo}) => {
 
     const isMobile = (width <= 850)
 
-    // Get inventory here maybe?
-
     const shareData = { avatarInfo, setAvatar, inventory, setInventory }  
 
+    // Inventory Handlers
+    // Perform a put to the backend to update inventory
     let putInventory = (data) => {
-        // let data = {
-        //     inventory_id: 5,
-        //     candy_base_type: "L",
-        //     candy_level: 4,
-        //     quantity: 1,
-        // }
 
         let request = axiosPrivate.put(`/inventory/${data.inventory_id}/`, (data))
         return request.then(response => response.data)
     }
-
+    // Performs update on candy quantity when candy is fed(drag and dropped)
     let updateInventory = (id, list) => {
-        // Do axios calls
-        // let data = {
-        //     inventory_id: id,
-        //     quantity: 3
-        // }
-        // let request = axiosPrivate.put(`/inventory/${id}/`, data)
-        // return request.then(response => request.data)
-        // let candyD = inv.find(
-        //     candy => candy.inventory_id === id);
-        // console.log("In handler update")
-        // console.log(candyD)
-        // if (candyD.quantity !== 0) {
-        //     candyD.quantity -= 1;
-        //     console.log("In quantity")
-        // }
-        // let candyD = inv.find(
-        //     candy => candy.inventory_id === id);
-        console.log("In update handler")
+        // Unable to see inventory inside of this function to perform get then put to update candy quantity and set inventory
+        // console.log("In update handler")
         getInventory()
         .then (inv => {
             let candyD = inv.find(
                 candy => candy.inventory_id === id);
-            console.log(candyD)
+            // console.log(candyD)
             if (candyD.quantity !== 0) {
             candyD.quantity -= 1;
-            console.log(candyD)
+            // console.log(candyD)
             putInventory(candyD)
-
-            getInventory()
-                .then(inv => {
-                handlers?.setInv(inv)
+            setInv(inv)
             
-
-            })
-            this.forceUpdate();
-
-            }
-        })
-        // console.log([...inv])
+        }})
     }   
+    // Performs a get request for the users inventory
     let getInventory = () => {
         let request = axiosPrivate.get('/inventory/')
         return request.then(response => response.data)
     }
-
-
-   
 
     let handlers = {
         inv,
@@ -127,7 +79,7 @@ const Main = ({userInfo}) => {
         updateInventory,
     }
 
-
+    // Need to wrap mobile view in Dnd and Inventory Context - Want to talk to Harrsion prior
     if(!isMobile) {
         return(
             
