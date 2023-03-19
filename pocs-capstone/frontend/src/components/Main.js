@@ -96,14 +96,18 @@ const Main = ({userInfo}) => {
         )
     } else {
         return(
-            <div>
-                <div className="flex-pages">
-                    <PetDisplay {...shareData}/>
-                </div>
-                <div>
-                    <PageDisplay {...shareData}/>
-                </div>
-            </div>
+            <DndProvider backend={HTML5Backend}>
+                <InventoryContext.Provider value={handlers}>
+                    <div>
+                        <div className="flex-pages">
+                            <PetDisplay {...shareData}/>
+                        </div>
+                        <div>
+                            <PageDisplay {...shareData}/>
+                        </div>
+                    </div>
+                </InventoryContext.Provider>
+            </DndProvider>    
         )
     }
     
