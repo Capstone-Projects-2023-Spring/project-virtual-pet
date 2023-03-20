@@ -34,13 +34,17 @@ function InventoryBox() {
                     // console.log(fullInventoryData[i])
                     let request = axiosPrivate.post(`${baseURL}`, (fullInventoryData[i]))
                     setTimeout(() => {
-                    }, 1000);            
+                    }, 1000);    
+                    // 20 backend calls but otherwise inventory won't fully load I tried it outside of the loop
+                    // but in the if statement above
+                    handlers?.getInventory()
+                    .then(inv =>{
+                    handlers?.setInv(inv)
+                    }) 
                 }
-                
-                handlers?.setInv(inv)
-            }
-        
-        })       
+            }    
+        })   
+           
     }
 
     useEffect(fetchData, [])
@@ -49,16 +53,17 @@ function InventoryBox() {
             <>
                 <button onClick={postFullInventory}>I Want Candy!!!</button>
 
-                <h1 style={{
+                {/* <h1 style={{
                     textAlign: "center",
                     marginTop: 100,
+                    margin: 50,
                     marginBottom: -175
-                }}>Goody Bag</h1>
+                }}>Goody Bag</h1> */}
                 <div style={{
                     padding: 10,
                     border: "5px solid black",
                     height: 600, width: 910,
-                    margin: 200,  
+                    margin: 100,  
                     backgroundColor: "pink",      
                     }} >
 
