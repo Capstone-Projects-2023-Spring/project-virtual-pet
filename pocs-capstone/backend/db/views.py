@@ -10,7 +10,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated
-from rest_framework_simplejwt.authentication import JWTAuthentication
+from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework.decorators import api_view
 from db.studybuddyemail import send_email
 import db.canvasrequests as canvas
@@ -78,27 +78,18 @@ class CustomUserCreate(APIView):
             return Response("Username is taken",status=status.HTTP_409_CONFLICT)
         return Response(registration_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+class BlacklistTokenView(APIView):
+    permission_classes=[AllowAny]
 
-"""
-class CanvasTaskViewSet(viewsets.ModelViewSet):
-    serializer = TaskSerializer
-    
-    def post(self):
-        _userid = self.request.user
-        courses = lololol(_userid)
-        if not courses:
-            return Response("Invalid Canvas API Token",status=status.HTTP_401_UNAUTHORIZED)
-        for c in courses:
-            s = TaskSerializer(data={
-                "title":c,
-                "due_date":timezone.now,
-                "task_type":'C',
-                "description":c
-            })
-        return Response("Congrats",status=status.HTTP_201_CREATED)
-    def get(self):
-        return Response("Invalid Endpoint",status=status.HTTP_401_UNAUTHORIZED)
-"""
+    def post(self,request):
+        try: 
+            refresh_token = request.data["refresh_token"]
+            token=RefreshToken(refresh_token)
+            token.blacklist()
+            return Response(status.HTTP_202_ACCEPTED)
+        except Exception as e:
+            return Response(e,status=status.HTTP_400_BAD_REQUEST)
+
 
 
 class CanvasView(APIView):
