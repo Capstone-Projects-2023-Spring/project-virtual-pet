@@ -1,9 +1,12 @@
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import Stack from 'react-bootstrap/Stack';
+
+import RecurrenceForm from './RecurrenceForm';
 import TaskListContext from '../../context/TaskListContext'
 import { useContext, useState } from 'react'
-import Stack from 'react-bootstrap/Stack';
+
 import * as yup from "yup";
 import * as formik from 'formik'
 
@@ -16,7 +19,6 @@ function CreateTaskForm(props) {
   const handleCloseR = () => setShowRecurr(false);
   const handleShowR = () => setShowRecurr(true);
 
-  const readOnly = props.task ? true : false
   const title = props.task ? "Task Details" : "Create Task"
   const buttonText = props.task ? "Save" : "Create Task"
 
@@ -211,17 +213,7 @@ function CreateTaskForm(props) {
               </Stack>
 
 
-              <Modal
-                show={showRecurr}
-                onHide={() => {
-                  handleCloseR()
-                  values.recurrence = 'never'
-                }}>
-                <Modal.Header closeButton>
-                  <Modal.Title>CUSTOM RECURRENCE</Modal.Title>
-                </Modal.Header>
-
-              </Modal>
+              <RecurrenceForm {...{showRecurr, handleCloseR, values}}/>
 
             </Form>
           )}
