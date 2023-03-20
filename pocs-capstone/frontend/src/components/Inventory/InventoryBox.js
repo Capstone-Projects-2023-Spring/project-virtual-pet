@@ -6,7 +6,6 @@ import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import { useContext } from "react";
 import InventoryContext from "../../context/InventoryContext";
 import PopulateInv from "./PopulateInv";
-import { boolean } from "yup";
 
 // Displays the inventory box and renders Candy components inside box based off inventory
 // Need to add css to css file 
@@ -24,10 +23,7 @@ function InventoryBox() {
 
         })
     }
-    
-    
-    // Uncomment button to use function to help create candies
-    
+        
     let postFullInventory = () => {
         handlers?.getInventory().then(inv => {
             if(inv.length === 0){
