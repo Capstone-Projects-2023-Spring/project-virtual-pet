@@ -125,18 +125,6 @@ function PopulateInv () {
     ]
 
     return fullInventoryData
-
-    // function getInvData() {
-    //     return data
-    // }
-
-    // function postFullInventory() {
-    //     for (let i = 0; i < 21; i++) {
-
-    //         let request = axiosPrivate.post(`${baseURL}`, (data))
-    //         return request.then(response => response.data)
-    //     }
-    // }
 }
 
 export default PopulateInv
