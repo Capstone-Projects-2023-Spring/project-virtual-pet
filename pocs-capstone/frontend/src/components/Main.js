@@ -30,7 +30,10 @@ const Main = ({userInfo}) => {
             nav("/login")
         });
 
-        // setInventory(inventoryService.getInventory("ccho"))
+        getInventory()
+            .then(r => {
+                setInv(r)
+            })
     }
 
     useEffect(fetchData,[])

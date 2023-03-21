@@ -1,5 +1,5 @@
 import React from "react";
-import { useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import Candy from "./Candy";
 import './Inventory.css'
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
@@ -15,43 +15,24 @@ function InventoryBox() {
     let baseURL = `/inventory/`
     let handlers = useContext(InventoryContext)
 
-    const fetchData = () => {
-        // Get and set inventory
-        handlers?.getInventory()
-        .then(inv =>{
-            handlers.setInv(inv)
-
-        })
-    }
-        
     let postFullInventory = () => {
-        handlers?.getInventory().then(inv => {
-            if(inv.length === 0){
-                let fullInventoryData = PopulateInv()
 
-                // Loop through and post full inventory to backend
-                for (let i = 0; i < 20; i++) {
-                    // console.log(fullInventoryData[i])
-                    let request = axiosPrivate.post(`${baseURL}`, (fullInventoryData[i]))
-                    setTimeout(() => {
-                    }, 1000);    
-                    // 20 backend calls but otherwise inventory won't fully load I tried it outside of the loop
-                    // but in the if statement above
-                    handlers?.getInventory()
-                    .then(inv =>{
-                    handlers?.setInv(inv)
-                    }) 
-                }
-            }    
-        })   
-           
+            console.log("INVENTORY:", handlers?.inv)
+            let fullInventoryData = PopulateInv()
+
+            // Loop through and post full inventory to backend
+            for (let i = 0; i < fullInventoryData.length; i++) {
+                axiosPrivate.post(`${baseURL}`, (fullInventoryData[i])).then(r => {
+                    console.log("ADDED CANDY", r.data)
+                    handlers?.setInv(handlers?.inv.concat(r.data))
+                })
+            }
+
     }
 
-    useEffect(fetchData, [])
-    
     return (
-            <>
-                <button onClick={postFullInventory}>I Want Candy!!!</button>
+        <>
+            <button onClick={postFullInventory}>I Want Candy!!!</button>
 
                 {/* <h1 style={{
                     textAlign: "center",
@@ -67,18 +48,14 @@ function InventoryBox() {
                     backgroundColor: "pink",      
                     }} >
 
-                        <div className="row"> 
-                        {handlers?.inv.map((candy, id) => {
-                                return < Candy key={id} 
-                                        id={candy.inventory_id}
-                                        quantity={candy.quantity}  
-                                        candy_base_type={candy.candy_base_type} 
-                                        candy_level={candy.candy_level} />            
-                        })} 
-                    
-                        </div>
+                <div className="row">
+                    {handlers?.inv.map((candy, id) => {
+                        console.log("CANDY", candy, id)
+                        return <Candy key={id} id={candy.inventory_id} quantity={candy.quantity} candy_base_type={candy.candy_base_type} candy_level={candy.candy_level}/>
+                    })}
                 </div>
-            </>
+            </div>
+        </>
     )
 }
 
