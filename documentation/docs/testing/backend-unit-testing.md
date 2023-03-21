@@ -63,10 +63,10 @@ Expected Results: True for correct status code, true if url exists and can be lo
 
 ### NewUser Model
 
-#### *def test_first_name_label(self)*
+#### *def test_email_address_label(self)*
 ```
-Test: Checks the text for the first_name label
-Returns: True if the first_name text label matches the expected label output, otherwise false
+Test: Checks the text for the email_address label
+Returns: True if the email_address text label matches the expected label output, otherwise false
 ```
 
 #### *def test_user_name_max_length(self)*
@@ -83,20 +83,8 @@ Returns: True if the first_name max length matches the expected max length, othe
   
 #### *def test_bio_max_length(self)*
 ```
-Test: Checks the size of the field allocated for the first_name text
+Test: Checks the size of the field allocated for the bio text
 Returns: True if the first_name max length matches the expected max length, otherwise false
-```
-  
-#### *def test_object_name_is_user_name(self)*
-```
-Test: Checks that the database object's name is the user_name attribute
-Returns: True if the object's name matches the expected user_name output, otherwise false
-```
-       
-#### *def test_email_address_label(self)*
-```
-Test: Checks the text for the email_address label
-Returns: True if the email_address text label matches the expected label output, otherwise false
 ```
 
 #### *test_bio_label(self)*
@@ -104,6 +92,25 @@ Returns: True if the email_address text label matches the expected label output,
 Test: Checks the text for the bio label
 Returns: True if the bio label text label matches the expected label output, otherwise false
 ```
+
+#### *test_canvas_token_max_length(self)*
+```
+Test: Checks the size of the field allocated for the canvas_token text
+Returns: True if the canvas_token max length matches the expected max length, otherwise false
+```
+  
+#### *def test_object_name_is_actual_name(self)*
+```
+Test: Checks that the database object's name is the user_name attribute
+Returns: True if the object's name matches the expected user_name output, otherwise false
+```
+
+#### *def test_canvas_token_is_returned(self)*
+```
+Test: Checks that the fucntion get_canvas_token() returns the canvas token
+Returns: True if the function returns the expected canvas token, otherwise false
+```
+
 ### CustomAccountManager Model (pending)
 ### Avatar Model (pending)
 ### Inventory Model (pending)
