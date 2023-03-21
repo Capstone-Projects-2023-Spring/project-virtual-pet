@@ -111,7 +111,34 @@ Test: Checks that the fucntion get_canvas_token() returns the canvas token
 Returns: True if the function returns the expected canvas token, otherwise false
 ```
 
+### Avatar Model
+
+#### *def test_avatar_type_max_length(self)*
+```
+Test: Checks the size of the field allocated for the avatar_type text
+Returns: True if the avatar_type max length matches the expected max length, otherwise false
+```
+
+#### *def test_pet_name_max_length(self)*
+```
+Test: Checks the size of the field allocated for the pet_name text
+Returns: True if the pet_name max length matches the expected max length, otherwise false
+```
+
+#### *def test_flavour_text_max_length(self)*
+```
+Test: Checks the size of the field allocated for the flavour_text text
+Returns: True if the flavour_text max length matches the expected max length, otherwise false
+```
+
+#### *def test_object_name_is_actual_name(self)*
+```
+Test: Checks that the database object's name is the actual name given
+Returns: True if the object's name matches the expected objects name, otherwise false
+```
+
+
+
 ### CustomAccountManager Model (pending)
-### Avatar Model (pending)
 ### Inventory Model (pending)
 ### Task Model (pending)
