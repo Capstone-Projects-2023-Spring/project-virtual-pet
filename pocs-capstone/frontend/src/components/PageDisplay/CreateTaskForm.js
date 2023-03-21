@@ -12,12 +12,13 @@ import * as formik from 'formik'
 
 
 function CreateTaskForm(props) {
+
   const handlers = useContext(TaskListContext);
 
-  const [showRecurr, setShowRecurr] = useState(false);
+  // const [showRecurr, setShowRecurr] = useState(false);
 
-  const handleCloseR = () => setShowRecurr(false);
-  const handleShowR = () => setShowRecurr(true);
+  // const handleCloseR = () => setShowRecurr(false);
+  // const handleShowR = () => setShowRecurr(true);
 
   const title = props.task ? "Task Details" : "Create Task"
   const buttonText = props.task ? "Save" : "Create Task"
@@ -29,7 +30,6 @@ function CreateTaskForm(props) {
     size: yup.string().required(),
     level: yup.string().required(),
     due_date: yup.string().required(),
-    recurrence: yup.string().required(),
 
   });
 
@@ -43,6 +43,7 @@ function CreateTaskForm(props) {
         <Formik
           validationSchema={schema}
           onSubmit={(values) => {
+
             if (props.task) {
               handlers.updateTask(props.task.task_id, values)
             }
@@ -56,9 +57,8 @@ function CreateTaskForm(props) {
             title: props.task ? props.task.title : '',
             description: props.task ? props.task.description : '',
             size: props.task ? props.task.task_type : 'S',
-            level: props.task ? props.task.task_level : 'Beginner',
+            level: props.task ? props.task.task_level : "1",
             due_date: props.task ? props.task.due_date : '',
-            recurrence: props.task ? props.task.recurrence : 'never',
           }}
         >
           {({
@@ -137,15 +137,15 @@ function CreateTaskForm(props) {
 
                       placeholder="Select Level"
                       name="level"
-                      value={values.size}
+                      value={values.level}
                       onChange={handleChange}
                       isInvalid={!!errors.level}
                     >
-                      <option value="Beginner">Beginner</option>
-                      <option value="Novice"> Novice</option>
-                      <option value="Intermediate">Intermediate</option>
-                      <option value="Advanced">Advanced</option>
-                      <option value="Expert">Expert</option>
+                      <option value="1">Beginner</option>
+                      <option value="2"> Novice</option>
+                      <option value="3">Intermediate</option>
+                      <option value="4">Advanced</option>
+                      <option value="5">Expert</option>
                     </Form.Select>
                     <Form.Control.Feedback type="invalid">
                       {errors.level}
@@ -180,7 +180,7 @@ function CreateTaskForm(props) {
                   </Form.Control.Feedback>
                 </Form.Group>
 
-                <Form.Group controlId="validationFormik06">
+                {/* <Form.Group controlId="validationFormik06">
                   <Form.Label>Repeating? </Form.Label>
                   <Form.Select
 
@@ -204,16 +204,16 @@ function CreateTaskForm(props) {
                     {errors.recurrence}
                   </Form.Control.Feedback>
                 </Form.Group>
+ */}
 
 
 
-
-                <Button className="col-md-5 mx-auto" type="submit">{buttonText}</Button>
+                <Button className="col-md-5 mx-auto" type="submit" onClick={ () => { console.log("HELPPPPPPPP", values)}}>{buttonText}</Button>
 
               </Stack>
 
 
-              <RecurrenceForm {...{showRecurr, handleCloseR, values}}/>
+              {/* <RecurrenceForm {...{showRecurr, handleCloseR, values}}/> */}
 
             </Form>
           )}

@@ -19,20 +19,11 @@ const TaskItem = ({ task, updateTask, deleteTask }) => {
         const due_date = new Date(`${date}T00:00:00`)
         const year_diff = due_date.getYear() - today_date.getYear()
         const mon_diff = due_date.getMonth() - today_date.getMonth()
+        const date_diff = Math.round((Date.parse(due_date) - Date.parse(today_date)) / 86400000) + 1
 
-        // console.log("date", today_date, year_diff, mon_diff, due_date)
-        // MAKE TEXT DIFFERENT FOR DUE DATES FROM BEFORE 
-        if (mon_diff === 0 && year_diff === 0) {
+        const [mag, format]= (mon_diff === 0 && year_diff === 0) ? [date_diff, 'day'] : mon_diff < 12 && year_diff === 0 ? [mon_diff, 'month'] : [year_diff, 'year']
+        return mag > 0 ? (mag===1 ? `in ${mag} ${format}` : `in ${mag} ${format}s`) : mag < 0 ? (mag === -1 ? `${Math.abs(mag)} ${format} ago` : `${Math.abs(mag)} ${format}s ago`) : ``
 
-            const date_diff = Math.round((Date.parse(due_date) - Date.parse(today_date)) / 86400000) + 1
-            return date_diff > 0 ? (date_diff === 1 ? `in ${date_diff} day` : `in ${date_diff} days`) : `Today`
-        }
-        if (mon_diff > 0 && mon_diff < 12 && year_diff === 0) {
-            return mon_diff === 1 ? `in ${mon_diff} month` : `in ${mon_diff} months`
-        }
-        else {
-            return year_diff === 1 ? `in ${year_diff} year` : `in ${year_diff} years`
-        }
     }
 
     return (

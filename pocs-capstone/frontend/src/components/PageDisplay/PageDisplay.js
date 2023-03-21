@@ -53,9 +53,10 @@ const PageDisplay = ({ avatarInfo, setAvatar, inventory, setInventory }) => {
     const updateTask = (id, newTask) => {
         console.log(newTask, newTask == null)
         const taskItem = taskList.find(t => t.task_id === id)
+
         const taskItemChanged = newTask == null ?
-            { ...taskItem, completed: !taskItem.completed } :
-            { ...taskItem, title: newTask.title, due_date: newTask.due_date, task_type: newTask.size, description: newTask.description }
+            { ...taskItem, completed: !taskItem.completed, completed_date: (taskItem.completed_date === "1970-01-01" ? new Date().toISOString().split('T')[0] : "1970-01-01")} :
+            { ...taskItem, title: newTask.title, due_date: newTask.due_date, task_type: newTask.size, description: newTask.description, task_level: newTask.level }
 
 
         updateTaskB(id, taskItemChanged)
@@ -74,11 +75,11 @@ const PageDisplay = ({ avatarInfo, setAvatar, inventory, setInventory }) => {
             title: formValues.title,
             due_date: formValues.due_date,
             created_date: new Date().toISOString(),
-            completed_date: "2023-03-08",
+            completed_date: "1970-01-01",
             completed: false,
             active: true,
             task_type: formValues.size,
-            task_level: 1,
+            task_level: formValues.level,
             recurring: false,
             recurring_time_delta: 0,
             description: formValues.description,
