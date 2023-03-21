@@ -8,7 +8,7 @@ import { useDrop } from "react-dnd";
 import InventoryContext from '../../context/InventoryContext.js';
 import { useContext, useEffect } from 'react';
 
-const PetDisplay = ({ avatarInfo, setAvatar, inventory, setInventory }) => {
+const PetDisplay = ({ avatarInfo, setAvatar }) => {
 
     let handlers = useContext(InventoryContext)
 
@@ -16,16 +16,12 @@ const PetDisplay = ({ avatarInfo, setAvatar, inventory, setInventory }) => {
     let [{isOver}, drop] = useDrop(() => ({
         // What objects to accept
         accept: "image",
-        drop: (item) => handlers?.updateInventory(item.id, handlers?.inv),
-
+        drop: (item) => handlers.updateInventory(item.id),
         collect: (monitor) => ({
             isOver: !!monitor.isOver(),
         }),
-    })) 
-    
-    useEffect(() => {
-       
-    })
+    }), [handlers.inv]) 
+
 
     return (
         <div className='pet-display'>
@@ -33,7 +29,7 @@ const PetDisplay = ({ avatarInfo, setAvatar, inventory, setInventory }) => {
                 <Card.Header className='pet-name'>{avatarInfo.pet_name}</Card.Header>
                 
                 <div className="Board" ref={drop} >
-                    <PetSprite {...{ avatarInfo, setAvatar, inventory, setInventory }} />   
+                    <PetSprite {...{ avatarInfo, setAvatar }} />   
                 </div>
                 <ProgressB avatarInfo={avatarInfo} />
                     <Card.Body className='pd-bg'>

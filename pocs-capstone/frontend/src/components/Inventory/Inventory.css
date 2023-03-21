@@ -1,22 +1,26 @@
 .Candy {
-    display: flex;
-    flex-direction: row;
-    margin: 10px;
-  }
+  display: flex;
+  flex-direction: row;
+  margin: 10px;
+}
+
 .row {
   float: left;
   position: relative;
   width: 100%;
 }
+
 img {
-    margin: 5px;
-  }
+  margin: 5px;
+}
+
 .Wrapper {
   padding: 20;
   border: "5px solid black";
   height: 200;
   width: 1040;
 }
+
 .Board {
   width: 500px;
   height: 500px;
@@ -28,7 +32,7 @@ img {
 }
 
 .Candy-Quantity {
-  
+
   top: -0.75em;
   right: -0.75em;
   width: 2.5em;
@@ -39,4 +43,17 @@ img {
   border-radius: 50%;
   background: aquamarine;
   color: darkblue;
+}
+
+.inventory-box {
+  padding: 10;
+  border-radius: 5px;
+  border-color: black;
+
+  /* height: 600; 
+  width: 910;
+  margin: 100;
+  background-color: "pink";
+  overflow: scroll; */
+
 }

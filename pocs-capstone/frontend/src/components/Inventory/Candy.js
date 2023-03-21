@@ -5,6 +5,7 @@ import './Inventory.css'
 // Renders Candy component based off props passed from InventoryBox's inventory state
 // Candy is only rendered if quantity > 0
 function Candy ({id, quantity, candy_base_type, candy_level}) {
+    
     let [{isDragging}, drag] = useDrag(() => ({
         type: "image",
         item: {id: id},
@@ -38,16 +39,10 @@ function Candy ({id, quantity, candy_base_type, candy_level}) {
         }
     }
     // Render if there are candy
-    if (quantity !== 0)
-    {
+    // if (quantity !== 0)
+    // {
         return (
             <>
-                {/* <div
-                style={{border: "2px solid black", width: 120, height: 120}}> */}
-
-                
-                {/* Need to work on the styling of the candy  */}
-                
                 <img className="candy-photo" 
                 ref={drag}                
                 src={candyImage(candy_base_type)}
@@ -62,7 +57,7 @@ function Candy ({id, quantity, candy_base_type, candy_level}) {
             </>
             
         )
-    }
+    // }
 }
 
 export default Candy;
