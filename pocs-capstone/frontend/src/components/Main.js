@@ -41,7 +41,7 @@ const Main = ({ userInfo }) => {
             })
 
     }, [])
-    
+
     const isMobile = (width <= 850)
 
     // Inventory Handlers
@@ -52,17 +52,17 @@ const Main = ({ userInfo }) => {
     }
     // Performs update on candy quantity when candy is fed(drag and dropped)
     const updateInventory = (id) => {
-        console.log("ID OF CANDY", id)
+        // console.log("ID OF CANDY", id)
 
         const candyD = inv.find(candy => candy.inventory_id === id)
         if (candyD.quantity !== 0) {
-            console.log("CANDY", candyD)
+            // console.log("CANDY", candyD)
             const updateCandy = { ...candyD, quantity: (candyD.quantity !== 0 ? candyD.quantity - 1 : 0) }
-            console.log("ID", updateCandy.inventory_id)
+            // console.log("ID", updateCandy.inventory_id)
             putInventory(updateCandy).then(r => {
                 setInv(inv.map(it => it.inventory_id === id ? updateCandy : it))
             })
-            console.log(inv)
+            // console.log(inv)
         }
     }
 
