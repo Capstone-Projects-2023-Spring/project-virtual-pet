@@ -21,16 +21,17 @@ function Candy ({id, quantity, candy_base_type, candy_level}) {
                 // Need to check candy level
                 // switch (candy.candy_level) {
                     // case 0:
-                        return require('../../images/candy/pinkcandy_scaled_16x_pngcrushed.png')
+                        // return require('../../images/candy/pinkcandy_scaled_16x_pngcrushed.png')
                     // case 1:      
                 // }
+                return require('../../images/candy/loligreen.png')
 
             case 'M':
                 return require('../../images/candy/orangecandy_scaled_16x_pngcrushed.png')
             case 'L':
                 return require('../../images/candy/pinkcandy_scaled_16x_pngcrushed.png')
             case 'C':
-                return require('../../images/candy/orangecandy_scaled_16x_pngcrushed.png')
+                return require('../../images/candy/loliblue.png')
             // return pink candy
             default:
                 return require('../../images/candy/pinkcandy_scaled_16x_pngcrushed.png')
