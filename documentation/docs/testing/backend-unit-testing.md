@@ -137,8 +137,36 @@ Test: Checks that the database object's name is the actual name given
 Returns: True if the object's name matches the expected objects name, otherwise false
 ```
 
+### Inventory Model
 
+#### *def test_candy_base_type_max_length(self)*
+```
+Test: Checks the size of the field allocated for the candy_base_type text
+Returns: True if the candy_base_type max length matches the expected max length, otherwise false
+```
 
-### CustomAccountManager Model (pending)
-### Inventory Model (pending)
-### Task Model (pending)
+#### *def test_object_name_is_actual_name(self)*
+```
+Test: Checks that the database object's name is the actual name given
+Returns: True if the object's name matches the expected objects name, otherwise false
+```
+
+### Task Model
+
+#### *def test_title_max_length(self)*
+```
+Test: Checks the size of the field allocated for the title text
+Returns: True if the title max length matches the expected max length, otherwise false
+```
+
+#### *def test_task_type_max_length(self)*
+```
+Test: Checks the size of the field allocated for the task_type text
+Returns: True if the task_type max length matches the expected max length, otherwise false
+```
+
+#### *def test_object_name_is_actual_name(self)*
+```
+Test: Checks that the database object's name is the actual name given
+Returns: True if the object's name matches the expected objects name, otherwise false
+```
