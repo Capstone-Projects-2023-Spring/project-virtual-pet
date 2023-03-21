@@ -31,6 +31,7 @@ const Main = ({ userInfo }) => {
             });
     }, [])
 
+    // useEffect, GET call to retrieve inventory item and set the state of inv
     useEffect(() => {
         axiosPrivate.get('/inventory/')
             .then((response) => {
@@ -62,7 +63,6 @@ const Main = ({ userInfo }) => {
             putInventory(updateCandy).then(r => {
                 setInv(inv.map(it => it.inventory_id === id ? updateCandy : it))
             })
-            // console.log(inv)
         }
     }
 
@@ -72,16 +72,19 @@ const Main = ({ userInfo }) => {
         return request.then(response => response.data)
     }
 
+    // Performs a POST request to add items
     const createInventoryItem = (candy) => {
         const request = axiosPrivate.post('/inventory/', candy)
         return request.then(response => response.data)
     }
 
+    // Performs a DELETE request to remove items
     const deleteInventoryItem = (candyID) => {
         const request = axiosPrivate.delete(`/inventory/${candyID}/`)
         return request.then(response => response.data)
     }
 
+    // Create a bunch of items in the backend and change the state of inv
     const postFullInventory = () => {
         if (inv.length === 0) {
             let fullInventoryData = PopulateInv()
@@ -95,6 +98,7 @@ const Main = ({ userInfo }) => {
         }
     }
 
+    // Delete all the items in the backend and set the state of inv to []
     const deleteAll = () => {
         if (inv.length) {
             inv.forEach(i => {
