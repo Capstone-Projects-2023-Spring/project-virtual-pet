@@ -7,10 +7,30 @@ sidebar_position: 4
 
 ### CustomUserInfoViewTests
 
+#### *def test_view_url_exists_at_desired_location(self)*
+```
+Test: Checks the url exists by attempting to register with mock user data.
+Returns: True if response status code is 201, otherwise false
+```
+
 Procedure: This class will provide the user's data to the frontend <br/>
 Tests: Check status codes, url exists at desired location, url reverse lookup, check authentication to allow the user data to send <br/>
 Inputs: url path - String, url name - String <br/>
 Expected Results: True for correct status code, true if url exists and can be looked up by name, true if unauthorized to recieve user data object <br/>
+
+### APITokenViewTest
+
+#### *def test_login_with_valid_credentials(self)*
+```
+Test: Checks the user can login with valid credentials
+Returns: True if response status code is 200, otherwise false
+```
+
+#### *def test_login_with_invalid_credentials(self)*
+```
+Test: Checks the user can login with invalid credentials
+Returns: True if response status code is 401, otherwise false
+```
 
 ### UserLoginViewTests
 
