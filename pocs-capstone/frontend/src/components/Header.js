@@ -8,7 +8,6 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import Stack from 'react-bootstrap/Stack';
 import Image from 'react-bootstrap/Image';
 
-
 const Header = (props) => {
 
     const headerStyle = {
@@ -39,8 +38,8 @@ const Header = (props) => {
                         <NavDropdown.Item href="#action/3.1">Settings</NavDropdown.Item>
                         <NavDropdown.Item href="/canvas_integration">Canvas Integration</NavDropdown.Item>
                         <NavDropdown.Divider />
-                        <NavDropdown.Item href="#action/3.3">
-                            Log out
+                        <NavDropdown.Item href="/logout">
+                            Logout
                         </NavDropdown.Item>
                     </NavDropdown>
 

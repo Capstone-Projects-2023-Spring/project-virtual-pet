@@ -8,6 +8,7 @@ import { useState, useEffect } from 'react'
 
 import Register from './components/Register'
 import Login from './components/Login'
+import Logout from './components/Logout.js'
 import Layout from './components/Layout'
 
 import Loader from './components/Loader'
@@ -30,7 +31,7 @@ function App(){
         
         <Route path="login" element={<Login/>}/>
         <Route path="register" element={<Register/>}/>
-        
+        <Route path="logout" element={<Logout/>}/>
         
         <Route element={<PersistLogin />}>
           <Route element = {<RequireAuth/>}>
