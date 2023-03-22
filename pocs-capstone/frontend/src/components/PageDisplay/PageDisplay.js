@@ -2,11 +2,13 @@ import "./PageDisplay.css"
 import TaskPage from "./TaskPage";
 import CalendarPage from "./CalendarPage"
 import TaskListContext from '../../context/TaskListContext'
+import InventoryBox from "../Inventory/InventoryBox";
 // import tasks from '../../services/tasks'
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
+import { getIn, setIn } from "formik";
 
 
 const PageDisplay = ({ avatarInfo, setAvatar, inventory, setInventory }) => {
@@ -36,13 +38,14 @@ const PageDisplay = ({ avatarInfo, setAvatar, inventory, setInventory }) => {
     }
 
 
-    const [taskList, setTaskList] = useState([])
+    const [taskList, setTaskList] = useState([])    
 
     const fetchData = () => {
         getTasksB()
             .then(r => {
                 setTaskList(r)
             })
+        
     }
 
     useEffect(fetchData, [])
@@ -106,7 +109,7 @@ const PageDisplay = ({ avatarInfo, setAvatar, inventory, setInventory }) => {
         deleteTask,
         updateTask
     }
-
+    
     return (
         <TaskListContext.Provider value={handlers}>
             <div className="page-display">
@@ -124,7 +127,7 @@ const PageDisplay = ({ avatarInfo, setAvatar, inventory, setInventory }) => {
                         <CalendarPage />
                     </Tab>
                     <Tab eventKey="inventory" title="Inventory">
-                        {/* <Sonnet /> */}
+                            < InventoryBox />
                     </Tab>
                     <Tab eventKey="progress" title="Progress">
                         {/* <Sonnet /> */}
