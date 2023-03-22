@@ -16,36 +16,13 @@ const PageDisplay = ({ avatarInfo, setAvatar, inventory, setInventory }) => {
     const axiosPrivate = useAxiosPrivate()
     const baseURL = `/tasks/`
 
-    const getTasksB = () => {
-        const request = axiosPrivate.get(baseURL)
-        return request.then(response => response.data)
-    }
-
-    const createTaskB = (newTask) => {
-        const request = axiosPrivate.post(baseURL, newTask)
-        return request.then(response => response.data)
-    }
-
-    const updateTaskB = (taskID, updatedTask) => {
-        const request = axiosPrivate.put(`${baseURL}${taskID}/`, updatedTask)
-        return request.then(response => response.data)
-
-    }
-
-    const deleteTaskB = (taskID) => {
-        const request = axiosPrivate.delete(`${baseURL}${taskID}/`)
-        return request.then(response => response.data)
-    }
-
-
     const [taskList, setTaskList] = useState([])    
 
     const fetchData = () => {
-        getTasksB()
+        axiosPrivate.get(baseURL)
             .then(r => {
-                setTaskList(r)
+                setTaskList(r.data)
             })
-        
     }
 
     useEffect(fetchData, [])
@@ -57,16 +34,10 @@ const PageDisplay = ({ avatarInfo, setAvatar, inventory, setInventory }) => {
             { ...taskItem, completed: !taskItem.completed } :
             { ...taskItem, title: newTask.title, due_date: newTask.due_date, task_type: newTask.size, description: newTask.description }
 
-
-        updateTaskB(id, taskItemChanged)
+        axiosPrivate.put(`${baseURL}${id}/`, taskItemChanged)
             .then(r => {
-                console.log(r)
-                setTaskList(taskList.map(t => t.task_id === id ? taskItemChanged : t))
+                setTaskList(taskList.map(t => t.task_id === id ? r.data : t))
             })
-
-        console.log(taskList.find(t => t.id === id))
-
-
     }
 
     const addTask = (formValues) => {
@@ -86,16 +57,14 @@ const PageDisplay = ({ avatarInfo, setAvatar, inventory, setInventory }) => {
             assignment_id: 0
         }
 
-
-        createTaskB(newTask)
+        axiosPrivate.post(baseURL, newTask)
             .then(r => {
-                setTaskList(taskList.concat(r))
+                setTaskList(taskList.concat(r.data))
             })
     }
 
     const deleteTask = (id) => {
-
-        deleteTaskB(id)
+        axiosPrivate.delete(`${baseURL}${id}/`)
             .then(r => {
                 setTaskList(taskList.filter(t => t.task_id !== id))
             })

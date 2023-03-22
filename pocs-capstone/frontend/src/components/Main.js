@@ -19,7 +19,6 @@ const Main = ({ userInfo }) => {
     const nav = useNavigate()
 
     const [ready,setReady]=useState(false);
-
     let [inv, setInv] = useState([]);
 
     useEffect(() => {
