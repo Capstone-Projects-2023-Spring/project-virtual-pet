@@ -77,6 +77,8 @@ const Login = () => {
             localStorage.setItem("persist", persist);
         }, [persist])
 
+        if (!localStorage.getItem("refresh"))
+        console.log("REFRESH LOGIN------------->",localStorage.getItem("refresh"))
 
     //using fragment so display success
     return (

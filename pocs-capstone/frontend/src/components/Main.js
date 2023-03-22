@@ -17,15 +17,27 @@ const Main = ({userInfo}) => {
     const [inventory, setInventory] = useState([])
     const width = useWindowWidth()
     const nav = useNavigate()
-
+ 
+    const [ready,setReady]=useState(false)
+    
     const fetchData = () => {
         axiosPrivate.get(AVATAR_URL)
         .then((response )=>{
-            setAvatar(response.data[0])
+            console.log("----->",response)
+            if(response.data[0]){
+                setAvatar(response?.data[0])
+                setReady(true)
+            }
+            else{
+                nav("/pet_selection")
+            }
         })
         .catch((error) => {
-            console.log(error);
-            nav("/login")
+            
+            console.log("REDIRECT FROM MAIN------->",error,ready);
+            
+            nav("/pet_selection")
+            //nav("/login")
         });
 
         // setInventory(inventoryService.getInventory("ccho"))
@@ -39,16 +51,23 @@ const Main = ({userInfo}) => {
 
     const isMobile = (width <= 850)
     
+ 
+    // guard against no avatar information
+
+            
     const shareData = { avatarInfo, setAvatar, inventory, setInventory }
 
-    if(!isMobile) {
+    if(!isMobile && ready) {
+        console.log("NOT MOBILE")
         return(
             <div className="flex-pages">
                 <PetDisplay {...shareData}/>
                 <PageDisplay {...shareData}/>
             </div>
         )
-    } else {
+    } else if (ready){
+        console.log("MOBILE")
+
         return(
             <div>
                 <div className="flex-pages">
@@ -58,6 +77,13 @@ const Main = ({userInfo}) => {
                     <PageDisplay {...shareData}/>
                 </div>
             </div>
+        )
+    }
+    else {        
+        console.log("LOADING")
+
+        return (
+            <div>LOADING...</div>
         )
     }
     
