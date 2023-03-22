@@ -12,12 +12,8 @@ const logo = 'https://raw.githubusercontent.com/Capstone-Projects-2023-Spring/pr
 const logo_small = 'https://github.com/Capstone-Projects-2023-Spring/project-virtual-pet/blob/main/documentation/static/img/baby_kitty_hearts.png?raw=true'
 
 const main_template_jira_scripts = () => {
-  if (process.env.ORG_NAME === 'ApplebaumIan'){
-    return [    'https://temple-cis-projects-in-cs.atlassian.net/s/d41d8cd98f00b204e9800998ecf8427e-T/azc3hx/b/8/c95134bc67d3a521bb3f4331beb9b804/_/download/batch/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector.js?locale=en-US&collectorId=50af7ec2',
-      'https://temple-cis-projects-in-cs.atlassian.net/s/d41d8cd98f00b204e9800998ecf8427e-T/azc3hx/b/8/c95134bc67d3a521bb3f4331beb9b804/_/download/batch/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector.js?locale=en-US&collectorId=160e88a6',]
-  } else {
-    return []
-  }
+    return [    'https://temple-cis-projects-in-cs.atlassian.net/s/d41d8cd98f00b204e9800998ecf8427e-T/1abpwv/b/8/b0105d975e9e59f24a3230a22972a71a/_/download/batch/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector-embededjs/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector-embededjs.js?locale=en-US&collectorId=ccfbfc66',
+]
 }
 
 // You can change the title here. The default is the name of the repository.
@@ -224,7 +220,7 @@ const config = {
         sidebarPath: require.resolve('./sidebars.js'),
         // ... other options
       },
-     
+
     ],
     [
       "docusaurus2-dotenv-2",
