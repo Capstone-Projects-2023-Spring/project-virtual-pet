@@ -21,6 +21,7 @@ import {Routes,Route} from 'react-router-dom';
 
 import './App.css'
 import CanvasIntegrationPage from './components/CanvasIntegrationPage.js'
+import AccountPage from './components/AccountPage'
 
 function App(){
 
@@ -39,6 +40,7 @@ function App(){
             <Route path = "/loader" element={<Loader/>}/>
             <Route path = "/pet_selection" element ={<AnimateChoice/>}/>
             <Route path = "/canvas_integration" element = {<CanvasIntegrationPage/>}/>
+            <Route path = "/account" element={<AccountPage/>}/>
           </Route>
         </Route>
       
