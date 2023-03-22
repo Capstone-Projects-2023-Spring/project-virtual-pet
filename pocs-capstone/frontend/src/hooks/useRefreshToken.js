@@ -13,6 +13,11 @@ const useRefreshToken = () => {
 
             withCredentials: true
         });
+        if (response.status!==200){
+            localStorage.removeItem("refresh")
+            setAuth({}) 
+            return    
+        }
         setAuth(prev => {
             console.log(JSON.stringify(prev));
             console.log(response.data.access);

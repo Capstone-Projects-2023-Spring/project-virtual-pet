@@ -18,16 +18,22 @@ const Main = ({ userInfo }) => {
     const width = useWindowWidth()
     const nav = useNavigate()
 
+    const [ready,setReady]=useState(false);
+
     let [inv, setInv] = useState([]);
 
     useEffect(() => {
         axiosPrivate.get(AVATAR_URL)
             .then((response) => {
                 setAvatar(response.data[0])
+                if (!response.data[0])
+                    nav("/pet_selection")
+                else
+                    setReady(true)
             })
             .catch((error) => {
                 console.log(error);
-                nav("/login")
+                nav("/pet_selection")
             });
     }, [])
 
@@ -121,8 +127,12 @@ const Main = ({ userInfo }) => {
 
     const shareData = { avatarInfo, setAvatar }
 
+    if(!ready){
+        return(<div>LOADING...</div>)
+    }
+
     // Need to wrap mobile view in Dnd and Inventory Context - Want to talk to Harrsion prior
-    if (!isMobile) {
+    else if (!isMobile) {
         return (
 
             <DndProvider backend={HTML5Backend}>
