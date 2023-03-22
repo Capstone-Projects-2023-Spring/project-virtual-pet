@@ -1,25 +1,23 @@
 import PetDisplay from './PetDisplay/PetDisplay.js'
 import PageDisplay from './PageDisplay/PageDisplay.js'
 //import useAuth from '../hooks/useAuth.js'
-import { useNavigate} from 'react-router-dom';
-
+import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react'
-
-import { useWindowWidth} from '@react-hook/window-size'
+import { useWindowWidth } from '@react-hook/window-size'
 import useAxiosPrivate from '../hooks/useAxiosPrivate.js';
 import './Main.css'
-
+import { DndProvider } from "react-dnd";
+import { HTML5Backend } from "react-dnd-html5-backend";
+import InventoryContext from '../context/InventoryContext';
+import PopulateInv from "./Inventory/PopulateInv";
 
 const AVATAR_URL = '/avatar/'
-const Main = ({userInfo}) => {
+const Main = ({ userInfo }) => {
     const axiosPrivate = useAxiosPrivate();
     const [avatarInfo, setAvatar] = useState({})
-    const [inventory, setInventory] = useState([])
     const width = useWindowWidth()
     const nav = useNavigate()
- 
     const [ready,setReady]=useState(false)
-    
     const fetchData = () => {
         axiosPrivate.get(AVATAR_URL)
         .then((response )=>{
@@ -40,16 +38,35 @@ const Main = ({userInfo}) => {
             //nav("/login")
         });
 
-        // setInventory(inventoryService.getInventory("ccho"))
-    }
 
-    
-    useEffect(fetchData,[])
-    
-    // console.log("Loading fetch data avatar", avatarInfo, "data fetched ")
-    // console.log("Loading fetch data inventory ", inventory, "data fetched ")
+    let [inv, setInv] = useState([]);
+
+    useEffect(() => {
+        axiosPrivate.get(AVATAR_URL)
+            .then((response) => {
+                setAvatar(response.data[0])
+            })
+            .catch((error) => {
+                console.log(error);
+                nav("/login")
+            });
+    }, [])
+
+
+    // useEffect, GET call to retrieve inventory item and set the state of inv
+    useEffect(() => {
+        axiosPrivate.get('/inventory/')
+            .then((response) => {
+                setInv(response.data)
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+
+    }, [])
 
     const isMobile = (width <= 850)
+
     
  
     // guard against no avatar information
@@ -58,25 +75,39 @@ const Main = ({userInfo}) => {
     const shareData = { avatarInfo, setAvatar, inventory, setInventory }
 
     if(!isMobile && ready) {
-        console.log("NOT MOBILE")
+    
         return(
             <div className="flex-pages">
                 <PetDisplay {...shareData}/>
                 <PageDisplay {...shareData}/>
             </div>
+            <DndProvider backend={HTML5Backend}>
+                <InventoryContext.Provider value={handlers}>
+                    <div className="flex-pages">
+                        <PetDisplay {...shareData} />
+                        <PageDisplay {...shareData} />
+                    </div>
+                </InventoryContext.Provider>
+            </DndProvider>
+
+
         )
     } else if (ready){
         console.log("MOBILE")
 
-        return(
-            <div>
-                <div className="flex-pages">
-                    <PetDisplay {...shareData}/>
-                </div>
-                <div>
-                    <PageDisplay {...shareData}/>
-                </div>
-            </div>
+        return (
+            <DndProvider backend={HTML5Backend}>
+                <InventoryContext.Provider value={handlers}>
+                    <div>
+                        <div className="flex-pages">
+                            <PetDisplay {...shareData} />
+                        </div>
+                        <div>
+                            <PageDisplay {...shareData} />
+                        </div>
+                    </div>
+                </InventoryContext.Provider>
+            </DndProvider>
         )
     }
     else {        
@@ -87,5 +118,116 @@ const Main = ({userInfo}) => {
         )
     }
     
+
+
+    // Inventory Handlers
+    // Perform a put to the backend to update inventory
+    const putInventory = (item) => {
+        let request = axiosPrivate.put(`/inventory/${item.inventory_id}/`, item)
+        return request.then(response => response.data)
+    }
+    // Performs update on candy quantity when candy is fed(drag and dropped)
+    const updateInventory = (id) => {
+        // console.log("ID OF CANDY", id)
+
+        const candyD = inv.find(candy => candy.inventory_id === id)
+        if (candyD.quantity !== 0) {
+            // console.log("CANDY", candyD)
+            const updateCandy = { ...candyD, quantity: (candyD.quantity !== 0 ? candyD.quantity - 1 : 0) }
+            // console.log("ID", updateCandy.inventory_id)
+            putInventory(updateCandy).then(r => {
+                setInv(inv.map(it => it.inventory_id === id ? updateCandy : it))
+            })
+        }
+    }
+
+    // Performs a get request for the users inventory
+    const getInventory = () => {
+        let request = axiosPrivate.get('/inventory/')
+        return request.then(response => response.data)
+    }
+
+    // Performs a POST request to add items
+    const createInventoryItem = (candy) => {
+        const request = axiosPrivate.post('/inventory/', candy)
+        return request.then(response => response.data)
+    }
+
+    // Performs a DELETE request to remove items
+    const deleteInventoryItem = (candyID) => {
+        const request = axiosPrivate.delete(`/inventory/${candyID}/`)
+        return request.then(response => response.data)
+    }
+
+    // Create a bunch of items in the backend and change the state of inv
+    const postFullInventory = () => {
+        if (inv.length === 0) {
+            let fullInventoryData = PopulateInv()
+            let populatedItems = []
+            fullInventoryData.forEach(importItem => {
+                createInventoryItem(importItem).then( r=> {
+                    populatedItems.push(r)
+                    setInv([...inv, ...populatedItems])
+                })
+            })
+        }
+    }
+
+    // Delete all the items in the backend and set the state of inv to []
+    const deleteAll = () => {
+        if (inv.length) {
+            inv.forEach(i => {
+                deleteInventoryItem(i.inventory_id)
+            })
+        }
+
+        setInv([])
+    }
+
+    const handlers = {
+        inv,
+        createInventoryItem,
+        setInv,
+        updateInventory,
+        deleteInventoryItem,
+        postFullInventory,
+        deleteAll
+    }
+
+    const shareData = { avatarInfo, setAvatar }
+
+    // Need to wrap mobile view in Dnd and Inventory Context - Want to talk to Harrsion prior
+    if (!isMobile) {
+        return (
+
+            <DndProvider backend={HTML5Backend}>
+                <InventoryContext.Provider value={handlers}>
+                    <div className="flex-pages">
+                        <PetDisplay {...shareData} />
+                        <PageDisplay {...shareData} />
+                    </div>
+                </InventoryContext.Provider>
+            </DndProvider>
+
+
+        )
+    } else {
+        return (
+            <DndProvider backend={HTML5Backend}>
+                <InventoryContext.Provider value={handlers}>
+                    <div>
+                        <div className="flex-pages">
+                            <PetDisplay {...shareData} />
+                        </div>
+                        <div>
+                            <PageDisplay {...shareData} />
+                        </div>
+                    </div>
+                </InventoryContext.Provider>
+            </DndProvider>
+        )
+    }
+
+
 }
 export default Main
