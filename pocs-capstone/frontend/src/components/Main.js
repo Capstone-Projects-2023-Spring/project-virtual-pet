@@ -17,27 +17,8 @@ const Main = ({ userInfo }) => {
     const [avatarInfo, setAvatar] = useState({})
     const width = useWindowWidth()
     const nav = useNavigate()
-    const [ready,setReady]=useState(false)
-    const fetchData = () => {
-        axiosPrivate.get(AVATAR_URL)
-        .then((response )=>{
-            console.log("----->",response)
-            if(response.data[0]){
-                setAvatar(response?.data[0])
-                setReady(true)
-            }
-            else{
-                nav("/pet_selection")
-            }
-        })
-        .catch((error) => {
-            
-            console.log("REDIRECT FROM MAIN------->",error,ready);
-            
-            nav("/pet_selection")
-            //nav("/login")
-        });
 
+    const [ready,setReady]=useState(false);
 
     let [inv, setInv] = useState([]);
 
@@ -45,13 +26,16 @@ const Main = ({ userInfo }) => {
         axiosPrivate.get(AVATAR_URL)
             .then((response) => {
                 setAvatar(response.data[0])
+                if (!response.data[0])
+                    nav("/pet_selection")
+                else
+                    setReady(true)
             })
             .catch((error) => {
                 console.log(error);
-                nav("/login")
+                nav("/pet_selection")
             });
     }, [])
-
 
     // useEffect, GET call to retrieve inventory item and set the state of inv
     useEffect(() => {
@@ -66,59 +50,6 @@ const Main = ({ userInfo }) => {
     }, [])
 
     const isMobile = (width <= 850)
-
-    
- 
-    // guard against no avatar information
-
-            
-    const shareData = { avatarInfo, setAvatar, inventory, setInventory }
-
-    if(!isMobile && ready) {
-    
-        return(
-            <div className="flex-pages">
-                <PetDisplay {...shareData}/>
-                <PageDisplay {...shareData}/>
-            </div>
-            <DndProvider backend={HTML5Backend}>
-                <InventoryContext.Provider value={handlers}>
-                    <div className="flex-pages">
-                        <PetDisplay {...shareData} />
-                        <PageDisplay {...shareData} />
-                    </div>
-                </InventoryContext.Provider>
-            </DndProvider>
-
-
-        )
-    } else if (ready){
-        console.log("MOBILE")
-
-        return (
-            <DndProvider backend={HTML5Backend}>
-                <InventoryContext.Provider value={handlers}>
-                    <div>
-                        <div className="flex-pages">
-                            <PetDisplay {...shareData} />
-                        </div>
-                        <div>
-                            <PageDisplay {...shareData} />
-                        </div>
-                    </div>
-                </InventoryContext.Provider>
-            </DndProvider>
-        )
-    }
-    else {        
-        console.log("LOADING")
-
-        return (
-            <div>LOADING...</div>
-        )
-    }
-    
-
 
     // Inventory Handlers
     // Perform a put to the backend to update inventory
@@ -196,8 +127,12 @@ const Main = ({ userInfo }) => {
 
     const shareData = { avatarInfo, setAvatar }
 
+    if(!ready){
+        return(<div>LOADING...</div>)
+    }
+
     // Need to wrap mobile view in Dnd and Inventory Context - Want to talk to Harrsion prior
-    if (!isMobile) {
+    else if (!isMobile) {
         return (
 
             <DndProvider backend={HTML5Backend}>
@@ -227,7 +162,6 @@ const Main = ({ userInfo }) => {
             </DndProvider>
         )
     }
-
 
 }
 export default Main
