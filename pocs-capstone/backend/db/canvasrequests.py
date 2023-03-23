@@ -12,10 +12,12 @@ BASE_URL = 'https://templeu.instructure.com/api/v1'
 
 '''Returns the response from a GET request to the Canvas API'''
 def canvas_request(url, headers, params):
-    response = requests.get(url=url, headers=headers, params=params) 
-    #response.raise_for_status() # YIKES # raise error if 4xx or 5xx
-    status = response.status_code
-    
+    try:
+        response = requests.get(url=url, headers=headers, params=params) 
+        #response.raise_for_status() # YIKES # raise error if 4xx or 5xx
+        status = response.status_code
+    except Exception as e:
+        return e,500 # this is an internal service error due to failed request to external resource     
     return response.json(), status #convert to json
     
 '''Return a list of all Craise_for_statusanvas courses' IDs'''
@@ -80,12 +82,9 @@ def get_assignment_info(canvas_token, course_id, assignment_id):
         print(due)
     return {'title': a['name'] or "No title.",
         'due_date': due,
-        #'created_date': a['created_at'],
-        #'completed_date': a['submission']['graded_at'],
-        #'completed': a['graded_submissions_exist'],
-        #'active': 'true',
+
         'task_type': 'S',
-        #'task_level': 1,
+        #'task_level': 1, # TODO - this should be set here!
         #'recurring': 'false',
         #'recurring_time_delta': 0,
         'description': bs.BeautifulSoup(a['description'],'lxml').get_text() if a['description'] != (None or "" or " ") else "No description",
