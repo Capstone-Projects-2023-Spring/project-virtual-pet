@@ -1,6 +1,6 @@
 import './textbox.css'
 import Card from 'react-bootstrap/Card';
-import { useState, useRef, useContext } from "react";
+import { useState, useRef, useContext, useEffect } from "react";
 import canvas_sidebar from './canvas_sidebar.png'
 import new_access_token from './new_access_token.png'
 import './CanvasIntegrationPage.css'
