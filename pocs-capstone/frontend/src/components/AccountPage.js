@@ -1,164 +1,101 @@
-import {useRef,useState,useEffect} from 'react';
-import useAuth from '../hooks/useAuth'
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import { Form, Row, Col, Button } from 'react-bootstrap';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import useAxiosPrivate from '../hooks/useAxiosPrivate'
 
+function AccountPage() {
+  const axiosPrivate = useAxiosPrivate();
 
-const AVATAR_URL = '/avatar/';
+  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
+  const [name, setName] = useState('');
+  const [bio, setBio] = useState('');
+  const [joinDate, setjoinDate] = useState('');
+  const [birthday, setBirthday] = useState('');
 
-const AccountPage = () => {
-    //const {auth} = useAuth();
-    const axiosPrivate = useAxiosPrivate();
-    //const userRef = useRef();
-    //const errRef = useRef();
+  useEffect(() => {
+    axiosPrivate.get('/user-data/').then((response) => {
+      setUsername(response.data[0].username);
+      setEmail(response.data[0].email);
+      setName(response.data[0].first_name);
+      setBio(response.data[0].bio);
+      setjoinDate(response.data[0].join_date.substring(0, 10));
+      setBirthday(response.data[0].birthday);
+    });
+  }, []);
 
-    const [petName, setPetName] = useState('');
-    const [newPetName, setNewPetName] = useState('');
-  
-    
-    
-    
-    
+  const handleNameChange = (event) => {
+    setName(event.target.value);
+  };
 
-      
+  const handleBioChange = (event) => {
+    setBio(event.target.value);
+  };
 
-      const updatePetName = () => {
-        if (newPetName !== "") {
-          
-          axiosPrivate
-            .get(AVATAR_URL)
-            .then((response) => {
-              const avatar_id = response.data[0].avatar_id;
-              console.log("AVATAR ID---->", response.data[0].avatar_id);
-      
-              const url = AVATAR_URL + avatar_id + "/";
-              console.log("-----> ", url);
-              const data = {'pet_name': newPetName };
-              console.log("data:", data);
-              axiosPrivate.patch(url, data).then((response) => {
-                console.log("response.data:", response.data);
-                setPetName(newPetName);
-              });
-            })
-            .catch((err) => {
-              console.log(err);
-            });
-        }
-      };
+  const handlejoinDateChange = (event) => {
+    setjoinDate(event.target.value);
+  };
 
-      const handleNewPetNameSubmit = (e) => {
-        e.preventDefault();
-        console.log("New pet name submitted:", newPetName);
-        updatePetName();
-        //setNewPetName(e.target.value);
-      };
+  const handleBirthdayChange = (event) => {
+    setBirthday(event.target.value);
+  };
 
-      // useEffect to retrieve current pet name state
-      useEffect(() => {
-        axiosPrivate
-            .get(AVATAR_URL)
-            .then((response) => {
-                setPetName(response.data[0].pet_name);
-                console.log("Old pet name:", response.data[0].pet_name);
-            })
-            .catch((err) => {
-                console.log(err);
-            });
-
-      }, []);
-    /*const handleNewPetNameSubmit = (e) => {
-        e.preventDefault();
-        console.log("New pet name submitted:", newPetName);
-
-
-        //retrieve old pet name
-        axiosPrivate.get(AVATAR_URL)
-            .then((response) => {
-                console.log(response.data[0].pet_name)
-            }).catch((err)=>{console.log(err)})
-        
-        
-        
-        if (newPetName !== "") {
-            setNewPetName(newPetName);
-            axiosPrivate.get(AVATAR_URL)
-                .then((response) => {
-                const avatar_id = response.data[0].avatar_id;
-                console.log("AVATAR ID---->",response.data[0].avatar_id) 
-
-                const url = AVATAR_URL+avatar_id+"/";
-                console.log("-----> ",url);
-                const data = {"pet_name":newPetName}
-                console.log(data);
-                axiosPrivate.patch(url, data)
-                    .then((response )=>{
-                        console.log(response.data);
-                    })
-            }).catch((err)=>{console.log(err)})
-        }
-
-    };*/
-
-    /*const handleNewBioSubmit = (e) => {
-        e.preventDefault();
-        // logic for submitting new changes to server
-        // using state variable newBio
-
-        console.log("New bio submitted:", newBio);
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const data = {
+      'first_name': name,
+      'bio': bio,
+      'join_date': joinDate,
+      'birthday': birthday,
     };
+    axiosPrivate.get('/user-data/').then((response) => {
+      const id = response.data[0].id;
+      const url = '/user-data/' + id + "/";
 
-    const handleNewPasswordSubmit = (e) => {
-        e.preventDefault();
-        // logic for submitting new changes to server
-        // using state variable newBio
+      axiosPrivate.patch(url, data).then((response) => {
+        console.log("response.data:", response.data);
+      }).catch((err) => {
+        console.log(err);
+      });
 
-        console.log("New password submitted:", newPassword);
-    };*/
+    }).catch((err) => {
+      console.log(err);
+    });
+    
+  };
 
-    return (
-        <div>
-        <h2>Change Account Profile Information</h2>
-        <h5>Username: _____</h5>
-        <h5>Email: ______</h5>
-        <h5>Pet Name: {petName}</h5>
-        <form>
+  return (
+    <Form onSubmit={handleSubmit}>
+    <Form.Label>Account Profile</Form.Label>
+    <Form.Group>
+      <Form.Label>Username:</Form.Label>
+      <Form.Control type="text" value={username} disabled />
+    </Form.Group>
+    <Form.Group>
+      <Form.Label>Email:</Form.Label>
+      <Form.Control type="email" value={email} disabled />
+    </Form.Group>
+    <Form.Group>
+      <Form.Label>Name:</Form.Label>
+      <Form.Control type="text" value={name} onChange={handleNameChange} />
+    </Form.Group>
+    <Form.Group>
+      <Form.Label>Bio:</Form.Label>
+      <Form.Control as="textarea" rows={3} value={bio} onChange={handleBioChange} />
+    </Form.Group>
+    <Form.Group>
+      <Form.Label>Studying Since:</Form.Label>
+      <Form.Control type="date" value={joinDate} onChange={handlejoinDateChange} disabled />
+    </Form.Group>
+    <Form.Group>
+      <Form.Label>Birthday:</Form.Label>
+      <Form.Control type="date" value={birthday} onChange={handleBirthdayChange} />
+    </Form.Group>
+    <Button type="submit">Submit</Button>
+  </Form>
 
-            <div>
-                <label htmlFor="new-petname">New Pet Name:</label>
-                <input
-                    type="text"
-                    id="new-petname"
-                    value={newPetName}
-                    onChange={(e) => setNewPetName(e.target.value)}
-                />
-                <button onClick={handleNewPetNameSubmit}>Submit</button>
-            </div>
-
-            <div>
-                <label htmlFor="new-bio">New Bio:</label>
-                <input
-                    type="text"
-                    id="new-bio"
-                    //value={newBio}
-                    //onChange={(e) => setNewBio(e.target.value)}
-                />
-                <button onClick/*</div>={handleNewBioSubmit}*/>Submit</button>
-            </div>
-
-            <div>
-                <label htmlFor="new-pass">New Password:</label>
-                <input
-                    type="text"
-                    id="new-pass"
-                    //value={newPassword}
-                    //onChange={(e) => setNewBio(e.target.value)}
-                />
-                <button onClick/*</div>={handleNewPasswordSubmit}*/>Submit</button>
-            </div>
-
-        </form>
-        </div>
-    );
-    };
+  );
+}
 
 export default AccountPage;
