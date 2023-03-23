@@ -5,13 +5,18 @@ const RequireAuth = () => {
 
     const {auth} = useAuth();
     const location = useLocation();
+    const refresh = localStorage.getItem("refresh")
+    console.log("---------->",refresh)
+
     console.log(auth?.email);
-    console.log(auth?.access)
+    console.log(auth?.access);
+
     return (
         
-        auth?.access
+        //auth?.access
+        refresh
             ? <Outlet />
-            : <Navigate to="/login" state={{from: location}} replace />
+            : <Navigate to="/login" state={{from: location}} replace /> 
     );
 
 }

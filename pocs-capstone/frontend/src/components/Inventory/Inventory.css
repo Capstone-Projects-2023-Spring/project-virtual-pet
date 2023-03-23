@@ -1,0 +1,59 @@
+.Candy {
+  display: flex;
+  flex-direction: row;
+  margin: 10px;
+}
+
+.row {
+  float: left;
+  position: relative;
+  width: 100%;
+}
+
+img {
+  margin: 5px;
+}
+
+.Wrapper {
+  padding: 20;
+  border: "5px solid black";
+  height: 200;
+  width: 1040;
+}
+
+.Board {
+  width: 500px;
+  height: 500px;
+  /* border: 2px solid black; */
+  display: flex;
+  flex-flow: column nowrap;
+  align-self: center;
+  justify-self: center;
+}
+
+.Candy-Quantity {
+
+  top: -0.75em;
+  right: -0.75em;
+  width: 2.5em;
+  height: 2.5em;
+  display: flex;
+  justify-content: center;
+  padding: 10px 10px;
+  border-radius: 50%;
+  background: aquamarine;
+  color: darkblue;
+}
+
+.inventory-box {
+  padding: 10;
+  border-radius: 5px;
+  border-color: black;
+
+  /* height: 600; 
+  width: 910;
+  margin: 100;
+  background-color: "pink";
+  overflow: scroll; */
+
+}

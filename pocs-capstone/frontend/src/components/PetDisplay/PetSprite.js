@@ -3,6 +3,7 @@ import kittycat from '../../images/orangecat.png';
 import bgimage from '../../images/bg.gif'
 import "./PetDisplay"
 import { useState } from 'react'
+// import { useDrop } from "react-dnd";
 
 const PetSprite = ({ avatarInfo, setAvatar, inventory, setInventory }) => {
     const [sprite, setSprite] = useState("")
@@ -10,6 +11,8 @@ const PetSprite = ({ avatarInfo, setAvatar, inventory, setInventory }) => {
     const handleItemRelease = () => {
         // setSprite("PATH TO IMAGE")
     }
+
+    // Can handle drop here maybe too but wasn't working with background so will ask group
 
     const avatarImage = (pet) => {
         switch (pet.avatar_type) {
