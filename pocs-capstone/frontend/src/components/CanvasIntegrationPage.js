@@ -24,6 +24,7 @@ const CanvasIntegrationPage = () => {
     useEffect(() => {
 
         if (tokenReady) {
+            
             console.log("TOKEN READY????---------->",tokenReady)
 
 
