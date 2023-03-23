@@ -19,7 +19,7 @@ const CanvasIntegrationPage = () => {
   //  const [submittedText, setSubmittedText] = useState(null);
     const [canvas_token, setEnteredText] = useState("");
     const [nameError, setNameError] = useState('')
-    const [tokenReady,setTokenRead] = useState(false)
+    const [tokenReady,setTokenReady] = useState(false)
 
     useEffect(() => {
 
