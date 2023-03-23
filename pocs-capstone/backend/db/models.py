@@ -197,7 +197,7 @@ class Task(models.Model):
     title = models.CharField(max_length=128,default="A new task!")
     due_date = models.DateField(null=True,blank=True)
     created_date = models.DateTimeField(default=timezone.now)
-    completed_date = models.DateField(null=True, blank=True)
+    completed_date = models.DateField(default=None, null=True, blank=True)
     completed = models.BooleanField(default=False)
     active = models.BooleanField(default=True)
     task_type = models.CharField(
@@ -206,7 +206,7 @@ class Task(models.Model):
         choices=TaskLevel.choices, default=1)
     recurring = models.BooleanField(default=False)
     recurring_time_delta = models.PositiveIntegerField(default=0)
-    description = models.TextField(default="A new task!")
+    description = models.TextField(default="A new task!", blank=True, null=True)
     course_id = models.PositiveBigIntegerField(default=0)
     assignment_id = models.PositiveIntegerField(default=0)
 
