@@ -39,5 +39,8 @@
 }
 
 #atlwdg-trigger.atlwdg-trigger.atlwdg-RIGHT{
-  background-color: #9d2235;
+  background-color: #374c31;
+}
+[data-theme='dark'] #atlwdg-trigger.atlwdg-trigger.atlwdg-RIGHT{
+  background-color: #ea4e97;
 }
