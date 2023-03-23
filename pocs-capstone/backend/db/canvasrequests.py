@@ -31,7 +31,7 @@ def get_courses(canvas_token): #later we'll add userId as a parameter
     }
 
     courses_data, status = canvas_request(BASE_URL + '/courses', auth_header,  courses_params)
-    print("STATUS IN GET COURSES" + str(status))
+
     if status == 200:
         course_id_list = [] # a list of all the user's courses (their ids)
         for course_entry in courses_data:
@@ -51,12 +51,11 @@ def get_assignments(canvas_token, course_id):
     }
 
     assignments_data, status = canvas_request(BASE_URL + '/courses/' + str(course_id) + '/assignments', auth_header,  assignment_params)
-    print("STATUS IN CANVAS ASSIGNMENTS"+str(status))
+ 
     assignment_id_list = [] # a list of all the user's courses (their ids)
     for assignment_entry in assignments_data:
         try:
-            assignment_id_list.append(assignment_entry['id']) # + ' ' + str(assignment_entry['name'])) # uncomment to print the name of the course too
-            print(assignment_entry['id'])
+            assignment_id_list.append(assignment_entry['id'])
         except Exception as e:
             print(e)
     
@@ -73,13 +72,15 @@ def get_assignment_info(canvas_token, course_id, assignment_id):
     auth_header = {'Authorization': 'Bearer ' + canvas_token}
     assignment_url = BASE_URL + '/courses/' + str(course_id) + '/assignments/' + str(assignment_id)
     a,status = canvas_request(url=assignment_url, headers=auth_header, params={"include[]":['submission']})
+    
     if status == 200:
         due = a['due_at']
     else:
         due = None
+    
     if due != None:
         due = due[0:10] #hack into a string UwU 
-        print(due)
+
     try: 
         description = bs.BeautifulSoup(a['description'],'lxml').get_text()
     except Exception as e:
