@@ -66,17 +66,21 @@ class BlacklistTokenView(APIView):
 
 
 class CanvasView(APIView):
-    permission_classes = (IsAuthenticated, )
+    permission_classes = [IsAuthenticated,]
   
 
     def get(self,request):
         
         _user=self.request.user.id
         course_data, _status = lololol(_user)
+        """
         with open("debug_canvas.txt","a") as f:
             f.write(str(_status))
             f.write('\n\n')
             f.write(str(course_data))
+        """
+        if _status==401:
+            print("STATUS FROM CANVASS UNAUTHORIZED")
         #return Response({"courses": lololol(_user)})
         return Response({"courses":course_data}, _status)
 

@@ -20,7 +20,7 @@ def canvas_request(url, headers, params):
         return e,500 # this is an internal service error due to failed request to external resource     
     return response.json(), status #convert to json
     
-'''Return a list of all Craise_for_statusanvas courses' IDs'''
+'''Return a list of all Canvas courses' IDs'''
 def get_courses(canvas_token): #later we'll add userId as a parameter
     auth_header = {'Authorization': 'Bearer ' + canvas_token}
     courses_params = {
