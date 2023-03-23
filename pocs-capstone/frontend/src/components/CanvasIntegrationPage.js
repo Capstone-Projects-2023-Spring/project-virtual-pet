@@ -16,33 +16,16 @@ const COURSES_URL = '/canvas/'
 
 const CanvasIntegrationPage = () => {
     const axiosPrivate = useAxiosPrivate();
-    const [submittedText, setSubmittedText] = useState(null);
+  //  const [submittedText, setSubmittedText] = useState(null);
     const [canvas_token, setEnteredText] = useState("");
     const [nameError, setNameError] = useState('')
+    const [tokenReady,setTokenRead] = useState(false)
 
-    const textChangeHandler = (i) => {
-        setEnteredText(i.target.value);
-        //console.log(i.target.value);
-      };
-    const handleSubmit = (event) => {
-        event.preventDefault();
+    useEffect(() => {
 
-        if (canvas_token !== "") {
-            setSubmittedText(canvas_token);
-            
-            axiosPrivate.get(CANVAS_URL).then((response) =>{
-                const id = response?.data[0].id
-                console.log("ID---->",response.data[0].id) 
-                if (id<1)
-                    throw("DOPPEEE")
-                const url = CANVAS_URL+id+"/"
-                console.log("-----> ",url)
-                const data = JSON.stringify({canvas_token})
-                axiosPrivate.put(url, data)
-                    .then((response )=>{
-                        console.log(response.data);
-                    })
-            }).catch((err)=>{console.log(err)})
+        if (tokenReady) {
+            console.log("TOKEN READY????---------->",tokenReady)
+
 
             axiosPrivate.get(COURSES_URL).then((response) => {
                 //console.log("COURSES: ", response.data.courses[0])
@@ -57,18 +40,43 @@ const CanvasIntegrationPage = () => {
                 }
         
             }).catch((err)=>{console.log(err)})
-/*
-            const url = CANVAS_URL+id+"/"
-            console.log("-----> ",url)
-            const data = JSON.stringify({canvas_token})
-            axiosPrivate.put(url, data)
-            .then((response )=>{
-                console.log(response.data);
-            })
-            .catch((error) => {
-                console.log(error);
-            });
-            */
+        }
+
+    }, [tokenReady])
+
+
+
+
+    const textChangeHandler = (i) => {
+        setEnteredText(i.target.value);
+        //console.log(i.target.value);
+      };
+
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+
+        if (canvas_token !== "") {
+            //setSubmittedText(canvas_token);
+            
+            axiosPrivate.get(CANVAS_URL).then((response) =>{
+                const id = response?.data[0].id
+                console.log("ID---->",response.data[0].id) 
+                if (id<1)
+                    throw("DOPPEEE")
+                const url = CANVAS_URL+id+"/"
+                console.log("-----> ",url)
+                const data = JSON.stringify({canvas_token})
+                axiosPrivate.put(url, data)
+                    .then((response )=>{
+                        console.log(response.data);
+                        setTokenReady(true)
+                   
+                   
+                   
+                   
+                    })
+            }).catch((err)=>{console.log(err)})
 
 
         }
