@@ -67,33 +67,49 @@ function AccountPage() {
 
   return (
     <Form onSubmit={handleSubmit}>
-    <Form.Label>Account Profile</Form.Label>
-    <Form.Group>
-      <Form.Label>Username:</Form.Label>
-      <Form.Control type="text" value={username} disabled />
+    <div className="text-center mt-3 mb-4">
+      <h1 className="h2 mb-0">Account Profile</h1>
+    </div>
+    <Form.Group className="mb-2">
+      <Form.Label className="col-sm-2 col-form-label">Username:</Form.Label>
+      <Col sm={4}>
+        <Form.Control type="text" value={username} disabled />
+      </Col>
     </Form.Group>
-    <Form.Group>
-      <Form.Label>Email:</Form.Label>
-      <Form.Control type="email" value={email} disabled />
+    <Form.Group className="mb-2">
+      <Form.Label className="col-sm-2 col-form-label">Email:</Form.Label>
+      <Col sm={4}>
+        <Form.Control type="email" value={email} disabled />
+      </Col>
     </Form.Group>
-    <Form.Group>
-      <Form.Label>Name:</Form.Label>
-      <Form.Control type="text" value={name} onChange={handleNameChange} />
+    <Form.Group className="mb-2">
+      <Form.Label className="col-sm-2 col-form-label">Birthday:</Form.Label>
+      <Col sm={4}>
+        <Form.Control type="date" value={birthday} onChange={handleBirthdayChange} />
+      </Col>
     </Form.Group>
-    <Form.Group>
-      <Form.Label>Bio:</Form.Label>
-      <Form.Control as="textarea" rows={3} value={bio} onChange={handleBioChange} />
+    <Form.Group className="mb-2">
+      <Form.Label className="col-sm-2 col-form-label">Name:</Form.Label>
+      <Col sm={4}>
+        <Form.Control type="text" value={name} onChange={handleNameChange} />
+      </Col>
     </Form.Group>
-    <Form.Group>
-      <Form.Label>Studying Since:</Form.Label>
-      <Form.Control type="date" value={joinDate} onChange={handlejoinDateChange} disabled />
+    <Form.Group className="mb-2">
+      <Form.Label className="col-sm-2 col-form-label">Bio:</Form.Label>
+      <Col sm={8}>
+        <Form.Control as="textarea" rows={3} value={bio} onChange={handleBioChange} />
+      </Col>
     </Form.Group>
-    <Form.Group>
-      <Form.Label>Birthday:</Form.Label>
-      <Form.Control type="date" value={birthday} onChange={handleBirthdayChange} />
+    <Form.Group className="mb-2">
+      <Form.Label className="col-sm-2 col-form-label">Studying Since:</Form.Label>
+      <Col sm={4}>
+        <Form.Control type="date" value={joinDate} onChange={handlejoinDateChange} disabled />
+      </Col>
     </Form.Group>
-    <Button type="submit">Submit</Button>
+    <Button type="submit" className="mt-4">Submit</Button>
   </Form>
+
+  
 
   );
 }
