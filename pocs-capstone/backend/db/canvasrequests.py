@@ -80,6 +80,11 @@ def get_assignment_info(canvas_token, course_id, assignment_id):
     if due != None:
         due = due[0:10] #hack into a string UwU 
         print(due)
+    try: 
+        description = bs.BeautifulSoup(a['description'],'lxml').get_text()
+    except Exception as e:
+        description = ""
+
     return {'title': a['name'] or "No title.",
         'due_date': due,
 
@@ -87,10 +92,11 @@ def get_assignment_info(canvas_token, course_id, assignment_id):
         #'task_level': 1, # TODO - this should be set here!
         #'recurring': 'false',
         #'recurring_time_delta': 0,
-        'description': bs.BeautifulSoup(a['description'],'lxml').get_text() if a['description'] != (None or "" or " ") else "No description",
+        'description': description,
         'course_id': a['course_id'],
         'assignment_id': a['id']
     }
+
     
 '''Given a list of assignment IDs, return a list where each entry is a dict of assignment information corresponding to those IDs'''  
 def get_all_assignments(canvas_token):
