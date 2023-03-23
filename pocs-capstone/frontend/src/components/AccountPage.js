@@ -9,22 +9,69 @@ const AVATAR_URL = '/avatar/';
 const AccountPage = () => {
     //const {auth} = useAuth();
     const axiosPrivate = useAxiosPrivate();
-    const userRef = useRef();
-    const errRef = useRef();
+    //const userRef = useRef();
+    //const errRef = useRef();
 
-    const [username, setUsername] = useState('sample');
-    const [email, setEmail] = useState('sample@sample.com');
+    const [petName, setPetName] = useState('');
     const [newPetName, setNewPetName] = useState('');
-    const [newBio, setNewBio] = useState('');
-    const [newPassword, setNewPassword] = useState('');
   
+    
+    
+    
+    
 
-    const handleNewPetNameSubmit = (e) => {
+      
+
+      const updatePetName = () => {
+        if (newPetName !== "") {
+          
+          axiosPrivate
+            .get(AVATAR_URL)
+            .then((response) => {
+              const avatar_id = response.data[0].avatar_id;
+              console.log("AVATAR ID---->", response.data[0].avatar_id);
+      
+              const url = AVATAR_URL + avatar_id + "/";
+              console.log("-----> ", url);
+              const data = {'pet_name': newPetName };
+              console.log("data:", data);
+              axiosPrivate.patch(url, data).then((response) => {
+                console.log("response.data:", response.data);
+                setPetName(newPetName);
+              });
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+        }
+      };
+
+      const handleNewPetNameSubmit = (e) => {
+        e.preventDefault();
+        console.log("New pet name submitted:", newPetName);
+        updatePetName();
+        //setNewPetName(e.target.value);
+      };
+
+      // useEffect to retrieve current pet name state
+      useEffect(() => {
+        axiosPrivate
+            .get(AVATAR_URL)
+            .then((response) => {
+                setPetName(response.data[0].pet_name);
+                console.log("Old pet name:", response.data[0].pet_name);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+
+      }, []);
+    /*const handleNewPetNameSubmit = (e) => {
         e.preventDefault();
         console.log("New pet name submitted:", newPetName);
 
 
-        //retrieve old username
+        //retrieve old pet name
         axiosPrivate.get(AVATAR_URL)
             .then((response) => {
                 console.log(response.data[0].pet_name)
@@ -50,9 +97,9 @@ const AccountPage = () => {
             }).catch((err)=>{console.log(err)})
         }
 
-    };
+    };*/
 
-    const handleNewBioSubmit = (e) => {
+    /*const handleNewBioSubmit = (e) => {
         e.preventDefault();
         // logic for submitting new changes to server
         // using state variable newBio
@@ -66,13 +113,14 @@ const AccountPage = () => {
         // using state variable newBio
 
         console.log("New password submitted:", newPassword);
-    };
+    };*/
 
     return (
         <div>
         <h2>Change Account Profile Information</h2>
-        <h5>Username: {username}</h5>
-        <h5>Email: {email}</h5>
+        <h5>Username: _____</h5>
+        <h5>Email: ______</h5>
+        <h5>Pet Name: {petName}</h5>
         <form>
 
             <div>
@@ -91,10 +139,10 @@ const AccountPage = () => {
                 <input
                     type="text"
                     id="new-bio"
-                    value={newBio}
-                    onChange={(e) => setNewBio(e.target.value)}
+                    //value={newBio}
+                    //onChange={(e) => setNewBio(e.target.value)}
                 />
-                <button onClick={handleNewBioSubmit}>Submit</button>
+                <button onClick/*</div>={handleNewBioSubmit}*/>Submit</button>
             </div>
 
             <div>
@@ -102,10 +150,10 @@ const AccountPage = () => {
                 <input
                     type="text"
                     id="new-pass"
-                    value={newPassword}
-                    onChange={(e) => setNewBio(e.target.value)}
+                    //value={newPassword}
+                    //onChange={(e) => setNewBio(e.target.value)}
                 />
-                <button onClick={handleNewPasswordSubmit}>Submit</button>
+                <button onClick/*</div>={handleNewPasswordSubmit}*/>Submit</button>
             </div>
 
         </form>
