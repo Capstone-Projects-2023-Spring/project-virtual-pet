@@ -206,7 +206,7 @@ class Task(models.Model):
         choices=TaskLevel.choices, default=1)
     recurring = models.BooleanField(default=False)
     recurring_time_delta = models.PositiveIntegerField(default=0)
-    description = models.TextField(default="A new task!")
+    description = models.TextField(default="A new task!", blank=True, null=True)
     course_id = models.PositiveBigIntegerField(default=0)
     assignment_id = models.PositiveIntegerField(default=0)
 

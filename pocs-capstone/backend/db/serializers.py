@@ -71,3 +71,25 @@ class InventorySerializer(serializers.ModelSerializer):
             'candy_level',
             'quantity'
         ]
+
+
+class CanvasSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Task
+        fields = [
+            'task_id',
+            'title',
+            'due_date',
+            'created_date',
+            'completed_date',
+            'completed',
+            'active',
+            'task_type',
+            'task_level',
+            'recurring',
+            'recurring_time_delta',
+            'description',
+            'course_id',
+            'assignment_id'
+        ]
+

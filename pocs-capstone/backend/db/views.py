@@ -15,45 +15,18 @@ from rest_framework.decorators import api_view
 from db.studybuddyemail import send_email
 import db.canvasrequests as canvas
 
-"""
-from .serializers import NoteSerializer
-from .models import Note
-
-def index(request):
-    return HttpResponse("Hello, world. You're at the polls index.")
-
-class NoteViewSet(viewsets.ModelViewSet):
-    queryset = Note.objects.all().order_by('note_id')
-    serializer_class = NoteSerializer
-
-"""
-
 
 def lololol(userId):
 
     _user = NewUser.objects.filter(id=userId)
     canvas_token = _user[0].get_canvas_token() 
     
-    assignments = canvas.get_all_assignments(canvas_token)
+    assignments, status = canvas.get_all_assignments(canvas_token)
     #_userid = self.request.user
     
     print(_user[0].get_canvas_token())
     print(_user)
-    return assignments
-
-
-
-
-
-
-
-
-
-
-
-"""NO WAYYYY"""
-
-
+    return assignments, status
 
 
 class CustomUserCreate(APIView):
@@ -78,6 +51,7 @@ class CustomUserCreate(APIView):
             return Response("Username is taken",status=status.HTTP_409_CONFLICT)
         return Response(registration_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+
 class BlacklistTokenView(APIView):
     permission_classes=[AllowAny]
 
@@ -91,7 +65,6 @@ class BlacklistTokenView(APIView):
             return Response(e,status=status.HTTP_400_BAD_REQUEST)
 
 
-
 class CanvasView(APIView):
     permission_classes = (IsAuthenticated, )
   
@@ -99,9 +72,14 @@ class CanvasView(APIView):
     def get(self,request):
         
         _user=self.request.user.id
-       
-        return Response({"courses": lololol(_user)})
-        
+        course_data, _status = lololol(_user)
+        with open("debug_canvas.txt","a") as f:
+            f.write(str(_status))
+            f.write('\n\n')
+            f.write(str(course_data))
+        #return Response({"courses": lololol(_user)})
+        return Response({"courses":course_data}, _status)
+
 
 class NewUserViewSet(viewsets.ModelViewSet):
     permission_classes=[IsAuthenticated,]
@@ -112,7 +90,6 @@ class NewUserViewSet(viewsets.ModelViewSet):
         #_user = JWTAuthentication(self.request)
         _user = self.request.user.id
         return NewUser.objects.filter(id=_user)
-    
 
 
 class TaskViewSet(viewsets.ModelViewSet):
@@ -126,7 +103,8 @@ class TaskViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         _user = self.request.user
         return Task.objects.filter(user=_user)
-    
+
+
 class AvatarViewSet(viewsets.ModelViewSet):
     
     serializer_class = AvatarSerializer
@@ -138,6 +116,7 @@ class AvatarViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         _user = self.request.user
         return Avatar.objects.filter(user=_user)
+
 
 class InventoryViewSet(viewsets.ModelViewSet):
     
