@@ -1,6 +1,6 @@
 import './textbox.css'
 import Card from 'react-bootstrap/Card';
-import { useState, useRef, useContext, useEffect } from "react";
+import { useState, useEffect } from "react";
 import canvas_sidebar from './canvas_sidebar.png'
 import new_access_token from './new_access_token.png'
 import './CanvasIntegrationPage.css'
@@ -28,6 +28,20 @@ const CanvasIntegrationPage = () => {
 
     const nav = useNavigate()
 
+    const setSubmittingTokenState = (text) => {
+        setRetrievingAssignments(true)
+        setSubmitText("Loading...")
+        setNameError(text)
+
+    };
+
+    const resetSubmitTokenState= (text) =>{
+        setRetrievingAssignments(false)
+        setSubmitText("Submit")
+        setNameError(text)
+        setTokenReady(false)
+    }
+
     useEffect(() => {
 
         if (tokenReady) {
@@ -37,17 +51,17 @@ const CanvasIntegrationPage = () => {
 
             axiosPrivate.get(COURSES_URL).then((response) => {
                 console.log("CREATED!!!?????")
-                setSubmitText("Submit")
+                //we were successful
+                //return state and navigate to main
+                resetSubmitTokenState("")
                 nav('/')
             }).catch((err)=>{
                 console.log(err)
-                setRetrievingAssignments(false)
-                setSubmitText("Submit")
-                setTokenReady(false)
+                resetSubmitTokenState("Error getting assignments. Please check your token and try again.")
             })
         }
 
-    }, [tokenReady])
+    }, [tokenReady,axiosPrivate,nav]) // there was an error here if axiosPrivate and nav were not present
 
 
 
@@ -60,16 +74,18 @@ const CanvasIntegrationPage = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        setRetrievingAssignments(true)
-        setSubmitText("LOADING...")
+        //setRetrievingAssignments(true)
+        //setSubmitText("LOADING...")
+        //ready to start attempting to get assignmemnts
+        setSubmittingTokenState("Retrieing assignments. Please wait...")
+        
         if (canvas_token !== "") {
             //setSubmittedText(canvas_token);
             
             axiosPrivate.get(CANVAS_URL).then((response) =>{
                 const id = response?.data[0].id
                 console.log("ID---->",response.data[0].id) 
-                if (id<1)
-                    throw("DOPPEEE")
+                
                 const url = CANVAS_URL+id+"/"
                 console.log("-----> ",url)
                 const data = JSON.stringify({canvas_token})
@@ -83,22 +99,27 @@ const CanvasIntegrationPage = () => {
                    
                     }).catch((err)=>{
                         console.log(err)
-                        setRetrievingAssignments(false)
-                        setSubmitText("Submit")
+                        //setRetrievingAssignments(false)
+                        //setSubmitText("Submit")
+                        resetSubmitTokenState("Error getting assignments. Please check your token and try again.")
+
+
                     })
             }).catch((err)=>{
                 console.log(err)
-                setRetrievingAssignments(false)
-                setSubmitText("Submit")
+                resetSubmitTokenState("Error getting assignments. Please check your token and try again.")
+
             })
 
 
         }
         else {
             console.log("NO NAME ENTERED")
-            setNameError('You must enter a token!')
-            setSubmitText("Submit")
-            setRetrievingAssignments(false)
+            //setNameError('You must enter a token!')
+            //setSubmitText("Submit")
+            //setRetrievingAssignments(false)
+            resetSubmitTokenState("You must enter a token!")
+
         }
     }
     return (
@@ -119,7 +140,7 @@ const CanvasIntegrationPage = () => {
              <p></p> Select "Generate token", and copy and paste it here! </Card.Body>
 
              <form className = "submit_canvas" onSubmit={(event) => handleSubmit(event)}>
-                    <input className = "input" type = "text" placeholder= "Enter token here!" value={canvas_token} onChange={textChangeHandler}/>
+                    <input className = "input" type = "text" placeholder= "Enter token here!" value={canvas_token} disabled={retrievingAssignments ? true:false} onChange={textChangeHandler}/>
                     <button className="button" type="submit" disabled={retrievingAssignments ? true:false}>
                         {submitText}
                     </button>
