@@ -66,7 +66,8 @@ function AccountPage() {
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
+    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+    <Form onSubmit={handleSubmit} style={{ maxWidth: '700px', width: '100%', padding: '20px', borderRadius: '5px', boxShadow: '0px 0px 5px 0px rgba(0,0,0,0.2)' }}>
     <div className="text-center mt-3 mb-4">
       <h1 className="h2 mb-0">Account Profile</h1>
     </div>
@@ -106,9 +107,9 @@ function AccountPage() {
         <Form.Control type="date" value={joinDate} onChange={handlejoinDateChange} disabled />
       </Col>
     </Form.Group>
-    <Button type="submit" className="mt-4">Submit</Button>
+    <Button type="submit" style={{ marginTop: '20px', marginBottom: '20px' }}>Submit</Button>
   </Form>
-
+  </div>
   
 
   );
