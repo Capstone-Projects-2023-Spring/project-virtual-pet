@@ -40,27 +40,26 @@ function AccountPage() {
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log("DATA TEST BEFORE: ", name, bio, birthday);
-    const data = {
-      'first_name': name ? name : '1',
-      'bio': bio ? bio : '2',
-      'birthday': birthday ? birthday : '1967-12-27',
-    };
-    console.log("DATA TEST AFTER: ", name, bio, birthday)
     axiosPrivate.get('/user-data/').then((response) => {
+      const updatedUserInfo = {
+        first_name: name.trim() === '' ? response.data[0].first_name : name,
+        bio: bio.trim() === '' ? response.data[0].bio : bio,
+        birthday: birthday.trim() === '' ? response.data[0].birthday : birthday,
+      };
+
       const id = response.data[0].id;
       const url = '/user-data/' + id + "/";
-
-      axiosPrivate.patch(url, data).then((response) => {
+      axiosPrivate.patch(url, updatedUserInfo).then((response) => {
         console.log("response.data:", response.data);
       }).catch((err) => {
         console.log(err);
       });
-
     }).catch((err) => {
       console.log(err);
     });
-
   };
+      
+
 
   return (
     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
