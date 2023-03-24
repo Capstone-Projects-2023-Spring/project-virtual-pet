@@ -13,20 +13,26 @@ function PetProfPage() {
     const [flavourText, setFlavourText] = useState('');
 
     const handlePetNameChange = (event) => {
-        setPetName(event.target.value);
+        const changedPetName = event.target.value;
+        setPetName(changedPetName);
     };
 
     const handleFlavourTextChange = (event) => {
-        setFlavourText(event.target.value);
+        const changedFlavourText = event.target.value;
+        setFlavourText(changedFlavourText);
     };
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        console.log("PET", handlers.avatarInfo)
-       const updatedAvatar = {...handlers?.avatarInfo, pet_name: petName, flavour_text: flavourText}
+        console.log("PET BEFORE UPDATE", handlers.avatarInfo)
+       const updatedAvatar = {
+            ...handlers?.avatarInfo, 
+            pet_name: petName.trim() === '' ? handlers.avatarInfo.pet_name : petName, 
+            flavour_text: flavourText.trim() === '' ? handlers.avatarInfo.flavour_text : flavourText
+        }
         axiosPrivate.patch(`/avatar/${handlers?.avatarInfo.avatar_id}/`, updatedAvatar).then((response) => {
             console.log("response.data:", response.data);
-            handlers?.setAvatar(response.data); //change this to add to previous state instead of replacing completely 
+            handlers?.setAvatar(response.data); //change this to add to previous state instead of replacing completely (in case of >1 avatar for 1 user)
         }).catch((err) => {
             console.log(err);
         });
@@ -42,13 +48,13 @@ function PetProfPage() {
                 <Form.Group className="mb-2">
                     <Form.Label className="col-sm-2 col-form-label">Pet Name:</Form.Label>
                     <Col sm={4}>
-                        <Form.Control type="text" value={petName} onChange={handlePetNameChange} />
+                        <Form.Control type="text" value={petName} placeholder={handlers.avatarInfo.pet_name} onChange={handlePetNameChange} />
                     </Col>
                 </Form.Group>
                 <Form.Group className="mb-2">
                     <Form.Label className="col-sm-2 col-form-label">Flavour Text:</Form.Label>
                     <Col sm={8}>
-                        <Form.Control as="textarea" rows={3} value={flavourText} onChange={handleFlavourTextChange} />
+                        <Form.Control as="textarea" rows={3} value={flavourText} placeHolder={handlers.avatarInfo.flavour_text} onChange={handleFlavourTextChange} />
                     </Col>
                 </Form.Group>
                 <Button type="submit" style={{ marginTop: '20px', marginBottom: '20px' }}>Submit</Button>
