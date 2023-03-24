@@ -1,4 +1,4 @@
-import json
+
 import requests
 import bs4 as bs
 from .serializers import CanvasSerializer
@@ -35,7 +35,7 @@ def get_courses(canvas_token): #later we'll add userId as a parameter
     if status == 200:
         course_id_list = [] # a list of all the user's courses (their ids)
         for course_entry in courses_data:
-            course_id_list.append(course_entry['id']) # + ' ' + str(course_entry['name'])) # uncomment to print the name of the course too
+            course_id_list.append(course_entry['id']) 
 
         return course_id_list, status
     return None,status
@@ -112,6 +112,7 @@ def get_all_assignments(canvas_token):
         for assignment_id in assignment_ids:
             assignment_info = get_assignment_info(canvas_token, course_id, assignment_id)
             all_assignments.append(assignment_info) # add each assignment dict from this course to list
+        
 
     return all_assignments, status
 

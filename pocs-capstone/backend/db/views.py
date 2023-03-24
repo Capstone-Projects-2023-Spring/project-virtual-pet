@@ -66,23 +66,41 @@ class BlacklistTokenView(APIView):
 
 
 class CanvasView(APIView):
-    permission_classes = [AllowAny,]
-  
+    permission_classes = [IsAuthenticated,]
+    
 
     def get(self,request):
-        
+        #$print("1 HEREERERERE")
         _user=self.request.user.id
         course_data, _status = lololol(_user)
-        """
-        with open("debug_canvas.txt","a") as f:
-            f.write(str(_status))
-            f.write('\n\n')
-            f.write(str(course_data))
-        """
-        if _status==401:
-            print("STATUS FROM CANVASS UNAUTHORIZED")
-        #return Response({"courses": lololol(_user)})
-        return Response({"courses":course_data}, _status)
+        print("USER_ID:"+str(_user))
+        try:
+            print("HEREERERERE")
+            for x in course_data:
+                try:
+                    tag = str(_user)+str(x['course_id'])+str(x['assignment_id'])
+                    x['unique_canvas_tag']=tag
+                    x['user_id']=_user
+                    print("TAG" + x['unique_canvas_tag'])
+                    serializer = CanvasSerializer(x)
+                    print(serializer.data)
+                    
+                    obj,created = Task.objects.update_or_create(unique_canvas_tag=tag,defaults=serializer.data)#TODO validate the dat
+                    if created:
+                        print("created")
+                    else:
+                        print("updated")
+                except Exception as e:
+                    print(e)
+                
+                
+                
+
+        except Exception as e:
+            print(e)
+            _status=500
+    
+        return Response(course_data,_status)
 
 
 class NewUserViewSet(viewsets.ModelViewSet):

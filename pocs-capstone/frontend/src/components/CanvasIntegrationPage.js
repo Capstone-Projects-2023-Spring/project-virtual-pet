@@ -30,15 +30,19 @@ const CanvasIntegrationPage = () => {
 
             axiosPrivate.get(COURSES_URL).then((response) => {
                 //console.log("COURSES: ", response.data.courses[0])
-                const canvasTasks = response.data.courses
-
+               // const canvasTasks = response.data.courses
+                /**
                 for (const task of canvasTasks) {
                     //console.log("TASK NUM: ", num++)
                     axiosPrivate.post('/tasks/', task)
                         .then((response) => {
                             console.log("TASK: ", response.data.title)
                         }).catch((err)=>{console.log(err)})
+
+                        
                 }
+                */
+               console.log("CREATED!!!?????")
         
             }).catch((err)=>{console.log(err)})
         }

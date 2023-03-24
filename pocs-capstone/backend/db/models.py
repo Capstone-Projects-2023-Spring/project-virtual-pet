@@ -209,6 +209,8 @@ class Task(models.Model):
     description = models.TextField(default="A new task!", blank=True, null=True)
     course_id = models.PositiveBigIntegerField(default=0)
     assignment_id = models.PositiveIntegerField(default=0)
+    received = models.BooleanField(default=False)
+    unique_canvas_tag = models.CharField(max_length=256,default=None,null=True,blank=True)
 
     def __str__(self):
         """Task toString method
