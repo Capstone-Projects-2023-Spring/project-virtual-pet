@@ -1,5 +1,5 @@
-from django.test import TestCase
-from django.urls import reverse
+from django.test import TestCase, RequestFactory
+from django.urls import reverse, resolve
 import json
 
 class CustomUserCreateViewTest(TestCase):
@@ -14,10 +14,9 @@ class CustomUserCreateViewTest(TestCase):
         response = self.client.post( '/register/', self.registerData)
         self.assertEqual(response.status_code, 201)
     
-    # This may be working because 405 means not authorized but also no clue b/ anyone should be able to register
     def test_view_url_accessible_by_name(self):
-        response = self.client.get(reverse('db:create_user'))
-        self.assertEqual(response.status_code, 405)
+        path = reverse('db:create_user')
+        assert resolve(path).view_name == 'db:create_user'
 
 
 
@@ -54,3 +53,48 @@ class APITokenViewTest(TestCase):
             # Try to login with invalid credentials
             response = self.client.post('/api/token/', self.invalidLoginData)
             self.assertEqual(response.status_code, 401)
+
+    def test_view_url_accessible_by_name(self):
+        path = reverse('token_obtain_pair')
+        assert resolve(path).view_name == 'token_obtain_pair'
+
+class APITokenRefreshViewTest(TestCase):
+    def test_view_url_accessible_by_name(self):
+        path = reverse('token_refresh')
+        assert resolve(path).view_name == 'token_refresh'
+
+class APITokenVerifyViewTest(TestCase):
+    def test_view_url_accessible_by_name(self):
+        path = reverse('token_verify')
+        assert resolve(path).view_name == 'token_verify'
+
+class BlacklistTokenViewTest(TestCase):
+    def test_view_url_accessible_by_name(self):
+        path = reverse('db:blacklist')
+        assert resolve(path).view_name == 'db:blacklist'
+
+class CanvasViewTest(TestCase):
+    def test_view_url_accessible_by_name(self):
+        path = reverse('db:pose-canvas-tasks')
+        assert resolve(path).view_name == 'db:pose-canvas-tasks'
+
+# class TaskViewSetTest(TestCase):
+#     def test_view_url_accessible_by_name(self):
+#         path = reverse('tasks')
+#         assert resolve(path).view_name == 'tasks'
+
+# class InventoryViewSetTest(TestCase):
+#     def test_view_url_accessible_by_name(self):
+#         path = reverse('db:inventory')
+#         assert resolve(path).view_name == 'db:inventory'
+
+# class AvatarViewSet(TestCase):
+#     def test_view_url_accessible_by_name(self):
+#         path = reverse('token_verify')
+#         assert resolve(path).view_name == 'token_verify'
+
+# class NewUserViewSet(TestCase):
+#     def test_view_url_accessible_by_name(self):
+#         path = reverse('token_verify')
+#         assert resolve(path).view_name == 'token_verify'
+
