@@ -96,6 +96,7 @@ class CanvasSerializer(serializers.ModelSerializer):
             'unique_canvas_tag',
             'received',
         ]
+    #TODO - consider overriding create rather than doing validation in the view
     """
     def create(self,validated_data):
         obj, created = Task.objects.update_or_create(

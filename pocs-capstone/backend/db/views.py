@@ -73,6 +73,11 @@ class CanvasView(APIView):
         #$print("1 HEREERERERE")
         _user=self.request.user.id
         course_data, _status = lololol(_user)
+        if _status != 200:
+            return Response(None,_status)
+        
+        #if not course_data:
+        #    return Response(None,status=status.HTTP_401_UNAUTHORIZED)
         print("USER_ID:"+str(_user))
         # this try catch is admittedly a little clunky
         # will add in serializer validation later

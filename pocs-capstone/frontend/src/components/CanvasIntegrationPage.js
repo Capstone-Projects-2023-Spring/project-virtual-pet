@@ -19,7 +19,14 @@ const CanvasIntegrationPage = () => {
   //  const [submittedText, setSubmittedText] = useState(null);
     const [canvas_token, setEnteredText] = useState("");
     const [nameError, setNameError] = useState('')
+    
+    
     const [tokenReady,setTokenReady] = useState(false)
+    const [retrievingAssignments,setRetrievingAssignments] = useState(false) 
+    
+    const [submitText, setSubmitText] = useState("Submit")
+
+    const nav = useNavigate()
 
     useEffect(() => {
 
@@ -29,22 +36,15 @@ const CanvasIntegrationPage = () => {
 
 
             axiosPrivate.get(COURSES_URL).then((response) => {
-                //console.log("COURSES: ", response.data.courses[0])
-               // const canvasTasks = response.data.courses
-                /**
-                for (const task of canvasTasks) {
-                    //console.log("TASK NUM: ", num++)
-                    axiosPrivate.post('/tasks/', task)
-                        .then((response) => {
-                            console.log("TASK: ", response.data.title)
-                        }).catch((err)=>{console.log(err)})
-
-                        
-                }
-                */
-               console.log("CREATED!!!?????")
-        
-            }).catch((err)=>{console.log(err)})
+                console.log("CREATED!!!?????")
+                setSubmitText("Submit")
+                nav('/')
+            }).catch((err)=>{
+                console.log(err)
+                setRetrievingAssignments(false)
+                setSubmitText("Submit")
+                setTokenReady(false)
+            })
         }
 
     }, [tokenReady])
@@ -60,7 +60,8 @@ const CanvasIntegrationPage = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-
+        setRetrievingAssignments(true)
+        setSubmitText("LOADING...")
         if (canvas_token !== "") {
             //setSubmittedText(canvas_token);
             
@@ -80,14 +81,24 @@ const CanvasIntegrationPage = () => {
                    
                    
                    
+                    }).catch((err)=>{
+                        console.log(err)
+                        setRetrievingAssignments(false)
+                        setSubmitText("Submit")
                     })
-            }).catch((err)=>{console.log(err)})
+            }).catch((err)=>{
+                console.log(err)
+                setRetrievingAssignments(false)
+                setSubmitText("Submit")
+            })
 
 
         }
         else {
             console.log("NO NAME ENTERED")
             setNameError('You must enter a token!')
+            setSubmitText("Submit")
+            setRetrievingAssignments(false)
         }
     }
     return (
@@ -109,9 +120,12 @@ const CanvasIntegrationPage = () => {
 
              <form className = "submit_canvas" onSubmit={(event) => handleSubmit(event)}>
                     <input className = "input" type = "text" placeholder= "Enter token here!" value={canvas_token} onChange={textChangeHandler}/>
-                    <button className="button" type="submit">Submit</button>
+                    <button className="button" type="submit" disabled={retrievingAssignments ? true:false}>
+                        {submitText}
+                    </button>
                     {nameError!=="" ? <p>{nameError}</p> : <></>}
             </form>
+
             
         </div>
     )
