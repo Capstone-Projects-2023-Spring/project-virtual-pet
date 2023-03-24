@@ -2,7 +2,9 @@ name: Django Unit Testing
 
 on:
   
-  pull_request:
+  # pull_request:
+  #   branches: [main]
+  push:
     branches: [main]
 
 jobs:
