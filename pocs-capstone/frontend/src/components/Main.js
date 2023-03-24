@@ -10,6 +10,7 @@ import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import InventoryContext from '../context/InventoryContext';
 import PopulateInv from "./Inventory/PopulateInv";
+import AvatarContext from "../context/AvatarContext"
 
 const AVATAR_URL = '/avatar/'
 const Main = ({ userInfo }) => {
@@ -18,7 +19,7 @@ const Main = ({ userInfo }) => {
     const width = useWindowWidth()
     const nav = useNavigate()
 
-    const [ready,setReady]=useState(false);
+    const [ready, setReady] = useState(false);
 
     let [inv, setInv] = useState([]);
 
@@ -96,7 +97,7 @@ const Main = ({ userInfo }) => {
             let fullInventoryData = PopulateInv()
             let populatedItems = []
             fullInventoryData.forEach(importItem => {
-                createInventoryItem(importItem).then( r=> {
+                createInventoryItem(importItem).then(r => {
                     populatedItems.push(r)
                     setInv([...inv, ...populatedItems])
                 })
@@ -127,39 +128,45 @@ const Main = ({ userInfo }) => {
 
     const shareData = { avatarInfo, setAvatar }
 
-    if(!ready){
-        return(<div>LOADING...</div>)
+    console.log("SHAREDATA", shareData)
+
+    if (!ready) {
+        return (<div>LOADING...</div>)
     }
 
     // Need to wrap mobile view in Dnd and Inventory Context - Want to talk to Harrsion prior
     else if (!isMobile) {
         return (
 
-            <DndProvider backend={HTML5Backend}>
-                <InventoryContext.Provider value={handlers}>
-                    <div className="flex-pages">
-                        <PetDisplay {...shareData} />
-                        <PageDisplay {...shareData} />
-                    </div>
-                </InventoryContext.Provider>
-            </DndProvider>
+            <AvatarContext.Provider value={shareData}>
+                <DndProvider backend={HTML5Backend}>
+                    <InventoryContext.Provider value={handlers}>
+                        <div className="flex-pages">
+                            <PetDisplay {...shareData} />
+                            <PageDisplay {...shareData} />
+                        </div>
+                    </InventoryContext.Provider>
+                </DndProvider>
+            </AvatarContext.Provider>
 
 
         )
     } else {
         return (
-            <DndProvider backend={HTML5Backend}>
-                <InventoryContext.Provider value={handlers}>
-                    <div>
-                        <div className="flex-pages">
-                            <PetDisplay {...shareData} />
-                        </div>
+            <AvatarContext.Provider value={shareData}>
+                <DndProvider backend={HTML5Backend}>
+                    <InventoryContext.Provider value={handlers}>
                         <div>
-                            <PageDisplay {...shareData} />
+                            <div className="flex-pages">
+                                <PetDisplay {...shareData} />
+                            </div>
+                            <div>
+                                <PageDisplay {...shareData} />
+                            </div>
                         </div>
-                    </div>
-                </InventoryContext.Provider>
-            </DndProvider>
+                    </InventoryContext.Provider>
+                </DndProvider>
+            </AvatarContext.Provider>
         )
     }
 
