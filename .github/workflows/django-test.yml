@@ -1,0 +1,40 @@
+name: Django Unit Testing
+
+on:
+  
+  pull_request:
+    branches: [main]
+
+jobs:
+  test_project:
+    runs-on: ubuntu-latest
+    steps:
+
+    - name: Checkout main branch
+      uses: actions/checkout@v3
+
+    - name: Setup Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v3
+
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v3
+      with:
+        python-version: ${{ matrix.python-version }}
+
+    - name: Install Dependencies
+      working-directory: ./pocs-capstone/backend
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Make Migrations
+      working-directory: ./pocs-capstone/backend/
+      run: |
+        python manage.py makemigrations
+        python manage.py migrate
+        
+    - name: Run Tests
+      working-directory: ./pocs-capstone/backend/
+
+      run: |
+        python manage.py test
