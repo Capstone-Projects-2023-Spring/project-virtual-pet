@@ -11,8 +11,10 @@ import { HTML5Backend } from "react-dnd-html5-backend";
 import InventoryContext from '../context/InventoryContext';
 import PopulateInv from "./Inventory/PopulateInv";
 import AvatarContext from "../context/AvatarContext"
+import UserContext from "../context/UserContext"
 
 const AVATAR_URL = '/avatar/'
+const USER_URL = '/user-data/'
 const Main = ({ userInfo }) => {
     const axiosPrivate = useAxiosPrivate();
     const [avatarInfo, setAvatar] = useState({})
