@@ -28,7 +28,7 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
     - name: Run Tests
-      working-directory: /pocs-capstone/backend/db
+      working-directory: ./pocs-capstone/backend/
 
       run: |
         python manage.py test
