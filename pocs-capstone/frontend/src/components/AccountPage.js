@@ -33,22 +33,19 @@ function AccountPage() {
     setBio(event.target.value);
   };
 
-  const handlejoinDateChange = (event) => {
-    setjoinDate(event.target.value);
-  };
-
   const handleBirthdayChange = (event) => {
     setBirthday(event.target.value);
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    console.log("DATA TEST BEFORE: ", name, bio, birthday);
     const data = {
-      'first_name': name,
-      'bio': bio,
-      'join_date': joinDate,
-      'birthday': birthday,
+      'first_name': name ? name : '1',
+      'bio': bio ? bio : '2',
+      'birthday': birthday ? birthday : '1967-12-27',
     };
+    console.log("DATA TEST AFTER: ", name, bio, birthday)
     axiosPrivate.get('/user-data/').then((response) => {
       const id = response.data[0].id;
       const url = '/user-data/' + id + "/";
@@ -62,55 +59,55 @@ function AccountPage() {
     }).catch((err) => {
       console.log(err);
     });
-    
+
   };
 
   return (
     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-    <Form onSubmit={handleSubmit} style={{ maxWidth: '700px', width: '100%', padding: '20px', borderRadius: '5px', boxShadow: '0px 0px 5px 0px rgba(0,0,0,0.2)' }}>
-    <div className="text-center mt-3 mb-4">
-      <h1 className="h2 mb-0">Account Profile</h1>
+      <Form onSubmit={handleSubmit} style={{ maxWidth: '700px', width: '100%', padding: '20px', borderRadius: '5px', boxShadow: '0px 0px 5px 0px rgba(0,0,0,0.2)' }}>
+        <div className="text-center mt-3 mb-4">
+          <h1 className="h2 mb-0">Account Profile</h1>
+        </div>
+        <Form.Group className="mb-2">
+          <Form.Label className="col-sm-2 col-form-label">Username:</Form.Label>
+          <Col sm={4}>
+            <Form.Control type="text" value={username} disabled />
+          </Col>
+        </Form.Group>
+        <Form.Group className="mb-2">
+          <Form.Label className="col-sm-2 col-form-label">Email:</Form.Label>
+          <Col sm={4}>
+            <Form.Control type="email" value={email} disabled />
+          </Col>
+        </Form.Group>
+        <Form.Group className="mb-2">
+          <Form.Label className="col-sm-2 col-form-label">Birthday:</Form.Label>
+          <Col sm={4}>
+            <Form.Control type="date" value={birthday} onChange={handleBirthdayChange} />
+          </Col>
+        </Form.Group>
+        <Form.Group className="mb-2">
+          <Form.Label className="col-sm-2 col-form-label">Name:</Form.Label>
+          <Col sm={4}>
+            <Form.Control type="text" value={name} onChange={handleNameChange} />
+          </Col>
+        </Form.Group>
+        <Form.Group className="mb-2">
+          <Form.Label className="col-sm-2 col-form-label">Bio:</Form.Label>
+          <Col sm={8}>
+            <Form.Control as="textarea" rows={3} value={bio} onChange={handleBioChange} />
+          </Col>
+        </Form.Group>
+        <Form.Group className="mb-2">
+          <Form.Label className="col-sm-2 col-form-label">Studying Since:</Form.Label>
+          <Col sm={4}>
+            <Form.Control type="date" value={joinDate} disabled />
+          </Col>
+        </Form.Group>
+        <Button type="submit" style={{ marginTop: '20px', marginBottom: '20px' }}>Submit</Button>
+      </Form>
     </div>
-    <Form.Group className="mb-2">
-      <Form.Label className="col-sm-2 col-form-label">Username:</Form.Label>
-      <Col sm={4}>
-        <Form.Control type="text" value={username} disabled />
-      </Col>
-    </Form.Group>
-    <Form.Group className="mb-2">
-      <Form.Label className="col-sm-2 col-form-label">Email:</Form.Label>
-      <Col sm={4}>
-        <Form.Control type="email" value={email} disabled />
-      </Col>
-    </Form.Group>
-    <Form.Group className="mb-2">
-      <Form.Label className="col-sm-2 col-form-label">Birthday:</Form.Label>
-      <Col sm={4}>
-        <Form.Control type="date" value={birthday} onChange={handleBirthdayChange} />
-      </Col>
-    </Form.Group>
-    <Form.Group className="mb-2">
-      <Form.Label className="col-sm-2 col-form-label">Name:</Form.Label>
-      <Col sm={4}>
-        <Form.Control type="text" value={name} onChange={handleNameChange} />
-      </Col>
-    </Form.Group>
-    <Form.Group className="mb-2">
-      <Form.Label className="col-sm-2 col-form-label">Bio:</Form.Label>
-      <Col sm={8}>
-        <Form.Control as="textarea" rows={3} value={bio} onChange={handleBioChange} />
-      </Col>
-    </Form.Group>
-    <Form.Group className="mb-2">
-      <Form.Label className="col-sm-2 col-form-label">Studying Since:</Form.Label>
-      <Col sm={4}>
-        <Form.Control type="date" value={joinDate} onChange={handlejoinDateChange} disabled />
-      </Col>
-    </Form.Group>
-    <Button type="submit" style={{ marginTop: '20px', marginBottom: '20px' }}>Submit</Button>
-  </Form>
-  </div>
-  
+
 
   );
 }
