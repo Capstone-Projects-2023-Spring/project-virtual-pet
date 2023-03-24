@@ -30,9 +30,10 @@ jobs:
 
     - name: Make Migrations
       working-directory: ./pocs-capstone/backend/
-      run: 
+      run: |
         python manage.py makemigrations
         python manage.py migrate
+        
     - name: Run Tests
       working-directory: ./pocs-capstone/backend/
 
