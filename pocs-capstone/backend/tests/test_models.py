@@ -53,7 +53,7 @@ class NewUserModelTest(TestCase):
         max_length = user._meta.get_field('canvas_token').max_length
         self.assertEqual(max_length, 512)
 
-    def test_object_name_is_(self):
+    def test_object_name_is_actual_name(self):
         user = NewUser.objects.get(id=1)
         expected_object_name = user.username
         self.assertEqual(expected_object_name, str(user))
