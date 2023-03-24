@@ -72,8 +72,6 @@ py2app==0.28.4
 pyasn1==0.4.8
 pyasn1-modules==0.2.8
 pycparser==2.21
-pygame==2.0.0
-pygame-menu==4.2.8
 Pygments==2.14.0
 pyinstaller==5.8.0
 pyinstaller-hooks-contrib==2022.12
