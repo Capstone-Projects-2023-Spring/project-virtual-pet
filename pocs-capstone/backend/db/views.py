@@ -74,6 +74,8 @@ class CanvasView(APIView):
         _user=self.request.user.id
         course_data, _status = lololol(_user)
         print("USER_ID:"+str(_user))
+        # this try catch is admittedly a little clunky
+        # will add in serializer validation later
         try:
             print("HEREERERERE")
             for x in course_data:
