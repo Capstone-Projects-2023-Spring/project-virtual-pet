@@ -9,8 +9,8 @@
     padding: 10px;
 }
 
-.nav-tabs .nav-link{
-    background-color: rgba(229, 179, 192, 0.563);
+.pg-tabs.nav-tabs, .pg-tabs .nav-link {
+    background-color: rgba(245, 190, 205, 0.486);
     color:rgb(217, 91, 91);
     font-size: calc(1.3vw + 1vh);
     font-weight: bold;
@@ -18,12 +18,46 @@
     /* font-family:  pixelFont; */
     letter-spacing: 0.5px;
     border-width: 0px;
+
 }
 
+.to-tabs.nav-tabs, .to-tabs .nav-link{
+    background-color: rgba(243, 193, 193, 0);
+    color:rgb(93, 93, 93);
+    font-size: calc(0.5vw + 1vh);
+    /* font-weight: bold; */
+    margin: 0px;
+    /* font-family:  pixelFont; */
+    letter-spacing: 0.5px;
+    /* border-color: black;
+    border-width: 0px 0px 3px 0px; */
+    border-width: 0px;
 
-.nav-link:hover { 
-    color:rgb(217, 91, 91);
+    
 }
+
+.to-tabs .nav-link.active{
+    background-color: rgba(255, 255, 255, 0);
+    color:rgb(43, 99, 158);
+    border-color: rgb(43, 99, 158);
+    border-width: 0px 0px 3px 0px;
+}
+
+.to-tabs .nav-link:hover { 
+    color:rgb(43, 99, 158);
+}
+
+.to-tabs .nav-item {
+    margin: 5px;
+}
+
+.pg-tabs .nav-link.active { 
+    color:rgb(215, 60, 60);
+}
+.pg-tabs .nav-link:hover { 
+    color:rgb(215, 60, 60);
+}
+
 .mini-page {
     display: flex;
     justify-content: center;
@@ -31,7 +65,6 @@
     height: auto;
     margin: 10px;
     position: relative;
-
 }
 
 .tasklist-position {
@@ -62,20 +95,16 @@
 .tab-content {
     height: 100%;
     background-color: rgb(255, 255, 255);    
-
 }
-
 
 .mb-3 {
     margin-bottom: 0px !important;;
 }
 
-
-.to-do-header{
+.to-do-header {
     font-weight: bold;
     font-size: calc(3vw+.4vw);
 }
-
 
 .check-box-task, .close-box-task, .course-id{
 
@@ -96,6 +125,7 @@
     
     /* background-color: rgb(255, 242, 242); */
 }
+
 
 .task-title {
     font-size: 20px;
@@ -118,3 +148,12 @@
  .course-id{
     text-align: center;
  }
+
+.check-box-task.list-group-item {
+    background-color: rgba(253, 220, 220, 0);
+}
+
+
+.delete-com-tasks {
+    margin: 20px;
+}

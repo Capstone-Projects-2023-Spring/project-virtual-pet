@@ -14,17 +14,12 @@ import * as formik from 'formik'
 function CreateTaskForm(props) {
 
   const handlers = useContext(TaskListContext);
-
-  // const [showRecurr, setShowRecurr] = useState(false);
-
-  // const handleCloseR = () => setShowRecurr(false);
-  // const handleShowR = () => setShowRecurr(true);
-
   const title = props.task ? "Task Details" : "Create Task"
   const buttonText = props.task ? "Save" : "Create Task"
 
   const { Formik } = formik;
   const schema = yup.object().shape({
+    
     title: yup.string().required(),
     description: yup.string().required(),
     size: yup.string().required(),
@@ -155,15 +150,7 @@ function CreateTaskForm(props) {
 
                 </Stack>
 
-
-
                 <br />
-
-
-
-
-
-
 
                 <Form.Group controlId="validationFormik05">
                   <Form.Label>Due Date</Form.Label>
@@ -180,47 +167,15 @@ function CreateTaskForm(props) {
                   </Form.Control.Feedback>
                 </Form.Group>
 
-                {/* <Form.Group controlId="validationFormik06">
-                  <Form.Label>Repeating? </Form.Label>
-                  <Form.Select
+                <br />
 
-                    placeholder="Select Level"
-                    name="recurrence"
-                    value={values.recurrence}
-                    onChange={(e) => {
-                      handleChange(e)
-                      if (e.target.value === "custom") {
-                        console.log(e.target.value, "HERE")
-                        handleShowR()
-                      }
-
-                    }}
-                    isInvalid={!!errors.level}
-                  >
-                    <option value="never">Never</option>
-                    <option value="custom"> Custom</option>
-                  </Form.Select>
-                  <Form.Control.Feedback type="invalid">
-                    {errors.recurrence}
-                  </Form.Control.Feedback>
-                </Form.Group>
- */}
-
-
-
-                <Button className="col-md-5 mx-auto" type="submit" onClick={ () => { console.log("HELPPPPPPPP", values)}}>{buttonText}</Button>
+                <Button className="col-md-5 mx-auto" type="submit">{buttonText}</Button>
 
               </Stack>
-
-
-              {/* <RecurrenceForm {...{showRecurr, handleCloseR, values}}/> */}
-
             </Form>
           )}
 
         </Formik>
-
-
       </Modal.Body>
     </Modal >
 

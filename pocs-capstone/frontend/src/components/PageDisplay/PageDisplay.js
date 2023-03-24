@@ -11,39 +11,17 @@ import { useState, useEffect, useContext } from 'react'
 import { getIn, setIn } from "formik";
 
 
-const PageDisplay = ({ avatarInfo, setAvatar, inventory, setInventory }) => {
+const PageDisplay = () => {
 
     const axiosPrivate = useAxiosPrivate()
     const baseURL = `/tasks/`
 
-    const getTasksB = () => {
-        const request = axiosPrivate.get(baseURL)
-        return request.then(response => response.data)
-    }
-
-    const createTaskB = (newTask) => {
-        const request = axiosPrivate.post(baseURL, newTask)
-        return request.then(response => response.data)
-    }
-
-    const updateTaskB = (taskID, updatedTask) => {
-        const request = axiosPrivate.put(`${baseURL}${taskID}/`, updatedTask)
-        return request.then(response => response.data)
-
-    }
-
-    const deleteTaskB = (taskID) => {
-        const request = axiosPrivate.delete(`${baseURL}${taskID}/`)
-        return request.then(response => response.data)
-    }
-
-
-    const [taskList, setTaskList] = useState([])    
+    const [taskList, setTaskList] = useState([])
 
     const fetchData = () => {
-        getTasksB()
+        axiosPrivate.get(baseURL)
             .then(r => {
-                setTaskList(r)
+                setTaskList(r.data)
             })
         
     }
@@ -51,7 +29,6 @@ const PageDisplay = ({ avatarInfo, setAvatar, inventory, setInventory }) => {
     useEffect(fetchData, [])
 
     const updateTask = (id, newTask) => {
-        console.log(newTask, newTask == null)
         const taskItem = taskList.find(t => t.task_id === id)
 
         const taskItemChanged = newTask == null ?
@@ -59,15 +36,11 @@ const PageDisplay = ({ avatarInfo, setAvatar, inventory, setInventory }) => {
             { ...taskItem, title: newTask.title, due_date: newTask.due_date, task_type: newTask.size, description: newTask.description, task_level: newTask.level }
 
 
-        updateTaskB(id, taskItemChanged)
+            axiosPrivate.put(`${baseURL}${id}/`, taskItemChanged)
             .then(r => {
                 console.log(r)
-                setTaskList(taskList.map(t => t.task_id === id ? taskItemChanged : t))
+                setTaskList(taskList.map(t => t.task_id === id ? r.data : t))
             })
-
-        console.log(taskList.find(t => t.id === id))
-
-
     }
 
     const addTask = (formValues) => {
@@ -88,26 +61,43 @@ const PageDisplay = ({ avatarInfo, setAvatar, inventory, setInventory }) => {
         }
 
 
-        createTaskB(newTask)
+        axiosPrivate.post(baseURL, newTask)
             .then(r => {
-                setTaskList(taskList.concat(r))
+                setTaskList(taskList.concat(r.data))
             })
     }
 
     const deleteTask = (id) => {
 
-        deleteTaskB(id)
+        axiosPrivate.delete(`${baseURL}${id}/`)
             .then(r => {
                 setTaskList(taskList.filter(t => t.task_id !== id))
             })
     }
 
+    const deleteAll = (completedTasks) => {
+        // delete all completed tasks
+        if(completedTasks.length) {
+            completedTasks.forEach(t => {
+                console.log("hello",t)
+                
+                axiosPrivate.delete(`${baseURL}${t.task_id}/`)
+                    .catch(e => {
+                        console.log("ERROR TASKS", e)
+                    })
+            })
+        }
+
+        // keep non completed tasks 
+        const keepTasks = taskList.filter(task => !task.completed)
+        setTaskList(keepTasks)
+    }
+
     const handlers = {
         taskList,
-        setAvatar,
-        setInventory,
         addTask,
         deleteTask,
+        deleteAll,
         updateTask
     }
     
@@ -117,7 +107,7 @@ const PageDisplay = ({ avatarInfo, setAvatar, inventory, setInventory }) => {
                 <Tabs
                     defaultActiveKey="tasks"
                     id="justify-tab-example"
-                    className="mb-3"
+                    className="mb-3 pg-tabs"
                     justify
                 >
                     <Tab eventKey="tasks" title="Tasks">
