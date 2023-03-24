@@ -35,6 +35,5 @@ jobs:
         
     - name: Run Tests
       working-directory: ./pocs-capstone/backend/
-
       run: |
         python manage.py test
