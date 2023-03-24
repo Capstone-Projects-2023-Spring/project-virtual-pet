@@ -1,6 +1,8 @@
 name: Django Test with SQLite
 
 on:
+  push:
+    branches: [main]
   pull_request:
     branches: [main]
 
@@ -10,30 +12,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-python@v2
-      # - run: pip install flake8
+      - run: pip install flake8
       - run: pip install -r requirements.txt # install all our dependencies for the project
       - run: pytest . # run pytest test
-      # - run: flake8 . # run flake8 test
-
-
-# jobs:
-#   build:
-#     runs-on: ubuntu-latest
-#     env:
-#       DJANGO_SECRET_KEY: some-test-key-not-good-for-prod
-#       PYTHON_VERSION: 3.8
-#     steps:
-#       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-#       - name: Checkout code
-#         uses: actions/checkout@v2
-#       - name: Setup Python ${{ matrix.python-version }}
-#         uses: actions/setup-python@v2
-#         with:
-#            python-version: 3.8
-#       - name: Install requirements
-#         run: |
-#             pip install -r requirements.txt
-#       - name: Run tests
-#         run: |
-#             cd pocs-capstone/backend/db
-#             python manage.py test
+      - run: flake8 . # run flake8 test
