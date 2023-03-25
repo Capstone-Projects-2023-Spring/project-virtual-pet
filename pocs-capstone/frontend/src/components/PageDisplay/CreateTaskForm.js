@@ -21,10 +21,10 @@ function CreateTaskForm(props) {
   const schema = yup.object().shape({
     
     title: yup.string().required(),
-    description: yup.string().required(),
+    description: yup.string(),
     size: yup.string().required(),
-    level: yup.string().required(),
-    due_date: yup.string().required(),
+    level: yup.number().required(),
+    due_date: yup.string(),
 
   });
 
@@ -52,7 +52,7 @@ function CreateTaskForm(props) {
             title: props.task ? props.task.title : '',
             description: props.task ? props.task.description : '',
             size: props.task ? props.task.task_type : 'S',
-            level: props.task ? props.task.task_level : "1",
+            level: props.task ? props.task.task_level : 1,
             due_date: props.task ? props.task.due_date : '',
           }}
         >
@@ -117,7 +117,7 @@ function CreateTaskForm(props) {
                       <option value="S">Small</option>
                       <option value="M">Medium</option>
                       <option value="L">Large</option>
-                      <option value="C">Cake</option>
+                      <option value="C">Gargantuan</option>
                     </Form.Select>
                     <Form.Control.Feedback type="invalid">
                       {errors.size}
@@ -136,11 +136,11 @@ function CreateTaskForm(props) {
                       onChange={handleChange}
                       isInvalid={!!errors.level}
                     >
-                      <option value="1">Beginner</option>
-                      <option value="2"> Novice</option>
-                      <option value="3">Intermediate</option>
-                      <option value="4">Advanced</option>
-                      <option value="5">Expert</option>
+                      <option value={1}>Beginner - 1</option>
+                      <option value={2}> Novice - 2</option>
+                      <option value={3}>Intermediate - 3</option>
+                      <option value={4}>Advanced - 4</option>
+                      <option value={5}>Expert - 5</option>
                     </Form.Select>
                     <Form.Control.Feedback type="invalid">
                       {errors.level}
