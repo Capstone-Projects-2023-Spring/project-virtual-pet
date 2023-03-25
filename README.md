@@ -2,12 +2,24 @@
 <div align="center">
 
 # My Study Buddy
-[![Report Issue on Jira](https://img.shields.io/badge/Report%20Issues-Jira-0052CC?style=flat&logo=jira-software)](https://temple-cis-projects-in-cs.atlassian.net/jira/software/c/projects/DT/issues)
-[![Deploy Docs](https://github.com/ApplebaumIan/tu-cis-4398-docs-template/actions/workflows/deploy.yml/badge.svg)](https://github.com/ApplebaumIan/tu-cis-4398-docs-template/actions/workflows/deploy.yml)
-[![Documentation Website Link](https://img.shields.io/badge/-Documentation%20Website-brightgreen)](https://applebaumian.github.io/tu-cis-4398-docs-template/)
+[![Documentation Website Link](https://img.shields.io/badge/-Documentation%20Site-hotpink)](https://capstone-projects-2023-spring.github.io/project-virtual-pet/)
+[![Resources Link](https://img.shields.io/badge/-Resources-9cf)](https://capstone-projects-2023-spring.github.io/project-virtual-pet/resources/Links)
+
+[![Website](https://img.shields.io/website?down_color=red&style=plastic&url=http%3A%2F%2F68.183.30.203%3A3000%2F)](http://68.183.30.203:3000/)
 
 
 </div>
+
+## Directions
+
+* Please navigate to our app by clicking <a href="http://68.183.30.203:3000/">this link</a>. Once there, you can create an account, select a pet, and explore the site. 
+* The following pages are functional: Register, Login, Home, Account, Canvas Integration, and Logout. 
+    * On the Home page, you'll see your chosen pet and its name. You can modify the pet's name and bio by clicking on the Profile tab.
+    * You can add tasks in the Tasks tab. When you check a task off, it is marked completed and you earn a candy.
+    * To view your inventory of candies earned from completing tasks, go to the Inventory tab. You can feed your pet by dragging and dropping candies onto it, and watch the progress bar fill up. 
+    * The Calendar and Progress tabs are currently under development. 
+    * On the Canvas Integration page, you can follow directions to generate and upload a Canvas API token to import your assignments from Canvas into the application.
+* If you encounter any bugs or issues, please visit our <a href="https://capstone-projects-2023-spring.github.io/project-virtual-pet/">documentation site</a> and click on the "Report Bug" button located on the right-hand side of the page. This will take you to a feedback form where you can provide details about the problem you encountered.
 
 ## Keywords
 
