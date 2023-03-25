@@ -1,4 +1,5 @@
 export const spriteData = {
+  ref:"spriteSheetRef",
   className:"p-sprite",
   stopLastFrame:true,
   widthFrame:255,

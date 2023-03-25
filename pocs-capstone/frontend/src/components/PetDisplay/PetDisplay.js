@@ -7,16 +7,21 @@ import '../Inventory/Inventory.css'
 import { useDrop } from "react-dnd";
 import InventoryContext from '../../context/InventoryContext.js';
 import { useContext, useEffect } from 'react';
+import SpriteSheetContext from '../../context/SpriteSheetContext.js';
 
 const PetDisplay = ({ avatarInfo, setAvatar }) => {
 
     let handlers = useContext(InventoryContext)
-
+    let animate = useContext(SpriteSheetContext);
+    //function handleDrop(event) {
+   //     event.preventDefault();
+   //     animateSpriteSheet();
+   //   }
     // Accepts images(candy) and calls candyDropped() when a candy is fed
     let [{isOver}, drop] = useDrop(() => ({
         // What objects to accept
         accept: "image",
-        drop: (item) => handlers.updateInventory(item.id),
+        drop: (item) => {handlers.updateInventory(item.id), animate.animateSpriteSheet()},
         collect: (monitor) => ({
             isOver: !!monitor.isOver(),
         }),

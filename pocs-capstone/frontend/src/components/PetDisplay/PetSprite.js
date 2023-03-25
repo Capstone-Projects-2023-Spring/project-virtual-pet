@@ -12,7 +12,7 @@ import SpriteSheetContext from '../../context/SpriteSheetContext';
 // import { useDrop } from "react-dnd";
 
 const PetSprite = ({ avatarInfo, setAvatar, inventory, setInventory }) => {
-    const spriteRefs = [useRef(null), useRef(null)];
+    const spriteSheetRef = useRef(null);
     const spriteData = useContext(SpriteSheetContext);
    // const [spriteplay, setSprite] = useState('');
     //const [spritesheetState, setSpritesheetState] = useState(spriteData);
@@ -55,19 +55,18 @@ const PetSprite = ({ avatarInfo, setAvatar, inventory, setInventory }) => {
     return (
         <div className='p-sprite-display'>
             <img src={bgimage} alt="background" className="bg-sprite" />
-
             <Spritesheet
                 image={avatarImage(avatarInfo)}
-               // ref = spriteRefs
+                ref = {spriteSheetRef}
                 {...spriteData}
                 onClick={spritesheet => {handleClick(spritesheet)}}
-                getInstance={spritesheet => {
-                    this.spritesheetInstance = spritesheet; }}
+               // getInstance={spritesheet => {
+                 //   this.spritesheetInstance = spritesheet; }}
                   //  onClick = {this.feedanimate.bind}
                // onClick = {setSprite('run')}
                // isPlaying={spriteplay === 'run'}
             />
-        </div>
+            </div>
     )
 }
 
