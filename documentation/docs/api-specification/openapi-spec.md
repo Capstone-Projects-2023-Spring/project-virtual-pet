@@ -1,9 +1,13 @@
 ---
-title: User Registration and Validation API
-description: User Registration and JWT Token exchange endpoints
+sidebar_position: 4
 hide_table_of_contents: true
-sidebar_position: 2
+description: User Registration and JWT Token exchange endpoints
 ---
+
+User Registration and Validation API
+=============================
+
+## Component Hierarchy / Directory 
 
 import ApiDocMdx from '@theme/ApiDocMdx';
 
