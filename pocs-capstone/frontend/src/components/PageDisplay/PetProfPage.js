@@ -52,7 +52,7 @@ function PetProfPage() {
                     </Col>
                 </Form.Group>
                 <Form.Group className="mb-2">
-                    <Form.Label className="col-sm-2 col-form-label">Flavour Text:</Form.Label>
+                    <Form.Label className="col-sm-2 col-form-label">What's your pet up to?</Form.Label>
                     <Col sm={8}>
                         <Form.Control as="textarea" rows={3} value={flavourText} placeholder={handlers.avatarInfo.flavour_text} onChange={handleFlavourTextChange} />
                     </Col>
