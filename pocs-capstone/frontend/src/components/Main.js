@@ -13,9 +13,8 @@ import PopulateInv from "./Inventory/PopulateInv";
 import AvatarContext from "../context/AvatarContext"
 import UserContext from "../context/UserContext"
 
-const AVATAR_URL = '/avatar/'
-const USER_URL = '/user-data/'
-const Main = ({ userInfo }) => {
+
+const Main = () => {
     const axiosPrivate = useAxiosPrivate();
     const [avatarInfo, setAvatar] = useState({})
     const width = useWindowWidth()
@@ -26,7 +25,7 @@ const Main = ({ userInfo }) => {
     let [inv, setInv] = useState([]);
 
     useEffect(() => {
-        axiosPrivate.get(AVATAR_URL)
+        axiosPrivate.get('/avatar/')
             .then((response) => {
                 setAvatar(response.data[0])
                 if (!response.data[0])
