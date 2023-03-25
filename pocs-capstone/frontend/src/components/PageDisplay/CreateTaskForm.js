@@ -38,8 +38,10 @@ function CreateTaskForm(props) {
         <Formik
           validationSchema={schema}
           onSubmit={(values) => {
+            console.log(values)
 
             if (props.task) {
+              
               handlers.updateTask(props.task.task_id, values)
             }
             else {
@@ -53,7 +55,7 @@ function CreateTaskForm(props) {
             description: props.task ? props.task.description : '',
             size: props.task ? props.task.task_type : 'S',
             level: props.task ? props.task.task_level : 1,
-            due_date: props.task ? props.task.due_date : '',
+            due_date: props.task ? props.task.due_date ? props.task.due_date : '': '',
           }}
         >
           {({
@@ -92,8 +94,7 @@ function CreateTaskForm(props) {
                     name="description"
                     style={{ height: '100px' }}
                     value={values.description}
-                    onChange={handleChange}
-                    isInvalid={!!errors.description} />
+                    onChange={handleChange} />
                   <Form.Control.Feedback type="invalid">
                     {errors.description}
                   </Form.Control.Feedback>
@@ -160,8 +161,7 @@ function CreateTaskForm(props) {
                     placeholder="due_date"
                     name="due_date"
                     value={values.due_date}
-                    onChange={handleChange}
-                    isInvalid={!!errors.due_date} />
+                    onChange={handleChange} />
                   <Form.Control.Feedback type="invalid">
                     {errors.due_date}
                   </Form.Control.Feedback>

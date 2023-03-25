@@ -28,7 +28,6 @@ const TaskItem = ({ task, updateTask, deleteTask }) => {
 
     }
 
-
     return (
 
         <>
@@ -47,7 +46,11 @@ const TaskItem = ({ task, updateTask, deleteTask }) => {
                                     <div className="ms-2 me-auto">
                                         <div className="fw-bold task-title task-description">{task.title}</div>
                                         <div className='task-description'>{task.description}</div>
-                                        <div>Due {calculateDueDate(task.due_date)}</div>
+                                        {task.due_date ? 
+                                        <div className='due-date'>Due {calculateDueDate(task.due_date)}</div> : 
+                                        <></>
+                                        }
+                                        
                                     </div>
                                 </ListGroup.Item>
                                 {/* remove this list group item if it's a canvas task, have for testing purposes */}
@@ -84,7 +87,11 @@ const TaskItem = ({ task, updateTask, deleteTask }) => {
                                             </Stack>
                                         </div>
                                         <div className='task-description'>{task.description}</div>
-                                        <div className='due-date'>Due {calculateDueDate(task.due_date)}</div>
+                                        
+                                        {task.due_date ? 
+                                        <div className='due-date'>Due {calculateDueDate(task.due_date)}</div> : 
+                                        <></>
+                                        }
                                     </div>
                                 </ListGroup.Item>
                                 <ListGroup.Item className="close-box-task">

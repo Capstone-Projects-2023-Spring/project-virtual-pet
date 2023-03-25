@@ -23,7 +23,7 @@ const PageDisplay = () => {
             .then(r => {
                 setTaskList(r.data)
             })
-        
+
     }
 
     useEffect(fetchData, [])
@@ -31,12 +31,15 @@ const PageDisplay = () => {
     const updateTask = (id, newTask) => {
         const taskItem = taskList.find(t => t.task_id === id)
 
+        
+
         const taskItemChanged = newTask == null ?
-            { ...taskItem, completed: !taskItem.completed, completed_date: (taskItem.completed_date === "1970-01-01" ? new Date().toISOString().split('T')[0] : "1970-01-01")} :
-            { ...taskItem, title: newTask.title, due_date: newTask.due_date, task_type: newTask.size, description: newTask.description, task_level: newTask.level }
+            { ...taskItem, completed: !taskItem.completed, completed_date: (taskItem.completed_date===null ? new Date().toISOString().split('T')[0] : null ) } :
+            { ...taskItem, title: newTask.title, due_date: newTask.due_date==='' ? null : newTask.due_date, task_type: newTask.size, description: newTask.description, task_level: newTask.level }
 
+        console.log("UPDATED VALUES", taskItemChanged)
 
-            axiosPrivate.put(`${baseURL}${id}/`, taskItemChanged)
+        axiosPrivate.put(`${baseURL}${id}/`, taskItemChanged)
             .then(r => {
                 console.log(r)
                 setTaskList(taskList.map(t => t.task_id === id ? r.data : t))
@@ -46,9 +49,9 @@ const PageDisplay = () => {
     const addTask = (formValues) => {
         const newTask = {
             title: formValues.title,
-            due_date: formValues.due_date,
+            due_date: formValues.due_date === "" ? null : formValues.due_date,
             created_date: new Date().toISOString(),
-            completed_date: "1970-01-01",
+            completed_date: null,
             completed: false,
             active: true,
             task_type: formValues.size,
@@ -59,6 +62,7 @@ const PageDisplay = () => {
             course_id: 0,
             assignment_id: 0
         }
+
 
 
         axiosPrivate.post(baseURL, newTask)
@@ -77,10 +81,10 @@ const PageDisplay = () => {
 
     const deleteAll = (completedTasks) => {
         // delete all completed tasks
-        if(completedTasks.length) {
+        if (completedTasks.length) {
             completedTasks.forEach(t => {
-                console.log("hello",t)
-                
+                console.log("hello", t)
+
                 axiosPrivate.delete(`${baseURL}${t.task_id}/`)
                     .catch(e => {
                         console.log("ERROR TASKS", e)
@@ -100,7 +104,7 @@ const PageDisplay = () => {
         deleteAll,
         updateTask
     }
-    
+
     return (
         <TaskListContext.Provider value={handlers}>
             <div className="page-display">
@@ -118,7 +122,7 @@ const PageDisplay = () => {
                         <CalendarPage />
                     </Tab>
                     <Tab eventKey="inventory" title="Inventory">
-                            < InventoryBox />
+                        < InventoryBox />
                     </Tab>
                     <Tab eventKey="progress" title="Progress">
                         {/* <Sonnet /> */}
