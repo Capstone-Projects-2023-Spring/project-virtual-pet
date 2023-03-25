@@ -13,7 +13,7 @@ import SpriteSheetContext from '../../context/SpriteSheetContext';
 
 const PetSprite = ({ avatarInfo, setAvatar, inventory, setInventory }) => {
     const spriteSheetRef = useRef(null);
-    const spriteData = useContext(SpriteSheetContext);
+    //const spriteData = useContext(SpriteSheetContext);
    // const [spriteplay, setSprite] = useState('');
     //const [spritesheetState, setSpritesheetState] = useState(spriteData);
     //const [sprite, setSprite] = useState("")
@@ -58,7 +58,16 @@ const PetSprite = ({ avatarInfo, setAvatar, inventory, setInventory }) => {
             <Spritesheet
                 image={avatarImage(avatarInfo)}
                 ref = {spriteSheetRef}
-                {...spriteData}
+                //{...spriteData}
+                className="p-sprite"
+                stopLastFrame={true}
+                widthFrame={255}
+                heightFrame={350}
+                steps={5}
+                fps={3}
+                loop={false}
+                autoplay={false}
+                isResponsive={false}
                 onClick={spritesheet => {handleClick(spritesheet)}}
                // getInstance={spritesheet => {
                  //   this.spritesheetInstance = spritesheet; }}
