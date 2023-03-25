@@ -4,7 +4,7 @@ import bgimage from '../../images/bg.gif'
 import orangesheet from '../../../src/images/orange_happy_sheet.png'
 import graysheet from '../../../src/images/gray_happy_sheet.png' 
 import "./PetDisplay"
-import { useState, useContext } from 'react'
+import { useState, useContext, useRef } from 'react'
 import '../../../src/components/AnimateChoice.css'
 import SpriteSheetContext from '../../context/SpriteSheetContext';
 
@@ -12,13 +12,19 @@ import SpriteSheetContext from '../../context/SpriteSheetContext';
 // import { useDrop } from "react-dnd";
 
 const PetSprite = ({ avatarInfo, setAvatar, inventory, setInventory }) => {
+    const spriteRefs = [useRef(null), useRef(null)];
     const spriteData = useContext(SpriteSheetContext);
-    const [spriteplay, setSprite] = useState('');
+   // const [spriteplay, setSprite] = useState('');
     //const [spritesheetState, setSpritesheetState] = useState(spriteData);
     //const [sprite, setSprite] = useState("")
 
     const handleItemRelease = () => {
         // setSprite("PATH TO IMAGE")
+    }
+
+    const handleClick = (spritesheet) => {
+        spritesheet.goToAndPlay(1);
+        spritesheet.pause();
     }
 
     // Can handle drop here maybe too but wasn't working with background so will ask group
@@ -46,17 +52,18 @@ const PetSprite = ({ avatarInfo, setAvatar, inventory, setInventory }) => {
         }
     }
 
-
     return (
         <div className='p-sprite-display'>
             <img src={bgimage} alt="background" className="bg-sprite" />
 
             <Spritesheet
                 image={avatarImage(avatarInfo)}
+               // ref = spriteRefs
                 {...spriteData}
-                onClick={spritesheet => {spritesheet.play()}}
+                onClick={spritesheet => {handleClick(spritesheet)}}
                 getInstance={spritesheet => {
                     this.spritesheetInstance = spritesheet; }}
+                  //  onClick = {this.feedanimate.bind}
                // onClick = {setSprite('run')}
                // isPlaying={spriteplay === 'run'}
             />
@@ -65,5 +72,3 @@ const PetSprite = ({ avatarInfo, setAvatar, inventory, setInventory }) => {
 }
 
 export default PetSprite
-
-//<img src={avatarImage(avatarInfo)} alt="background" className="p-sprite" />
