@@ -1,4 +1,4 @@
-# Study Buddies Backend Sphinx Docs
+# Backend Sphinx Docs
 
 <a target="_blank" href={"/sphinx/index.html"} >
 
