@@ -23,7 +23,7 @@ const Main = ({ userInfo }) => {
 
     let [inv, setInv] = useState([]);
 
-    const spriteSheetRef = useRef(null);
+    let spriteSheetRef = useRef(null);
     useEffect(() => {
         axiosPrivate.get(AVATAR_URL)
             .then((response) => {
@@ -150,7 +150,6 @@ const Main = ({ userInfo }) => {
             <DndProvider backend={HTML5Backend}>
                 <InventoryContext.Provider value={handlers}>
                 <SpriteSheetContext.Provider value = {animate}>
-
                     <div className="flex-pages">
                         <PetDisplay {...shareData} />
                         <PageDisplay {...shareData} />
