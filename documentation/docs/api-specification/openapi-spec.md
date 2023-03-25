@@ -1,5 +1,5 @@
 ---
-title: Study Buddies - User Registration and Validation API
+title: User Registration and Validation API
 description: User Registration and JWT Token exchange endpoints
 hide_table_of_contents: true
 sidebar_position: 2
