@@ -4,12 +4,18 @@ import bgimage from '../../images/bg.gif'
 import orangesheet from '../../../src/images/orange_happy_sheet.png'
 import graysheet from '../../../src/images/gray_happy_sheet.png' 
 import "./PetDisplay"
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import '../../../src/components/AnimateChoice.css'
+import SpriteSheetContext from '../../context/SpriteSheetContext';
+
+
 // import { useDrop } from "react-dnd";
 
 const PetSprite = ({ avatarInfo, setAvatar, inventory, setInventory }) => {
-    const [sprite, setSprite] = useState("")
+    const spriteData = useContext(SpriteSheetContext);
+    const [spriteplay, setSprite] = useState('');
+    //const [spritesheetState, setSpritesheetState] = useState(spriteData);
+    //const [sprite, setSprite] = useState("")
 
     const handleItemRelease = () => {
         // setSprite("PATH TO IMAGE")
@@ -41,24 +47,19 @@ const PetSprite = ({ avatarInfo, setAvatar, inventory, setInventory }) => {
     }
 
 
-
     return (
         <div className='p-sprite-display'>
             <img src={bgimage} alt="background" className="bg-sprite" />
 
             <Spritesheet
-                className = "p-sprite"
                 image={avatarImage(avatarInfo)}
-                stopLastFrame={true}
-                widthFrame={255}
-                heightFrame={350}
-                steps={5}
-                fps={3}
-                loop={false}
-                autoplay={false}
-                isResponsive={false}
+                {...spriteData}
                 onClick={spritesheet => {spritesheet.play()}}
-                />
+                getInstance={spritesheet => {
+                    this.spritesheetInstance = spritesheet; }}
+               // onClick = {setSprite('run')}
+               // isPlaying={spriteplay === 'run'}
+            />
         </div>
     )
 }
