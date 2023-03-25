@@ -20,7 +20,14 @@ class UserDataSerializer(serializers.ModelSerializer):
     class Meta:
         model = NewUser
         fields = ['id',
-                  'canvas_token', 'tutorial']
+                  'canvas_token', 
+                  'tutorial',
+                  'email',
+                  'username',
+                  'first_name',
+                  'join_date',
+                  'birthday',
+                  'bio']
     
 """
 Note: not sure if I'll need to only use subsets of fields later so 

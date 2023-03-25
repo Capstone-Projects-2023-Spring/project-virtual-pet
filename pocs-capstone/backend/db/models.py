@@ -125,7 +125,7 @@ class Avatar(models.Model):
     last_interaction = models.DateField(default=None)
     last_feed = models.DateField(default=None)
     pet_name = models.CharField(max_length=32, default='')
-    flavour_text = models.TextField(max_length = 256, default = '') #should we increase?
+    flavour_text = models.TextField(max_length = 256, default = 'Welcome to Study Buddy!') #should we increase?
     palette=models.IntegerField(default=0)
     
     def __str__(self):
