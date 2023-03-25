@@ -6,7 +6,7 @@ import useAxiosPrivate from '../../hooks/useAxiosPrivate'
 import AvatarContext from '../../context/AvatarContext';
 
 function PetProfPage() {
-    const handlers = useContext(AvatarContext)
+    const handlers = useContext(AvatarContext);
     const axiosPrivate = useAxiosPrivate();
 
     const [petName, setPetName] = useState('');
@@ -29,7 +29,7 @@ function PetProfPage() {
             ...handlers?.avatarInfo, 
             pet_name: petName.trim() === '' ? handlers.avatarInfo.pet_name : petName, 
             flavour_text: flavourText.trim() === '' ? handlers.avatarInfo.flavour_text : flavourText
-        }
+        };
         axiosPrivate.patch(`/avatar/${handlers?.avatarInfo.avatar_id}/`, updatedAvatar).then((response) => {
             console.log("response.data:", response.data);
             handlers?.setAvatar(response.data); //change this to add to previous state instead of replacing completely (in case of >1 avatar for 1 user)
@@ -54,7 +54,7 @@ function PetProfPage() {
                 <Form.Group className="mb-2">
                     <Form.Label className="col-sm-2 col-form-label">Flavour Text:</Form.Label>
                     <Col sm={8}>
-                        <Form.Control as="textarea" rows={3} value={flavourText} placeHolder={handlers.avatarInfo.flavour_text} onChange={handleFlavourTextChange} />
+                        <Form.Control as="textarea" rows={3} value={flavourText} placeholder={handlers.avatarInfo.flavour_text} onChange={handleFlavourTextChange} />
                     </Col>
                 </Form.Group>
                 <Button type="submit" style={{ marginTop: '20px', marginBottom: '20px' }}>Submit</Button>
