@@ -22,6 +22,7 @@ const PetSprite = ({ avatarInfo, setAvatar, inventory, setInventory }) => {
         // setSprite("PATH TO IMAGE")
     }
 
+
     const handleClick = (spritesheet) => {
         spritesheet.goToAndPlay(1);
         spritesheet.pause();
@@ -57,7 +58,7 @@ const PetSprite = ({ avatarInfo, setAvatar, inventory, setInventory }) => {
             <img src={bgimage} alt="background" className="bg-sprite" />
             <Spritesheet
                 image={avatarImage(avatarInfo)}
-                ref = {spriteSheetRef}
+                refs = {spriteSheetRef}
                 //{...spriteData}
                 className="p-sprite"
                 stopLastFrame={true}
@@ -69,8 +70,8 @@ const PetSprite = ({ avatarInfo, setAvatar, inventory, setInventory }) => {
                 autoplay={false}
                 isResponsive={false}
                 onClick={spritesheet => {handleClick(spritesheet)}}
-               // getInstance={spritesheet => {
-                 //   this.spritesheetInstance = spritesheet; }}
+                getInstance={spritesheet => {
+                    this.spritesheetInstance = spritesheet;}}
                   //  onClick = {this.feedanimate.bind}
                // onClick = {setSprite('run')}
                // isPlaying={spriteplay === 'run'}

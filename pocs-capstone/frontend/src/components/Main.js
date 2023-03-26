@@ -154,10 +154,12 @@ const Main = () => {
             <AvatarContext.Provider value={shareData}>
                 <DndProvider backend={HTML5Backend}>
                     <InventoryContext.Provider value={handlers}>
+                    <SpriteSheetContext.Provider value = {animate}>
                         <div className="flex-pages">
                             <PetDisplay {...shareData} />
                             <PageDisplay {...shareData} />
                         </div>
+                        </SpriteSheetContext.Provider>
                     </InventoryContext.Provider>
                 </DndProvider>
             </AvatarContext.Provider>
@@ -169,14 +171,18 @@ const Main = () => {
             <AvatarContext.Provider value={shareData}>
                 <DndProvider backend={HTML5Backend}>
                     <InventoryContext.Provider value={handlers}>
+                    <SpriteSheetContext.Provider value = {animate}>
                         <div>
                             <div className="flex-pages">
-                                <PetDisplay {...shareData} />
+                                <PetDisplay {...shareData} 
+                                
+                                />
                             </div>
                             <div>
                                 <PageDisplay {...shareData} />
                             </div>
                         </div>
+                        </SpriteSheetContext.Provider>
                     </InventoryContext.Provider>
                 </DndProvider>
             </AvatarContext.Provider>
