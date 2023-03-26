@@ -125,7 +125,7 @@ class Avatar(models.Model):
     last_interaction = models.DateField(default=None)
     last_feed = models.DateField(default=None)
     pet_name = models.CharField(max_length=32, default='')
-    flavour_text = models.TextField(max_length = 256, default = '') #should we increase?
+    flavour_text = models.TextField(max_length = 256, default = 'Welcome to Study Buddy!') #should we increase?
     palette=models.IntegerField(default=0)
     
     def __str__(self):
@@ -209,6 +209,8 @@ class Task(models.Model):
     description = models.TextField(default="A new task!", blank=True, null=True)
     course_id = models.PositiveBigIntegerField(default=0)
     assignment_id = models.PositiveIntegerField(default=0)
+    received = models.BooleanField(default=False)
+    unique_canvas_tag = models.CharField(max_length=256,default=None,null=True,blank=True)
 
     def __str__(self):
         """Task toString method
