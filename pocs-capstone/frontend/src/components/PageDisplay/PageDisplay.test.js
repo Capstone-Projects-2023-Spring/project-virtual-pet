@@ -2,6 +2,8 @@
 const fetchData = require('/components/PageDisplay/PageDisplay.js');
 const axios = require('axios');
 
+
+// WORK IN PROGRESS
 jest.mock('axios');
 
 describe('Addition', () => {

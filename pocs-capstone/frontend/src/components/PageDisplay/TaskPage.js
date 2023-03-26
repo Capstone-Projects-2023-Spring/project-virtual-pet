@@ -37,7 +37,6 @@ const TaskPage = () => {
                                 defaultActiveKey="all"
                                 activeKey={filterTodo}
                                 onSelect={(f) => {
-                                    console.log(f)
                                     setFilterTodo(f)
                                 }}
 

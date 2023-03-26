@@ -38,11 +38,9 @@ const PageDisplay = () => {
             { ...taskItem, completed: !taskItem.completed, completed_date: (taskItem.completed_date===null ? new Date().toISOString().split('T')[0] : null ) } :
             { ...taskItem, title: newTask.title, due_date: newTask.due_date==='' ? null : newTask.due_date, task_type: newTask.size, description: newTask.description, task_level: newTask.level }
 
-        console.log("UPDATED VALUES", taskItemChanged)
 
         axiosPrivate.put(`${baseURL}${id}/`, taskItemChanged)
             .then(r => {
-                console.log(r)
                 setTaskList(taskList.map(t => t.task_id === id ? r.data : t))
             })
     }
@@ -84,8 +82,6 @@ const PageDisplay = () => {
         // delete all completed tasks
         if (completedTasks.length) {
             completedTasks.forEach(t => {
-                console.log("hello", t)
-
                 axiosPrivate.delete(`${baseURL}${t.task_id}/`)
                     .catch(e => {
                         console.log("ERROR TASKS", e)

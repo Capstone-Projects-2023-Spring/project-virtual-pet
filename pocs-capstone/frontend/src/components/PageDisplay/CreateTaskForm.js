@@ -60,8 +60,6 @@ function CreateTaskForm(props) {
         <Formik
           validationSchema={schema}
           onSubmit={(values) => {
-            console.log(values)
-
             if (props.task) {
 
               handlers.updateTask(props.task.task_id, values)

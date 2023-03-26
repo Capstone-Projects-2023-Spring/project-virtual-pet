@@ -8,6 +8,7 @@ import * as yup from "yup";
 import * as formik from 'formik'
 
 
+//  WIP COMPONENT
 function RecurrenceForm({ showRecurr, handleCloseR, values}) {
     const handlers = useContext(TaskListContext);
 
