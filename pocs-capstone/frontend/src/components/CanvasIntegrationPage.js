@@ -87,7 +87,7 @@ const CanvasIntegrationPage = () => {
           console.log("-----> ", url);
           const data = JSON.stringify({ canvas_token });
           axiosPrivate
-            .put(url, data)
+            .patch(url, data)
             .then((response) => {
               console.log(response.data);
               setTokenReady(true);
