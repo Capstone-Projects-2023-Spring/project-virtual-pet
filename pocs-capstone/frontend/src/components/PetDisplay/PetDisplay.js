@@ -35,7 +35,7 @@ const PetDisplay = ({ avatarInfo, setAvatar }) => {
                     <Card.Body className='pd-bg'>
 
                         <Card.Text className='pet-desc-text'>
-                            This cat loves programming and tuna, and hates dogs. 
+                            {avatarInfo.flavour_text} 
                         </Card.Text>
                     </Card.Body>
                     <ListGroup className="list-group-flush">

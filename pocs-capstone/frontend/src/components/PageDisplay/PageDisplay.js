@@ -1,6 +1,7 @@
 import "./PageDisplay.css"
 import TaskPage from "./TaskPage";
-import CalendarPage from "./CalendarPage"
+import CalendarPage from "./CalendarPage";
+import PetProfPage from "./PetProfPage";
 import TaskListContext from '../../context/TaskListContext'
 import InventoryBox from "../Inventory/InventoryBox";
 // import tasks from '../../services/tasks'
@@ -123,6 +124,9 @@ const PageDisplay = () => {
                     </Tab>
                     <Tab eventKey="inventory" title="Inventory">
                         < InventoryBox />
+                    </Tab>
+                    <Tab eventKey="profile" title="Profile">
+                        < PetProfPage />
                     </Tab>
                     <Tab eventKey="progress" title="Progress">
                         {/* <Sonnet /> */}
