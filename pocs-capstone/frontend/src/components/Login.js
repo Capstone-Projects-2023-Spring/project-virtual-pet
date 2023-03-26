@@ -1,12 +1,19 @@
 import {useRef,useState,useEffect} from 'react';
 import useAuth from '../hooks/useAuth'
 import { Link, useNavigate, useLocation } from 'react-router-dom';
-
+import CalculateXP from '../algos/assignXP';
 
 import axios from '../api/axios';
 const LOGIN_URL = '/api/token/';
 
 const Login = () => {
+
+        console.log(CalculateXP('S',1),CalculateXP('S',2),CalculateXP('S',3),CalculateXP('S',4),CalculateXP('S',5))
+        console.log(CalculateXP('M',1),CalculateXP('M',2),CalculateXP('M',3),CalculateXP('M',4),CalculateXP('M',5))
+        console.log(CalculateXP('L',1),CalculateXP('L',2),CalculateXP('L',3),CalculateXP('L',4),CalculateXP('L',5))
+        console.log(CalculateXP('C',1),CalculateXP('C',2),CalculateXP('C',3),CalculateXP('C',4),CalculateXP('C',5))
+
+
 
         const { setAuth, persist, setPersist } = useAuth();
         const navigate = useNavigate();
