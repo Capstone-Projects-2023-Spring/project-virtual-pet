@@ -1,0 +1,46 @@
+/* flex container */
+.account-page-display {
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    background-color: rgb(255, 198, 198);
+    padding: 20px;
+
+}
+
+.account-profile-card {
+    flex: 1 1 auto;
+    width: 70vw;
+}
+
+.account-profile-header {
+    font-weight: bold;
+    font-size: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-content {
+    width: 100%;
+    padding: 20px;
+}
+
+.nav-tabs .nav-link{
+    background-color: rgba(229, 179, 192, 0.563);
+    color:rgb(217, 91, 91);
+    font-size: calc(1.3vw + 1vh);
+    font-weight: bold;
+    margin: 0px;
+    /* font-family:  pixelFont; */
+    letter-spacing: 0.5px;
+    border-width: 0px;
+}
+
+.submit-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
