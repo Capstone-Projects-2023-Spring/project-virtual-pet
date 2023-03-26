@@ -39,6 +39,10 @@ function Candy({ id, quantity, candy_base_type, candy_level }) {
         }
     }
 
+    const getStyle = () => {
+        return { backgroundColor: isDragging ? 'white' : 'red' }
+    }
+
     return (
         <div >
 
@@ -50,18 +54,21 @@ function Candy({ id, quantity, candy_base_type, candy_level }) {
                 </Tooltip >
             }
             >
-                {/* {isDragging ? <p>hello</p> : <p>goodbye</p>} */}
-                <div className="grid-item" ref={drag}>
-
-                    {/*  */}
+                <div className="grid-wrapper">
                     <Badge pill bg="secondary" className="candy-q">
                         {quantity}
                     </Badge>
+                    <div className="grid-item" >
+                        <div className="candy-wrapper" ref={drag}>
+                            <img className="candy-photo"
+                                src={candyImage(candy_base_type)}
+                                alt="Candy" />
 
-                    <img className="candy-photo"
-                        src={candyImage(candy_base_type)}
-                        alt="Candy" />
+                        </div>
+
+                    </div>
                 </div>
+
             </OverlayTrigger >
 
         </div >
@@ -69,5 +76,10 @@ function Candy({ id, quantity, candy_base_type, candy_level }) {
     )
     // }
 }
+
+
+// {isDragging ? <p>hello</p> : <p>goodbye</p>}
+
+
 
 export default Candy;

@@ -90,48 +90,42 @@ img {
 
 }
 
+.grid-wrapper {
+  position: relative;
+  text-align: center;
+  font-size: 30px;
+}
+
+
+
 .grid-item {
   background-color: rgba(255, 255, 255, 0.8);
   border: 3px solid rgba(255, 192, 203, 0);
-  /* border: 1px solid rgba(0, 0, 0, 0.8); */
-  width: 200px;
-  height: 200px;
-  padding: 20px;
-  font-size: 30px;
-  text-align: center;
-
-  position: relative;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
   box-shadow: 0 5px 15px -4px rgb(65, 65, 65);
-
   border-radius: 20px;
 
   /* https://stackoverflow.com/questions/14350126/transition-color-fade-on-hover */
-
   -moz-transition: all .2s ease-in;
   -o-transition: all .2s ease-in;
   -webkit-transition: all .2s ease-in;
   transition: all .2s ease-in;
-
 }
 
 .grid-item:hover {
-  background: rgb(255, 255, 255);
-  /* border-width: 10px; */
   border: 3px solid rgba(33, 33, 33, 0.747);
-  /* make this whatever you want */
-  /* transition: transform 250ms; */
 }
-
-/* .tooltip-item .tooltip-arrow {
-  display: none !important;
-} */
 
 .candy-photo {
   width: 110px;
   height: auto
 }
+
+.candy-wrapper {
+  width: 200px;
+  height: 200px;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
