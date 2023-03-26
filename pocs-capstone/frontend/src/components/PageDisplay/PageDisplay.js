@@ -43,7 +43,7 @@ const PageDisplay = () => {
         console.log("UPDATED VALUES", taskItemChanged)
 
         // Has the user recieved a candy for this task already?
-        if(taskItemChanged.completed === true){
+        if(taskItemChanged.completed === true && taskItemChanged.received === false){
             determineReward(taskItemChanged)
         }
 
@@ -54,37 +54,46 @@ const PageDisplay = () => {
             })
     }
 
-    // Task mark as completed and has never recieved a reward for this task. Give corresponding candy.
+    // Task mark as completed and user has never recieved a candy for this task. Give corresponding candy.
     let determineReward = (task) => {
-        console.log("TASK")
-        console.log(task)
-
+        // Look for candy coresponding to task in inventory
         let candy = inventoryHandlers?.inv.find(candy => candy.candy_base_type === task.task_type && candy.candy_level === task.task_level)
-        console.log("Find Candy")
-        console.log(candy)
         // Does candy exist in inventory
         if (candy !== undefined) {
-            // Give a candy
-            console.log("CANDY")
-            console.log(candy)
+            // Give a candy, update backend, and set state
             candy.quantity += 1
-            axiosPrivate.patch(`/inventory/${candy.inventory_id}`)
-            // task.recieved = true
+            axiosPrivate.put(`/inventory/${candy.inventory_id}/`, candy)
+                .then(r => {
+                    inventoryHandlers.setInv(inventoryHandlers.inv.map(c => c.inventory_id === candy.inventory_id ? r.data : c))
+            })
+
+            task.received = true
+            axiosPrivate.put(`/tasks/${task.task_id}/`, task)
+            .then(r => {
+                setTaskList(taskList.map(t => t.task_id === task.task_id ? r.data : t))
+            })
            
         }
         else {
-            // Create candy with quantity one
+            // Create candy, post to backend, and set state
             let newCandy = {
                 candy_base_type: task.task_type,
                 candy_level: task.task_level,
                 quantity: 1,
             }
+
             let candyList = []
             inventoryHandlers?.createInventoryItem(newCandy)
             .then(r => {
                 candyList.push(r)
                 inventoryHandlers?.setInv([...inventoryHandlers?.inv, ...candyList])
+            })
 
+            task.received = true
+            console.log(task)
+            axiosPrivate.put(`/tasks/${task.task_id}/`, task)
+            .then(r => {
+                setTaskList(taskList.map(t => t.task_id === task.task_id ? r.data : t))
             })
         }
     }
