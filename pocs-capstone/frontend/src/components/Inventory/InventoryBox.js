@@ -33,32 +33,12 @@ function InventoryBox() {
                         </Stack>
                     </Card.Header>
                     <div className="inventory-wrapper">
-                        
-                            {
-                                handlers?.inv.map((candy, id) => {
-                                    return <Candy key={id} id={candy.inventory_id} quantity={candy.quantity} candy_base_type={candy.candy_base_type} candy_level={candy.candy_level} />
-                                })
-                            }
-
-
+                        {
+                            handlers?.inv.map((candy, id) => {
+                                return <Candy key={id} id={candy.inventory_id} quantity={candy.quantity} candy_base_type={candy.candy_base_type} candy_level={candy.candy_level} />
+                            })
+                        }
                     </div>
-
-                    {/* <div style={{
-                        padding: 10,
-                        border: "5px solid black",
-                        height: 300, width: 910,
-                        margin: 100,
-                        backgroundColor: "pink",
-
-                    }} >
-                        <div className="row">
-                            {
-                                handlers?.inv.map((candy, id) => {
-                                    return <Candy key={id} id={candy.inventory_id} quantity={candy.quantity} candy_base_type={candy.candy_base_type} candy_level={candy.candy_level} />
-                                })
-                            }
-                        </div>
-                    </div> */}
                 </Card>
             </div>
 

@@ -38,26 +38,22 @@ function Candy({ id, quantity, candy_base_type, candy_level }) {
                 return require('../../images/candy/pinkcandy_scaled_16x_pngcrushed.png')
         }
     }
-    // Render if there are candy
-    // if (quantity !== 0)
-    // {
+
     return (
         <div >
-            {/* <p className="Candy-Quantity">
-                {quantity}
-            
-            </p> */}
 
-
-            < OverlayTrigger key='top' placement='bottom' overlay={
+            {/* OverlayTrigger - when a user hovers over the candy item a little Tooltip component w/ the candy's details will pop up */}
+            < OverlayTrigger placement='bottom' overlay={
                 < Tooltip className="tooltip-item" >
                     <span>Candy Base type: <strong>{candy_base_type}</strong> </span>
                     <span>Candy Level: <strong>{candy_level}</strong></span>
                 </Tooltip >
             }
             >
-
+                {/* {isDragging ? <p>hello</p> : <p>goodbye</p>} */}
                 <div className="grid-item" ref={drag}>
+
+                    {/*  */}
                     <Badge pill bg="secondary" className="candy-q">
                         {quantity}
                     </Badge>
@@ -66,9 +62,6 @@ function Candy({ id, quantity, candy_base_type, candy_level }) {
                         src={candyImage(candy_base_type)}
                         alt="Candy" />
                 </div>
-
-
-
             </OverlayTrigger >
 
         </div >

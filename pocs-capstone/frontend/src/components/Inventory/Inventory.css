@@ -51,8 +51,8 @@ img {
   height: 40px;
   padding: 8px;
   position: absolute;
-  top: -10px;
-  right: -10px;
+  top: -15px;
+  right: -15px;
 }
 
 .inventory-box {
@@ -69,7 +69,6 @@ img {
 }
 
 .inventory-wrapper {
-  /* min-height: 20vh; */
   min-height: 85vh;
   max-height: 85vh;
   border-radius: 0px;
@@ -79,9 +78,13 @@ img {
   overflow: scroll;
   -webkit-overflow-scrolling: touch;
 
+  justify-content: center;
   display: grid;
 
-  grid-template-columns: auto auto auto auto auto;
+  /* grid-template-columns: auto auto auto auto auto; */
+  /* https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-rows */
+  grid-template-columns: repeat(auto-fill, 200px);
+  grid-template-rows: repeat(auto-fill, 200px);
   column-gap: 75px;
   row-gap: 75px;
 
