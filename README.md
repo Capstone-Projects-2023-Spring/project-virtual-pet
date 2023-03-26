@@ -12,7 +12,7 @@
 
 ## Directions
 
-* Please navigate to our app by clicking <a href="http://68.183.30.203:3000/">this link</a>. Once there, you can create an account, select a pet, and explore the site. 
+* Please navigate to our app by clicking [this link](http://68.183.30.203:3000/). Once there, you can create an account, select a pet, and explore the site. 
 * The following pages are functional: Register, Login, Home, Account, Canvas Integration, and Logout. 
     * On the Home page, you'll see your chosen pet and its name. You can modify the pet's name and bio by clicking on the Profile tab.
     * You can add tasks in the Tasks tab. When you check a task off, it is marked completed and you earn a candy.
