@@ -63,7 +63,8 @@ class TaskSerializer(serializers.ModelSerializer):
             'recurring_time_delta',
             'description',
             'course_id',
-            'assignment_id'
+            'assignment_id',
+            'received',
         ]
 
 
@@ -84,6 +85,7 @@ class CanvasSerializer(serializers.ModelSerializer):
     class Meta:
         model = Task
         fields = [
+            'user_id',
             'task_id',
             'title',
             'due_date',
@@ -97,6 +99,17 @@ class CanvasSerializer(serializers.ModelSerializer):
             'recurring_time_delta',
             'description',
             'course_id',
-            'assignment_id'
+            'assignment_id',
+            'unique_canvas_tag',
+            'received',
         ]
-
+    #TODO - consider overriding create rather than doing validation in the view
+    """
+    def create(self,validated_data):
+        obj, created = Task.objects.update_or_create(
+            tag = validated_data.get('unique_canvas_tag'),
+            defaults=validated_data
+        )
+        print(created)
+        return obj
+    """
