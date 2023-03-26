@@ -10,12 +10,14 @@ import Tabs from 'react-bootstrap/Tabs';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import { useState, useEffect, useContext } from 'react'
 import { getIn, setIn } from "formik";
+import InventoryContext from "../../context/InventoryContext";
 
 
 const PageDisplay = () => {
 
     const axiosPrivate = useAxiosPrivate()
     const baseURL = `/tasks/`
+    let inventoryHandlers = useContext(InventoryContext)
 
     const [taskList, setTaskList] = useState([])
 
@@ -40,11 +42,51 @@ const PageDisplay = () => {
 
         console.log("UPDATED VALUES", taskItemChanged)
 
+        // Has the user recieved a candy for this task already?
+        if(taskItemChanged.completed === true){
+            determineReward(taskItemChanged)
+        }
+
         axiosPrivate.put(`${baseURL}${id}/`, taskItemChanged)
             .then(r => {
                 console.log(r)
                 setTaskList(taskList.map(t => t.task_id === id ? r.data : t))
             })
+    }
+
+    // Task mark as completed and has never recieved a reward for this task. Give corresponding candy.
+    let determineReward = (task) => {
+        console.log("TASK")
+        console.log(task)
+
+        let candy = inventoryHandlers?.inv.find(candy => candy.candy_base_type === task.task_type && candy.candy_level === task.task_level)
+        console.log("Find Candy")
+        console.log(candy)
+        // Does candy exist in inventory
+        if (candy !== undefined) {
+            // Give a candy
+            console.log("CANDY")
+            console.log(candy)
+            candy.quantity += 1
+            axiosPrivate.patch(`/inventory/${candy.inventory_id}`)
+            // task.recieved = true
+           
+        }
+        else {
+            // Create candy with quantity one
+            let newCandy = {
+                candy_base_type: task.task_type,
+                candy_level: task.task_level,
+                quantity: 1,
+            }
+            let candyList = []
+            inventoryHandlers?.createInventoryItem(newCandy)
+            .then(r => {
+                candyList.push(r)
+                inventoryHandlers?.setInv([...inventoryHandlers?.inv, ...candyList])
+
+            })
+        }
     }
 
     const addTask = (formValues) => {
