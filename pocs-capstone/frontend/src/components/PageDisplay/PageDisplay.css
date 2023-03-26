@@ -34,10 +34,11 @@
 
 }
 
-.tasklist-position {
+.tasklist-position, .pet-profile-position {
     flex: 1 1 auto;
     width: 0;
 }
+
 
 .task-scroll {
     /* min-height: 20vh; */
@@ -71,11 +72,17 @@
 }
 
 
-.to-do-header{
+.to-do-header {
     font-weight: bold;
     font-size: calc(3vw+.4vw);
 }
 
+.pet-profile-header {
+    font-weight: bold;
+    font-size: calc(3vw+.4vw);
+    margin: 0 auto;
+    text-align: center;
+}
 
 .check-box-task, .close-box-task, .course-id{
 
