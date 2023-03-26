@@ -2,10 +2,16 @@ import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Stack from 'react-bootstrap/Stack';
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import Tooltip from 'react-bootstrap/Tooltip';
 
 import RecurrenceForm from './RecurrenceForm';
 import TaskListContext from '../../context/TaskListContext'
 import { useContext, useState } from 'react'
+
+import Image from 'react-bootstrap/Image';
+
+import infoicon from '../../images/info_icon.png'
 
 import * as yup from "yup";
 import * as formik from 'formik'
@@ -19,7 +25,7 @@ function CreateTaskForm(props) {
 
   const { Formik } = formik;
   const schema = yup.object().shape({
-    
+
     title: yup.string().required(),
     description: yup.string(),
     size: yup.string().required(),
@@ -27,6 +33,22 @@ function CreateTaskForm(props) {
     due_date: yup.string(),
 
   });
+
+  const taskSizeDesc = "'Task Size' describes how difficult a task is. The higher the task size, the greater the value of the candy awarded."
+  const taskLevelDesc = "'Task Level' describes the level of skill and knowledge required to complete a task. It represents different tiers for experience gained."
+
+  const iconStyle = {
+    // filter: "invert(100%)",
+    width: '20px',
+    margin: '7px',
+  }
+  const InformationIcon = (
+    <Image
+      src={infoicon}
+      alt="more info icon image"
+      style={iconStyle}
+    />
+  )
 
   return (
     <Modal backdrop="static" show={props.showCreateTask} onHide={props.handleClose}>
@@ -41,7 +63,7 @@ function CreateTaskForm(props) {
             console.log(values)
 
             if (props.task) {
-              
+
               handlers.updateTask(props.task.task_id, values)
             }
             else {
@@ -55,7 +77,7 @@ function CreateTaskForm(props) {
             description: props.task ? props.task.description : '',
             size: props.task ? props.task.task_type : 'S',
             level: props.task ? props.task.task_level : 1,
-            due_date: props.task ? props.task.due_date ? props.task.due_date : '': '',
+            due_date: props.task ? props.task.due_date ? props.task.due_date : '' : '',
           }}
         >
           {({
@@ -107,6 +129,21 @@ function CreateTaskForm(props) {
 
                   <Form.Group controlId="validationFormik03">
                     <Form.Label>Task Size</Form.Label>
+                    <OverlayTrigger
+                      key="top"
+                      placement="top"
+                      overlay={
+                        <Tooltip id="tooltip-top" style={{fontSize: '15px'}}>
+                          {taskSizeDesc}
+                        </Tooltip>
+                      }
+                    >
+                      <Image
+                        src={infoicon}
+                        alt="more info icon image"
+                        style={iconStyle}
+                      />
+                    </OverlayTrigger>
                     <Form.Select
 
                       placeholder="Select Size"
@@ -129,6 +166,21 @@ function CreateTaskForm(props) {
 
                   <Form.Group controlId="validationFormik04" className='ms-6'>
                     <Form.Label>Task Level</Form.Label>
+                    <OverlayTrigger
+                      key="top"
+                      placement="top"
+                      overlay={
+                        <Tooltip id="tooltip-top" style={{fontSize: '15px'}}>
+                          {taskLevelDesc}
+                        </Tooltip>
+                      }
+                    >
+                      <Image
+                        src={infoicon}
+                        alt="more info icon image"
+                        style={iconStyle}
+                      />
+                    </OverlayTrigger>
                     <Form.Select
 
                       placeholder="Select Level"
