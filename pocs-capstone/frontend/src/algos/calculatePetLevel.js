@@ -1,7 +1,4 @@
 
-
-
-
 const n = 51;
 var level_array = Array.from(Array(n).keys());
 
@@ -27,7 +24,7 @@ function CalculatePetLevel(xp){
 
         if (xp < level_array[x]){
             level = x-1
-            remainder = Math.floor(level_array[x-1])
+            remainder = Math.floor(level_array[x]) - xp
             break;
         }
 
