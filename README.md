@@ -13,6 +13,10 @@
 ## Directions
 
 * Please navigate to our app by clicking <a href="http://68.183.30.203:3000/">this link</a>. Once there, you can create an account, select a pet, and explore the site. 
+* Study Buddy is a Progressive Web App (PWA). This means it's a web site that you can use in your browser, or it can be downloaded to your device and used like an app. 
+   * On iOS: Open Safari and navigate to the site. Press the "Share" button and select "Add to Home Screen" from the popup. Lastly, tap "Add" in the top right corner to finish installing the PWA. It will now be on your home screen.
+   * On Android: Open Chrome and navigate to the site. Press the "three dot" icon in the upper right to open the menu. Select "Add to Home screen." Press the "Add" button in the popup. The PWA is now installed and available on your home screen.
+![Study buddy pwa instructions!](https://user-images.githubusercontent.com/73796086/227796829-3a226862-e33f-45ff-bac6-83efcccd883a.png)
 * The following pages are functional: Register, Login, Home, Account, Canvas Integration, and Logout. 
     * On the Home page, you'll see your chosen pet and its name. You can modify the pet's name and bio by clicking on the Profile tab.
     * You can add tasks in the Tasks tab. When you check a task off, it is marked completed and you earn a candy.
