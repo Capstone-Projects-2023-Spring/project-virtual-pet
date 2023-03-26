@@ -35,8 +35,6 @@ const TaskPage = () => {
             </Card>
 
             <CreateTaskForm {...{ showCreateTask, handleClose }}/>
-            {/* <CreateTaskForm {...{ showCreateTask, handleClose, newTitle, newDesc, newSize, newDate, handleTitleChange, handleDescChange, handleSizeChange, handleDateChange, addTask }} /> */}
-
         </div>
     )
 }

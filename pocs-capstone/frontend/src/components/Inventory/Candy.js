@@ -1,19 +1,19 @@
 import React from "react";
 import { useDrag } from "react-dnd";
 import './Inventory.css'
-
+import { Badge, OverlayTrigger, Tooltip, Card } from 'react-bootstrap';
 // Renders Candy component based off props passed from InventoryBox's inventory state
 // Candy is only rendered if quantity > 0
-function Candy ({id, quantity, candy_base_type, candy_level}) {
-    
-    let [{isDragging}, drag] = useDrag(() => ({
+function Candy({ id, quantity, candy_base_type, candy_level }) {
+
+    let [{ isDragging }, drag] = useDrag(() => ({
         type: "image",
-        item: {id: id},
+        item: { id: id },
         // Optional collect function used for accessing isDragging boolean
         collect: (monitor) => ({
             isDragging: !!monitor.isDragging(),
         }),
-        
+
     }));
 
     let candyImage = () => {
@@ -21,9 +21,9 @@ function Candy ({id, quantity, candy_base_type, candy_level}) {
             case 'S':
                 // Need to check candy level
                 // switch (candy.candy_level) {
-                    // case 0:
-                        // return require('../../images/candy/pinkcandy_scaled_16x_pngcrushed.png')
-                    // case 1:      
+                // case 0:
+                // return require('../../images/candy/pinkcandy_scaled_16x_pngcrushed.png')
+                // case 1:      
                 // }
                 return require('../../images/candy/loligreen.png')
 
@@ -41,22 +41,39 @@ function Candy ({id, quantity, candy_base_type, candy_level}) {
     // Render if there are candy
     // if (quantity !== 0)
     // {
-        return (
-            <>
-                <img className="candy-photo" 
-                ref={drag}                
-                src={candyImage(candy_base_type)}
-                alt="Candy"
-                style={{ border: isDragging ? "5px solid pink" : "0px solid black", width: 110, height: 110 }}/>
-                <p className="Candy-Quantity">
-                    {quantity}
-                    {candy_base_type }
-                    {candy_level}
-                </p>
-                {/* </div> */}
-            </>
+    return (
+        <div >
+            {/* <p className="Candy-Quantity">
+                {quantity}
             
-        )
+            </p> */}
+
+
+            < OverlayTrigger key='top' placement='bottom' overlay={
+                < Tooltip className="tooltip-item" >
+                    <span>Candy Base type: <strong>{candy_base_type}</strong> </span>
+                    <span>Candy Level: <strong>{candy_level}</strong></span>
+                </Tooltip >
+            }
+            >
+
+                <div className="grid-item" ref={drag}>
+                    <Badge pill bg="secondary" className="candy-q">
+                        {quantity}
+                    </Badge>
+
+                    <img className="candy-photo"
+                        src={candyImage(candy_base_type)}
+                        alt="Candy" />
+                </div>
+
+
+
+            </OverlayTrigger >
+
+        </div >
+
+    )
     // }
 }
 

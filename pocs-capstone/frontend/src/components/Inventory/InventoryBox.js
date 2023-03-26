@@ -6,6 +6,8 @@ import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import { useContext } from "react";
 import InventoryContext from "../../context/InventoryContext";
 import PopulateInv from "./PopulateInv";
+import { Card, Stack, Button } from 'react-bootstrap';
+
 
 // Displays the inventory box and renders Candy components inside box based off inventory
 // Need to add css to css file 
@@ -15,33 +17,56 @@ function InventoryBox() {
 
     return (
         <>
-            <button onClick={handlers?.postFullInventory}>I Want Candy!!!</button>
-            <button onClick={handlers?.deleteAll}>DELETE ALL</button>
+            <div className="mini-page">
+                <Card className='tasklist-position'>
+                    <Card.Header>
+                        <Stack direction="horizontal" gap={3}>
+                            <div className='to-do-header'>
+                                ITEMS
+                            </div>
+                            <div className="ms-auto">
+                                <Button variant="primary" onClick={handlers?.postFullInventory}>+ Populate Inv.</Button>
+                            </div>
+                            <div>
+                                <Button variant="danger" onClick={handlers?.deleteAll}>- Delete All</Button>
+                            </div>
+                        </Stack>
+                    </Card.Header>
+                    <div className="inventory-wrapper">
+                        
+                            {
+                                handlers?.inv.map((candy, id) => {
+                                    return <Candy key={id} id={candy.inventory_id} quantity={candy.quantity} candy_base_type={candy.candy_base_type} candy_level={candy.candy_level} />
+                                })
+                            }
 
-            {/* <h1 style={{
-                    textAlign: "center",
-                    marginTop: 100,
-                    margin: 50,
-                    marginBottom: -175
-                }}>Goody Bag</h1> */}
-            <div style={{
-                padding: 10,
-                border: "5px solid black",
-                height: 600, width: 910,
-                margin: 100,
-                backgroundColor: "pink",
-                
-            }} >
-                <div className="row">
-                    {
-                        handlers?.inv.map((candy, id) => {
-                            return <Candy key={id} id={candy.inventory_id} quantity={candy.quantity} candy_base_type={candy.candy_base_type} candy_level={candy.candy_level} />
-                        })
-                    }
-                </div>
+
+                    </div>
+
+                    {/* <div style={{
+                        padding: 10,
+                        border: "5px solid black",
+                        height: 300, width: 910,
+                        margin: 100,
+                        backgroundColor: "pink",
+
+                    }} >
+                        <div className="row">
+                            {
+                                handlers?.inv.map((candy, id) => {
+                                    return <Candy key={id} id={candy.inventory_id} quantity={candy.quantity} candy_base_type={candy.candy_base_type} candy_level={candy.candy_level} />
+                                })
+                            }
+                        </div>
+                    </div> */}
+                </Card>
             </div>
+
+
         </>
     )
 }
+
+
 
 export default InventoryBox;
