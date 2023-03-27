@@ -131,6 +131,7 @@ function AccountPage() {
         <Card.Header>
           <div className='account-profile-header'>Account Profile</div>
         </Card.Header>
+        <div className="mx-auto">
         <Form
           className="form-content"
           noValidate
@@ -140,21 +141,21 @@ function AccountPage() {
 
           <Form.Group className="mb-2">
             <Form.Label>Username:</Form.Label>
-            <Col sm={4}>
+            <Col>
               <Form.Control type="text" value={username} disabled />
             </Col>
           </Form.Group>
 
           <Form.Group className="mb-2">
             <Form.Label>Email:</Form.Label>
-            <Col sm={4}>
+            <Col>
               <Form.Control type="email" value={email} disabled />
             </Col>
           </Form.Group>
 
           <Form.Group className="mb-2" controlId="validationCustom03">
             <Form.Label>Birthday:</Form.Label>
-            <Col sm={4}>
+            <Col>
               <Form.Control
                 required
                 type="date"
@@ -169,7 +170,7 @@ function AccountPage() {
 
           <Form.Group className="mb-2" controlId="validationCustom01">
             <Form.Label>Name:</Form.Label>
-            <Col sm={4}>
+            <Col>
               <Form.Control
                 required
                 type="text"
@@ -184,7 +185,7 @@ function AccountPage() {
 
           <Form.Group className="mb-2" controlId="validationCustom02">
             <Form.Label>Bio:</Form.Label>
-            <Col sm={8}>
+            <Col>
               <Form.Control
                 required
                 as="textarea"
@@ -202,7 +203,7 @@ function AccountPage() {
             <Form.Label>
               Studying Since:
             </Form.Label>
-            <Col sm={4}>
+            <Col>
               <Form.Control type="date" value={joinDate} disabled />
             </Col>
           </Form.Group>
@@ -214,6 +215,7 @@ function AccountPage() {
           </div>
 
         </Form>
+        </div>
 
       </Card>
     </div>

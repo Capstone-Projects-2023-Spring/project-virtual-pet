@@ -12,7 +12,7 @@
 
 .account-profile-card {
     flex: 1 1 auto;
-    width: 70vw;
+    width: 90vw;
 }
 
 .account-profile-header {
@@ -25,8 +25,9 @@
 
 .form-content {
     width: 100%;
-    padding: 20px;
+    padding: 10px;
 }
+
 
 .nav-tabs .nav-link{
     background-color: rgba(229, 179, 192, 0.563);
