@@ -1,5 +1,5 @@
 import PetSprite from './PetSprite.js'
-import ProgressB from './ProgressB.js'
+//import ProgressB from './ProgressB.js'
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
 import './PetDisplay.css'
@@ -12,6 +12,13 @@ import { useContext, useEffect, useRef, useState } from 'react';
 import Spritesheet from 'react-responsive-spritesheet'
 import bgimage from '../../images/bg.gif'
 import SpriteSheetContext from '../../context/SpriteSheetContext.js';
+import ProgressBar from 'react-bootstrap/ProgressBar';
+import CalculateXP from '../../algos/assignXP';
+import CalculatePetLevel from '../../algos/calculatePetLevel';
+//import Candy from '../Inventory/Candy.js';
+
+
+
 
 
 const PetDisplay = ({ avatarInfo, setAvatar }) => {
@@ -58,7 +65,25 @@ const handleClick = (spritesheet) => {
 
         }
     }
-
+    const [exp, setExp] = useState(0);
+    const getExp = (candy, exp) => {
+        var xp = CalculateXP(candy.candy_base_type, candy.candy_level)
+        xp = xp + exp
+        setExp(xp);
+    }
+    
+    const ProgressB = ({avatarInfo, inventory}) => {
+        const max = 5000
+        //const exp = ( avatarInfo.total_xp / max ) * 100
+      /*<div className = 'pbar-text'>+{exp}</div> */ 
+        return (
+            <div className="pbar-exp">
+                <div className='pbar-text'>EXP </div>
+                <ProgressBar now={(exp*10)} variant='success' style={{ width: '18rem' }}/>
+               
+            </div>    
+        )
+    }
     let handlers = useContext(InventoryContext)
     // Accepts images(candy) and calls candyDropped() when a candy is fed
     let [{isOver}, drop] = useDrop(() => ({
@@ -66,7 +91,9 @@ const handleClick = (spritesheet) => {
         accept: "image",
         drop: (item) => {
             handlers.updateInventory(item.id);
+            getExp(item, exp);
             animateSpriteSheet();
+            
           },
         collect: (monitor) => ({
             isOver: !!monitor.isOver(),

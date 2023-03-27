@@ -1,5 +1,3 @@
-
-
 function CalculateXP(base_type,candy_level){
     
     var base_value = 1
