@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
-import { Form, Row, Col, Button, Card, Stack } from "react-bootstrap";
-import { Link, useNavigate, useLocation } from "react-router-dom";
+import { Form, Col, Button, Card } from "react-bootstrap";
 import useAxiosPrivate from "../hooks/useAxiosPrivate";
 import "./AccountPage.css";
 
