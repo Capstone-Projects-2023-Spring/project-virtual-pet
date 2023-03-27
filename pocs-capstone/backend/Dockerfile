@@ -13,28 +13,8 @@ WORKDIR /backend
 # Copy the contents of THIS directory (where Dockerfile is located) to the working directory of the Docker image (/backend)
 COPY . .
 
-# install requirements (should move to requirements.txt?)
-RUN pip install django django-cors-headers
-
-RUN pip install python-decouple
-
-RUN pip install djangorestframework
-
-RUN pip install djangorestframework-simplejwt 
-
-RUN pip install pyyaml
-
-RUN pip install uritemplate
-
-RUN pip install coreapi
-
-RUN pip install sphinx
-
-RUN pip install drf-spectacular
-
-RUN pip install coreapi pyyaml
-
-RUN pip install python-dotenv
+# install requirements
+RUN pip install -r requirements.txt
 
 # when the container runs it'll be listening on port 8000
 EXPOSE 8000
