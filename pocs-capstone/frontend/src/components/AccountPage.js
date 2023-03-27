@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
-import { Form, Row, Col, Button, Card, Stack } from "react-bootstrap";
-import { Link, useNavigate, useLocation } from "react-router-dom";
+import { Form, Col, Button, Card } from "react-bootstrap";
 import useAxiosPrivate from "../hooks/useAxiosPrivate";
 import './AccountPage.css'
 
@@ -79,51 +77,6 @@ function AccountPage() {
     }
     setValidated(true);
   };
-  /*
-  const validateNameLength = (form) => {
-    // Add custom validation for name field length
-    const nameInput = form.elements["validationCustom01"];
-    const nameValue = nameInput.value;
-    if (nameValue.length > 32) {
-      nameInput.setCustomValidity("Name cannot be longer than 32 characters.");
-      nameInput.reportValidity();
-      return false;
-    } else {
-      nameInput.setCustomValidity("");
-      return true;
-    }
-  }
-
-  const validateBioLength = (form) => {
-    // Add custom validation for bio field length
-    const nameInput = form.elements["validationCustom02"];
-    const nameValue = nameInput.value;
-    if (nameValue.length > 32) {
-      nameInput.setCustomValidity("Bio cannot be longer than 512 characters.");
-      nameInput.reportValidity();
-      return false;
-    } else {
-      nameInput.setCustomValidity("");
-      return true;
-    }
-  }
-
-  const validateBirthday = (form) => {
-    // Add custom validation for birthday field
-    const dateInput = form.elements["validationCustom03"];
-    const dateValue = new Date(dateInput.value);
-    const ago = new Date();
-    ago.setFullYear(ago.getFullYear() - 5);
-    if (dateValue > ago) {
-      dateInput.setCustomValidity("Awfully suspicious that you are under 5 years old...");
-      dateInput.reportValidity();
-      return false;
-    } else {
-      dateInput.setCustomValidity("");
-      return true;
-    }
-  }
-  */
 
   return (
     <div className="account-page-display">

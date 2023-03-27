@@ -29,10 +29,11 @@ function CalculatePetLevel(xp){
         }
 
     }
-    
+    const next_level = Math.floor((1/7)*Math.pow((level+1),3))
     const level_with_remainder = {
         LEVEL:level,
-        REMAINDER:remainder
+        REMAINDER:remainder,
+        NEXT_LEVEL:next_level,
     }
 
     return level_with_remainder
