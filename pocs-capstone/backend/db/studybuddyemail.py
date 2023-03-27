@@ -139,7 +139,7 @@ def send_email(email_reciever):
 														<tr>
 															<td class="pad">
 																<div style="color:#101112;direction:ltr;font-family:Arial, Helvetica, sans-serif;font-size:16px;font-weight:400;letter-spacing:0px;line-height:120%;text-align:center;mso-line-height-alt:19.2px;">
-																	<p style="margin: 0; margin-bottom: 16px;">Thank you for registering legend!</p>
+																	<p style="margin: 0; margin-bottom: 16px;">Thank you for registering, legend!</p>
 																	<p style="margin: 0; margin-bottom: 16px;">Your journey awaits with your new buddy!</p>
 																	<p style="margin: 0;">Click the button to login and get started!</p>
 																</div>
