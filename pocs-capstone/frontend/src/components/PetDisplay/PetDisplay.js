@@ -1,5 +1,4 @@
 import PetSprite from './PetSprite.js'
-//import ProgressB from './ProgressB.js'
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
 import './PetDisplay.css'
@@ -11,20 +10,16 @@ import InventoryContext from '../../context/InventoryContext.js';
 import { useContext, useEffect, useRef, useState } from 'react';
 import Spritesheet from 'react-responsive-spritesheet'
 import bgimage from '../../images/bg.gif'
-import SpriteSheetContext from '../../context/SpriteSheetContext.js';
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import CalculateXP from '../../algos/assignXP';
 import CalculatePetLevel from '../../algos/calculatePetLevel';
-//import Candy from '../Inventory/Candy.js';
-
-
-
-
 
 const PetDisplay = ({ avatarInfo, setAvatar }) => {
 
 const [spritesheetInstance, setSpritesheetInstance] = useState(null);
-
+const [exp, setExp] = useState(0);
+const [level, setLevel] = useState(1);
+const [remain, setRemainder] = useState(0);
 function animateSpriteSheet() {
     if (spritesheetInstance) {
         spritesheetInstance.goToAndPlay(1);
@@ -42,110 +37,122 @@ const handleClick = (spritesheet) => {
 }
 
 
-    const spriteSheetRef = useRef(null);
-    const avatarImage = (pet) => {
-        switch (pet.avatar_type) {
-            case 'CT':
-                switch (pet.palette) {
-                    case 0:
-                        //return require('../../images/orangecat.png')
-                        return orangesheet;
-                    case 1:
-                        // CHANGE TO IMAGE OF OTHER CAT (black palette)
-                       // return require('../../images/graycat.png')
-                       return graysheet;
-                }
+const spriteSheetRef = useRef(null);
+const avatarImage = (pet) => {
+    switch (pet.avatar_type) {
+        case 'CT':
+            switch (pet.palette) {
+                case 0:
+                    //return require('../../images/orangecat.png')
+                    return orangesheet;
+                case 1:
+                    // CHANGE TO IMAGE OF OTHER CAT (black palette)
+                    // return require('../../images/graycat.png')
+                    return graysheet;
+            }
 
-            case 'DG':
-                return ''
-            case 'CR':
-                return ''
-            case 'RK':
-                return ''
+        case 'DG':
+            return ''
+        case 'CR':
+            return ''
+        case 'RK':
+            return ''
 
-        }
     }
-    const [exp, setExp] = useState(0);
-    const getExp = (candy, exp) => {
-        var xp = CalculateXP(candy.candy_base_type, candy.candy_level)
-        xp = xp + exp
-        setExp(xp);
-    }
-    
-    const ProgressB = ({avatarInfo, inventory}) => {
-        const max = 5000
-        //const exp = ( avatarInfo.total_xp / max ) * 100
-      /*<div className = 'pbar-text'>+{exp}</div> */ 
-        return (
-            <div className="pbar-exp">
-                <div className='pbar-text'>EXP </div>
-                <ProgressBar now={(exp*10)} variant='success' style={{ width: '18rem' }}/>
-               
-            </div>    
-        )
-    }
-    let handlers = useContext(InventoryContext)
-    // Accepts images(candy) and calls candyDropped() when a candy is fed
-    let [{isOver}, drop] = useDrop(() => ({
-        // What objects to accept
-        accept: "image",
-        drop: (item) => {
-            handlers.updateInventory(item.id);
-            getExp(item, exp);
-            animateSpriteSheet();
-            
-          },
-        collect: (monitor) => ({
-            isOver: !!monitor.isOver(),
-        }),
-    }), [handlers.inv]) 
+}
 
+const getExp = (candy, exp) => {
+    var xp = CalculateXP(candy.candy_base_type, candy.candy_level)
+    xp = xp + exp
+    setExp(xp);
+}
+
+const getLevel = () => {
+    [level, remain] = CalculatePetLevel(exp);
+
+    setLevel(level);
+    setRemainder(remain);
+    if(remain===0){
+        exp = 0
+    }
+
+}
+
+const ProgressB = ({avatarInfo, inventory}) => {
+    const max = 5000
+    //const exp = ( avatarInfo.total_xp / max ) * 100
+    /*<div className = 'pbar-text'>+{exp}</div> */ 
+    getLevel()
     return (
-        <div className='pet-display'>
-            <Card style={{ width: '25rem' }}>
-                <Card.Header className='pet-name'>{avatarInfo.pet_name}</Card.Header>
-                
-                <div className="Board" ref={drop} >
-                   
-                   <div className='p-sprite-display'>
-                    <img src={bgimage} alt="background" className="bg-sprite" />
-                    <Spritesheet
-                        image={avatarImage(avatarInfo)}
-                        refs = {spriteSheetRef}
-                        className="p-sprite"
-                        stopLastFrame={true}
-                        widthFrame={255}
-                        heightFrame={350}
-                        steps={5}
-                        fps={3}
-                        loop={false}
-                        autoplay={false}
-                        isResponsive={false}
-                        getInstance = {handleGetInstance}
-                        onClick={spritesheet => {handleClick(spritesheet)}}
-                    />
-                    </div>
-                </div>
-                <ProgressB avatarInfo={avatarInfo} />
-                    <Card.Body className='pd-bg'>
-
-                        <Card.Text className='pet-desc-text'>
-                            {avatarInfo.flavour_text} 
-                        </Card.Text>
-                    </Card.Body>
-                    <ListGroup className="list-group-flush">
-                        <ListGroup.Item className='pd-position'>
-                            <div className='pet-label'>MOOD: </div>
-                            <div>Yippee!!!</div>
-                        </ListGroup.Item>
-                        <ListGroup.Item className='pd-position'>
-                            <div className='pet-label'>WEIGHT: </div>
-                            <div>5 Paper Clips</div>
-                        </ListGroup.Item>
-                    </ListGroup>
-            </Card>
-        </div>
+        <div className="pbar-exp">
+            <div className='pbar-text'>EXP </div>
+            <ProgressBar now={(exp*10)} variant='success' style={{ width: '18rem' }}/>
+            
+        </div>    
     )
+}
+let handlers = useContext(InventoryContext)
+// Accepts images(candy) and calls candyDropped() when a candy is fed
+let [{isOver}, drop] = useDrop(() => ({
+    // What objects to accept
+    accept: "image",
+    drop: (item) => {
+        handlers.updateInventory(item.id);
+        getExp(item, exp);
+        animateSpriteSheet();
+        
+        },
+    collect: (monitor) => ({
+        isOver: !!monitor.isOver(),
+    }),
+}), [handlers.inv]) 
+
+return (
+    <div className='pet-display'>
+        <Card style={{ width: '25rem' }}>
+            <Card.Header className='pet-name'>{avatarInfo.pet_name}</Card.Header>
+            
+            <div className="Board" ref={drop} >
+                
+                <div className='p-sprite-display'>
+                <img src={bgimage} alt="background" className="bg-sprite" />
+                <Spritesheet
+                    image={avatarImage(avatarInfo)}
+                    refs = {spriteSheetRef}
+                    className="p-sprite"
+                    stopLastFrame={true}
+                    widthFrame={255}
+                    heightFrame={350}
+                    steps={5}
+                    fps={3}
+                    loop={false}
+                    autoplay={false}
+                    isResponsive={false}
+                    getInstance = {handleGetInstance}
+                    onClick={spritesheet => {handleClick(spritesheet)}}
+                />
+                </div>
+            </div>
+            <ProgressB avatarInfo={avatarInfo} />
+                <Card.Body className='pd-bg'>
+
+                    <Card.Text className='pet-desc-text'>
+                        {avatarInfo.flavour_text} 
+                    </Card.Text>
+                </Card.Body>
+                <ListGroup className="list-group-flush">
+                    <ListGroup.Item className='pd-position'>
+                        <div className='pet-label'>MOOD: </div>
+                        <div>Yippee!!!</div>
+                    </ListGroup.Item>
+                    <ListGroup.Item className='pd-position'>
+                        <div className='pet-label'>WEIGHT: </div>
+                        <div>5 Paper Clips</div>
+                    </ListGroup.Item>
+                </ListGroup>
+        </Card>
+    </div>
+)
 }
 
 export default PetDisplay
