@@ -2,7 +2,7 @@ import PetDisplay from './PetDisplay/PetDisplay.js'
 import PageDisplay from './PageDisplay/PageDisplay.js'
 //import useAuth from '../hooks/useAuth.js'
 import { useNavigate } from 'react-router-dom';
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { useWindowWidth } from '@react-hook/window-size'
 import useAxiosPrivate from '../hooks/useAxiosPrivate.js';
 import './Main.css'
@@ -10,6 +10,7 @@ import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import InventoryContext from '../context/InventoryContext';
 import PopulateInv from "./Inventory/PopulateInv";
+import SpriteSheetContext from '../context/SpriteSheetContext.js';
 import AvatarContext from "../context/AvatarContext"
 import UserContext from "../context/UserContext"
 
@@ -24,6 +25,7 @@ const Main = () => {
 
     let [inv, setInv] = useState([]);
 
+    let spriteSheetRef = useRef(null);
     useEffect(() => {
         axiosPrivate.get('/avatar/')
             .then((response) => {
@@ -48,7 +50,6 @@ const Main = () => {
             .catch((error) => {
                 console.log(error)
             })
-
     }, [])
 
     const isMobile = (width <= 850)
@@ -92,6 +93,13 @@ const Main = () => {
         return request.then(response => response.data)
     }
 
+    const animateSpriteSheet = () => {
+       // if (spriteSheetRef.current) {
+          spriteSheetRef.current.goToAndPlay(1);
+          spriteSheetRef.current.pause();
+      //  }
+      }
+
     // Create a bunch of items in the backend and change the state of inv
     const postFullInventory = () => {
         if (inv.length === 0) {
@@ -127,6 +135,10 @@ const Main = () => {
         deleteAll
     }
 
+    const animate = {
+        animateSpriteSheet,
+    }
+
     const shareData = { avatarInfo, setAvatar }
 
     console.log("SHAREDATA", shareData)
@@ -142,10 +154,12 @@ const Main = () => {
             <AvatarContext.Provider value={shareData}>
                 <DndProvider backend={HTML5Backend}>
                     <InventoryContext.Provider value={handlers}>
+                    <SpriteSheetContext.Provider value = {animate}>
                         <div className="flex-pages">
                             <PetDisplay {...shareData} />
                             <PageDisplay {...shareData} />
                         </div>
+                        </SpriteSheetContext.Provider>
                     </InventoryContext.Provider>
                 </DndProvider>
             </AvatarContext.Provider>
@@ -157,14 +171,18 @@ const Main = () => {
             <AvatarContext.Provider value={shareData}>
                 <DndProvider backend={HTML5Backend}>
                     <InventoryContext.Provider value={handlers}>
+                    <SpriteSheetContext.Provider value = {animate}>
                         <div>
                             <div className="flex-pages">
-                                <PetDisplay {...shareData} />
+                                <PetDisplay {...shareData} 
+                                
+                                />
                             </div>
                             <div>
                                 <PageDisplay {...shareData} />
                             </div>
                         </div>
+                        </SpriteSheetContext.Provider>
                     </InventoryContext.Provider>
                 </DndProvider>
             </AvatarContext.Provider>
