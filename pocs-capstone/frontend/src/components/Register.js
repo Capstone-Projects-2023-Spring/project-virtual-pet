@@ -2,11 +2,8 @@ import { useRef, useState, useEffect } from "react";
 import { faCheck, faTimes, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from '../api/axios';
+import { Form } from "react-bootstrap";
 
-import useAuth from '../hooks/useAuth'
-import { Link, useNavigate, useLocation } from 'react-router-dom';
-
-import Login from './Login';
 
 const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%._&*]).{8,24}$/;
@@ -30,6 +27,9 @@ const Register = () => {
     const [validMatch, setValidMatch] = useState(false);
     const [matchFocus, setMatchFocus] = useState(false);
 
+    const [userBio, setUserBio] = useState('');
+    const [birthday, setBirthday] = useState("");
+
     const [errMsg, setErrMsg] = useState('');
     const [success, setSuccess] = useState(false);
 
@@ -37,7 +37,16 @@ const Register = () => {
     const [validEmail, setValidEmail] = useState(false);
     const [emailFocus, setEmailFocus] = useState(false);
 
-    const navigate = useNavigate();
+    const handleBirthdayChange = (event) => {
+        setBirthday(event.target.value);
+      };
+    
+    const handleBioChange = (event) => {
+        const text = event.target.value
+        console.log(text.length)
+        if (text.length < 512 )
+            setUserBio(text);
+      };
 
     useEffect(() => {
         userRef.current.focus();
@@ -61,6 +70,8 @@ const Register = () => {
     useEffect(() => {
         setErrMsg('');
     }, [username, password, matchPassword])
+
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -217,7 +228,32 @@ const Register = () => {
                                 <FontAwesomeIcon icon={faInfoCircle} />
                                 Must match the first password input field.
                             </p>
-
+                            <Form.Group className="birthday-form" controlId="validationCustom03">
+                                <Form.Label>Birthday:</Form.Label>
+                                
+                                <Form.Control
+                                    required
+                                    type="date"
+                                    value={birthday}
+                                    onChange={handleBirthdayChange}
+                                />
+                                <Form.Control.Feedback type="invalid">
+                                    Please provide your birthday.
+                                </Form.Control.Feedback>
+                                
+                            </Form.Group>
+                            
+                            <label className="label-bio-register" htmlFor="user_bio" maxLength={32}>
+                                Tell us about yourself!
+                            </label>
+                            <textarea
+                                type="text"
+                                rows="4"
+                                id="user_bio"
+                                onChange={handleBioChange}
+                                value={userBio}
+                            />
+                            
                             <button disabled={!validName || !validPassword || !validEmail || !validMatch ? true : false} className='button-login-register'>Sign Up</button>
                         </form>
                         <p>
