@@ -5,7 +5,7 @@ from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseU
 from django.conf import settings
 
 
-#from django.contrib.auth.models import User
+# from django.contrib.auth.models import User
 import datetime
 from django.utils import timezone
 today = timezone.now
@@ -77,27 +77,29 @@ class NewUser(AbstractBaseUser, PermissionsMixin):  # TODO rename to something l
     """Class responsible for creating and storing account information for a user
     Extends AbstractBaseUser and PermissionsMixin.
     """
-    email=models.EmailField(_('email address'),unique=True)
-    username = models.CharField(max_length=128,unique=True)
-    first_name=models.CharField(max_length=128,unique=False)
-    join_date=models.DateTimeField(default=timezone.now)
-    birthday = models.DateField(null=True,blank=True, default=None)
-    bio = models.TextField(_('about'),max_length=512,blank=True)
+    email = models.EmailField(_('email address'), unique=True)
+    username = models.CharField(max_length=128, unique=True)
+    first_name = models.CharField(
+        max_length=128, unique=False, blank=True, null=True, default="")
+    join_date = models.DateTimeField(default=timezone.now)
+    birthday = models.DateField(null=True, blank=True, default=None)
+    bio = models.TextField(_('about'), max_length=512, blank=True)
     is_staff = models.BooleanField(default=False)
     # TODO if we want email verification to activate user we change this to false
     is_active = models.BooleanField(default=True)
-    canvas_token = models.CharField(max_length=512,default="")
+    canvas_token = models.CharField(max_length=512, default="")
     tutorial = models.BooleanField(default=True)
 
     objects = CustomAccountManager()
 
-    USERNAME_FIELD = 'email' # to log in and authenticate !
-    REQUIRED_FIELDS = ['user_name','first_name'] 
+    USERNAME_FIELD = 'email'  # to log in and authenticate !
+    REQUIRED_FIELDS = ['user_name', 'first_name']
 
     def __str__(self):
         """NewUser toString method
         """
         return self.username
+
     def get_canvas_token(self):
         return self.canvas_token
 
@@ -115,7 +117,8 @@ class Avatar(models.Model):
         CRAB = 'CR'
         ROCK = "RK"
     avatar_id = models.AutoField(primary_key=True)
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE) 
+    user = models.ForeignKey(settings.AUTH_USER_MODEL,
+                             on_delete=models.CASCADE)
     avatar_type = models.CharField(
         max_length=2,
         choices=AvatarType.choices,
@@ -125,9 +128,10 @@ class Avatar(models.Model):
     last_interaction = models.DateField(default=None)
     last_feed = models.DateField(default=None)
     pet_name = models.CharField(max_length=32, default='')
-    flavour_text = models.TextField(max_length = 256, default = 'Welcome to Study Buddy!') #should we increase?
-    palette=models.IntegerField(default=0)
-    
+    flavour_text = models.TextField(
+        max_length=256, default='Welcome to Study Buddy!')  # should we increase?
+    palette = models.IntegerField(default=0)
+
     def __str__(self):
         """Avatar toString method
         """
@@ -162,8 +166,9 @@ class Inventory(models.Model):
         EXPERT = 5, "Expert"
 
     inventory_id = models.AutoField(primary_key=True)
-    user = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
-    candy_base_type = models.CharField(max_length=1,choices=BaseType.choices)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL,
+                             on_delete=models.CASCADE)
+    candy_base_type = models.CharField(max_length=1, choices=BaseType.choices)
     candy_level = models.PositiveIntegerField(choices=CandyLevel.choices)
     quantity = models.PositiveIntegerField(default=0)
 
@@ -193,9 +198,10 @@ class Task(models.Model):
         ADVANCED = 4, "Advanced"
         EXPERT = 5, "Expert"
     task_id = models.AutoField(primary_key=True)
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    title = models.CharField(max_length=128,default="A new task!")
-    due_date = models.DateField(null=True,blank=True)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL,
+                             on_delete=models.CASCADE)
+    title = models.CharField(max_length=128, default="A new task!")
+    due_date = models.DateField(null=True, blank=True)
     created_date = models.DateTimeField(default=timezone.now)
     completed_date = models.DateField(default=None, null=True, blank=True)
     completed = models.BooleanField(default=False)
@@ -206,14 +212,15 @@ class Task(models.Model):
         choices=TaskLevel.choices, default=1)
     recurring = models.BooleanField(default=False)
     recurring_time_delta = models.PositiveIntegerField(default=0)
-    description = models.TextField(default="A new task!", blank=True, null=True)
+    description = models.TextField(
+        default="A new task!", blank=True, null=True)
     course_id = models.PositiveBigIntegerField(default=0)
     assignment_id = models.PositiveIntegerField(default=0)
     received = models.BooleanField(default=False)
-    unique_canvas_tag = models.CharField(max_length=256,default=None,null=True,blank=True)
+    unique_canvas_tag = models.CharField(
+        max_length=256, default=None, null=True, blank=True)
 
     def __str__(self):
         """Task toString method
         """
         return f'{self.title}, {self.task_type}, {self.task_level}, {self.description}'
-    
