@@ -63,7 +63,6 @@ mccabe==0.6.1
 modulegraph==0.19.3
 numpy==1.24.2
 oauthlib==3.2.2
-opencv-python==4.4.0.46
 openpyxl==3.1.1
 packaging==21.3
 pandas==1.5.3
@@ -73,8 +72,6 @@ py2app==0.28.4
 pyasn1==0.4.8
 pyasn1-modules==0.2.8
 pycparser==2.21
-pygame==2.0.0
-pygame-menu==4.2.8
 Pygments==2.14.0
 pyinstaller==5.8.0
 pyinstaller-hooks-contrib==2022.12
