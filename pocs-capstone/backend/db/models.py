@@ -79,7 +79,7 @@ class NewUser(AbstractBaseUser, PermissionsMixin):  # TODO rename to something l
     """
     email=models.EmailField(_('email address'),unique=True)
     username = models.CharField(max_length=128,unique=True)
-    first_name=models.CharField(max_length=128,unique=False)
+    first_name=models.CharField(max_length=128,unique=False, blank=True,null=True,default="")
     join_date=models.DateTimeField(default=timezone.now)
     birthday = models.DateField(null=True,blank=True, default=None)
     bio = models.TextField(_('about'),max_length=512,blank=True)
