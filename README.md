@@ -64,6 +64,70 @@ Another closed-source mobile application, titled [Finch](https://finchcare.com/)
 
 Research will need to be conducted on the various software resources needed to complete this project, including JavaScript, React, HTML/CSS, Django, SQLite, and Canvas API. React will be used for the front-end, Django for the back-end, and a combination of a SQLite Database with a schema defined and managed by Django and a Static File store. A required resource is an Ubuntu server which will either be run on an old laptop or a hosting service will be used. No other hardware resources are required. 
 
+## Local Build Instructions
+
+### Prerequisites
+
+* Python 3.8 or higher 
+
+* pip3 22 or higher
+
+* npm 8 or higher 
+
+> A secret key and a gmail password will be required in backend `.env` file for the project to run correctly. If you are an approved developer on this project, reach out to your team lead to receive the requisite credentials. Modification of the backend code source code will be required in order to send email verifications on user registration. Our team is happy to assist in guiding you through this process.  
+
+### Set Up
+
+1. <a href=https://github.com/Capstone-Projects-2023-Spring/project-virtual-pet/releases>Download</a> the zip file in the release and open. Open a terminal, then navigate to the project directory. 
+
+2. Insert your development keys to `~/sb/backend/.env`
+```
+SECRET_KEY=<YOUR-KEY>
+GMAIL_PASSWORD=<YOUR-PASSWORD>
+```
+3. Navigate to the backend: 
+
+```bash
+cd <your-path>/sb/backend 
+```
+
+4. Activate a Python virtual environment and install dependencies:  
+> (MacOS/Unix) 
+
+```bash
+source tutorial-env/bin/activate
+pip3 install -r requirements.txt
+```
+> Windows
+
+```bash
+tutorial-env\Scripts\activate.bat
+pip3 install -r requirements.txt
+```
+
+5. Activate the backend with the following instructions: 
+
+```bash
+python3 manage.py makemigrations
+python3 manage.py migrate
+python3 manage.py runserver
+```
+
+6. Now, open a new terminal and from the project directory, navigate to the frontend: 
+
+```bash
+cd <your-path>/sb/frontend
+```
+7. Build the frontend as follows. Dependencies will be downloaded and compiled for you:
+
+```bash
+npm install 
+npm run build 
+nmp start
+```
+8. In your browser, navigate in the search bar to <a href="http://localhost:3000">http://localhost:3000</a>.
+
+
 ## Collaborators
 
 [//]: # ( readme: collaborators -start )
