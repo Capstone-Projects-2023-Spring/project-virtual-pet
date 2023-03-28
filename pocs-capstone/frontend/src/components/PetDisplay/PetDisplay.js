@@ -21,10 +21,12 @@ const PetDisplay = ({ avatarInfo, setAvatar }) => {
     const axiosPrivate = useAxiosPrivate();
     const avatar_handler = useContext(AvatarContext);
     const [spritesheetInstance, setSpritesheetInstance] = useState(null);
-    const [exp, setExp] = useState(0);
-    const [level, setLevel] = useState(1);
+    const [exp, setExp] = useState(avatar_handler.avatarInfo.total_xp);
+    const [level, setLevel] = useState(CalculatePetLevel(avatar_handler.avatarInfo.total_xp).LEVEL);
     const [remainder, setRemainder] = useState(0);
-    const [next_level, setNextLevel] = useState(1);
+    const [next_level, setNextLevel] = useState(1);  
+
+
     function animateSpriteSheet() {
         if (spritesheetInstance) {
             spritesheetInstance.goToAndPlay(1);
@@ -40,6 +42,7 @@ const PetDisplay = ({ avatarInfo, setAvatar }) => {
         spritesheet.goToAndPlay(1);
         spritesheet.pause();
     }
+
 
 
     const spriteSheetRef = useRef(null);
@@ -65,33 +68,40 @@ const PetDisplay = ({ avatarInfo, setAvatar }) => {
         }
     }
 
-    const getExp = (candy, exp) => {
-        var total_xp = CalculateXP(candy.candy_base_type, candy.candy_level)
-        setExp(avatar_handler.avatarInfo.total_xp);
-        total_xp = total_xp + exp
+    const getExp = (candy) => {
+        console.log('WTF')
+        //getLevel()
+        console.log("HELO?", avatar_handler.avatarInfo)
+
+        const received_xp = CalculateXP(candy.candy_base_type, candy.candy_level)
+    
+        const total_xp = received_xp + avatar_handler.avatarInfo.total_xp
+        
+        console.log("TOTAL XP", total_xp)
         const updatedAvatar = {
             ...avatar_handler?.avatarInfo,
-            total_xp: total_xp
-        };
-        //  setExp(xp);
-        axiosPrivate
+            total_xp:total_xp
+          };
+          console.log("UPDATED AVATAR",updatedAvatar)
+          axiosPrivate
             .patch(`/avatar/${avatar_handler?.avatarInfo.avatar_id}/`, updatedAvatar)
-       // avatar_handler.avatarInfo.total_xp
-       .then((response) => {
-        console.log("response.data:", response.data);
-        avatar_handler?.setAvatar(response.data); //change this to add to previous state instead of replacing completely (in case of >1 avatar for 1 user)
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+            .then((response) => {
+              console.log("response.data:", response.data);
+              avatar_handler?.setAvatar(response.data); //change this to add to previous state instead of replacing completely (in case of >1 avatar for 1 user)
+              getLevel(avatar_handler.avatarInfo.total_xp)
+                
+            })
+            .catch((err) => {
+              console.log(err);
+            });
   };
 
     
 
     const getLevel = () => {
         //  [level, remain, next_level] = CalculatePetLevel(exp);
-        const petInfo = CalculatePetLevel(exp);
-        //  console.log("AHHHHHHHHHHH", petInfo)
+        const petInfo = CalculatePetLevel(avatar_handler?.avatarInfo.total_xp);
+        console.log("LVL,REMAIN,NEXT",petInfo.LEVEL,petInfo.REMAINDER,petInfo.NEXT_LEVEL)
         //setExp(avatar_handler.avatarInfo.total_xp);
         setLevel(petInfo.LEVEL);
         setRemainder(petInfo.REMAINDER);
@@ -104,24 +114,32 @@ const PetDisplay = ({ avatarInfo, setAvatar }) => {
 
     const ProgressB = ({ avatarInfo, inventory }) => {
       //  const max = 5000
+        
+        const ratio = Math.floor(100*((next_level-remainder)/next_level))
+        console.log("next_level,remainder",next_level,remainder)
+        console.log('RATIO', ratio)
         //const exp = ( avatarInfo.total_xp / max ) * 100
         /*<div className = 'pbar-text'>+{exp}</div> */
-        getLevel()
+        //getLevel()
         return (
             <div className="pbar-exp">
                 <div className='pbar-text'>EXP </div>
-                <ProgressBar now={(exp)} variant='success' style={{ width: '18rem' }} />
+                <ProgressBar now={(ratio)} variant='success' style={{ width: '18rem' }} />
 
             </div>
         )
     }
+
     let handlers = useContext(InventoryContext)
     // Accepts images(candy) and calls candyDropped() when a candy is fed
     let [{ isOver }, drop] = useDrop(() => ({
         // What objects to accept
         accept: "image",
         drop: (item) => {
-            getExp(item, exp);
+            console.log('ahhhhhhhhhhhhhhhhhhhhhhhh')
+            getExp(item);
+            console.log('AHHHHHHHHHHHHHHHHHHHHHH')
+
             handlers.updateInventory(item.id);
             animateSpriteSheet();
         },
