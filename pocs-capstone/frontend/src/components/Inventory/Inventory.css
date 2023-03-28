@@ -47,7 +47,7 @@ img {
 
 .inventory-header {
   font-weight: bold;
-  font-size: calc(3vw+.4vw);
+  font-size: calc(2vw+.4vw);
 }
 
 .inventory-box {
@@ -152,7 +152,7 @@ img {
   /* display: flex;
   justify-content: center; 
   align-items: center;  */
-  font-size: calc(3vw+.4vw);
+  font-size: calc(1vw+.4vw);
   font-weight: bold;
   /* text-decoration: underline; */
   
