@@ -101,13 +101,14 @@ img {
   position: relative;
   text-align: center;
   font-size: 30px;
+  
   width: 130px;
   height: 130px;
+
   display: flex;
   justify-content: center;
   justify-items: center;
   align-items: center;
-  
 
 }
 

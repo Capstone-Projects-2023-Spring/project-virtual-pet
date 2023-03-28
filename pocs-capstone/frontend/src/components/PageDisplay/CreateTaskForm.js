@@ -153,7 +153,7 @@ function CreateTaskForm(props) {
                       <option value="S">Small</option>
                       <option value="M">Medium</option>
                       <option value="L">Large</option>
-                      <option value="C">Gargantuan</option>
+                      <option value="C">Cake</option>
                     </Form.Select>
                     <Form.Control.Feedback type="invalid">
                       {errors.size}

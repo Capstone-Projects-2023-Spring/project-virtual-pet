@@ -88,7 +88,6 @@ const PageDisplay = () => {
             })
 
             task.received = true
-            console.log(task)
             axiosPrivate.put(`/tasks/${task.task_id}/`, task)
             .then(r => {
                 setTaskList(taskList.map(t => t.task_id === task.task_id ? r.data : t))

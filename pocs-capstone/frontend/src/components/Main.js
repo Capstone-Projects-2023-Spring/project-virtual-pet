@@ -142,8 +142,6 @@ const Main = () => {
 
   const shareData = { avatarInfo, setAvatar };
 
-  console.log("SHAREDATA", shareData);
-
   if (!ready) {
     return <div>LOADING...</div>;
   }

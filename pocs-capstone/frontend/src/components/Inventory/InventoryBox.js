@@ -21,9 +21,7 @@ function InventoryBox() {
     const large = handlers?.inv.filter(i => i.candy_base_type === 'L').sort((a, b) => a.candy_level - b.candy_level)
     const cake = handlers?.inv.filter(i => i.candy_base_type === 'C').sort((a, b) => a.candy_level - b.candy_level)
 
-    let candies = [small, medium, large, cake]
-
-    const candiess = {
+    const candies = {
         "Small": small,
         "Medium": medium,
         "Large": large,
@@ -50,12 +48,9 @@ function InventoryBox() {
                     </Card.Header>
 
 
-
-
-
-
                     {handlers.inv.length === 0 ?
 
+                        // If no items render 'No Inventory' notice
                         <ListGroup variant="flush">
                             <ListGroup.Item className="d-flex justify-content-between align-items-start">
                                 No Inventory!
@@ -66,29 +61,25 @@ function InventoryBox() {
 
                         // All the candies rendered below - logic included to not show if candy lists are empty 
                         <div className="inventory-wrapper">
-                            {
-                                Object.keys(candiess).map((key, index) => {
-                                    return (
-                                        <>
-                                            {candiess[key].length !== 0 ?
-                                                <div className="space-candy-types">
-                                                    <div className="text-wrapper">{key}</div>
-                                                    <div className="inventory-wrapper-sizes">
-                                                        {candiess[key].map((candy, id) => {
-                                                            return <Candy key={id} id={candy.inventory_id} quantity={candy.quantity} candy_base_type={candy.candy_base_type} candy_level={candy.candy_level} />
-                                                        })}
-                                                    </div>
-                                                    <hr />
+                            {Object.keys(candies).map((key, index) => {
+                                return (
+                                    <div key={index}>
+                                        {candies[key].length !== 0 ?
+                                            <div className="space-candy-types">
+                                                <div className="text-wrapper">{key}</div>
+                                                <div className="inventory-wrapper-sizes">
+                                                    {candies[key].map((candy, id) => {
+                                                        return <Candy key={id} id={candy.inventory_id} quantity={candy.quantity} candy_base_type={candy.candy_base_type} candy_level={candy.candy_level} />
+                                                    })}
                                                 </div>
-                                                :
-                                                <></>
-                                            }
-
-                                        </>
-                                    )
-                                })
-
-                            }
+                                                <hr />
+                                            </div>
+                                            :
+                                            <></>
+                                        }
+                                    </div>
+                                )
+                            })}
                         </div>
 
                     }
