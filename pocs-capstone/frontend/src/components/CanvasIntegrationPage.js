@@ -6,6 +6,7 @@ import new_access_token from "./new_access_token.png";
 import "./CanvasIntegrationPage.css";
 import "./AnimateChoice.css";
 import useAxiosPrivate from "../hooks/useAxiosPrivate";
+import { useWindowWidth } from '@react-hook/window-size'
 import { useNavigate } from "react-router-dom";
 //currently theres some repeat stuff in the two files canvas integration and animate choice.
 import cat from "../images/orangecat.png";
@@ -26,6 +27,8 @@ const CanvasIntegrationPage = () => {
   const [submitText, setSubmitText] = useState("Submit");
 
   const nav = useNavigate();
+
+  const width = useWindowWidth()
 
   const setSubmittingTokenState = (text) => {
     setRetrievingAssignments(true);
@@ -128,7 +131,7 @@ const CanvasIntegrationPage = () => {
         <div className="loading-parent">{loadingImage}</div>
       ) : (
         <>
-          <Card style={{ width: "130rem" }}>
+          <Card style={{ width: width }}>
             <Card.Header className="pet-choice">
               <center>
                 <h1>ADD YOUR CANVAS ACCOUNT!</h1>
@@ -136,11 +139,8 @@ const CanvasIntegrationPage = () => {
             </Card.Header>{" "}
           </Card>
           <hr />
-          <Card.Header className="header">
-            So you want your pet to help you track your Canvas assignments...{" "}
-          </Card.Header>
           <Card.Title className="text">
-            It's easy! Just follow these steps:{" "}
+            Follow these steps to link your Canvas account with Study Buddy! {" "}
           </Card.Title>
           <Card.Body className="text">
             <p>

@@ -7,6 +7,7 @@ import Card from 'react-bootstrap/Card';
 import { useState, useRef, useContext } from "react"
 import useAxiosPrivate from '../hooks/useAxiosPrivate'
 import { useNavigate } from 'react-router-dom'
+import { useWindowWidth } from '@react-hook/window-size'
 import { faColonSign } from '@fortawesome/free-solid-svg-icons'
 //import selectpet from './selectpet'
 
@@ -24,6 +25,7 @@ const AnimateChoice = () => {
     const [nameError, setNameError] = useState('')
     const petType = "CT";
     const navigator = useNavigate();
+    const width = useWindowWidth()
     const textChangeHandler = (i) => {
         //    if(enteredText === "") {
         //     setEnteredText("Default");
@@ -97,7 +99,7 @@ const AnimateChoice = () => {
     //contains sprite sheets
     return (
         <div className='petsprite-body'>
-            <Card style={{ width: '130rem' }}>
+            <Card style={{ width: width }}>
                 <Card.Header className='pet-choice'><center><h1>CHOOSE YOUR PET</h1></center></Card.Header> </Card>
             <hr />
             <div className='petname-display'>

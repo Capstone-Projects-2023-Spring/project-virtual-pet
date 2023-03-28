@@ -172,9 +172,6 @@ const PageDisplay = () => {
                     <Tab eventKey="profile" title="Profile">
                         < PetProfPage />
                     </Tab>
-                    <Tab eventKey="progress" title="Progress">
-                        {/* <Sonnet /> */}
-                    </Tab>
                 </Tabs>
             </div>
         </TaskListContext.Provider>
