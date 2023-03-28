@@ -4,12 +4,10 @@ import CalendarPage from "./CalendarPage";
 import PetProfPage from "./PetProfPage";
 import TaskListContext from '../../context/TaskListContext'
 import InventoryBox from "../Inventory/InventoryBox";
-// import tasks from '../../services/tasks'
-import Tab from 'react-bootstrap/Tab';
-import Tabs from 'react-bootstrap/Tabs';
+
+import { Tab, Tabs } from 'react-bootstrap';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import { useState, useEffect, useContext } from 'react'
-import { getIn, setIn } from "formik";
 import InventoryContext from "../../context/InventoryContext";
 
 
@@ -34,15 +32,15 @@ const PageDisplay = () => {
     const updateTask = (id, newTask) => {
         const taskItem = taskList.find(t => t.task_id === id)
 
-        
+
 
         const taskItemChanged = newTask == null ?
-            { ...taskItem, completed: !taskItem.completed, completed_date: (taskItem.completed_date===null ? new Date().toISOString().split('T')[0] : null ) } :
-            { ...taskItem, title: newTask.title, due_date: newTask.due_date==='' ? null : newTask.due_date, task_type: newTask.size, description: newTask.description, task_level: newTask.level }
+            { ...taskItem, completed: !taskItem.completed, completed_date: (taskItem.completed_date === null ? new Date().toISOString().split('T')[0] : null) } :
+            { ...taskItem, title: newTask.title, due_date: newTask.due_date === '' ? null : newTask.due_date, task_type: newTask.size, description: newTask.description, task_level: newTask.level }
 
 
         // Has the user recieved a candy for this task already?
-        if(taskItemChanged.completed === true && taskItemChanged.received === false){
+        if (taskItemChanged.completed === true && taskItemChanged.received === false) {
             determineReward(taskItemChanged)
         }
 
@@ -63,14 +61,14 @@ const PageDisplay = () => {
             axiosPrivate.put(`/inventory/${candy.inventory_id}/`, candy)
                 .then(r => {
                     inventoryHandlers.setInv(inventoryHandlers.inv.map(c => c.inventory_id === candy.inventory_id ? r.data : c))
-            })
+                })
 
             task.received = true
             axiosPrivate.put(`/tasks/${task.task_id}/`, task)
-            .then(r => {
-                setTaskList(taskList.map(t => t.task_id === task.task_id ? r.data : t))
-            })
-           
+                .then(r => {
+                    setTaskList(taskList.map(t => t.task_id === task.task_id ? r.data : t))
+                })
+
         }
         else {
             // Create candy, post to backend, and set state
@@ -82,16 +80,16 @@ const PageDisplay = () => {
 
             let candyList = []
             inventoryHandlers?.createInventoryItem(newCandy)
-            .then(r => {
-                candyList.push(r)
-                inventoryHandlers?.setInv([...inventoryHandlers?.inv, ...candyList])
-            })
+                .then(r => {
+                    candyList.push(r)
+                    inventoryHandlers?.setInv([...inventoryHandlers?.inv, ...candyList])
+                })
 
             task.received = true
             axiosPrivate.put(`/tasks/${task.task_id}/`, task)
-            .then(r => {
-                setTaskList(taskList.map(t => t.task_id === task.task_id ? r.data : t))
-            })
+                .then(r => {
+                    setTaskList(taskList.map(t => t.task_id === task.task_id ? r.data : t))
+                })
         }
     }
 

@@ -1,17 +1,8 @@
 import './PageDisplay.css'
-import Card from 'react-bootstrap/Card';
-import Stack from 'react-bootstrap/Stack';
-import Button from 'react-bootstrap/Button';
 import CreateTaskForm from './CreateTaskForm';
 import TaskList from './TaskList'
-import TaskListContext from '../../context/TaskListContext'
 import { useState } from 'react';
-
-
-import Tab from 'react-bootstrap/Tab';
-import Tabs from 'react-bootstrap/Tabs';
-
-
+import { Tab, Tabs, Button, Stack, Card } from 'react-bootstrap';
 
 // { taskList, newTitle, newDesc, newSize, newDate, setAvatarInfo, setInventory, setTaskList, handleCompleteCheck, handleTitleChange, handleDescChange, handleSizeChange, handleDateChange, addTask, deleteTask }
 const TaskPage = () => {
@@ -31,7 +22,7 @@ const TaskPage = () => {
                         <div className='to-do-header'>
                             TO-DO
                         </div>
-                        <div  className="ms-auto">
+                        <div className="ms-auto">
                             <Tabs
                                 id="controlled-tab-example"
                                 defaultActiveKey="all"

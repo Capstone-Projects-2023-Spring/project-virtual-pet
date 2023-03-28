@@ -1,12 +1,9 @@
 import React from "react";
-import { useEffect, useState } from "react";
 import Candy from "./Candy";
 import './Inventory.css'
-import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import { useContext } from "react";
 import InventoryContext from "../../context/InventoryContext";
-import PopulateInv from "./PopulateInv";
-import { Card, Stack, Button, ListGroup, Badge } from 'react-bootstrap';
+import { Card, Stack, Button, ListGroup } from 'react-bootstrap';
 
 
 // Displays the inventory box and renders Candy components inside box based off inventory
