@@ -1,7 +1,5 @@
-
-
 function CalculateXP(base_type,candy_level){
-    
+    console.log("candy deets------>",base_type,candy_level)
     var base_value = 1
     var level_value = 1
     
