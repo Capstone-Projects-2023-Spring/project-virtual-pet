@@ -78,7 +78,7 @@ Research will need to be conducted on the various software resources needed to c
 
 ### Set Up
 
-1. <a href=https://github.com/Capstone-Projects-2023-Spring/project-virtual-pet/releases>Download</a> the zip file in the release and open. Open a terminal, then navigate to the project directory. 
+1. <a href="https://github.com/Capstone-Projects-2023-Spring/project-virtual-pet/releases">Download</a> the zip file in the release and open. Open a terminal, then navigate to the project directory. 
 
 2. Insert your development keys to `~/sb/backend/.env`
 ```
