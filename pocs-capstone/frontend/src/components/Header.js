@@ -2,11 +2,9 @@ import "./Header.css"
 import logo from '../images/orangecat.png';
 import usericon from '../images/user_icon.png'
 
-import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
 
-import Stack from 'react-bootstrap/Stack';
-import Image from 'react-bootstrap/Image';
+
+import { Stack, Image, Navbar, NavDropdown } from 'react-bootstrap';
 
 const Header = ({userInfo}) => {
 

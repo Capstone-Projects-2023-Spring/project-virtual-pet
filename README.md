@@ -12,7 +12,7 @@
 
 ## Directions
 
-* Please navigate to our app by clicking <a href="http://68.183.30.203:3000/">this link</a>. Once there, you can create an account, select a pet, and explore the site. 
+* Please navigate to our app by clicking [this link](http://68.183.30.203:3000/). Once there, you can create an account, select a pet, and explore the site. 
 * Study Buddy is a Progressive Web App (PWA). This means it's a web site that you can use in your browser, or it can be downloaded to your device and used like an app. 
    * On iOS: Open Safari and navigate to the site. Press the "Share" button and select "Add to Home Screen" from the popup. Lastly, tap "Add" in the top right corner to finish installing the PWA. It will now be on your home screen.
    * On Android: Open Chrome and navigate to the site. Press the "three dot" icon in the upper right to open the menu. Select "Add to Home screen." Press the "Add" button in the popup. The PWA is now installed and available on your home screen.
@@ -24,6 +24,8 @@
     * The Calendar and Progress tabs are currently under development. 
     * On the Canvas Integration page, you can follow directions to generate and upload a Canvas API token to import your assignments from Canvas into the application.
 * If you encounter any bugs or issues, please visit our <a href="https://capstone-projects-2023-spring.github.io/project-virtual-pet/">documentation site</a> and click on the "Report Bug" button located on the right-hand side of the page. This will take you to a feedback form where you can provide details about the problem you encountered.
+  * Points of contact: Mary Clay (mary.clay@temple.edu) & Alex Russakoff (alexander.russakoff@temple.edu)
+* For QA testing purposes, please reference the [Acceptance Testing document](https://docs.google.com/spreadsheets/d/1cuUb6Kp730-dWrmaLGF4BwymjM5wOjrheQmZXhBRBhs/edit?usp=sharing).
 
 ## Keywords
 

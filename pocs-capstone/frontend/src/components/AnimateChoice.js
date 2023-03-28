@@ -1,6 +1,6 @@
 import Spritesheet from 'react-responsive-spritesheet'
-import orangesheet from './hs.jpg'
-import graysheet from './ghs.jpg'
+import orangesheet from '../../src/images/orange_happy_sheet.png'
+import graysheet from '../../src/images/gray_happy_sheet.png' 
 import './AnimateChoice.css'
 import './textbox.css'
 import Card from 'react-bootstrap/Card';
@@ -108,14 +108,14 @@ const AnimateChoice = () => {
                         className={`sprite ${selectedIndex !== null && selectedIndex !== 0 ? 'hidden' : ''}`}
                         image={orangesheet}
                         stopLastFrame={true}
-                        widthFrame={266}
-                        heightFrame={305}
-                        steps={2}
-                        fps={20}
+                        widthFrame={255}
+                        heightFrame={350}
+                        steps={5}
+                        fps={3}
                         loop={false}
                         autoplay={false}
                         isResponsive={false}
-                        endAt={2}
+                        endAt={4}
                         onClick={() => handleClick(0)}
                     />
                     <Spritesheet
@@ -124,13 +124,14 @@ const AnimateChoice = () => {
                         stopLastFrame={true}
                         className={`sprite ${selectedIndex !== null && selectedIndex !== 1 ? 'hidden' : ''}`}
                         image={graysheet}
-                        widthFrame={266}
-                        heightFrame={305}
-                        steps={2}
-                        fps={20}
+                        widthFrame={255}
+                        heightFrame={350}
+                        steps={5}
+                        fps={3}
                         loop={false}
                         autoplay={false}
                         isResponsive={false}
+                        endAt = {4}
                         onClick={() => handleClick(1)}
                     />
                 </div>
