@@ -9,9 +9,7 @@ sidebar_position: 4
 **As a user, it is important that I can create an account so that I can maintain my pet’s growth and my task progress.**
 
 ```mermaid
-
 sequenceDiagram
-
 title Tracking Task Progress
 ### As a user, it is important that I can create an account so that I can maintain my pet’s growth and my task progress.
 
@@ -119,7 +117,7 @@ sequenceDiagram
     CanvasIntegrationPage (after creating an account and profile). They will be prompted to sign in with SSO authentication. 
     After a successful sign-in, the user's data will be updated such that their assignments and courses will be imported into their account.
 
-    1. The user creates an account and profile as described in Use Case 8.
+    1. The user creates an account and profile as described in Use Case 1.
     2. The user navigates to the Canvas Integration section of the site.
     3. The user signs on through SSO.
     4. Courses as assignment data are imported into the user's info.
@@ -223,7 +221,7 @@ title Tracking Task Progress
     deactivate PetProfPage
     deactivate PPTaskItem
 ```
-    This sequence diagram displays the way in which the user can use the Pet Profile page to see more information about their progress, as shown in Use Case 6. By
+    This sequence diagram displays the way in which the user can use the Pet Profile page to see more information about their progress, as shown in Use Case 7. By
     selecting a task under the pet profile page, they can see their current progress towards completing it, as well as the time remaining before the deadline 
     (whether it   be a self-set deadline, or one imposed by Canvas).
     1. The avatar information is retrieved through an API call.
@@ -303,19 +301,6 @@ title Feeding Candies to Progress
 
 ## Use Case 7
 **As a user, I want to have my study app stay up to date on my progress towards my study goals.**
-<!-- <details>
-  <summary>Use Case 1 Description</summary>
-  <div>
-    <div>
-
-    1. The user logs into their profile. ([See Use Case 7](#use-case-7))
-    2. The task list is retrieved with a GET call to the API.
-    3. From the homepage, the user can select a specific task to see more information, including due date and a description.
-    5. After completing a task, the user’s pet will receive EXP in the form of candy towards its next level.
-
-    </div>
-  </div>
-</details> -->
 
 ```mermaid
 sequenceDiagram
@@ -351,7 +336,7 @@ sequenceDiagram
     
 ```
 
-    1. The user logs into their profile. ([See Use Case 7](#use-case-7))
+    1. The user logs into their profile.
     2. The task list is retrieved with a GET call to the API.
     3. From the homepage, the user can select a specific task to see more information, including due date and a description.
     4. After completing a task, the user’s pet will receive EXP in the form of candy towards its next level.
@@ -359,20 +344,7 @@ sequenceDiagram
 
 ## Use Case 8
 **As a user, I want to create a schedule and be encouraged by my Virtual Pet to adhere to the schedule.**
-<!-- <details>
-  <summary>Use Case 4 Description</summary>
-  <div>
-    <div>
 
-    1. The user logs into their profile. ([See Use Case 7](#use-case-7))
-    2. User navigates to the “Create Task” tab.
-    3. User fills out a form with types of milestones and calendar information regarding due dates. 
-    These can be explicit calendar entries based on a particular date,  or recur on a regular time interval.
-    4. The backend for the site builds a set of events for the avatar based on these milestones.
-
-    </div>
-  </div>
-</details> -->
 
 ```mermaid
 sequenceDiagram
