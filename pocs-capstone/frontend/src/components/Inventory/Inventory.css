@@ -45,14 +45,9 @@ img {
   color: darkblue;
 }
 
-.candy-q {
-  /* border-radius: */
-  width: 40px;
-  height: 40px;
-  padding: 8px;
-  position: absolute;
-  top: -15px;
-  right: -15px;
+.inventory-header {
+  font-weight: bold;
+  font-size: calc(3vw+.4vw);
 }
 
 .inventory-box {
@@ -68,6 +63,7 @@ img {
 
 }
 
+/* Wrap around all of the inventory, enables scrolling, etc */
 .inventory-wrapper {
   min-height: 85vh;
   max-height: 85vh;
@@ -77,27 +73,46 @@ img {
   padding: 50px;
   overflow: scroll;
   -webkit-overflow-scrolling: touch;
+}
 
-  justify-content: center;
+
+/* Makes the candies appears in a grid */
+.inventory-wrapper-sizes {
+
   display: grid;
+  justify-content: space-evenly;
+  justify-items: center;
+  align-content: space-evenly;
+  align-items: center;
 
   /* grid-template-columns: auto auto auto auto auto; */
   /* https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-rows */
-  grid-template-columns: repeat(auto-fill, 200px);
-  grid-template-rows: repeat(auto-fill, 200px);
-  column-gap: 75px;
-  row-gap: 75px;
+  grid-template-columns: repeat(auto-fill, 180px);
+
+  grid-auto-rows: 170px;
+
+
 
 }
 
+
+/*  Wrap around badge AND grid item */
 .grid-wrapper {
   position: relative;
   text-align: center;
   font-size: 30px;
+  width: 130px;
+  height: 130px;
+  display: flex;
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
+  
+
 }
 
 
-
+/*  */
 .grid-item {
   background-color: rgba(255, 255, 255, 0.8);
   border: 3px solid rgba(255, 192, 203, 0);
@@ -109,6 +124,9 @@ img {
   -o-transition: all .2s ease-in;
   -webkit-transition: all .2s ease-in;
   transition: all .2s ease-in;
+
+  width: 130px;
+  height: 130px;
 }
 
 .grid-item:hover {
@@ -116,16 +134,40 @@ img {
 }
 
 .candy-photo {
-  width: 110px;
+  width: 80px;
   height: auto
 }
 
 .candy-wrapper {
-  width: 200px;
-  height: 200px;
+  width: 130px;
+  height: 130px;
   padding: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
+.text-wrapper {
+  /* display: flex;
+  justify-content: center; 
+  align-items: center;  */
+  font-size: calc(3vw+.4vw);
+  font-weight: bold;
+  /* text-decoration: underline; */
+  
+}
+
+.candy-q {
+  width: 40px;
+  height: 40px;
+  padding: 8px;
+  position: absolute;
+  top: -15px;
+  right: -15px;
+
+}
+
+
+.space-candy-types {
+  margin-bottom: 40px;
+}
