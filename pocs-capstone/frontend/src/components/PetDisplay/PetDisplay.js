@@ -18,15 +18,16 @@ import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 
 // (next level - remainder) / (next level) //
 const PetDisplay = ({ avatarInfo, setAvatar }) => {
-    //TODO - shouldn't call calcpetlev 3 times
+    //TODO - shouldn't call calc-pet-lev 3 times
     const axiosPrivate = useAxiosPrivate();
     const avatar_handler = useContext(AvatarContext);
     const [spritesheetInstance, setSpritesheetInstance] = useState(null);
-    const [exp, setExp] = useState(avatar_handler.avatarInfo.total_xp);
-    const [level, setLevel] = useState(CalculatePetLevel(avatar_handler.avatarInfo.total_xp).LEVEL);
-    const [remainder, setRemainder] = useState(CalculatePetLevel(avatar_handler.avatarInfo.total_xp).REMAINDER);
-    const [next_level, setNextLevel] = useState(CalculatePetLevel(avatar_handler.avatarInfo.total_xp).REMAINDER);  
-    const [ratio,setRatio] = useState(0) //TODO susss
+    //const [exp, setExp] = useState(avatar_handler.avatarInfo.total_xp);
+    //const [level, setLevel] = useState(CalculatePetLevel(avatar_handler.avatarInfo.total_xp).LEVEL);
+    //const [remainder, setRemainder] = useState(CalculatePetLevel(avatar_handler.avatarInfo.total_xp).REMAINDER);
+    //const [next_level, setNextLevel] = useState(CalculatePetLevel(avatar_handler.avatarInfo.total_xp).REMAINDER);  
+    const [level_info, setLevelInfo] = useState(CalculatePetLevel(avatar_handler?.avatarInfo.total_xp))
+   // const [ratio,setRatio] = useState(level_info.NEXT_LEVEL-level_info.REMAINDER/level_info.NEXT_LEVEL ) //TODO susss
 
     function animateSpriteSheet() {
         if (spritesheetInstance) {
@@ -78,7 +79,7 @@ const PetDisplay = ({ avatarInfo, setAvatar }) => {
     
         const total_xp = received_xp + avatar_handler.avatarInfo.total_xp
         
-        //console.log("TOTAL XP", total_xp)
+        console.log("TOTAL XP----------->", total_xp)
         const updatedAvatar = {
             ...avatar_handler?.avatarInfo,
             total_xp:total_xp
@@ -99,35 +100,22 @@ const PetDisplay = ({ avatarInfo, setAvatar }) => {
 
     
 
-    const getLevel = () => {
+    const getLevel = (xp) => {
         //  [level, remain, next_level] = CalculatePetLevel(exp);
-        const petInfo = CalculatePetLevel(avatar_handler?.avatarInfo.total_xp);
+        setLevelInfo(CalculatePetLevel(xp));
         //console.log("LVL,REMAIN,NEXT",petInfo.LEVEL,petInfo.REMAINDER,petInfo.NEXT_LEVEL)
         //setExp(avatar_handler.avatarInfo.total_xp);
-        setLevel(petInfo.LEVEL);
-        setRemainder(petInfo.REMAINDER);
-        setNextLevel(petInfo.NEXT_LEVEL)
-        setRatio(Math.floor(100*((next_level-remainder)/next_level)))
+        //setLevel(petInfo.LEVEL);
+        //setRemainder(petInfo.REMAINDER);
+        //setNextLevel(petInfo.NEXT_LEVEL);
+
+        //setRatio(Math.floor(100*((level_info.NEXT_LEVEL-level_info.REMAINDER)/level_info.NEXT_LEVEL)));
+        animateSpriteSheet();
         //  if(remainder===0){
         //     setExp(0);
         //   }
 
     }
-    
-    /**
-
-    const ProgressB = ({ avatarInfo, inventory }) => {
-      //  const max = 5000
-        
-        
-        //console.log("next_level,remainder",next_level,remainder)
-        //console.log('RATIO', ratio)
-        //const exp = ( avatarInfo.total_xp / max ) * 100
-        // <div className = 'pbar-text'>+{exp}</div> 
-        //getLevel()
-    
-    }
-    */
 
     let handlers = useContext(InventoryContext)
     // Accepts images(candy) and calls candyDropped() when a candy is fed
@@ -142,7 +130,7 @@ const PetDisplay = ({ avatarInfo, setAvatar }) => {
             console.log(item)
             //console.log(handlers.inv.find(item.id));
             handlers.updateInventory(item.id);
-            animateSpriteSheet();
+            
         },
         collect: (monitor) => ({
             isOver: !!monitor.isOver(),
@@ -177,10 +165,10 @@ const PetDisplay = ({ avatarInfo, setAvatar }) => {
                 </div>
                 <div className="pbar-exp">
                 
-                <div className='pbar-text'>LVL:{level} </div>
-                <ProgressBar now={(ratio)} variant='success' style={{ width: '18rem' }} />
+                <div className='pbar-text'>LVL:{level_info.LEVEL} </div>
+                <ProgressBar now={(level_info.RATIO)} variant='success' style={{ width: '18rem' }} />
                 
-                <div className='experience-ratio'>{next_level-remainder}/{next_level}</div>
+                <div className='experience-ratio'>{level_info.NEXT_LEVEL-level_info.REMAINDER}/{level_info.NEXT_LEVEL}</div>
             </div>
                 <Card.Body className='pd-bg'>
 
