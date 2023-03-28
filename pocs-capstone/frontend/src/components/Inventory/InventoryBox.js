@@ -13,12 +13,12 @@ function InventoryBox() {
     let handlers = useContext(InventoryContext)
 
     // sort inventory into their types
-    const small = handlers?.inv.filter(i => i.candy_base_type === 'S').sort((a, b) => a.candy_level - b.candy_level)
-    const medium = handlers?.inv.filter(i => i.candy_base_type === 'M').sort((a, b) => a.candy_level - b.candy_level)
-    const large = handlers?.inv.filter(i => i.candy_base_type === 'L').sort((a, b) => a.candy_level - b.candy_level)
-    const cake = handlers?.inv.filter(i => i.candy_base_type === 'C').sort((a, b) => a.candy_level - b.candy_level)
+    let small = handlers?.inv.filter(i => i.candy_base_type === 'S').sort((a, b) => a.candy_level - b.candy_level)
+    let medium = handlers?.inv.filter(i => i.candy_base_type === 'M').sort((a, b) => a.candy_level - b.candy_level)
+    let large = handlers?.inv.filter(i => i.candy_base_type === 'L').sort((a, b) => a.candy_level - b.candy_level)
+    let cake = handlers?.inv.filter(i => i.candy_base_type === 'C').sort((a, b) => a.candy_level - b.candy_level)
 
-    const candies = {
+    let candies = {
         "Small": small,
         "Medium": medium,
         "Large": large,
@@ -66,7 +66,9 @@ function InventoryBox() {
                                                 <div className="text-wrapper">{key}</div>
                                                 <div className="inventory-wrapper-sizes">
                                                     {candies[key].map((candy, id) => {
-                                                        return <Candy key={id} id={candy.inventory_id} quantity={candy.quantity} candy_base_type={candy.candy_base_type} candy_level={candy.candy_level} />
+                                                        // https://github.com/react-dnd/react-dnd/issues/748#issuecomment-348710655
+                                                        // DONT use index from mapping for react-dnd item key!!!
+                                                        return <Candy key={candy.inventory_id} id={candy.inventory_id} quantity={candy.quantity} candy_base_type={candy.candy_base_type} candy_level={candy.candy_level} />
                                                     })}
                                                 </div>
                                                 <hr />
