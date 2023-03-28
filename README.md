@@ -24,7 +24,7 @@
     * The Calendar and Progress tabs are currently under development. 
     * On the Canvas Integration page, you can follow directions to generate and upload a Canvas API token to import your assignments from Canvas into the application.
 * If you encounter any bugs or issues, please visit our <a href="https://capstone-projects-2023-spring.github.io/project-virtual-pet/">documentation site</a> and click on the "Report Bug" button located on the right-hand side of the page. This will take you to a feedback form where you can provide details about the problem you encountered.
-  * Points of contact: Mary Clay (mary.clay@temple.edu) & Alex Russakoff (alexander.russakoff@temple.edu)
+  * Points of contact: Mary Clay (mary.clay@temple.edu) & Alexander Russakoff (alexander.russakoff@temple.edu)
 * For QA testing purposes, please reference the [Acceptance Testing document](https://docs.google.com/spreadsheets/d/1cuUb6Kp730-dWrmaLGF4BwymjM5wOjrheQmZXhBRBhs/edit?usp=sharing).
 
 ## Keywords
