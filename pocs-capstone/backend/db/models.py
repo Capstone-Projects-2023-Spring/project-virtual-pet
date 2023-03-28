@@ -129,7 +129,7 @@ class Avatar(models.Model):
     last_feed = models.DateField(default=None)
     pet_name = models.CharField(max_length=32, default='')
     flavour_text = models.TextField(
-        max_length=256, default='Welcome to Study Buddy!')  # should we increase?
+        max_length=256, default='Welcome to Study Buddy!', blank=True, null=True) 
     palette = models.IntegerField(default=0)
 
     def __str__(self):

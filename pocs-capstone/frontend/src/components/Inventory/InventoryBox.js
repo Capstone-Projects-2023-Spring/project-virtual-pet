@@ -35,7 +35,7 @@ function InventoryBox() {
                 <div className="row">
                     {
                         handlers?.inv.map((candy, id) => {
-                            return <Candy key={id} id={candy.inventory_id} quantity={candy.quantity} candy_base_type={candy.candy_base_type} candy_level={candy.candy_level} />
+                            return <Candy key={candy.inventory_id} id={candy.inventory_id} quantity={candy.quantity} candy_base_type={candy.candy_base_type} candy_level={candy.candy_level} />
                         })
                     }
                 </div>
