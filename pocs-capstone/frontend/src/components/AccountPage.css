@@ -29,16 +29,16 @@
 }
 
 
-.nav-tabs .nav-link{
+/* .nav-tabs .nav-link{
     background-color: rgba(229, 179, 192, 0.563);
     color:rgb(217, 91, 91);
     font-size: calc(1.3vw + 1vh);
     font-weight: bold;
     margin: 0px;
-    /* font-family:  pixelFont; */
+
     letter-spacing: 0.5px;
     border-width: 0px;
-}
+} */
 
 .submit-button {
     display: flex;

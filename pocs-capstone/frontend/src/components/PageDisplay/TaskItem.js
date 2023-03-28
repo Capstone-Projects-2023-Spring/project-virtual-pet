@@ -1,13 +1,7 @@
 
 import './PageDisplay.css'
-import ListGroup from 'react-bootstrap/ListGroup';
-import Form from 'react-bootstrap/Form';
-import Badge from 'react-bootstrap/Badge';
-import Stack from 'react-bootstrap/Stack';
-
-import CloseButton from 'react-bootstrap/CloseButton';
+import { CloseButton, Stack, Badge, Form, ListGroup } from 'react-bootstrap';
 import CreateTaskForm from './CreateTaskForm';
-
 import { useState } from 'react'
 
 const TaskItem = ({ task, updateTask, deleteTask }) => {
@@ -46,11 +40,11 @@ const TaskItem = ({ task, updateTask, deleteTask }) => {
                                     <div className="ms-2 me-auto">
                                         <div className="fw-bold task-title task-description">{task.title}</div>
                                         <div className='task-description'>{task.description}</div>
-                                        {task.due_date ? 
-                                        <div className='due-date'>Due {calculateDueDate(task.due_date)}</div> : 
-                                        <></>
+                                        {task.due_date ?
+                                            <div className='due-date'>Due {calculateDueDate(task.due_date)}</div> :
+                                            <></>
                                         }
-                                        
+
                                     </div>
                                 </ListGroup.Item>
                                 {/* remove this list group item if it's a canvas task, have for testing purposes */}
@@ -87,10 +81,10 @@ const TaskItem = ({ task, updateTask, deleteTask }) => {
                                             </Stack>
                                         </div>
                                         <div className='task-description'>{task.description}</div>
-                                        
-                                        {task.due_date ? 
-                                        <div className='due-date'>Due {calculateDueDate(task.due_date)}</div> : 
-                                        <></>
+
+                                        {task.due_date ?
+                                            <div className='due-date'>Due {calculateDueDate(task.due_date)}</div> :
+                                            <></>
                                         }
                                     </div>
                                 </ListGroup.Item>

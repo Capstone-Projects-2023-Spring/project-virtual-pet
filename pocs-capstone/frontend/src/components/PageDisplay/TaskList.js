@@ -1,8 +1,5 @@
 
-import ListGroup from 'react-bootstrap/ListGroup';
-import Stack from 'react-bootstrap/Stack';
-import Card from 'react-bootstrap/Card';
-import Button from 'react-bootstrap/Button';
+import { ListGroup, Stack, Button } from 'react-bootstrap';
 import TaskItem from './TaskItem'
 import TaskListContext from '../../context/TaskListContext'
 import { useContext } from 'react'

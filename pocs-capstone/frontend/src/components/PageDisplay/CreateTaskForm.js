@@ -1,16 +1,7 @@
-import Modal from 'react-bootstrap/Modal';
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
-import Stack from 'react-bootstrap/Stack';
-import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
-import Tooltip from 'react-bootstrap/Tooltip';
+import { Tooltip, OverlayTrigger, Stack, Form, Button, Modal, Image } from 'react-bootstrap';
 
-import RecurrenceForm from './RecurrenceForm';
 import TaskListContext from '../../context/TaskListContext'
-import { useContext, useState } from 'react'
-
-import Image from 'react-bootstrap/Image';
-
+import { useContext } from 'react'
 import infoicon from '../../images/info_icon.png'
 
 import * as yup from "yup";
@@ -42,13 +33,6 @@ function CreateTaskForm(props) {
     width: '20px',
     margin: '7px',
   }
-  const InformationIcon = (
-    <Image
-      src={infoicon}
-      alt="more info icon image"
-      style={iconStyle}
-    />
-  )
 
   return (
     <Modal backdrop="static" show={props.showCreateTask} onHide={props.handleClose}>
@@ -131,7 +115,7 @@ function CreateTaskForm(props) {
                       key="top"
                       placement="top"
                       overlay={
-                        <Tooltip id="tooltip-top" style={{fontSize: '15px'}}>
+                        <Tooltip id="tooltip-top" style={{ fontSize: '15px' }}>
                           {taskSizeDesc}
                         </Tooltip>
                       }
@@ -153,7 +137,7 @@ function CreateTaskForm(props) {
                       <option value="S">Small</option>
                       <option value="M">Medium</option>
                       <option value="L">Large</option>
-                      <option value="C">Gargantuan</option>
+                      <option value="C">Cake</option>
                     </Form.Select>
                     <Form.Control.Feedback type="invalid">
                       {errors.size}
@@ -168,7 +152,7 @@ function CreateTaskForm(props) {
                       key="top"
                       placement="top"
                       overlay={
-                        <Tooltip id="tooltip-top" style={{fontSize: '15px'}}>
+                        <Tooltip id="tooltip-top" style={{ fontSize: '15px' }}>
                           {taskLevelDesc}
                         </Tooltip>
                       }
