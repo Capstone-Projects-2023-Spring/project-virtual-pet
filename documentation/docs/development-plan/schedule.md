@@ -44,6 +44,8 @@ gantt
         Complete Design Document Part 2:  , 2023-02-23, 5d
         section Account Creation, Pet Basics, & Canvas Integration
         Submit Design Document Part 2 (API) Assignment: milestone, , 2023-02-26, 1d
+        section Account Creation, Pet Basics, & Canvas Integration
+        User can link with Canvas LMS:  , 2023-02-25, 3d
 
         
         section Account Creation, Pet Basics, & Canvas Integration
