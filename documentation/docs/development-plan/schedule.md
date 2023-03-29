@@ -150,7 +150,7 @@ gantt
 
 - F4: User can view tasks
     - R1: User can view a list of their tasks from Canvas LMS.
-    - R4: Tasks will have a name, course with which it is associated, and a description.
+    - R2: Tasks will have a name, course with which it is associated, and a description.
 
 
 ### Milestone Demo 2 [Progression System & Full Task Functionality]
@@ -163,7 +163,7 @@ gantt
     
 - F6: Create the inventory page
     - R1: User can view the inventory earned from completing tasks.
-    - R2: User can remove candy and place it on their pet (feed it), influencing their pet’s progress.
+    - R2: User can remove candy and place it on their pet (feed it).
     - R3: Inventory includes different sizes of candies and a rare candy.
 
 - F7: User can interact with their pet (feed candies)
@@ -191,3 +191,14 @@ gantt
 - F11: User can view their tasks on a calendar
     - R1: The system will present the user with a calendar grid view of their upcoming and past due tasks.
     - R2: the system will support the Gregorian calendar format.
+
+### Milestone Demo 4 [Detailed Pet Interactions & Task Reminders]
+
+- F12: User experience and design improvement
+    - R1: More pets are available at pet selection.
+    - R2: Styling is consistent throughout all pages of the site.
+    
+- F13: Easter Eggs
+    - R1: Each pet type has its own starting bio.
+    - R2: Pet's unit of measurement for weight changes randomly.
+    
