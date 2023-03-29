@@ -1,7 +1,10 @@
 import React from "react";
+import { useContext } from "react";
 import { useDrag } from "react-dnd";
 import './Inventory.css'
 import { Badge, OverlayTrigger, Tooltip, Card } from 'react-bootstrap';
+import ClickNHold from "react-click-n-hold"; 
+import InventoryContext from "../../context/InventoryContext";
 // Renders Candy component based off props passed from InventoryBox's inventory state
 function Candy({ id, quantity, candy_base_type, candy_level }) {
 
@@ -14,6 +17,25 @@ function Candy({ id, quantity, candy_base_type, candy_level }) {
         }),
 
     }));
+
+    let start =(e) => {
+		console.log('START'); 
+	} 
+    
+	let end = (e, enough) => {
+		console.log('END');
+        console.log(enough ? 'Click released after enough time': 'Click released too soon');            
+	} 
+
+    let handlers = useContext(InventoryContext)
+    // Feed pet
+	let clickNHold = (e) =>{
+		console.log('CLICK AND HOLD');  
+        // getExp(candy);
+            // console.log(item)
+            //console.log(handlers.inv.find(item.id));
+            handlers.updateInventory(id);
+	} 
 
     // Determine candy image to render
     let candyImage = () => {
@@ -104,12 +126,25 @@ function Candy({ id, quantity, candy_base_type, candy_level }) {
                         {quantity}
                     </Badge>
                     <div className="grid-item" >
-                        <div className="candy-wrapper" ref={drag}>
+                        <div className="candy-wrapper">
+                            <ClickNHold 
+                                time={2} // Time to keep pressing. Default is 2
+                                onStart={start} // Start callback
+                                onClickNHold={clickNHold} //Timeout callback
+                                onEnd={end} > 
+                                <img className="candy-photo"
+                                    src={candyImage(candy_base_type)}
+                                    alt="Candy"
+                                    style={{ filter: quantity===0 ?  "grayscale(100%)" : '' }} />
+                            </ClickNHold>
+                            
+                        </div>
+                        {/* <div className="candy-wrapper" ref={drag}>
                             <img className="candy-photo"
                                 src={candyImage(candy_base_type)}
                                 alt="Candy"
                                 style={{ filter: quantity===0 ?  "grayscale(100%)" : '' }} />
-                        </div>
+                        </div> */}
 
                     </div>
                 </div>
