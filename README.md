@@ -13,6 +13,10 @@
 ## Directions
 
 * Please navigate to our app by clicking [this link](http://68.183.30.203:3000/). Once there, you can create an account, select a pet, and explore the site. 
+* Study Buddy is a Progressive Web App (PWA). This means it's a web site that you can use in your browser, or it can be downloaded to your device and used like an app. 
+   * On iOS: Open Safari and navigate to the site. Press the "Share" button and select "Add to Home Screen" from the popup. Lastly, tap "Add" in the top right corner to finish installing the PWA. It will now be on your home screen.
+   * On Android: Open Chrome and navigate to the site. Press the "three dot" icon in the upper right to open the menu. Select "Add to Home screen." Press the "Add" button in the popup. The PWA is now installed and available on your home screen.
+![Study buddy pwa instructions!](https://user-images.githubusercontent.com/73796086/227796829-3a226862-e33f-45ff-bac6-83efcccd883a.png)
 * The following pages are functional: Register, Login, Home, Account, Canvas Integration, and Logout. 
     * On the Home page, you'll see your chosen pet and its name. You can modify the pet's name and bio by clicking on the Profile tab.
     * You can add tasks in the Tasks tab. When you check a task off, it is marked completed and you earn a candy.
@@ -20,6 +24,8 @@
     * The Calendar and Progress tabs are currently under development. 
     * On the Canvas Integration page, you can follow directions to generate and upload a Canvas API token to import your assignments from Canvas into the application.
 * If you encounter any bugs or issues, please visit our <a href="https://capstone-projects-2023-spring.github.io/project-virtual-pet/">documentation site</a> and click on the "Report Bug" button located on the right-hand side of the page. This will take you to a feedback form where you can provide details about the problem you encountered.
+  * Points of contact: Mary Clay (mary.clay@temple.edu) & Alexander Russakoff (alexander.russakoff@temple.edu)
+* For QA testing purposes, please reference the [Acceptance Testing document](https://docs.google.com/spreadsheets/d/1cuUb6Kp730-dWrmaLGF4BwymjM5wOjrheQmZXhBRBhs/edit?usp=sharing).
 
 ## Keywords
 
@@ -57,6 +63,70 @@ Another closed-source mobile application, titled [Finch](https://finchcare.com/)
 ## Required Resources
 
 Research will need to be conducted on the various software resources needed to complete this project, including JavaScript, React, HTML/CSS, Django, SQLite, and Canvas API. React will be used for the front-end, Django for the back-end, and a combination of a SQLite Database with a schema defined and managed by Django and a Static File store. A required resource is an Ubuntu server which will either be run on an old laptop or a hosting service will be used. No other hardware resources are required. 
+
+## Local Build Instructions
+
+### Prerequisites
+
+* Python 3.8 or higher 
+
+* pip3 22 or higher
+
+* npm 8 or higher 
+
+> A secret key and a gmail password will be required in backend `.env` file for the project to run correctly. If you are an approved developer on this project, reach out to your team lead to receive the requisite credentials. Modification of the backend code source code will be required in order to send email verifications on user registration. Our team is happy to assist in guiding you through this process.  
+
+### Set Up
+
+1. <a href="https://github.com/Capstone-Projects-2023-Spring/project-virtual-pet/releases">Download</a> the zip file in the release and open. Open a terminal, then navigate to the project directory. 
+
+2. Insert your development keys to `~/sb/backend/.env`
+```
+SECRET_KEY=<YOUR-KEY>
+GMAIL_PASSWORD=<YOUR-PASSWORD>
+```
+3. Navigate to the backend: 
+
+```bash
+cd <your-path>/sb/backend 
+```
+
+4. Activate a Python virtual environment and install dependencies:  
+> (MacOS/Unix) 
+
+```bash
+source tutorial-env/bin/activate
+pip3 install -r requirements.txt
+```
+> Windows
+
+```bash
+tutorial-env\Scripts\activate.bat
+pip3 install -r requirements.txt
+```
+
+5. Activate the backend with the following instructions: 
+
+```bash
+python3 manage.py makemigrations
+python3 manage.py migrate
+python3 manage.py runserver
+```
+
+6. Now, open a new terminal and from the project directory, navigate to the frontend: 
+
+```bash
+cd <your-path>/sb/frontend
+```
+7. Build the frontend as follows. Dependencies will be downloaded and compiled for you:
+
+```bash
+npm install 
+npm run build 
+nmp start
+```
+8. In your browser, navigate in the search bar to <a href="http://localhost:3000">http://localhost:3000</a>.
+
 
 ## Collaborators
 
