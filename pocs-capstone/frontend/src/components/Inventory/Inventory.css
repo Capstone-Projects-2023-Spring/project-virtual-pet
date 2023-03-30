@@ -110,6 +110,15 @@ img {
   justify-items: center;
   align-items: center;
 
+  /*Need these two for sure */
+  -webkit-touch-callout: none;
+  user-select: none;  /* supported by Chrome and Opera */
+  /*-webkit-user-select: none; /* Safari */
+  /*-khtml-user-select: none; /* Konqueror HTML */
+  /*-moz-user-select: none; /* Firefox */
+  /*-ms-user-select: none; /*Internet Explorer/Edge */ 
+
+
 }
 
 
@@ -141,7 +150,7 @@ img {
   width: 80px;
   height: auto;
   pointer-events: none;
-  user-select: none;
+  /* user-select: none; */
   /*-webkit-user-select: none; /* Safari */
   /*-khtml-user-select: none; /* Konqueror HTML */
   /*-moz-user-select: none; /* Firefox */
@@ -157,6 +166,7 @@ img {
   display: flex;
   justify-content: center;
   align-items: center;
+  
 }
 
 .text-wrapper {
@@ -178,10 +188,10 @@ img {
   right: -15px;
   pointer-events: none;
   user-select: none; /* supported by Chrome and Opera */
-  /*-webkit-user-select: none; /* Safari */
-  /*-khtml-user-select: none; /* Konqueror HTML */
-  /*-moz-user-select: none; /* Firefox */
-  /*-ms-user-select: none; /* Internet Explorer/Edge */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
 
 }
 
