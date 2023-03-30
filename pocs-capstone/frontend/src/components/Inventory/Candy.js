@@ -122,44 +122,45 @@ function Candy({ id, quantity, candy_base_type, candy_level }) {
             }
             >
                 <div className="grid-wrapper">
-                    <Badge pill bg="secondary" className="candy-q">
-                        {quantity}
-                    </Badge>
-                    <div className="grid-item" >
-                        <div className="candy-wrapper">
-                            <ClickNHold 
-                                time={2} // Time to keep pressing. Default is 2
-                                onStart={start} // Start callback
-                                onClickNHold={clickNHold} //Timeout callback
-                                onEnd={end} > 
+                    {/* Render ClickNHold wrapped candy if quantity is greater than 0 */}
+                    {quantity !== 0 ? 
+                    
+                    <ClickNHold 
+                        time={2} // Time to keep pressing. Default is 2
+                        onStart={start} // Start callback
+                        onClickNHold={clickNHold} //Timeout callback
+                        onEnd={end} 
+                                > 
+                        <div className="grid-item" >
+                            <Badge pill bg="secondary" className="candy-q">
+                            {quantity}
+                            </Badge>
+                        
+                            <div className="candy-wrapper">  
+                                    <img className="candy-photo"
+                                        src={candyImage(candy_base_type)}
+                                        alt="Candy"
+                                        style={{ filter: quantity===0 ?  "grayscale(100%)" : '' }} />   
+                            </div>
+
+                        </div> 
+                    </ClickNHold> : 
+                        <div className="grid-item" >
+                            <Badge pill bg="secondary" className="candy-q">
+                            {quantity}
+                            </Badge>
+                            <div className="candy-wrapper">
                                 <img className="candy-photo"
                                     src={candyImage(candy_base_type)}
                                     alt="Candy"
                                     style={{ filter: quantity===0 ?  "grayscale(100%)" : '' }} />
-                            </ClickNHold>
-                            
+                            </div> 
                         </div>
-                        {/* <div className="candy-wrapper" ref={drag}>
-                            <img className="candy-photo"
-                                src={candyImage(candy_base_type)}
-                                alt="Candy"
-                                style={{ filter: quantity===0 ?  "grayscale(100%)" : '' }} />
-                        </div> */}
-
-                    </div>
+                                }
                 </div>
-
             </OverlayTrigger >
-
         </>
-
     )
-    // }
 }
-
-
-// {isDragging ? <p>hello</p> : <p>goodbye</p>}
-
-
 
 export default Candy;
