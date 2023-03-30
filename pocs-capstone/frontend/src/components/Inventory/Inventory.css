@@ -142,6 +142,7 @@ img {
   height: auto;
   pointer-events: none;
   user-select: none;
+  
 }
 
 .candy-wrapper {
@@ -170,6 +171,8 @@ img {
   position: absolute;
   top: -15px;
   right: -15px;
+  pointer-events: none;
+  user-select: none;
 
 }
 
