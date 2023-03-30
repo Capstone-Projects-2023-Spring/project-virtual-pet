@@ -3,7 +3,7 @@ import { useContext } from "react";
 import { useDrag } from "react-dnd";
 import './Inventory.css'
 import { Badge, OverlayTrigger, Tooltip, Card } from 'react-bootstrap';
-import ClickNHold from "react-click-n-hold"; 
+import ClickNHold from "./ClickNHold";
 import GlobalContext from "../../context/GlobalContext";
 // Renders Candy component based off props passed from InventoryBox's inventory state
 function Candy({ id, quantity, candy_base_type, candy_level }) {
@@ -122,7 +122,7 @@ function Candy({ id, quantity, candy_base_type, candy_level }) {
                     <span>Candy Level: <strong>{candy_level}</strong></span>
                 </Tooltip >
             }
-            >
+            >   
                 <div className="grid-wrapper">
                     {/* Render ClickNHold wrapped candy if quantity is greater than 0 */}
                     {quantity !== 0 ? 
