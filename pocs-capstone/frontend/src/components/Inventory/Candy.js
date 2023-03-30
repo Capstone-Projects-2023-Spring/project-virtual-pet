@@ -113,7 +113,10 @@ function Candy({ id, quantity, candy_base_type, candy_level }) {
     }
 
     return (
-        <>
+        <>            
+            <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"></meta>
+        
+
 
             {/* OverlayTrigger - when a user hovers over the candy item a little Tooltip component w/ the candy's details will pop up */}
             < OverlayTrigger placement='bottom' overlay={
@@ -132,6 +135,7 @@ function Candy({ id, quantity, candy_base_type, candy_level }) {
                         // onStart={start} // Start callback
                         onClickNHold={clickNHold} //Timeout callback
                         // onEnd={end} 
+                        
                                 > 
                         <div className="grid-item" >
                             <Badge pill bg="secondary" className="candy-q">
@@ -143,10 +147,12 @@ function Candy({ id, quantity, candy_base_type, candy_level }) {
                                         src={candyImage(candy_base_type)}
                                         alt="Candy"
                                          />   
+                                        
                             </div>
 
                         </div> 
-                    </ClickNHold> : 
+                    </ClickNHold> 
+                    : 
                         <div className="grid-item" >
                             <Badge pill bg="secondary" className="candy-q">
                             {quantity}
@@ -155,12 +161,14 @@ function Candy({ id, quantity, candy_base_type, candy_level }) {
                                 <img className="candy-photo"
                                     src={candyImage(candy_base_type)}
                                     alt="Candy"
+                                
                                     style={{ filter: quantity===0 ?  "grayscale(100%)" : '' }} />
                             </div> 
                         </div>
                                 }
                 </div>
             </OverlayTrigger >
+
         </>
     )
 }
