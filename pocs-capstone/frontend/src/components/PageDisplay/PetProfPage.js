@@ -3,10 +3,10 @@ import axios from "axios";
 import { Form, Row, Col, Button, Card, Stack} from "react-bootstrap";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
-import AvatarContext from "../../context/AvatarContext";
+import GlobalContext from "../../context/GlobalContext";
 
 function PetProfPage() {
-  const handlers = useContext(AvatarContext);
+  const handlers = useContext(GlobalContext);
   const axiosPrivate = useAxiosPrivate();
 
   const [petName, setPetName] = useState("");

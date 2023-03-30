@@ -8,10 +8,9 @@ import useAxiosPrivate from "../hooks/useAxiosPrivate.js";
 import "./Main.css";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
-import InventoryContext from "../context/InventoryContext";
+import GlobalContext from "../context/GlobalContext";
 import PopulateInv from "./Inventory/PopulateInv";
 import SpriteSheetContext from "../context/SpriteSheetContext.js";
-import AvatarContext from "../context/AvatarContext";
 
 const Main = () => {
   const axiosPrivate = useAxiosPrivate();
@@ -134,13 +133,15 @@ const Main = () => {
     deleteInventoryItem,
     postFullInventory,
     deleteAll,
+    avatarInfo, 
+    setAvatar
   };
 
   const animate = {
     animateSpriteSheet,
   };
 
-  const shareData = { avatarInfo, setAvatar };
+  // const shareData = { avatarInfo, setAvatar };
 
   if (!ready) {
     return <div>LOADING...</div>;
@@ -149,37 +150,33 @@ const Main = () => {
   // Need to wrap mobile view in Dnd and Inventory Context - Want to talk to Harrsion prior
   else if (!isMobile) {
     return (
-      <AvatarContext.Provider value={shareData}>
         <DndProvider backend={HTML5Backend}>
-          <InventoryContext.Provider value={handlers}>
+          <GlobalContext.Provider value={handlers}>
             <SpriteSheetContext.Provider value={animate}>
               <div className="flex-pages">
-                <PetDisplay {...shareData} />
-                <PageDisplay {...shareData} />
+                <PetDisplay/>
+                <PageDisplay/>
               </div>
             </SpriteSheetContext.Provider>
-          </InventoryContext.Provider>
+          </GlobalContext.Provider>
         </DndProvider>
-      </AvatarContext.Provider>
     );
   } else {
     return (
-      <AvatarContext.Provider value={shareData}>
         <DndProvider backend={HTML5Backend}>
-          <InventoryContext.Provider value={handlers}>
+          <GlobalContext.Provider value={handlers}>
             <SpriteSheetContext.Provider value={animate}>
               <div>
                 <div className="flex-pages">
-                  <PetDisplay {...shareData} />
+                  <PetDisplay />
                 </div>
                 <div>
-                  <PageDisplay {...shareData} />
+                  <PageDisplay/>
                 </div>
               </div>
             </SpriteSheetContext.Provider>
-          </InventoryContext.Provider>
+          </GlobalContext.Provider>
         </DndProvider>
-      </AvatarContext.Provider>
     );
   }
 };
