@@ -11,6 +11,8 @@ import { HTML5Backend } from "react-dnd-html5-backend";
 import GlobalContext from "../context/GlobalContext";
 import PopulateInv from "./Inventory/PopulateInv";
 import SpriteSheetContext from "../context/SpriteSheetContext.js";
+import CalculateXP from "../algos/assignXP";
+import CalculatePetLevel from "../algos/calculatePetLevel";
 
 const Main = () => {
   const axiosPrivate = useAxiosPrivate();
@@ -20,7 +22,11 @@ const Main = () => {
 
   const [ready, setReady] = useState(false);
 
-  let [inv, setInv] = useState([]);
+  const [inv, setInv] = useState([]);
+  const [level_info, setLevelInfo] = useState(CalculatePetLevel(avatarInfo.total_xp))
+  const [spritesheetInstance, setSpritesheetInstance] = useState(null);
+
+
 
   let spriteSheetRef = useRef(null);
   useEffect(() => {
@@ -125,6 +131,40 @@ const Main = () => {
     setInv([]);
   };
 
+  const getExp = (candy_base_type, candy_level) => {
+    console.log("Candy", candy_base_type)
+    const received_xp = CalculateXP(candy_base_type, candy_level)
+
+    const total_xp = received_xp + avatarInfo.total_xp
+    
+    console.log("TOTAL XP----------->", total_xp)
+    const updatedAvatar = {
+        avatarInfo,
+        total_xp:total_xp
+      };
+      console.log("UPDATED AVATAR",updatedAvatar)
+      axiosPrivate
+        .patch(`/avatar/${avatarInfo.avatar_id}/`, updatedAvatar)
+        .then((response) => {
+          console.log("response.data:", response.data);
+          setAvatar(response.data); //change this to add to previous state instead of replacing completely (in case of >1 avatar for 1 user)
+          getLevel(avatarInfo.total_xp)
+            
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+};
+
+
+
+const getLevel = (xp) => {
+    setLevelInfo(CalculatePetLevel(xp));
+    spritesheetInstance.goToAndPlay(1);
+    spritesheetInstance.pause();
+    
+}
+
   const handlers = {
     inv,
     createInventoryItem,
@@ -134,7 +174,9 @@ const Main = () => {
     postFullInventory,
     deleteAll,
     avatarInfo, 
-    setAvatar
+    setAvatar,
+    getExp,
+    setSpritesheetInstance
   };
 
   const animate = {
@@ -150,7 +192,6 @@ const Main = () => {
   // Need to wrap mobile view in Dnd and Inventory Context - Want to talk to Harrsion prior
   else if (!isMobile) {
     return (
-        <DndProvider backend={HTML5Backend}>
           <GlobalContext.Provider value={handlers}>
             <SpriteSheetContext.Provider value={animate}>
               <div className="flex-pages">
@@ -159,11 +200,9 @@ const Main = () => {
               </div>
             </SpriteSheetContext.Provider>
           </GlobalContext.Provider>
-        </DndProvider>
     );
   } else {
     return (
-        <DndProvider backend={HTML5Backend}>
           <GlobalContext.Provider value={handlers}>
             <SpriteSheetContext.Provider value={animate}>
               <div>
@@ -176,7 +215,6 @@ const Main = () => {
               </div>
             </SpriteSheetContext.Provider>
           </GlobalContext.Provider>
-        </DndProvider>
     );
   }
 };

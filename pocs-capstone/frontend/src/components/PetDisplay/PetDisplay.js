@@ -15,24 +15,27 @@ import CalculateXP from '../../algos/assignXP';
 import CalculatePetLevel from '../../algos/calculatePetLevel';
 
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
+import GlobalContext from '../../context/GlobalContext.js';
 
 // (next level - remainder) / (next level) //
 const PetDisplay = () => {
     //TODO - shouldn't call calc-pet-lev 3 times
     const axiosPrivate = useAxiosPrivate();
     const avatar_handler = useContext(InventoryContext);
-    const [spritesheetInstance, setSpritesheetInstance] = useState(null);
+    // const [spritesheetInstance, setSpritesheetInstance] = useState(null);
     const [level_info, setLevelInfo] = useState(CalculatePetLevel(avatar_handler?.avatarInfo.total_xp))
 
+    const globalHandlers = useContext(GlobalContext);
+
     function animateSpriteSheet() {
-        if (spritesheetInstance) {
-            spritesheetInstance.goToAndPlay(1);
-            spritesheetInstance.pause();
+        if (globalHandlers.spritesheetInstance) {
+            globalHandlers.spritesheetInstance.goToAndPlay(1);
+            globalHandlers.spritesheetInstance.pause();
         }
     }
 
     function handleGetInstance(spritesheet) {
-        setSpritesheetInstance(spritesheet);
+        globalHandlers.setSpritesheetInstance(spritesheet);
     }
 
     const handleClick = (spritesheet) => {
@@ -112,30 +115,29 @@ const PetDisplay = () => {
 
     let handlers = useContext(InventoryContext)
     // Accepts images(candy) and calls candyDropped() when a candy is fed
-    let [{ isOver }, drop] = useDrop(() => ({
-        // What objects to accept
-        accept: "image",
-        drop: (item) => {
-            let candy = handlers.inv.find((candy) => candy.inventory_id === item.id)
+    // let [{ isOver }, drop] = useDrop(() => ({
+    //     // What objects to accept
+    //     accept: "image",
+    //     drop: (item) => {
+    //         let candy = handlers.inv.find((candy) => candy.inventory_id === item.id)
             
-            console.log("CANDY------>",candy)
-            getExp(candy);
-            console.log(item)
-            //console.log(handlers.inv.find(item.id));
-            handlers.updateInventory(item.id);
+    //         console.log("CANDY------>",candy)
+    //         getExp(candy);
+    //         console.log(item)
+    //         //console.log(handlers.inv.find(item.id));
+    //         handlers.updateInventory(item.id);
             
-        },
-        collect: (monitor) => ({
-            isOver: !!monitor.isOver(),
-        }),
-    }), [handlers.inv])
+    //     },
+    //     collect: (monitor) => ({
+    //         isOver: !!monitor.isOver(),
+    //     }),
+    // }), [handlers.inv])
 
     return (
         <div className='pet-display'>
             <Card style={{ width: '25rem' }}>
                 <Card.Header className='pet-name'>{avatar_handler?.avatarInfo.pet_name}</Card.Header>
 
-                <div className="Board" ref={drop} >
 
                     <div className='p-sprite-display'>
                         <img src={bgimage} alt="background" className="bg-sprite" />
@@ -155,7 +157,6 @@ const PetDisplay = () => {
                             onClick={spritesheet => { handleClick(spritesheet) }}
                         />
                     </div>
-                </div>
                 <div className="pbar-exp">
                 
                 <div className='pbar-text'>LVL:{level_info.LEVEL} </div>

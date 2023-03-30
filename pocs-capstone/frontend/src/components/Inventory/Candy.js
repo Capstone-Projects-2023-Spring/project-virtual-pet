@@ -4,19 +4,19 @@ import { useDrag } from "react-dnd";
 import './Inventory.css'
 import { Badge, OverlayTrigger, Tooltip, Card } from 'react-bootstrap';
 import ClickNHold from "react-click-n-hold"; 
-import InventoryContext from "../../context/InventoryContext";
+import GlobalContext from "../../context/GlobalContext";
 // Renders Candy component based off props passed from InventoryBox's inventory state
 function Candy({ id, quantity, candy_base_type, candy_level }) {
 
-    let [{ isDragging }, drag] = useDrag(() => ({
-        type: "image",
-        item: { id: id },
-        // Optional collect function used for accessing isDragging boolean
-        collect: (monitor) => ({
-            isDragging: !!monitor.isDragging(),
-        }),
+    // let [{ isDragging }, drag] = useDrag(() => ({
+    //     type: "image",
+    //     item: { id: id },
+    //     // Optional collect function used for accessing isDragging boolean
+    //     collect: (monitor) => ({
+    //         isDragging: !!monitor.isDragging(),
+    //     }),
 
-    }));
+    // }));
 
     let start =(e) => {
 		console.log('START'); 
@@ -27,7 +27,7 @@ function Candy({ id, quantity, candy_base_type, candy_level }) {
         console.log(enough ? 'Click released after enough time': 'Click released too soon');            
 	} 
 
-    let handlers = useContext(InventoryContext)
+    let handlers = useContext(GlobalContext)
     // Feed pet
 	let clickNHold = (e) =>{
 		console.log('CLICK AND HOLD');  
@@ -35,6 +35,8 @@ function Candy({ id, quantity, candy_base_type, candy_level }) {
             // console.log(item)
             //console.log(handlers.inv.find(item.id));
             handlers.updateInventory(id);
+            
+            handlers.getExp(candy_base_type, candy_level);
 	} 
 
     // Determine candy image to render
@@ -127,9 +129,9 @@ function Candy({ id, quantity, candy_base_type, candy_level }) {
                     
                     <ClickNHold 
                         time={2} // Time to keep pressing. Default is 2
-                        onStart={start} // Start callback
+                        // onStart={start} // Start callback
                         onClickNHold={clickNHold} //Timeout callback
-                        onEnd={end} 
+                        // onEnd={end} 
                                 > 
                         <div className="grid-item" >
                             <Badge pill bg="secondary" className="candy-q">
@@ -140,7 +142,7 @@ function Candy({ id, quantity, candy_base_type, candy_level }) {
                                     <img className="candy-photo"
                                         src={candyImage(candy_base_type)}
                                         alt="Candy"
-                                        style={{ filter: quantity===0 ?  "grayscale(100%)" : '' }} />   
+                                         />   
                             </div>
 
                         </div> 
