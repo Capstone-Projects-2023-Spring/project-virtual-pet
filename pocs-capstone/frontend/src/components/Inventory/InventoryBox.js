@@ -2,7 +2,7 @@ import React from "react";
 import Candy from "./Candy";
 import './Inventory.css'
 import { useContext } from "react";
-import InventoryContext from "../../context/InventoryContext";
+import InventoryContext from "../../context/GlobalContext";
 import { Card, Stack, Button, ListGroup } from 'react-bootstrap';
 
 

@@ -8,14 +8,14 @@ import InventoryBox from "../Inventory/InventoryBox";
 import { Tab, Tabs } from 'react-bootstrap';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import { useState, useEffect, useContext } from 'react'
-import InventoryContext from "../../context/InventoryContext";
+import GlobalContext from "../../context/GlobalContext";
 
 
 const PageDisplay = () => {
 
     const axiosPrivate = useAxiosPrivate()
     const baseURL = `/tasks/`
-    let inventoryHandlers = useContext(InventoryContext)
+    let inventoryHandlers = useContext(GlobalContext)
 
     const [taskList, setTaskList] = useState([])
 

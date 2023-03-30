@@ -6,28 +6,23 @@ import '../Inventory/Inventory.css'
 import orangesheet from '../../../src/images/orange_happy_sheet.png'
 import graysheet from '../../../src/images/gray_happy_sheet.png'
 import { useDrop } from "react-dnd";
-import InventoryContext from '../../context/InventoryContext.js';
-import { useContext, useEffect, useRef, useState } from 'react';
+import InventoryContext from '../../context/GlobalContext.js';
+import { useContext, useRef, useState } from 'react';
 import Spritesheet from 'react-responsive-spritesheet'
 import bgimage from '../../images/bg.gif'
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import CalculateXP from '../../algos/assignXP';
 import CalculatePetLevel from '../../algos/calculatePetLevel';
-import AvatarContext from "../../context/AvatarContext";
+
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 
 // (next level - remainder) / (next level) //
-const PetDisplay = ({ avatarInfo, setAvatar }) => {
+const PetDisplay = () => {
     //TODO - shouldn't call calc-pet-lev 3 times
     const axiosPrivate = useAxiosPrivate();
-    const avatar_handler = useContext(AvatarContext);
+    const avatar_handler = useContext(InventoryContext);
     const [spritesheetInstance, setSpritesheetInstance] = useState(null);
-    //const [exp, setExp] = useState(avatar_handler.avatarInfo.total_xp);
-    //const [level, setLevel] = useState(CalculatePetLevel(avatar_handler.avatarInfo.total_xp).LEVEL);
-    //const [remainder, setRemainder] = useState(CalculatePetLevel(avatar_handler.avatarInfo.total_xp).REMAINDER);
-    //const [next_level, setNextLevel] = useState(CalculatePetLevel(avatar_handler.avatarInfo.total_xp).REMAINDER);  
     const [level_info, setLevelInfo] = useState(CalculatePetLevel(avatar_handler?.avatarInfo.total_xp))
-   // const [ratio,setRatio] = useState(level_info.NEXT_LEVEL-level_info.REMAINDER/level_info.NEXT_LEVEL ) //TODO susss
 
     function animateSpriteSheet() {
         if (spritesheetInstance) {
@@ -44,8 +39,6 @@ const PetDisplay = ({ avatarInfo, setAvatar }) => {
         spritesheet.goToAndPlay(1);
         spritesheet.pause();
     }
-
-
 
     const spriteSheetRef = useRef(null);
     const avatarImage = (pet) => {
@@ -140,14 +133,14 @@ const PetDisplay = ({ avatarInfo, setAvatar }) => {
     return (
         <div className='pet-display'>
             <Card style={{ width: '25rem' }}>
-                <Card.Header className='pet-name'>{avatarInfo.pet_name}</Card.Header>
+                <Card.Header className='pet-name'>{avatar_handler?.avatarInfo.pet_name}</Card.Header>
 
                 <div className="Board" ref={drop} >
 
                     <div className='p-sprite-display'>
                         <img src={bgimage} alt="background" className="bg-sprite" />
                         <Spritesheet
-                            image={avatarImage(avatarInfo)}
+                            image={avatarImage(avatar_handler?.avatarInfo)}
                             refs={spriteSheetRef}
                             className="p-sprite"
                             stopLastFrame={true}
@@ -173,7 +166,7 @@ const PetDisplay = ({ avatarInfo, setAvatar }) => {
                 <Card.Body className='pd-bg'>
 
                     <Card.Text className='pet-desc-text'>
-                        {avatarInfo.flavour_text}
+                        {avatar_handler?.avatarInfo.flavour_text}
                     </Card.Text>
                 </Card.Body>
                 <ListGroup className="list-group-flush">
