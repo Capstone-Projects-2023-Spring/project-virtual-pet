@@ -4,9 +4,10 @@ import { Form, Row, Col, Button, Card, Stack} from "react-bootstrap";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 import AvatarContext from "../../context/AvatarContext";
-
+import GlobalContext from "../../context/GlobalContext";
 function PetProfPage() {
-  const handlers = useContext(AvatarContext);
+  //const handlers = useContext(AvatarContext);
+  const contextHandler = useContext(GlobalContext)
   const axiosPrivate = useAxiosPrivate();
 
   const [petName, setPetName] = useState("");
@@ -24,20 +25,20 @@ function PetProfPage() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log("PET BEFORE UPDATE", handlers.avatarInfo);
+    console.log("PET BEFORE UPDATE", contextHandler.avatarInfo);
     const updatedAvatar = {
-      ...handlers?.avatarInfo,
-      pet_name: petName.trim() === "" ? handlers.avatarInfo.pet_name : petName,
+      ...contextHandler?.avatarInfo,
+      pet_name: petName.trim() === "" ? contextHandler.avatarInfo.pet_name : petName,
       flavour_text:
         flavourText.trim() === ""
-          ? handlers.avatarInfo.flavour_text
+          ? contextHandler.avatarInfo.flavour_text
           : flavourText,
     };
     axiosPrivate
-      .patch(`/avatar/${handlers?.avatarInfo.avatar_id}/`, updatedAvatar)
+      .patch(`/avatar/${contextHandler?.avatarInfo.avatar_id}/`, updatedAvatar)
       .then((response) => {
         console.log("response.data:", response.data);
-        handlers?.setAvatar(response.data); //change this to add to previous state instead of replacing completely (in case of >1 avatar for 1 user)
+        contextHandler?.setAvatar(response.data); //change this to add to previous state instead of replacing completely (in case of >1 avatar for 1 user)
       })
       .catch((err) => {
         console.log(err);
@@ -67,7 +68,7 @@ function PetProfPage() {
                 <Form.Control
                   type="text"
                   value={petName}
-                  placeholder={handlers.avatarInfo.pet_name}
+                  placeholder={contextHandler.avatarInfo.pet_name}
                   onChange={handlePetNameChange}
                 />
               </Col>
@@ -80,7 +81,7 @@ function PetProfPage() {
                   as="textarea"
                   rows={3}
                   value={flavourText}
-                  placeholder={handlers.avatarInfo.flavour_text}
+                  placeholder={contextHandler.avatarInfo.flavour_text}
                   onChange={handleFlavourTextChange}
                 />
               </Col>
