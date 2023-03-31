@@ -6,27 +6,28 @@ import '../Inventory/Inventory.css'
 import orangesheet from '../../../src/images/orange_happy_sheet.png'
 import graysheet from '../../../src/images/gray_happy_sheet.png'
 import { useDrop } from "react-dnd";
-import InventoryContext from '../../context/InventoryContext.js';
+//import InventoryContext from '../../context/InventoryContext.js';
 import { useContext, useEffect, useRef, useState } from 'react';
 import Spritesheet from 'react-responsive-spritesheet'
 import bgimage from '../../images/bg.gif'
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import CalculateXP from '../../algos/assignXP';
 import CalculatePetLevel from '../../algos/calculatePetLevel';
-import AvatarContext from "../../context/AvatarContext";
+//import AvatarContext from "../../context/AvatarContext";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
-
+import GlobalContext from '../../context/GlobalContext.js';
 // (next level - remainder) / (next level) //
 const PetDisplay = ({ avatarInfo, setAvatar }) => {
     //TODO - shouldn't call calc-pet-lev 3 times
     const axiosPrivate = useAxiosPrivate();
-    const avatar_handler = useContext(AvatarContext);
+    //const avatar_handler = useContext(AvatarContext);
+    const contextHandler = useContext(GlobalContext);
     const [spritesheetInstance, setSpritesheetInstance] = useState(null);
     //const [exp, setExp] = useState(avatar_handler.avatarInfo.total_xp);
     //const [level, setLevel] = useState(CalculatePetLevel(avatar_handler.avatarInfo.total_xp).LEVEL);
     //const [remainder, setRemainder] = useState(CalculatePetLevel(avatar_handler.avatarInfo.total_xp).REMAINDER);
     //const [next_level, setNextLevel] = useState(CalculatePetLevel(avatar_handler.avatarInfo.total_xp).REMAINDER);  
-    const [level_info, setLevelInfo] = useState(CalculatePetLevel(avatar_handler?.avatarInfo.total_xp))
+    const [level_info, setLevelInfo] = useState(CalculatePetLevel(contextHandler?.avatarInfo.total_xp))
    // const [ratio,setRatio] = useState(level_info.NEXT_LEVEL-level_info.REMAINDER/level_info.NEXT_LEVEL ) //TODO susss
 
     function animateSpriteSheet() {
@@ -73,24 +74,24 @@ const PetDisplay = ({ avatarInfo, setAvatar }) => {
     const getExp = (candy) => {
         //console.log('WTF')
         //getLevel()
-        //console.log("HELO?", avatar_handler.avatarInfo)
+        //console.log("HELO?", contextHandler.avatarInfo)
         //console.log("CANDY----->",candy)
         const received_xp = CalculateXP(candy.candy_base_type, candy.candy_level)
     
-        const total_xp = received_xp + avatar_handler.avatarInfo.total_xp
+        const total_xp = received_xp + contextHandler.avatarInfo.total_xp
         
         console.log("TOTAL XP----------->", total_xp)
         const updatedAvatar = {
-            ...avatar_handler?.avatarInfo,
+            ...contextHandler?.avatarInfo,
             total_xp:total_xp
           };
           console.log("UPDATED AVATAR",updatedAvatar)
           axiosPrivate
-            .patch(`/avatar/${avatar_handler?.avatarInfo.avatar_id}/`, updatedAvatar)
+            .patch(`/avatar/${contextHandler?.avatarInfo.avatar_id}/`, updatedAvatar)
             .then((response) => {
               console.log("response.data:", response.data);
-              avatar_handler?.setAvatar(response.data); //change this to add to previous state instead of replacing completely (in case of >1 avatar for 1 user)
-              getLevel(avatar_handler.avatarInfo.total_xp)
+              contextHandler?.setAvatar(response.data); //change this to add to previous state instead of replacing completely (in case of >1 avatar for 1 user)
+              getLevel(contextHandler.avatarInfo.total_xp)
                 
             })
             .catch((err) => {
@@ -117,25 +118,25 @@ const PetDisplay = ({ avatarInfo, setAvatar }) => {
 
     }
 
-    let handlers = useContext(InventoryContext)
+    //let handlers = useContext(InventoryContext)
     // Accepts images(candy) and calls candyDropped() when a candy is fed
     let [{ isOver }, drop] = useDrop(() => ({
         // What objects to accept
         accept: "image",
         drop: (item) => {
-            let candy = handlers.inv.find((candy) => candy.inventory_id === item.id)
+            let candy = contextHandler.inv.find((candy) => candy.inventory_id === item.id)
             
             console.log("CANDY------>",candy)
             getExp(candy);
             console.log(item)
             //console.log(handlers.inv.find(item.id));
-            handlers.updateInventory(item.id);
+            contextHandler.updateInventory(item.id);
             
         },
         collect: (monitor) => ({
             isOver: !!monitor.isOver(),
         }),
-    }), [handlers.inv])
+    }), [contextHandler.inv])
 
     return (
         <div className='pet-display'>
