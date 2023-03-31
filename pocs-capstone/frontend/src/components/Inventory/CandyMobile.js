@@ -33,7 +33,7 @@ function Candy({ id, quantity, candy_base_type, candy_level }) {
 	const end = (e, enough) => {
 		console.log('END');
         console.log(enough ? 'Click released after enough time': 'Click released too soon');            
-	    setIsExploding(false);
+	    setTimeout(() => setIsExploding(false), 1000); 
     } 
 
     const handlers = useContext(GlobalContext)
@@ -42,9 +42,8 @@ function Candy({ id, quantity, candy_base_type, candy_level }) {
 		console.log('CLICK AND HOLD');  
         handlers.updateInventory(id);
         handlers.getExp(candy_base_type, candy_level);
-        console.log("Before set true", isExploding);
         setIsExploding(true);
-        console.log("After set true", isExploding);
+        
     
 	} 
 
