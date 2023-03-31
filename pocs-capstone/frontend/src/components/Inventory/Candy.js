@@ -1,12 +1,19 @@
 import React from "react";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { useDrag } from "react-dnd";
 import './Inventory.css'
 import { Badge, OverlayTrigger, Tooltip, Card } from 'react-bootstrap';
 import GlobalContext from "../../context/GlobalContext";
 import ClickNHold from "./ClickNHold";
+import ConfettiExplosion from 'react-confetti-explosion';
+
 // Renders Candy component based off props passed from InventoryBox's inventory state
 function Candy({ id, quantity, candy_base_type, candy_level }) {
+
+    const [isExploding, setIsExploding] = useState(false);
+
+
+
 
     // let [{ isDragging }, drag] = useDrag(() => ({
     //     type: "image",
@@ -21,23 +28,29 @@ function Candy({ id, quantity, candy_base_type, candy_level }) {
     // const isMobile = width <= 850;
 
 
-    const start =(e) => {
-		console.log('START'); 
-	} 
-    
-	const end = (e, enough) => {
-		console.log('END');
-        console.log(enough ? 'Click released after enough time': 'Click released too soon');            
-	} 
+    const start = (e) => {
+        console.log('START');
+    }
+
+    const end = (e, enough) => {
+        console.log('END');
+        console.log(enough ? 'Just right' : 'Click released too soon');
+        setIsExploding(false);
+    }
 
     const handlers = useContext(GlobalContext)
     // Feed pet
-	const clickNHold = (e) =>{
-		console.log('CLICK AND HOLD');  
-            handlers.updateInventory(id);
-            handlers.getExp(candy_base_type, candy_level);
-            
-	} 
+    const clickNHold = (e) => {
+        console.log('CLICK AND HOLD');
+        handlers.updateInventory(id);
+        handlers.getExp(candy_base_type, candy_level);
+        console.log("Before set true", isExploding);
+        setIsExploding(true);
+        console.log("After set true", isExploding);
+
+
+
+    }
 
     // Determine candy image to render
     let candyImage = () => {
@@ -121,50 +134,53 @@ function Candy({ id, quantity, candy_base_type, candy_level }) {
                     <span>Candy Base Type: <strong>{candy_base_type}</strong> </span>
                     <span>Candy Level: <strong>{candy_level}</strong></span>
                 </Tooltip >
-            } > 
-            
-           
-            <div className="grid-wrapper">
+            } >
+
+
+
+                <div className="grid-wrapper">
+                    {isExploding && <ConfettiExplosion />}
+
                     {/* Render ClickNHold wrapped candy if quantity is greater than 0 */}
-                    {quantity !== 0 ? 
-                    
-                    <ClickNHold 
-                        time={2} // Time to keep pressing. Default is 2
-                        // onStart={start} // Start callback
-                        onClickNHold={clickNHold} //Timeout callback
-                        // onEnd={end} 
-                        
-                                > 
-                        <div className="grid-item" >
-                            <Badge pill bg="secondary" className="candy-q">
-                            {quantity}
-                            </Badge>
-                        
-                            <div className="candy-wrapper">  
+                    {quantity !== 0 ?
+
+                        <ClickNHold
+                            time={2} // Time to keep pressing. Default is 2
+                            // onStart={start} // Start callback
+                            onClickNHold={clickNHold} //Timeout callback
+                            onEnd={end} 
+
+                        >
+                            <div className="grid-item" >
+                                <Badge pill bg="secondary" className="candy-q">
+                                    {quantity}
+                                </Badge>
+
+                                <div className="candy-wrapper">
                                     <img className="candy-photo"
                                         src={candyImage(candy_base_type)}
                                         alt="Candy"
-                                         />   
-                                        
-                            </div>
+                                    />
 
-                        </div> 
-                    </ClickNHold> 
-                    : 
+                                </div>
+
+                            </div>
+                        </ClickNHold>
+                        :
                         <div className="grid-item" >
                             <Badge pill bg="secondary" className="candy-q">
-                            {quantity}
+                                {quantity}
                             </Badge>
                             <div className="candy-wrapper">
                                 <img className="candy-photo"
                                     src={candyImage(candy_base_type)}
                                     alt="Candy"
-                                
-                                    style={{ filter: quantity===0 ?  "grayscale(100%)" : '' }} />
-                            </div> 
+
+                                    style={{ filter: quantity === 0 ? "grayscale(100%)" : '' }} />
+                            </div>
                         </div>
                     }
-            </div>
+                </div>
 
             </OverlayTrigger >
 
