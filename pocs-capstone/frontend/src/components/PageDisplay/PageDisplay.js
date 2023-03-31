@@ -4,11 +4,13 @@ import CalendarPage from "./CalendarPage";
 import PetProfPage from "./PetProfPage";
 import TaskListContext from '../../context/TaskListContext'
 import InventoryBox from "../Inventory/InventoryBox";
+import InventoryBoxMobile from "../Inventory/InventoryBoxMobile";
 
 import { Tab, Tabs } from 'react-bootstrap';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import { useState, useEffect, useContext } from 'react'
 import InventoryContext from "../../context/InventoryContext";
+import { useWindowWidth } from "@react-hook/window-size";
 
 
 const PageDisplay = () => {
@@ -16,6 +18,10 @@ const PageDisplay = () => {
     const axiosPrivate = useAxiosPrivate()
     const baseURL = `/tasks/`
     let inventoryHandlers = useContext(InventoryContext)
+    const width = useWindowWidth();
+    const isMobile = width <= 850;
+
+
 
     const [taskList, setTaskList] = useState([])
 
@@ -167,7 +173,8 @@ const PageDisplay = () => {
                         <CalendarPage />
                     </Tab>
                     <Tab eventKey="inventory" title="Inventory">
-                        < InventoryBox />
+                        {isMobile ?
+                        < InventoryBoxMobile /> : < InventoryBox />}
                     </Tab>
                     <Tab eventKey="profile" title="Profile">
                         < PetProfPage />

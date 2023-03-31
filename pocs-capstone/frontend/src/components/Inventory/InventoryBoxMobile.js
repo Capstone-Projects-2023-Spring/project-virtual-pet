@@ -1,5 +1,5 @@
 import React from "react";
-import Candy from "./Candy";
+import CandyMobile from "./CandyMobile";
 import './Inventory.css'
 import { useContext } from "react";
 import InventoryContext from "../../context/InventoryContext";
@@ -34,7 +34,7 @@ function InventoryBox() {
                     <Card.Header>
                         <Stack direction="horizontal" gap={3}>
                             <div className='inventory-header'>
-                                ITEMSDESKTOP
+                                ITEMS
                             </div>
                             <div className="ms-auto">
                                 <Button variant="primary" onClick={contextHandler?.postFullInventory}>+ Populate Inv.</Button>
@@ -58,18 +58,18 @@ function InventoryBox() {
                         :
 
                         // All the candies rendered below - logic included to not show if candy lists are empty 
-                        <div className="inventory-wrapper">
+                        <div className="inventory-wrapper-mobile">
                             {Object.keys(candies).map((key, index) => {
                                 return (
                                     <div key={index}>
                                         {candies[key].length !== 0 ?
                                             <div className="space-candy-types">
                                                 <div className="text-wrapper">{key}</div>
-                                                <div className="inventory-wrapper-sizes">
+                                                <div className="inventory-wrapper-sizes-mobile">
                                                     {candies[key].map((candy, id) => {
                                                         // https://github.com/react-dnd/react-dnd/issues/748#issuecomment-348710655
                                                         // DONT use index from mapping for react-dnd item key!!!
-                                                        return <Candy key={candy.inventory_id} id={candy.inventory_id} quantity={candy.quantity} candy_base_type={candy.candy_base_type} candy_level={candy.candy_level} />
+                                                        return <CandyMobile key={candy.inventory_id} id={candy.inventory_id} quantity={candy.quantity} candy_base_type={candy.candy_base_type} candy_level={candy.candy_level} />
                                                     })}
                                                 </div>
                                                 <hr />
