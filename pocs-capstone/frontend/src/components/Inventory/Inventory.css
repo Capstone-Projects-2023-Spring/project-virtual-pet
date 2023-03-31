@@ -291,6 +291,22 @@ img {
 
 }
 
+.candy-q-mobile {
+  width: 40px;
+  height: 40px;
+  padding: 8px;
+  position: absolute;
+  top: -15px;
+  right: -15px;
+  pointer-events: none;
+  user-select: none; /* supported by Chrome and Opera */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+
+}
+
 
 .space-candy-types {
   margin-bottom: 40px;

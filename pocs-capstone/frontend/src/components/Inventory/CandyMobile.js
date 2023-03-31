@@ -146,7 +146,7 @@ function Candy({ id, quantity, candy_base_type, candy_level }) {
                         
                                 > 
                         <div className="grid-item-mobile" >
-                            <Badge pill bg="secondary" className="candy-q">
+                            <Badge pill bg="secondary" className="candy-q-mobile">
                             {quantity}
                             </Badge>
                         
@@ -162,7 +162,7 @@ function Candy({ id, quantity, candy_base_type, candy_level }) {
                     </ClickNHold> 
                     : 
                         <div className="grid-item-mobile" >
-                            <Badge pill bg="secondary" className="candy-q">
+                            <Badge pill bg="secondary" className="candy-q-mobile">
                             {quantity}
                             </Badge>
                             <div className="candy-wrapper-mobile">
