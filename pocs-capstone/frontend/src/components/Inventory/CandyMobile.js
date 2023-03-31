@@ -1,12 +1,17 @@
 import React from "react";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { useDrag } from "react-dnd";
 import './Inventory.css'
 import { Badge, OverlayTrigger, Tooltip, Card } from 'react-bootstrap';
 import GlobalContext from "../../context/GlobalContext";
 import ClickNHold from "./ClickNHold";
+import ConfettiExplosion from 'react-confetti-explosion';
+
 // Renders Candy component based off props passed from InventoryBox's inventory state
 function Candy({ id, quantity, candy_base_type, candy_level }) {
+
+
+    const [isExploding, setIsExploding] = useState(false);
 
     // let [{ isDragging }, drag] = useDrag(() => ({
     //     type: "image",
@@ -28,15 +33,19 @@ function Candy({ id, quantity, candy_base_type, candy_level }) {
 	const end = (e, enough) => {
 		console.log('END');
         console.log(enough ? 'Click released after enough time': 'Click released too soon');            
-	} 
+	    setIsExploding(false);
+    } 
 
     const handlers = useContext(GlobalContext)
     // Feed pet
 	const clickNHold = (e) =>{
 		console.log('CLICK AND HOLD');  
-            handlers.updateInventory(id);
-            handlers.getExp(candy_base_type, candy_level);
-            
+        handlers.updateInventory(id);
+        handlers.getExp(candy_base_type, candy_level);
+        console.log("Before set true", isExploding);
+        setIsExploding(true);
+        console.log("After set true", isExploding);
+    
 	} 
 
     // Determine candy image to render
@@ -125,6 +134,7 @@ function Candy({ id, quantity, candy_base_type, candy_level }) {
             
            
             <div className="grid-wrapper-mobile">
+                    {isExploding && <ConfettiExplosion />}
                     {/* Render ClickNHold wrapped candy if quantity is greater than 0 */}
                     {quantity !== 0 ? 
                     
@@ -132,7 +142,7 @@ function Candy({ id, quantity, candy_base_type, candy_level }) {
                         time={2} // Time to keep pressing. Default is 2
                         // onStart={start} // Start callback
                         onClickNHold={clickNHold} //Timeout callback
-                        // onEnd={end} 
+                        onEnd={end} 
                         
                                 > 
                         <div className="grid-item-mobile" >
