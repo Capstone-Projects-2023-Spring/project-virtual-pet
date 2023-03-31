@@ -120,30 +120,30 @@ const PetDisplay = ({ avatarInfo, setAvatar }) => {
 
     //let handlers = useContext(InventoryContext)
     // Accepts images(candy) and calls candyDropped() when a candy is fed
-    let [{ isOver }, drop] = useDrop(() => ({
-        // What objects to accept
-        accept: "image",
-        drop: (item) => {
-            let candy = contextHandler.inv.find((candy) => candy.inventory_id === item.id)
+    // let [{ isOver }, drop] = useDrop(() => ({
+    //     // What objects to accept
+    //     accept: "image",
+    //     drop: (item) => {
+    //         let candy = contextHandler.inv.find((candy) => candy.inventory_id === item.id)
             
-            console.log("CANDY------>",candy)
-            getExp(candy);
-            console.log(item)
-            //console.log(handlers.inv.find(item.id));
-            contextHandler.updateInventory(item.id);
+    //         console.log("CANDY------>",candy)
+    //         getExp(candy);
+    //         console.log(item)
+    //         //console.log(handlers.inv.find(item.id));
+    //         contextHandler.updateInventory(item.id);
             
-        },
-        collect: (monitor) => ({
-            isOver: !!monitor.isOver(),
-        }),
-    }), [contextHandler.inv])
+    //     },
+    //     collect: (monitor) => ({
+    //         isOver: !!monitor.isOver(),
+    //     }),
+    // }), [contextHandler.inv])
 
     return (
         <div className='pet-display'>
             <Card style={{ width: '25rem' }}>
                 <Card.Header className='pet-name'>{avatarInfo.pet_name}</Card.Header>
 
-                <div className="Board" ref={drop} >
+                <div className="Board" >
 
                     <div className='p-sprite-display'>
                         <img src={bgimage} alt="background" className="bg-sprite" />

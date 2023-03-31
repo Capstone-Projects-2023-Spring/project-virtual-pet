@@ -1,19 +1,40 @@
 import React from "react";
+import { useContext } from "react";
 import { useDrag } from "react-dnd";
 import './Inventory.css'
 import { Badge, OverlayTrigger, Tooltip, Card } from 'react-bootstrap';
+import GlobalContext from "../../context/GlobalContext";
+import ClickNHold from "./ClickNHold";
 // Renders Candy component based off props passed from InventoryBox's inventory state
 function Candy({ id, quantity, candy_base_type, candy_level }) {
 
-    let [{ isDragging }, drag] = useDrag(() => ({
-        type: "image",
-        item: { id: id },
-        // Optional collect function used for accessing isDragging boolean
-        collect: (monitor) => ({
-            isDragging: !!monitor.isDragging(),
-        }),
+    // let [{ isDragging }, drag] = useDrag(() => ({
+    //     type: "image",
+    //     item: { id: id },
+    //     // Optional collect function used for accessing isDragging boolean
+    //     collect: (monitor) => ({
+    //         isDragging: !!monitor.isDragging(),
+    //     }),
 
-    }));
+    // }));
+
+    const start =(e) => {
+		console.log('START'); 
+	} 
+    
+	const end = (e, enough) => {
+		console.log('END');
+        console.log(enough ? 'Click released after enough time': 'Click released too soon');            
+	} 
+
+    const handlers = useContext(GlobalContext)
+    // Feed pet
+	const clickNHold = (e) =>{
+		console.log('CLICK AND HOLD');  
+            handlers.updateInventory(id);
+            
+            // handlers.getExp(candy_base_type, candy_level);
+	} 
 
     // Determine candy image to render
     let candyImage = () => {
@@ -99,20 +120,47 @@ function Candy({ id, quantity, candy_base_type, candy_level }) {
                 </Tooltip >
             }
             >
-                <div className="grid-wrapper">
-                    <Badge pill bg="secondary" className="candy-q">
-                        {quantity}
-                    </Badge>
-                    <div className="grid-item" >
-                        <div className="candy-wrapper" ref={drag}>
-                            <img className="candy-photo"
-                                src={candyImage(candy_base_type)}
-                                alt="Candy"
-                                style={{ filter: quantity===0 ?  "grayscale(100%)" : '' }} />
-                        </div>
+            <div className="grid-wrapper">
+                    {/* Render ClickNHold wrapped candy if quantity is greater than 0 */}
+                    {quantity !== 0 ? 
+                    
+                    <ClickNHold 
+                        time={2} // Time to keep pressing. Default is 2
+                        // onStart={start} // Start callback
+                        onClickNHold={clickNHold} //Timeout callback
+                        // onEnd={end} 
+                        
+                                > 
+                        <div className="grid-item" >
+                            <Badge pill bg="secondary" className="candy-q">
+                            {quantity}
+                            </Badge>
+                        
+                            <div className="candy-wrapper">  
+                                    <img className="candy-photo"
+                                        src={candyImage(candy_base_type)}
+                                        alt="Candy"
+                                         />   
+                                        
+                            </div>
 
-                    </div>
-                </div>
+                        </div> 
+                    </ClickNHold> 
+                    : 
+                        <div className="grid-item" >
+                            <Badge pill bg="secondary" className="candy-q">
+                            {quantity}
+                            </Badge>
+                            <div className="candy-wrapper">
+                                <img className="candy-photo"
+                                    src={candyImage(candy_base_type)}
+                                    alt="Candy"
+                                
+                                    style={{ filter: quantity===0 ?  "grayscale(100%)" : '' }} />
+                            </div> 
+                        </div>
+                    }
+            </div>
 
             </OverlayTrigger >
 

@@ -155,7 +155,6 @@ const Main = () => {
     return (
       <GlobalContext.Provider value={handlers}>
       {/*<AvatarContext.Provider value={shareData}>*/}
-        <DndProvider backend={HTML5Backend}>
           {/*<InventoryContext.Provider value={handlers}>*/}
             {/*<SpriteSheetContext.Provider value={animate}>*/}
               <div className="flex-pages">
@@ -164,7 +163,6 @@ const Main = () => {
               </div>
            {/* </SpriteSheetContext.Provider>*/}
          {/* </InventoryContext.Provider>*/} 
-        </DndProvider>
       {/*</AvatarContext.Provider>*/}
       </GlobalContext.Provider>
 
@@ -173,7 +171,6 @@ const Main = () => {
     return (
       <GlobalContext.Provider value={handlers}>
       {/*<AvatarContext.Provider value={shareData}>*/}
-        <DndProvider backend={HTML5Backend}>
           {/*<InventoryContext.Provider value={handlers}>*/}
             {/*<SpriteSheetContext.Provider value={animate}>*/}
               <div>
@@ -186,7 +183,6 @@ const Main = () => {
               </div>
            {/* </SpriteSheetContext.Provider>*/}
          {/* </InventoryContext.Provider>*/} 
-         </DndProvider>
       {/*</AvatarContext.Provider>*/}
       </GlobalContext.Provider>
     );
