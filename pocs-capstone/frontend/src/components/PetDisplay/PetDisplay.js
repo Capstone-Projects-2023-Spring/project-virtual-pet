@@ -31,14 +31,14 @@ const PetDisplay = ({ avatarInfo, setAvatar }) => {
    // const [ratio,setRatio] = useState(level_info.NEXT_LEVEL-level_info.REMAINDER/level_info.NEXT_LEVEL ) //TODO susss
 
     function animateSpriteSheet() {
-        if (spritesheetInstance) {
-            spritesheetInstance.goToAndPlay(1);
-            spritesheetInstance.pause();
+        if (contextHandler?.spritesheetInstance) {
+            contextHandler?.spritesheetInstance.goToAndPlay(1);
+            contextHandler?.spritesheetInstance.pause();
         }
     }
 
     function handleGetInstance(spritesheet) {
-        setSpritesheetInstance(spritesheet);
+        contextHandler?.setSpritesheetInstance(spritesheet);
     }
 
     const handleClick = (spritesheet) => {

@@ -18,6 +18,9 @@ function Candy({ id, quantity, candy_base_type, candy_level }) {
 
     // }));
 
+    // const isMobile = width <= 850;
+
+
     const start =(e) => {
 		console.log('START'); 
 	} 
@@ -32,8 +35,8 @@ function Candy({ id, quantity, candy_base_type, candy_level }) {
 	const clickNHold = (e) =>{
 		console.log('CLICK AND HOLD');  
             handlers.updateInventory(id);
+            handlers.getExp(candy_base_type, candy_level);
             
-            // handlers.getExp(candy_base_type, candy_level);
 	} 
 
     // Determine candy image to render
@@ -118,8 +121,9 @@ function Candy({ id, quantity, candy_base_type, candy_level }) {
                     <span>Candy Base Type: <strong>{candy_base_type}</strong> </span>
                     <span>Candy Level: <strong>{candy_level}</strong></span>
                 </Tooltip >
-            }
-            >
+            } > 
+            
+           
             <div className="grid-wrapper">
                     {/* Render ClickNHold wrapped candy if quantity is greater than 0 */}
                     {quantity !== 0 ? 

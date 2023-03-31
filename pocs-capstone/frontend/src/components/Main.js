@@ -13,6 +13,8 @@ import PopulateInv from "./Inventory/PopulateInv";
 import SpriteSheetContext from "../context/SpriteSheetContext.js";
 import AvatarContext from "../context/AvatarContext";
 import GlobalContext from "../context/GlobalContext.js";
+import CalculateXP from "../algos/assignXP.js";
+import CalculatePetLevel from "../algos/calculatePetLevel.js";
 
 const Main = () => {
   const axiosPrivate = useAxiosPrivate();
@@ -22,7 +24,11 @@ const Main = () => {
 
   const [ready, setReady] = useState(false);
 
-  let [inv, setInv] = useState([]);
+  const [inv, setInv] = useState([]);
+  // Moved from PetDisplay
+  const [level_info, setLevelInfo] = useState(CalculatePetLevel(avatarInfo.total_xp))
+  const [spritesheetInstance, setSpritesheetInstance] = useState(null);
+
 
   let spriteSheetRef = useRef(null);
   useEffect(() => {
@@ -126,6 +132,40 @@ const Main = () => {
 
     setInv([]);
   };
+  // Moved from PetDisplay - passed base type and level when called in Candy
+  const getExp = (candy_base_type, candy_level) => {
+    const received_xp = CalculateXP(candy_base_type, candy_level)
+    console.log("XP", avatarInfo.total_xp)
+
+    const total_xp = received_xp + avatarInfo.total_xp
+    
+    console.log("TOTAL XP----------->", total_xp)
+    const updatedAvatar = {
+        ...avatarInfo,
+        total_xp:total_xp
+      };
+      console.log("UPDATED AVATAR",updatedAvatar)
+      axiosPrivate
+        .patch(`/avatar/${avatarInfo.avatar_id}/`, updatedAvatar)
+        .then((response) => {
+          console.log("response.data:", response.data);
+          setAvatar(response.data); //change this to add to previous state instead of replacing completely (in case of >1 avatar for 1 user)
+          getLevel(avatarInfo.total_xp)
+            
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+  };
+  // Moved from PetDisplay
+  const getLevel = (xp) => {
+    setLevelInfo(CalculatePetLevel(xp));
+    // Heart animation. Need to talk to Mary and Alex about this. 
+    spritesheetInstance.goToAndPlay(1);
+    spritesheetInstance.pause();
+    
+
+}
 
   const handlers = {
     inv,
@@ -137,7 +177,9 @@ const Main = () => {
     deleteAll,
     avatarInfo,
     setAvatar,
-    animateSpriteSheet
+    animateSpriteSheet,
+    setSpritesheetInstance,
+    getExp,
   };
 
   const animate = {
