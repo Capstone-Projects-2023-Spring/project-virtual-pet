@@ -1,25 +1,46 @@
 import kittycat from '../../images/orangecat.png';
-
+import Spritesheet from 'react-responsive-spritesheet'
 import bgimage from '../../images/bg.gif'
+import orangesheet from '../../../src/images/orange_happy_sheet.png'
+import graysheet from '../../../src/images/gray_happy_sheet.png' 
 import "./PetDisplay"
-import { useState } from 'react'
+import { useState, useContext, useRef } from 'react'
+import '../../../src/components/AnimateChoice.css'
+import SpriteSheetContext from '../../context/SpriteSheetContext';
+
+
+// import { useDrop } from "react-dnd";
 
 const PetSprite = ({ avatarInfo, setAvatar, inventory, setInventory }) => {
-    const [sprite, setSprite] = useState("")
+    const spriteSheetRef = useRef(null);
+    //const spriteData = useContext(SpriteSheetContext);
+   // const [spriteplay, setSprite] = useState('');
+    //const [spritesheetState, setSpritesheetState] = useState(spriteData);
+    //const [sprite, setSprite] = useState("")
 
     const handleItemRelease = () => {
         // setSprite("PATH TO IMAGE")
     }
+
+
+    const handleClick = (spritesheet) => {
+        spritesheet.goToAndPlay(1);
+        spritesheet.pause();
+    }
+
+    // Can handle drop here maybe too but wasn't working with background so will ask group
 
     const avatarImage = (pet) => {
         switch (pet.avatar_type) {
             case 'CT':
                 switch (pet.palette) {
                     case 0:
-                        return require('../../images/orangecat.png')
+                        //return require('../../images/orangecat.png')
+                        return orangesheet;
                     case 1:
                         // CHANGE TO IMAGE OF OTHER CAT (black palette)
-                        return require('../../images/graycat.png')
+                       // return require('../../images/graycat.png')
+                       return graysheet;
                 }
 
             case 'DG':
@@ -32,13 +53,30 @@ const PetSprite = ({ avatarInfo, setAvatar, inventory, setInventory }) => {
         }
     }
 
-
-
     return (
         <div className='p-sprite-display'>
             <img src={bgimage} alt="background" className="bg-sprite" />
-            <img src={avatarImage(avatarInfo)} alt="background" className="p-sprite" />
-        </div>
+            <Spritesheet
+                image={avatarImage(avatarInfo)}
+                refs = {spriteSheetRef}
+                //{...spriteData}
+                className="p-sprite"
+                stopLastFrame={true}
+                widthFrame={255}
+                heightFrame={350}
+                steps={5}
+                fps={3}
+                loop={false}
+                autoplay={false}
+                isResponsive={false}
+                onClick={spritesheet => {handleClick(spritesheet)}}
+                getInstance={spritesheet => {
+                    this.spritesheetInstance = spritesheet;}}
+                  //  onClick = {this.feedanimate.bind}
+               // onClick = {setSprite('run')}
+               // isPlaying={spriteplay === 'run'}
+            />
+            </div>
     )
 }
 

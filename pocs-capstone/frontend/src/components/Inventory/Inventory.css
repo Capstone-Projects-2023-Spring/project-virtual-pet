@@ -1,0 +1,177 @@
+.Candy {
+  display: flex;
+  flex-direction: row;
+  margin: 10px;
+}
+
+.row {
+  float: left;
+  position: relative;
+  width: 100%;
+}
+
+img {
+  margin: 5px;
+}
+
+.Wrapper {
+  padding: 20;
+  border: "5px solid black";
+  height: 200;
+  width: 1040;
+}
+
+.Board {
+  width: 500px;
+  height: 500px;
+  /* border: 2px solid black; */
+  display: flex;
+  flex-flow: column nowrap;
+  align-self: center;
+  justify-self: center;
+}
+
+.Candy-Quantity {
+
+  top: -0.75em;
+  right: -0.75em;
+  width: 2.5em;
+  height: 2.5em;
+  display: flex;
+  justify-content: center;
+  padding: 10px 10px;
+  border-radius: 50%;
+  background: aquamarine;
+  color: darkblue;
+}
+
+.inventory-header {
+  font-weight: bold;
+  font-size: calc(2vw+.4vw);
+}
+
+.inventory-box {
+  padding: 10;
+  border-radius: 5px;
+  border-color: black;
+
+  /* height: 600; 
+  width: 910;
+  margin: 100;
+  background-color: "pink";
+  overflow: scroll; */
+
+}
+
+/* Wrap around all of the inventory, enables scrolling, etc */
+.inventory-wrapper {
+  min-height: 85vh;
+  max-height: 85vh;
+  border-radius: 0px;
+
+  margin-bottom: 10px;
+  padding: 50px;
+  overflow: scroll;
+  -webkit-overflow-scrolling: touch;
+}
+
+
+/* Makes the candies appears in a grid */
+.inventory-wrapper-sizes {
+
+  display: grid;
+  justify-content: space-evenly;
+  justify-items: center;
+  align-content: space-evenly;
+  align-items: center;
+
+  /* grid-template-columns: auto auto auto auto auto; */
+  /* https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-rows */
+  grid-template-columns: repeat(auto-fill, 180px);
+
+  grid-auto-rows: 170px;
+
+
+
+}
+
+
+/*  Wrap around badge AND grid item */
+.grid-wrapper {
+  position: relative;
+  text-align: center;
+  font-size: 30px;
+  
+  width: 130px;
+  height: 130px;
+
+  display: flex;
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
+
+}
+
+
+/*  */
+.grid-item {
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 3px solid rgba(255, 192, 203, 0);
+  box-shadow: 0 5px 15px -4px rgb(65, 65, 65);
+  border-radius: 20px;
+
+  /* https://stackoverflow.com/questions/14350126/transition-color-fade-on-hover */
+  -moz-transition: all .2s ease-in;
+  -o-transition: all .2s ease-in;
+  -webkit-transition: all .2s ease-in;
+  transition: all .2s ease-in;
+
+  width: 130px;
+  height: 130px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.grid-item:hover {
+  border: 3px solid rgba(33, 33, 33, 0.747);
+}
+
+.candy-photo {
+  width: 80px;
+  height: auto
+}
+
+.candy-wrapper {
+  width: 130px;
+  height: 130px;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.text-wrapper {
+  /* display: flex;
+  justify-content: center; 
+  align-items: center;  */
+  font-size: calc(1vw+.4vw);
+  font-weight: bold;
+  /* text-decoration: underline; */
+  
+}
+
+.candy-q {
+  width: 40px;
+  height: 40px;
+  padding: 8px;
+  position: absolute;
+  top: -15px;
+  right: -15px;
+
+}
+
+
+.space-candy-types {
+  margin-bottom: 40px;
+}

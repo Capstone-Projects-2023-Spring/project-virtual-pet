@@ -1,12 +1,13 @@
 import Spritesheet from 'react-responsive-spritesheet'
-import orangesheet from './hs.jpg'
-import graysheet from './ghs.jpg'
+import orangesheet from '../../src/images/orange_happy_sheet.png'
+import graysheet from '../../src/images/gray_happy_sheet.png' 
 import './AnimateChoice.css'
 import './textbox.css'
 import Card from 'react-bootstrap/Card';
 import { useState, useRef, useContext } from "react"
 import useAxiosPrivate from '../hooks/useAxiosPrivate'
 import { useNavigate } from 'react-router-dom'
+import { useWindowWidth } from '@react-hook/window-size'
 import { faColonSign } from '@fortawesome/free-solid-svg-icons'
 //import selectpet from './selectpet'
 
@@ -24,6 +25,7 @@ const AnimateChoice = () => {
     const [nameError, setNameError] = useState('')
     const petType = "CT";
     const navigator = useNavigate();
+    const width = useWindowWidth()
     const textChangeHandler = (i) => {
         //    if(enteredText === "") {
         //     setEnteredText("Default");
@@ -54,14 +56,17 @@ const AnimateChoice = () => {
             const updatedShowTextBox = [...showTextBox];
             updatedShowTextBox[index] = false;
             setShowTextBox(updatedShowTextBox);
+            
             const currentDate = new Date().toISOString().slice(0, 10)
             const last_feed = currentDate;
             const last_interaction = currentDate;
-
+            const total_xp = 2;
+            
             const petInfo = {
                 avatar_type: petType,
                 last_interaction,
                 last_feed,
+                total_xp,
                 pet_name: enteredText,
                 palette: index
             };
@@ -94,7 +99,7 @@ const AnimateChoice = () => {
     //contains sprite sheets
     return (
         <div className='petsprite-body'>
-            <Card style={{ width: '130rem' }}>
+            <Card style={{ width: width }}>
                 <Card.Header className='pet-choice'><center><h1>CHOOSE YOUR PET</h1></center></Card.Header> </Card>
             <hr />
             <div className='petname-display'>
@@ -108,14 +113,14 @@ const AnimateChoice = () => {
                         className={`sprite ${selectedIndex !== null && selectedIndex !== 0 ? 'hidden' : ''}`}
                         image={orangesheet}
                         stopLastFrame={true}
-                        widthFrame={266}
-                        heightFrame={305}
-                        steps={2}
-                        fps={20}
+                        widthFrame={255}
+                        heightFrame={350}
+                        steps={5}
+                        fps={3}
                         loop={false}
                         autoplay={false}
                         isResponsive={false}
-                        endAt={2}
+                        endAt={4}
                         onClick={() => handleClick(0)}
                     />
                     <Spritesheet
@@ -124,13 +129,14 @@ const AnimateChoice = () => {
                         stopLastFrame={true}
                         className={`sprite ${selectedIndex !== null && selectedIndex !== 1 ? 'hidden' : ''}`}
                         image={graysheet}
-                        widthFrame={266}
-                        heightFrame={305}
-                        steps={2}
-                        fps={20}
+                        widthFrame={255}
+                        heightFrame={350}
+                        steps={5}
+                        fps={3}
                         loop={false}
                         autoplay={false}
                         isResponsive={false}
+                        endAt = {4}
                         onClick={() => handleClick(1)}
                     />
                 </div>

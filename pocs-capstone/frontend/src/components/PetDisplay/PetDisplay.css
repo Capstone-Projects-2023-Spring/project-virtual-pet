@@ -14,11 +14,17 @@
     border-right-style: solid;
 
 }
+.experience-ratio {
+    font-size: small;
+
+}
+
 
 
 .p-sprite-display {
     display: flex;
     justify-content: center;
+    align-items: center;
     height: auto;
 
 }
@@ -28,6 +34,7 @@
     flex: 1 1 auto;
     width: 0;
     height: auto;
+    
     /* top: 0;
     left: 0; */
     /* width: auto;
@@ -41,7 +48,7 @@
     /* top: 30px;
     left: 30px; */
     top: 220px;
-    width: 70%;
+    /*width: 50%;
     /* border: 1px solid #000000; */
 
 }

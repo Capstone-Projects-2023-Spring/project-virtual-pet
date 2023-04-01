@@ -1,81 +1,108 @@
 import "./PageDisplay.css"
 import TaskPage from "./TaskPage";
-import CalendarPage from "./CalendarPage"
+import CalendarPage from "./CalendarPage";
+import PetProfPage from "./PetProfPage";
 import TaskListContext from '../../context/TaskListContext'
-// import tasks from '../../services/tasks'
-import Tab from 'react-bootstrap/Tab';
-import Tabs from 'react-bootstrap/Tabs';
+import InventoryBox from "../Inventory/InventoryBox";
+
+import { Tab, Tabs } from 'react-bootstrap';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
+import InventoryContext from "../../context/InventoryContext";
 
 
-const PageDisplay = ({ avatarInfo, setAvatar, inventory, setInventory }) => {
+const PageDisplay = () => {
 
     const axiosPrivate = useAxiosPrivate()
     const baseURL = `/tasks/`
-
-    const getTasksB = () => {
-        const request = axiosPrivate.get(baseURL)
-        return request.then(response => response.data)
-    }
-
-    const createTaskB = (newTask) => {
-        const request = axiosPrivate.post(baseURL, newTask)
-        return request.then(response => response.data)
-    }
-
-    const updateTaskB = (taskID, updatedTask) => {
-        const request = axiosPrivate.put(`${baseURL}${taskID}/`, updatedTask)
-        return request.then(response => response.data)
-
-    }
-
-    const deleteTaskB = (taskID) => {
-        const request = axiosPrivate.delete(`${baseURL}${taskID}/`)
-        return request.then(response => response.data)
-    }
-
+    let inventoryHandlers = useContext(InventoryContext)
 
     const [taskList, setTaskList] = useState([])
 
     const fetchData = () => {
-        getTasksB()
+        axiosPrivate.get(baseURL)
             .then(r => {
-                setTaskList(r)
+                setTaskList(r.data)
             })
+
     }
 
     useEffect(fetchData, [])
 
     const updateTask = (id, newTask) => {
-        console.log(newTask, newTask == null)
         const taskItem = taskList.find(t => t.task_id === id)
+
+
+
         const taskItemChanged = newTask == null ?
-            { ...taskItem, completed: !taskItem.completed } :
-            { ...taskItem, title: newTask.title, due_date: newTask.due_date, task_type: newTask.size, description: newTask.description }
+            { ...taskItem, completed: !taskItem.completed, completed_date: (taskItem.completed_date === null ? new Date().toISOString().split('T')[0] : null) } :
+            { ...taskItem, title: newTask.title, due_date: newTask.due_date === '' ? null : newTask.due_date, task_type: newTask.size, description: newTask.description, task_level: newTask.level }
 
 
-        updateTaskB(id, taskItemChanged)
+        // Has the user recieved a candy for this task already?
+        if (taskItemChanged.completed === true && taskItemChanged.received === false) {
+            determineReward(taskItemChanged)
+        }
+
+        axiosPrivate.put(`${baseURL}${id}/`, taskItemChanged)
             .then(r => {
-                console.log(r)
-                setTaskList(taskList.map(t => t.task_id === id ? taskItemChanged : t))
+                setTaskList(taskList.map(t => t.task_id === id ? r.data : t))
             })
+    }
 
-        console.log(taskList.find(t => t.id === id))
+    // Task mark as completed and user has never recieved a candy for this task. Give corresponding candy.
+    let determineReward = (task) => {
+        // Look for candy coresponding to task in inventory
+        let candy = inventoryHandlers?.inv.find(candy => candy.candy_base_type === task.task_type && candy.candy_level === task.task_level)
+        // Does candy exist in inventory
+        if (candy !== undefined) {
+            // Give a candy, update backend, and set state
+            candy.quantity += 1
+            axiosPrivate.put(`/inventory/${candy.inventory_id}/`, candy)
+                .then(r => {
+                    inventoryHandlers.setInv(inventoryHandlers.inv.map(c => c.inventory_id === candy.inventory_id ? r.data : c))
+                })
 
+            task.received = true
+            axiosPrivate.put(`/tasks/${task.task_id}/`, task)
+                .then(r => {
+                    setTaskList(taskList.map(t => t.task_id === task.task_id ? r.data : t))
+                })
 
+        }
+        else {
+            // Create candy, post to backend, and set state
+            let newCandy = {
+                candy_base_type: task.task_type,
+                candy_level: task.task_level,
+                quantity: 1,
+            }
+
+            let candyList = []
+            inventoryHandlers?.createInventoryItem(newCandy)
+                .then(r => {
+                    candyList.push(r)
+                    inventoryHandlers?.setInv([...inventoryHandlers?.inv, ...candyList])
+                })
+
+            task.received = true
+            axiosPrivate.put(`/tasks/${task.task_id}/`, task)
+                .then(r => {
+                    setTaskList(taskList.map(t => t.task_id === task.task_id ? r.data : t))
+                })
+        }
     }
 
     const addTask = (formValues) => {
         const newTask = {
             title: formValues.title,
-            due_date: formValues.due_date,
+            due_date: formValues.due_date === "" ? null : formValues.due_date,
             created_date: new Date().toISOString(),
-            completed_date: "2023-03-08",
+            completed_date: null,
             completed: false,
             active: true,
             task_type: formValues.size,
-            task_level: 1,
+            task_level: formValues.level,
             recurring: false,
             recurring_time_delta: 0,
             description: formValues.description,
@@ -84,26 +111,42 @@ const PageDisplay = ({ avatarInfo, setAvatar, inventory, setInventory }) => {
         }
 
 
-        createTaskB(newTask)
+
+        axiosPrivate.post(baseURL, newTask)
             .then(r => {
-                setTaskList(taskList.concat(r))
+                setTaskList(taskList.concat(r.data))
             })
     }
 
     const deleteTask = (id) => {
 
-        deleteTaskB(id)
+        axiosPrivate.delete(`${baseURL}${id}/`)
             .then(r => {
                 setTaskList(taskList.filter(t => t.task_id !== id))
             })
     }
 
+    const deleteAll = (completedTasks) => {
+        // delete all completed tasks
+        if (completedTasks.length) {
+            completedTasks.forEach(t => {
+                axiosPrivate.delete(`${baseURL}${t.task_id}/`)
+                    .catch(e => {
+                        console.log("ERROR TASKS", e)
+                    })
+            })
+        }
+
+        // keep non completed tasks 
+        const keepTasks = taskList.filter(task => !task.completed)
+        setTaskList(keepTasks)
+    }
+
     const handlers = {
         taskList,
-        setAvatar,
-        setInventory,
         addTask,
         deleteTask,
+        deleteAll,
         updateTask
     }
 
@@ -113,7 +156,7 @@ const PageDisplay = ({ avatarInfo, setAvatar, inventory, setInventory }) => {
                 <Tabs
                     defaultActiveKey="tasks"
                     id="justify-tab-example"
-                    className="mb-3"
+                    className="mb-3 pg-tabs"
                     justify
                 >
                     <Tab eventKey="tasks" title="Tasks">
@@ -124,10 +167,10 @@ const PageDisplay = ({ avatarInfo, setAvatar, inventory, setInventory }) => {
                         <CalendarPage />
                     </Tab>
                     <Tab eventKey="inventory" title="Inventory">
-                        {/* <Sonnet /> */}
+                        < InventoryBox />
                     </Tab>
-                    <Tab eventKey="progress" title="Progress">
-                        {/* <Sonnet /> */}
+                    <Tab eventKey="profile" title="Profile">
+                        < PetProfPage />
                     </Tab>
                 </Tabs>
             </div>
