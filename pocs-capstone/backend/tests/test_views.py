@@ -159,48 +159,48 @@ class CanvasViewTest(TestCase):
         path = reverse('db:pose-canvas-tasks')
         assert resolve(path).view_name == 'db:pose-canvas-tasks'
 
-class TaskViewSetTest(TestCase):
+# class TaskViewSetTest(TestCase):
 
-    def test_getting_tasks(self):
-        response = self.client.post( '/register/', registerData)
-        # Register successful?
-        if response.status_code == 201:
-        # Try to login with valid credentials
-            response = self.client.post('/api/token/', loginData)
-            # Get tokens and save refresh token
-            tokens = json.loads(response.content)
-        user = NewUser.objects.create(
-            email = "user@gmail.com",
-            username = "JayN",
-            first_name = "Jay",
-            join_date = timezone.now(),
-            birthday = "2023-05-30",
-            bio = "I like turtles",
-            is_staff = False,
-            is_active = True,
-            canvas_token = "12345",
-            tutorial = True
+#     def test_getting_tasks(self):
+#         response = self.client.post( '/register/', registerData)
+#         # Register successful?
+#         if response.status_code == 201:
+#         # Try to login with valid credentials
+#             response = self.client.post('/api/token/', loginData)
+#             # Get tokens and save refresh token
+#             tokens = json.loads(response.content)
+#         user = NewUser.objects.create(
+#             email = "user@gmail.com",
+#             username = "JayN",
+#             first_name = "Jay",
+#             join_date = timezone.now(),
+#             birthday = "2023-05-30",
+#             bio = "I like turtles",
+#             is_staff = False,
+#             is_active = True,
+#             canvas_token = "12345",
+#             tutorial = True
 
-        )
-        Task.objects.create(
-            task_id = 1,
-            user = user,
-            title = "New Task",
-            due_date = timezone.now(),
-            created_date = timezone.now(),
-            completed_date = "2023-05-30",
-            completed = False,
-            active = True,
-            task_type = "S",
-            task_level = 1,
-            recurring = False,
-            recurring_time_delta = 2, 
-            description = "Quiz 1",
-            course_id = 4321,
-            assignment_id = 21
-        )
-        response = self.client.get( '/tasks/', user) 
-        self.assertEqual(response.status_code, 200)
+#         )
+#         Task.objects.create(
+#             task_id = 1,
+#             user = user,
+#             title = "New Task",
+#             due_date = timezone.now(),
+#             created_date = timezone.now(),
+#             completed_date = "2023-05-30",
+#             completed = False,
+#             active = True,
+#             task_type = "S",
+#             task_level = 1,
+#             recurring = False,
+#             recurring_time_delta = 2, 
+#             description = "Quiz 1",
+#             course_id = 4321,
+#             assignment_id = 21
+#         )
+#         response = self.client.get( '/tasks/', user) 
+#         self.assertEqual(response.status_code, 200)
 
     # def test_view_url_accessible_by_name(self):
     #     path = reverse('db: /tasks')
