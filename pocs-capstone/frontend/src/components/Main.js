@@ -185,8 +185,6 @@ const Main = () => {
     animateSpriteSheet,
   };
 
-  const shareData = { avatarInfo, setAvatar };
-
   if (!ready) {
     return <div>LOADING...</div>;
   }
@@ -199,8 +197,8 @@ const Main = () => {
           {/*<InventoryContext.Provider value={handlers}>*/}
             {/*<SpriteSheetContext.Provider value={animate}>*/}
               <div className="flex-pages">
-                <PetDisplay {...shareData} />
-                <PageDisplay {...shareData} />
+                <PetDisplay />
+                <PageDisplay />
               </div>
            {/* </SpriteSheetContext.Provider>*/}
          {/* </InventoryContext.Provider>*/} 
@@ -216,10 +214,10 @@ const Main = () => {
             {/*<SpriteSheetContext.Provider value={animate}>*/}
               <div>
                 <div className="flex-pages">
-                  <PetDisplay {...shareData} />
+                  <PetDisplay />
                 </div>
                 <div>
-                  <PageDisplay {...shareData} />
+                  <PageDisplay />
                 </div>
               </div>
            {/* </SpriteSheetContext.Provider>*/}
