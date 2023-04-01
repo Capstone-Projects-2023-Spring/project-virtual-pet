@@ -10,7 +10,7 @@ import ConfettiExplosion from 'react-confetti-explosion';
 // Renders Candy component based off props passed from InventoryBox's inventory state
 function Candy({ id, quantity, candy_base_type, candy_level }) {
 
-
+    const handlers = useContext(GlobalContext);
     const [isExploding, setIsExploding] = useState(false);
 
     // let [{ isDragging }, drag] = useDrag(() => ({
@@ -32,19 +32,18 @@ function Candy({ id, quantity, candy_base_type, candy_level }) {
     
 	const end = (e, enough) => {
 		console.log('END');
-        console.log(enough ? 'Click released after enough time': 'Click released too soon');            
-	    setTimeout(() => setIsExploding(false), 1000); 
+        // console.log(enough ? 'Click released after enough time': 'Click released too soon');            
+	    // setTimeout(() => setIsExploding(false), 1000); 
     } 
 
-    const handlers = useContext(GlobalContext)
     // Feed pet
 	const clickNHold = (e) =>{
-		console.log('CLICK AND HOLD');  
-        handlers.updateInventory(id);
-        handlers.getExp(candy_base_type, candy_level);
+		console.log('CLICK AND HOLD');
+        handlers?.updateInventory(id);
+        handlers?.getExp(candy_base_type, candy_level);
+
         setIsExploding(true);
-        
-    
+        setTimeout(() => setIsExploding(false), 1000);  
 	} 
 
     // Determine candy image to render
@@ -141,7 +140,6 @@ function Candy({ id, quantity, candy_base_type, candy_level }) {
                         time={2} // Time to keep pressing. Default is 2
                         // onStart={start} // Start callback
                         onClickNHold={clickNHold} //Timeout callback
-                        onEnd={end} 
                         
                                 > 
                         <div className="grid-item-mobile" >

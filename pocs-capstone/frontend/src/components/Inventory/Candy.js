@@ -11,10 +11,8 @@ import { useEffect } from "react";
 // Renders Candy component based off props passed from InventoryBox's inventory state
 function Candy({ id, quantity, candy_base_type, candy_level }) {
 
-    const handlers = useContext(GlobalContext)
+    const handlers = useContext(GlobalContext);
     const [isExploding, setIsExploding] = useState(false);
-    const [newQuantity, setNewQuantity]= useState(quantity);
-
 
     // let [{ isDragging }, drag] = useDrag(() => ({
     //     type: "image",
@@ -32,36 +30,18 @@ function Candy({ id, quantity, candy_base_type, candy_level }) {
 
     const end = (e, enough) => {
         console.log('END');
-        console.log(enough ? 'Just right' : 'Click released too soon');
-        setTimeout(() => setIsExploding(false), 1000);  
-        console.log("end state", isExploding)
-
         
     }
 
     // Feed pet
     const clickNHold = (e) => {
         console.log('CLICK AND HOLD');
-        handlers.updateInventory(id);
-        handlers.getExp(candy_base_type, candy_level);
-        console.log("B4 clickNhold state", isExploding)
+        handlers?.updateInventory(id);
+        handlers?.getExp(candy_base_type, candy_level);
+
         setIsExploding(true);
-        console.log("clickNhold state", isExploding)
-        
+        setTimeout(() => setIsExploding(false), 1000);  
     }
-
-    const checkCandyUpdated = () => {
-        if(quantity !== newQuantity) {
-            setIsExploding(false);
-            // setNewQuantity(quantity);
-        }
-    }
-
-    useEffect(
-       checkCandyUpdated
-    ,[])
-
-    
 
     // Determine candy image to render
     let candyImage = () => {
@@ -159,7 +139,6 @@ function Candy({ id, quantity, candy_base_type, candy_level }) {
                             time={2} // Time to keep pressing. Default is 2
                             // onStart={start} // Start callback
                             onClickNHold={clickNHold} //Timeout callback
-                            onEnd={end} 
 
                         >
                             <div className="grid-item" >
