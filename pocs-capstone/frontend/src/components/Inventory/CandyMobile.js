@@ -122,14 +122,14 @@ function Candy({ id, quantity, candy_base_type, candy_level }) {
 
     return (
         <>
-
+            {/* No overlay on Mobile just to test*/}
             {/* OverlayTrigger - when a user hovers over the candy item a little Tooltip component w/ the candy's details will pop up */}
-            < OverlayTrigger placement='bottom' overlay={
+            {/* < OverlayTrigger placement='bottom' overlay={
                 < Tooltip className="tooltip-item" >
                     <span>Candy Base Type: <strong>{candy_base_type}</strong> </span>
                     <span>Candy Level: <strong>{candy_level}</strong></span>
                 </Tooltip >
-            } > 
+            } >  */}
             
            
             <div className="grid-wrapper-mobile">
@@ -175,7 +175,7 @@ function Candy({ id, quantity, candy_base_type, candy_level }) {
                     }
             </div>
 
-            </OverlayTrigger >
+            {/* </OverlayTrigger > */}
 
         </>
 

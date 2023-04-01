@@ -34,7 +34,7 @@ function InventoryBox() {
                     <Card.Header>
                         <Stack direction="horizontal" gap={3}>
                             <div className='inventory-header'>
-                                ITEMSDESKTOP
+                                ITEMS
                             </div>
                             <div className="ms-auto">
                                 <Button variant="primary" onClick={contextHandler?.postFullInventory}>+ Populate Inv.</Button>
