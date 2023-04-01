@@ -6,7 +6,6 @@ import '../Inventory/Inventory.css'
 import orangesheet from '../../../src/images/orange_happy_sheet.png'
 import graysheet from '../../../src/images/gray_happy_sheet.png'
 import { useDrop } from "react-dnd";
-//import InventoryContext from '../../context/InventoryContext.js';
 import { useContext, useEffect, useRef, useState } from 'react';
 import Spritesheet from 'react-responsive-spritesheet'
 import bgimage from '../../images/bg.gif'

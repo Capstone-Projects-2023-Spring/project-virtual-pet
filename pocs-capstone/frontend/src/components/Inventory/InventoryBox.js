@@ -2,7 +2,6 @@ import React from "react";
 import Candy from "./Candy";
 import './Inventory.css'
 import { useContext } from "react";
-import InventoryContext from "../../context/InventoryContext";
 import { Card, Stack, Button, ListGroup } from 'react-bootstrap';
 import GlobalContext from "../../context/GlobalContext";
 
@@ -14,10 +13,10 @@ function InventoryBox() {
     const contextHandler = useContext(GlobalContext);
 
     // sort inventory into their types
-    let small = contextHandler?.inv.filter(i => i.candy_base_type === 'S').sort((a, b) => a.candy_level - b.candy_level)
-    let medium = contextHandler?.inv.filter(i => i.candy_base_type === 'M').sort((a, b) => a.candy_level - b.candy_level)
-    let large = contextHandler?.inv.filter(i => i.candy_base_type === 'L').sort((a, b) => a.candy_level - b.candy_level)
-    let cake = contextHandler?.inv.filter(i => i.candy_base_type === 'C').sort((a, b) => a.candy_level - b.candy_level)
+    let small = contextHandler?.inventory.filter(i => i.candy_base_type === 'S').sort((a, b) => a.candy_level - b.candy_level)
+    let medium = contextHandler?.inventory.filter(i => i.candy_base_type === 'M').sort((a, b) => a.candy_level - b.candy_level)
+    let large = contextHandler?.inventory.filter(i => i.candy_base_type === 'L').sort((a, b) => a.candy_level - b.candy_level)
+    let cake = contextHandler?.inventory.filter(i => i.candy_base_type === 'C').sort((a, b) => a.candy_level - b.candy_level)
 
     let candies = {
         "Small": small,
@@ -46,7 +45,7 @@ function InventoryBox() {
                     </Card.Header>
 
 
-                    {contextHandler.inv.length === 0 ?
+                    {contextHandler.inventory.length === 0 ?
 
                         // If no items render 'No Inventory' notice
                         <ListGroup variant="flush">

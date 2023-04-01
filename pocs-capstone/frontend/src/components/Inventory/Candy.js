@@ -6,13 +6,14 @@ import { Badge, OverlayTrigger, Tooltip, Card } from 'react-bootstrap';
 import GlobalContext from "../../context/GlobalContext";
 import ClickNHold from "./ClickNHold";
 import ConfettiExplosion from 'react-confetti-explosion';
+import { useEffect } from "react";
 
 // Renders Candy component based off props passed from InventoryBox's inventory state
 function Candy({ id, quantity, candy_base_type, candy_level }) {
 
+    const handlers = useContext(GlobalContext)
     const [isExploding, setIsExploding] = useState(false);
-
-
+    const [newQuantity, setNewQuantity]= useState(quantity);
 
 
     // let [{ isDragging }, drag] = useDrag(() => ({
@@ -33,18 +34,34 @@ function Candy({ id, quantity, candy_base_type, candy_level }) {
         console.log('END');
         console.log(enough ? 'Just right' : 'Click released too soon');
         setTimeout(() => setIsExploding(false), 1000);  
+        console.log("end state", isExploding)
+
         
     }
 
-    const handlers = useContext(GlobalContext)
     // Feed pet
     const clickNHold = (e) => {
         console.log('CLICK AND HOLD');
         handlers.updateInventory(id);
         handlers.getExp(candy_base_type, candy_level);
+        console.log("B4 clickNhold state", isExploding)
         setIsExploding(true);
+        console.log("clickNhold state", isExploding)
         
     }
+
+    const checkCandyUpdated = () => {
+        if(quantity !== newQuantity) {
+            setIsExploding(false);
+            // setNewQuantity(quantity);
+        }
+    }
+
+    useEffect(
+       checkCandyUpdated
+    ,[])
+
+    
 
     // Determine candy image to render
     let candyImage = () => {

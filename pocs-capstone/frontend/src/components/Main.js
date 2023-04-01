@@ -8,7 +8,6 @@ import useAxiosPrivate from "../hooks/useAxiosPrivate.js";
 import "./Main.css";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
-import InventoryContext from "../context/InventoryContext";
 import PopulateInv from "./Inventory/PopulateInv";
 import SpriteSheetContext from "../context/SpriteSheetContext.js";
 import AvatarContext from "../context/AvatarContext";
@@ -24,7 +23,7 @@ const Main = () => {
 
   const [ready, setReady] = useState(false);
 
-  const [inv, setInv] = useState([]);
+  const [inventory, setInventory] = useState([]);
   // Moved from PetDisplay
   const [level_info, setLevelInfo] = useState(CalculatePetLevel(avatarInfo.total_xp))
   const [spritesheetInstance, setSpritesheetInstance] = useState(null);
@@ -50,7 +49,7 @@ const Main = () => {
     axiosPrivate
       .get("/inventory/")
       .then((response) => {
-        setInv(response.data);
+        setInventory(response.data);
       })
       .catch((error) => {
         console.log(error);
@@ -69,7 +68,7 @@ const Main = () => {
   const updateInventory = (id) => {
     // console.log("ID OF CANDY", id)
 
-    const candyD = inv.find((candy) => candy.inventory_id === id);
+    const candyD = inventory.find((candy) => candy.inventory_id === id);
     if (candyD.quantity !== 0) {
       // console.log("CANDY", candyD)
       const updateCandy = {
@@ -78,7 +77,7 @@ const Main = () => {
       };
       // console.log("ID", updateCandy.inventory_id)
       putInventory(updateCandy).then((r) => {
-        setInv(inv.map((it) => (it.inventory_id === id ? updateCandy : it)));
+        setInventory(inventory.map((it) => (it.inventory_id === id ? updateCandy : it)));
       });
     }
   };
@@ -110,13 +109,13 @@ const Main = () => {
 
   // Create a bunch of items in the backend and change the state of inv
   const postFullInventory = () => {
-    if (inv.length === 0) {
+    if (inventory.length === 0) {
       let fullInventoryData = PopulateInv();
       let populatedItems = [];
       fullInventoryData.forEach((importItem) => {
         createInventoryItem(importItem).then((r) => {
           populatedItems.push(r);
-          setInv([...inv, ...populatedItems]);
+          setInventory([...inventory, ...populatedItems]);
         });
       });
     }
@@ -124,13 +123,13 @@ const Main = () => {
 
   // Delete all the items in the backend and set the state of inv to []
   const deleteAll = () => {
-    if (inv.length) {
-      inv.forEach((i) => {
+    if (inventory.length) {
+      inventory.forEach((i) => {
         deleteInventoryItem(i.inventory_id);
       });
     }
 
-    setInv([]);
+    setInventory([]);
   };
   // Moved from PetDisplay - passed base type and level when called in Candy
   const getExp = (candy_base_type, candy_level) => {
@@ -168,9 +167,9 @@ const Main = () => {
 }
 
   const handlers = {
-    inv,
+    inventory,
+    setInventory,
     createInventoryItem,
-    setInv,
     updateInventory,
     deleteInventoryItem,
     postFullInventory,

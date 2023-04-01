@@ -5,11 +5,10 @@ import PetProfPage from "./PetProfPage";
 import TaskListContext from '../../context/TaskListContext'
 import InventoryBox from "../Inventory/InventoryBox";
 import InventoryBoxMobile from "../Inventory/InventoryBoxMobile";
-
+import GlobalContext from "../../context/GlobalContext";
 import { Tab, Tabs } from 'react-bootstrap';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import { useState, useEffect, useContext } from 'react'
-import InventoryContext from "../../context/InventoryContext";
 import { useWindowWidth } from "@react-hook/window-size";
 
 
@@ -17,7 +16,7 @@ const PageDisplay = () => {
 
     const axiosPrivate = useAxiosPrivate()
     const baseURL = `/tasks/`
-    let inventoryHandlers = useContext(InventoryContext)
+    const contextHandlers = useContext(GlobalContext)
     const width = useWindowWidth();
     const isMobile = width <= 850;
 
@@ -59,14 +58,14 @@ const PageDisplay = () => {
     // Task mark as completed and user has never recieved a candy for this task. Give corresponding candy.
     let determineReward = (task) => {
         // Look for candy coresponding to task in inventory
-        let candy = inventoryHandlers?.inv.find(candy => candy.candy_base_type === task.task_type && candy.candy_level === task.task_level)
+        let candy = contextHandlers?.inventory.find(candy => candy.candy_base_type === task.task_type && candy.candy_level === task.task_level)
         // Does candy exist in inventory
         if (candy !== undefined) {
             // Give a candy, update backend, and set state
             candy.quantity += 1
             axiosPrivate.put(`/inventory/${candy.inventory_id}/`, candy)
                 .then(r => {
-                    inventoryHandlers.setInv(inventoryHandlers.inv.map(c => c.inventory_id === candy.inventory_id ? r.data : c))
+                    contextHandlers.setInventory(contextHandlers.inventory.map(c => c.inventory_id === candy.inventory_id ? r.data : c))
                 })
 
             task.received = true
@@ -85,10 +84,10 @@ const PageDisplay = () => {
             }
 
             let candyList = []
-            inventoryHandlers?.createInventoryItem(newCandy)
+            contextHandlers?.createInventoryItem(newCandy)
                 .then(r => {
                     candyList.push(r)
-                    inventoryHandlers?.setInv([...inventoryHandlers?.inv, ...candyList])
+                    contextHandlers?.setInventory([...contextHandlers?.inventory, ...candyList])
                 })
 
             task.received = true
