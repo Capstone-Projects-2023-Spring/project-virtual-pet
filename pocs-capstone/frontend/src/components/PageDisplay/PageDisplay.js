@@ -57,8 +57,8 @@ const PageDisplay = () => {
 
     // Task mark as completed and user has never recieved a candy for this task. Give corresponding candy.
     let determineReward = (task) => {
-        // Look for candy coresponding to task in inventory
-        let candy = contextHandlers?.inventory.find(candy => candy.candy_base_type === task.task_type && candy.candy_level === task.task_level)
+        // Look for candy coresponding to task in inventory that is not locked
+        let candy = contextHandlers?.inventory.find(candy => candy.candy_base_type === task.task_type && candy.candy_level === task.task_level && candy.quantity !== "L")
         // Does candy exist in inventory
         if (candy !== undefined) {
             // Give a candy, update backend, and set state
@@ -83,11 +83,14 @@ const PageDisplay = () => {
                 quantity: 1,
             }
 
-            let candyList = []
+            // Update locked candy in inventory
             contextHandlers?.createInventoryItem(newCandy)
                 .then(r => {
-                    candyList.push(r)
-                    contextHandlers?.setInventory([...contextHandlers?.inventory, ...candyList])
+                    let candy = contextHandlers?.inventory.find((c) => c.candy_base_type === r.candy_base_type && c.candy_level === r.candy_level);
+                    candy.inventory_id = r.inventory_id;
+                    candy.quantity = r.quantity;
+                    // candyList.push(r)
+                    // contextHandlers?.setInventory([...contextHandlers?.inventory, ...candyList])
                 })
 
             task.received = true

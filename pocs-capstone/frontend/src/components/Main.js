@@ -9,11 +9,13 @@ import "./Main.css";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import PopulateInv from "./Inventory/PopulateInv";
+import LockedInv from "./Inventory/LockedInv.js";
 import SpriteSheetContext from "../context/SpriteSheetContext.js";
 import AvatarContext from "../context/AvatarContext";
 import GlobalContext from "../context/GlobalContext.js";
 import CalculateXP from "../algos/assignXP.js";
 import CalculatePetLevel from "../algos/calculatePetLevel.js";
+import { setIn } from "formik";
 
 const Main = () => {
   const axiosPrivate = useAxiosPrivate();
@@ -22,8 +24,8 @@ const Main = () => {
   const nav = useNavigate();
 
   const [ready, setReady] = useState(false);
-
-  const [inventory, setInventory] = useState([]);
+  const populateInventory = LockedInv()
+  const [inventory, setInventory] = useState(populateInventory);
   // Moved from PetDisplay
   const [level_info, setLevelInfo] = useState(CalculatePetLevel(avatarInfo.total_xp))
   const [spritesheetInstance, setSpritesheetInstance] = useState(null);
@@ -46,14 +48,33 @@ const Main = () => {
 
   // useEffect, GET call to retrieve inventory item and set the state of inv
   useEffect(() => {
+    
     axiosPrivate
       .get("/inventory/")
-      .then((response) => {
-        setInventory(response.data);
+      .then((r) => {
+        
+        r.data.map((it) => {
+          
+          let candy = inventory.find((c) => c.candy_base_type === it.candy_base_type && c.candy_level === it.candy_level);
+
+          candy.inventory_id = it.inventory_id;
+          candy.quantity = it.quantity;
+
+
+        })        
       })
       .catch((error) => {
         console.log(error);
       });
+      
+    // axiosPrivate
+    //   .get("/inventory/")
+    //   .then((response) => {
+    //     setInventory(response.data);
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //   });
   }, []);
 
   const isMobile = width <= 850;
