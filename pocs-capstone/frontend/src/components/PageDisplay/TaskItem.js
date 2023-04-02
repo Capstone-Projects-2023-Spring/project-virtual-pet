@@ -25,79 +25,40 @@ const TaskItem = ({ task, updateTask, deleteTask }) => {
     return (
 
         <>
-            {
-                task.course_id !== 0 && task.assignment_id !== 0 ?
-                    (
-                        <>
-                            <ListGroup horizontal='sm' className="my-2 list-group-task">
-                                <ListGroup.Item className='course-id'>
-                                    <div>
+            {/* <ListGroup horizontal='sm' className="my-2 list-group-task"> */}
 
-                                        <div className="fw-bold">Course {task.course_id}</div>
-                                    </div>
-                                </ListGroup.Item>
-                                <ListGroup.Item className='task-item'>
-                                    <div className="ms-2 me-auto">
-                                        <div className="fw-bold task-title task-description">{task.title}</div>
-                                        <div className='task-description'>{task.description}</div>
-                                        {task.due_date ?
-                                            <div className='due-date'>Due {calculateDueDate(task.due_date)}</div> :
-                                            <></>
-                                        }
+                    <div>
+                        <Form>
+                            <div key="default-checkbox" className="mb-3">
+                                <Form.Check defaultChecked={task.completed} type="checkbox" id="default-checkbox" onClick={() => { updateTask(task.task_id) }} />
+                            </div>
+                        </Form>
+                    </div>
 
-                                    </div>
-                                </ListGroup.Item>
-                                {/* remove this list group item if it's a canvas task, have for testing purposes */}
-                                {/* <ListGroup.Item className="close-box-task">
-                                    <div>
-                                        <CloseButton onClick={() => deleteTask(task.task_id)} />
-                                    </div>
-                                </ListGroup.Item>
-                                 */}
-                            </ListGroup >
-                            <CreateTaskForm {...{ showCreateTask, handleClose, task }} />
-                        </>
-                    ) :
+                {/* <ListGroup.Item className='task-item' action onClick={handleShow}> */}
+                    <div className="ms-2 me-auto">
+                        <div className="fw-bold task-description">
+                            <Stack direction="horizontal" gap={2}>
+                                <div className='task-title'>{task.title}</div>
+                                <div><Badge bg="secondary">Size: {task.task_type}</Badge></div>
+                                <div><Badge bg="secondary">Level: {task.task_level}</Badge></div>
+                            </Stack>
+                        </div>
+                        <div className='task-description'>{task.description}</div>
 
-                    (
-                        <>
-                            <ListGroup horizontal='sm' className="my-2 list-group-task">
-                                <ListGroup.Item className='check-box-task'>
-                                    <div>
-                                        <Form>
-                                            <div key="default-checkbox" className="mb-3">
-                                                <Form.Check defaultChecked={task.completed} type="checkbox" id="default-checkbox" onClick={() => { updateTask(task.task_id) }} />
-                                            </div>
-                                        </Form>
-                                    </div>
-                                </ListGroup.Item>
-                                <ListGroup.Item className='task-item' action onClick={handleShow}>
-                                    <div className="ms-2 me-auto">
-                                        <div className="fw-bold task-description">
-                                            <Stack direction="horizontal" gap={2}>
-                                                <div className='task-title'>{task.title}</div>
-                                                <div><Badge bg="secondary">Size: {task.task_type}</Badge></div>
-                                                <div><Badge bg="secondary">Level: {task.task_level}</Badge></div>
-                                            </Stack>
-                                        </div>
-                                        <div className='task-description'>{task.description}</div>
-
-                                        {task.due_date ?
-                                            <div className='due-date'>Due {calculateDueDate(task.due_date)}</div> :
-                                            <></>
-                                        }
-                                    </div>
-                                </ListGroup.Item>
-                                <ListGroup.Item className="close-box-task">
-                                    <div>
-                                        <CloseButton onClick={() => deleteTask(task.task_id)} />
-                                    </div>
-                                </ListGroup.Item>
-                            </ListGroup >
-                            <CreateTaskForm {...{ showCreateTask, handleClose, task }} />
-                        </>
-                    )
-            }
+                        {task.due_date ?
+                            <div className='due-date'>Due {calculateDueDate(task.due_date)}</div> :
+                            <></>
+                        }
+                    </div>
+                {/* </ListGroup.Item> */}
+                {/* <ListGroup.Item className="close-box-task"> */}
+                    <div>
+                        <CloseButton onClick={() => deleteTask(task.task_id)} />
+                    </div>
+                {/* </ListGroup.Item> */}
+            {/* </ListGroup > */}
+            <CreateTaskForm {...{ showCreateTask, handleClose, task }} />
         </>
 
     )

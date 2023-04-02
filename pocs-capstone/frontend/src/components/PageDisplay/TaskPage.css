@@ -1,0 +1,145 @@
+/* CSS for for ACTIVE / COMPLETE Tabs in TaskPage */
+.to-tabs,
+.to-tabs .nav-link {
+    background-color: rgba(243, 193, 193, 0);
+    color: rgb(93, 93, 93);
+    font-size: calc(0.5vw + 1vh);
+    margin: 0px;
+    letter-spacing: 0.5px;
+    border-width: 0px;
+    text-decoration: none;
+}
+
+.to-tabs .nav-link.active {
+    background-color: rgba(255, 255, 255, 0);
+    color: rgb(43, 99, 158);
+    border-color: rgb(43, 99, 158);
+    border-width: 0px 0px 3px 0px;
+
+}
+
+.to-tabs .nav-link:hover {
+    color: rgb(43, 99, 158);
+}
+
+/* margin for ACTIVE / COMPLETE Tabs */
+.to-tabs .nav-item {
+    margin: 5px;
+}
+
+/* Tab content height for TaskPage Component only */
+#justify-tab-example-tabpane-tasks {
+    height: 98%;
+}
+
+/* Grid wrapper for TaskPage component */
+.grid-page {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    margin: 10px;
+    height: 100%;
+
+}
+
+
+.task-scroll {
+    /* min-height: 20vh; */
+    min-height: 85vh;
+    max-height: 85vh;
+    border-radius: 0px;
+
+    margin-bottom: 10px;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.grid-header {
+    display: grid;
+    /* grid-template-columns: repeat(3, minmax(0, 1fr)); */
+    grid-template-columns: 1fr 3fr 1fr;
+    grid-template-rows: subgrid;
+    /* gap: 100px; */
+
+    /* display: flex; */
+    justify-content: center;
+    align-items: center;
+    /* border: 2px solid black; */
+    /* font-size: 3em; */
+}
+
+.box1-header {
+    grid-column: 1;
+
+}
+
+.box2-header {
+    grid-column: 2;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.box3-header {
+    grid-column: 3;
+    display: flex;
+    justify-content: flex-end;
+    /* justify-content: center;
+    align-items: center; */
+}
+
+
+
+.check-box-task,
+.close-box-task,
+.course-id {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0px !important;
+}
+
+/* the list items in task page */
+.task-item {
+    /* border-bottom-width: 3px; */
+    border-color: rgb(226, 226, 226);
+    border-radius: 0px;
+    border-width: 1px 0px;
+    width: 100%;
+
+    /* background-color: rgb(255, 242, 242); */
+}
+
+
+.task-title {
+    font-size: calc(1.1vw + 1vh);
+    margin-right: 10px;
+}
+
+.form-check-input {
+    width: 3vw;
+    height: 3vw;
+}
+
+.list-group-task {
+    margin: 0px !important;
+}
+
+.task-description {
+    overflow-wrap: anywhere;
+}
+
+.due-date {
+    color: rgb(43, 99, 158);
+}
+
+.course-id {
+    text-align: center;
+}
+
+.check-box-task.list-group-item {
+    background-color: rgba(253, 220, 220, 0);
+}
+
+.delete-com-tasks {
+    margin: 20px;
+}

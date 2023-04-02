@@ -32,13 +32,15 @@ const TaskList = ({ filter }) => {
                     </div>
 
                 ) : null}
-            <ListGroup className="task-scroll">
-                {showTasks.map(t => <TaskItem key={t.task_id} task={t} updateTask={handlers.updateTask} deleteTask={handlers.deleteTask} />)}
-            </ListGroup>
+
+                <ListGroup className="task-scroll">
+                    {showTasks.map(t => <TaskItem key={t.task_id} task={t} updateTask={handlers.updateTask} deleteTask={handlers.deleteTask} />)}
+                </ListGroup>
+
+
+
+
         </>
-
-
-
     )
 
 }

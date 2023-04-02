@@ -1,4 +1,5 @@
 import './PageDisplay.css'
+import './TaskPage.css'
 import CreateTaskForm from './CreateTaskForm';
 import TaskList from './TaskList'
 import { useState } from 'react';
@@ -13,16 +14,14 @@ const TaskPage = () => {
     const handleShow = () => setShowCreateTask(true);
 
     return (
-
-        <div className="mini-page">
-            <Card className='tasklist-position'>
+        <div className="grid-page">
+            <Card>
                 <Card.Header>
-                    <Stack direction="horizontal" gap={3}>
-
-                        <div className='to-do-header'>
+                    <div className="grid-header">
+                        <div className='to-do-header box1-header'>
                             TO-DO
                         </div>
-                        <div className="ms-auto">
+                        <div className="box2-header">
                             <Tabs
                                 id="controlled-tab-example"
                                 defaultActiveKey="all"
@@ -32,30 +31,70 @@ const TaskPage = () => {
                                 }}
 
                                 className="mb-3 to-tabs">
-                                <Tab eventKey="all" title="Active">
-                                    {/* <Sonnet /> */}
-                                </Tab>
-                                <Tab eventKey="completed" title="Completed">
-                                    {/* <Sonnet /> */}
-                                </Tab>
+                                <Tab eventKey="all" title="Active" />
+                                <Tab eventKey="completed" title="Completed" />
 
                             </Tabs>
                         </div>
-
-                        <div>
+                        <div className="box3-header">
                             <Button variant="primary" onClick={handleShow}>+ Create Task</Button>
                         </div>
-                    </Stack>
+
+                    </div>
+
                 </Card.Header>
 
-                <TaskList filter={filterTodo} />
+                    <TaskList filter={filterTodo} />
+
+
 
             </Card>
+
 
             <CreateTaskForm {...{ showCreateTask, handleClose }} />
 
         </div>
+
+
     )
 }
 
 export default TaskPage
+
+
+// <Card className='tasklist-position'>
+// <Card.Header>
+//     <Stack direction="horizontal" gap={3}>
+
+//         <div className='to-do-header'>
+//             TO-DO
+//         </div>
+//         <div className="ms-auto">
+//             <Tabs
+//                 id="controlled-tab-example"
+//                 defaultActiveKey="all"
+//                 activeKey={filterTodo}
+//                 onSelect={(f) => {
+//                     setFilterTodo(f)
+//                 }}
+
+//                 className="mb-3 to-tabs">
+//                 <Tab eventKey="all" title="Active">
+//                     {/* <Sonnet /> */}
+//                 </Tab>
+//                 <Tab eventKey="completed" title="Completed">
+//                     {/* <Sonnet /> */}
+//                 </Tab>
+
+//             </Tabs>
+//         </div>
+
+//         <div>
+//             <Button variant="primary" onClick={handleShow}>+ Create Task</Button>
+//         </div>
+//     </Stack>
+// </Card.Header>
+
+// <TaskList filter={filterTodo} />
+
+// </Card>

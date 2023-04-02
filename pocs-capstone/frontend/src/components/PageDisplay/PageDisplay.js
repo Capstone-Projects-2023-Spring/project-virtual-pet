@@ -1,5 +1,6 @@
 import "./PageDisplay.css"
 import TaskPage from "./TaskPage";
+import TaskPageMobile from "./TaskPageMobile"
 import CalendarPage from "./CalendarPage";
 import PetProfPage from "./PetProfPage";
 import TaskListContext from '../../context/TaskListContext'
@@ -9,9 +10,13 @@ import { Tab, Tabs } from 'react-bootstrap';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import { useState, useEffect, useContext } from 'react'
 import InventoryContext from "../../context/InventoryContext";
+import { useWindowWidth } from "@react-hook/window-size";
 
 
 const PageDisplay = () => {
+
+    const width = useWindowWidth();
+    const isMobile = width <= 850;
 
     const axiosPrivate = useAxiosPrivate()
     const baseURL = `/tasks/`
@@ -160,7 +165,12 @@ const PageDisplay = () => {
                     justify
                 >
                     <Tab eventKey="tasks" title="Tasks">
-                        <TaskPage />
+
+                            {
+                                !isMobile ?
+                                    <TaskPage /> :
+                                    <TaskPageMobile />
+                            }
 
                     </Tab>
                     <Tab eventKey="calendar" title="Calendar">
