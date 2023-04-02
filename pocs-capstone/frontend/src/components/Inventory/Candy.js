@@ -111,6 +111,12 @@ function Candy({ id, quantity, candy_base_type, candy_level }) {
     if(quantity === "L") {
         return(
             <>
+                < OverlayTrigger placement='bottom' overlay={
+                < Tooltip className="tooltip-item" >
+                    <span>Candy Base Type: <strong>?</strong> </span>
+                    <span>Candy Level: <strong>?</strong></span>
+                </Tooltip >
+                } >
                 <div className="grid-item" >
                             {/* <Badge pill bg="secondary" className="candy-q">
                                 {quantity}
@@ -123,6 +129,7 @@ function Candy({ id, quantity, candy_base_type, candy_level }) {
                                     {/* // style={{ filter: quantity === 0 ? "grayscale(100%)" : '' }} /> */}
                     </div>
                 </div>
+                </OverlayTrigger>
             </>
         )
 
