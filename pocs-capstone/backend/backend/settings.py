@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt.token_blacklist',
     'corsheaders',
     'drf_spectacular',
+    'webpush',
 
 ]
 
@@ -118,7 +119,11 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
+WEBPUSH_SETTINGS = {
+   "VAPID_PUBLIC_KEY": settings.VAPID_PUBLIC_KEY,
+   "VAPID_PRIVATE_KEY": settings.VAPID_PRIVATE_KEY,
+   "VAPID_ADMIN_EMAIL": settings.VAPID_ADMIN_EMAIL 
+}
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
