@@ -47,7 +47,7 @@
     /* min-height: 20vh; */
     min-height: 85vh;
     max-height: 85vh;
-    border-radius: 0px;
+    border-radius: 0px !important;
 
     margin-bottom: 10px;
     overflow-y: auto;
@@ -96,15 +96,18 @@
     align-items: center;
     justify-content: center;
     border-radius: 0px !important;
+
 }
 
 /* the list items in task page */
-.task-item {
+.task-item.list-group-item {
     /* border-bottom-width: 3px; */
     border-color: rgb(226, 226, 226);
     border-radius: 0px;
-    border-width: 1px 0px;
+    border-width: 0px;
+    border-top-width: 0px !important;
     width: 100%;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.175);
 
     /* background-color: rgb(255, 242, 242); */
 }
@@ -120,9 +123,15 @@
     height: 3vw;
 }
 
+/* border around each task item */
 .list-group-task {
     margin: 0px !important;
+    /* border-top: 2px solid; */
+    /* border-bottom: 1px solid rgba(0, 0, 0, 0.175); */
+    border-radius: 0px;
+
 }
+
 
 .task-description {
     overflow-wrap: anywhere;
@@ -136,10 +145,88 @@
     text-align: center;
 }
 
-.check-box-task.list-group-item {
-    background-color: rgba(253, 220, 220, 0);
+.check-box-task-c.list-group-item {
+
+
+    /* background-color: rgba(233, 139, 139, 0.352); this gets set in the TaskItem component */
+    border-width: 0px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.551);
 }
+
 
 .delete-com-tasks {
     margin: 20px;
+}
+
+.close-box-task.list-group-item {
+    border-width: 0px;
+    border-top-width: 0px !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.175);
+}
+
+/* CHECKOFF button CSS */
+
+
+
+
+
+.completed-checkbox input[type="checkbox"]:checked {
+    background-color: rgba(180, 180, 180, 0.783);
+    border-color: rgba(179, 41, 75, 0);
+}
+
+.completed-checkbox input[type="checkbox"]:focus {
+    border-color: rgba(179, 179, 179, 0);
+    box-shadow: 0px 0px 0px;
+}
+
+.completed-checkbox input[type="checkbox"]:hover {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='m6 10 3 3 6-6'/%3e%3c/svg%3e");
+    background-color: rgba(180, 180, 180, 0.783);
+    border-color: rgba(179, 179, 179, 0);
+}
+
+.completed-checkbox input[type="checkbox"]:active {
+    border-color: rgb(179, 179, 179, 5);
+}
+
+.completed-checkbox input[type="checkbox"] {
+    border-color: rgba(179, 179, 179, 0);
+    -moz-transition: all .2s ease-in;
+    -o-transition: all .2s ease-in;
+    -webkit-transition: all .2s ease-in;
+    transition: all .2s ease-in;
+}
+
+
+
+
+
+
+.noncompleted-checkbox input[type="checkbox"]:checked {
+    background-color: rgb(242, 160, 160);
+    border-color: rgba(179, 41, 75, 0);
+}
+
+.noncompleted-checkbox input[type="checkbox"]:focus {
+    border-color: rgba(179, 41, 75, 0);
+    box-shadow: 0px 0px 0px;
+}
+
+.noncompleted-checkbox input[type="checkbox"]:hover {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='m6 10 3 3 6-6'/%3e%3c/svg%3e");
+    background-color: rgba(242, 160, 160, 0.827);
+    border-color: rgba(179, 41, 75, 0);
+}
+
+.noncompleted-checkbox input[type="checkbox"]:active {
+    border-color: rgb(179, 41, 75);
+}
+
+.noncompleted-checkbox input[type="checkbox"] {
+    border-color: rgba(179, 41, 75, 0);
+    -moz-transition: all .2s ease-in;
+    -o-transition: all .2s ease-in;
+    -webkit-transition: all .2s ease-in;
+    transition: all .2s ease-in;
 }

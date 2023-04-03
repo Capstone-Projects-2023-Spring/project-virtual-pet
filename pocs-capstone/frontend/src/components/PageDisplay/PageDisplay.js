@@ -1,6 +1,6 @@
 import "./PageDisplay.css"
 import TaskPage from "./TaskPage";
-import TaskPageMobile from "./TaskPageMobile"
+import TaskPageMobile from "./TaskMobile/TaskPageMobile"
 import CalendarPage from "./CalendarPage";
 import PetProfPage from "./PetProfPage";
 import TaskListContext from '../../context/TaskListContext'

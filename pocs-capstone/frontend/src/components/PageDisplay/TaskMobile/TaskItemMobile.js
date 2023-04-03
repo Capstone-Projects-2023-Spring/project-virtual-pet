@@ -1,10 +1,10 @@
 
-import './PageDisplay.css'
+// import './PageDisplay.css'
 import { CloseButton, Stack, Badge, Form, ListGroup } from 'react-bootstrap';
-import CreateTaskForm from './CreateTaskForm';
+import CreateTaskForm from '../CreateTaskForm';
 import { useState } from 'react'
 
-const TaskItem = ({ task, updateTask, deleteTask }) => {
+const TaskItemMobile = ({ task, updateTask, deleteTask }) => {
     const [showCreateTask, setShowCreateTask] = useState(false);
 
     const handleClose = () => setShowCreateTask(false);
@@ -21,10 +21,6 @@ const TaskItem = ({ task, updateTask, deleteTask }) => {
         return mag > 0 ? (mag === 1 ? `in ${mag} ${format}` : `in ${mag} ${format}s`) : mag < 0 ? (mag === -1 ? `${Math.abs(mag)} ${format} ago` : `${Math.abs(mag)} ${format}s ago`) : ``
 
     }
-
-    const computeStyle = `mb-3 ${task.completed ? "completed-checkbox" : "noncompleted-checkbox"}`
-    console.log(computeStyle)
-
 
     return (
 
@@ -66,13 +62,14 @@ const TaskItem = ({ task, updateTask, deleteTask }) => {
                     (
                         <>
                             <ListGroup horizontal className="my-2 list-group-task">
-                                <ListGroup.Item className='check-box-task' style={task.completed ? { backgroundColor: `rgba(233, 233, 233, 0.352)` } : { backgroundColor: `rgba(233, 139, 139, 0.352)` }}>
-                                    <Form >
-                                        <div key="default-checkbox" className={computeStyle}>
-                                        {/* <div key="default-checkbox" className="mb-3 noncompleted-checkbox"> */}
-                                            <Form.Check defaultChecked={task.completed} type="checkbox" id="default-checkbox" onClick={() => { updateTask(task.task_id) }} />
-                                        </div>
-                                    </Form>
+                                <ListGroup.Item className='check-box-task'>
+                                    <div>
+                                        <Form>
+                                            <div key="default-checkbox" className="mb-3">
+                                                <Form.Check defaultChecked={task.completed} type="checkbox" id="default-checkbox" onClick={() => { updateTask(task.task_id) }} />
+                                            </div>
+                                        </Form>
+                                    </div>
                                 </ListGroup.Item>
                                 <ListGroup.Item className='task-item' action onClick={handleShow}>
                                     <div className="ms-2 me-auto">
@@ -92,8 +89,9 @@ const TaskItem = ({ task, updateTask, deleteTask }) => {
                                     </div>
                                 </ListGroup.Item>
                                 <ListGroup.Item className="close-box-task">
-                                    <CloseButton onClick={() => deleteTask(task.task_id)} />
-
+                                    <div>
+                                        <CloseButton onClick={() => deleteTask(task.task_id)} />
+                                    </div>
                                 </ListGroup.Item>
                             </ListGroup >
                             <CreateTaskForm {...{ showCreateTask, handleClose, task }} />
@@ -106,4 +104,4 @@ const TaskItem = ({ task, updateTask, deleteTask }) => {
 }
 
 
-export default TaskItem
+export default TaskItemMobile
