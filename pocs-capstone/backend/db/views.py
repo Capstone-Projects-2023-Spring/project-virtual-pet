@@ -11,19 +11,48 @@ from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework_simplejwt.tokens import RefreshToken
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, permission_classes
 from db.studybuddyemail import send_email
 import db.canvasrequests as canvas
+
+
+# For sending push notifications
+from webpush import send_user_notification
+from django.shortcuts import get_object_or_404
+from django.contrib.auth.models import User
+
+class PushNotificationView(APIView):
+    permission_classes = [AllowAny]
+
+    def post(self, request):
+        try:
+            data = request.data
+
+            # head: The title of the push notification.
+            # body: The body of the notification.
+            # id: The id of the request user.
+            if 'head' not in data or 'body' not in data or 'id' not in data:
+                return Response(status=status.HTTP_400_BAD_REQUEST, data={"message": "Invalid data format"})
+
+            user_id = data['id']
+            user = get_object_or_404(User, pk=user_id)
+            payload = {'head': data['head'], 'body': data['body']}
+            send_user_notification(user=user, payload=payload, ttl=1000)
+
+            return Response(status=status.HTTP_200_OK, data={"message": "Web push successful"})
+
+        except Exception as e:
+            return Response(status=status.HTTP_500_INTERNAL_SERVER_ERROR, data={"message": str(e)})
 
 
 def lololol(userId):
 
     _user = NewUser.objects.filter(id=userId)
-    canvas_token = _user[0].get_canvas_token() 
-    
+    canvas_token = _user[0].get_canvas_token()
+
     assignments, status = canvas.get_all_assignments(canvas_token)
-    #_userid = self.request.user
-    
+    # _userid = self.request.user
+
     print(_user[0].get_canvas_token())
     print(_user)
     return assignments, status
@@ -32,7 +61,7 @@ def lololol(userId):
 class CustomUserCreate(APIView):
     permission_classes = [AllowAny]
 
-    def post(self,request):
+    def post(self, request):
         registration_serializer = RegisterUserSerializer(data=request.data)
         if registration_serializer.is_valid():
             newuser = registration_serializer.save()
@@ -42,41 +71,40 @@ class CustomUserCreate(APIView):
                 except:
                     print("Oops! Registration email failed to send")
                 return Response(status=status.HTTP_201_CREATED)
-            
+
         print(registration_serializer.errors)
         errors = registration_serializer.errors
-        if('email' in errors.keys()):
-            return Response("Email is taken",status=status.HTTP_409_CONFLICT)
-        if('username' in errors.keys()):
-            return Response("Username is taken",status=status.HTTP_409_CONFLICT)
+        if ('email' in errors.keys()):
+            return Response("Email is taken", status=status.HTTP_409_CONFLICT)
+        if ('username' in errors.keys()):
+            return Response("Username is taken", status=status.HTTP_409_CONFLICT)
         return Response(registration_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 class BlacklistTokenView(APIView):
-    permission_classes=[AllowAny]
+    permission_classes = [AllowAny]
 
-    def post(self,request):
-        try: 
+    def post(self, request):
+        try:
             refresh_token = request.data["refresh_token"]
-            token=RefreshToken(refresh_token)
+            token = RefreshToken(refresh_token)
             token.blacklist()
             return Response(status.HTTP_202_ACCEPTED)
         except Exception as e:
-            return Response(e,status=status.HTTP_400_BAD_REQUEST)
+            return Response(e, status=status.HTTP_400_BAD_REQUEST)
 
 
 class CanvasView(APIView):
     permission_classes = [IsAuthenticated,]
-    
 
-    def get(self,request):
-        #$print("1 HEREERERERE")
-        _user=self.request.user.id
+    def get(self, request):
+        # $print("1 HEREERERERE")
+        _user = self.request.user.id
         course_data, _status = lololol(_user)
         if _status != 200:
-            return Response(None,_status)
-        
-        #if not course_data:
+            return Response(None, _status)
+
+        # if not course_data:
         #    return Response(None,status=status.HTTP_401_UNAUTHORIZED)
         print("USER_ID:"+str(_user))
         # this try catch is admittedly a little clunky
@@ -85,81 +113,78 @@ class CanvasView(APIView):
             print("HEREERERERE")
             for x in course_data:
                 try:
-                    tag = str(_user)+str(x['course_id'])+str(x['assignment_id'])
-                    x['unique_canvas_tag']=tag
-                    x['user_id']=_user
+                    tag = str(_user)+str(x['course_id']) + \
+                        str(x['assignment_id'])
+                    x['unique_canvas_tag'] = tag
+                    x['user_id'] = _user
                     print("TAG" + x['unique_canvas_tag'])
                     serializer = CanvasSerializer(x)
                     print(serializer.data)
-                    
-                    obj,created = Task.objects.update_or_create(unique_canvas_tag=tag,defaults=serializer.data)#TODO validate the dat
+
+                    obj, created = Task.objects.update_or_create(
+                        unique_canvas_tag=tag, defaults=serializer.data)  # TODO validate the dat
                     if created:
                         print("created")
                     else:
                         print("updated")
                 except Exception as e:
                     print(e)
-                
-                
-                
 
         except Exception as e:
             print(e)
-            _status=500
-    
-        return Response(course_data,_status)
+            _status = 500
+
+        return Response(course_data, _status)
 
 
 class NewUserViewSet(viewsets.ModelViewSet):
-    permission_classes=[IsAuthenticated,]
+    permission_classes = [IsAuthenticated,]
     serializer_class = UserDataSerializer
-    
-    # query tasks by user. 
+
+    # query tasks by user.
     def get_queryset(self):
-        #_user = JWTAuthentication(self.request)
+        # _user = JWTAuthentication(self.request)
         _user = self.request.user.id
         return NewUser.objects.filter(id=_user)
 
 
 class TaskViewSet(viewsets.ModelViewSet):
-    
+
     serializer_class = TaskSerializer
-    
+
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
-        #return super().perform_create(self,serializer)
-    # query tasks by user. 
+        # return super().perform_create(self,serializer)
+    # query tasks by user.
+
     def get_queryset(self):
         _user = self.request.user
         return Task.objects.filter(user=_user)
 
 
 class AvatarViewSet(viewsets.ModelViewSet):
-    
+
     serializer_class = AvatarSerializer
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
-        #return super().perform_create(self,serializer)
-    # query tasks by user. 
+        # return super().perform_create(self,serializer)
+    # query tasks by user.
+
     def get_queryset(self):
         _user = self.request.user
         return Avatar.objects.filter(user=_user)
 
 
 class InventoryViewSet(viewsets.ModelViewSet):
-    
+
     serializer_class = InventorySerializer
-    
+
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
-        #return super().perform_create(self,serializer)
-    # query tasks by user. 
+        # return super().perform_create(self,serializer)
+    # query tasks by user.
+
     def get_queryset(self):
         _user = self.request.user
         return Inventory.objects.filter(user=_user)
-
-
-
-
-

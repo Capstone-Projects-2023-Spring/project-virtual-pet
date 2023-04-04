@@ -1,4 +1,5 @@
 from django.urls import include, path
+from django.contrib import admin
 from rest_framework.routers import DefaultRouter
 from .views import *
 
@@ -20,5 +21,6 @@ urlpatterns = [
     path('register/',CustomUserCreate.as_view(),name="create_user"),
     path('logout/blacklist',BlacklistTokenView.as_view(),name="blacklist"),
     path('canvas/',CanvasView.as_view(),name="pose-canvas-tasks"),
+    path('notify/', PushNotificationView.as_view(), name='notify'),
     path('', include(router.urls)),
 ]
