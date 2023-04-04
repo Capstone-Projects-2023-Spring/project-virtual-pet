@@ -1,12 +1,10 @@
 import React from "react";
 import { useContext, useState } from "react";
-import { useDrag } from "react-dnd";
 import './Inventory.css'
 import { Badge, OverlayTrigger, Tooltip, Card } from 'react-bootstrap';
 import GlobalContext from "../../context/GlobalContext";
 import ClickNHold from "./ClickNHold";
 import ConfettiExplosion from 'react-confetti-explosion';
-import { useEffect } from "react";
 
 // Renders Candy component based off props passed from InventoryBox's inventory state
 function Candy({ id, quantity, candy_base_type, candy_level }) {

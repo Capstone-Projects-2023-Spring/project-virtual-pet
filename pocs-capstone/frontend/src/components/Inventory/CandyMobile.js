@@ -1,6 +1,5 @@
 import React from "react";
 import { useContext, useState } from "react";
-import { useDrag } from "react-dnd";
 import './Inventory.css'
 import { Badge, OverlayTrigger, Tooltip, Card } from 'react-bootstrap';
 import GlobalContext from "../../context/GlobalContext";
@@ -12,19 +11,6 @@ function Candy({ id, quantity, candy_base_type, candy_level }) {
 
     const handlers = useContext(GlobalContext);
     const [isExploding, setIsExploding] = useState(false);
-
-    // let [{ isDragging }, drag] = useDrag(() => ({
-    //     type: "image",
-    //     item: { id: id },
-    //     // Optional collect function used for accessing isDragging boolean
-    //     collect: (monitor) => ({
-    //         isDragging: !!monitor.isDragging(),
-    //     }),
-
-    // }));
-
-    // const isMobile = width <= 850;
-
 
     const start =(e) => {
 		console.log('START'); 
@@ -48,6 +34,8 @@ function Candy({ id, quantity, candy_base_type, candy_level }) {
 
     // Determine candy image to render
     let candyImage = () => {
+        if(quantity === "L") return require('../../images/candies/candies_resized/locked.png')
+        
         switch (candy_base_type) {
             case 'S':
                 switch (candy_level) {
@@ -118,7 +106,28 @@ function Candy({ id, quantity, candy_base_type, candy_level }) {
                 return require('../../images/candies/candies_resized/cake_1_scaled_5x_pngcrushed.png')
         }
     }
+     // Render locked candy
+    if(quantity === "L") {
+        return(
+            <>
+                <div className="grid-item-mobile" >
+                            {/* <Badge pill bg="secondary" className="candy-q">
+                                {quantity}
+                            </Badge> */}
+                            <div className="candy-wrapper-mobile">
+                                <img className="candy-photo-mobile"
+                                    src={candyImage(candy_base_type)}
+                                    alt="Candy" />
 
+                                    {/* // style={{ filter: quantity === 0 ? "grayscale(100%)" : '' }} /> */}
+                    </div>
+                </div>
+            </>
+        )
+
+    }
+    else {
+    // Render clickable candy or non clickable candy that has a quantity of 0
     return (
         <>
             {/* No overlay on Mobile just to test*/}
@@ -178,6 +187,7 @@ function Candy({ id, quantity, candy_base_type, candy_level }) {
         </>
 
     )
+    }
     // }
 }
 

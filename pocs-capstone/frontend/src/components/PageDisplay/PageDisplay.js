@@ -87,6 +87,8 @@ const PageDisplay = () => {
             contextHandlers?.createInventoryItem(newCandy)
                 .then(r => {
                     let candy = contextHandlers?.inventory.find((c) => c.candy_base_type === r.candy_base_type && c.candy_level === r.candy_level);
+                    console.log(candy);
+                    console.log(r);
                     candy.inventory_id = r.inventory_id;
                     candy.quantity = r.quantity;
                     // candyList.push(r)
