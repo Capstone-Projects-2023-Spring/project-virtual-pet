@@ -34,6 +34,12 @@ DEBUG = True
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_CREDENTIALS = True
 
+# for SSL (to bypass needing HTTPS, to test push notifs on localhost)
+# to run with https on localhost: `python3 manage.py runsslserver --certificate /backend/cert.pem --key /backend/key.pem`
+SECURE_SSL_REDIRECT = True
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
 
 
 # 0.0.0.0 : docker
