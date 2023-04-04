@@ -64,7 +64,7 @@ function InventoryBox() {
                                     <div key={index}>
                                         {candies[key].length !== 0 ?
                                             <div className="space-candy-types">
-                                                <div className="text-wrapper">{key}</div>
+                                                {/* <div className="text-wrapper">{key}</div> */}
                                                 <div className="inventory-wrapper-sizes">
                                                     {candies[key].map((candy, id) => {
                                                         // https://github.com/react-dnd/react-dnd/issues/748#issuecomment-348710655
@@ -72,7 +72,7 @@ function InventoryBox() {
                                                         return <Candy key={candy.inventory_id} id={candy.inventory_id} quantity={candy.quantity} candy_base_type={candy.candy_base_type} candy_level={candy.candy_level} />
                                                     })}
                                                 </div>
-                                                <hr />
+                                                {/* <hr /> */}
                                             </div>
                                             :
                                             <></>
