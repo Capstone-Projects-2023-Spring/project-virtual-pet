@@ -4,18 +4,33 @@
     align-items: stretch;
     justify-content: flex-start;
     flex-direction: column;
+    height:100vw;
     background-color: rgb(255, 198, 198);
     padding: 10px;
 }
 
+.card {
+    background-color: rgb(255, 214, 214);
+    flex: 1 1 auto;
+    width: 0;
+    height: auto;
+    display: flex;
+    align-items: stretch;
+    justify-content: flex-start;
+    flex-direction: column;
+}
 .landingbutton {
     cursor: pointer;
     /*border: 1px solid #1a202c;
-    padding: 8px;*/
+    ;*/
     /*display:block;*/
-    text-align: center;
-    align-self: center;
-    width: 5%;
+    padding: 8px;
+     text-align: center;
+    align-self: center; 
+     justify-content: center; 
+    display: inline-block;
+    width: 10%;
+    /* height:20vmax; */
     /*width:auto;*/
     margin: 5px;
     background: rgb(172, 65, 100);

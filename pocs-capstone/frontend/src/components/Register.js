@@ -145,7 +145,7 @@ const Register = () => {
             >
               {errMsg}
             </p>
-            <h1>Welcome to Study Buddies!</h1>
+            <h1>Welcome to Study Buddy!</h1>
             <form onSubmit={handleSubmit} className="form-login-register">
               <label className="label-login-register" htmlFor="username">
                 Username:
