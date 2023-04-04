@@ -24,6 +24,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = config('SECRET_KEY')
+VAPID_PUBLIC_KEY=config('VAPID_PUBLIC_KEY')
+VAPID_PRIVATE_KEY=config('VAPID_PRIVATE_KEY')
+VAPID_ADMIN_EMAIL=config('VAPID_ADMIN_EMAIL')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
