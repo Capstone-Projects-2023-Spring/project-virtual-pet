@@ -16,7 +16,7 @@ const RequireAuth = () => {
         //auth?.access
         refresh
             ? <Outlet />
-            : <Navigate to="/login" state={{from: location}} replace /> 
+            : <Navigate to="/landing" state={{from: location}} replace /> 
     );
 
 }

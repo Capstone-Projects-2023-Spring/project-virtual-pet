@@ -1,0 +1,32 @@
+.landingpage {
+    width: 100vw;
+    display: flex;
+    align-items: stretch;
+    justify-content: flex-start;
+    flex-direction: column;
+    background-color: rgb(255, 198, 198);
+    padding: 10px;
+}
+
+.landingbutton {
+    cursor: pointer;
+    /*border: 1px solid #1a202c;
+    padding: 8px;*/
+    /*display:block;*/
+    text-align: center;
+    align-self: center;
+    width: 5%;
+    /*width:auto;*/
+    margin: 5px;
+    background: rgb(172, 65, 100);
+    color: #ffffff;
+    border-radius: 10px;
+    font-size: 20px;
+    transition: all 0.1s ease-in;
+    position: relative;
+}
+
+.landingbutton:hover {
+    background: #3a0422;
+    color: #ffffff;
+  }
