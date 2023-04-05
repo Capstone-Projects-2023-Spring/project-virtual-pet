@@ -4,18 +4,23 @@ import CalendarPage from "./CalendarPage";
 import PetProfPage from "./PetProfPage";
 import TaskListContext from '../../context/TaskListContext'
 import InventoryBox from "../Inventory/InventoryBox";
-
+import InventoryBoxMobile from "../Inventory/InventoryBoxMobile";
+import GlobalContext from "../../context/GlobalContext";
 import { Tab, Tabs } from 'react-bootstrap';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import { useState, useEffect, useContext } from 'react'
-import InventoryContext from "../../context/InventoryContext";
+import { useWindowWidth } from "@react-hook/window-size";
 
 
 const PageDisplay = () => {
 
     const axiosPrivate = useAxiosPrivate()
     const baseURL = `/tasks/`
-    let inventoryHandlers = useContext(InventoryContext)
+    const contextHandlers = useContext(GlobalContext)
+    const width = useWindowWidth();
+    const isMobile = width <= 850;
+
+
 
     const [taskList, setTaskList] = useState([])
 
@@ -52,15 +57,15 @@ const PageDisplay = () => {
 
     // Task mark as completed and user has never recieved a candy for this task. Give corresponding candy.
     let determineReward = (task) => {
-        // Look for candy coresponding to task in inventory
-        let candy = inventoryHandlers?.inv.find(candy => candy.candy_base_type === task.task_type && candy.candy_level === task.task_level)
+        // Look for candy coresponding to task in inventory that is not locked
+        let candy = contextHandlers?.inventory.find(candy => candy.candy_base_type === task.task_type && candy.candy_level === task.task_level && candy.quantity !== "L")
         // Does candy exist in inventory
         if (candy !== undefined) {
             // Give a candy, update backend, and set state
             candy.quantity += 1
             axiosPrivate.put(`/inventory/${candy.inventory_id}/`, candy)
                 .then(r => {
-                    inventoryHandlers.setInv(inventoryHandlers.inv.map(c => c.inventory_id === candy.inventory_id ? r.data : c))
+                    contextHandlers.setInventory(contextHandlers.inventory.map(c => c.inventory_id === candy.inventory_id ? r.data : c))
                 })
 
             task.received = true
@@ -78,11 +83,16 @@ const PageDisplay = () => {
                 quantity: 1,
             }
 
-            let candyList = []
-            inventoryHandlers?.createInventoryItem(newCandy)
+            // Update locked candy in inventory
+            contextHandlers?.createInventoryItem(newCandy)
                 .then(r => {
-                    candyList.push(r)
-                    inventoryHandlers?.setInv([...inventoryHandlers?.inv, ...candyList])
+                    let candy = contextHandlers?.inventory.find((c) => c.candy_base_type === r.candy_base_type && c.candy_level === r.candy_level);
+                    console.log(candy);
+                    console.log(r);
+                    candy.inventory_id = r.inventory_id;
+                    candy.quantity = r.quantity;
+                    // candyList.push(r)
+                    // contextHandlers?.setInventory([...contextHandlers?.inventory, ...candyList])
                 })
 
             task.received = true
@@ -167,7 +177,8 @@ const PageDisplay = () => {
                         <CalendarPage />
                     </Tab>
                     <Tab eventKey="inventory" title="Inventory">
-                        < InventoryBox />
+                        {isMobile ?
+                        < InventoryBoxMobile /> : < InventoryBox />}
                     </Tab>
                     <Tab eventKey="profile" title="Profile">
                         < PetProfPage />

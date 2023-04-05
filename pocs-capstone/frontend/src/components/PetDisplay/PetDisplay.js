@@ -6,7 +6,6 @@ import '../Inventory/Inventory.css'
 import orangesheet from '../../../src/images/orange_happy_sheet.png'
 import graysheet from '../../../src/images/gray_happy_sheet.png'
 import { useDrop } from "react-dnd";
-//import InventoryContext from '../../context/InventoryContext.js';
 import { useContext, useEffect, useRef, useState } from 'react';
 import Spritesheet from 'react-responsive-spritesheet'
 import bgimage from '../../images/bg.gif'
@@ -17,7 +16,7 @@ import CalculatePetLevel from '../../algos/calculatePetLevel';
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 import GlobalContext from '../../context/GlobalContext.js';
 // (next level - remainder) / (next level) //
-const PetDisplay = ({ avatarInfo, setAvatar }) => {
+const PetDisplay = () => {
     //TODO - shouldn't call calc-pet-lev 3 times
     const axiosPrivate = useAxiosPrivate();
     //const avatar_handler = useContext(AvatarContext);
@@ -31,14 +30,14 @@ const PetDisplay = ({ avatarInfo, setAvatar }) => {
    // const [ratio,setRatio] = useState(level_info.NEXT_LEVEL-level_info.REMAINDER/level_info.NEXT_LEVEL ) //TODO susss
 
     function animateSpriteSheet() {
-        if (spritesheetInstance) {
-            spritesheetInstance.goToAndPlay(1);
-            spritesheetInstance.pause();
+        if (contextHandler?.spritesheetInstance) {
+            contextHandler?.spritesheetInstance.goToAndPlay(1);
+            contextHandler?.spritesheetInstance.pause();
         }
     }
 
     function handleGetInstance(spritesheet) {
-        setSpritesheetInstance(spritesheet);
+        contextHandler?.setSpritesheetInstance(spritesheet);
     }
 
     const handleClick = (spritesheet) => {
@@ -78,7 +77,7 @@ const PetDisplay = ({ avatarInfo, setAvatar }) => {
         //console.log("CANDY----->",candy)
         const received_xp = CalculateXP(candy.candy_base_type, candy.candy_level)
     
-        const total_xp = received_xp + contextHandler.avatarInfo.total_xp
+        const total_xp = received_xp + contextHandler?.avatarInfo.total_xp
         
         console.log("TOTAL XP----------->", total_xp)
         const updatedAvatar = {
@@ -91,7 +90,7 @@ const PetDisplay = ({ avatarInfo, setAvatar }) => {
             .then((response) => {
               console.log("response.data:", response.data);
               contextHandler?.setAvatar(response.data); //change this to add to previous state instead of replacing completely (in case of >1 avatar for 1 user)
-              getLevel(contextHandler.avatarInfo.total_xp)
+              getLevel(contextHandler?.avatarInfo.total_xp)
                 
             })
             .catch((err) => {
@@ -120,35 +119,35 @@ const PetDisplay = ({ avatarInfo, setAvatar }) => {
 
     //let handlers = useContext(InventoryContext)
     // Accepts images(candy) and calls candyDropped() when a candy is fed
-    let [{ isOver }, drop] = useDrop(() => ({
-        // What objects to accept
-        accept: "image",
-        drop: (item) => {
-            let candy = contextHandler.inv.find((candy) => candy.inventory_id === item.id)
+    // let [{ isOver }, drop] = useDrop(() => ({
+    //     // What objects to accept
+    //     accept: "image",
+    //     drop: (item) => {
+    //         let candy = contextHandler.inv.find((candy) => candy.inventory_id === item.id)
             
-            console.log("CANDY------>",candy)
-            getExp(candy);
-            console.log(item)
-            //console.log(handlers.inv.find(item.id));
-            contextHandler.updateInventory(item.id);
+    //         console.log("CANDY------>",candy)
+    //         getExp(candy);
+    //         console.log(item)
+    //         //console.log(handlers.inv.find(item.id));
+    //         contextHandler.updateInventory(item.id);
             
-        },
-        collect: (monitor) => ({
-            isOver: !!monitor.isOver(),
-        }),
-    }), [contextHandler.inv])
+    //     },
+    //     collect: (monitor) => ({
+    //         isOver: !!monitor.isOver(),
+    //     }),
+    // }), [contextHandler.inv])
 
     return (
         <div className='pet-display'>
             <Card style={{ width: '25rem' }}>
-                <Card.Header className='pet-name'>{avatarInfo.pet_name}</Card.Header>
+                <Card.Header className='pet-name'>{contextHandler?.avatarInfo.pet_name}</Card.Header>
 
-                <div className="Board" ref={drop} >
+                <div className="Board" >
 
                     <div className='p-sprite-display'>
                         <img src={bgimage} alt="background" className="bg-sprite" />
                         <Spritesheet
-                            image={avatarImage(avatarInfo)}
+                            image={avatarImage(contextHandler?.avatarInfo)}
                             refs={spriteSheetRef}
                             className="p-sprite"
                             stopLastFrame={true}
@@ -174,7 +173,7 @@ const PetDisplay = ({ avatarInfo, setAvatar }) => {
                 <Card.Body className='pd-bg'>
 
                     <Card.Text className='pet-desc-text'>
-                        {avatarInfo.flavour_text}
+                        {contextHandler?.avatarInfo.flavour_text}
                     </Card.Text>
                 </Card.Body>
                 <ListGroup className="list-group-flush">
@@ -193,6 +192,3 @@ const PetDisplay = ({ avatarInfo, setAvatar }) => {
 }
 
 export default PetDisplay
-
-
-/// <PetSprite {...{ avatarInfo, setAvatar }} />  
