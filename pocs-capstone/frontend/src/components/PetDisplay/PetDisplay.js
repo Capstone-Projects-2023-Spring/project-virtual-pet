@@ -24,7 +24,9 @@ const HAPPY = 'H'
 const TASK_URL = "/tasks/"
 const USER_URL = "/user-data/"
 const TODAY = new Date()
-const PetDisplay = ({ avatarInfo, setAvatar }) => {
+const PetDisplay = () => {
+
+  
     //TODO - shouldn't call calc-pet-lev 3 times
     const axiosPrivate = useAxiosPrivate();
     const [mood,setMood]=useState(NEUTRAL); //H = happy, S = Sad, N = Neutral
@@ -85,8 +87,8 @@ const PetDisplay = ({ avatarInfo, setAvatar }) => {
         }
         })
         
-        const last_interaction = avatarInfo.last_interaction
-        const last_feed = new Date(avatarInfo.last_feed)
+        const last_interaction = contextHandler.avatarInfo.last_interaction
+        const last_feed = new Date(contextHandler.avatarInfo.last_feed)
         
         const feed_delta = dateDelta(TODAY,last_feed) //elapsed time since last feed
         console.log("FEED DELTA",feed_delta,TODAY,last_feed)
@@ -135,7 +137,7 @@ const PetDisplay = ({ avatarInfo, setAvatar }) => {
         })       
 
     }
-    ,[contextHandler,avatarInfo]);
+    ,[contextHandler]);
 
     //TEMP USE EFFECT TO SEE MOOD
     //Mary, plug in your state changes here!!

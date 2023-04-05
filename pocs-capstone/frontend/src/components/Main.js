@@ -17,6 +17,8 @@ import CalculateXP from "../algos/assignXP.js";
 import CalculatePetLevel from "../algos/calculatePetLevel.js";
 import { setIn } from "formik";
 
+
+
 const Main = () => {
   const axiosPrivate = useAxiosPrivate();
   const [avatarInfo, setAvatar] = useState({});
@@ -88,6 +90,8 @@ const Main = () => {
   // Performs update on candy quantity when candy is fed(drag and dropped)
   const updateInventory = (id) => {
     // console.log("ID OF CANDY", id)
+    let yourDate = new Date()
+    console.log("DATE???----->",yourDate.toISOString().split('T')[0])
 
     const candyD = inventory.find((candy) => candy.inventory_id === id);
     if (candyD.quantity !== 0) {
@@ -154,15 +158,22 @@ const Main = () => {
   };
   // Moved from PetDisplay - passed base type and level when called in Candy
   const getExp = (candy_base_type, candy_level) => {
+    
+
+
     const received_xp = CalculateXP(candy_base_type, candy_level)
     console.log("XP", avatarInfo.total_xp)
 
     const total_xp = received_xp + avatarInfo.total_xp
     
+    const today = new Date()
+    const todayString = today.toISOString().split('T')[0]
+
     console.log("TOTAL XP----------->", total_xp)
     const updatedAvatar = {
         ...avatarInfo,
-        total_xp:total_xp
+        total_xp:total_xp,
+        last_feed:todayString
       };
       console.log("UPDATED AVATAR",updatedAvatar)
       axiosPrivate
@@ -218,7 +229,7 @@ const Main = () => {
           {/*<InventoryContext.Provider value={handlers}>*/}
             {/*<SpriteSheetContext.Provider value={animate}>*/}
               <div className="flex-pages">
-                <PetDisplay />
+                <PetDisplay value={handlers}/>
                 <PageDisplay />
               </div>
            {/* </SpriteSheetContext.Provider>*/}
@@ -235,7 +246,7 @@ const Main = () => {
             {/*<SpriteSheetContext.Provider value={animate}>*/}
               <div>
                 <div className="flex-pages">
-                  <PetDisplay />
+                  <PetDisplay value={handlers}/>
                 </div>
                 <div>
                   <PageDisplay />
