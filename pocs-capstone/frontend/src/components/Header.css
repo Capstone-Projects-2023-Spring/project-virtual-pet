@@ -29,6 +29,8 @@
     align-items: center;
 }
 
+
+
 .header-position {
     padding: 10px;
     display: flex;
@@ -63,3 +65,37 @@
     content: none;
 }
 
+
+
+@keyframes bounce {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  .container-canvas-logo{
+    width: auto;
+    height: auto;
+    background-color:black;
+    justify-content: center;
+    align-items: center;
+  }
+  .logo-canvas {
+    width: 40px;
+    height: 40px;
+    color:black;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+  .canvas-loading {
+    width: 40px;
+    height: 40px;
+    justify-self: center;
+    animation: bounce 3000ms;
+    animation-iteration-count: infinite;
+  }

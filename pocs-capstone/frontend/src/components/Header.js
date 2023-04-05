@@ -6,13 +6,11 @@ import { useState, useEffect } from "react";
 import useAxiosPrivate from "../hooks/useAxiosPrivate";
 import { Stack, Image, Navbar, NavDropdown } from "react-bootstrap";
 
-const CANVAS_URL = "/user-data/";
 const COURSES_URL = "/canvas/";
 
 const Header = ({ userInfo }) => {
   const axiosPrivate = useAxiosPrivate();
   //  const [submittedText, setSubmittedText] = useState(null);
-  const [canvas_token, setEnteredText] = useState("");
   const [nameError, setNameError] = useState("");
 
   const [tokenReady, setTokenReady] = useState(false);
@@ -22,32 +20,28 @@ const Header = ({ userInfo }) => {
 
   const resetSubmitTokenState = (text) => {
     setRetrievingAssignments(false);
-    setSubmitText("Submit");
     setNameError(text);
     setTokenReady(false);
   };
-  console.log("canvas token-------->", userInfo.canvas_token);
-  useEffect(() => {
-    if (tokenReady) {
-      console.log("TOKEN READY????---------->", tokenReady);
 
-      axiosPrivate
-        .get(COURSES_URL)
-        .then((response) => {
-          console.log("CREATED!!!?????");
-          //we were successful
-          //return state and navigate to main
-          resetSubmitTokenState("");
-          //TODO set show pop-up
-        })
-        .catch((err) => {
-          console.log(err);
-          resetSubmitTokenState(
-            "Error getting assignments. Please check your token and try again."
-          );
-        });
-    }
-  }, [retrievingAssignments]); // there was an error here if axiosPrivate and nav were not present
+  function getCourses() {
+    setRetrievingAssignments(true)
+    setNameError("")
+    axiosPrivate
+      .get(COURSES_URL)
+      .then((response) => {
+        //we were successful
+        //return state and navigate to main
+        resetSubmitTokenState("Please check tasks!");
+        //TODO set show pop-up
+      })
+      .catch((err) => {
+        console.log(err);
+        resetSubmitTokenState(
+          "Error getting assignments. Please check your token and try again."
+        );
+      });
+  }
 
   const headerStyle = {
     // https://stackoverflow.com/questions/7415872/change-color-of-png-image-via-css
@@ -70,6 +64,7 @@ const Header = ({ userInfo }) => {
       />
     </div>
   );
+
   return (
     <div className="header-whole">
       <Stack direction="horizontal" gap={3}>
@@ -81,13 +76,26 @@ const Header = ({ userInfo }) => {
             My Study Buddy
           </Navbar.Brand>
         </div>
-        <div className="logo-sb">
-          <Image className="logo-sb"
-            alt="CanvasBug"
-            src={canvas_bug}
-            style={{ visibility: userInfo.canvas_token ? "visible" : "hidden" }}
-          ></Image>
-        </div>
+
+        {userInfo.canvas_token != "" ? (
+          <div style={{ display: "grid", gridAutoFlow: 'column'}}>
+              <button className="container-canvas-logo" onClick={getCourses}>
+                <img
+                  className={retrievingAssignments?"canvas-loading":"logo-canvas"}
+                  alt="CanvasBug"
+                  src={canvas_bug}
+                  //style={{gridRow:'2'}}
+                ></img>
+              </button>
+              <span style={{ color: "white"}}>
+                {nameError}
+              </span>
+            </div>
+          
+        ) : (
+          <div></div>
+        )}
+
         <div className="ms-auto dropdown-position">
           <NavDropdown title={UserMenu} id="basic-nav-dropdown">
             <NavDropdown.Item href="/">Home</NavDropdown.Item>
