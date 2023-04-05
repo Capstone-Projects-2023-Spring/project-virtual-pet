@@ -1,6 +1,6 @@
 import "./textbox.css";
 import Card from "react-bootstrap/Card";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import canvas_sidebar from "./canvas_sidebar.png";
 import new_access_token from "./new_access_token.png";
 import "./CanvasIntegrationPage.css";
@@ -8,14 +8,16 @@ import "./AnimateChoice.css";
 import useAxiosPrivate from "../hooks/useAxiosPrivate";
 import { useWindowWidth } from '@react-hook/window-size'
 import { useNavigate } from "react-router-dom";
+import UserContext from "../context/UserContext";
 //currently theres some repeat stuff in the two files canvas integration and animate choice.
 import cat from "../images/orangecat.png";
 
 //not right
-const CANVAS_URL = "/user-data/";
+const USER_URL = "/user-data/";
 const COURSES_URL = "/canvas/";
 
 const CanvasIntegrationPage = () => {
+  const {shareData} = useContext(UserContext);
   const axiosPrivate = useAxiosPrivate();
   //  const [submittedText, setSubmittedText] = useState(null);
   const [canvas_token, setEnteredText] = useState("");
@@ -45,12 +47,12 @@ const CanvasIntegrationPage = () => {
 
   useEffect(() => {
     if (tokenReady) {
-      console.log("TOKEN READY????---------->", tokenReady);
+      //console.log("TOKEN READY????---------->", tokenReady);
 
       axiosPrivate
         .get(COURSES_URL)
         .then((response) => {
-          console.log("CREATED!!!?????");
+          //console.log("CREATED!!!?????");
           //we were successful
           //return state and navigate to main
           resetSubmitTokenState("");
@@ -81,12 +83,12 @@ const CanvasIntegrationPage = () => {
       //setSubmittedText(canvas_token);
 
       axiosPrivate
-        .get(CANVAS_URL)
+        .get(USER_URL)
         .then((response) => {
           const id = response?.data[0].id;
           console.log("ID---->", response.data[0].id);
 
-          const url = CANVAS_URL + id + "/";
+          const url = USER_URL + id + "/";
           console.log("-----> ", url);
           const data = JSON.stringify({ canvas_token });
           axiosPrivate
@@ -95,6 +97,15 @@ const CanvasIntegrationPage = () => {
               console.log(response.data);
               setTokenReady(true);
             })
+            .then((response)=>{
+              axiosPrivate.get(USER_URL)
+              .then((response)=>{
+                shareData.setUserInfo(response.data[0])
+              }
+              )
+            }
+            
+            )
             .catch((err) => {
               console.log(err);
               //setRetrievingAssignments(false)
