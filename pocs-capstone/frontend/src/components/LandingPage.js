@@ -4,8 +4,9 @@ import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { Card } from 'react-bootstrap';
 import "./LandingPage.css"
+import kittycat from '../images/orangecat.png';
 const LandingPage = () => {
-    const axiosPrivate = useAxiosPrivate();
+    //const axiosPrivate = useAxiosPrivate();
     const nav = useNavigate();
 
     const handleSubmit = (event) => {
@@ -16,7 +17,7 @@ const LandingPage = () => {
     return (
         <div className="landingpage">
         <h1><center>WELCOME TO STUDY BUDDY!</center></h1>
-        <p></p>
+        <img src={kittycat} alt="cat" className='image' />
        <center><Card className = "card" style={{width: '30rem'}}>
             <Card.Title>About</Card.Title>
             <Card.Body>

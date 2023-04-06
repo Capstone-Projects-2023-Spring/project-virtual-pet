@@ -41,6 +41,19 @@
     position: relative;
 }
 
+.image {
+    /* position: absolute; */
+    display:block;
+    margin-left: auto;
+    margin-right: auto;
+    height: 500px;
+    width: 500px;
+    align-items: center;
+    /* top:auto; */
+    /* top: 30px;
+    left: 30px; */
+    /* top: 220px; */
+}
 .landingbutton:hover {
     background: #3a0422;
     color: #ffffff;
