@@ -5,7 +5,7 @@
 [![Documentation Website Link](https://img.shields.io/badge/-Documentation%20Site-hotpink)](https://capstone-projects-2023-spring.github.io/project-virtual-pet/)
 [![Resources Link](https://img.shields.io/badge/-Resources-9cf)](https://capstone-projects-2023-spring.github.io/project-virtual-pet/resources/Links)
 
-[![Website](https://img.shields.io/website?down_color=red&style=plastic&url=http%3A%2F%2F68.183.30.203%3A3000%2F)](http://68.183.30.203:3000/)
+[![Website](https://img.shields.io/website?down_color=red&style=plastic&url=http%3A%2F%2F68.183.30.203%3A3000%2F)](https://studybuddy.life/)
 
 
 </div>
