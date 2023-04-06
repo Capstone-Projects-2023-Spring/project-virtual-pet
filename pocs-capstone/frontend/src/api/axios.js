@@ -1,7 +1,7 @@
 
 import axios from 'axios';
 
-const BASE_URL = process.env.REACT_APP_DB_URL
+const BASE_URL = 'https://studybuddy.life/api'
 
 console.log(BASE_URL)
 
