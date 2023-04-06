@@ -46,12 +46,14 @@ def get_courses(canvas_token): #later we'll add userId as a parameter
 def get_assignments(canvas_token, course_id): 
     auth_header = {'Authorization': 'Bearer ' + canvas_token}
     assignment_params = {
-        "per_page": 100,
+        "per_page": 5000,
         "include": "submission"
     }
 
     assignments_data, status = canvas_request(BASE_URL + '/courses/' + str(course_id) + '/assignments', auth_header,  assignment_params)
- 
+    
+    print(assignments_data)
+
     assignment_id_list = [] # a list of all the user's courses (their ids)
     for assignment_entry in assignments_data:
         try:
@@ -70,16 +72,38 @@ def get_course_info(canvas_token, course_id):
 '''Given a course ID and assignment ID, return a dict of assignment information for that particular assignment'''  
 def get_assignment_info(canvas_token, course_id, assignment_id):
     auth_header = {'Authorization': 'Bearer ' + canvas_token}
+    
+    # TODO - This needs to move further back in the procedure
+    user_url = BASE_URL + '/users/self'
+    user_id=None
+    try:
+        b,bstatus= canvas_request(url=user_url,headers=auth_header, params={})
+        if bstatus==200:
+            # print(b)
+            user_id = b['id']
+            # print(user_id)
+    except Exception as e:
+        print(e)
+        return None    
+    
+
     assignment_url = BASE_URL + '/courses/' + str(course_id) + '/assignments/' + str(assignment_id)
     a,status = canvas_request(url=assignment_url, headers=auth_header, params={"include[]":['submission']})
-    
+    submission_details = {}
+  
     if status == 200:
         due = a['due_at']
+        submission_details=a['submission']
+        submitted=submission_details['submitted_at']
+        # print(submission_details)
     else:
         due = None
     
     if due != None:
         due = due[0:10] #hack into a string UwU 
+    if submitted != None:
+        submitted = submitted[0:10] #hack into a string UwU 
+
 
     try: 
         description = bs.BeautifulSoup(a['description'],'lxml').get_text()
@@ -93,6 +117,7 @@ def get_assignment_info(canvas_token, course_id, assignment_id):
         #'task_level': 1, # TODO - this should be set here!
         #'recurring': 'false',
         #'recurring_time_delta': 0,
+        'completed_date':submitted,
         'description': description,
         'course_id': a['course_id'],
         'assignment_id': a['id']

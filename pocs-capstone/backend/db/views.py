@@ -23,8 +23,8 @@ def lololol(userId):
     assignments, status = canvas.get_all_assignments(canvas_token)
     # _userid = self.request.user
 
-    print(_user[0].get_canvas_token())
-    print(_user)
+    # print(_user[0].get_canvas_token())
+    # print(_user)
     return assignments, status
 
 
