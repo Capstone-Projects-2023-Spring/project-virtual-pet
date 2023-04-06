@@ -7,7 +7,7 @@ import CalculateXP from '../../algos/assignXP';
 import CalculatePetLevel from '../../algos/calculatePetLevel';
 
 import axios from '../../api/axios';
-const LOGIN_URL = '/api/token/';
+const LOGIN_URL = '/token/';
 
 const Login = () => {
         const { setAuth, persist, setPersist } = useAuth();
