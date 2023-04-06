@@ -19,7 +19,6 @@ const isLocalhost = Boolean(
 );
 
 export function register(config) {
-  //removed from following if statement: 
   console.log("service worker...?")  
   if ('serviceWorker' in navigator && process.env.NODE_ENV === 'production') {
     console.log("will now try to register service worker...?")
@@ -46,10 +45,10 @@ export function register(config) {
             'worker. To learn more, visit https://cra.link/PWA'
           );
         });
-      } else {
+      } //else {
         // Is not localhost. Just register service worker
         registerValidSW(swUrl, config);
-      }
+      //}
     });
   }
 }
