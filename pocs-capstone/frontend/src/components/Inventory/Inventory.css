@@ -75,6 +75,17 @@ img {
   -webkit-overflow-scrolling: touch;
 }
 
+.inventory-wrapper-mobile {
+  min-height: 85vh;
+  max-height: 85vh;
+  border-radius: 0px;
+
+  margin-bottom: 10px;
+  padding: 20px;
+  overflow: scroll;
+  -webkit-overflow-scrolling: touch;
+}
+
 
 /* Makes the candies appears in a grid */
 .inventory-wrapper-sizes {
@@ -95,6 +106,24 @@ img {
 
 }
 
+.inventory-wrapper-sizes-mobile {
+
+  display: grid;
+  justify-content: space-evenly;
+  justify-items: center;
+  align-content: space-evenly;
+  align-items: center;
+
+  /* grid-template-columns: auto auto auto auto auto; */
+  /* https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-rows */
+  grid-template-columns: repeat(auto-fill, 60px);
+
+  grid-auto-rows: 100px;
+
+
+
+}
+
 
 /*  Wrap around badge AND grid item */
 .grid-wrapper {
@@ -109,6 +138,40 @@ img {
   justify-content: center;
   justify-items: center;
   align-items: center;
+
+  /*Need these two for sure */
+  -webkit-touch-callout: none;
+  user-select: none;  /* supported by Chrome and Opera */
+  /*-webkit-user-select: none; /* Safari */
+  /*-khtml-user-select: none; /* Konqueror HTML */
+  /*-moz-user-select: none; /* Firefox */
+  /*-ms-user-select: none; /*Internet Explorer/Edge */ 
+
+
+}
+
+/*  Wrap around badge AND grid item */
+.grid-wrapper-mobile {
+  position: relative;
+  text-align: center;
+  font-size: 30px;
+  
+  width: 80px;
+  height: 80px;
+
+  display: flex;
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
+
+  /*Need these two for sure */
+  -webkit-touch-callout: none;
+  user-select: none;  /* supported by Chrome and Opera */
+  /*-webkit-user-select: none; /* Safari */
+  /*-khtml-user-select: none; /* Konqueror HTML */
+  /*-moz-user-select: none; /* Firefox */
+  /*-ms-user-select: none; /*Internet Explorer/Edge */ 
+
 
 }
 
@@ -137,9 +200,49 @@ img {
   border: 3px solid rgba(33, 33, 33, 0.747);
 }
 
+.grid-item-mobile {
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 3px solid rgba(255, 192, 203, 0);
+  box-shadow: 0 5px 15px -4px rgb(65, 65, 65);
+  border-radius: 20px;
+
+  /* https://stackoverflow.com/questions/14350126/transition-color-fade-on-hover */
+  -moz-transition: all .2s ease-in;
+  -o-transition: all .2s ease-in;
+  -webkit-transition: all .2s ease-in;
+  transition: all .2s ease-in;
+
+  width: 70px;
+  height: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .candy-photo {
   width: 80px;
-  height: auto
+  height: auto;
+  pointer-events: none;
+  /* user-select: none; */
+  /*-webkit-user-select: none; /* Safari */
+  /*-khtml-user-select: none; /* Konqueror HTML */
+  /*-moz-user-select: none; /* Firefox */
+  /*-ms-user-select: none; /*Internet Explorer/Edge*/
+  
+  
+}
+
+.candy-photo-mobile {
+  width: 50px;
+  height: auto;
+  pointer-events: none;
+  /* user-select: none; */
+  /*-webkit-user-select: none; /* Safari */
+  /*-khtml-user-select: none; /* Konqueror HTML */
+  /*-moz-user-select: none; /* Firefox */
+  /*-ms-user-select: none; /*Internet Explorer/Edge*/
+  
+  
 }
 
 .candy-wrapper {
@@ -149,6 +252,17 @@ img {
   display: flex;
   justify-content: center;
   align-items: center;
+  
+}
+
+.candy-wrapper-mobile {
+  width: 80px;
+  height: 80px;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
 }
 
 .text-wrapper {
@@ -168,6 +282,28 @@ img {
   position: absolute;
   top: -15px;
   right: -15px;
+  pointer-events: none;
+  user-select: none; /* supported by Chrome and Opera */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+
+}
+
+.candy-q-mobile {
+  width: 40px;
+  height: 40px;
+  padding: 8px;
+  position: absolute;
+  top: -15px;
+  right: -15px;
+  pointer-events: none;
+  user-select: none; /* supported by Chrome and Opera */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
 
 }
 
@@ -175,3 +311,35 @@ img {
 .space-candy-types {
   margin-bottom: 40px;
 }
+
+@-webkit-keyframes fill { 
+  to {
+  background-size: 100% 0; 
+  }
+} 
+  
+@keyframes fill { 
+to { 
+background-size: 100% 0;
+}
+}
+  
+/* The wrapper has the .cnh_holding class while the button is being pressed */
+  
+.cnh_holding .grid-item {
+background: -webkit-linear-gradient( white , white) rgb(255,215,235) no-repeat 0 0;
+background: linear-gradient( white , white) rgb(255,215,235) no-repeat 0 0;
+mix-blend-mode: multiply;
+background-size: 100% 100%;
+-webkit-animation: fill 2s forwards;
+animation: fill 2s forwards;
+}
+
+.cnh_holding .grid-item-mobile {
+  background: -webkit-linear-gradient( white , white) rgb(255,215,235) no-repeat 0 0;
+  background: linear-gradient( white , white) rgb(255,215,235) no-repeat 0 0;
+  mix-blend-mode: multiply;
+  background-size: 100% 100%;
+  -webkit-animation: fill 2s forwards;
+  animation: fill 2s forwards;
+  }
