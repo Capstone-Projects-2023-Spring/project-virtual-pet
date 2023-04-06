@@ -8,11 +8,16 @@ import useAxiosPrivate from "../hooks/useAxiosPrivate.js";
 import "./Main.css";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
-import InventoryContext from "../context/InventoryContext";
 import PopulateInv from "./Inventory/PopulateInv";
+import LockedInv from "./Inventory/LockedInv.js";
 import SpriteSheetContext from "../context/SpriteSheetContext.js";
 import AvatarContext from "../context/AvatarContext";
 import GlobalContext from "../context/GlobalContext.js";
+import CalculateXP from "../algos/assignXP.js";
+import CalculatePetLevel from "../algos/calculatePetLevel.js";
+import { setIn } from "formik";
+
+
 
 const Main = () => {
   const axiosPrivate = useAxiosPrivate();
@@ -21,8 +26,12 @@ const Main = () => {
   const nav = useNavigate();
 
   const [ready, setReady] = useState(false);
+  const populateInventory = LockedInv()
+  const [inventory, setInventory] = useState(populateInventory);
+  // Moved from PetDisplay
+  const [level_info, setLevelInfo] = useState(CalculatePetLevel(avatarInfo.total_xp))
+  const [spritesheetInstance, setSpritesheetInstance] = useState(null);
 
-  let [inv, setInv] = useState([]);
 
   let spriteSheetRef = useRef(null);
   useEffect(() => {
@@ -41,14 +50,33 @@ const Main = () => {
 
   // useEffect, GET call to retrieve inventory item and set the state of inv
   useEffect(() => {
+    
     axiosPrivate
       .get("/inventory/")
-      .then((response) => {
-        setInv(response.data);
+      .then((r) => {
+        
+        r.data.map((it) => {
+          
+          let candy = inventory.find((c) => c.candy_base_type === it.candy_base_type && c.candy_level === it.candy_level);
+
+          candy.inventory_id = it.inventory_id;
+          candy.quantity = it.quantity;
+
+
+        })        
       })
       .catch((error) => {
         console.log(error);
       });
+      
+    // axiosPrivate
+    //   .get("/inventory/")
+    //   .then((response) => {
+    //     setInventory(response.data);
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //   });
   }, []);
 
   const isMobile = width <= 850;
@@ -62,8 +90,10 @@ const Main = () => {
   // Performs update on candy quantity when candy is fed(drag and dropped)
   const updateInventory = (id) => {
     // console.log("ID OF CANDY", id)
+    let yourDate = new Date()
+    console.log("DATE???----->",yourDate.toISOString().split('T')[0])
 
-    const candyD = inv.find((candy) => candy.inventory_id === id);
+    const candyD = inventory.find((candy) => candy.inventory_id === id);
     if (candyD.quantity !== 0) {
       // console.log("CANDY", candyD)
       const updateCandy = {
@@ -72,7 +102,7 @@ const Main = () => {
       };
       // console.log("ID", updateCandy.inventory_id)
       putInventory(updateCandy).then((r) => {
-        setInv(inv.map((it) => (it.inventory_id === id ? updateCandy : it)));
+        setInventory(inventory.map((it) => (it.inventory_id === id ? updateCandy : it)));
       });
     }
   };
@@ -104,13 +134,13 @@ const Main = () => {
 
   // Create a bunch of items in the backend and change the state of inv
   const postFullInventory = () => {
-    if (inv.length === 0) {
+    if (inventory.length === 0) {
       let fullInventoryData = PopulateInv();
       let populatedItems = [];
       fullInventoryData.forEach((importItem) => {
         createInventoryItem(importItem).then((r) => {
           populatedItems.push(r);
-          setInv([...inv, ...populatedItems]);
+          setInventory([...inventory, ...populatedItems]);
         });
       });
     }
@@ -118,33 +148,74 @@ const Main = () => {
 
   // Delete all the items in the backend and set the state of inv to []
   const deleteAll = () => {
-    if (inv.length) {
-      inv.forEach((i) => {
+    if (inventory.length) {
+      inventory.forEach((i) => {
         deleteInventoryItem(i.inventory_id);
       });
     }
 
-    setInv([]);
+    setInventory([]);
   };
+  // Moved from PetDisplay - passed base type and level when called in Candy
+  const getExp = (candy_base_type, candy_level) => {
+    
+
+
+    const received_xp = CalculateXP(candy_base_type, candy_level)
+    console.log("XP", avatarInfo.total_xp)
+
+    const total_xp = received_xp + avatarInfo.total_xp
+    
+    const today = new Date()
+    const todayString = today.toISOString().split('T')[0]
+
+    console.log("TOTAL XP----------->", total_xp)
+    const updatedAvatar = {
+        ...avatarInfo,
+        total_xp:total_xp,
+        last_feed:todayString
+      };
+      console.log("UPDATED AVATAR",updatedAvatar)
+      axiosPrivate
+        .patch(`/avatar/${avatarInfo.avatar_id}/`, updatedAvatar)
+        .then((response) => {
+          console.log("response.data:", response.data);
+          setAvatar(response.data); //change this to add to previous state instead of replacing completely (in case of >1 avatar for 1 user)
+          getLevel(avatarInfo.total_xp)
+            
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+  };
+  // Moved from PetDisplay
+  const getLevel = (xp) => {
+    setLevelInfo(CalculatePetLevel(xp));
+    // Heart animation. Need to talk to Mary and Alex about this. 
+    spritesheetInstance.goToAndPlay(1);
+    spritesheetInstance.pause();
+    
+
+}
 
   const handlers = {
-    inv,
+    inventory,
+    setInventory,
     createInventoryItem,
-    setInv,
     updateInventory,
     deleteInventoryItem,
     postFullInventory,
     deleteAll,
     avatarInfo,
     setAvatar,
-    animateSpriteSheet
+    animateSpriteSheet,
+    setSpritesheetInstance,
+    getExp,
   };
 
   const animate = {
     animateSpriteSheet,
   };
-
-  const shareData = { avatarInfo, setAvatar };
 
   if (!ready) {
     return <div>LOADING...</div>;
@@ -155,16 +226,14 @@ const Main = () => {
     return (
       <GlobalContext.Provider value={handlers}>
       {/*<AvatarContext.Provider value={shareData}>*/}
-        <DndProvider backend={HTML5Backend}>
           {/*<InventoryContext.Provider value={handlers}>*/}
             {/*<SpriteSheetContext.Provider value={animate}>*/}
               <div className="flex-pages">
-                <PetDisplay {...shareData} />
-                <PageDisplay {...shareData} />
+                <PetDisplay value={handlers}/>
+                <PageDisplay />
               </div>
            {/* </SpriteSheetContext.Provider>*/}
          {/* </InventoryContext.Provider>*/} 
-        </DndProvider>
       {/*</AvatarContext.Provider>*/}
       </GlobalContext.Provider>
 
@@ -173,20 +242,18 @@ const Main = () => {
     return (
       <GlobalContext.Provider value={handlers}>
       {/*<AvatarContext.Provider value={shareData}>*/}
-        <DndProvider backend={HTML5Backend}>
           {/*<InventoryContext.Provider value={handlers}>*/}
             {/*<SpriteSheetContext.Provider value={animate}>*/}
               <div>
                 <div className="flex-pages">
-                  <PetDisplay {...shareData} />
+                  <PetDisplay value={handlers}/>
                 </div>
                 <div>
-                  <PageDisplay {...shareData} />
+                  <PageDisplay />
                 </div>
               </div>
            {/* </SpriteSheetContext.Provider>*/}
          {/* </InventoryContext.Provider>*/} 
-         </DndProvider>
       {/*</AvatarContext.Provider>*/}
       </GlobalContext.Provider>
     );
