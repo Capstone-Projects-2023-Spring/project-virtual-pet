@@ -11,32 +11,5 @@ COPY package-lock.json ./
 RUN npm install
 
 COPY . .
+
 RUN npm run build
-
-COPY ./.env.development ./build
-COPY ./.env.production ./build
-
-# run command npm install - node_modules folder ignored in build (.dockerignore), rerun command to create and update dependencies
-# RUN npm install
-
-# create react app production version - build folder ignored in image build (.dockerignore), recreate to include any new updates from npm install 
-# RUN npm run build
-
-# # expose on port 3000
-# EXPOSE 3000
-
-# # run the build
-# CMD [ "npx", "serve", "build" ]
-
-# FROM node:14-alpine AS builder
-# WORKDIR /frontend
-# COPY package.json ./
-# COPY package-lock.json ./
-# # RUN yarn install --frozen-lockfile
-# RUN npm install
-# COPY . .
-# RUN npm run build
-
-# FROM nginx:1.19-alpine AS server
-# COPY ./etc/nginx.conf /etc/nginx/conf.d/default.conf
-# COPY --from=builder ./frontend/build /usr/share/nginx/html
