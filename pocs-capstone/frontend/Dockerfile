@@ -6,11 +6,15 @@ WORKDIR /frontend
 # copy contents of the folder where Dockerfile is to the working directory (frontend) of the docker image
 COPY package.json ./
 COPY package-lock.json ./
+
 # RUN yarn install --frozen-lockfile
 RUN npm install
 
 COPY . .
 RUN npm run build
+
+COPY ./.env.development ./build
+COPY ./.env.production ./build
 
 # run command npm install - node_modules folder ignored in build (.dockerignore), rerun command to create and update dependencies
 # RUN npm install
