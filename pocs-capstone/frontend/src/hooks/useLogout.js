@@ -8,9 +8,9 @@ const useLogout = () => {
     const logout = async () => {
         setAuth({});
         try {
-            const response = await axios('/logout', {
-                withCredentials: true
-            });
+            const response = await axios('/logout/blacklist', 
+                {refresh_token:localStorage.getItem('refresh')}
+            );
         } catch (err) {
             console.error(err);
         }
