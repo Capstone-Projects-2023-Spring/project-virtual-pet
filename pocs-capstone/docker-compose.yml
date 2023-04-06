@@ -14,7 +14,7 @@ services:
       - ./backend:/backend
 
     # Handles the command used to run the project in the Docker container.  (look at resources for link to stackoverflow explaining when to run commands in Dockerfiles vs docker compose file)
-    command: bash -c "python manage.py runserver 0.0.0.0:8000"
+    command: bash -c "python manage.py makemigrations && python manage.pypython manage.py runserver 0.0.0.0:8000"
 
   web:
     build: 
@@ -29,19 +29,61 @@ services:
 
 
 # FOR HOSTING DOCKER-COMPOSE.YML FILE: 
-# services:
-#   api:
-#     # path to build context (dockerfile to create dockerimage)
-#     image: ccho508/backend-sb:latest
+services:
+  api:
+    # path to build context (dockerfile to create dockerimage)
+    image: ccho508/backend-sb:latest
 
-#     # map port on local machine to port on docker image
-#     ports:
-#       - "8000:8000"
+    # map port on local machine to port on docker image
+    ports:
+      - "8000:8000"
   
-#     # Handles the command used to run the project in the Docker container.  (look at resources for link to stackoverflow explaining when to run commands in Dockerfiles vs docker compose file)
-#     command: bash -c "python manage.py runserver 0.0.0.0:8000"
+    # Handles the command used to run the project in the Docker container.  (look at resources for link to stackoverflow explaining when to run commands in Dockerfiles vs docker compose file)
+    command: bash -c "python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
 
-#   web:
-#     image: ccho508/frontend-sb:latest
-#     ports:
-#       - "3000:80"
+  web:
+    image: ccho508/frontend-sb:latest
+    ports:
+      - "3000:80"
+
+
+        # use the certificates
+# events {}
+# http {
+#     server_tokens  off;
+
+#     server {
+#         listen 80 default_server;
+#         server_name _;
+#         return 301 https://$host$request_uri;
+
+#     }
+#     server {
+#         listen 443 ssl http2;
+#         # use the certificates
+#         ssl_certificate     /etc/letsencrypt/live/studybuddy.life/fullchain.pem;
+#         ssl_certificate_key /etc/letsencrypt/live/studybuddy.life/privkey.pem;
+#         server_name studybuddy.life www.studybuddy.life;
+#         root /var/www/studybuddy.life/html;
+#         index index.html;
+
+#         location / {
+#            add_header "Access-Control-Allow-Origin" "*";
+#            add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS, PUT, DELETE, PATCH';
+#            add_header 'Access-Control-Allow-Headers' 'X-Requested-With,Accept,Content-Type, Origin';
+
+#             proxy_pass http://web:3000/;
+#         }
+
+#         location ~ /.well-known/acme-challenge/ {
+#             root /var/www/certbot;
+#         }
+
+#         location ^~ /api {
+#            rewrite ^/api/(.*)$ /$1 break;
+#            proxy_pass http://api:8000/;
+#         }
+
+#     }
+# }
+
