@@ -23,7 +23,7 @@ const LandingPage = () => {
             <Card.Body>
                 Study buddy allows you to take care of a virtual pet to achieve your study goals! Choose from a variety of pets and colors
                 of pets to find the buddy you like best. By completing tasks, you can receive candies of various sizes to feed your pet and watch it grow. 
-                Integrate your institution Canvas account to have your pet keep track of your school assignments. With Study Buddy, you get a fun and cute 
+                Integrate your institution Canvas account to have your pet keep track of your school assignments. With Study Buddy, you get a cute 
                 way to make keeping up with your schoolwork and personal study goals fun! Click on the buttons below to register or log in to see your buddy.
             </Card.Body>
            
