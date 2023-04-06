@@ -1,7 +1,7 @@
 
 import requests
 import bs4 as bs
-from .serializers import CanvasSerializer
+import pprint
 #import re
 #from dateutil import parser
 
@@ -51,8 +51,9 @@ def get_assignments(canvas_token, course_id):
     }
 
     assignments_data, status = canvas_request(BASE_URL + '/courses/' + str(course_id) + '/assignments', auth_header,  assignment_params)
-    
-    print(assignments_data)
+    pp = pprint.PrettyPrinter(indent=4)
+
+    pp.pprint(assignments_data)
 
     assignment_id_list = [] # a list of all the user's courses (their ids)
     for assignment_entry in assignments_data:
@@ -140,6 +141,5 @@ def get_all_assignments(canvas_token):
         
 
     return all_assignments, status
-
 
 

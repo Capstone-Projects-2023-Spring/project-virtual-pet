@@ -26,13 +26,13 @@ const Header = ({ userInfo }) => {
 
   function getCourses() {
     setRetrievingAssignments(true);
-    setNameError("");
+    setNameError("Loading...");
     axiosPrivate
       .get(COURSES_URL)
       .then((response) => {
         //we were successful
         //return state and navigate to main
-        resetSubmitTokenState("Please check tasks!");
+        resetSubmitTokenState("Please reload tasks!");
         //TODO set show pop-up
       })
       .catch((err) => {
