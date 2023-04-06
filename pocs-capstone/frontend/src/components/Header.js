@@ -25,8 +25,8 @@ const Header = ({ userInfo }) => {
   };
 
   function getCourses() {
-    setRetrievingAssignments(true)
-    setNameError("")
+    setRetrievingAssignments(true);
+    setNameError("");
     axiosPrivate
       .get(COURSES_URL)
       .then((response) => {
@@ -78,20 +78,19 @@ const Header = ({ userInfo }) => {
         </div>
 
         {userInfo.canvas_token != "" ? (
-          <div style={{ display: "grid", gridAutoFlow: 'column'}}>
-              <button className="container-canvas-logo" onClick={getCourses}>
-                <img
-                  className={retrievingAssignments?"canvas-loading":"logo-canvas"}
-                  alt="CanvasBug"
-                  src={canvas_bug}
-                  //style={{gridRow:'2'}}
-                ></img>
-              </button>
-              <span style={{ color: "white"}}>
-                {nameError}
-              </span>
-            </div>
-          
+          <div style={{ display: "grid", gridAutoFlow: "column" }}>
+            <button className="container-canvas-logo" onClick={getCourses}>
+              <img
+                className={
+                  retrievingAssignments ? "canvas-loading" : "logo-canvas"
+                }
+                alt="CanvasBug"
+                src={canvas_bug}
+                //style={{gridRow:'2'}}
+              ></img>
+            </button>
+            <span style={{ color: "white" }}>{nameError}</span>
+          </div>
         ) : (
           <div></div>
         )}
