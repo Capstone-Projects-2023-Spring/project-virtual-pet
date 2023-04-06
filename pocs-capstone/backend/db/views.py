@@ -73,6 +73,10 @@ class CanvasView(APIView):
             # print(
             #     "COMPLETED - {} {}".format(old_task['completed_date'], new_task.completed_date))
             if new_task.completed_date != None:  # first time completed
+                
+                new_task.completed = True # The task has officially been completed!
+                new_task.save()
+                
                 try:
                     obj = Inventory.objects.get(
                         user=_user_id, candy_base_type=new_task.task_type, candy_level=new_task.task_level)
