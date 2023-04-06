@@ -68,7 +68,12 @@ class CanvasView(APIView):
     permission_classes = [IsAuthenticated,]
 
     def __enter_inventory_item(self, _user_id, old_task, new_task):
-
+        if ((old_task['completed_date']!=None) and (new_task.completed_date != None)):
+            new_task.completed = True
+            new_task.save()
+            print("Guarded Completed Update:")
+            print("{} {}".format(old_task, new_task))
+            return
         if old_task['completed_date'] == None:
             # print(
             #     "COMPLETED - {} {}".format(old_task['completed_date'], new_task.completed_date))
@@ -83,12 +88,14 @@ class CanvasView(APIView):
                     updated_quantity = obj.quantity + 1
                     obj.quantity = updated_quantity
                     obj.save()  # inventory is updated
-                    print("Update Inventory: {}".format(obj))
+                    print("Update Inventory:")
+                    print("{}".format(obj))
                 except Inventory.DoesNotExist:
                     obj = Inventory(
                         user=_user_id, candy_base_type=new_task.task_type, candy_level=new_task.task_level, quantity=1)
                     obj.save()  # new inventory item now created
-                    print("Create Inventory: {}".format(obj))
+                    print("Create Inventory:")
+                    print("{}".format(obj))
 
         # print(
         #     "DUE DATES - {} {}".format(old_task['due_date'], new_task.due_date))
@@ -122,7 +129,11 @@ class CanvasView(APIView):
                     # print(dir(obj))
 
                     if created:
-                        print("Created: {}".format(obj))
+                        print("Created: ")
+                        print("{}".format(obj))
+                        if obj.completed_date != None:
+                            obj.completed = True
+                            obj.save()
                     else:  # operate on object here
                         self.__enter_inventory_item(_user, temp, obj)
                         # print("updated")
