@@ -13,7 +13,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework_simplejwt.tokens import RefreshToken
 from db.studybuddyemail import send_email
 import db.canvasrequests as canvas
-
+import pprint
 
 def lololol(userId):
 
@@ -66,12 +66,15 @@ class BlacklistTokenView(APIView):
 
 class CanvasView(APIView):
     permission_classes = [IsAuthenticated,]
-
+    
     def __enter_inventory_item(self, _user_id, old_task, new_task):
+        pp = pprint.PrettyPrinter(indent=4)
         if ((old_task['completed_date']!=None) and (new_task.completed_date != None)):
             new_task.completed = True
             new_task.save()
             print("Guarded Completed Update:")
+            pp.pprint(old_task)
+            pp.pprint(new_task)
             print("{} {}".format(old_task, new_task))
             return
         if old_task['completed_date'] == None:
@@ -81,7 +84,8 @@ class CanvasView(APIView):
                 
                 new_task.completed = True # The task has officially been completed!
                 new_task.save()
-                
+                print("Old &")
+                pp.pprint(new_task)
                 try:
                     obj = Inventory.objects.get(
                         user=_user_id, candy_base_type=new_task.task_type, candy_level=new_task.task_level)
@@ -89,19 +93,20 @@ class CanvasView(APIView):
                     obj.quantity = updated_quantity
                     obj.save()  # inventory is updated
                     print("Update Inventory:")
-                    print("{}".format(obj))
+                    pp.pprint(obj)
                 except Inventory.DoesNotExist:
                     obj = Inventory(
                         user=_user_id, candy_base_type=new_task.task_type, candy_level=new_task.task_level, quantity=1)
                     obj.save()  # new inventory item now created
                     print("Create Inventory:")
-                    print("{}".format(obj))
+                    pp.pprint(obj)
 
         # print(
         #     "DUE DATES - {} {}".format(old_task['due_date'], new_task.due_date))
         pass
 
     def get(self, request):
+        pp = pprint.PrettyPrinter(indent=4)
         # $print("1 HEREERERERE")
         _user = self.request.user.id
         course_data, _status = lololol(_user)
@@ -124,13 +129,16 @@ class CanvasView(APIView):
                     serializer = CanvasSerializer(x)
                     # print(serializer.data)
                     temp = serializer.data # task data BEFORE update
+                    print("-------------TEMP-----------")
+                    pp.pprint(temp)
                     obj, created = Task.objects.update_or_create(
                         unique_canvas_tag=tag, defaults=serializer.data)  # TODO validate the dat
+                    
                     # print(dir(obj))
 
                     if created:
                         print("Created: ")
-                        print("{}".format(obj))
+                        pp.pprint("{}".format(obj))
                         if obj.completed_date != None:
                             obj.completed = True
                             obj.save()
