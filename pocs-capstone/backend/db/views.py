@@ -120,8 +120,7 @@ class CanvasView(APIView):
                     obj, created = Task.objects.update_or_create(
                         unique_canvas_tag=tag, defaults=serializer.data)  # TODO validate the dat
                     # print(dir(obj))
-                    new_completed_date = obj.completed_date
-
+                    
                     if created:
                         print("Created: {}".format(obj))
                     else:  # operate on object here
