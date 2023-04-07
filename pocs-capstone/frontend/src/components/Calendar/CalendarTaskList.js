@@ -19,7 +19,7 @@ function CalendarTaskList (props) {
         return dateS;
     }
 
-    let todayTasks = handlers?.taskList.filter(task => task.due_date === getDueDate(props.date))
+    let todayTasks = handlers?.taskList.filter(task => task.due_date === getDueDate(props.date) && !task.completed)
     let small = todayTasks.filter(i => i.task_type === 'S').sort((a, b) => b.task_level - a.task_level)
     let medium = todayTasks.filter(i => i.task_type === 'M').sort((a, b) => b.task_level - a.task_level)
     let large = todayTasks.filter(i => i.task_type === 'L').sort((a, b) => b.task_level - a.task_level)
@@ -52,7 +52,7 @@ function CalendarTaskList (props) {
                                             
                                                     {sortedTasks[key].map((t, id) => {
                                                       
-                                                        return <CalendarTaskItem key={t.task_id} task={t} />})}
+                                                        return <CalendarTaskItem key={t.task_id} task={t} updateTask={handlers?.updateTask} deleteTask={handlers?.deleteTask} />})}
                                                     </div>
                                                 
                                             :
