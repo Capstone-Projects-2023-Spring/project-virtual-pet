@@ -95,6 +95,7 @@ const CalendarTaskItem = ({ task, updateTask, deleteTask }) => {
                                 <ListGroup.Item className="close-box-task">
                                     <div>
                                         <CloseButton onClick={() => deleteTask(task.task_id)} />
+
                                     </div>
                                 </ListGroup.Item>
                             </ListGroup >

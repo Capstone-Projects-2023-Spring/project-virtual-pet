@@ -8,7 +8,8 @@ function CalendarTaskList (props) {
     const handlers = useContext(TaskListContext);
 
     const getDueDate = (d) => {
-        const date = d.getDate();
+        // const date = d.getDate();
+        const date = ('0' + (d.getDate())).slice(-2)
         // const month = d.getMonth() + 1; // Since getMonth() returns month from 0-11 not 1-12
         const month = ('0' + (d.getMonth()+1)).slice(-2)
         const year = d.getFullYear();
@@ -32,8 +33,6 @@ function CalendarTaskList (props) {
         "Small": small
       
     }
-
-    const [isEmpty, setIsEmpty] = useState(true);
 
 
   
