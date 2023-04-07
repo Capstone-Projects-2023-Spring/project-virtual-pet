@@ -19,6 +19,20 @@ function CalendarTaskList(props) {
         return dateS;
     }
 
+    let todayTasks = handlers?.taskList.filter(task => task.due_date === getDueDate(props.date))
+    let small = todayTasks.filter(i => i.task_type === 'S').sort((a, b) => b.task_level - a.task_level)
+    let medium = todayTasks.filter(i => i.task_type === 'M').sort((a, b) => b.task_level - a.task_level)
+    let large = todayTasks.filter(i => i.task_type === 'L').sort((a, b) => b.task_level - a.task_level)
+    let cake = todayTasks.filter(i => i.task_type === 'C').sort((a, b) => b.task_level - a.task_level)
+
+    let sortedTasks = {
+        "Cake": cake,
+        "Large": large,
+        "Medium": medium,
+        "Small": small
+      
+    }
+
 
   
   return (
@@ -28,9 +42,28 @@ function CalendarTaskList(props) {
       </Modal.Header>
       <Modal.Body>
         {/* {handlers?.taskList} */}
-        {handlers?.taskList.filter(task => task.due_date === getDueDate(props.date)).length !== 0 ? 
+        {/* {handlers?.taskList.filter(task => task.due_date === getDueDate(props.date)).length !== 0 ? 
         handlers?.taskList.filter(task => task.due_date === getDueDate(props.date)).map(t => <CalendarTaskItem key={t.task_id} task={t} />) 
-        : <div>No Tasks Due Today!</div>}
+        : <div>No Tasks Due Today!</div>} */}
+
+        {Object.keys(sortedTasks).map((key, index) => {
+                                return (
+                                    <div key={index}>
+                                        {sortedTasks[key].length !== 0 ?
+                                                    <div>
+                                            
+                                                    {sortedTasks[key].map((t, id) => {
+                                                        // https://github.com/react-dnd/react-dnd/issues/748#issuecomment-348710655
+                                                        // DONT use index from mapping for react-dnd item key!!!
+                                                        return <CalendarTaskItem key={t.task_id} task={t} />})}
+                                                    </div>
+                                                
+                                            :
+                                            <></>
+                                        }
+                                    </div>
+                                )
+                            })}
        
       </Modal.Body>
     </Modal >
