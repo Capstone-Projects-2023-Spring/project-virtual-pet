@@ -8,7 +8,7 @@ const Loader = () => {
     const axiosPrivate = useAxiosPrivate();
     
     const nav = useNavigate();
-    useEffect(() => {  axiosPrivate.get(AVATAR_URL)
+    useEffect(() => { axiosPrivate.get(AVATAR_URL)
         .then((response )=>{
             console.log(response.data);
             if(response.status==403)

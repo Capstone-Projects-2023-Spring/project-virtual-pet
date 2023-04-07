@@ -19,7 +19,7 @@ export default function Logout() {
         setPersist(false)
         setAuth({})
 
-        navigate('/login')
+        navigate('/landing')
 
     });
     return <div>Logout</div>;
