@@ -1,9 +1,9 @@
-import { useEffect, useContext } from 'react';
-import { Tooltip, OverlayTrigger, Stack, Form, Button, Modal, Image } from 'react-bootstrap';
+import { useContext, useState } from 'react';
+import { Modal } from 'react-bootstrap';
 import TaskListContext from '../../context/TaskListContext';
 import CalendarTaskItem from './CalendarTaskItem';
 
-function CalendarTaskList(props) {
+function CalendarTaskList (props) {
 
     const handlers = useContext(TaskListContext);
 
@@ -33,6 +33,8 @@ function CalendarTaskList(props) {
       
     }
 
+    const [isEmpty, setIsEmpty] = useState(true);
+
 
   
   return (
@@ -41,10 +43,6 @@ function CalendarTaskList(props) {
         <Modal.Title>{props.date !== undefined ? props.date.toLocaleString().split(',')[0] :  ""}</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        {/* {handlers?.taskList} */}
-        {/* {handlers?.taskList.filter(task => task.due_date === getDueDate(props.date)).length !== 0 ? 
-        handlers?.taskList.filter(task => task.due_date === getDueDate(props.date)).map(t => <CalendarTaskItem key={t.task_id} task={t} />) 
-        : <div>No Tasks Due Today!</div>} */}
 
         {Object.keys(sortedTasks).map((key, index) => {
                                 return (
@@ -53,8 +51,7 @@ function CalendarTaskList(props) {
                                                     <div>
                                             
                                                     {sortedTasks[key].map((t, id) => {
-                                                        // https://github.com/react-dnd/react-dnd/issues/748#issuecomment-348710655
-                                                        // DONT use index from mapping for react-dnd item key!!!
+                                                      
                                                         return <CalendarTaskItem key={t.task_id} task={t} />})}
                                                     </div>
                                                 
@@ -62,24 +59,14 @@ function CalendarTaskList(props) {
                                             <></>
                                         }
                                     </div>
+
                                 )
                             })}
+                            {todayTasks.length === 0 && <div>No Tasks Due On This Day!!</div>}
        
       </Modal.Body>
     </Modal >
-
-
-
-
-
   );
 }
 
-
 export default CalendarTaskList
-
-
-
-
-
-
