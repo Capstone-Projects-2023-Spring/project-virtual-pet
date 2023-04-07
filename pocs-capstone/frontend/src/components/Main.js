@@ -17,7 +17,7 @@ import CalculateXP from "../algos/assignXP.js";
 import CalculatePetLevel from "../algos/calculatePetLevel.js";
 import { setIn } from "formik";
 import { NotificationContext } from '../context/NotificationProvider';
-import { startTaskChecker, checkNotificationPromise, requestNotificationPermission, sendWelcomeNotification, sendTaskDueNotification } from './NotificationUtils';
+import { checkNotificationPromise, requestNotificationPermission, sendWelcomeNotification, sendTaskDueNotification } from './NotificationUtils';
 
 
 const Main = () => {
@@ -65,10 +65,6 @@ const Main = () => {
 
     }, [permissionState, setPermissionState]);
 
-    useEffect(() => {
-        const stopTaskChecker = startTaskChecker(24 * 60 * 60 * 1000);
-        return () => stopTaskChecker();
-      }, []);
 
     let spriteSheetRef = useRef(null);
     useEffect(() => {

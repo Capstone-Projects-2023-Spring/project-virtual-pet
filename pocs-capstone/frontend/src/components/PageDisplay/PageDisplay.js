@@ -10,7 +10,7 @@ import { Tab, Tabs } from 'react-bootstrap';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import { useState, useEffect, useContext } from 'react'
 import { useWindowWidth } from "@react-hook/window-size";
-
+import { startTaskChecker } from "../NotificationUtils.js"
 
 const PageDisplay = () => {
 
@@ -33,6 +33,12 @@ const PageDisplay = () => {
     }
 
     useEffect(fetchData, [])
+
+    // run check for tasks due in 24 hrs
+    useEffect(() => {
+        const stopTaskChecker = startTaskChecker(24 * 60 * 60 * 1000);
+        return () => stopTaskChecker();
+      }, []);
 
     const updateTask = (id, newTask) => {
         const taskItem = taskList.find(t => t.task_id === id)
