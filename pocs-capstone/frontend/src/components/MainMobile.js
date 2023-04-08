@@ -20,6 +20,7 @@ import InventoryBoxMobile from "./Inventory/InventoryBoxMobile.js";
 
 
 
+
 const MainMobile = () => {
   const handlers = useContext(GlobalContext);
   const tabs = ['T', 'C', 'I', 'P'];
@@ -28,9 +29,21 @@ const MainMobile = () => {
 
     return (
       <GlobalContext.Provider value={handlers}>
-        <div className="container-m">
-            <PetDisplayMobile value={handlers}/>
-            {/* <PageDisplay /> */}
+        <div className="container-m" width={handlers?.width}>
+            {/* <PetDisplayMobile value={handlers}/> */}
+            <div className="top-container-mobile"></div>
+
+
+            <div className="bottom-container-mobile">
+            
+            
+            {activeTab === 0 && <div >YOOO</div>}
+            {activeTab === 1 && <div>asdfa</div>}
+            {activeTab === 2 && <InventoryBoxMobile/>}
+            {activeTab === 3 && <div>Ydgd</div>}
+            
+            </div>
+
           <div className="tab-container">
             {tabs.map((tab, index) => (
               <div
