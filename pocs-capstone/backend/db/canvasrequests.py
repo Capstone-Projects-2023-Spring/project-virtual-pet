@@ -62,7 +62,7 @@ def get_assignments(canvas_token, course_id):
         except Exception as e:
             print(e)
     
-    return assignment_id_list
+    return assignment_id_list, assignments_data # 
 
 '''Given a course ID, return a json object of course information for that particular course'''  
 def get_course_info(canvas_token, course_id):
@@ -131,7 +131,86 @@ def get_assignment_info(canvas_token, course_id, assignment_id):
         'assignment_id': a['id']
     }
 
+
+'''Given a course ID, return a list of all assignments' IDs'''  
+def get_assignments(canvas_token, course_id): 
+    auth_header = {'Authorization': 'Bearer ' + canvas_token}
+    assignment_params = {
+        "per_page": 5000,
+        "include": "submission"
+    }
+
+    assignments_data, status = canvas_request(BASE_URL + '/courses/' + str(course_id) + '/assignments', auth_header,  assignment_params)
+    #pp = pprint.PrettyPrinter(indent=4)
+
+    #pp.pprint(assignments_data)
+
+    assignment_id_list = [] # a list of all the user's courses (their ids)
+    for assignment_entry in assignments_data:
+        try:
+            assignment_id_list.append(assignment_entry['id'])
+        except Exception as e:
+            print(e)
     
+    return assignment_id_list, assignments_data # 
+
+'''Given a course ID, return a json object of course information for that particular course'''  
+def get_course_info(canvas_token, course_id):
+    auth_header = {'Authorization': 'Bearer ' + canvas_token}
+    course_url = BASE_URL + '/courses/' + str(course_id)
+    return canvas_request(url=course_url, headers=auth_header, params={})
+
+'''Given a course ID and assignment ID, return a dict of assignment information for that particular assignment'''  
+def parse_assignments(assignments):
+    
+    tasks = []
+
+    # assignment_url = BASE_URL + '/courses/' + str(course_id) + '/assignments/' + str(assignment_id)
+    # a,status = canvas_request(url=assignment_url, headers=auth_header, params={"include[]":['submission']})
+    
+    for a in assignments:
+        submission_details = {}
+
+
+        
+        
+        
+        
+        due = a['due_at']
+        submission_details=a['submission']
+        #pp.pprint(submission_details)
+        submitted=submission_details['submitted_at']
+        #print("SUBMITTED"+str(submitted))
+        
+        # print(submission_details)
+      
+        
+        if due != None:
+            due = due[0:10] #hack into a string UwU 
+        if submitted != None:
+            submitted = submitted[0:10] #hack into a string UwU 
+
+
+        try: 
+            description = bs.BeautifulSoup(a['description'],'lxml').get_text()
+        except Exception as e:
+            description = ""
+
+        tasks.append({'title': a['name'] or "No title.",
+            'due_date': due,
+
+            'task_type': 'S',
+            #'task_level': 1, # TODO - this should be set here!
+            #'recurring': 'false',
+            #'recurring_time_delta': 0,
+            'completed_date':submitted,
+            'description': description,
+            'course_id': a['course_id'],
+            'assignment_id': a['id']
+        })
+    return tasks
+
+
 '''Given a list of assignment IDs, return a list where each entry is a dict of assignment information corresponding to those IDs'''  
 def get_all_assignments(canvas_token):
     all_assignments = [] # list of all assignment IDs for all courses
@@ -140,12 +219,13 @@ def get_all_assignments(canvas_token):
     if status != 200:
         return None, status
     for course_id in course_ids:
-        assignment_ids = get_assignments(canvas_token, course_id) # all assignment IDs for one specific course
+        assignment_ids, assignments = get_assignments(canvas_token, course_id) # all assignment IDs for one specific course
         
-        for assignment_id in assignment_ids:
-            assignment_info = get_assignment_info(canvas_token, course_id, assignment_id)
-            all_assignments.append(assignment_info) # add each assignment dict from this course to list
-        
+        #for assignment_id in assignment_ids:
+        #    assignment_info = get_assignment_info(canvas_token, course_id, assignment_id)
+        #    all_assignments.append(assignment_info) # add each assignment dict from this course to list
+        _assignments = parse_assignments(assignments)
+        all_assignments=all_assignments+_assignments
 
     return all_assignments, status
 
