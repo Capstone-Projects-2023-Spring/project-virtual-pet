@@ -112,6 +112,8 @@ class CanvasView(APIView):
 
     def get(self, request):
         pp = pprint.PrettyPrinter(indent=4)
+        test_task = Task.objects.filter(unique_canvas_tag="knownbadtag")
+        pp.pprint(test_task)
         # $print("1 HEREERERERE")
         _user = self.request.user.id
         course_data, _status = lololol(_user)
@@ -130,6 +132,9 @@ class CanvasView(APIView):
                         str(x['assignment_id'])
                     x['unique_canvas_tag'] = tag
                     x['user_id'] = _user
+                    old_task = Task.objects.filter(unique_canvas_tag=tag)
+                    pp.pprint(old_task)
+                    
                     # print("TAG" + x['unique_canvas_tag'])
                     serializer = CanvasSerializer(x)
                     # print(serializer.data)
