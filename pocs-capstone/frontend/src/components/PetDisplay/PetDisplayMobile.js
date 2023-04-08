@@ -224,7 +224,7 @@ const PetDisplay = () => {
 
                 
 
-                    <div className='p-sprite-display-mobile' style={{width: contextHandler?.width}}>
+                    <div className='p-sprite-display-mobile'>
                         {/* <img src={bgimage} alt="background" className="bg-sprite-mobile" /> */}
                         <Spritesheet
                             image={avatarImage(contextHandler?.avatarInfo)}
@@ -243,7 +243,7 @@ const PetDisplay = () => {
                         
                             background={bgimage}
                             backgroundSize={contextHandler?.width}
-                            backgroundRepeat={`no-repeat`}
+                            // backgroundRepeat={`no-repeat`}
                             backgroundPosition={`center center`}
                         />
                     </div>
