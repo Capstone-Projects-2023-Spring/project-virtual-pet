@@ -78,7 +78,7 @@ class CanvasView(APIView):
         
         #if not course_data:
         #    return Response(None,status=status.HTTP_401_UNAUTHORIZED)
-        print("USER_ID:"+str(_user))
+        # print("USER_ID:"+str(_user))
         # this try catch is admittedly a little clunky
         # will add in serializer validation later
         try:
@@ -88,15 +88,17 @@ class CanvasView(APIView):
                     tag = str(_user)+str(x['course_id'])+str(x['assignment_id'])
                     x['unique_canvas_tag']=tag
                     x['user_id']=_user
-                    print("TAG" + x['unique_canvas_tag'])
+                    # print("TAG" + x['unique_canvas_tag'])
                     serializer = CanvasSerializer(x)
-                    print(serializer.data)
+                    # print(serializer.data)
                     
                     obj,created = Task.objects.update_or_create(unique_canvas_tag=tag,defaults=serializer.data)#TODO validate the dat
                     if created:
                         print("created")
+                        print(obj)
                     else:
                         print("updated")
+                        print(obj)
                 except Exception as e:
                     print(e)
                 
