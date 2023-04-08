@@ -69,14 +69,19 @@ class CanvasView(APIView):
     
     def __enter_inventory_item(self, _user_id, old_task, new_task):
         pp = pprint.PrettyPrinter(indent=4)
+        print(type(old_task['completed_date']))
+        print(type(new_task.completed_date))
+        print((old_task['completed_date']!=None) and (new_task.completed_date != None))
+        '''
         if ((old_task['completed_date']!=None) and (new_task.completed_date != None)):
             new_task.completed = True
             new_task.save()
             print("Guarded Completed Update:")
-            pp.pprint(old_task)
-            pp.pprint(new_task)
-            print("{} {}".format(old_task, new_task))
+            #pp.pprint(old_task)
+            #pp.pprint(new_task)
+            #print("{} {}".format(old_task, new_task))
             return
+        '''
         if old_task['completed_date'] == None:
             # print(
             #     "COMPLETED - {} {}".format(old_task['completed_date'], new_task.completed_date))

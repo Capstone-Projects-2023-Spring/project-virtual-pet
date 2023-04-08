@@ -4,7 +4,7 @@ import bs4 as bs
 import pprint
 #import re
 #from dateutil import parser
-
+pp = pprint.PrettyPrinter(indent=2)
 
 # Static settings
 BASE_URL = 'https://templeu.instructure.com/api/v1'
@@ -51,9 +51,9 @@ def get_assignments(canvas_token, course_id):
     }
 
     assignments_data, status = canvas_request(BASE_URL + '/courses/' + str(course_id) + '/assignments', auth_header,  assignment_params)
-    pp = pprint.PrettyPrinter(indent=4)
+    #pp = pprint.PrettyPrinter(indent=4)
 
-    pp.pprint(assignments_data)
+    #pp.pprint(assignments_data)
 
     assignment_id_list = [] # a list of all the user's courses (their ids)
     for assignment_entry in assignments_data:
@@ -91,11 +91,17 @@ def get_assignment_info(canvas_token, course_id, assignment_id):
     assignment_url = BASE_URL + '/courses/' + str(course_id) + '/assignments/' + str(assignment_id)
     a,status = canvas_request(url=assignment_url, headers=auth_header, params={"include[]":['submission']})
     submission_details = {}
-  
+
+
+    
+    
+    
     if status == 200:
         due = a['due_at']
         submission_details=a['submission']
+        pp.pprint(submission_details)
         submitted=submission_details['submitted_at']
+        
         # print(submission_details)
     else:
         due = None

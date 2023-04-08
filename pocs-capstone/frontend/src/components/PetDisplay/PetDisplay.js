@@ -34,7 +34,7 @@ const PetDisplay = () => {
     const contextHandler = useContext(GlobalContext);
     const [spritesheetInstance, setSpritesheetInstance] = useState(null);
     //const [exp, setExp] = useState(avatar_handler.avatarInfo.total_xp);
-    //const [level, setLevel] = useState(CalculatePetLevel(avatar_handler.avatarInfo.total_xp).LEVEL);
+    const [level, setLevel] = useState(CalculatePetLevel(contextHandler?.avatarInfo.total_xp).LEVEL);
     //const [remainder, setRemainder] = useState(CalculatePetLevel(avatar_handler.avatarInfo.total_xp).REMAINDER);
     //const [next_level, setNextLevel] = useState(CalculatePetLevel(avatar_handler.avatarInfo.total_xp).REMAINDER);  
     const [level_info, setLevelInfo] = useState(CalculatePetLevel(contextHandler?.avatarInfo.total_xp))
@@ -168,7 +168,8 @@ const PetDisplay = () => {
                 return ''
         }
     }
-
+    
+/*
     const getExp = (candy) => {
         //console.log('WTF')
         //getLevel()
@@ -197,11 +198,11 @@ const PetDisplay = () => {
             });
   };
 
-    
+    */
 
-    const getLevel = (xp) => {
+    useEffect (() => {
         //  [level, remain, next_level] = CalculatePetLevel(exp);
-        setLevelInfo(CalculatePetLevel(xp));
+        setLevelInfo(CalculatePetLevel(contextHandler.avatarInfo?.total_xp));
         //console.log("LVL,REMAIN,NEXT",petInfo.LEVEL,petInfo.REMAINDER,petInfo.NEXT_LEVEL)
         //setExp(avatar_handler.avatarInfo.total_xp);
         //setLevel(petInfo.LEVEL);
@@ -209,12 +210,12 @@ const PetDisplay = () => {
         //setNextLevel(petInfo.NEXT_LEVEL);
 
         //setRatio(Math.floor(100*((level_info.NEXT_LEVEL-level_info.REMAINDER)/level_info.NEXT_LEVEL)));
-        animateSpriteSheet();
+        //animateSpriteSheet();
         //  if(remainder===0){
         //     setExp(0);
         //   }
 
-    }
+    },[contextHandler])
 
     //let handlers = useContext(InventoryContext)
     // Accepts images(candy) and calls candyDropped() when a candy is fed
