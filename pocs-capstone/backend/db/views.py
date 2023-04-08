@@ -135,6 +135,7 @@ class CanvasView(APIView):
 
                     old_task = Task.objects.filter(unique_canvas_tag=tag)
                     if(old_task.count()):
+                        old_date = old_task[0].completed_date
                         pp.pprint("COMPLETED DATE: "+str(old_task[0]))
                         pp.pprint("COMPLETED DATE: "+str(old_task[0].completed_date))
                     else:
@@ -158,6 +159,7 @@ class CanvasView(APIView):
                             obj.save()
                     else:  # operate on object here
                         old_task=old_task[0]
+                        pp.pprint("what is is here?: "+str(old_task.completed_date))
                         self.__enter_inventory_item(_user, old_task, obj)
                         # print("updated")
                 except Exception as e:
