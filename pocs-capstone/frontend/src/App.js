@@ -10,7 +10,7 @@ import Register from './components/LoginLogout/Register.js'
 import Login from './components/LoginLogout/Login.js'
 import Logout from './components/LoginLogout/Logout.js'
 import Layout from './components/Layout.js'
-
+import LandingPage from './components/LandingPage.js'
 import Loader from './components/Loader'
 
 import PersistLogin from './components/LoginLogout/PersistLogin.js'
@@ -28,11 +28,10 @@ function App(){
   return (
 
     <Routes>
-        
-        <Route path="/login" element={<Login/>}/>
-        <Route path="/register" element={<Register/>}/>
-        <Route path="/logout" element={<Logout/>}/>
-        
+        <Route path="login" element={<Login/>}/>
+        <Route path="register" element={<Register/>}/>
+        <Route path="logout" element={<Logout/>}/>
+        <Route path ="landing" element={<LandingPage/>}/>
         <Route element={<PersistLogin />}>
           <Route element = {<RequireAuth/>}>
             <Route path="/" element = {<Layout/>}>
