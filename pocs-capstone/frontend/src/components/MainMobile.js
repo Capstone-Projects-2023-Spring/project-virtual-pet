@@ -14,6 +14,7 @@ import GlobalContext from "../context/GlobalContext.js";
 import CalculateXP from "../algos/assignXP.js";
 import CalculatePetLevel from "../algos/calculatePetLevel.js";
 import { setIn } from "formik";
+import TaskPage from "./PageDisplay/TaskPage.js";
 
 
 
@@ -216,7 +217,7 @@ const MainMobile = () => {
 
     return (
       <GlobalContext.Provider value={handlers}>
-        <div className="flex-pages-mobile">
+        <div className="container">
             <PetDisplay value={handlers}/>
             <PageDisplay />
           <div className="tab-container">
