@@ -67,13 +67,13 @@ class BlacklistTokenView(APIView):
 class CanvasView(APIView):
     permission_classes = [IsAuthenticated,]
     
-    def __enter_inventory_item(self, _user_id, old_task, new_task):
+    def __enter_inventory_item(self, _user, old_date, new_task):
         pp = pprint.PrettyPrinter(indent=4)
-        print(type(old_task.completed_date))
+        print(type(old_date))
         print(type(new_task.completed_date))
         #print((old_task.completed_date!=None) and (new_task.completed_date != None))
         
-        if ((old_task.completed_date!=None) and (new_task.completed_date != None)):
+        if ((old_date!=None) and (new_task.completed_date != None)):
             new_task.completed = True
             new_task.save()
             print("Guarded Completed Update:")
@@ -82,7 +82,7 @@ class CanvasView(APIView):
             #print("{} {}".format(old_task, new_task))
             return
         
-        if old_task.completed_date == None:
+        if old_date == None:
             # print(
             #     "COMPLETED - {} {}".format(old_task.completed_date, new_task.completed_date))
             if new_task.completed_date != None:  # first time completed
@@ -93,7 +93,7 @@ class CanvasView(APIView):
                 #pp.pprint(new_task)
                 try:
                     obj = Inventory.objects.get(
-                        user=_user_id, candy_base_type=new_task.task_type, candy_level=new_task.task_level)
+                        user=_user, candy_base_type=new_task.task_type, candy_level=new_task.task_level)
                     updated_quantity = obj.quantity + 1
                     obj.quantity = updated_quantity
                     obj.save()  # inventory is updated
@@ -101,7 +101,7 @@ class CanvasView(APIView):
                     pp.pprint(obj)
                 except Inventory.DoesNotExist:
                     obj = Inventory(
-                        user=_user_id, candy_base_type=new_task.task_type, candy_level=new_task.task_level, quantity=1)
+                        user=_user, candy_base_type=new_task.task_type, candy_level=new_task.task_level, quantity=1)
                     obj.save()  # new inventory item now created
                     print("Create Inventory:")
                     pp.pprint(obj)
@@ -115,6 +115,7 @@ class CanvasView(APIView):
         test_task = Task.objects.filter(unique_canvas_tag="knownbadtag")
         pp.pprint(test_task)
         # $print("1 HEREERERERE")
+        __user = self.request.user
         _user = self.request.user.id
         course_data, _status = lololol(_user)
         if _status != 200:
@@ -134,6 +135,7 @@ class CanvasView(APIView):
                     x['user_id'] = _user
 
                     old_task = Task.objects.filter(unique_canvas_tag=tag)
+                    old_date = None
                     if(old_task.count()):
                         old_date = old_task[0].completed_date
                         pp.pprint("COMPLETED DATE: "+str(old_task[0]))
@@ -160,7 +162,7 @@ class CanvasView(APIView):
                     else:  # operate on object here
                         old_task=old_task[0]
                         pp.pprint("what is is here?: "+str(old_task.completed_date))
-                        self.__enter_inventory_item(_user, old_task, obj)
+                        self.__enter_inventory_item(__user, old_date, obj)
                         # print("updated")
                 except Exception as e:
                     print(e)
