@@ -11,7 +11,8 @@ class CustomUserCreateViewTest(TestCase):
     }
     
     def test_view_url_exists_at_desired_location(self):    
-        response = self.client.post( '/register/', self.registerData)
+        response = self.client.post( '/api/register/', self.registerData)
+        print("RESPONSE", response)
         self.assertEqual(response.status_code, 201)
     
     # This may be working because 405 means not authorized but also no clue b/ anyone should be able to register
@@ -40,7 +41,7 @@ class APITokenViewTest(TestCase):
     }
     
     def test_login_with_valid_credentials(self):
-        response = self.client.post( '/register/', self.registerData)
+        response = self.client.post( '/api/register/', self.registerData)
         # Register successful?
         if response.status_code == 201:
             # Try to login with valid credentials
@@ -48,7 +49,7 @@ class APITokenViewTest(TestCase):
             self.assertEqual(response.status_code, 200)
 
     def test_login_with_invalid_credentials(self):
-        response = self.client.post( '/register/', self.registerData)
+        response = self.client.post( '/api/register/', self.registerData)
         # Register successful?
         if response.status_code == 201:
             # Try to login with invalid credentials
