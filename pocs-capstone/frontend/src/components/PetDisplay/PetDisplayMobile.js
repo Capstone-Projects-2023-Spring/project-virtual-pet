@@ -216,25 +216,6 @@ const PetDisplay = () => {
 
     }
 
-    //let handlers = useContext(InventoryContext)
-    // Accepts images(candy) and calls candyDropped() when a candy is fed
-    // let [{ isOver }, drop] = useDrop(() => ({
-    //     // What objects to accept
-    //     accept: "image",
-    //     drop: (item) => {
-    //         let candy = contextHandler.inv.find((candy) => candy.inventory_id === item.id)
-            
-    //         console.log("CANDY------>",candy)
-    //         getExp(candy);
-    //         console.log(item)
-    //         //console.log(handlers.inv.find(item.id));
-    //         contextHandler.updateInventory(item.id);
-            
-    //     },
-    //     collect: (monitor) => ({
-    //         isOver: !!monitor.isOver(),
-    //     }),
-    // }), [contextHandler.inv])
 
     return (
         <div className='pet-display-mobile'>
@@ -243,8 +224,8 @@ const PetDisplay = () => {
 
                 
 
-                    <div className='p-sprite-display'>
-                        <img src={bgimage} alt="background" className="bg-sprite" />
+                    <div className='p-sprite-display-mobile' style={{width: contextHandler?.width}}>
+                        {/* <img src={bgimage} alt="background" className="bg-sprite-mobile" /> */}
                         <Spritesheet
                             image={avatarImage(contextHandler?.avatarInfo)}
                             refs={spriteSheetRef}
@@ -259,6 +240,11 @@ const PetDisplay = () => {
                             isResponsive={false}
                             getInstance={handleGetInstance}
                             onClick={spritesheet => { handleClick(spritesheet) }}
+                        
+                            background={bgimage}
+                            backgroundSize={contextHandler?.width}
+                            backgroundRepeat={`no-repeat`}
+                            backgroundPosition={`center center`}
                         />
                     </div>
                 

@@ -32,7 +32,30 @@
 
 }
 
+.p-sprite-display-mobile {
+    display: flex;
+    position: relative;
+    flex: auto;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+
+}
+
 .bg-sprite {
+    position: relative;
+    flex: 1 1 auto;
+    width: 0;
+    height: auto;
+    
+    /* top: 0;
+    left: 0; */
+    /* width: auto;
+    height: auto; */
+    /* border: 1px solid #000000; */
+}
+
+.bg-sprite-mobile {
     position: relative;
     flex: 1 1 auto;
     width: 0;
