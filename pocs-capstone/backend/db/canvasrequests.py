@@ -99,8 +99,9 @@ def get_assignment_info(canvas_token, course_id, assignment_id):
     if status == 200:
         due = a['due_at']
         submission_details=a['submission']
-        pp.pprint(submission_details)
+        #pp.pprint(submission_details)
         submitted=submission_details['submitted_at']
+        #print("SUBMITTED"+str(submitted))
         
         # print(submission_details)
     else:

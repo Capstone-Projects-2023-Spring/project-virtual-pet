@@ -69,11 +69,11 @@ class CanvasView(APIView):
     
     def __enter_inventory_item(self, _user_id, old_task, new_task):
         pp = pprint.PrettyPrinter(indent=4)
-        print(type(old_task['completed_date']))
+        print(type(old_task.completed_date))
         print(type(new_task.completed_date))
-        print((old_task['completed_date']!=None) and (new_task.completed_date != None))
-        '''
-        if ((old_task['completed_date']!=None) and (new_task.completed_date != None)):
+        #print((old_task.completed_date!=None) and (new_task.completed_date != None))
+        
+        if ((old_task.completed_date!=None) and (new_task.completed_date != None)):
             new_task.completed = True
             new_task.save()
             print("Guarded Completed Update:")
@@ -81,16 +81,16 @@ class CanvasView(APIView):
             #pp.pprint(new_task)
             #print("{} {}".format(old_task, new_task))
             return
-        '''
-        if old_task['completed_date'] == None:
+        
+        if old_task.completed_date == None:
             # print(
-            #     "COMPLETED - {} {}".format(old_task['completed_date'], new_task.completed_date))
+            #     "COMPLETED - {} {}".format(old_task.completed_date, new_task.completed_date))
             if new_task.completed_date != None:  # first time completed
                 
                 new_task.completed = True # The task has officially been completed!
                 new_task.save()
-                print("Old &")
-                pp.pprint(new_task)
+                #print("Old &")
+                #pp.pprint(new_task)
                 try:
                     obj = Inventory.objects.get(
                         user=_user_id, candy_base_type=new_task.task_type, candy_level=new_task.task_level)
@@ -132,15 +132,19 @@ class CanvasView(APIView):
                         str(x['assignment_id'])
                     x['unique_canvas_tag'] = tag
                     x['user_id'] = _user
+
                     old_task = Task.objects.filter(unique_canvas_tag=tag)
-                    pp.pprint(old_task)
-                    
+                    if(old_task.count()):
+                        pp.pprint("COMPLETED DATE: "+str(old_task[0]))
+                        pp.pprint("COMPLETED DATE: "+str(old_task[0].completed_date))
+                    else:
+                        print("YUP")
                     # print("TAG" + x['unique_canvas_tag'])
                     serializer = CanvasSerializer(x)
                     # print(serializer.data)
                     temp = serializer.data # task data BEFORE update
-                    print("-------------TEMP-----------")
-                    pp.pprint(temp)
+                    #print("-------------TEMP-----------")
+                    #pp.pprint(temp)
                     obj, created = Task.objects.update_or_create(
                         unique_canvas_tag=tag, defaults=serializer.data)  # TODO validate the dat
                     
@@ -153,7 +157,8 @@ class CanvasView(APIView):
                             obj.completed = True
                             obj.save()
                     else:  # operate on object here
-                        self.__enter_inventory_item(_user, temp, obj)
+                        old_task=old_task[0]
+                        self.__enter_inventory_item(_user, old_task, obj)
                         # print("updated")
                 except Exception as e:
                     print(e)
