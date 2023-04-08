@@ -90,7 +90,7 @@ class CanvasView(APIView):
                     x['user_id']=_user
                     # print("TAG" + x['unique_canvas_tag'])
                     serializer = CanvasSerializer(x)
-                    # print(serializer.data)
+                    print(serializer.data)
                     
                     obj,created = Task.objects.update_or_create(unique_canvas_tag=tag,defaults=serializer.data)#TODO validate the dat
                     if created:
