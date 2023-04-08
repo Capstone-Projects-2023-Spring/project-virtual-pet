@@ -4,7 +4,7 @@
   grid-template-columns: 100%;
   height: 100vh;
   background-color: rgb(255, 255, 255);
-  grid-template-areas: 'myBottom myBottom ...' 'myBottom myBottom ...';
+  /* grid-template-areas: 'myBottom myBottom ...' 'myBottom myBottom ...'; */
 }
 
 .backg {
@@ -76,19 +76,20 @@
 }
 
 .bottom-container-mobile {
+
   grid-row-start: 2 ;
   grid-row-end: 3;
   /* margin-top: 400px; */
   position: relative;
   /* justify-content: space-between; */
   height: 50vh;
-  overflow: hidden;
+  overflow:auto;
   /* height: auto; */
 
   
   
   /* height: 300px; */
-  background-color: pink;
+  background-color: white;
   background: size 100px;
   /* margin-bottom: 55px; */
   margin-left: 0px;

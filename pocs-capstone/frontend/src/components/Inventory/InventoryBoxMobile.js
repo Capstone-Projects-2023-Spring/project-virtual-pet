@@ -33,28 +33,20 @@ function InventoryBox() {
             {/* <div className="mini-page">
                 <Card className='tasklist-position'>
                     <Card.Header>
-                        <Stack direction="horizontal" gap={3}>
-                            <div className='inventory-header'>
-                                ITEMS
-                            </div>
-                            {/* <div className="ms-auto">
-                                <Button variant="primary" onClick={contextHandler?.postFullInventory}>+ Populate Inv.</Button>
-                            </div>
-                            <div>
-                                <Button variant="danger" onClick={contextHandler?.deleteAll}>- Delete All</Button>
-                            </div> */}
-                        {/* </Stack>
+                        
                     </Card.Header> */}
 
 
                     {contextHandler.inventory.length === 0 ?
 
                         // If no items render 'No Inventory' notice
-                        <ListGroup variant="flush">
+                        /* <ListGroup variant="flush">
                             <ListGroup.Item className="d-flex justify-content-between align-items-start">
                                 No Inventory!
                             </ListGroup.Item>
-                        </ListGroup>
+                        </ListGroup> */
+                        <div></div>
+                        
 
                         :
                         <div>

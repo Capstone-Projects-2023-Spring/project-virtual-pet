@@ -17,7 +17,7 @@ import CalculatePetLevel from "../algos/calculatePetLevel.js";
 import { setIn } from "formik";
 import TaskPage from "./PageDisplay/TaskPage.js";
 import InventoryBoxMobile from "./Inventory/InventoryBoxMobile.js";
-
+import PetProfPage from "./PageDisplay/PetProfPage.js";
 
 
 
@@ -31,16 +31,18 @@ const MainMobile = () => {
       <GlobalContext.Provider value={handlers}>
         <div className="container-m" width={handlers?.width}>
             {/* <PetDisplayMobile value={handlers}/> */}
-            <div className="top-container-mobile"></div>
+            <div className="top-container-mobile">
+            <PetDisplayMobile/>
+            </div>
 
 
             <div className="bottom-container-mobile">
             
             
-            {activeTab === 0 && <div >YOOO</div>}
+            {activeTab === 0 && <div>hi</div>}
             {activeTab === 1 && <div>asdfa</div>}
             {activeTab === 2 && <InventoryBoxMobile/>}
-            {activeTab === 3 && <div>Ydgd</div>}
+            {activeTab === 3 && <PetProfPage/>}
             
             </div>
 
