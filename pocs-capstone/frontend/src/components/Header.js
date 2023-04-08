@@ -2,21 +2,25 @@ import "./Header.css";
 import logo from "../images/orangecat.png";
 import usericon from "../images/user_icon.png";
 import canvas_bug from "../images/canvas_bug.png";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import useAxiosPrivate from "../hooks/useAxiosPrivate";
 import { Stack, Image, Navbar, NavDropdown } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
+import UserContext from "../context/UserContext";
 
 const COURSES_URL = "/canvas/";
 
-const Header = ({ userInfo }) => {
+const Header = ({  }) => {
   const axiosPrivate = useAxiosPrivate();
+  const nav = useNavigate();
+  const {userInfo,setUserInfo} = useContext(UserContext)
   //  const [submittedText, setSubmittedText] = useState(null);
   const [nameError, setNameError] = useState("");
 
   const [tokenReady, setTokenReady] = useState(false);
   const [retrievingAssignments, setRetrievingAssignments] = useState(false);
 
-  const [submitText, setSubmitText] = useState("Submit");
+ 
 
   const resetSubmitTokenState = (text) => {
     setRetrievingAssignments(false);
@@ -33,7 +37,7 @@ const Header = ({ userInfo }) => {
         //we were successful
         //return state and navigate to main
         resetSubmitTokenState("Please reload tasks!");
-        //TODO set show pop-up
+        nav(0)       
       })
       .catch((err) => {
         console.log(err);
