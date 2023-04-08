@@ -1,0 +1,60 @@
+.landingpage {
+    width: 100vw;
+    display: flex;
+    align-items: stretch;
+    justify-content: flex-start;
+    flex-direction: column;
+    height:100vw;
+    background-color: rgb(255, 198, 198);
+    padding: 10px;
+}
+
+.card {
+    background-color: rgb(255, 214, 214);
+    flex: 1 1 auto;
+    width: 0;
+    height: auto;
+    display: flex;
+    align-items: stretch;
+    justify-content: flex-start;
+    flex-direction: column;
+}
+.landingbutton {
+    cursor: pointer;
+    /*border: 1px solid #1a202c;
+    ;*/
+    /*display:block;*/
+    padding: 8px;
+     text-align: center;
+    align-self: center; 
+     justify-content: center; 
+    display: inline-block;
+    width: 10%;
+    /* height:20vmax; */
+    /*width:auto;*/
+    margin: 5px;
+    background: rgb(172, 65, 100);
+    color: #ffffff;
+    border-radius: 10px;
+    font-size: 20px;
+    transition: all 0.1s ease-in;
+    position: relative;
+}
+
+.image {
+    /* position: absolute; */
+    display:block;
+    margin-left: auto;
+    margin-right: auto;
+    height: 500px;
+    width: 500px;
+    align-items: center;
+    /* top:auto; */
+    /* top: 30px;
+    left: 30px; */
+    /* top: 220px; */
+}
+.landingbutton:hover {
+    background: #3a0422;
+    color: #ffffff;
+  }
