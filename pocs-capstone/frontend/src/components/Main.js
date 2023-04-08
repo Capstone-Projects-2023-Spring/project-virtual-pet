@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
 import { useWindowWidth } from "@react-hook/window-size";
 import useAxiosPrivate from "../hooks/useAxiosPrivate.js";
-import "./MainMobile.css";
+import "./Main.css";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import PopulateInv from "./Inventory/PopulateInv";
@@ -16,8 +16,6 @@ import GlobalContext from "../context/GlobalContext.js";
 import CalculateXP from "../algos/assignXP.js";
 import CalculatePetLevel from "../algos/calculatePetLevel.js";
 import { setIn } from "formik";
-
-
 
 const Main = () => {
   const axiosPrivate = useAxiosPrivate();
@@ -79,7 +77,7 @@ const Main = () => {
     //   });
   }, []);
 
-  const isMobile = width <= 850;
+  const isMobile = width <= 1130;
 
   // Inventory Handlers
   // Perform a put to the backend to update inventory
@@ -225,7 +223,7 @@ const Main = () => {
   else if (!isMobile) {
     return (
       <GlobalContext.Provider value={handlers}>
-        <div className="flex-pages">
+         <div className="flex-pages">
           <PetDisplay value={handlers}/>
           <PageDisplay />
         </div>

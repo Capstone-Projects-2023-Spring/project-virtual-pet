@@ -4,7 +4,7 @@ import PageDisplay from "./PageDisplay/PageDisplay.js";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
 import useAxiosPrivate from "../hooks/useAxiosPrivate.js";
-import "./Main.css";
+import "./MainMobile.css";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import PopulateInv from "./Inventory/PopulateInv.js";
@@ -216,7 +216,7 @@ const MainMobile = () => {
 
     return (
       <GlobalContext.Provider value={handlers}>
-        <div className="flex-pages">
+        <div className="flex-pages-mobile">
             <PetDisplay value={handlers}/>
             <PageDisplay />
           <div className="tab-container">
