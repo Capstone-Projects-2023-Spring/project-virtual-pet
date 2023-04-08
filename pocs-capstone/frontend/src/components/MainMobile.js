@@ -216,25 +216,21 @@ const MainMobile = () => {
 
     return (
       <GlobalContext.Provider value={handlers}>
-        <div>
-          <div className="flex-pages">
+        <div className="flex-pages">
             <PetDisplay value={handlers}/>
-          </div>
-          <div>
             <PageDisplay />
-          </div>
           <div className="tab-container">
-        {tabs.map((tab, index) => (
-          <div
-            key={index}
-            className={`tab ${activeTab === index ? 'active' : ''}`}
-            onClick={() => setActiveTab(index)}
-          >
-            {tab}
-          </div>
-        ))}
-      </div>
+            {tabs.map((tab, index) => (
+              <div
+                key={index}
+                className={`tab ${activeTab === index ? 'active' : ''}`}
+                onClick={() => setActiveTab(index)}
+              >
+                {tab}
+              </div>
+            ))}
         </div>
+      </div>
       </GlobalContext.Provider>
     );
 };
