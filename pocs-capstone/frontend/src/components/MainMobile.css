@@ -1,0 +1,57 @@
+.flex-pages {
+  /* border-radius: 15px; */
+  display: flex;
+  align-items: stretch;
+  position: relative;
+
+  /* IMPORTANT:KEEP AS MIN HEIGHT NOT HEIGHT*/
+  /* https://www.freecodecamp.org/news/how-to-keep-your-footer-where-it-belongs-59c6aa05c59c/ */
+  min-height: 100vh;
+  background-color: rgb(255, 255, 255);
+  /* padding: 0px 5px; */
+}
+
+.backg {
+  /* border-radius: 15px; */
+  display: flex;
+  align-items: center;
+  position: relative;
+
+  /* IMPORTANT:KEEP AS MIN HEIGHT NOT HEIGHT*/
+  /* https://www.freecodecamp.org/news/how-to-keep-your-footer-where-it-belongs-59c6aa05c59c/ */
+  min-height: 100vh;
+  background-color: rgb(255, 198, 198);
+  /* padding: 0px 5px; */
+}
+
+.birthday-form {
+  margin-top: 20px;
+}
+
+.label-bio-register {
+  margin-top: 20px;
+}
+
+.label-first-name-register {
+  margin-top: 20px;
+}
+
+.tab-container {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  background-color: #f1f1f1;
+}
+
+.tab {
+  padding: 10px;
+  margin: 0 5px;
+  cursor: pointer;
+}
+
+.tab.active {
+  background-color: #ddd;
+}

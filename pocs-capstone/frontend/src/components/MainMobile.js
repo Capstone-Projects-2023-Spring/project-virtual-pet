@@ -3,15 +3,13 @@ import PageDisplay from "./PageDisplay/PageDisplay.js";
 //import useAuth from '../hooks/useAuth.js'
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
-import { useWindowWidth } from "@react-hook/window-size";
 import useAxiosPrivate from "../hooks/useAxiosPrivate.js";
-import "./MainMobile.css";
+import "./Main.css";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
-import PopulateInv from "./Inventory/PopulateInv";
+import PopulateInv from "./Inventory/PopulateInv.js";
 import LockedInv from "./Inventory/LockedInv.js";
-import AvatarContext from "../context/AvatarContext";
-import MobileMain from "../components/MainMobile.js";
+import AvatarContext from "../context/AvatarContext.js";
 import GlobalContext from "../context/GlobalContext.js";
 import CalculateXP from "../algos/assignXP.js";
 import CalculatePetLevel from "../algos/calculatePetLevel.js";
@@ -19,10 +17,9 @@ import { setIn } from "formik";
 
 
 
-const Main = () => {
+const MainMobile = () => {
   const axiosPrivate = useAxiosPrivate();
   const [avatarInfo, setAvatar] = useState({});
-  const width = useWindowWidth();
   const nav = useNavigate();
 
   const [ready, setReady] = useState(false);
@@ -32,6 +29,8 @@ const Main = () => {
   const [level_info, setLevelInfo] = useState(CalculatePetLevel(avatarInfo.total_xp))
   const [spritesheetInstance, setSpritesheetInstance] = useState(null);
 
+  const tabs = ['T', 'C', 'I', 'P'];
+  const [activeTab, setActiveTab] = useState(0);
 
   let spriteSheetRef = useRef(null);
   useEffect(() => {
@@ -78,8 +77,6 @@ const Main = () => {
     //     console.log(error);
     //   });
   }, []);
-
-  const isMobile = width <= 850;
 
   // Inventory Handlers
   // Perform a put to the backend to update inventory
@@ -211,35 +208,34 @@ const Main = () => {
     animateSpriteSheet,
     setSpritesheetInstance,
     getExp,
-    width,
   };
 
   const animate = {
     animateSpriteSheet,
   };
 
-  if (!ready) {
-    return <div>LOADING...</div>;
-  }
-
-  else if (!isMobile) {
-    return (
-      <GlobalContext.Provider value={handlers}>
-        <div className="flex-pages">
-          <PetDisplay value={handlers}/>
-          <PageDisplay />
-        </div>
-      </GlobalContext.Provider>
-
-    );
-  } else {
     return (
       <GlobalContext.Provider value={handlers}>
         <div>
-          <MobileMain/>
+          <div className="flex-pages">
+            <PetDisplay value={handlers}/>
+          </div>
+          <div>
+            <PageDisplay />
+          </div>
+          <div className="tab-container">
+        {tabs.map((tab, index) => (
+          <div
+            key={index}
+            className={`tab ${activeTab === index ? 'active' : ''}`}
+            onClick={() => setActiveTab(index)}
+          >
+            {tab}
+          </div>
+        ))}
+      </div>
         </div>
       </GlobalContext.Provider>
     );
-  }
 };
-export default Main;
+export default MainMobile;
