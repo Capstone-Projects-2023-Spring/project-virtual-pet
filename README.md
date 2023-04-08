@@ -5,14 +5,14 @@
 [![Documentation Website Link](https://img.shields.io/badge/-Documentation%20Site-hotpink)](https://capstone-projects-2023-spring.github.io/project-virtual-pet/)
 [![Resources Link](https://img.shields.io/badge/-Resources-9cf)](https://capstone-projects-2023-spring.github.io/project-virtual-pet/resources/Links)
 
-[![Website](https://img.shields.io/website?down_color=red&style=plastic&url=http%3A%2F%2F68.183.30.203%3A3000%2F)](http://68.183.30.203:3000/)
+[![Website](https://img.shields.io/website?down_color=red&style=plastic&url=http%3A%2F%2F68.183.30.203%3A3000%2F)](https://studybuddy.life/)
 
 
 </div>
 
 ## Directions
 
-* Please navigate to our app by clicking [this link](http://68.183.30.203:3000/). Once there, you can create an account, select a pet, and explore the site. 
+* Please navigate to our app by clicking [this link](https://studybuddy.life/). (NOTE: DNS propagation takes a long time with Temple University so the link to the site will not work when using the school's wi-fi - tusecurewireless. Please connect from another network). Once there, you can create an account, select a pet, and explore the site. 
 * Study Buddy is a Progressive Web App (PWA). This means it's a web site that you can use in your browser, or it can be downloaded to your device and used like an app. 
    * On iOS: Open Safari and navigate to the site. Press the "Share" button and select "Add to Home Screen" from the popup. Lastly, tap "Add" in the top right corner to finish installing the PWA. It will now be on your home screen.
    * On Android: Open Chrome and navigate to the site. Press the "three dot" icon in the upper right to open the menu. Select "Add to Home screen." Press the "Add" button in the popup. The PWA is now installed and available on your home screen.
