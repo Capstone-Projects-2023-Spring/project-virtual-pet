@@ -1,5 +1,6 @@
 import PetDisplay from "./PetDisplay/PetDisplay.js";
 import PageDisplay from "./PageDisplay/PageDisplay.js";
+import PetDisplayMobile from "./PetDisplay/PetDisplayMobile"
 //import useAuth from '../hooks/useAuth.js'
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
@@ -15,6 +16,7 @@ import CalculateXP from "../algos/assignXP.js";
 import CalculatePetLevel from "../algos/calculatePetLevel.js";
 import { setIn } from "formik";
 import TaskPage from "./PageDisplay/TaskPage.js";
+import InventoryBoxMobile from "./Inventory/InventoryBoxMobile.js";
 
 
 
@@ -215,17 +217,29 @@ const MainMobile = () => {
     animateSpriteSheet,
   };
 
+  const mobileDo = (index) => {
+    // setActiveTab(index)
+    // console.log(index);
+    if (index === 2) {
+      
+    }
+
+  }
+
     return (
       <GlobalContext.Provider value={handlers}>
-        <div className="container">
-            <PetDisplay value={handlers}/>
-            <PageDisplay />
+        <div className="container-m">
+            <PetDisplayMobile value={handlers}/>
+            {/* <PageDisplay /> */}
           <div className="tab-container">
             {tabs.map((tab, index) => (
               <div
                 key={index}
                 className={`tab ${activeTab === index ? 'active' : ''}`}
-                onClick={() => setActiveTab(index)}
+                onClick={() => 
+                  setActiveTab(index)
+                  }
+                // {...index === 2 && <InventoryBoxMobile />}
               >
                 {tab}
               </div>

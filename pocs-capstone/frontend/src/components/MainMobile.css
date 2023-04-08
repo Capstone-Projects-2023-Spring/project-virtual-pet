@@ -1,4 +1,4 @@
-.container {
+.container-m {
   display: grid;
   grid-template-rows: 35% 65%;
   grid-template-columns: 100%;
