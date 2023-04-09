@@ -80,7 +80,7 @@ img {
   max-height: 85vh; */
   border-radius: 0px;
   height: 50vh;
-  width: 50vh;
+  width: 50vw;
 
   /* margin-bottom: 10px; */
   /* padding: 20px; */
@@ -161,7 +161,7 @@ img {
   text-align: center;
   font-size: 30px;
   
-  width: 100vh;
+  width: 100vw;
   height: 100vh;
 
   display: flex;

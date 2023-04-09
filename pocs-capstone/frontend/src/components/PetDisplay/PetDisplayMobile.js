@@ -212,13 +212,15 @@ const PetDisplay = () => {
 
   return (
     <div className="pet-display-mobile">
-                    <Card.Header className='pet-name'>{contextHandler?.avatarInfo.pet_name}</Card.Header>
+        <Card.Header className='pet-name'>{contextHandler?.avatarInfo.pet_name}</Card.Header>
 
       <div
         className="pet-container-mobile" /*style={{width:'${handler.width}px'}}*/
       >
         
-        <div className="p-sprite-mobile">
+        {/* <div className="p-sprite-mobile"> */}
+        <div>
+
           <Spritesheet style={{width:'100rem'}}
             image={avatarImage(contextHandler?.avatarInfo)}
         
@@ -236,8 +238,8 @@ const PetDisplay = () => {
               handleClick(spritesheet);
             }}
             backgroundSize={`cover`}
-          backgroundRepeat={`no-repeat`}
-          backgroundPosition={`center center`}
+            backgroundRepeat={`no-repeat`}
+            backgroundPosition={`center center`}
           />
         </div>
       </div>

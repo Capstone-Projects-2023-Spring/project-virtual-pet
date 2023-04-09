@@ -3,6 +3,7 @@
   /* grid-template-rows: 35% 65%; */
   grid-template-columns: 100%;
   height: 100vh;
+  width: 100vw;
   background-color: rgb(255, 255, 255);
   /* grid-template-areas: 'myBottom myBottom ...' 'myBottom myBottom ...'; */
 }
@@ -64,6 +65,7 @@
   position: relative;
   /* justify-content: space-between; */
   height: 50vh;
+  width: 100vw;
   /* height: auto; */
 
   
@@ -73,6 +75,7 @@
   background: size 100px;
   /* margin-bottom: 55px; */
   margin-left: 0px;
+  overflow: auto;
 }
 
 .bottom-container-mobile {

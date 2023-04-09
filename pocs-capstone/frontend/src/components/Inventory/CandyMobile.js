@@ -152,9 +152,9 @@ function Candy({ id, quantity, candy_base_type, candy_level }) {
                         
                                 > 
                         <div className="grid-item-mobile" >
-                            <Badge pill bg="secondary" className="candy-q-mobile">
+                            {/* <Badge pill bg="secondary" className="candy-q-mobile">
                             {quantity}
-                            </Badge>
+                            </Badge> */}
                         
                             <div className="candy-wrapper-mobile">  
                                     <img className="candy-photo-mobile"
