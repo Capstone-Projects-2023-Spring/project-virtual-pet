@@ -7,7 +7,7 @@ const useRefreshToken = () => {
   const refresh = async () => {
     const refresh = localStorage.getItem("refresh");
     const response = await axios.post(
-      "api/token/refresh/",
+      "token/refresh/",
       { refresh: refresh },
     );
     if (response.status !== 200) {
