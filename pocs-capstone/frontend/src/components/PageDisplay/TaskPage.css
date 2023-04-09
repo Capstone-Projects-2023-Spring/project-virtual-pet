@@ -8,6 +8,7 @@
     letter-spacing: 0.5px;
     border-width: 0px;
     text-decoration: none;
+    
 }
 
 .to-tabs .nav-link.active {
@@ -145,12 +146,12 @@
     text-align: center;
 }
 
-.check-box-task-c.list-group-item {
+.check-box-task.list-group-item {
 
 
     /* background-color: rgba(233, 139, 139, 0.352); this gets set in the TaskItem component */
     border-width: 0px;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.551);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.295);
 }
 
 
@@ -163,6 +164,13 @@
     border-top-width: 0px !important;
     border-bottom: 1px solid rgba(0, 0, 0, 0.175);
 }
+
+
+.close-box-task .btn-close {
+    width: 0.5rem;
+    height: 0.5rem;
+}
+
 
 /* CHECKOFF button CSS */
 

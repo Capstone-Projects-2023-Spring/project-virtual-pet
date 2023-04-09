@@ -1,11 +1,11 @@
 
 import { ListGroup, Stack, Button } from 'react-bootstrap';
 import TaskItemMobile from './TaskItemMobile'
-import TaskListContext from '../../../context/TaskListContext'
+import GlobalContext from '../../../context/GlobalContext'
 import { useContext } from 'react'
 
 const TaskListMobile = ({ filter }) => {
-    const handlers = useContext(TaskListContext)
+    const handlers = useContext(GlobalContext)
     const showTasks = filter === 'all' ?
         handlers?.taskList.filter(task => !task.completed) :
         handlers?.taskList.filter(task => task.completed)

@@ -1,126 +1,163 @@
 /* flex container */
 .pet-display-extra {
-    width: 40%;
-    /* height: auto; */
-    display: flex;
-    align-items: stretch;
-    justify-content: flex-start;
-    flex-direction: column;
-    background-color: rgb(17, 105, 132);
-    padding: 10px;
+  width: 40%;
+  /* height: auto; */
+  display: flex;
+  align-items: stretch;
+  justify-content: flex-start;
+  flex-direction: column;
+  background-color: rgb(17, 105, 132);
+  padding: 10px;
 }
 
 .pet-display {
-    border-right-style: solid;
-
+  display: flex;
+  position: 0;
+  flex: auto;
+  justify-content: center;
+  align-items: center;
+  height: auto;
 }
-.experience-ratio {
-    font-size: small;
-
-}
-
-
 
 .p-sprite-display {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: auto;
-
+  display: flex;
+  justify-content: center;
+}
+.experience-ratio {
+  font-size: small;
 }
 
 .bg-sprite {
-    position: relative;
-    flex: 1 1 auto;
-    width: 0;
-    height: auto;
-    
-    /* top: 0;
+  position: relative;
+  flex: 1 1 auto;
+  width: 0;
+  height: auto;
+
+  /* top: 0;
     left: 0; */
-    /* width: auto;
+  /* width: auto;
     height: auto; */
-    /* border: 1px solid #000000; */
+  /* border: 1px solid #000000; */
+}
+
+.bg-sprite-mobile {
+  position: relative;
+  flex: 1 1 auto;
+  width: 0;
+  height: auto;
+
+  /* top: 0;
+    left: 0; */
+  /* width: auto;
+    height: auto; */
+  /* border: 1px solid #000000; */
 }
 
 .p-sprite {
-    /* width: 50%; */
-    position: absolute;
-    /* top: 30px;
+  /* width: 50%; */
+  position: absolute;
+  /* top: 30px;
     left: 30px; */
-    top: 220px;
-    /*width: 50%;
+  top: 220px;
+  /*width: 50%;
     /* border: 1px solid #000000; */
-
 }
 
 /* https://www.dafont.com/bitmap.php?page=2 */
 @font-face {
-    font-family: pixelFont;
-    src: url("../../fonts/retrogaming.ttf");
-  }
+  font-family: pixelFont;
+  src: url("../../fonts/retrogaming.ttf");
+}
 
 .pet-name {
-    font-size: calc(.8vw + 1.4vh);
-    padding: 15px 0px 5px 0px;
-    text-align: center;
-    font-weight: bold;
-    font-family:  pixelFont;
-    
+  font-size: calc(0.8vw + 1.4vh);
+  padding: 15px 0px 5px 0px;
+  text-align: center;
+  font-weight: bold;
+  font-family: pixelFont;
 }
 
 .pbar-exp {
-    justify-content: center;
-    padding: 10px;
-    border-style: solid none;
-    border-width: 1.5px;
-    border-color: gray;
+  justify-content: center;
+  padding: 10px;
+  border-style: solid none;
+  border-width: 1.5px;
+  border-color: gray;
 }
 
-.pd-position, .pbar-exp {
-    display: flex;
-    align-items: center;
+.pd-position,
+.pbar-exp {
+  display: flex;
+  align-items: center;
 }
-
 
 .pet-desc {
-    border-radius: 0px 0px 15px 15px;
-    width: 100%;
-    height: auto;
-
+  border-radius: 0px 0px 15px 15px;
+  width: 100%;
+  height: auto;
 }
 
-
 .pet-desc-text {
-    font-size: calc(.7vw + 1.4vh);
-    padding: 5px;
-    margin: 5px;
-    text-align: left;
-    height: 15vh;
-
+  font-size: calc(0.7vw + 1.4vh);
+  padding: 5px;
+  margin: 5px;
+  text-align: left;
+  height: 15vh;
 }
 
 .pet-label,
 .pbar-text {
-    font-size: calc(.7vw + 1.3vh);
-    font-weight: bold;
-    padding: 0px 5px;
-    font-family:  pixelFont;
+  font-size: calc(0.7vw + 1.3vh);
+  font-weight: bold;
+  padding: 0px 5px;
+  font-family: pixelFont;
 }
-
 
 .pd-bg {
-    background-color: rgb(237, 237, 237);
+  background-color: rgb(237, 237, 237);
 }
 
-
 .pet-display .card {
-    border-style: none;
-    /* border-color: black; */
-    border-radius: 0px;
-    border-width: 1px;
-    /* background-color: black; */
+  border-style: none;
+  /* border-color: black; */
+  border-radius: 0px;
+  border-width: 1px;
+  /* background-color: black; */
 }
 
 .progress {
-    border-radius: 0px;
+  border-radius: 5px;
 }
+.pet-display-mobile {
+  display: flex;
+  flex-direction: column;
+}
+.p-sprite-display-mobile {
+
+  width: 100%;
+  max-height: 350px;
+  align-items: center;
+}
+
+.mobileBar {
+  display: inline-grid;
+  grid-auto-flow: column;
+  width:100%;
+}
+.pet-container-mobile {
+    background-image: url("../../images/bg.gif");
+    background-size: 50vh;
+    width:100%;
+    display:flex;
+  
+    align-items: center;
+    overflow:clip;
+
+}
+
+.sprite-sheet-mobile{
+    width: 80%;
+ 
+}
+
+
