@@ -1,11 +1,12 @@
 import { useContext, useState } from 'react';
 import { Modal } from 'react-bootstrap';
-import TaskListContext from '../../context/TaskListContext';
+import GlobalContext from '../../context/GlobalContext';
 import CalendarTaskItemMobile from './CalendarTaskItemMobile';
+import TaskItemMobile from '../PageDisplay/TaskMobile/TaskItemMobile';
 
 function CalendarTaskList (props) {
 
-    const handlers = useContext(TaskListContext);
+    const handlers = useContext(GlobalContext);
 
     const getDueDate = (d) => {
         // const date = d.getDate();
@@ -21,19 +22,19 @@ function CalendarTaskList (props) {
         return dateS;
     }
 
-    // let todayTasks = handlers?.taskList.filter(task => task.due_date === getDueDate(props.date) && !task.completed)
-    // let small = todayTasks.filter(i => i.task_type === 'S').sort((a, b) => b.task_level - a.task_level)
-    // let medium = todayTasks.filter(i => i.task_type === 'M').sort((a, b) => b.task_level - a.task_level)
-    // let large = todayTasks.filter(i => i.task_type === 'L').sort((a, b) => b.task_level - a.task_level)
-    // let cake = todayTasks.filter(i => i.task_type === 'C').sort((a, b) => b.task_level - a.task_level)
+    let todayTasks = handlers?.taskList.filter(task => task.due_date === getDueDate(props.date) && !task.completed)
+    let small = todayTasks.filter(i => i.task_type === 'S').sort((a, b) => b.task_level - a.task_level)
+    let medium = todayTasks.filter(i => i.task_type === 'M').sort((a, b) => b.task_level - a.task_level)
+    let large = todayTasks.filter(i => i.task_type === 'L').sort((a, b) => b.task_level - a.task_level)
+    let cake = todayTasks.filter(i => i.task_type === 'C').sort((a, b) => b.task_level - a.task_level)
 
-    // let sortedTasks = {
-    //     "Cake": cake,
-    //     "Large": large,
-    //     "Medium": medium,
-    //     "Small": small
+    let sortedTasks = {
+        "Cake": cake,
+        "Large": large,
+        "Medium": medium,
+        "Small": small
       
-    // }
+    }
 
 
   
@@ -44,15 +45,16 @@ function CalendarTaskList (props) {
       </Modal.Header>
       <Modal.Body>
 
-        {/* {Object.keys(sortedTasks).map((key, index) => {
+        {Object.keys(sortedTasks).map((key, index) => {
                                 return (
                                     <div key={index}>
                                         {sortedTasks[key].length !== 0 ?
                                                     <div>
                                             
                                                     {sortedTasks[key].map((t, id) => {
-                                                      
-                                                        return <CalendarTaskItemMobile key={t.task_id} task={t} updateTask={handlers?.updateTask} deleteTask={handlers?.deleteTask} />})}
+                                                        return <TaskItemMobile key={t.task_id} task={t} updateTask={handlers?.updateTask} deleteTask={handlers?.deleteTask} />})}
+
+                                                        {/* return <CalendarTaskItemMobile key={t.task_id} task={t} updateTask={handlers?.updateTask} deleteTask={handlers?.deleteTask} />})} */}
                                                     </div>
                                                 
                                             :
@@ -63,7 +65,7 @@ function CalendarTaskList (props) {
                                 )
                             })}
                             {todayTasks.length === 0 && <div>No Tasks Due On This Day!!</div>}
-        */}
+       
       </Modal.Body>
     </Modal >
   );

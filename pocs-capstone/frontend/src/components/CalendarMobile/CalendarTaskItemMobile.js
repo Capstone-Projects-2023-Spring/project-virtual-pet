@@ -3,16 +3,15 @@ import '../PageDisplay/PageDisplay.css'
 import { CloseButton, Stack, Badge, Form, ListGroup } from 'react-bootstrap';
 import CreateTaskForm from '../PageDisplay/CreateTaskForm';
 import { useState, useContext } from 'react'
-import TaskListContext from '../../context/TaskListContext';
+import GlobalContext from '../../context/GlobalContext';
 
-
-const CalendarTaskItem = ({ task, updateTask, deleteTask }) => {
+const CalendarTaskItemMobile = ({ task, updateTask, deleteTask }) => {
     const [showCreateTask, setShowCreateTask] = useState(false);
 
     const handleClose = () => setShowCreateTask(false);
     const handleShow = () => setShowCreateTask(true);
 
-    const handlers = useContext(TaskListContext);
+    const handlers = useContext(GlobalContext);
 
     const calculateDueDate = (date) => {
         const today_date = new Date()
@@ -109,4 +108,4 @@ const CalendarTaskItem = ({ task, updateTask, deleteTask }) => {
 }
 
 
-export default CalendarTaskItem
+export default CalendarTaskItemMobile
