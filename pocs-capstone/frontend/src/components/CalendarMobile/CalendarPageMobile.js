@@ -1,9 +1,9 @@
-import {useEffect, useState, useContext} from 'react';
+import { useState } from 'react';
 import "./CalendarPageMobile.css";
 import Calendar from 'react-calendar'; 
-import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 import CalendarTaskListMobile from './CalendarTaskListMobile';
 
+// Renders the mobile calendar and mobile calendar task list when the user clicks a day
 const CalendarPageMobile = () => {
 
     const [date, setDate] = useState();
@@ -16,26 +16,24 @@ const CalendarPageMobile = () => {
     }
     const handleShow = () => setShowCreateTask(true);
 
-    const myf = (v) => {
-        
+    // Show Modal
+    const dayClicked = (v) => {
+
         setShow(true);
         handleShow();
-        
         setDate(v);
     }
 
     return(
-        // <div className="calendar-page">
 
         <div className="calendar-container">
-            <Calendar onClickDay={(value, event) => myf(value)} />
+            <Calendar onClickDay={(value, event) => dayClicked(value)} />
 
              {show === true ? <CalendarTaskListMobile {...{ showCreateTask, handleClose, date}}/> : ""}
             
         </div>
 
-        
     )
 }
 
-export default CalendarPageMobile
+export default CalendarPageMobile;

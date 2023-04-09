@@ -1,32 +1,61 @@
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import { Modal } from 'react-bootstrap';
 import GlobalContext from '../../context/GlobalContext';
-import CalendarTaskItemMobile from './CalendarTaskItemMobile';
 import TaskItemMobile from '../PageDisplay/TaskMobile/TaskItemMobile';
 
-function CalendarTaskList (props) {
+// Renders Modal when a day is selected from the mobile calendar
+function CalendarTaskListMobile (props) {
 
     const handlers = useContext(GlobalContext);
-
+    // Format selected calendar date with task date format
     const getDueDate = (d) => {
-        // const date = d.getDate();
+
         const date = ('0' + (d.getDate())).slice(-2)
-        // const month = d.getMonth() + 1; // Since getMonth() returns month from 0-11 not 1-12
         const month = ('0' + (d.getMonth()+1)).slice(-2)
         const year = d.getFullYear();
-        // const day= d.getDay
-         
-        // const dateStr = date + "/" + month + "/" + year;
         const dateS = year + "-" + month + "-" + date;
-        // console.log("dateS", dateS);
+        
         return dateS;
     }
 
-    let todayTasks = handlers?.taskList.filter(task => task.due_date === getDueDate(props.date) && !task.completed)
-    let small = todayTasks.filter(i => i.task_type === 'S').sort((a, b) => b.task_level - a.task_level)
-    let medium = todayTasks.filter(i => i.task_type === 'M').sort((a, b) => b.task_level - a.task_level)
-    let large = todayTasks.filter(i => i.task_type === 'L').sort((a, b) => b.task_level - a.task_level)
-    let cake = todayTasks.filter(i => i.task_type === 'C').sort((a, b) => b.task_level - a.task_level)
+    const headerDate = () => {
+      let day = "";
+      switch(props.date.getDay()) {
+        case 0:
+          day = "Sunday";
+          break;
+        case 1:
+          day = "Monday";
+          break;
+        case 2:
+          day = "Tuesday";
+          break;
+        case 3:
+          day = "Wednesday";
+          break;
+        case 4:
+          day = "Thursday";
+          break;
+        case 5:
+          day = "Friday";
+          break;
+        case 6:
+          day = "Saturday";
+          break;
+        default:
+          day = "";
+      }
+
+      let hDate = day + " - " + props.date.toLocaleString().split(',')[0]
+
+      return hDate;
+    }
+    // Get tasks for selected date and sort from largest to smallest
+    let selectedDateTasks = handlers?.taskList.filter(task => task.due_date === getDueDate(props.date) && !task.completed)
+    let small = selectedDateTasks.filter(i => i.task_type === 'S').sort((a, b) => b.task_level - a.task_level)
+    let medium = selectedDateTasks.filter(i => i.task_type === 'M').sort((a, b) => b.task_level - a.task_level)
+    let large = selectedDateTasks.filter(i => i.task_type === 'L').sort((a, b) => b.task_level - a.task_level)
+    let cake = selectedDateTasks.filter(i => i.task_type === 'C').sort((a, b) => b.task_level - a.task_level)
 
     let sortedTasks = {
         "Cake": cake,
@@ -35,13 +64,11 @@ function CalendarTaskList (props) {
         "Small": small
       
     }
-
-
   
   return (
     <Modal size="lg" backdrop="static" show={props.showCreateTask} onHide={props.handleClose}>
       <Modal.Header closeButton>
-        <Modal.Title>{props.date !== undefined ? props.date.toLocaleString().split(',')[0] :  ""}</Modal.Title>
+        <Modal.Title style={{fontSize: 24}}>{props.date !== undefined ? headerDate() :  ""}</Modal.Title>
       </Modal.Header>
       <Modal.Body>
 
@@ -50,13 +77,10 @@ function CalendarTaskList (props) {
                                     <div key={index}>
                                         {sortedTasks[key].length !== 0 ?
                                                     <div>
-                                            
                                                     {sortedTasks[key].map((t, id) => {
                                                         return <TaskItemMobile key={t.task_id} task={t} updateTask={handlers?.updateTask} deleteTask={handlers?.deleteTask} />})}
-
-                                                        {/* return <CalendarTaskItemMobile key={t.task_id} task={t} updateTask={handlers?.updateTask} deleteTask={handlers?.deleteTask} />})} */}
                                                     </div>
-                                                
+                              
                                             :
                                             <></>
                                         }
@@ -64,11 +88,11 @@ function CalendarTaskList (props) {
 
                                 )
                             })}
-                            {todayTasks.length === 0 && <div>No Tasks Due On This Day!!</div>}
+                            {selectedDateTasks.length === 0 && <div>No Tasks Due On This Day!!</div>}
        
       </Modal.Body>
     </Modal >
   );
 }
 
-export default CalendarTaskList
+export default CalendarTaskListMobile;
