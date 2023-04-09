@@ -83,7 +83,7 @@
     font-size: calc(1.5vw + 1vh);
 }
 
-#validationFormik01, #validationFormik02, #validationFormik03, #validationFormik04 {
+.createtask-modal-mobile #validationFormik01, .createtask-modal-mobile #validationFormik02, .createtask-modal-mobile #validationFormik03, .createtask-modal-mobile #validationFormik04 {
     font-size: calc(1.5vw + 1vh);
 }
 

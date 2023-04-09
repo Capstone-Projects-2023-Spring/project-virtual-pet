@@ -19,6 +19,7 @@ import TaskPage from "./PageDisplay/TaskPage.js";
 import InventoryBoxMobile from "./Inventory/InventoryBoxMobile.js";
 import PetProfPage from "./PageDisplay/PetProfPage.js";
 
+import TaskPageMobile from "./PageDisplay/TaskMobile/TaskPageMobile.js";
 
 
 const MainMobile = () => {
@@ -39,7 +40,7 @@ const MainMobile = () => {
             <div className="bottom-container-mobile">
             
             
-            {activeTab === 0 && <div>hi</div>}
+            {activeTab === 0 && <TaskPageMobile/>}
             {activeTab === 1 && <div>asdfa</div>}
             {activeTab === 2 && <InventoryBoxMobile/>}
             {activeTab === 3 && <PetProfPage/>}

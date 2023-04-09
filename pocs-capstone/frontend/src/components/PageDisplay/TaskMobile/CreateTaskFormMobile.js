@@ -1,6 +1,6 @@
 import { Tooltip, OverlayTrigger, Stack, Form, Button, Modal, Image } from 'react-bootstrap';
 
-import TaskListContext from '../../../context/TaskListContext'
+import GlobalContext from '../../../context/GlobalContext'
 import { useContext } from 'react'
 import infoicon from '../../../images/info_icon.png'
 
@@ -10,7 +10,7 @@ import * as formik from 'formik'
 
 function CreateTaskForm(props) {
 
-  const handlers = useContext(TaskListContext);
+  const handlers = useContext(GlobalContext);
   const title = props.task ? "Task Details" : "Create Task"
   const buttonText = props.task ? "Save" : "Create Task"
 
