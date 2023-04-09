@@ -1,8 +1,8 @@
 import { Tooltip, OverlayTrigger, Stack, Form, Button, Modal, Image } from 'react-bootstrap';
 
-import TaskListContext from '../../context/TaskListContext'
+import TaskListContext from '../../../context/TaskListContext'
 import { useContext } from 'react'
-import infoicon from '../../images/info_icon.png'
+import infoicon from '../../../images/info_icon.png'
 
 import * as yup from "yup";
 import * as formik from 'formik'
@@ -33,24 +33,9 @@ function CreateTaskForm(props) {
   }
 
   return (
-    <Modal backdrop="static" show={props.showCreateTask} onHide={props.handleClose}>
+    <Modal className="createtask-modal-mobile" backdrop="static" show={props.showCreateTask} onHide={props.handleClose}>
       <Modal.Header closeButton>
         <Modal.Title>{title}</Modal.Title>
-        {/* <OverlayTrigger
-          key="bottom"
-          placement="bottom"
-          overlay={
-            <Tooltip id="tooltip-top" style={{ fontSize: '12px', width: '200px' }}>
-              {taskDesc}
-            </Tooltip>
-          }
-        >
-          <Image
-            src={infoicon}
-            alt="more info icon image"
-            style={iconStyle}
-          />
-        </OverlayTrigger> */}
       </Modal.Header>
       <Modal.Body>
 

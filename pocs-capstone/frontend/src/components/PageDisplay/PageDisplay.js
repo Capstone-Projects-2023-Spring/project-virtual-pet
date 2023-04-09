@@ -7,6 +7,7 @@ import TaskListContext from '../../context/TaskListContext'
 import InventoryBox from "../Inventory/InventoryBox";
 import InventoryBoxMobile from "../Inventory/InventoryBoxMobile";
 import GlobalContext from "../../context/GlobalContext";
+import UserContext from "../../context/UserContext";
 import { Tab, Tabs } from 'react-bootstrap';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import { useState, useEffect, useContext } from 'react'
@@ -18,6 +19,7 @@ const PageDisplay = () => {
     const axiosPrivate = useAxiosPrivate()
     const baseURL = `/tasks/`
     const contextHandlers = useContext(GlobalContext)
+    const userContext = useContext(UserContext)
     const width = useWindowWidth();
     const isMobile = width <= 850;
 
@@ -104,7 +106,54 @@ const PageDisplay = () => {
         }
     }
 
+
+    const determineTaskLevel = (date) => {
+
+        const today_date = new Date()
+        const join_date = new Date(date)
+
+
+        // const join_date = new Date('April 17, 2020 03:24:00')
+
+        const year_diff = (today_date.getFullYear() - join_date.getFullYear()) * 12;
+        const mon_diff = (today_date.getMonth() - join_date.getMonth()) + year_diff
+
+        console.log(`MONTHS USER HAS BEEN WITH SITE: ${mon_diff}`)
+
+
+        // t <= 3 months
+        if(mon_diff < 3){
+            return 1
+        }
+
+        // 3 months <= t < 1 year
+        if(mon_diff >= 3 && mon_diff < 12){
+            return 2
+        }
+
+        // 1 year <= t < 2 years
+        if(mon_diff >= 12 && mon_diff < 24){
+            return 3
+        }
+
+        // 2 years <= t < 3 years
+        if(mon_diff >= 24 && mon_diff < 36){
+            return 4
+        }
+
+        // t > 3 years
+        if(mon_diff >= 36){
+            return 5
+        }
+
+        return -1
+
+    }
+
     const addTask = (formValues) => {
+
+        const taskLevelD = determineTaskLevel(userContext.userInfo.join_date)
+
         const newTask = {
             title: formValues.title,
             due_date: formValues.due_date === "" ? null : formValues.due_date,
@@ -113,13 +162,15 @@ const PageDisplay = () => {
             completed: false,
             active: true,
             task_type: formValues.size,
-            task_level: formValues.level,
+            task_level: taskLevelD,
             recurring: false,
             recurring_time_delta: 0,
             description: formValues.description,
             course_id: 0,
             assignment_id: 0
         }
+
+        console.log("NEW TASK", newTask)
 
 
 
