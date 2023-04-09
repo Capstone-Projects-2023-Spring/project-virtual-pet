@@ -1,11 +1,10 @@
 
 import { ListGroup, Stack, Button } from 'react-bootstrap';
-import TaskItem from './TaskItem'
-// import TaskListContext from '../../context/TaskListContext'
-import GlobalContext from "../../context/GlobalContext.js";
+import TaskItemMobile from './TaskItemMobile'
+import GlobalContext from '../../../context/GlobalContext'
 import { useContext } from 'react'
 
-const TaskList = ({ filter }) => {
+const TaskListMobile = ({ filter }) => {
     const handlers = useContext(GlobalContext)
     const showTasks = filter === 'all' ?
         handlers?.taskList.filter(task => !task.completed) :
@@ -35,7 +34,7 @@ const TaskList = ({ filter }) => {
                 ) : null}
 
                 <ListGroup className="task-scroll">
-                    {showTasks.map(t => <TaskItem key={t.task_id} task={t} updateTask={handlers.updateTask} deleteTask={handlers.deleteTask} />)}
+                    {showTasks.map(t => <TaskItemMobile key={t.task_id} task={t} updateTask={handlers.updateTask} deleteTask={handlers.deleteTask} />)}
                 </ListGroup>
 
 
@@ -47,4 +46,4 @@ const TaskList = ({ filter }) => {
 }
 
 
-export default TaskList
+export default TaskListMobile
