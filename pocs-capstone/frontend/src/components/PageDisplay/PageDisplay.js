@@ -233,8 +233,7 @@ const PageDisplay = () => {
                         <CalendarPage />
                     </Tab>
                     <Tab eventKey="inventory" title="Inventory">
-                        {isMobile ?
-                        < InventoryBoxMobile /> : < InventoryBox />}
+                        <InventoryBox />
                     </Tab>
                     <Tab eventKey="profile" title="Profile">
                         < PetProfPage />

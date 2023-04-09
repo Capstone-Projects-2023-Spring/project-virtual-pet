@@ -18,6 +18,7 @@ import { setIn } from "formik";
 import TaskPage from "./PageDisplay/TaskPage.js";
 import InventoryBoxMobile from "./Inventory/InventoryBoxMobile.js";
 import PetProfPage from "./PageDisplay/PetProfPage.js";
+import CalendarPageMobile from "./CalendarMobile/CalendarPageMobile.js";
 
 import TaskPageMobile from "./PageDisplay/TaskMobile/TaskPageMobile.js";
 
@@ -41,7 +42,7 @@ const MainMobile = () => {
             
             
             {activeTab === 0 && <TaskPageMobile/>}
-            {activeTab === 1 && <div>asdfa</div>}
+            {activeTab === 1 && <CalendarPageMobile/> }
             {activeTab === 2 && <InventoryBoxMobile/>}
             {activeTab === 3 && <PetProfPage/>}
             

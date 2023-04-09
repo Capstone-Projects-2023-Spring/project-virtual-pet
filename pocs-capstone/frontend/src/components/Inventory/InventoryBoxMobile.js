@@ -10,7 +10,6 @@ import GlobalContext from "../../context/GlobalContext";
 // Need to add css to css file 
 function InventoryBox() {
 
-    //let handlers = useContext(InventoryContext)
     const contextHandler = useContext(GlobalContext);
 
     // sort inventory into their types
@@ -25,11 +24,35 @@ function InventoryBox() {
         "Large": large,
         "Cake": cake
     }
-    // console.log(contextHandler?.inventory);
 
-
-    return (
+    return(
         <>
+        {Object.keys(candies).map((key, index) => {
+                return (
+                    <div key={index}>
+                        {candies[key].length !== 0 ?
+                                <div className="inventory-wrapper-sizes-mobile">
+                                    {candies[key].map((candy, id) => {
+                                        // https://github.com/react-dnd/react-dnd/issues/748#issuecomment-348710655
+                                        // DONT use index from mapping for react-dnd item key!!!
+                                        return <CandyMobile key={candy.inventory_id} id={candy.inventory_id} quantity={candy.quantity} candy_base_type={candy.candy_base_type} candy_level={candy.candy_level} />
+                                    })}
+                                </div>
+                                
+                            :
+                            <></>
+                        }
+                    </div>
+                )
+            })}
+
+        </>
+
+    )
+}
+
+    // return (
+    //     <>
             {/* <div className="mini-page">
                 <Card className='tasklist-position'>
                     <Card.Header>
@@ -37,19 +60,19 @@ function InventoryBox() {
                     </Card.Header> */}
 
 
-                    {contextHandler.inventory.length === 0 ?
+                    // {contextHandler.inventory.length !== 0 &&
 
                         // If no items render 'No Inventory' notice
                         /* <ListGroup variant="flush">
                             <ListGroup.Item className="d-flex justify-content-between align-items-start">
                                 No Inventory!
                             </ListGroup.Item>
-                        </ListGroup> */
-                        <div></div>
+                        {/* </ListGroup> */
+                        
                         
 
-                        :
-                        <div>
+                        
+                        {/* <div>
                         {Object.keys(candies).map((key, index) => {
                                 return (
                                     <div key={index}>
@@ -69,7 +92,7 @@ function InventoryBox() {
                                 )
                             })}
 
-                        </div>
+                        </div> */}
 
                         // All the candies rendered below - logic included to not show if candy lists are empty 
                         /* <div className="inventory-wrapper-mobile">
@@ -97,14 +120,14 @@ function InventoryBox() {
                         </div> */
                         
 
-                    }
+                    // }
                 {/* </Card> */}
             {/* </div > */}
 
 
-        </>
+        {/* </>
     )
-}
+} */}
 
 
 
