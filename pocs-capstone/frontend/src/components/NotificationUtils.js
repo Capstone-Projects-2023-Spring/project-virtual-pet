@@ -1,6 +1,9 @@
-//import React, { useContext } from "react";
+import React, { useEffect } from "react";
 //import NotificationContext from "../context/NotificationContext.js";
 import useAxiosPrivate from "../hooks/useAxiosPrivate.js";
+
+
+
 
 export const sendWelcomeNotification = () => {
     const title = 'Welcome to Study Buddy!';
@@ -10,10 +13,18 @@ export const sendWelcomeNotification = () => {
     sendNotification(title, options);
 };
 
-export const sendTaskDueNotification = (taskTitle) => {
-    const title = 'Task Due Soon';
+export const sendOneTaskDueNotification = () => {
+    const title = 'Task Due Soon!';
     const options = {
-        body: `Your task "${taskTitle}" is due in 24 hours!`,
+        body: `You have a task due in 24 hours.`,
+    };
+    sendNotification(title, options);
+};
+
+export const sendTasksDueNotification = (numDue) => {
+    const title = 'Tasks Due Soon!';
+    const options = {
+        body: `You have ${numDue} tasks due in 24 hours.`,
     };
     sendNotification(title, options);
 };
@@ -33,33 +44,26 @@ export function checkNotificationPromise() {
     return true;
 }
 
-const checkTasks = async () => {
-    // get tasks from backend
-    const axiosPrivate = useAxiosPrivate()
-    const tasks = () => {
-        axiosPrivate.get("/tasks/")
+
+export function getTasksDueToday(tasks) {
+
+    const today = new Date().toISOString().slice(0, 10); // get today's date
+
+    const tasksDueToday = tasks.filter(task => {
+        const dueDate = task.due_date.slice(0, 10); // get the due date
+        return dueDate === today; // keep task if due date equal to today
+    });
+
+    if (tasksDueToday.length > 0) {
+        console.log("There are tasks due today!")
+        if (tasksDueToday.length === 1) {
+            sendOneTaskDueNotification();
+        }
+        else {
+            sendTasksDueNotification(tasksDueToday.length);
+        }
     }
 
-    // filter tasks that are due in 24 hours
-    const now = new Date(); // current date and time
-    const tasksDueSoon = tasks.filter(task => {
-        const dueDate = new Date(task.due_date); // convert task due date string to Date object
-        const timeDiff = dueDate.getTime() - now.getTime(); // calculate time difference in milliseconds
-        const hoursDiff = timeDiff / (1000 * 60 * 60); // convert time difference to hours
-        return hoursDiff <= 24 && hoursDiff > 0; // return true if task is due in less than 24 hours and more than 0 hours
-    });
+}
 
-    // send notification for each task
-    tasksDueSoon.forEach((task) => {
-        sendTaskDueNotification(task.title);
-    });
-};
-
-export const startTaskChecker = (intervalMs) => {
-    const intervalId = setInterval(() => {
-        checkTasks();
-    }, intervalMs);
-
-    return () => clearInterval(intervalId);
-};
 

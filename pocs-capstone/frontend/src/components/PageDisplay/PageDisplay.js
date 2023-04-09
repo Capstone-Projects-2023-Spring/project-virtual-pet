@@ -10,7 +10,7 @@ import { Tab, Tabs } from 'react-bootstrap';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import { useState, useEffect, useContext } from 'react'
 import { useWindowWidth } from "@react-hook/window-size";
-import { startTaskChecker } from "../NotificationUtils.js"
+import { getTasksDueToday } from "../NotificationUtils.js"
 
 const PageDisplay = () => {
 
@@ -20,30 +20,22 @@ const PageDisplay = () => {
     const width = useWindowWidth();
     const isMobile = width <= 850;
 
-
-
     const [taskList, setTaskList] = useState([])
 
     const fetchData = () => {
         axiosPrivate.get(baseURL)
             .then(r => {
                 setTaskList(r.data)
+                getTasksDueToday(r.data)
             })
-
+            
     }
 
     useEffect(fetchData, [])
 
-    // run check for tasks due in 24 hrs
-    useEffect(() => {
-        const stopTaskChecker = startTaskChecker(24 * 60 * 60 * 1000);
-        return () => stopTaskChecker();
-      }, []);
 
     const updateTask = (id, newTask) => {
         const taskItem = taskList.find(t => t.task_id === id)
-
-
 
         const taskItemChanged = newTask == null ?
             { ...taskItem, completed: !taskItem.completed, completed_date: (taskItem.completed_date === null ? new Date().toISOString().split('T')[0] : null) } :
@@ -184,7 +176,7 @@ const PageDisplay = () => {
                     </Tab>
                     <Tab eventKey="inventory" title="Inventory">
                         {isMobile ?
-                        < InventoryBoxMobile /> : < InventoryBox />}
+                            < InventoryBoxMobile /> : < InventoryBox />}
                     </Tab>
                     <Tab eventKey="profile" title="Profile">
                         < PetProfPage />

@@ -48,6 +48,17 @@ const Main = () => {
                 Notification.requestPermission().then((permission) => {
                     console.log("This browser supports notifications (non-Safari).");
                     setPermissionState(permission);
+                    
+                    console.log("NOW SENDING WELCOME NOTIFICATION")
+                    sendWelcomeNotification();
+
+                    const intervalId = setInterval(() => {
+                        const notification = new Notification('Your pet misses you!', {
+                            body: 'It has been 5 minutes.'
+                        });
+                    }, 3000); // 5 minutes in milliseconds
+
+                    return () => clearInterval(intervalId);
                 });
                 // if not, run older callback-based version (supported in Safari)
             } else {
@@ -56,14 +67,11 @@ const Main = () => {
                     setPermissionState(permission);
                 });
             }
-            // once a user has granted permission, send them a welcome notification
-            if (permissionState === 'granted') {
-                sendWelcomeNotification();
-            }
         }
 
 
     }, [permissionState, setPermissionState]);
+
 
 
     let spriteSheetRef = useRef(null);
