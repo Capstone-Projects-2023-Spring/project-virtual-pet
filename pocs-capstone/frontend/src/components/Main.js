@@ -142,8 +142,8 @@ const Main = () => {
       createInventoryItem(newCandy)
         .then(r => {
           let candy = inventory.find((c) => c.candy_base_type === r.candy_base_type && c.candy_level === r.candy_level);
-          console.log(candy);
-          console.log(r);
+          // console.log(candy);
+          // console.log(r);
           candy.inventory_id = r.inventory_id;
           candy.quantity = r.quantity;
           // candyList.push(r)
@@ -170,7 +170,7 @@ const Main = () => {
     const year_diff = (today_date.getFullYear() - join_date.getFullYear()) * 12;
     const mon_diff = (today_date.getMonth() - join_date.getMonth()) + year_diff
 
-    console.log(`MONTHS USER HAS BEEN WITH SITE: ${mon_diff}`)
+    // console.log(`MONTHS USER HAS BEEN WITH SITE: ${mon_diff}`)
 
 
     // t <= 3 months
@@ -222,9 +222,7 @@ const Main = () => {
       assignment_id: 0
     }
 
-    console.log("NEW TASK", newTask)
-
-
+    // console.log("NEW TASK", newTask)
 
     axiosPrivate.post(baseURL, newTask)
       .then(r => {
@@ -274,7 +272,7 @@ const Main = () => {
   const updateInventory = (id) => {
     // console.log("ID OF CANDY", id)
     let yourDate = new Date()
-    console.log("DATE???----->", yourDate.toISOString().split('T')[0])
+    // console.log("DATE???----->", yourDate.toISOString().split('T')[0])
 
     const candyD = inventory.find((candy) => candy.inventory_id === id);
     if (candyD.quantity !== 0) {
@@ -345,24 +343,24 @@ const Main = () => {
 
 
     const received_xp = CalculateXP(candy_base_type, candy_level)
-    console.log("XP", avatarInfo.total_xp)
+    // console.log("XP", avatarInfo.total_xp)
 
     const total_xp = received_xp + avatarInfo.total_xp
 
     const today = new Date()
     const todayString = today.toISOString().split('T')[0]
 
-    console.log("TOTAL XP----------->", total_xp)
+    // console.log("TOTAL XP----------->", total_xp)
     const updatedAvatar = {
       ...avatarInfo,
       total_xp: total_xp,
       last_feed: todayString
     };
-    console.log("UPDATED AVATAR", updatedAvatar)
+    // console.log("UPDATED AVATAR", updatedAvatar)
     axiosPrivate
       .patch(`/avatar/${avatarInfo.avatar_id}/`, updatedAvatar)
       .then((response) => {
-        console.log("response.data:", response.data);
+        // console.log("response.data:", response.data);
         setAvatar(response.data); //change this to add to previous state instead of replacing completely (in case of >1 avatar for 1 user)
         getLevel(avatarInfo.total_xp)
 
