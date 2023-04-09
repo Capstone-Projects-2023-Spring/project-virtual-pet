@@ -7,7 +7,7 @@ import CalculateXP from '../../algos/assignXP';
 import CalculatePetLevel from '../../algos/calculatePetLevel';
 
 import axios from '../../api/axios';
-const LOGIN_URL = '/api/token/';
+const LOGIN_URL = '/token/';
 
 const Login = () => {
         const { setAuth, persist, setPersist } = useAuth();
@@ -85,7 +85,7 @@ const Login = () => {
         <div className="backg">
             <section className='section-login-register'>
                 <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
-                <h1>Sign-in to visit your buddies!</h1>
+                <h1>Sign-in to visit your buddy!</h1>
                 <form onSubmit={handleSubmit} className="form-login-register">
                     <label className="label-login-register" htmlFor="email">Email:</label>
                     <input

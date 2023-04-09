@@ -1,0 +1,96 @@
+.container-m {
+  display: grid;
+  /* grid-template-rows: 35% 65%; */
+  grid-template-columns: 100%;
+  height: 100vh;
+  background-color: rgb(255, 255, 255);
+  /* grid-template-areas: 'myBottom myBottom ...' 'myBottom myBottom ...'; */
+}
+
+.backg {
+  /* border-radius: 15px; */
+  display: flex;
+  align-items: center;
+  position: relative;
+
+  /* IMPORTANT:KEEP AS MIN HEIGHT NOT HEIGHT*/
+  /* https://www.freecodecamp.org/news/how-to-keep-your-footer-where-it-belongs-59c6aa05c59c/ */
+  min-height: 100vh;
+  background-color: rgb(255, 198, 198);
+  /* padding: 0px 5px; */
+}
+
+.birthday-form {
+  margin-top: 20px;
+}
+
+.label-bio-register {
+  margin-top: 20px;
+}
+
+.label-first-name-register {
+  margin-top: 20px;
+}
+
+.tab-container {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  background-color: rgb(255, 198, 198);
+  display: flex;
+  flex: 1;
+  height: 6vh;
+  grid-row-start: 3;
+  grid-row-end: 3;
+}
+
+.tab {
+  padding: 10px;
+  margin: 0 5px;
+  cursor: pointer;
+}
+
+.tab.active {
+  background-color:rgb(250, 146, 146);
+}
+
+.top-container-mobile {
+  grid-row-start: 1 ;
+  grid-row-end:2;
+  /* margin-top: 400px; */
+  position: relative;
+  /* justify-content: space-between; */
+  height: 50vh;
+  /* height: auto; */
+
+  
+  
+  /* height: 300px; */
+  background-color: pink;
+  background: size 100px;
+  /* margin-bottom: 55px; */
+  margin-left: 0px;
+}
+
+.bottom-container-mobile {
+
+  grid-row-start: 2 ;
+  grid-row-end: 3;
+  /* margin-top: 400px; */
+  position: relative;
+  /* justify-content: space-between; */
+  height: 50vh;
+  overflow:auto;
+  /* height: auto; */
+
+  
+  
+  /* height: 300px; */
+  background-color: white;
+  background: size 100px;
+  /* margin-bottom: 55px; */
+  margin-left: 0px;
+}

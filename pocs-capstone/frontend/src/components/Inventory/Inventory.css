@@ -65,8 +65,8 @@ img {
 
 /* Wrap around all of the inventory, enables scrolling, etc */
 .inventory-wrapper {
-  min-height: 85vh;
-  max-height: 85vh;
+  /* min-height: 85vh;
+  max-height: 85vh; */
   border-radius: 0px;
 
   margin-bottom: 10px;
@@ -76,14 +76,16 @@ img {
 }
 
 .inventory-wrapper-mobile {
-  min-height: 85vh;
-  max-height: 85vh;
+  /* min-height: 85vh;
+  max-height: 85vh; */
   border-radius: 0px;
+  height: 50vh;
+  width: 50vh;
 
-  margin-bottom: 10px;
-  padding: 20px;
-  overflow: scroll;
-  -webkit-overflow-scrolling: touch;
+  /* margin-bottom: 10px; */
+  /* padding: 20px; */
+  /* overflow: scroll;
+  -webkit-overflow-scrolling: touch; */
 }
 
 
@@ -116,9 +118,12 @@ img {
 
   /* grid-template-columns: auto auto auto auto auto; */
   /* https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-rows */
-  grid-template-columns: repeat(auto-fill, 60px);
+  grid-template-columns: repeat(auto-fill, 70px);
 
-  grid-auto-rows: 100px;
+  grid-auto-rows: 90px;
+  /* height: 20px;
+  width: 20px; */
+
 
 
 
@@ -156,8 +161,8 @@ img {
   text-align: center;
   font-size: 30px;
   
-  width: 80px;
-  height: 80px;
+  width: 100vh;
+  height: 100vh;
 
   display: flex;
   justify-content: center;
@@ -233,7 +238,7 @@ img {
 }
 
 .candy-photo-mobile {
-  width: 50px;
+  width: 40px;
   height: auto;
   pointer-events: none;
   /* user-select: none; */
@@ -256,9 +261,9 @@ img {
 }
 
 .candy-wrapper-mobile {
-  width: 80px;
-  height: 80px;
-  padding: 20px;
+  width: 40px;
+  height: 40px;
+  /* padding: 100px; */
   display: flex;
   justify-content: center;
   align-items: center;

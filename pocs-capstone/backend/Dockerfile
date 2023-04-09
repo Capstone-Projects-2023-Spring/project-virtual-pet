@@ -17,5 +17,5 @@ COPY . .
 RUN pip install -r requirements.txt
 
 # when the container runs it'll be listening on port 8000
-EXPOSE 8000
+# EXPOSE 8000
 
