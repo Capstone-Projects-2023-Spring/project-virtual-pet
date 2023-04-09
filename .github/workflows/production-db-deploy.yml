@@ -1,3 +1,4 @@
+
 name: Deploy My Changes
 
 on:
@@ -20,17 +21,17 @@ jobs:
       run: echo GMAIL_PASSWORD=${{ secrets.GMAIL_PASSWORD }} >> .env
       
     - name: Build the Docker image
-      working-directory: ./pocs-capstone
-      run: docker-compose build
+      working-directory: ./pocs-capstone/backend
+      run: docker build -t ccho508/backend-sb:latest .
       
-    - name: Print Docker images
-      run: docker images
+    # - name: Print Docker images
+    #   run: docker images
       
-    - name: Tag Docker Image (frontend)
-      run: docker tag pocs-capstone_web:latest ccho508/frontend-sb:latest
+    # - name: Tag Docker Image (frontend)
+    #   run: docker tag pocs-capstone_web:latest ccho508/frontend-sb:latest
       
-    - name: Tag Docker Image (backend)
-      run: docker tag pocs-capstone_api:latest ccho508/backend-sb:latest
+    # - name: Tag Docker Image (backend)
+    #   run: docker tag pocs-capstone_api:latest ccho508/backend-sb:latest
       
       
     - name: Log in to Docker Hub
@@ -39,8 +40,8 @@ jobs:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
 
-    - name: Push Docker Image (frontend)
-      run: docker push ccho508/frontend-sb:latest
+    # - name: Push Docker Image (frontend)
+    #   run: docker push ccho508/frontend-sb:latest
       
     - name: Push Docker Image (backend)
       run: docker push ccho508/backend-sb:latest
@@ -53,6 +54,6 @@ jobs:
         password:  ${{ secrets.SSH_KEY }} # Top-Secret Password!!!
         script : |
           docker-compose down
-          docker volume rm root_react_build
+          docker volume rm root_backend_prod
           docker-compose pull
           docker-compose up -d 
