@@ -16,8 +16,8 @@ COPY . .
 # install requirements
 RUN pip install -r requirements.txt
 
-# RUN python manage.py makemigrations
-# RUN python manage.py migrate
+RUN python manage.py makemigrations
+RUN python manage.py migrate
 # when the container runs it'll be listening on port 8000
 # EXPOSE 8000
 
