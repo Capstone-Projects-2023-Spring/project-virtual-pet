@@ -200,7 +200,7 @@ class Task(models.Model):
     task_id = models.AutoField(primary_key=True)
     user = models.ForeignKey(settings.AUTH_USER_MODEL,
                              on_delete=models.CASCADE)
-    titley = models.CharField(max_length=128, default="A new task!")
+    title = models.CharField(max_length=128, default="A new task!")
     due_date = models.DateField(null=True, blank=True)
     created_date = models.DateTimeField(default=timezone.now)
     completed_date = models.DateField(default=None, null=True, blank=True)
@@ -223,4 +223,4 @@ class Task(models.Model):
     def __str__(self):
         """Task toString method
         """
-        return f'{self.titley}, {self.task_type}, {self.task_level}, {self.description}'
+        return f'{self.title}, {self.task_type}, {self.task_level}, {self.description}'

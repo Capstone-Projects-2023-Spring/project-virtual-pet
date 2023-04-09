@@ -57,7 +57,7 @@ class TaskSerializer(serializers.ModelSerializer):
         fields = [
             # 'username',
             'task_id',
-            'titley',
+            'title',
             'due_date',
             'created_date',
             'completed_date',
