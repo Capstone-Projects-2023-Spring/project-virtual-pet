@@ -1,6 +1,6 @@
 .container-m {
   display: grid;
-  /* grid-template-rows: 35% 65%; */
+  grid-template-rows: 45% 50% 5%;
   grid-template-columns: 100%;
   height: 100vh;
   width: 100vw;
@@ -43,7 +43,7 @@
   background-color: rgb(255, 198, 198);
   display: flex;
   flex: 1;
-  height: 6vh;
+  /* height: 6vh; */
   grid-row-start: 3;
   grid-row-end: 3;
 }
@@ -64,7 +64,7 @@
   /* margin-top: 400px; */
   position: relative;
   /* justify-content: space-between; */
-  height: 50vh;
+  /* height: 47vh; */
   width: 100vw;
   /* height: auto; */
 
@@ -85,7 +85,7 @@
   /* margin-top: 400px; */
   position: relative;
   /* justify-content: space-between; */
-  height: 50vh;
+  /* height: 48vh; */
   overflow:auto;
   /* height: auto; */
 
