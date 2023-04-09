@@ -205,7 +205,6 @@ class Task(models.Model):
     created_date = models.DateTimeField(default=timezone.now)
     completed_date = models.DateField(default=None, null=True, blank=True)
     completed = models.BooleanField(default=False)
-    completed2 = models.BooleanField(default=False)
     active = models.BooleanField(default=True)
     task_type = models.CharField(
         max_length=1, choices=BaseType.choices, default='S')

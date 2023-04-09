@@ -62,7 +62,6 @@ class TaskSerializer(serializers.ModelSerializer):
             'created_date',
             'completed_date',
             'completed',
-            'completed2'
             'active',
             'task_type',
             'task_level',
