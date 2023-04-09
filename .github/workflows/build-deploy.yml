@@ -15,9 +15,13 @@ jobs:
     - name: Checkout main branch
       uses: actions/checkout@v3
       
-    - name: Update .env
+    - name: Update .env with GMAIL_PASSWORD
       working-directory: ./pocs-capstone/backend
       run: echo GMAIL_PASSWORD=${{ secrets.GMAIL_PASSWORD }} >> .env
+
+    - name: Update .env with SECRET_KEY
+      working-directory: ./pocs-capstone/backend
+      run: echo SECRET_KEY=${{ secrets.DJANGO_SECRET_KEY_PROD }} >> .env
       
     - name: Build the Docker image
       working-directory: ./pocs-capstone
