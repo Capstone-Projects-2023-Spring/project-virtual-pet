@@ -6,15 +6,15 @@ import Footer from './components/Footer.js'
 
 import { useState, useEffect } from 'react'
 
-import Register from './components/Register'
-import Login from './components/Login'
-import Logout from './components/Logout.js'
-import Layout from './components/Layout'
-
+import Register from './components/LoginLogout/Register.js'
+import Login from './components/LoginLogout/Login.js'
+import Logout from './components/LoginLogout/Logout.js'
+import Layout from './components/Layout.js'
+import LandingPage from './components/LandingPage.js'
 import Loader from './components/Loader'
 
-import PersistLogin from './components/PersistLogin';
-import RequireAuth from './components/RequireAuth.js';
+import PersistLogin from './components/LoginLogout/PersistLogin.js'
+import RequireAuth from './components/LoginLogout/RequireAuth.js'
 
 import AnimateChoice from './components/AnimateChoice.js'
 import {Routes,Route} from 'react-router-dom';
@@ -28,11 +28,10 @@ function App(){
   return (
 
     <Routes>
-        
         <Route path="login" element={<Login/>}/>
         <Route path="register" element={<Register/>}/>
         <Route path="logout" element={<Logout/>}/>
-        
+        <Route path ="landing" element={<LandingPage/>}/>
         <Route element={<PersistLogin />}>
           <Route element = {<RequireAuth/>}>
             <Route path="/" element = {<Layout/>}>

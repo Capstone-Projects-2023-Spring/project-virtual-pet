@@ -12,29 +12,30 @@ function Candy({ id, quantity, candy_base_type, candy_level }) {
     const handlers = useContext(GlobalContext);
     const [isExploding, setIsExploding] = useState(false);
 
-    const start = (e) => {
-        console.log('START');
-    }
-
-    const end = (e, enough) => {
-        console.log('END');
-        
-    }
+    const start =(e) => {
+		console.log('START'); 
+	} 
+    
+	const end = (e, enough) => {
+		console.log('END');
+        // console.log(enough ? 'Click released after enough time': 'Click released too soon');            
+	    // setTimeout(() => setIsExploding(false), 1000); 
+    } 
 
     // Feed pet
-    const clickNHold = (e) => {
-        console.log('CLICK AND HOLD');
+	const clickNHold = (e) =>{
+		console.log('CLICK AND HOLD');
         handlers?.updateInventory(id);
         handlers?.getExp(candy_base_type, candy_level);
 
         setIsExploding(true);
         setTimeout(() => setIsExploding(false), 1000);  
-    }
+	} 
 
     // Determine candy image to render
     let candyImage = () => {
-        if(quantity === "L") return require('../../images/lock_scaled_7x_pngcrushed.png')
-
+        if(quantity === "L") return require('../../images/candies/candies_resized/locked.png')
+        
         switch (candy_base_type) {
             case 'S':
                 switch (candy_level) {
@@ -105,97 +106,94 @@ function Candy({ id, quantity, candy_base_type, candy_level }) {
                 return require('../../images/candies/candies_resized/cake_1_scaled_5x_pngcrushed.png')
         }
     }
-    // Render locked candy
+     // Render locked candy
     if(quantity === "L") {
         return(
             <>
-                < OverlayTrigger placement='bottom' overlay={
-                < Tooltip className="tooltip-item" >
-                    <span>Candy Base Type: <strong>?</strong> </span>
-                    <span>Candy Level: <strong>?</strong></span>
-                </Tooltip >
-                } >
-                <div className="grid-item" >
+                <div className="grid-item-mobile" >
                             {/* <Badge pill bg="secondary" className="candy-q">
                                 {quantity}
                             </Badge> */}
-                            <div className="candy-wrapper">
-                                <img className="candy-photo"
+                            <div className="candy-wrapper-mobile">
+                                <img className="candy-photo-mobile"
                                     src={candyImage(candy_base_type)}
                                     alt="Candy" />
 
                                     {/* // style={{ filter: quantity === 0 ? "grayscale(100%)" : '' }} /> */}
                     </div>
                 </div>
-                </OverlayTrigger>
             </>
         )
 
     }
-
     else {
     // Render clickable candy or non clickable candy that has a quantity of 0
     return (
         <>
-
+            {/* No overlay on Mobile just to test*/}
             {/* OverlayTrigger - when a user hovers over the candy item a little Tooltip component w/ the candy's details will pop up */}
-            < OverlayTrigger placement='bottom' overlay={
+            {/* < OverlayTrigger placement='bottom' overlay={
                 < Tooltip className="tooltip-item" >
                     <span>Candy Base Type: <strong>{candy_base_type}</strong> </span>
                     <span>Candy Level: <strong>{candy_level}</strong></span>
                 </Tooltip >
-            } >
-
-
-
-                <div className="grid-wrapper">
+            } >  */}
+            
+           
+            <div className="grid-wrapper-mobile">
                     {isExploding && <ConfettiExplosion />}
-
                     {/* Render ClickNHold wrapped candy if quantity is greater than 0 */}
-                    {quantity !== 0 ?
-
-                        <ClickNHold
-                            time={2} // Time to keep pressing. Default is 2
-                            // onStart={start} // Start callback
-                            onClickNHold={clickNHold} //Timeout callback
-
-                        >
-                            <div className="grid-item" >
-                                <Badge pill bg="secondary" className="candy-q">
-                                    {quantity}
-                                </Badge>
-
-                                <div className="candy-wrapper">
-                                    <img className="candy-photo"
+                    {quantity !== 0 ? 
+                    
+                    <ClickNHold
+                        time={2} // Time to keep pressing. Default is 2
+                        // onStart={start} // Start callback
+                        onClickNHold={clickNHold} //Timeout callback
+                        
+                                > 
+                        <div className="grid-item-mobile" >
+                            <Badge pill bg="secondary" className="candy-q-mobile">
+                            {quantity}
+                            </Badge>
+                        
+                            <div className="candy-wrapper-mobile">  
+                                    <img className="candy-photo-mobile"
                                         src={candyImage(candy_base_type)}
                                         alt="Candy"
-                                    />
-
-                                </div>
-
+                                         />   
+                                        
                             </div>
-                        </ClickNHold>
-                        :
-                        <div className="grid-item" >
-                            <Badge pill bg="secondary" className="candy-q">
-                                {quantity}
+
+                        </div> 
+                    </ClickNHold> 
+                    : 
+                        <div className="grid-item-mobile" >
+                            <Badge pill bg="secondary" className="candy-q-mobile">
+                            {quantity}
                             </Badge>
-                            <div className="candy-wrapper">
-                                <img className="candy-photo"
+                            <div className="candy-wrapper-mobile">
+                                <img className="candy-photo-mobile"
                                     src={candyImage(candy_base_type)}
                                     alt="Candy"
-                                    style={{ filter: "grayscale(100%)" }} />
-                            </div>
+                                
+                                    style={{ filter: quantity===0 ?  "grayscale(100%)" : '' }} />
+                            </div> 
                         </div>
                     }
-                </div>
+            </div>
 
-            </OverlayTrigger >
+            {/* </OverlayTrigger > */}
 
         </>
 
     )
     }
+    // }
 }
+
+
+// {isDragging ? <p>hello</p> : <p>goodbye</p>}
+
+
 
 export default Candy;

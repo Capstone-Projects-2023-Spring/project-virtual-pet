@@ -1,7 +1,6 @@
-import { useState, useEffect} from "react"
-import useAuth from '../hooks/useAuth.js'
+import {  useEffect} from "react"
 import useAxiosPrivate from "../hooks/useAxiosPrivate"
-import {Link, useNavigate} from 'react-router-dom'
+import { useNavigate} from 'react-router-dom'
 
 const AVATAR_URL = '/avatar/'
 
@@ -9,9 +8,11 @@ const Loader = () => {
     const axiosPrivate = useAxiosPrivate();
     
     const nav = useNavigate();
-    useEffect(() => {  axiosPrivate.get(AVATAR_URL)
+    useEffect(() => { axiosPrivate.get(AVATAR_URL)
         .then((response )=>{
             console.log(response.data);
+            if(response.status==403)
+                nav("/login")
             if(response.data.length===0)
                 nav("/pet_selection")
             else(nav("/"))

@@ -5,7 +5,7 @@ import {
   faInfoCircle,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import axios from "../api/axios";
+import axios from "../../api/axios";
 import { Form } from "react-bootstrap";
 
 const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
@@ -145,7 +145,7 @@ const Register = () => {
             >
               {errMsg}
             </p>
-            <h1>Welcome to Study Buddies!</h1>
+            <h1>Welcome to Study Buddy!</h1>
             <form onSubmit={handleSubmit} className="form-login-register">
               <label className="label-login-register" htmlFor="username">
                 Username:
