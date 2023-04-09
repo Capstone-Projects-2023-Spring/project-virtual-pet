@@ -26,7 +26,7 @@ const TaskListMobile = ({ filter }) => {
                 (
                     <div className='delete-com-tasks "mb-2"'>
                         <Stack className="col-md-5 mx-auto">
-                            <Button variant="outline-danger" size="sm" onClick={() => handlers?.deleteAll(showTasks)}>Delete ALL Completed</Button>
+                            <Button variant="outline-danger" size="sm" onClick={() => handlers?.deleteAllTasks(showTasks)}>Delete ALL Completed</Button>
                         </Stack>
 
                     </div>
