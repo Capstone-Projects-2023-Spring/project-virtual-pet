@@ -49,6 +49,23 @@
     animation: spin 2s linear infinite;
 }
 
+.canvas_card {
+    background-color: rgb(255, 214, 214);
+    flex: 1 1 auto;
+    width:40vw;
+    height: auto;
+    display: flex;
+    align-items: stretch;
+    justify-content: flex-start;
+    flex-direction: column;
+}
+
+@media (max-width: 1130px){
+    .canvas_card {
+        width:100vw
+    }
+}
+
 /* .instructions {
     background-color: rgb(255, 214, 214);
     flex: 1 1 auto;

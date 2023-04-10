@@ -139,7 +139,7 @@ const CanvasIntegrationPage = () => {
             {/* </Card.Header>{" "} */}
           {/* </Card> */}
           <hr />
-          <center><Card className = "card" style={{width: '30rem'}}>
+          <center><Card className = "canvas_card">
           <Card.Title>
             Follow these steps to link your Canvas account with Study Buddy! {" "}
           </Card.Title>
@@ -174,7 +174,7 @@ const CanvasIntegrationPage = () => {
               onChange={textChangeHandler}
             />
             <button
-              className="landingbutton"
+              className="button"
               type="submit"
               disabled={retrievingAssignments ? true : false}
             >
