@@ -14,6 +14,12 @@
     background-color: rgb(22, 22, 22);
     color: #fff;
   }
+
+  @media (max-width: 1130px) {
+    .Footer {
+      display: none;    
+    }
+  }  
   
 .FooterText {
     padding: 1px;
