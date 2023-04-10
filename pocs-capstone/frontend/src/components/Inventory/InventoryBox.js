@@ -24,8 +24,6 @@ function InventoryBox() {
         "Large": large,
         "Cake": cake
     }
-    // console.log(contextHandler?.inventory);
-
 
     return (
         <>
@@ -45,7 +43,7 @@ function InventoryBox() {
                         </Stack>
                     </Card.Header>
 
-
+{/* 
                     {contextHandler.inventory.length === 0 ?
 
                         // If no items render 'No Inventory' notice
@@ -55,9 +53,9 @@ function InventoryBox() {
                             </ListGroup.Item>
                         </ListGroup>
 
-                        :
+                        : */}
 
-                        // All the candies rendered below - logic included to not show if candy lists are empty 
+                        {/* // All the candies rendered below - logic included to not show if candy lists are empty  */}
                         <div className="inventory-wrapper">
                             {Object.keys(candies).map((key, index) => {
                                 return (
@@ -82,7 +80,7 @@ function InventoryBox() {
                             })}
                         </div>
 
-                    }
+                    {/* } */}
                 </Card>
             </div >
 
