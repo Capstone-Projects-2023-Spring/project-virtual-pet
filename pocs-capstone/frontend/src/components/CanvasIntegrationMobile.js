@@ -35,10 +35,8 @@ function CanvasIntegrationPageMobile(props) {
   }
 
   return (
-    <Modal className="createtask-modal-mobile" backdrop="static" show={props.showCreateTask} onHide={props.handleClose}>
-      <Modal.Header closeButton>
-        {/* <Modal.Title>Pet Profile</Modal.Title> */}
-        
+    <Modal className="createtask-modal-mobile" backdrop="static" show={props.showCanvas} onHide={props.handleCloseCanvasPage}>
+      <Modal.Header closeButton>        
       </Modal.Header>
       <Modal.Body>
 
