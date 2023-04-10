@@ -12,6 +12,8 @@ import { faColonSign } from '@fortawesome/free-solid-svg-icons'
 import Carousel from 'react-bootstrap/Carousel';
 import gray_cat from '../images/gray_neutral_scaled_5x_pngcrushed.png'
 import orange_cat from '../images/orange_neutral_scaled_5x_pngcrushed.png'
+import white_cat from '../images/whitecat_scaled_5x_pngcrushed.png'
+import tux_cat from '../images/tux_cat_scaled_5x_pngcrushed.png'
 //import selectpet from './selectpet'
 
 const AVATAR_URL = '/avatar/'
@@ -108,24 +110,29 @@ const AnimateChoice = () => {
             <hr />
             <div className='petname-display'>
                 {/* <div className='sprite-container'> */}
-            <Carousel>
+            <Carousel variant='dark' interval={null}>
                 <Carousel.Item>
-                    <img src = {gray_cat} alt="gray" className='sprite-container' index = {1} ref={spriteRefs[1]}></img>
-                    {/* <p></p><p></p> */}
-                    <button className = 'button' onClick={() => handleClick(1)}> Select</button>
+                    <img src = {gray_cat} alt="gray" className='sprite-container' index = {1} ref={spriteRefs[1]} onClick={() => handleClick(1)}></img>
+                    {/* <button className = 'button' onClick={() => handleClick(1)}> Select</button> */}
                     {/* <form key={1} onSubmit={(event) => handleSubmit(event, 1)}>
                         <input className="input" type="text" placeholder="Name your pet!" value={enteredText} onChange={textChangeHandler} />
                         <button className="button" type="submit">Submit</button>
                     </form> */}
                 </Carousel.Item>
                 <Carousel.Item>
-                    <img src = {orange_cat} alt="orange" className='sprite-container' index = {0} ref={spriteRefs[0]}></img>
+                    <img src = {orange_cat} alt="orange" className='sprite-container' index = {0} ref={spriteRefs[0]} onClick={() => handleClick(0)}></img>
                     {/* <p></p><p></p> */}
-                    <button className = 'button' onClick={() => handleClick(0)}> Select</button>
+                    {/* <button className = 'button' onClick={() => handleClick(0)}> Select</button> */}
                     {/* <form key={0} onSubmit={(event) => handleSubmit(event, 0)}>
                         <input className="input" type="text" placeholder="Name your pet!" value={enteredText} onChange={textChangeHandler} />
                         <button className="button" type="submit">Submit</button>
                     </form> */}
+                    </Carousel.Item>
+                    <Carousel.Item>
+                    <img src = {white_cat} alt="white" className='sprite-container' index = {2} ref={spriteRefs[2]} onClick={() => handleClick(2)}></img>
+                    </Carousel.Item>
+                    <Carousel.Item>
+                        <img src = {tux_cat} alt="tux" className='sprite-container' index = {3} ref={spriteRefs[3]} onClick={() => handleClick(3)}></img>
                     </Carousel.Item>
                 </Carousel>
                 {/* </div> */}

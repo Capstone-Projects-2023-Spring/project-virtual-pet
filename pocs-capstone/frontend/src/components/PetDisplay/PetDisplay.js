@@ -11,6 +11,12 @@ import gray_H_gif from '../../images/gray_happy_gif.gif'
 import gray_S_gif from '../../images/gray_sad_gif.gif'
 import gray_cat from '../../images/gray_neutral_scaled_5x_pngcrushed.png'
 import orange_cat from '../../images/orange_neutral_scaled_5x_pngcrushed.png'
+import white_cat from '../../images/whitecat_scaled_5x_pngcrushed.png'
+import tux_cat from '../../images/tux_cat_scaled_5x_pngcrushed.png'
+import white_H_gif from '../../images/white_happy_gif.gif'
+import white_S_gif from '../../images/white_sad_gif.gif'
+import tux_H_gif from '../../images/tux_happy_gif.gif'
+import tux_S_gif from '../../images/tux_sad_gif.gif'
 import { useDrop } from "react-dnd";
 import { useContext, useEffect, useRef, useState } from 'react';
 import Spritesheet from 'react-responsive-spritesheet'
@@ -101,15 +107,15 @@ const PetDisplay = () => {
             
             const feed_delta = dateDelta(TODAY,last_feed) //elapsed time since last feed
             console.log("FEED DELTA",feed_delta,TODAY,last_feed)
-            if (feed_delta<=1 ){
-               setMood(HAPPY)
-               console.log("FEED HAPPY",feed_delta)
-            }
-            else if (feed_delta<=3){
+            if (feed_delta<=3 && feed_delta>1){
                 setMood(NEUTRAL)
                 console.log("FEED NEUTRAL",feed_delta)
             }
-            else{
+            else if (feed_delta<=1){
+                setMood(HAPPY)
+                console.log("FEED HAPPY",feed_delta)
+             }
+            else {
                 setMood(SAD)
                 console.log("FEED SAD",feed_delta)
                 feed_flag=true
@@ -122,7 +128,7 @@ const PetDisplay = () => {
                 tasks.forEach(item => {
                     if (!item.completed){
                         const due = new Date(item.due_date)
-                        const task_delta = dateDelta(due,TODAY)
+                        const task_delta = dateDelta(due, TODAY)
                         console.log("TASK DELTA----->",task_delta,item.due_date,TODAY,item.completed)
                         if (task_delta<0){
                             setMood(SAD)
@@ -182,6 +188,30 @@ const PetDisplay = () => {
                                 // console.log(`gray_${mood}_gif`)
                            } else {
                             setAvatarImage(gray_S_gif);
+                           }
+                        return
+                        case 2:
+                            case 1:
+                            if(mood==='N'){
+                                setAvatarImage(white_cat);
+                           } else if(mood==='H'){
+                                setAvatarImage(white_H_gif);
+                                // setAvatarImage(`gray_${mood}_gif`)
+                                // console.log(`gray_${mood}_gif`)
+                           } else {
+                            setAvatarImage(white_S_gif);
+                           }
+                        return
+                        case 3:
+                            case 1:
+                            if(mood==='N'){
+                                setAvatarImage(tux_cat);
+                           } else if(mood==='H'){
+                                setAvatarImage(tux_H_gif);
+                                // setAvatarImage(`gray_${mood}_gif`)
+                                // console.log(`gray_${mood}_gif`)
+                           } else {
+                            setAvatarImage(tux_S_gif);
                            }
                         return
                         // case 2:
