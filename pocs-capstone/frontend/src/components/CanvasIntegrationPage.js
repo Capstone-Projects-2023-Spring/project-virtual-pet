@@ -5,6 +5,7 @@ import canvas_sidebar from "./canvas_sidebar.png";
 import new_access_token from "./new_access_token.png";
 import "./CanvasIntegrationPage.css";
 import "./AnimateChoice.css";
+import './LandingPage.css'
 import useAxiosPrivate from "../hooks/useAxiosPrivate";
 import { useWindowWidth } from '@react-hook/window-size'
 import { useNavigate } from "react-router-dom";
@@ -131,18 +132,18 @@ const CanvasIntegrationPage = () => {
         <div className="loading-parent">{loadingImage}</div>
       ) : (
         <>
-          <Card style={{ width: width }}>
-            <Card.Header className="pet-choice">
-              <center>
-                <h1>ADD YOUR CANVAS ACCOUNT!</h1>
-              </center>
-            </Card.Header>{" "}
-          </Card>
+          {/* <Card style={{ width: width }}> */}
+         {/* </>   <Card.Header className="pet-choice"> */}
+         <div className="landingpage">
+        <h1><center>ADD YOUR CANVAS ACCOUNT!</center></h1>
+            {/* </Card.Header>{" "} */}
+          {/* </Card> */}
           <hr />
-          <Card.Title className="text">
+          <center><Card className = "card" style={{width: '30rem'}}>
+          <Card.Title>
             Follow these steps to link your Canvas account with Study Buddy! {" "}
           </Card.Title>
-          <Card.Body className="text">
+          <Card.Body >
             <p>
               {" "}
               1. Access your Canvas account, and select your profile on the
@@ -159,7 +160,7 @@ const CanvasIntegrationPage = () => {
             the end of your semester date).
             <p></p> Select "Generate token", and copy and paste it here!{" "}
           </Card.Body>
-
+          </Card></center>
           <form
             className="submit_canvas"
             onSubmit={(event) => handleSubmit(event)}
@@ -173,7 +174,7 @@ const CanvasIntegrationPage = () => {
               onChange={textChangeHandler}
             />
             <button
-              className="button"
+              className="landingbutton"
               type="submit"
               disabled={retrievingAssignments ? true : false}
             >
@@ -181,6 +182,7 @@ const CanvasIntegrationPage = () => {
             </button>
             
           </form>
+          </div>
         </>
       )}
       <form 
@@ -189,6 +191,7 @@ const CanvasIntegrationPage = () => {
         {nameError !== "" ? <p>{nameError}</p> : <></>}
       </form>
     </div>
+
   );
 };
 export default CanvasIntegrationPage;

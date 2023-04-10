@@ -23,6 +23,7 @@
     justify-content: center;
     flex-direction: column;
     align-items: center;
+
 }
 
 .loading-parent {
@@ -47,6 +48,17 @@
     margin: 0 auto;
     animation: spin 2s linear infinite;
 }
+
+/* .instructions {
+    background-color: rgb(255, 214, 214);
+    flex: 1 1 auto;
+    width: 0;
+    height: auto;
+    display: flex;
+    align-items: stretch;
+    justify-content: flex-start;
+    flex-direction: column;
+} */
 
 @keyframes spin {
     from {
