@@ -10,7 +10,6 @@
 
 .task-badge-mobile {
     font-size: calc(1vw + 0.5vh);
- 
 }
 
 .due-date-mobile {
@@ -114,4 +113,12 @@
 /* margin for ACTIVE / COMPLETE Tabs */
 .to-tabs-mobile .nav-item {
     margin: 5px;
+}
+
+.filter-button-mobile {
+    position: relative;
+}
+
+.task-scroll-mobile {
+    overflow: auto;
 }

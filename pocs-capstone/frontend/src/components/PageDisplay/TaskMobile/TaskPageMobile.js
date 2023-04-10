@@ -1,13 +1,9 @@
-
-
 import '../PageDisplay.css'
 import CreateTaskFormMobile from './CreateTaskFormMobile';
 import TaskListMobile from './TaskListMobile'
 import { useState } from 'react';
 import { Tab, Tabs, Button, Stack, Card } from 'react-bootstrap';
 
-
-// { taskList, newTitle, newDesc, newSize, newDate, setAvatarInfo, setInventory, setTaskList, handleCompleteCheck, handleTitleChange, handleDescChange, handleSizeChange, handleDateChange, addTask, deleteTask }
 const TaskPageMobile = () => {
     const [showCreateTask, setShowCreateTask] = useState(false);
     const [filterTodo, setFilterTodo] = useState('all')
@@ -17,9 +13,9 @@ const TaskPageMobile = () => {
 
     return (
 
-        <div className="mini-page">
-            <Card className='tasklist-position'>
-                <Card.Header>
+        <div className="mini-page" style={{marginBottom: "20px"}} >
+            <Card className='tasklist-position' >
+                <Card.Header >
 
                     {/* <div className="ms-auto"> */}
                     <Stack direction="horizontal">

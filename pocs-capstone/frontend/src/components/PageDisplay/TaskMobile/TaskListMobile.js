@@ -33,7 +33,7 @@ const TaskListMobile = ({ filter }) => {
 
                 ) : null}
 
-                <ListGroup className="task-scroll">
+                <ListGroup className="task-scroll-mobile">
                     {showTasks.map(t => <TaskItemMobile key={t.task_id} task={t} updateTask={handlers.updateTask} deleteTask={handlers.deleteTask} />)}
                 </ListGroup>
 

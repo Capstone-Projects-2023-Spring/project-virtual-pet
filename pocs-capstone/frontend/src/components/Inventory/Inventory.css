@@ -69,8 +69,8 @@ img {
   max-height: 90vh;
   border-radius: 0px;
 
-  margin-bottom: 10px;
-  padding: 50px;
+  margin-bottom: 0px;
+  /* padding: 50px; */
   overflow: scroll;
   -webkit-overflow-scrolling: touch;
 }
@@ -299,11 +299,12 @@ img {
 }
 
 .candy-q-mobile {
-  width: 25px;
-  height: 25px;
-  padding: 1.3px;
+  font-size: 14px;
+  width: 26px;
+  height: 26px;
+  padding: 4.7px;
   position: absolute;
-  top: -3.5px;
+  top: -1.5px;
   right: -3.0px;
   pointer-events: none;
   user-select: none; /* supported by Chrome and Opera */
