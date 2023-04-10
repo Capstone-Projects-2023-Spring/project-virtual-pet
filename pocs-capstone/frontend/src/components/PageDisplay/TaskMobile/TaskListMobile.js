@@ -1,11 +1,10 @@
 
 import { ListGroup, Stack, Button } from 'react-bootstrap';
-import TaskItem from './TaskItem'
-// import TaskListContext from '../../context/TaskListContext'
-import GlobalContext from "../../context/GlobalContext.js";
+import TaskItemMobile from './TaskItemMobile'
+import GlobalContext from '../../../context/GlobalContext'
 import { useContext } from 'react'
 
-const TaskList = ({ filter }) => {
+const TaskListMobile = ({ filter }) => {
     const handlers = useContext(GlobalContext)
     const showTasks = filter === 'all' ?
         handlers?.taskList.filter(task => !task.completed) :
@@ -27,15 +26,15 @@ const TaskList = ({ filter }) => {
                 (
                     <div className='delete-com-tasks "mb-2"'>
                         <Stack className="col-md-5 mx-auto">
-                            <Button variant="outline-danger" size="sm" onClick={() => handlers?.deleteAll(showTasks)}>Delete ALL Completed</Button>
+                            <Button variant="outline-danger" size="sm" onClick={() => handlers?.deleteAllTasks(showTasks)}>Delete ALL Completed</Button>
                         </Stack>
 
                     </div>
 
                 ) : null}
 
-                <ListGroup className="task-scroll">
-                    {showTasks.map(t => <TaskItem key={t.task_id} task={t} updateTask={handlers.updateTask} deleteTask={handlers.deleteTask} />)}
+                <ListGroup className="task-scroll-mobile">
+                    {showTasks.map(t => <TaskItemMobile key={t.task_id} task={t} updateTask={handlers.updateTask} deleteTask={handlers.deleteTask} />)}
                 </ListGroup>
 
 
@@ -47,4 +46,4 @@ const TaskList = ({ filter }) => {
 }
 
 
-export default TaskList
+export default TaskListMobile
