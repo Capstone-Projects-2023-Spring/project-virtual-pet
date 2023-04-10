@@ -1,22 +1,24 @@
 import "./textbox.css";
 import Card from "react-bootstrap/Card";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import canvas_sidebar from "./canvas_sidebar.png";
 import new_access_token from "./new_access_token.png";
 import "./CanvasIntegrationPage.css";
 import "./AnimateChoice.css";
 import './LandingPage.css'
 import useAxiosPrivate from "../hooks/useAxiosPrivate";
-import { useWindowWidth } from '@react-hook/window-size'
+import { useWindowWidth } from "@react-hook/window-size";
 import { useNavigate } from "react-router-dom";
+import UserContext from "../context/UserContext";
 //currently theres some repeat stuff in the two files canvas integration and animate choice.
 import cat from "../images/orangecat.png";
 
 //not right
-const CANVAS_URL = "/user-data/";
+const USER_URL = "/user-data/";
 const COURSES_URL = "/canvas/";
 
 const CanvasIntegrationPage = () => {
+  const { shareData } = useContext(UserContext);
   const axiosPrivate = useAxiosPrivate();
   //  const [submittedText, setSubmittedText] = useState(null);
   const [canvas_token, setEnteredText] = useState("");
@@ -29,7 +31,7 @@ const CanvasIntegrationPage = () => {
 
   const nav = useNavigate();
 
-  const width = useWindowWidth()
+  const width = useWindowWidth();
 
   const setSubmittingTokenState = (text) => {
     setRetrievingAssignments(true);
@@ -46,12 +48,13 @@ const CanvasIntegrationPage = () => {
 
   useEffect(() => {
     if (tokenReady) {
-      console.log("TOKEN READY????---------->", tokenReady);
-
+      nav("/");
+      //console.log("TOKEN READY????---------->", tokenReady);
+      /* //Don't need to do this here anymore
       axiosPrivate
         .get(COURSES_URL)
         .then((response) => {
-          console.log("CREATED!!!?????");
+          //console.log("CREATED!!!?????");
           //we were successful
           //return state and navigate to main
           resetSubmitTokenState("");
@@ -63,6 +66,7 @@ const CanvasIntegrationPage = () => {
             "Error getting assignments. Please check your token and try again."
           );
         });
+    */
     }
   }, [tokenReady, axiosPrivate, nav]); // there was an error here if axiosPrivate and nav were not present
 
@@ -82,12 +86,12 @@ const CanvasIntegrationPage = () => {
       //setSubmittedText(canvas_token);
 
       axiosPrivate
-        .get(CANVAS_URL)
+        .get(USER_URL)
         .then((response) => {
           const id = response?.data[0].id;
           console.log("ID---->", response.data[0].id);
 
-          const url = CANVAS_URL + id + "/";
+          const url = USER_URL + id + "/";
           console.log("-----> ", url);
           const data = JSON.stringify({ canvas_token });
           axiosPrivate
@@ -95,6 +99,11 @@ const CanvasIntegrationPage = () => {
             .then((response) => {
               console.log(response.data);
               setTokenReady(true);
+            })
+            .then((response) => {
+              axiosPrivate.get(USER_URL).then((response) => {
+                shareData.setUserInfo(response.data[0]);
+              });
             })
             .catch((err) => {
               console.log(err);
@@ -158,7 +167,15 @@ const CanvasIntegrationPage = () => {
             <p></p> <img src={new_access_token} alt="+ New access token"></img>
             <p></p> 4. Enter a purpose and expiration date (ex. study buddy, and
             the end of your semester date).
-            <p></p> Select "Generate token", and copy and paste it here!{" "}
+            <p></p> Select "Generate token", and copy and paste it here!
+            <div style={{ fontSize: "24px" }}>
+              <p>
+                Once your token is saved, you will be redirected to the Main
+                Page.<br></br>A new 'Canvas' button will appear in the header.{" "}
+                <br></br>Click that button any time to retrieve or update your
+                Canvas Tasks!!
+              </p>{" "}
+            </div>
           </Card.Body>
           </Card></center>
           <form
@@ -180,14 +197,11 @@ const CanvasIntegrationPage = () => {
             >
               {submitText}
             </button>
-            
           </form>
           </div>
         </>
       )}
-      <form 
-        className="submit_canvas"
-      >
+      <form className="submit_canvas">
         {nameError !== "" ? <p>{nameError}</p> : <></>}
       </form>
     </div>
