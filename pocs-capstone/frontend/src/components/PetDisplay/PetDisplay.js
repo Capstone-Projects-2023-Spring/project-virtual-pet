@@ -143,6 +143,70 @@ const PetDisplay = () => {
     //Mary, plug in your state changes here!!
     useEffect(()=>{
         console.log("MOOD------>",mood)
+        const getavatarImage = (pet) => {
+            switch (pet.avatar_type) {
+                case 'CT':
+                    console.log(pet.palette);
+                    switch (pet.palette) {
+                        case 0:
+                           if(mood==='N'){
+                                setAvatarImage(orange_cat);
+                           //} else {
+                            //    setAvatarImage(`orange_${mood}_gif`)
+                               // console.log(`orange_${mood}_gif`)
+                           } else if (mood === 'H'){
+                                setAvatarImage(orange_H_gif);
+                           } else {
+                                setAvatarImage(orange_S_gif);
+                           }
+                        return
+                        case 1:
+                            if(mood==='N'){
+                                setAvatarImage(gray_cat);
+                           } else if(mood==='H'){
+                                setAvatarImage(gray_H_gif);
+                                // setAvatarImage(`gray_${mood}_gif`)
+                                // console.log(`gray_${mood}_gif`)
+                           } else {
+                            setAvatarImage(gray_S_gif);
+                           }
+                        return
+                        case 2:
+                            if(mood==='N'){
+                                setAvatarImage(orange_cat);
+                           //} else {
+                            //    setAvatarImage(`orange_${mood}_gif`)
+                               // console.log(`orange_${mood}_gif`)
+                           } else if (mood === 'H'){
+                                setAvatarImage(orange_H_gif);
+                           } else {
+                                setAvatarImage(orange_S_gif);
+                           }
+                        
+                           // switch(mood){
+                        //         case 'N':
+                        //             setAvatarImage(gray_cat);
+                        //         case 'H':
+                        //             setAvatarImage(gray_H_gif);
+                        //         case 'S':
+                        //             setAvatarImage(gray_S_gif);
+                        //   //  }
+                            
+                            // CHANGE TO IMAGE OF OTHER CAT (black palette)
+                            // return require('../../images/graycat.png')
+                           // return graysheet;
+                    }
+                
+    
+                case 'DG':
+                    return ''
+                case 'CR':
+                    return ''
+                case 'RK':
+                    return ''
+            }
+        }
+    getavatarImage(contextHandler?.avatarInfo);
     },[mood])
 
 
