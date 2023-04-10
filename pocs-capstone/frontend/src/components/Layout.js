@@ -9,6 +9,7 @@ import UserContext from "../context/UserContext"
 const Layout = () => {
     const axiosPrivate = useAxiosPrivate();
     const [userInfo, setUserInfo] = useState({})
+ 
 
     useEffect(() => {
         axiosPrivate.get('/user-data/')
@@ -20,8 +21,8 @@ const Layout = () => {
             });
     }, [])
 
-    const shareData = { userInfo, setUserInfo }
-    console.log("SHARED USER DATA", shareData)
+    const shareData = { userInfo, setUserInfo}
+  
 
     return (
         <UserContext.Provider value={shareData}>

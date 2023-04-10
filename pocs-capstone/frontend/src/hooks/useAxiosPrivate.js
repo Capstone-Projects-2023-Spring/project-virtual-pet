@@ -22,7 +22,7 @@ const useAxiosPrivate = () => {
             response => response,
             async (error) => {
                 const prevRequest = error?.config;
-                if (error?.response?.status === 403 && !prevRequest?.sent) {
+                if ((error?.response?.status === 403 || error?.response?.status === 401) && !prevRequest?.sent) { // lemme sneak in this bug fix real quick
                     prevRequest.sent = true;
                     const newAccess = await refresh();
                     prevRequest.headers['Authorization'] = `Bearer ${newAccess}`;
