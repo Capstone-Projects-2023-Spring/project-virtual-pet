@@ -1,4 +1,4 @@
-name: Deploy All Changes (Frontend + Backend)
+name: Deploy Frontend Changes
 on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -8,27 +8,10 @@ jobs:
     steps:
     - name: Checkout main branch
       uses: actions/checkout@v3
-      
-    - name: Update .env with GMAIL_PASSWORD
-      working-directory: ./pocs-capstone/backend
-      run: echo GMAIL_PASSWORD=${{ secrets.GMAIL_PASSWORD }} >> .env
 
-    - name: Update .env with SECRET_KEY
-      working-directory: ./pocs-capstone/backend
-      run: echo SECRET_KEY=${{ secrets.DJANGO_SECRET_KEY_PROD }} >> .env
-      
     - name: Build the Docker image
-      working-directory: ./pocs-capstone
-      run: docker-compose build
-      
-    - name: Print Docker images
-      run: docker images
-      
-    - name: Tag Docker Image (frontend)
-      run: docker tag pocs-capstone_web:latest ccho508/frontend-sb:latest
-      
-    - name: Tag Docker Image (backend)
-      run: docker tag pocs-capstone_api:latest ccho508/backend-sb:latest
+      working-directory: ./pocs-capstone/frontend
+      run: docker build -t ccho508/frontend-sb:latest .
       
     - name: Log in to Docker Hub
       uses: docker/login-action@f054a8b539a109f9f41c372932f1ae047eff08c9
@@ -39,9 +22,6 @@ jobs:
     - name: Push Docker Image (frontend)
       run: docker push ccho508/frontend-sb:latest
       
-    - name: Push Docker Image (backend)
-      run: docker push ccho508/backend-sb:latest
-    
     - name: SSH into DigitalOcean Droplet 
       uses: appleboy/ssh-action@v0.1.8
       with: 

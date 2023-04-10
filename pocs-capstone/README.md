@@ -5,9 +5,9 @@
     - React frontend
     - Django API+SQLite database
 
-
+<!-- 
 # Canvas Instance
-- For notes on how to get an instance of Canvas running read [CANVAS_SETUP.md](./CANVAS_SETUP.md)
+- For notes on how to get an instance of Canvas running read [CANVAS_SETUP.md](./CANVAS_SETUP.md) -->
 
 
 # How to Run with Docker
