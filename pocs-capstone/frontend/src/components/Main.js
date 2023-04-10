@@ -6,8 +6,7 @@ import { useState, useEffect, useRef, useContext } from "react";
 import { useWindowWidth } from "@react-hook/window-size";
 import useAxiosPrivate from "../hooks/useAxiosPrivate.js";
 import "./Main.css";
-import { DndProvider } from "react-dnd";
-import { HTML5Backend } from "react-dnd-html5-backend";
+
 import PopulateInv from "./Inventory/PopulateInv";
 import LockedInv from "./Inventory/LockedInv.js";
 import AvatarContext from "../context/AvatarContext";
@@ -16,7 +15,7 @@ import GlobalContext from "../context/GlobalContext.js";
 import UserContext from "../context/UserContext";
 import CalculateXP from "../algos/assignXP.js";
 import CalculatePetLevel from "../algos/calculatePetLevel.js";
-import { setIn } from "formik";
+
 
 const Main = () => {
   const axiosPrivate = useAxiosPrivate();
@@ -25,10 +24,12 @@ const Main = () => {
   const nav = useNavigate();
 
   const [ready, setReady] = useState(false);
-  const populateInventory = LockedInv()
+  const populateInventory = LockedInv();
   const [inventory, setInventory] = useState(populateInventory);
   // Moved from PetDisplay
-  const [level_info, setLevelInfo] = useState(CalculatePetLevel(avatarInfo.total_xp))
+  const [level_info, setLevelInfo] = useState(
+    CalculatePetLevel(avatarInfo.total_xp)
+  );
   const [spritesheetInstance, setSpritesheetInstance] = useState(null);
   const [taskList, setTaskList] = useState([])
   const userContext = useContext(UserContext)
@@ -46,39 +47,29 @@ const Main = () => {
       })
       .catch((error) => {
         console.log(error);
-        nav("/pet_selection");
+        nav("/");
       });
   }, []);
 
   // useEffect, GET call to retrieve inventory item and set the state of inv
   useEffect(() => {
-
     axiosPrivate
       .get("/inventory/")
       .then((r) => {
-
         r.data.map((it) => {
-
-          let candy = inventory.find((c) => c.candy_base_type === it.candy_base_type && c.candy_level === it.candy_level);
+          let candy = inventory.find(
+            (c) =>
+              c.candy_base_type === it.candy_base_type &&
+              c.candy_level === it.candy_level
+          );
 
           candy.inventory_id = it.inventory_id;
           candy.quantity = it.quantity;
-
-
-        })
+        });
       })
       .catch((error) => {
         console.log(error);
       });
-
-    // axiosPrivate
-    //   .get("/inventory/")
-    //   .then((response) => {
-    //     setInventory(response.data);
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //   });
   }, []);
 
 
@@ -271,8 +262,8 @@ const Main = () => {
   // Performs update on candy quantity when candy is fed(drag and dropped)
   const updateInventory = (id) => {
     // console.log("ID OF CANDY", id)
-    let yourDate = new Date()
-    // console.log("DATE???----->", yourDate.toISOString().split('T')[0])
+    let yourDate = new Date();
+    console.log("DATE???----->", yourDate.toISOString().split("T")[0]);
 
     const candyD = inventory.find((candy) => candy.inventory_id === id);
     if (candyD.quantity !== 0) {
@@ -283,7 +274,9 @@ const Main = () => {
       };
       // console.log("ID", updateCandy.inventory_id)
       putInventory(updateCandy).then((r) => {
-        setInventory(inventory.map((it) => (it.inventory_id === id ? updateCandy : it)));
+        setInventory(
+          inventory.map((it) => (it.inventory_id === id ? updateCandy : it))
+        );
       });
     }
   };
@@ -339,31 +332,28 @@ const Main = () => {
   };
   // Moved from PetDisplay - passed base type and level when called in Candy
   const getExp = (candy_base_type, candy_level) => {
+  
+    const received_xp = CalculateXP(candy_base_type, candy_level);
 
 
+    const total_xp = received_xp + avatarInfo.total_xp;
 
-    const received_xp = CalculateXP(candy_base_type, candy_level)
-    // console.log("XP", avatarInfo.total_xp)
+    const today = new Date();
+    const todayString = today.toISOString().split("T")[0];
 
-    const total_xp = received_xp + avatarInfo.total_xp
-
-    const today = new Date()
-    const todayString = today.toISOString().split('T')[0]
-
-    // console.log("TOTAL XP----------->", total_xp)
+   
     const updatedAvatar = {
       ...avatarInfo,
       total_xp: total_xp,
-      last_feed: todayString
+      last_feed: todayString,
     };
-    // console.log("UPDATED AVATAR", updatedAvatar)
+  
     axiosPrivate
       .patch(`/avatar/${avatarInfo.avatar_id}/`, updatedAvatar)
       .then((response) => {
-        // console.log("response.data:", response.data);
+      
         setAvatar(response.data); //change this to add to previous state instead of replacing completely (in case of >1 avatar for 1 user)
-        getLevel(avatarInfo.total_xp)
-
+        getLevel(avatarInfo.total_xp);
       })
       .catch((err) => {
         console.log(err);
@@ -372,14 +362,10 @@ const Main = () => {
   // Moved from PetDisplay
   const getLevel = (xp) => {
     setLevelInfo(CalculatePetLevel(xp));
-    // Heart animation. Need to talk to Mary and Alex about this. 
+    // Heart animation. Need to talk to Mary and Alex about this.
     spritesheetInstance.goToAndPlay(1);
     spritesheetInstance.pause();
-
-  }
-
-
-
+  };
 
   const handlers = {
     inventory,
@@ -418,7 +404,6 @@ const Main = () => {
           <PageDisplay />
         </div>
       </GlobalContext.Provider>
-
     );
   } else {
     return (
