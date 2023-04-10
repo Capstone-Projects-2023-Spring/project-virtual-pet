@@ -10,6 +10,7 @@ import { useWindowWidth } from "@react-hook/window-size";
 const LandingPage = () => {
     //const axiosPrivate = useAxiosPrivate();
     const nav = useNavigate();
+    const width = useWindowWidth();
     const isMobile = useWindowWidth() <= 1130;
 
     const handleSubmit = (event) => {
@@ -41,7 +42,7 @@ const LandingPage = () => {
 
     }
     return (
-        <div className="landingpage">
+        <div className="landingpage" style={{width: width}}>
         <h1><center>WELCOME TO STUDY BUDDY!</center></h1>
         <img src={kittycat} alt="cat" className='image' />
        <center><Card className = "card" style={{width: '30rem'}}>

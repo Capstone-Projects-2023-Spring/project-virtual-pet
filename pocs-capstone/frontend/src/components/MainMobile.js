@@ -14,7 +14,7 @@ import inventory from "../images/tabs/inventory.png";
 
 const MainMobile = () => {
   const handlers = useContext(GlobalContext);
-  const tabs = ['T', 'C', 'I', 'P'];
+  const tabs = ['T', 'C', 'I', 'A'];
   const [activeTab, setActiveTab] = useState(0);
 
 
