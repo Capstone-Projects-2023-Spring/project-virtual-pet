@@ -116,3 +116,12 @@
     flex-direction: column;
     align-items: center;
   }
+
+.pet-selection-carousel .carousel-inner {
+  width:400px;
+}
+
+.pet-selection-carousel .carousel-inner img {
+  margin: auto;
+  margin-bottom: 50px;
+}
