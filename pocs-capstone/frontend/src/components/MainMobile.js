@@ -6,11 +6,11 @@ import InventoryBoxMobile from "./Inventory/InventoryBoxMobile.js";
 import PetProfPage from "./PageDisplay/PetProfPage.js";
 import CalendarPageMobile from "./CalendarMobile/CalendarPageMobile.js";
 import TaskPageMobile from "./PageDisplay/TaskMobile/TaskPageMobile.js";
+import ProfileAccountPageMobile from "./ProfileAccountPageMobile";
 import tasks from "../images/tabs/tasks.png";
 import calendar from "../images/tabs/calendar.png";
 import profile from "../images/tabs/profile.png";
 import inventory from "../images/tabs/inventory.png";
-
 
 const MainMobile = () => {
   const handlers = useContext(GlobalContext);
@@ -30,7 +30,7 @@ const MainMobile = () => {
             {activeTab === 0 && <TaskPageMobile/>}
             {activeTab === 1 && <CalendarPageMobile/> }
             {activeTab === 2 && <InventoryBoxMobile/>}
-            {activeTab === 3 && <PetProfPage/>}
+            {activeTab === 3 && <ProfileAccountPageMobile/>}
         
             </div>
 
