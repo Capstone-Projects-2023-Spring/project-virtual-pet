@@ -3,8 +3,14 @@ import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
 import './PetDisplay.css'
 import '../Inventory/Inventory.css'
-import orangesheet from '../../../src/images/orange_happy_sheet.png'
-import graysheet from '../../../src/images/gray_happy_sheet.png'
+// import orangesheet from '../../../src/images/orange_happy_sheet.png'
+// import graysheet from '../../../src/images/gray_happy_sheet.png'
+import orange_H_gif from '../../images/orange_happy_gif.gif'
+import orange_S_gif from '../../images/orange_sad_gif.gif'
+import gray_H_gif from '../../images/gray_happy_gif.gif'
+import gray_S_gif from '../../images/gray_sad_gif.gif'
+import gray_cat from '../../images/gray_neutral_scaled_5x_pngcrushed.png'
+import orange_cat from '../../images/orange_neutral_scaled_5x_pngcrushed.png'
 import { useDrop } from "react-dnd";
 import { useContext, useEffect, useRef, useState } from 'react';
 import Spritesheet from 'react-responsive-spritesheet'
@@ -30,6 +36,7 @@ const PetDisplay = () => {
     //TODO - shouldn't call calc-pet-lev 3 times
     const axiosPrivate = useAxiosPrivate();
     const [mood,setMood]=useState(NEUTRAL); //H = happy, S = Sad, N = Neutral
+    const [avatarImage, setAvatarImage] = useState(null);
     //const avatar_handler = useContext(AvatarContext);
     const contextHandler = useContext(GlobalContext);
     const [spritesheetInstance, setSpritesheetInstance] = useState(null);
@@ -40,6 +47,8 @@ const PetDisplay = () => {
     const [level_info, setLevelInfo] = useState(CalculatePetLevel(contextHandler?.avatarInfo.total_xp))
    // const [ratio,setRatio] = useState(level_info.NEXT_LEVEL-level_info.REMAINDER/level_info.NEXT_LEVEL ) //TODO susss
 
+   //const [pet, setPet] = useState(contextHandler?.avatarInfo);
+   //var pet = contextHandler?.avatarInfo;
     function animateSpriteSheet() {
         if (contextHandler?.spritesheetInstance) {
             contextHandler?.spritesheetInstance.goToAndPlay(1);
@@ -67,77 +76,81 @@ const PetDisplay = () => {
         if pet hasn't been fed in a while but tasks are complete pet is neutral
         if pet tasks are overdue, pet is sad
     */
-    useEffect (()=>
-    {
-        
-        var tasks;
-        var user;
-        var feed_flag = false;
-        
-
-        axiosPrivate.get(USER_URL).then(response=>{
-            user=response?.data
-            const birthday = new Date(user?.birthday)
-                    //if it's your birthday, your pet is happy
-        const birthday_delta = dateDelta(birthday,TODAY)
-        if (birthday_delta<1 && birthday_delta>=0){
-            setMood(HAPPY)
-            console.log("BIRTHDAY HAPPY:",birthday_delta)
-            return
-        }
-        })
-        
-        const last_interaction = contextHandler.avatarInfo.last_interaction
-        const last_feed = new Date(contextHandler.avatarInfo.last_feed)
-        
-        const feed_delta = dateDelta(TODAY,last_feed) //elapsed time since last feed
-        console.log("FEED DELTA",feed_delta,TODAY,last_feed)
-        if (feed_delta<=1 ){
-           setMood(HAPPY)
-           console.log("FEED HAPPY",feed_delta)
-        }
-        if (feed_delta<=3){
-            setMood(NEUTRAL)
-            console.log("FEED NEUTRAL",feed_delta)
-        }
-        else{
-            setMood(SAD)
-            console.log("FEED SAD",feed_delta)
-            feed_flag=true
-        }
-
-        var pass_task_check = false
-        //if overdue assignments, pet is sad
-        axiosPrivate.get(TASK_URL).then(response=>{
-            tasks = response?.data
-            tasks.forEach(item => {
-                if (!item.completed){
-                    const due = new Date(item.due_date)
-                    const task_delta = dateDelta(due,TODAY)
-                    console.log("TASK DELTA----->",task_delta,item.due_date,TODAY,item.completed)
-                    if (task_delta<0){
-                        setMood(SAD)
-                        console.log("TASK SAD")
-                        return
+        useEffect (()=>
+        {
+            
+            var tasks;
+            var user;
+            var feed_flag = false;
+            
+    
+            axiosPrivate.get(USER_URL).then(response=>{
+                user=response?.data
+                const birthday = new Date(user?.birthday)
+                        //if it's your birthday, your pet is happy
+            const birthday_delta = dateDelta(birthday,TODAY)
+            if (birthday_delta<1 && birthday_delta>=0){
+                setMood(HAPPY)
+                console.log("BIRTHDAY HAPPY:",birthday_delta)
+                return
+            }
+            })
+            
+            const last_interaction = contextHandler.avatarInfo.last_interaction
+            const last_feed = new Date(contextHandler.avatarInfo.last_feed)
+            
+            const feed_delta = dateDelta(TODAY,last_feed) //elapsed time since last feed
+            console.log("FEED DELTA",feed_delta,TODAY,last_feed)
+            if (feed_delta<=1 ){
+               setMood(HAPPY)
+               console.log("FEED HAPPY",feed_delta)
+            }
+            else if (feed_delta<=3){
+                setMood(NEUTRAL)
+                console.log("FEED NEUTRAL",feed_delta)
+            }
+            else{
+                setMood(SAD)
+                console.log("FEED SAD",feed_delta)
+                feed_flag=true
+            }
+    
+            var pass_task_check = false
+            //if overdue assignments, pet is sad
+            axiosPrivate.get(TASK_URL).then(response=>{
+                tasks = response?.data
+                tasks.forEach(item => {
+                    if (!item.completed){
+                        const due = new Date(item.due_date)
+                        const task_delta = dateDelta(due,TODAY)
+                        console.log("TASK DELTA----->",task_delta,item.due_date,TODAY,item.completed)
+                        if (task_delta<0){
+                            setMood(SAD)
+                            console.log("TASK SAD")
+                            return
+                        }
+                        
                     }
                     
                 }
-                pass_task_check = true
-            })
-            if(pass_task_check){ // guard because axios call is async
-                if(feed_flag){
-                    setMood(NEUTRAL)
-                    console.log("TASK NEUTRAL")
+                )
+    
+              
+            pass_task_check = true
+            })       
+              if(pass_task_check){ // guard because axios call is async
+                    if(feed_flag){
+                        setMood(NEUTRAL)
+                        console.log("TASK NEUTRAL")
+                        return
+                    }
+                    setMood(HAPPY) //TODO we'll check grades here as well
+                    console.log("TASK HAPPY")
                     return
                 }
-                setMood(HAPPY) //TODO we'll check grades here as well
-                console.log("TASK HAPPY")
-                return
-            }
-        })       
-
-    }
-    ,[contextHandler]);
+    
+        }
+        ,[contextHandler]);
 
     //TEMP USE EFFECT TO SEE MOOD
     //Mary, plug in your state changes here!!
@@ -171,17 +184,17 @@ const PetDisplay = () => {
                             setAvatarImage(gray_S_gif);
                            }
                         return
-                        case 2:
-                            if(mood==='N'){
-                                setAvatarImage(orange_cat);
-                           //} else {
-                            //    setAvatarImage(`orange_${mood}_gif`)
-                               // console.log(`orange_${mood}_gif`)
-                           } else if (mood === 'H'){
-                                setAvatarImage(orange_H_gif);
-                           } else {
-                                setAvatarImage(orange_S_gif);
-                           }
+                        // case 2:
+                        //     if(mood==='N'){
+                        //         setAvatarImage(orange_cat);
+                        //    //} else {
+                        //     //    setAvatarImage(`orange_${mood}_gif`)
+                        //        // console.log(`orange_${mood}_gif`)
+                        //    } else if (mood === 'H'){
+                        //         setAvatarImage(orange_H_gif);
+                        //    } else {
+                        //         setAvatarImage(orange_S_gif);
+                        //    }
                         
                            // switch(mood){
                         //         case 'N':
@@ -210,28 +223,12 @@ const PetDisplay = () => {
     },[mood])
 
 
-    const spriteSheetRef = useRef(null);
-    const avatarImage = (pet) => {
-        switch (pet.avatar_type) {
-            case 'CT':
-                switch (pet.palette) {
-                    case 0:
-                        //return require('../../images/orangecat.png')
-                        return orangesheet;
-                    case 1:
-                        // CHANGE TO IMAGE OF OTHER CAT (black palette)
-                        // return require('../../images/graycat.png')
-                        return graysheet;
-                }
-
-            case 'DG':
-                return ''
-            case 'CR':
-                return ''
-            case 'RK':
-                return ''
-        }
+    const retAvatarImage = () => {
+        return avatarImage;
     }
+
+    //const spriteSheetRef = useRef(null);
+    
 
     const getExp = (candy) => {
         //console.log('WTF')
@@ -273,7 +270,7 @@ const PetDisplay = () => {
         //setNextLevel(petInfo.NEXT_LEVEL);
 
         //setRatio(Math.floor(100*((level_info.NEXT_LEVEL-level_info.REMAINDER)/level_info.NEXT_LEVEL)));
-        animateSpriteSheet();
+       // animateSpriteSheet();
         //  if(remainder===0){
         //     setExp(0);
         //   }
@@ -309,7 +306,9 @@ const PetDisplay = () => {
 
                     <div className='p-sprite-display'>
                         <img src={bgimage} alt="background" className="bg-sprite" />
-                        <Spritesheet
+                        <img src = {avatarImage} className = "p-sprite"></img>
+                        {/* <img src = {retAvatarImage(contextHandler?.avatarInfo)} className = "p-sprite"></img> */}
+                        {/* <Spritesheet
                             image={avatarImage(contextHandler?.avatarInfo)}
                             refs={spriteSheetRef}
                             className="p-sprite"
@@ -323,7 +322,7 @@ const PetDisplay = () => {
                             isResponsive={false}
                             getInstance={handleGetInstance}
                             onClick={spritesheet => { handleClick(spritesheet) }}
-                        />
+                        /> */}
                     </div>
                 </div>
                 <div className="pbar-exp">
