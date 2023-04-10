@@ -38,5 +38,6 @@ jobs:
         password:  ${{ secrets.SSH_KEY }} # Top-Secret Password!!!
         script : |
           docker-compose down
+          docker volume rm root_react_build
           docker-compose pull
           docker-compose up -d 
