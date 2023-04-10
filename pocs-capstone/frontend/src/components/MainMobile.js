@@ -6,6 +6,10 @@ import InventoryBoxMobile from "./Inventory/InventoryBoxMobile.js";
 import PetProfPage from "./PageDisplay/PetProfPage.js";
 import CalendarPageMobile from "./CalendarMobile/CalendarPageMobile.js";
 import TaskPageMobile from "./PageDisplay/TaskMobile/TaskPageMobile.js";
+import tasks from "../images/tabs/tasks.png";
+import calendar from "../images/tabs/calendar.png";
+import profile from "../images/tabs/profile.png";
+import inventory from "../images/tabs/inventory.png";
 
 
 const MainMobile = () => {

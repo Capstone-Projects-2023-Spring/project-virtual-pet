@@ -20,7 +20,7 @@ const PageDisplay = () => {
     const contextHandlers = useContext(GlobalContext)
     const userContext = useContext(UserContext)
     const width = useWindowWidth();
-    const isMobile = width <= 850;
+    const isMobile = width <= 1130;
 
 
 
