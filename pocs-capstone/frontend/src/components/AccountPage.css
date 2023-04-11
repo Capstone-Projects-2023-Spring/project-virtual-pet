@@ -2,6 +2,7 @@
 .account-page-display {
     width: 100vw;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     height: auto;
@@ -10,12 +11,14 @@
 
 }
 
-.account-profile-card {
+.account-profile-card,
+.notification-settings-card{
     flex: 1 1 auto;
     width: 90vw;
 }
 
-.account-profile-header {
+.account-profile-header,
+.notification-settings-header{
     font-weight: bold;
     font-size: 30px;
     display: flex;
@@ -40,7 +43,8 @@
     border-width: 0px;
 } */
 
-.submit-button {
+.submit-button,
+.button-enable-notifications-account {
     display: flex;
     justify-content: center;
     align-items: center;

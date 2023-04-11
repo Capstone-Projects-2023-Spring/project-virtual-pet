@@ -13,6 +13,8 @@ function AccountPage() {
   const [bio, setBio] = useState("");
   const [joinDate, setjoinDate] = useState("");
   const [birthday, setBirthday] = useState("");
+  const [permission, setPermission] = useState(Notification.permission);
+
 
   const [validated, setValidated] = useState(false);
 
@@ -27,10 +29,12 @@ function AccountPage() {
     });
   }, []);
 
+
   const handleGetFirebaseToken = () => {
     getFirebaseToken()
       .then((firebaseToken) => {
         console.log('Firebase token: ', firebaseToken);
+        // Send the token to Django backend using a HTTP request
       })
       .catch((err) => console.error('An error occured while retrieving firebase token. ', err))
   }
@@ -181,12 +185,26 @@ function AccountPage() {
 
       </Card>
 
-      <button
-        onClick={handleGetFirebaseToken}
-        className="button-enable-notifications-account"
-      >
-        Enable push notifications
-      </button>
+      <Card className='notification-settings-card'>
+        <Card.Header>
+          <div className='notification-settings-header'>Notification Settings</div>
+        </Card.Header>
+        <div className="mx-auto">
+          <Form className="form-content">
+            <Form.Group className="mb-2">
+              <Form.Label>Enable push notifications:</Form.Label>
+            </Form.Group>
+            <div className="button-enable-notifications-account">
+            <Button
+              style={{ marginTop: '20px', marginBottom: '20px' }}
+              onClick={handleGetFirebaseToken}
+              disabled={permission === 'granted' || permission === 'denied'}
+            > Turn on
+            </Button>
+            </div>
+          </Form>
+        </div>
+      </Card>
 
     </div>
   );
