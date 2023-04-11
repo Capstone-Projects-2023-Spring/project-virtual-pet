@@ -146,18 +146,27 @@
 }
 .pet-container-mobile {
     background-image: url("../../images/bg.gif");
-    background-size: 50vh;
-    width:100%;
+    /* background-size: 50vh; */
+    width:75%;
+    /* height: 60%; */
+    height: calc(100vh - 430px);
+    background-size: cover;
+    /* background-size: ; */
+    background-position: center center;
+    justify-content: center;
+    /* width:50vh; */
     display:flex;
-  
     align-items: center;
-    overflow:clip;
+    overflow:hidden;
+    margin: 0 auto;
+
 
 }
 
 .sprite-sheet-mobile{
-    width: 80%;
- 
+    width: 75%;
+    /* position: relative; */
+    margin: auto;
 }
 
 
