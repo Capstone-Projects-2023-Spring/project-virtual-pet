@@ -8,10 +8,9 @@ import * as yup from "yup";
 import * as formik from 'formik'
 import PetProfPage from './PageDisplay/PetProfPage';
 import CanvasIntegrationPage from './CanvasIntegrationPage';
-import CanvasIntegrationPageMobile from './CanvasIntegrationPageMobile';
 
 
-function CanvasIntegrationPageMobileModal(props) {
+function CanvasIntegrationPageMobile(props) {
 
 //   const handlers = useContext(GlobalContext);
   const title = props.task ? "Task Details" : "Create Task"
@@ -36,13 +35,14 @@ function CanvasIntegrationPageMobileModal(props) {
   }
 
   return (
-    <Modal className="createtask-modal-mobile" backdrop="static" show={props.showCanvas} onHide={props.handleCloseCanvasPage}>
-      <Modal.Header closeButton>        
+    <Modal className="createtask-modal-mobile" backdrop="static" show={props.showCreateTask} onHide={props.handleClose}>
+      <Modal.Header closeButton>
+        {/* <Modal.Title>Pet Profile</Modal.Title> */}
+        
       </Modal.Header>
       <Modal.Body>
-      <CanvasIntegrationPageMobile/>
 
-      {/* < CanvasIntegrationPage /> */}
+      < CanvasIntegrationPage />
       </Modal.Body>
     </Modal >
 
@@ -54,4 +54,4 @@ function CanvasIntegrationPageMobileModal(props) {
 }
 
 
-export default CanvasIntegrationPageMobileModal;
+export default CanvasIntegrationPageMobile;

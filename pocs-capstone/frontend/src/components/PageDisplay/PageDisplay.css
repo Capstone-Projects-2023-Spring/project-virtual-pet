@@ -1,14 +1,14 @@
 /* flex container */
 .page-display {
     width: 100vw;
-    height: 100vh;
+    /* height: 100vh; */
     display: flex;
     align-items: stretch;
     justify-content: flex-start;
     flex-direction: column;
     background-color: rgb(255, 198, 198);
     padding: 10px;
-    overflow:visible;
+    overflow: scroll;
 }
 
 
@@ -39,7 +39,7 @@
     justify-content: center;
     align-items: center;
     height: auto;
-    margin: 0px;
+    margin: 10px;
     position: relative;
 }
 
