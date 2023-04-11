@@ -26,22 +26,9 @@ import { getFirebaseToken } from './firebase';
 
 function App() {
 
-  const handleGetFirebaseToken = () => {
-    getFirebaseToken()
-      .then((firebaseToken) => {
-        console.log('Firebase token: ', firebaseToken);
-      })
-      .catch((err) => console.error('An error occured while retrieving firebase token. ', err))
-  }
+  
 
   return (
-    <><span>The app needs permission to</span><a
-      href="#"
-      className="notification-banner-link"
-      onClick={handleGetFirebaseToken}
-    >
-      enable push notifications.
-    </a>
     <Routes>
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
@@ -60,7 +47,7 @@ function App() {
 
 
         </Route>
-      </Routes></>
+      </Routes>
 
   );
 }
