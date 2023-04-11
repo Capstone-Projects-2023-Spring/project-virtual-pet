@@ -3,7 +3,9 @@ import { useState } from "react";
 import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import PetProfileMobile from "./PetProfileMobile.js";
-import CanvasIntegrationPageMobile from "./CanvasIntegrationMobile.js";
+import CanvasIntegrationPageMobileModal from "./CanvasIntegrationMobileModal.js";
+import Logout from "./LoginLogout/Logout.js"
+import "./ProfileAccountPageMobile.css";
 
 
 const ProfileAccountPageMobile = () => {
@@ -15,18 +17,22 @@ const ProfileAccountPageMobile = () => {
 }
     const [p, setP] = useState(false);
 
-    const [showCreateTask, setShowCreateTask] = useState(false);
-    const handleClose = () => setShowCreateTask(false);
-    const handleShow = () => setShowCreateTask(true);
+    const [showCanvas, setShowCreateTask] = useState(false);
+    const [showPetProf, setShowPetProfile] = useState(false);
+    const handleCloseCanvasPage = () => setShowCreateTask(false);
+    const handleShowCanvasPage = () => setShowCreateTask(true);
+    const handleShowPet = () => setShowPetProfile(true);
+    const handleClosePet = () => setShowPetProfile(false);
 
 
     return (
         <div className="link-container-mobile">
-            <center><Button className="pet-profile-button-mobile" type="submit" id="petprofile" onClick={handleShow}>Pet Profile</Button></center>
-            <center><Button className="canvas-button-mobile" type="sumbit" id="canvas_integration" onClick={handleShow}>Canvas Integration</Button></center>
-            {/* {p ===  && <PetProfPage/> } */}
-            <PetProfileMobile {...{ showCreateTask, handleClose }} />
-            <CanvasIntegrationPageMobile {...{ showCreateTask, handleClose }} />
+            <center><Button className="pet-profile-button-mobile" type="submit" id="petprofile" onClick={handleShowPet}>Pet Profile</Button></center>
+            <center><Button className="canvas-button-mobile" type="sumbit" id="canvas_integration" onClick={handleShowCanvasPage}>Canvas Integration</Button></center>
+            <center><Button className="logout-button-mobile" type="submit" id="logout" href="/logout" >Logout</Button></center>
+
+            <PetProfileMobile {...{ showPetProf, handleClosePet }} />
+            <CanvasIntegrationPageMobileModal {...{ showCanvas, handleCloseCanvasPage }} />
 
         </div>
     )
