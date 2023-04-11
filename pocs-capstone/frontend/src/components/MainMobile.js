@@ -8,7 +8,6 @@ import CalendarPageMobile from "./CalendarMobile/CalendarPageMobile.js";
 import TaskPageMobile from "./PageDisplay/TaskMobile/TaskPageMobile.js";
 import ProfileAccountPageMobile from "./ProfileAccountPageMobile";
 import { Tabs, Tab } from '@material-ui/core';
-import ImageIcon from '@material-ui/icons/Image';
 import InventoryIcon from '@mui/icons-material/Inventory';
 import {List, PersonPin, CalendarToday, } from '@material-ui/icons';
 const MainMobile = () => {
