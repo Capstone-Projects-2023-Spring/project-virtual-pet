@@ -34,7 +34,7 @@ function Candy({ id, quantity, candy_base_type, candy_level }) {
 
     // Determine candy image to render
     let candyImage = () => {
-        if(quantity === "L") return require('../../images/candies/candies_resized/locked.png')
+        if(quantity === "L") return require('../../images/lock_scaled_7x_pngcrushed.png')
         
         switch (candy_base_type) {
             case 'S':

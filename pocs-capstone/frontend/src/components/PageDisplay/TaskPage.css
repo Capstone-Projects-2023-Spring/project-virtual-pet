@@ -1,0 +1,240 @@
+/* CSS for for ACTIVE / COMPLETE Tabs in TaskPage */
+.to-tabs,
+.to-tabs .nav-link {
+    background-color: rgba(243, 193, 193, 0);
+    color: rgb(93, 93, 93);
+    font-size: calc(0.5vw + 1vh);
+    margin: 0px;
+    letter-spacing: 0.5px;
+    border-width: 0px;
+    text-decoration: none;
+    
+}
+
+.to-tabs .nav-link.active {
+    background-color: rgba(255, 255, 255, 0);
+    color: rgb(43, 99, 158);
+    border-color: rgb(43, 99, 158);
+    border-width: 0px 0px 3px 0px;
+
+}
+
+.to-tabs .nav-link:hover {
+    color: rgb(43, 99, 158);
+}
+
+/* margin for ACTIVE / COMPLETE Tabs */
+.to-tabs .nav-item {
+    margin: 5px;
+}
+
+/* Tab content height for TaskPage Component only */
+#justify-tab-example-tabpane-tasks {
+    height: 98%;
+}
+
+/* Grid wrapper for TaskPage component */
+.grid-page {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    margin: 10px;
+    height: 100%;
+
+}
+
+
+.task-scroll {
+    /* min-height: 20vh; */
+    min-height: 85vh;
+    max-height: 85vh;
+    border-radius: 0px !important;
+
+    margin-bottom: 10px;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.grid-header {
+    display: grid;
+    /* grid-template-columns: repeat(3, minmax(0, 1fr)); */
+    grid-template-columns: 1fr 3fr 1fr;
+    grid-template-rows: subgrid;
+    /* gap: 100px; */
+
+    /* display: flex; */
+    justify-content: center;
+    align-items: center;
+    /* border: 2px solid black; */
+    /* font-size: 3em; */
+}
+
+.box1-header {
+    grid-column: 1;
+
+}
+
+.box2-header {
+    grid-column: 2;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.box3-header {
+    grid-column: 3;
+    display: flex;
+    justify-content: flex-end;
+    /* justify-content: center;
+    align-items: center; */
+}
+
+
+
+.check-box-task,
+.close-box-task,
+.course-id {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0px !important;
+
+}
+
+/* the list items in task page */
+.task-item.list-group-item {
+    /* border-bottom-width: 3px; */
+    border-color: rgb(226, 226, 226);
+    border-radius: 0px;
+    border-width: 0px;
+    border-top-width: 0px !important;
+    width: 100%;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.175);
+
+    /* background-color: rgb(255, 242, 242); */
+}
+
+
+.task-title {
+    font-size: calc(1.1vw + 1vh);
+    margin-right: 10px;
+}
+
+.form-check-input {
+    width: 3vw;
+    height: 3vw;
+}
+
+/* border around each task item */
+.list-group-task {
+    margin: 0px !important;
+    /* border-top: 2px solid; */
+    /* border-bottom: 1px solid rgba(0, 0, 0, 0.175); */
+    border-radius: 0px;
+
+}
+
+
+.task-description {
+    overflow-wrap: anywhere;
+}
+
+.due-date {
+    color: rgb(43, 99, 158);
+}
+
+.course-id {
+    text-align: center;
+}
+
+.check-box-task.list-group-item {
+
+
+    /* background-color: rgba(233, 139, 139, 0.352); this gets set in the TaskItem component */
+    border-width: 0px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.295);
+}
+
+
+.delete-com-tasks {
+    margin: 20px;
+}
+
+.close-box-task.list-group-item {
+    border-width: 0px;
+    border-top-width: 0px !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.175);
+}
+
+
+.close-box-task .btn-close {
+    width: 0.5rem;
+    height: 0.5rem;
+}
+
+
+/* CHECKOFF button CSS */
+
+
+
+
+
+.completed-checkbox input[type="checkbox"]:checked {
+    background-color: rgba(180, 180, 180, 0.783);
+    border-color: rgba(179, 41, 75, 0);
+}
+
+.completed-checkbox input[type="checkbox"]:focus {
+    border-color: rgba(179, 179, 179, 0);
+    box-shadow: 0px 0px 0px;
+}
+
+.completed-checkbox input[type="checkbox"]:hover {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='m6 10 3 3 6-6'/%3e%3c/svg%3e");
+    background-color: rgba(180, 180, 180, 0.783);
+    border-color: rgba(179, 179, 179, 0);
+}
+
+.completed-checkbox input[type="checkbox"]:active {
+    border-color: rgb(179, 179, 179, 5);
+}
+
+.completed-checkbox input[type="checkbox"] {
+    border-color: rgba(179, 179, 179, 0);
+    -moz-transition: all .2s ease-in;
+    -o-transition: all .2s ease-in;
+    -webkit-transition: all .2s ease-in;
+    transition: all .2s ease-in;
+}
+
+
+
+
+
+
+.noncompleted-checkbox input[type="checkbox"]:checked {
+    background-color: rgb(242, 160, 160);
+    border-color: rgba(179, 41, 75, 0);
+}
+
+.noncompleted-checkbox input[type="checkbox"]:focus {
+    border-color: rgba(179, 41, 75, 0);
+    box-shadow: 0px 0px 0px;
+}
+
+.noncompleted-checkbox input[type="checkbox"]:hover {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='m6 10 3 3 6-6'/%3e%3c/svg%3e");
+    background-color: rgba(242, 160, 160, 0.827);
+    border-color: rgba(179, 41, 75, 0);
+}
+
+.noncompleted-checkbox input[type="checkbox"]:active {
+    border-color: rgb(179, 41, 75);
+}
+
+.noncompleted-checkbox input[type="checkbox"] {
+    border-color: rgba(179, 41, 75, 0);
+    -moz-transition: all .2s ease-in;
+    -o-transition: all .2s ease-in;
+    -webkit-transition: all .2s ease-in;
+    transition: all .2s ease-in;
+}

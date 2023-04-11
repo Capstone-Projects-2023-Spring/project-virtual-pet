@@ -65,25 +65,27 @@ img {
 
 /* Wrap around all of the inventory, enables scrolling, etc */
 .inventory-wrapper {
-  min-height: 85vh;
-  max-height: 85vh;
+  /* min-height: 85vh; */
+  max-height: 90vh;
   border-radius: 0px;
 
-  margin-bottom: 10px;
-  padding: 50px;
+  margin-bottom: 0px;
+  /* padding: 50px; */
   overflow: scroll;
   -webkit-overflow-scrolling: touch;
 }
 
 .inventory-wrapper-mobile {
-  min-height: 85vh;
-  max-height: 85vh;
+  /* min-height: 85vh;
+  max-height: 85vh; */
   border-radius: 0px;
+  /* height: 50vh;
+  width: 50vw; */
 
-  margin-bottom: 10px;
-  padding: 20px;
-  overflow: scroll;
-  -webkit-overflow-scrolling: touch;
+  /* margin-bottom: 10px; */
+  /* padding: 20px; */
+  /* overflow: scroll;
+  -webkit-overflow-scrolling: touch; */
 }
 
 
@@ -113,12 +115,17 @@ img {
   justify-items: center;
   align-content: space-evenly;
   align-items: center;
+  
 
   /* grid-template-columns: auto auto auto auto auto; */
   /* https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-rows */
-  grid-template-columns: repeat(auto-fill, 60px);
+  grid-template-columns: repeat(auto-fill, 70px);
 
-  grid-auto-rows: 100px;
+  grid-auto-rows: 78px;
+  overflow: hidden;
+  /* height: 20px;
+  width: 20px; */
+
 
 
 
@@ -156,8 +163,8 @@ img {
   text-align: center;
   font-size: 30px;
   
-  width: 80px;
-  height: 80px;
+  /* width: 100vw;
+  height: 100vh; */
 
   display: flex;
   justify-content: center;
@@ -233,7 +240,7 @@ img {
 }
 
 .candy-photo-mobile {
-  width: 50px;
+  width: 40px;
   height: auto;
   pointer-events: none;
   /* user-select: none; */
@@ -256,9 +263,9 @@ img {
 }
 
 .candy-wrapper-mobile {
-  width: 80px;
-  height: 80px;
-  padding: 20px;
+  width: 40px;
+  height: 40px;
+  /* padding: 100px; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -292,12 +299,13 @@ img {
 }
 
 .candy-q-mobile {
-  width: 40px;
-  height: 40px;
-  padding: 8px;
+  font-size: 14px;
+  width: 26px;
+  height: 26px;
+  padding: 4.7px;
   position: absolute;
-  top: -15px;
-  right: -15px;
+  top: -1.5px;
+  right: -3.0px;
   pointer-events: none;
   user-select: none; /* supported by Chrome and Opera */
   -webkit-user-select: none; /* Safari */

@@ -9,6 +9,19 @@
     /* padding: 10px; */
 }
 
+.landingpage-mobile {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    align-items: stretch;
+    justify-content: flex-start;
+    flex-direction: column;
+    background-color: rgb(255, 198, 198);
+    padding: 10px;
+    overflow: hidden;
+
+}
+
 .card {
     background-color: rgb(255, 214, 214);
     flex: 1 1 auto;
@@ -19,6 +32,55 @@
     justify-content: flex-start;
     flex-direction: column;
 }
+
+.card-about-mobile {
+    background-color: rgb(255, 214, 214);
+    flex: 1 1 auto;
+    width: 90vw;
+    height: 280px;
+    margin-top: -10px;
+    margin-bottom: 25px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    font-size: 12px;
+    overflow: hidden;
+}
+
+.card-title-mobile {
+    font-size: 20px;
+    margin-top: 10px ;
+}
+
+.card-body-mobile {
+    margin-top: -10px;
+    overflow: hidden;
+}
+
+.landingbutton-register-mobile {
+    cursor: pointer;
+    padding: 8px;
+    margin: 5px;
+    background: rgb(172, 65, 100);
+    color: #ffffff;
+    border-radius: 10px;
+    font-size: 20px;
+    transition: all 0.1s ease-in;
+    position: relative;
+}
+
+.landingbutton-login-mobile {
+    cursor: pointer;
+    padding: 8px;
+    margin: 5px;
+    background: rgb(172, 65, 100);
+    color: #ffffff;
+    border-radius: 10px;
+    font-size: 20px;
+    transition: all 0.1s ease-in;
+    position: relative;
+}
+
 .landingbutton {
     cursor: pointer;
     /*border: 1px solid #1a202c;
@@ -54,7 +116,18 @@
     left: 30px; */
     /* top: 220px; */
 }
+
+.image-kitty-mobile {
+    
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: -70px;
+    height: 300px;
+    width: 300px;
+    justify-content: center;
+    
+}
 .landingbutton:hover {
     background: #3a0422;
     color: #ffffff;
-  }
+}

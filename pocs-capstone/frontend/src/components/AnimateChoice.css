@@ -31,9 +31,15 @@
     justify-content: center;
     align-items: center;
     height: 100%;
+    margin-bottom: 5vh;
+    cursor:pointer;
 }
 
-.sprite-container.selected {
+/* .sprite-container:hover{
+  cursor:
+} */
+
+/* .sprite-container.selected {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -43,7 +49,7 @@
 .sprite-container 
     .hidden {
     display: none;
-}
+} */
 
 .button {
     cursor: pointer;
@@ -51,6 +57,7 @@
     padding: 8px;
    /* width: 5%;*/
     margin: 5px;
+    margin-top: 3vh;
     background: transparent;
     border-radius: 10px;
     font-size: 20px;
@@ -100,7 +107,8 @@
 
   .petsprite-body {
     min-height: 100vh;
-  
+    background-color: rgb(255, 198, 198);
+    
   }
 
   .petname-display {
@@ -108,4 +116,13 @@
     justify-content: center;
     flex-direction: column;
     align-items: center;
+  }
+
+  .pet-selection-carousel .carousel-inner {
+    width:400px;
+  }
+
+  .pet-selection-carousel .carousel-inner img {
+    margin: auto;
+    margin-bottom: 50px;
   }

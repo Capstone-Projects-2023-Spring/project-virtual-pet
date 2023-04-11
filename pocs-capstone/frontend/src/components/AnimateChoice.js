@@ -9,6 +9,11 @@ import useAxiosPrivate from '../hooks/useAxiosPrivate'
 import { useNavigate } from 'react-router-dom'
 import { useWindowWidth } from '@react-hook/window-size'
 import { faColonSign } from '@fortawesome/free-solid-svg-icons'
+import Carousel from 'react-bootstrap/Carousel';
+import gray_cat from '../images/gray_neutral_scaled_5x_pngcrushed.png'
+import orange_cat from '../images/orange_neutral_scaled_5x_pngcrushed.png'
+import white_cat from '../images/whitecat_scaled_5x_pngcrushed.png'
+import tux_cat from '../images/tux_cat_scaled_5x_pngcrushed.png'
 //import selectpet from './selectpet'
 
 const AVATAR_URL = '/avatar/'
@@ -19,9 +24,10 @@ const AnimateChoice = () => {
     //    const handlers = useContext(PetSelectionContext);//
     const [showTextBox, setShowTextBox] = useState(Array(2).fill(false));
     const spriteRefs = [useRef(null), useRef(null)];
-    const [selectedIndex, setSelectedIndex] = useState(null);
+    const [selectedIndex, setSelectedIndex] = useState(0);
     const [submittedText, setSubmittedText] = useState(null);
     const [enteredText, setEnteredText] = useState("");
+
     const [nameError, setNameError] = useState('')
     const petType = "CT";
     const navigator = useNavigate();
@@ -35,15 +41,15 @@ const AnimateChoice = () => {
     };
     // handle selection
     const handleClick = (index) => {
-        spriteRefs[index].current.goToAndPlay(1);
-        spriteRefs[index].current.pause();
+        // spriteRefs[index].current.goToAndPlay(1);
+        // spriteRefs[index].current.pause();
         setSelectedIndex(index);
-        for (let i = 0; i < spriteRefs.length; i++) {
-            if (i !== index) {
-                setSelectedIndex(index);
-                //spriteRefs[i].current.goToAndPlay(2);//
-            }
-        }
+        // for (let i = 0; i < spriteRefs.length; i++) {
+        //     if (i !== index) {
+        //         setSelectedIndex(index);
+        //         //spriteRefs[i].current.goToAndPlay(2);//
+        //     }
+        // }
         const updatedShowTextBox = [...showTextBox];
         updatedShowTextBox[index] = true;
         setShowTextBox(updatedShowTextBox);
@@ -87,6 +93,10 @@ const AnimateChoice = () => {
 
     }
 
+    const handleSelect = (selectedPet) => {
+        setSelectedIndex(selectedPet)
+}
+
     /*      axios.post('http://127.0.0.1:8000/avatar/', petInfo)
           .then((response) => {
               console.log(response.data);
@@ -103,9 +113,35 @@ const AnimateChoice = () => {
                 <Card.Header className='pet-choice'><center><h1>CHOOSE YOUR PET</h1></center></Card.Header> </Card>
             <hr />
             <div className='petname-display'>
+                {/* <div className='sprite-container'> */}
+            <Carousel activeIndex={selectedIndex} onSelect={handleSelect} variant='dark' interval={null} className='pet-selection-carousel' >
+            <Carousel.Item>
+      <img src={orange_cat} alt="orange" className='sprite-container' index={0} ref={spriteRefs[0]}></img>
+      {/* <p></p><p></p> */}
+      {/* <button className = 'button' onClick={() => handleClick(0)}> Select</button> */}
+      {/* <form key={0} onSubmit={(event) => handleSubmit(event, 0)}>
+      <input className="input" type="text" placeholder="Name your pet!" value={enteredText} onChange={textChangeHandler} />
+      <button className="button" type="submit">Submit</button>
+  </form> */}
+ </Carousel.Item>
+ <Carousel.Item>
+      <img src={gray_cat} alt="gray" className='sprite-container' index={1} ref={spriteRefs[1]}></img>
+      {/* <button className = 'button' onClick={() => handleClick(1)}> Select</button> */}
+      {/* <form key={1} onSubmit={(event) => handleSubmit(event, 1)}>
+      <input className="input" type="text" placeholder="Name your pet!" value={enteredText} onChange={textChangeHandler} />
+      <button className="button" type="submit">Submit</button>
+  </form> */}
+</Carousel.Item>
+                    <Carousel.Item>
+                    <img src = {white_cat} alt="white" className='sprite-container' index = {2} ref={spriteRefs[2]}></img>
+                    </Carousel.Item>
+                    <Carousel.Item>
+                        <img src = {tux_cat} alt="tux" className='sprite-container' index = {3} ref={spriteRefs[3]}></img>
+                    </Carousel.Item>
+                </Carousel>
+                {/* </div> */}
 
-
-                <div
+                {/* <div
                     className="sprite-container">
                     <Spritesheet
                         index={1}
@@ -139,15 +175,19 @@ const AnimateChoice = () => {
                         endAt = {4}
                         onClick={() => handleClick(1)}
                     />
-                </div>
-                {showTextBox.map((isShown, index) => isShown && (
+                </div> */}
+                
 
-                    <form key={index} onSubmit={(event) => handleSubmit(event, index)}>
-                        <input className="input" type="text" placeholder="Name your pet!" value={enteredText} onChange={textChangeHandler} />
-                        <button className="button" type="submit">Submit</button>
+                    {/* // <form key={index} onSubmit={(event) => handleSubmit(event, index)}>
+                    //     <input className="input" type="text" placeholder="Name your pet!" value={enteredText} onChange={textChangeHandler} />
+                    //     <button className="button" type="submit">Submit</button>
+                    // </form> */}
+                    <form onSubmit={(event) => handleSubmit(event, selectedIndex)}>
+                    <input className="input" type="text" placeholder="Name your pet!" value={enteredText} onChange={textChangeHandler} />
+                    <button className="button" type="submit">Submit</button>
                     </form>
 
-                ))}
+                
                 {submittedText && (<form className='pet-name' > {enteredText}</form>)}
 
                 {nameError!=="" ? <p>{nameError}</p> : <></>}

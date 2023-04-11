@@ -16,6 +16,12 @@
     color: #fff; */
 }
 
+@media (max-width: 1130px) {
+    .header-whole {
+      display: none;    
+    }
+}   
+
 .header-whole {
     background-color: rgb(33, 33, 33);
 }
