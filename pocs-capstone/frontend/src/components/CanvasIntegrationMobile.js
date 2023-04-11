@@ -8,6 +8,7 @@ import * as yup from "yup";
 import * as formik from 'formik'
 import PetProfPage from './PageDisplay/PetProfPage';
 import CanvasIntegrationPage from './CanvasIntegrationPage';
+import CanvasIntM from './CanvasIntM';
 
 
 function CanvasIntegrationPageMobile(props) {
@@ -39,8 +40,9 @@ function CanvasIntegrationPageMobile(props) {
       <Modal.Header closeButton>        
       </Modal.Header>
       <Modal.Body>
+      <CanvasIntM/>
 
-      < CanvasIntegrationPage />
+      {/* < CanvasIntegrationPage /> */}
       </Modal.Body>
     </Modal >
 
