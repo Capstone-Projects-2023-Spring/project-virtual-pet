@@ -7,14 +7,13 @@ import PetProfPage from "./PageDisplay/PetProfPage.js";
 import CalendarPageMobile from "./CalendarMobile/CalendarPageMobile.js";
 import TaskPageMobile from "./PageDisplay/TaskMobile/TaskPageMobile.js";
 import ProfileAccountPageMobile from "./ProfileAccountPageMobile";
-import tasks from "../images/tabs/tasks.png";
-import calendar from "../images/tabs/calendar.png";
-import profile from "../images/tabs/profile.png";
-import inventory from "../images/tabs/inventory.png";
-
+import { Tabs, Tab } from '@material-ui/core';
+import ImageIcon from '@material-ui/icons/Image';
+import InventoryIcon from '@mui/icons-material/Inventory';
+import {List, PersonPin, CalendarToday, } from '@material-ui/icons';
 const MainMobile = () => {
   const handlers = useContext(GlobalContext);
-  const tabs = ['T', 'C', 'I', 'A'];
+
   const [activeTab, setActiveTab] = useState(0);
 
 
@@ -35,14 +34,12 @@ const MainMobile = () => {
             </div>
 
           <div className="tab-container">
-            {tabs.map((tab, index) => (
-              <div
-                key={index}
-                className={`tab ${activeTab === index ? 'active' : ''}`}
-                onClick={() => setActiveTab(index)} >
-                {tab}
-              </div>
-            ))}
+          <Tabs value={activeTab} onChange={(event, newValue) => setActiveTab(newValue)}>
+            <Tab icon={<List />} />
+            <Tab icon={<CalendarToday />} />
+            <Tab icon={<InventoryIcon />} />
+            <Tab icon={<PersonPin />} />
+          </Tabs>
         </div>
       </div>
       </GlobalContext.Provider>
