@@ -5,6 +5,7 @@ import canvas_sidebar from "./canvas_sidebar.png";
 import new_access_token from "./new_access_token.png";
 import "./CanvasIntegrationPage.css";
 import "./AnimateChoice.css";
+import './LandingPage.css'
 import useAxiosPrivate from "../hooks/useAxiosPrivate";
 import { useWindowWidth } from "@react-hook/window-size";
 import { useNavigate } from "react-router-dom";
@@ -135,23 +136,24 @@ const CanvasIntegrationPage = () => {
   );
 
   return (
-    <div className="body">
+    <div>
       {retrievingAssignments ? (
         <div className="loading-parent">{loadingImage}</div>
       ) : (
         <>
-          <Card style={{ width: width }}>
-            <Card.Header className="pet-choice">
-              <center>
-                <h1>ADD YOUR CANVAS ACCOUNT!</h1>
-              </center>
-            </Card.Header>{" "}
-          </Card>
+        
+          {/* <Card style={{ width: width }}> */}
+         {/* </>   <Card.Header className="pet-choice"> */}
+         <div className="landingpage">
+        <h1><center>ADD YOUR CANVAS ACCOUNT!</center></h1>
+            {/* </Card.Header>{" "} */}
+          {/* </Card> */}
           <hr />
-          <Card.Title className="text">
-            Follow these steps to link your Canvas account with Study Buddy!{" "}
+          <center><Card className = "canvas_card">
+          <Card.Title>
+            Follow these steps to link your Canvas account with Study Buddy! {" "}
           </Card.Title>
-          <Card.Body className="text">
+          <Card.Body >
             <p>
               {" "}
               1. Access your Canvas account, and select your profile on the
@@ -167,7 +169,7 @@ const CanvasIntegrationPage = () => {
             <p></p> 4. Enter a purpose and expiration date (ex. study buddy, and
             the end of your semester date).
             <p></p> Select "Generate token", and copy and paste it here!
-            <div style={{ fontSize: "24px" }}>
+            <div>
               <p>
                 Once your token is saved, you will be redirected to the Main
                 Page.<br></br>A new 'Canvas' button will appear in the header.{" "}
@@ -176,7 +178,7 @@ const CanvasIntegrationPage = () => {
               </p>{" "}
             </div>
           </Card.Body>
-
+          </Card></center>
           <form
             className="submit_canvas"
             onSubmit={(event) => handleSubmit(event)}
@@ -197,12 +199,14 @@ const CanvasIntegrationPage = () => {
               {submitText}
             </button>
           </form>
+          </div>
         </>
       )}
       <form className="submit_canvas">
         {nameError !== "" ? <p>{nameError}</p> : <></>}
       </form>
     </div>
+
   );
 };
 export default CanvasIntegrationPage;
