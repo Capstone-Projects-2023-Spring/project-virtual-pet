@@ -3,6 +3,7 @@ import { Form, Col, Button, Card } from "react-bootstrap";
 import useAxiosPrivate from "../hooks/useAxiosPrivate";
 import './AccountPage.css'
 import { getFirebaseToken } from "../firebase.js"
+import axios from "axios"
 
 function AccountPage() {
   const axiosPrivate = useAxiosPrivate();
@@ -14,7 +15,7 @@ function AccountPage() {
   const [joinDate, setjoinDate] = useState("");
   const [birthday, setBirthday] = useState("");
   const [permission, setPermission] = useState(Notification.permission);
-
+  const [firebaseTokens, setFirebaseTokens] = useState("")
 
   const [validated, setValidated] = useState(false);
 
@@ -26,11 +27,31 @@ function AccountPage() {
       setBio(response.data[0].bio);
       setjoinDate(response.data[0].join_date.substring(0, 10));
       setBirthday(response.data[0].birthday);
+      setFirebaseTokens(response.data[0].firebase_tokens);
     });
   }, []);
 
+  function sendNotification() {
+    const testtoken = "d2ulR6z2cJK8k9pgz__CX-:APA91bF9BNNADNb1i0GdN5vGPHLxA7ORb7GAQwfir24lfKZH3ogqa_ITOkes7eWrCVoQQtTZ2-lqwqm3YqvpjbKqCwG7BRCHIYgA83SxDqs_pjjYud9LEcS11HO8vPwIr05xOUuE_EsY"
+    console.log("sending notification to ", testtoken)
+    const data = {
+      'token': testtoken,
+      'title': 'notification',
+      'body': 'This is a test'
+    };
+
+    axiosPrivate
+      .post('/send-notification/', data)
+      .then((response) => {
+        console.log("Notif sent:", response.data)
+      })
+      .catch((err) => {
+        console.log('Failed to send notif');
+      });
+  }
 
   const handleGetFirebaseToken = () => {
+    //setPermission(Notification.permission)
     getFirebaseToken()
       .then((firebaseToken) => {
         console.log('Firebase token: ', firebaseToken);
@@ -39,7 +60,7 @@ function AccountPage() {
           .get("/user-data/")
           .then((response) => {
             //add new device token to list of user tokens
-          
+
             const currentUserInfo = response.data[0];
             console.log("Old firebase token:", currentUserInfo.firebase_tokens)
             //console.log("Type:", typeof (currentUserInfo.firebase_tokens))
@@ -59,10 +80,9 @@ function AccountPage() {
           .catch((err) => {
             console.log(err);
           });
-
-
       })
       .catch((err) => console.error('An error occured while retrieving firebase token. ', err))
+
   }
 
   const handleNameChange = (event) => {
@@ -223,9 +243,17 @@ function AccountPage() {
               <Button
                 style={{ marginTop: '20px', marginBottom: '20px' }}
                 onClick={handleGetFirebaseToken}
-                disabled={permission === 'granted' || permission === 'denied'}
+              /*disabled={permission === 'granted' || permission === 'denied'}*/
               > Turn on
               </Button>
+
+              <Button
+                style={{ marginTop: '20px', marginBottom: '20px' }}
+                onClick={sendNotification}
+              /*disabled={permission === 'granted' || permission === 'denied'}*/
+              > send a notification
+              </Button>
+
             </div>
           </Form>
         </div>
