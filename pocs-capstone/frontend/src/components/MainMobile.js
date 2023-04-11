@@ -7,14 +7,12 @@ import PetProfPage from "./PageDisplay/PetProfPage.js";
 import CalendarPageMobile from "./CalendarMobile/CalendarPageMobile.js";
 import TaskPageMobile from "./PageDisplay/TaskMobile/TaskPageMobile.js";
 import ProfileAccountPageMobile from "./ProfileAccountPageMobile";
-import tasks from "../images/tabs/tasks.png";
-import calendar from "../images/tabs/calendar.png";
-import profile from "../images/tabs/profile.png";
-import inventory from "../images/tabs/inventory.png";
 import canvas_bug from "../images/canvas_bug.png";
 import useAxiosPrivate from "../hooks/useAxiosPrivate";
 import UserContext from "../context/UserContext";
-
+import { Tabs, Tab } from '@material-ui/core';
+import InventoryIcon from '@mui/icons-material/Inventory';
+import {List, PersonPin, CalendarToday, } from '@material-ui/icons';
 import { useNavigate } from "react-router-dom";
 
 const COURSES_URL = "/canvas/";
@@ -24,7 +22,6 @@ const COURSES_URL = "/canvas/";
 
 const MainMobile = () => {
   const handlers = useContext(GlobalContext);
-  const tabs = ['T', 'C', 'I', 'A'];
 
 
 
@@ -71,31 +68,17 @@ const MainMobile = () => {
             {activeTab === 1 && <CalendarPageMobile/> }
             {activeTab === 2 && <InventoryBoxMobile/>}
             {activeTab === 3 && <ProfileAccountPageMobile/>}
-      </div>
-          <div className="tab-container">
-            {tabs.map((tab, index) => (
-              <div
-                key={index}
-                className={`tab ${activeTab === index ? 'active' : ''}`}
-                onClick={() => setActiveTab(index)} >
-                {tab}
-                
-              </div>
-            ))}
-            
-            
-              {/* <button className="container-canvas-logo" onClick={getCourses}>
-                <img
-                  className={
-                    retrievingAssignments ? "canvas-loading" : "logo-canvas"
-                  }
-                  alt="CanvasBug"
-                  src={canvas_bug}
-                  //style={{gridRow:'2'}}
-                ></img>
-              </button> */}
-              {userInfo.canvas_token !== "" ? (
-                <div style={{ display: "grid", gridAutoFlow: "column" }}>
+        
+            </div>
+
+            <div className="tab-container">
+          <Tabs value={activeTab} onChange={(event, newValue) => setActiveTab(newValue)}>
+            <Tab icon={<List />} />
+            <Tab icon={<CalendarToday />} />
+            <Tab icon={<InventoryIcon />} />
+            <Tab icon={<PersonPin />} />
+            {userInfo.canvas_token !== "" ? (
+                <div >
                   <button className="container-canvas-logo" onClick={getCourses}>
                     <img
                       className={
@@ -111,14 +94,26 @@ const MainMobile = () => {
                 </div>
               ) : (
                 <div></div>
-              )}
+              )} 
+
+          </Tabs>
+        </div>
+        
           
             
-           
             
+              {/* <button className="container-canvas-logo" onClick={getCourses}>
+                <img
+                  className={
+                    retrievingAssignments ? "canvas-loading" : "logo-canvas"
+                  }
+                  alt="CanvasBug"
+                  src={canvas_bug}
+                  //style={{gridRow:'2'}}
+                ></img>
+              </button> */}
+                       
             
-            
-        </div>
       </div>
       </GlobalContext.Provider>
     );

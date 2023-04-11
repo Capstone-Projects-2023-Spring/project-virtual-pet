@@ -1,23 +1,33 @@
 .link-container-mobile {
-    /* margin-top: 20px; */
-    /* height: 100vh;
-    width: 100vw; */
-    /* display: flex;
-    margin: 0;*/
-    justify-content: center;
-    align-items: center;
-
-    /* justify-content: center; */
-
+    margin: 10px;
 }
 
 .pet-profile-button-mobile {
     /* display: block; */
-    justify-content: center;
-    align-items: center;
+    /* justify-content: center;
+    align-items: center; */
+    /* margin:10px; */
+    width: 80vw;
+    margin: 20px;
+    background-color: pink;
+    color:black;
+    
 
 }
 
 .canvas-button-mobile {
+    
+    width: 80vw;
     margin: 20px;
+    background-color: pink;
+    color:black;
+
+}
+
+.logout-button-mobile {
+    width: 80vw;
+    margin: 20px;
+    background-color: pink;
+    color:black;
+    
 }

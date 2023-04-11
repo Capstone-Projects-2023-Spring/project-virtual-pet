@@ -3,8 +3,9 @@ import { useState } from "react";
 import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import PetProfileMobile from "./PetProfileMobile.js";
-import CanvasIntegrationPageMobile from "./CanvasIntegrationMobile.js";
+import CanvasIntegrationPageMobileModal from "./CanvasIntegrationMobileModal.js";
 import Logout from "./LoginLogout/Logout.js"
+import "./ProfileAccountPageMobile.css";
 
 
 const ProfileAccountPageMobile = () => {
@@ -28,11 +29,10 @@ const ProfileAccountPageMobile = () => {
         <div className="link-container-mobile">
             <center><Button className="pet-profile-button-mobile" type="submit" id="petprofile" onClick={handleShowPet}>Pet Profile</Button></center>
             <center><Button className="canvas-button-mobile" type="sumbit" id="canvas_integration" onClick={handleShowCanvasPage}>Canvas Integration</Button></center>
-            <center><Button type="submit" id="logout" href="/logout" >Logout</Button></center>
+            <center><Button className="logout-button-mobile" type="submit" id="logout" href="/logout" >Logout</Button></center>
 
-            {/* {p ===  && <PetProfPage/> } */}
             <PetProfileMobile {...{ showPetProf, handleClosePet }} />
-            <CanvasIntegrationPageMobile {...{ showCanvas, handleCloseCanvasPage }} />
+            <CanvasIntegrationPageMobileModal {...{ showCanvas, handleCloseCanvasPage }} />
 
         </div>
     )

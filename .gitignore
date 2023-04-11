@@ -7,6 +7,8 @@
 .env.development.local
 .env.test.local
 .env.production.local
+.env
+pocs-capstone/backend/.env
 pocs-capstone/backend/tutorial-env/
 pocs-capstone/backend/db/__pycache__/
 pocs-capstone/backend/db/migrations/
