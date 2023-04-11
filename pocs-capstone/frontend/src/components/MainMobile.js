@@ -11,7 +11,6 @@ import canvas_bug from "../images/canvas_bug.png";
 import useAxiosPrivate from "../hooks/useAxiosPrivate";
 import UserContext from "../context/UserContext";
 import { Tabs, Tab } from '@material-ui/core';
-import ImageIcon from '@material-ui/icons/Image';
 import InventoryIcon from '@mui/icons-material/Inventory';
 import {List, PersonPin, CalendarToday, } from '@material-ui/icons';
 import { useNavigate } from "react-router-dom";
