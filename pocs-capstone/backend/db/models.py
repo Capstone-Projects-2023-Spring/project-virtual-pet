@@ -3,6 +3,7 @@ from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager
 from django.conf import settings
+from django.db.models import JSONField
 
 
 # from django.contrib.auth.models import User
@@ -89,6 +90,7 @@ class NewUser(AbstractBaseUser, PermissionsMixin):  # TODO rename to something l
     is_active = models.BooleanField(default=True)
     canvas_token = models.CharField(max_length=512, default="")
     tutorial = models.BooleanField(default=True)
+    firebase_tokens = JSONField(default=list)
 
     objects = CustomAccountManager()
 

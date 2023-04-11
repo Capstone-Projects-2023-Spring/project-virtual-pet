@@ -24,6 +24,7 @@ class UserDataSerializer(serializers.ModelSerializer):
         model = NewUser
         fields = ['id',
                   'canvas_token',
+                  'firebase_tokens',
                   'tutorial',
                   'email',
                   'username',

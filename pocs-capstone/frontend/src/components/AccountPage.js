@@ -35,6 +35,32 @@ function AccountPage() {
       .then((firebaseToken) => {
         console.log('Firebase token: ', firebaseToken);
         // Send the token to Django backend using a HTTP request
+        axiosPrivate
+          .get("/user-data/")
+          .then((response) => {
+            //add new device token to list of user tokens
+          
+            const currentUserInfo = response.data[0];
+            console.log("Old firebase token:", currentUserInfo.firebase_tokens)
+            //console.log("Type:", typeof (currentUserInfo.firebase_tokens))
+            //const updatedTokens = [...currentUserInfo.firebase_tokens, firebaseToken];
+            //const updated = response.data[0].firebase_tokens.concat(firebaseToken);
+            const id = response.data[0].id;
+            const url = "/user-data/" + id + "/";
+            axiosPrivate
+              .patch(url, { firebase_tokens: firebaseToken })
+              .then((response) => {
+                console.log("New firebase token / response.data:", response.data)
+              })
+              .catch((err) => {
+                console.log(err);
+              });
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+
+
       })
       .catch((err) => console.error('An error occured while retrieving firebase token. ', err))
   }
@@ -62,7 +88,6 @@ function AccountPage() {
           birthday:
             birthday.trim() === "" ? response.data[0].birthday : birthday,
         };
-
         const id = response.data[0].id;
         const url = "/user-data/" + id + "/";
         axiosPrivate
@@ -195,12 +220,12 @@ function AccountPage() {
               <Form.Label>Enable push notifications:</Form.Label>
             </Form.Group>
             <div className="button-enable-notifications-account">
-            <Button
-              style={{ marginTop: '20px', marginBottom: '20px' }}
-              onClick={handleGetFirebaseToken}
-              disabled={permission === 'granted' || permission === 'denied'}
-            > Turn on
-            </Button>
+              <Button
+                style={{ marginTop: '20px', marginBottom: '20px' }}
+                onClick={handleGetFirebaseToken}
+                disabled={permission === 'granted' || permission === 'denied'}
+              > Turn on
+              </Button>
             </div>
           </Form>
         </div>
