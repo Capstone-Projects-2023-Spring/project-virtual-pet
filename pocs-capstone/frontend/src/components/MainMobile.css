@@ -37,11 +37,10 @@
   position: absolute;
   bottom: 0;
   left: 0;
-  width: 100%;
+  width: 100vw;
   display: flex;
   justify-content: space-between;
   background-color: rgb(255, 198, 198);
-  display: flex;
   flex: 1;
   /* height: 6vh; */
   grid-row-start: 3;
@@ -52,6 +51,7 @@
   padding: 10px;
   margin: 0 5px;
   cursor: pointer;
+  flex: 1 1 auto;
 }
 
 .tab.active {
