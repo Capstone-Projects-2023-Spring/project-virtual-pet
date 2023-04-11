@@ -136,11 +136,12 @@ const CanvasIntegrationPage = () => {
   );
 
   return (
-    <div className="body">
+    <div>
       {retrievingAssignments ? (
         <div className="loading-parent">{loadingImage}</div>
       ) : (
         <>
+        
           {/* <Card style={{ width: width }}> */}
          {/* </>   <Card.Header className="pet-choice"> */}
          <div className="landingpage">
