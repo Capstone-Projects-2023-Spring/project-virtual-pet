@@ -32,31 +32,37 @@ const TaskItemMobile = ({ task, updateTask, deleteTask }) => {
                 task.course_id !== 0 && task.assignment_id !== 0 ?
                     (
                         <>
-                            <ListGroup horizontal='sm' className="my-2 list-group-task">
-                                <ListGroup.Item className='course-id-mobile'>
+                            <ListGroup horizontal className="my-2 list-group-task">
+                                {/* <ListGroup.Item className='course-id-mobile'>
                                     <div>
 
                                         <div className="fw-bold">Course {task.course_id}</div>
                                     </div>
-                                </ListGroup.Item>
+                                </ListGroup.Item> */}
                                 <ListGroup.Item className='task-item'>
                                     <div className="ms-2 me-auto">
-                                        <div className="fw-bold task-title task-description">{task.title}</div>
-                                        <div className='task-description'>{task.description}</div>
-                                        {task.due_date ?
-                                            <div className='due-date'>Due {calculateDueDate(task.due_date)}</div> :
-                                            <></>
-                                        }
+                                        <div>
+                                            <div className="fw-bold task-title-mobile task-description">{task.title}</div>
+                                            <div className="task-description-mobile">Course{task.course_id}</div>
+                                            <div className='task-description-mobile'>{task.description}</div>
+                                            {task.due_date ?
+                                                <div className='due-date-mobile'>Due {calculateDueDate(task.due_date)}</div> :
+                                                <></>
+                                            }
+
+                                        </div>
 
                                     </div>
+
                                 </ListGroup.Item>
-                                {/* remove this list group item if it's a canvas task, have for testing purposes */}
-                                {/* <ListGroup.Item className="close-box-task">
-                                    <div>
-                                        <CloseButton onClick={() => deleteTask(task.task_id)} />
-                                    </div>
-                                </ListGroup.Item>
-                                 */}
+                                {
+                                    task.completed ?
+                                        <ListGroup.Item className="close-box-task-mobile">
+                                            <CloseButton onClick={() => deleteTask(task.task_id)} />
+                                        </ListGroup.Item>
+                                        :
+                                        <></>
+                                }
                             </ListGroup >
                             <CreateTaskFormMobile {...{ showCreateTask, handleClose, task }} />
                         </>
@@ -95,7 +101,7 @@ const TaskItemMobile = ({ task, updateTask, deleteTask }) => {
                                 </ListGroup.Item>
                                 <ListGroup.Item className="close-box-task-mobile">
 
-                                        <CloseButton onClick={() => deleteTask(task.task_id)} />
+                                    <CloseButton onClick={() => deleteTask(task.task_id)} />
 
                                 </ListGroup.Item>
                             </ListGroup >

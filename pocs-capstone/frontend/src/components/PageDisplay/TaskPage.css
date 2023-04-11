@@ -147,8 +147,6 @@
 }
 
 .check-box-task.list-group-item {
-
-
     /* background-color: rgba(233, 139, 139, 0.352); this gets set in the TaskItem component */
     border-width: 0px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.295);
