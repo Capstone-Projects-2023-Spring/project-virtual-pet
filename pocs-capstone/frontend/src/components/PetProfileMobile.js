@@ -1,37 +1,57 @@
-import { Tooltip, OverlayTrigger, Stack, Form, Button, Modal, Image } from 'react-bootstrap';
-
-// import GlobalContext from '../../../context/GlobalContext'
+import { Modal, Form} from 'react-bootstrap';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { Row, Col, Button, Card, Stack} from "react-bootstrap";
+import { Link, useNavigate, useLocation } from "react-router-dom";
+import useAxiosPrivate from "../hooks/useAxiosPrivate";
+import AvatarContext from "../context/AvatarContext";
+import GlobalContext from "../context/GlobalContext";
 import { useContext } from 'react'
-// import infoicon from '../../../images/info_icon.png'
 
-import * as yup from "yup";
-import * as formik from 'formik'
-import PetProfPage from './PageDisplay/PetProfPage';
 
 
 function PetProfileMobile(props) {
+  const contextHandler = useContext(GlobalContext)
+  const axiosPrivate = useAxiosPrivate();
+  const nav = useNavigate();
 
-//   const handlers = useContext(GlobalContext);
-  const title = props.task ? "Task Details" : "Create Task"
-  const buttonText = props.task ? "Save" : "Create Task"
+  const [petName, setPetName] = useState("");
+  const [flavourText, setFlavourText] = useState("");
 
-  const { Formik } = formik;
-  const schema = yup.object().shape({
+  const handlePetNameChange = (event) => {
+    const changedPetName = event.target.value;
+    setPetName(changedPetName);
+  };
 
-    title: yup.string().required(),
-    description: yup.string(),
-    size: yup.string().required(),
-    due_date: yup.string(),
+  const handleFlavourTextChange = (event) => {
+    const changedFlavourText = event.target.value;
+    setFlavourText(changedFlavourText);
+  };
 
-  });
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    console.log("PET BEFORE UPDATE", contextHandler.avatarInfo);
+    const updatedAvatar = {
+      ...contextHandler?.avatarInfo,
+      pet_name: petName.trim() === "" ? contextHandler.avatarInfo.pet_name : petName,
+      flavour_text:
+        flavourText.trim() === ""
+          ? contextHandler.avatarInfo.flavour_text
+          : flavourText,
+    };
+    axiosPrivate
+      .patch(`/avatar/${contextHandler?.avatarInfo.avatar_id}/`, updatedAvatar)
+      .then((response) => {
+        console.log("response.data:", response.data);
+        contextHandler?.setAvatar(response.data); //change this to add to previous state instead of replacing completely (in case of >1 avatar for 1 user)
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+      props.handleClosePet();
+      
+    };
 
-  const taskSizeDesc = "'Time to Complete Task' is an estimate of how long it will take to complete the task. The longer it takes to complete, the greater the value of the candy awarded."
-  const taskDesc = "Users can create tasks with a title, description, due date, and estimated time to complete. The size of a task is determined by the estimated time to complete it and the level of a task is determined by how long the user has been with the site. "
-
-  const iconStyle = {
-    width: '20px',
-    margin: '7px',
-  }
 
   return (
     <Modal className="createtask-modal-mobile" backdrop="static" show={props.showPetProf} onHide={props.handleClosePet}>
@@ -40,8 +60,58 @@ function PetProfileMobile(props) {
         
       </Modal.Header>
       <Modal.Body>
+      <div className="mini-page">
 
-      < PetProfPage/>
+      <Card className='pet-profile-position'>
+        <Card.Header>
+          <Stack direction="horizontal" gap={3}>
+            <div className='pet-profile-header'>Pet Profile</div>
+          </Stack>
+        </Card.Header>
+
+          <Form
+            onSubmit={handleSubmit}
+            style={{ padding: "20px",}}
+            variant="flush"
+          >
+
+            <Form.Group className="mb-2">
+              <Form.Label>Pet Name:</Form.Label>
+              <Col sm={4}>
+                <Form.Control
+                  type="text"
+                  value={petName}
+                  placeholder={contextHandler.avatarInfo.pet_name}
+                  onChange={handlePetNameChange}
+                />
+              </Col>
+            </Form.Group>
+
+            <Form.Group className="mb-2">
+              <Form.Label> What's your pet up to? </Form.Label>
+              <Col sm={8}>
+                <Form.Control
+                  as="textarea"
+                  rows={3}
+                  value={flavourText}
+                  placeholder={contextHandler.avatarInfo.flavour_text}
+                  onChange={handleFlavourTextChange}
+                />
+              </Col>
+            </Form.Group>
+
+            <Button
+              type="submit"
+              style={{ marginTop: "20px", marginBottom: "20px" }}
+            >
+              Submit
+            </Button>
+
+          </Form>
+        
+      </Card>
+    </div>
+
       </Modal.Body>
     </Modal >
 

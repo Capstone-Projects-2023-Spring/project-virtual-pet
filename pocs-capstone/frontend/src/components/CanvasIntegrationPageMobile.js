@@ -16,7 +16,7 @@ import cat from "../images/orangecat.png";
 const USER_URL = "/user-data/";
 const COURSES_URL = "/canvas/";
 
-const CanvasIntM= () => {
+const CanvasIntegrationPageMobile= () => {
   const { shareData } = useContext(UserContext);
   const axiosPrivate = useAxiosPrivate();
   //  const [submittedText, setSubmittedText] = useState(null);
@@ -135,18 +135,18 @@ const CanvasIntM= () => {
   );
 
   return (
-    <div className="body">
+    <div className="body-canvas-mobile">
       {retrievingAssignments ? (
         <div className="loading-parent">{loadingImage}</div>
       ) : (
         <>
-          <Card style={{ width: width }}>
+          {/* <Card > */}
             <Card.Header className="pet-choice">
               <center>
-                <h1>ADD YOUR CANVAS ACCOUNT!</h1>
+                <h1 style={{fontSize: "18px", justifyContent: "center"}}>ADD YOUR CANVAS ACCOUNT!</h1>
               </center>
-            </Card.Header>{" "}
-          </Card>
+            </Card.Header>
+          {/* </Card> */}
           <hr />
           <Card.Title className="text">
             Follow these steps to link your Canvas account with Study Buddy!{" "}
@@ -205,4 +205,4 @@ const CanvasIntM= () => {
     </div>
   );
 };
-export default CanvasIntM;
+export default CanvasIntegrationPageMobile;
