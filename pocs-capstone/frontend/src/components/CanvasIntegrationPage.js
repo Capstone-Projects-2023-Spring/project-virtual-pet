@@ -168,7 +168,7 @@ const CanvasIntegrationPage = () => {
             <p></p> 4. Enter a purpose and expiration date (ex. study buddy, and
             the end of your semester date).
             <p></p> Select "Generate token", and copy and paste it here!
-            <div style={{ fontSize: "24px" }}>
+            <div>
               <p>
                 Once your token is saved, you will be redirected to the Main
                 Page.<br></br>A new 'Canvas' button will appear in the header.{" "}
