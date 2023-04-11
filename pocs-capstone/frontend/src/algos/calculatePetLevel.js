@@ -1,5 +1,5 @@
-const n = 50
- const N = [
+const n = 50;
+const N = [
   1,
   2,
   3,
@@ -52,7 +52,8 @@ const n = 50
   50,
 ];
 
-const TO_NEXT_LEVEL = [ // this much xp to get from previous to next level
+const TO_NEXT_LEVEL = [
+  // this much xp to get from previous to next level
   1,
   2,
   4,
@@ -105,7 +106,8 @@ const TO_NEXT_LEVEL = [ // this much xp to get from previous to next level
   17858,
 ];
 
-const TOTAL_XP_FOR_LEVEL = [ //total exp to be sitting at a particular level
+const TOTAL_XP_FOR_LEVEL = [
+  //total exp to be sitting at a particular level
   1,
   3,
   7,
@@ -158,28 +160,29 @@ const TOTAL_XP_FOR_LEVEL = [ //total exp to be sitting at a particular level
   232254,
 ];
 
-
 function CalculatePetLevel(xp) {
   //console.log("XP------>",xp)
   var level = 50;
   var remainder = 0;
   var next_level = 0;
   var ratio = 0;
+  console.log("XP------> ",xp)
 
-  for (let l = 0; l < n ; l++) {
+
+  for (let l = 0; l < n; l++) {
     if (xp < TOTAL_XP_FOR_LEVEL[l]) {
-      level = N[l-1]; //TODO could just l? check 0 case
+      level = N[l - 1]; //TODO could just l? check 0 case
       remainder = TOTAL_XP_FOR_LEVEL[l] - xp;
-      next_level = TO_NEXT_LEVEL[l]
+      next_level = TO_NEXT_LEVEL[l];
       break;
     }
   }
-  ratio = Math.floor(100*(next_level-remainder)/next_level)
+  ratio = Math.floor(100 * ((next_level - remainder) / next_level));
   const level_with_remainder = {
     LEVEL: level,
     REMAINDER: remainder,
     NEXT_LEVEL: next_level,
-    RATIO: ratio
+    RATIO: ratio,
   };
   //console.log(level_with_remainder)
   return level_with_remainder;
