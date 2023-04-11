@@ -7,6 +7,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "../../api/axios";
 import { Form } from "react-bootstrap";
+import { getFirebaseToken } from "../../firebase.js"
 
 const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%._&*]).{8,24}$/;
@@ -40,6 +41,14 @@ const Register = () => {
   const [email, setEmail] = useState("");
   const [validEmail, setValidEmail] = useState(false);
   const [emailFocus, setEmailFocus] = useState(false);
+
+  const handleGetFirebaseToken = () => {
+    getFirebaseToken()
+      .then((firebaseToken) => {
+        console.log('Firebase token: ', firebaseToken);
+      })
+      .catch((err) => console.error('An error occured while retrieving firebase token. ', err))
+  }
 
   const handleBirthdayChange = (event) => {
     setBirthday(event.target.value);
@@ -337,7 +346,17 @@ const Register = () => {
                 onChange={handleBioChange}
                 value={userBio}
               />
-
+              <button
+                onClick={handleGetFirebaseToken}
+                disabled={
+                  !validName || !validPassword || !validEmail || !validMatch
+                    ? true
+                    : false
+                }
+                className="button-enable-notifications-register"
+              >
+                Enable push notifications
+              </button>
               <button
                 disabled={
                   !validName || !validPassword || !validEmail || !validMatch
