@@ -29,6 +29,44 @@ ReactDOM.render(
 // Learn more about service workers: https://cra.link/PWA
 serviceWorkerRegistration.register();
 
+// Register the notification service worker
+/*if ('serviceWorker' in navigator) {
+  const publicUrl = new URL(process.env.PUBLIC_URL, window.location.href);
+  navigator.serviceWorker.register(`${publicUrl}/notification-service-worker.js`)
+    .then(registration => {
+      console.log('Notification service worker registered:', registration);
+    })
+    .catch(error => {
+      console.log("bruh")
+      console.error('Error registering notification service worker:', error);
+    });
+}*/
+
+  
+  const check = () => {
+    if (!('serviceWorker' in navigator)) {
+      throw new Error('No Service Worker support!')
+    } else {
+      console.log("yes service worker support")
+    }
+    if (!('PushManager' in window)) {
+      throw new Error('No Push API Support!')
+    } else{
+      console.log("push!")
+    }
+  }
+
+  const registerServiceWorker = async () => {
+    const swRegistration = await navigator.serviceWorker.register('../notification-service-workerjs'); //notice the file name
+    return swRegistration;
+}
+
+  const main = async () => {
+    check()
+    const swRegistration = await registerServiceWorker();
+  }
+  main()
+
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals

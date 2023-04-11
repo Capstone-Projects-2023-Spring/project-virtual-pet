@@ -17,6 +17,7 @@
     "axios": "^1.3.4",
     "bootstrap": "^5.2.3",
     "formik": "^2.2.9",
+    "node-schedule": "^2.1.1",
     "react": "^18.2.0",
     "react-bootstrap": "^2.7.2",
     "react-confetti-explosion": "^2.0.2",
