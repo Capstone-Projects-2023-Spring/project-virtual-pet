@@ -5,7 +5,6 @@ import canvas_sidebar from "./canvas_sidebar.png";
 import new_access_token from "./new_access_token.png";
 import "./CanvasIntegrationPage.css";
 import "./AnimateChoice.css";
-import './LandingPage.css'
 import useAxiosPrivate from "../hooks/useAxiosPrivate";
 import { useWindowWidth } from "@react-hook/window-size";
 import { useNavigate } from "react-router-dom";
@@ -17,7 +16,7 @@ import cat from "../images/orangecat.png";
 const USER_URL = "/user-data/";
 const COURSES_URL = "/canvas/";
 
-const CanvasIntegrationPage = () => {
+const CanvasIntegrationPageMobile= () => {
   const { shareData } = useContext(UserContext);
   const axiosPrivate = useAxiosPrivate();
   //  const [submittedText, setSubmittedText] = useState(null);
@@ -48,7 +47,7 @@ const CanvasIntegrationPage = () => {
 
   useEffect(() => {
     if (tokenReady) {
-      nav("/");
+      nav(0);
       //console.log("TOKEN READY????---------->", tokenReady);
       /* //Don't need to do this here anymore
       axiosPrivate
@@ -136,24 +135,23 @@ const CanvasIntegrationPage = () => {
   );
 
   return (
-    <div>
+    <div className="body-canvas-mobile">
       {retrievingAssignments ? (
         <div className="loading-parent">{loadingImage}</div>
       ) : (
         <>
-        
-          {/* <Card style={{ width: width }}> */}
-         {/* </>   <Card.Header className="pet-choice"> */}
-         <div className="landingpage">
-        <h1><center>ADD YOUR CANVAS ACCOUNT!</center></h1>
-            {/* </Card.Header>{" "} */}
+          {/* <Card > */}
+            <Card.Header className="pet-choice">
+              <center>
+                <h1 style={{fontSize: "18px", justifyContent: "center"}}>ADD YOUR CANVAS ACCOUNT!</h1>
+              </center>
+            </Card.Header>
           {/* </Card> */}
           <hr />
-          <center><Card className = "canvas_card" style={{width: '30rem'}}>
-          <Card.Title>
-            Follow these steps to link your Canvas account with Study Buddy! {" "}
+          <Card.Title className="text">
+            Follow these steps to link your Canvas account with Study Buddy!{" "}
           </Card.Title>
-          <Card.Body >
+          <Card.Body className="text">
             <p>
               {" "}
               1. Access your Canvas account, and select your profile on the
@@ -169,7 +167,7 @@ const CanvasIntegrationPage = () => {
             <p></p> 4. Enter a purpose and expiration date (ex. study buddy, and
             the end of your semester date).
             <p></p> Select "Generate token", and copy and paste it here!
-            <div>
+            <div style={{ fontSize: "24px" }}>
               <p>
                 Once your token is saved, you will be redirected to the Main
                 Page.<br></br>A new 'Canvas' button will appear in the header.{" "}
@@ -178,7 +176,7 @@ const CanvasIntegrationPage = () => {
               </p>{" "}
             </div>
           </Card.Body>
-          </Card></center>
+
           <form
             className="submit_canvas"
             onSubmit={(event) => handleSubmit(event)}
@@ -199,14 +197,12 @@ const CanvasIntegrationPage = () => {
               {submitText}
             </button>
           </form>
-          </div>
         </>
       )}
       <form className="submit_canvas">
         {nameError !== "" ? <p>{nameError}</p> : <></>}
       </form>
     </div>
-
   );
 };
-export default CanvasIntegrationPage;
+export default CanvasIntegrationPageMobile;
