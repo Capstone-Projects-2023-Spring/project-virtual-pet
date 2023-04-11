@@ -1,5 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.http import HttpResponseBadRequest
+import requests
+import json
 # Create your views here.
 
 from rest_framework import viewsets
@@ -14,6 +17,40 @@ from rest_framework_simplejwt.tokens import RefreshToken
 from db.studybuddyemail import send_email
 import db.canvasrequests as canvas
 import pprint
+from django.views.decorators.csrf import csrf_exempt
+
+@csrf_exempt
+def send_notification(request):
+    print(request)
+    print(request.method)
+    if request.method != 'POST':
+        return HttpResponseBadRequest('Invalid request method bro')
+
+    # Parse the request data
+    data = json.loads(request.body)
+
+    # Send the push notification using Firebase Cloud Messaging
+    url = 'https://fcm.googleapis.com/fcm/send'
+    headers = {
+        'Authorization': 'key=AAAAnCuTNW8:APA91bEyKOupWrTTxgOlG-M11r9rgg-JzTHETqmoQCwD1kv7JLEEXKFoLpOfvbgp12OuNEvyk52m1v6Cs9CpRDw8FUD90OSXDiLwHDNqaHf6XU05J9yqtp2ViHkxvxQyh62HTshnCujd',
+        'Content-Type': 'application/json',
+    }
+    payload = {
+        'to': data['token'],
+        'notification': {
+            'title': data['title'],
+            'body': data['body'],
+            'sound': 'default',
+            'icon': '../../../frontend/public/favicon.ico',
+            'click_action': 'https://studybuddy.life/login',
+        },
+    }
+    response = requests.post(url, headers=headers, json=payload)
+
+    if response.status_code != 200:
+        return HttpResponseBadRequest('Failed to send notification')
+
+    return HttpResponse('Notification sent')
 
 def lololol(userId):
 

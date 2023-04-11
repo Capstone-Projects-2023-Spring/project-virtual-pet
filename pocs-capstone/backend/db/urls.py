@@ -1,6 +1,6 @@
 from django.urls import include, path
 from rest_framework.routers import DefaultRouter
-from .views import *
+from .views import TaskViewSet, InventoryViewSet, AvatarViewSet, NewUserViewSet, send_notification, CanvasView, BlacklistTokenView, CustomUserCreate
 
 
 router = DefaultRouter()
@@ -21,4 +21,5 @@ urlpatterns = [
     path('api/logout/blacklist',BlacklistTokenView.as_view(),name="blacklist"),
     path('api/canvas/',CanvasView.as_view(),name="pose-canvas-tasks"),
     path('api/', include(router.urls)),
+    path('api/send-notification/', send_notification, name='send_notification'),
 ]
