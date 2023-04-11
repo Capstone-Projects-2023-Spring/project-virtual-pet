@@ -184,17 +184,17 @@ gantt
 - F9: Create task reminders/notifications
     - R1: Users receive pop-up notifications when a task’s deadline is near.
 
-- F10: Task organization and filtering
-    - R1: User can sort tasks by date.
-    - R2: Users can assign custom tags.
-    - R3: Imported Canvas tasks are automatically assigned a tag with course name.
-    - R4: User can organize tasks by tags.
-
-- F11: User can view their tasks on a calendar
+- F10: User can view their tasks on a calendar
     - R1: The system will present the user with a calendar grid view of their upcoming and past due tasks.
     - R2: the system will support the Gregorian calendar format.
 
 ### Milestone Demo 4 [Detailed Pet Interactions & Task Reminders]
+
+- F11: Task organization and filtering
+    - R1: User can sort tasks by date.
+    - R2: Users can assign custom tags.
+    - R3: Imported Canvas tasks are automatically assigned a tag with course name.
+    - R4: User can organize tasks by tags.
 
 - F12: User experience and design improvement
     - R1: More pets are available at pet selection.
