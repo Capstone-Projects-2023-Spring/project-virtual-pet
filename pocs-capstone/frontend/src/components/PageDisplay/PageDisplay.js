@@ -1,12 +1,13 @@
 import "./PageDisplay.css"
 import TaskPage from "./TaskPage";
 import TaskPageMobile from "./TaskMobile/TaskPageMobile"
-import CalendarPage from "./CalendarPage";
+import CalendarPageDesktop from "../CalendarDeskop/CalendarPageDeskop";
 import PetProfPage from "./PetProfPage";
 import TaskListContext from '../../context/TaskListContext'
 import InventoryBox from "../Inventory/InventoryBox";
 import InventoryBoxMobile from "../Inventory/InventoryBoxMobile";
 import GlobalContext from "../../context/GlobalContext";
+import "../CalendarDeskop/CalendarPageDeskop"
 import UserContext from "../../context/UserContext";
 import { Tab, Tabs } from 'react-bootstrap';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
@@ -230,7 +231,9 @@ const PageDisplay = () => {
 
                     </Tab>
                     <Tab eventKey="calendar" title="Calendar">
-                        <CalendarPage />
+                        <div style={{width: "1000px", margin:"50px"}}>
+                        <CalendarPageDesktop />
+                        </div>
                     </Tab>
                     <Tab eventKey="inventory" title="Inventory">
                         <InventoryBox />

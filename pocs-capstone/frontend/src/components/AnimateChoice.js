@@ -66,7 +66,7 @@ const AnimateChoice = () => {
             const currentDate = new Date().toISOString().slice(0, 10)
             const last_feed = currentDate;
             const last_interaction = currentDate;
-            const total_xp = 2;
+            const total_xp = 1;
             
             const petInfo = {
                 avatar_type: petType,
