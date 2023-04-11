@@ -223,6 +223,7 @@ getavatarImage(contextHandler?.avatarInfo);
 
   const spriteSheetRef = useRef(null);
 
+  /**
   const getExp = (candy) => {
     //console.log('WTF')
     //getLevel()
@@ -249,10 +250,10 @@ getavatarImage(contextHandler?.avatarInfo);
         console.log(err);
       });
   };
-
-  const getLevel = (xp) => {
+*/
+  useEffect (() => {
     //  [level, remain, next_level] = CalculatePetLevel(exp);
-    setLevelInfo(CalculatePetLevel(xp));
+    setLevelInfo(CalculatePetLevel(contextHandler.avatarInfo?.total_xp));
     //console.log("LVL,REMAIN,NEXT",petInfo.LEVEL,petInfo.REMAINDER,petInfo.NEXT_LEVEL)
     //setExp(avatar_handler.avatarInfo.total_xp);
     //setLevel(petInfo.LEVEL);
@@ -260,11 +261,12 @@ getavatarImage(contextHandler?.avatarInfo);
     //setNextLevel(petInfo.NEXT_LEVEL);
 
     //setRatio(Math.floor(100*((level_info.NEXT_LEVEL-level_info.REMAINDER)/level_info.NEXT_LEVEL)));
-    animateSpriteSheet();
+   // animateSpriteSheet();
     //  if(remainder===0){
     //     setExp(0);
     //   }
-  };
+
+},[contextHandler])
 
   return (
     <div className="pet-display-mobile">
