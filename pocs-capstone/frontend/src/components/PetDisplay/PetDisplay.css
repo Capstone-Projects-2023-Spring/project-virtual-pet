@@ -58,7 +58,7 @@
   position: absolute;
   /* top: 30px;
     left: 30px; */
-  top: 220px;
+  top: 180px;
   /*width: 50%;
     /* border: 1px solid #000000; */
 }
@@ -137,7 +137,7 @@
 .p-sprite-display-mobile {
 
   width: 100%;
-  max-height: 350px;
+  max-height: 400px;
   align-items: center;
 }
 
@@ -155,7 +155,7 @@
     /* max-height: 50vh; */
     /* height: 50vh; */
     /* height: 60%; */
-    height: calc(100vh - 430px);
+    height: calc(100vh - 350px - 70%);
     /* height: calc(100vh - 60vh); */
     background-size: cover;
     /* background-size: ; */
@@ -170,7 +170,9 @@
 
 .sprite-sheet-mobile{
     width: 70%;
-    max-height: calc(100vh - 440px - 50%);
+    /* max-height: calc(100vh - 550px - 70%); */
+    max-height: 38vh;
+    top: 35px;
     /* max-height: calc(100vh - 60vh - 30%); */
     /* max-height: 50vh; */
     justify-content: center;
