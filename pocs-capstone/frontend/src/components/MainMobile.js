@@ -101,7 +101,6 @@ const MainMobile = () => {
                 <div></div>
               )} 
 
-      
           </Tabs>
         </div>
         
