@@ -16,6 +16,12 @@
     color: #fff; */
 }
 
+@media (max-width: 1130px) {
+    .header-whole {
+      display: none;    
+    }
+}   
+
 .header-whole {
     background-color: rgb(33, 33, 33);
 }
@@ -28,6 +34,8 @@
     justify-content: center;
     align-items: center;
 }
+
+
 
 .header-position {
     padding: 10px;
@@ -63,3 +71,37 @@
     content: none;
 }
 
+
+
+@keyframes bounce {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  .container-canvas-logo{
+    width: auto;
+    height: auto;
+    background-color:black;
+    justify-content: center;
+    align-items: center;
+  }
+  .logo-canvas {
+    width: 40px;
+    height: 40px;
+    color:black;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+  .canvas-loading {
+    width: 40px;
+    height: 40px;
+    justify-self: center;
+    animation: bounce 3000ms;
+    animation-iteration-count: infinite;
+  }

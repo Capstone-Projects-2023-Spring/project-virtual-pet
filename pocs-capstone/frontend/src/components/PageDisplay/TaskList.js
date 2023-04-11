@@ -1,11 +1,12 @@
 
 import { ListGroup, Stack, Button } from 'react-bootstrap';
 import TaskItem from './TaskItem'
-import TaskListContext from '../../context/TaskListContext'
+// import TaskListContext from '../../context/TaskListContext'
+import GlobalContext from "../../context/GlobalContext.js";
 import { useContext } from 'react'
 
 const TaskList = ({ filter }) => {
-    const handlers = useContext(TaskListContext)
+    const handlers = useContext(GlobalContext)
     const showTasks = filter === 'all' ?
         handlers?.taskList.filter(task => !task.completed) :
         handlers?.taskList.filter(task => task.completed)
@@ -32,13 +33,15 @@ const TaskList = ({ filter }) => {
                     </div>
 
                 ) : null}
-            <ListGroup className="task-scroll">
-                {showTasks.map(t => <TaskItem key={t.task_id} task={t} updateTask={handlers.updateTask} deleteTask={handlers.deleteTask} />)}
-            </ListGroup>
+
+                <ListGroup className="task-scroll">
+                    {showTasks.map(t => <TaskItem key={t.task_id} task={t} updateTask={handlers.updateTask} deleteTask={handlers.deleteTask} />)}
+                </ListGroup>
+
+
+
+
         </>
-
-
-
     )
 
 }
