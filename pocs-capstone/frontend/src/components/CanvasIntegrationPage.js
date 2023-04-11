@@ -149,7 +149,7 @@ const CanvasIntegrationPage = () => {
             {/* </Card.Header>{" "} */}
           {/* </Card> */}
           <hr />
-          <center><Card className = "canvas_card">
+          <center><Card className = "canvas_card" style={{width: '30rem'}}>
           <Card.Title>
             Follow these steps to link your Canvas account with Study Buddy! {" "}
           </Card.Title>
