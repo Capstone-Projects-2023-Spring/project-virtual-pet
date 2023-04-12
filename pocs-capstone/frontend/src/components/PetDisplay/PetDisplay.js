@@ -36,6 +36,29 @@ const HAPPY = 'H'
 const TASK_URL = "/tasks/"
 const USER_URL = "/user-data/"
 const TODAY = new Date()
+
+const WEIGHTS = [
+    '5 paperclips',
+    '1 nickel',
+    '2 pieces of bubblgegum',
+    '3 mulberries',
+    '1/2 a large radish',
+    '13 sequins',
+    '4 miniature toadstools',
+    '7 acorns',
+    '1 small egg',
+    '9 grains of rice',
+    '5 teaspoons of cinnamon',
+    '9 apple seeds',
+    '1/3 of a grapefruit',
+    '11 sunflower petals',
+    '1 gray pebble',
+    '3 jellybeans',
+    '4 almond slivers',
+    '3/4 a slice of multigrain bread',
+    '1 handful of cotton balls'
+];
+
 const PetDisplay = () => {
 
   
