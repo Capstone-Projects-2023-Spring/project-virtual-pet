@@ -8,40 +8,26 @@ const firebaseConfig = {
     storageBucket: "notification-test-fadb6.appspot.com",
     messagingSenderId: "670745965935",
     appId: "1:670745965935:web:c4b16eff2eff447869649a"
-  };
+};
 
-  firebase.initializeApp(firebaseConfig);
-
+firebase.initializeApp(firebaseConfig);
+// Retrieve an instance of Firebase Messaging so that it can handle background messages.
 const messaging = firebase.messaging();
 
-messaging.onBackgroundMessage((payload) => {
-  console.log('Received background message: ', payload);
-
-  const notificationTitle = payload.notification.title;
-  const notificationOptions = { body: payload.notification.body };
-
-  self.registration.showNotification(notificationTitle, notificationOptions);
-});
-
- // Send a push notification to a device with a given FCM token
- const sendPushNotification = (fcmToken) => {
-    console.log("YEEELLOOO")
-    const payload = {
-      notification: {
-        title: "Happy Birthday!",
-        body: "Today is your birthday!",
-      },
-      token: fcmToken
+messaging.onBackgroundMessage(function (payload) {
+    console.log('[firebase-messaging-sw.js] Received background message ', payload);
+    // Customize notification here
+    const notificationTitle = payload.notification.title;
+    const notificationOptions = {
+        body: payload.notification.body,
+        icon: '/logo384.png',
+        // Add sound and vibration options
+        //vibrate: [200, 100, 200],
+        sound: '/meow-notif.wav',
+        //click_action: 'http://localhost:3000/'
     };
 
-    getMessaging()
-      .send(payload)
-      .then((response) => {
-        console.log("Push notification sent:", response);
-      })
-      .catch((error) => {
-        console.log("Error sending push notification:", error);
-      });
-  };
+    self.registration.showNotification(notificationTitle,
+        notificationOptions);
+});
 
-  setInterval(sendPushNotification("d2ulR6z2cJK8k9pgz__CX-:APA91bFT1kJMefJyxEkH-D2Wn1BzFwD3rpoLbxXokLT6MKmGeFFCshIAVLXrguM1kArZ1Lfnxi2CkFujUhgFESGHi9upZvN-WoOGyCUh5ZvEyfG9byj0RBVq7wIO5jfwbfzrDfpu_evQ"), 3000); // 5 minutes in milliseconds

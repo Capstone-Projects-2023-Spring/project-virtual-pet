@@ -1,5 +1,6 @@
 import { initializeApp } from 'firebase/app';
 import { getToken, getMessaging, onMessage } from 'firebase/messaging';
+import useAxiosPrivate from "./hooks/useAxiosPrivate";
 
 const firebaseConfig = {
     apiKey: "AIzaSyDDW-B6ZaDUJDaGdCkMCOCHi9VV9PeD9XU",
@@ -19,22 +20,22 @@ const messaging = getMessaging(firebaseApp);
 export const getOrRegisterServiceWorker = () => {
     if ('serviceWorker' in navigator) {
         return window.navigator.serviceWorker
-            .getRegistration('/firebase-push-notification-scope')
+            .getRegistration('/')
             .then((serviceWorker) => {
                 if (serviceWorker) return serviceWorker;
                 return window.navigator.serviceWorker.register('/firebase-messaging-sw.js', {
-                    scope: '/firebase-push-notification-scope',
+                    scope: '/',
                 });
             });
     }
     throw new Error('The browser doesn`t support service worker.');
 };
 
-export const getFirebaseToken = () =>
-    getOrRegisterServiceWorker()
-        .then((serviceWorkerRegistration) =>
-            getToken(messaging, { vapidKey: process.env.REACT_APP_VAPID_KEY, serviceWorkerRegistration }));
+    export const getFirebaseToken = () =>
+        getOrRegisterServiceWorker()
+            .then((serviceWorkerRegistration) =>
+                getToken(messaging, { vapidKey: process.env.REACT_APP_VAPID_KEY, serviceWorkerRegistration }));
 
-export const onForegroundMessage = () =>
-    new Promise((resolve) => onMessage(messaging, (payload) => resolve(payload)));
+    export const onForegroundMessage = () =>
+        new Promise((resolve) => onMessage(messaging, (payload) => resolve(payload)));
 
