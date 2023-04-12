@@ -26,6 +26,9 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
+    - name: Update .env with SECRET_KEY
+      working-directory: ./pocs-capstone/backend
+      run: echo SECRET_KEY=${{ secrets.DJANGO_SECRET_KEY_DEV }} >> .env
 
     - name: Make Migrations
       working-directory: ./pocs-capstone/backend/
