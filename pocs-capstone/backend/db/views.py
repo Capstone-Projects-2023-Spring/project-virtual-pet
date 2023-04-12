@@ -40,9 +40,8 @@ def send_notification(request):
         'notification': {
             'title': data['title'],
             'body': data['body'],
-            'sound': 'default',
-            'icon': '../../../frontend/public/favicon.ico',
-            'click_action': 'https://studybuddy.life/login',
+            #'sound': data['sound'],
+            #'icon': data['icon']
         },
     }
     response = requests.post(url, headers=headers, json=payload)
