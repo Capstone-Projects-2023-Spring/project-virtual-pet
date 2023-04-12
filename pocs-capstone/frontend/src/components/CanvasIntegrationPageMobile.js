@@ -170,7 +170,7 @@ const CanvasIntegrationPageMobile= () => {
             <div style={{ fontSize: "24px" }}>
               <p>
                 Once your token is saved, you will be redirected to the Main
-                Page.<br></br>A new 'Canvas' button will appear in the header.{" "}
+                Page.<br></br>A new 'Canvas' button will appear in your tabs.{" "}
                 <br></br>Click that button any time to retrieve or update your
                 Canvas Tasks!!
               </p>{" "}
