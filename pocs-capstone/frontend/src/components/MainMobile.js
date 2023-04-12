@@ -6,7 +6,7 @@ import InventoryBoxMobile from "./Inventory/InventoryBoxMobile.js";
 import PetProfPage from "./PageDisplay/PetProfPage.js";
 import CalendarPageMobile from "./CalendarMobile/CalendarPageMobile.js";
 import TaskPageMobile from "./PageDisplay/TaskMobile/TaskPageMobile.js";
-import ProfileAccountPageMobile from "./ProfileAccountTabMobile/ProfileAccountPageMobile";
+import AccountProfilePageMobile from "./AccountProfileTabMobile/AccountProfilePageMobile";
 import canvas_bug from "../images/canvas_bug.png";
 import useAxiosPrivate from "../hooks/useAxiosPrivate";
 import UserContext from "../context/UserContext";
@@ -67,7 +67,7 @@ const MainMobile = () => {
             {activeTab === 0 && <TaskPageMobile/>}
             {activeTab === 1 && <CalendarPageMobile/> }
             {activeTab === 2 && <InventoryBoxMobile/>}
-            {activeTab === 3 && <ProfileAccountPageMobile/>}
+            {activeTab === 3 && <AccountProfilePageMobile/>}
         
             </div>
 
