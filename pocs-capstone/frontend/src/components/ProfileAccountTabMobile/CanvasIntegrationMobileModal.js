@@ -1,4 +1,4 @@
-import { Tooltip, OverlayTrigger, Stack, Form, Button, Modal, Image } from 'react-bootstrap';
+import { Modal } from 'react-bootstrap';
 
 // import GlobalContext from '../../../context/GlobalContext'
 import { useContext } from 'react'
@@ -6,8 +6,8 @@ import { useContext } from 'react'
 
 import * as yup from "yup";
 import * as formik from 'formik'
-import PetProfPage from './PageDisplay/PetProfPage';
-import CanvasIntegrationPage from './CanvasIntegrationPage';
+import PetProfPage from '../PageDisplay/PetProfPage';
+import CanvasIntegrationPage from '../CanvasIntegrationPage';
 import CanvasIntegrationPageMobile from './CanvasIntegrationPageMobile';
 
 

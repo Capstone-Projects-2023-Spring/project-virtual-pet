@@ -3,9 +3,9 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Row, Col, Button, Card, Stack} from "react-bootstrap";
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import useAxiosPrivate from "../hooks/useAxiosPrivate";
-import AvatarContext from "../context/AvatarContext";
-import GlobalContext from "../context/GlobalContext";
+import useAxiosPrivate from "../../hooks/useAxiosPrivate";
+import AvatarContext from "../../context/AvatarContext";
+import GlobalContext from "../../context/GlobalContext";
 import { useContext } from 'react'
 
 

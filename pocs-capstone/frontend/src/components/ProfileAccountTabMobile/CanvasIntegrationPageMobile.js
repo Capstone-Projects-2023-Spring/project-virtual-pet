@@ -1,16 +1,16 @@
-import "./textbox.css";
+import "../textbox.css";
 import Card from "react-bootstrap/Card";
 import { useState, useEffect, useContext } from "react";
-import canvas_sidebar from "./canvas_sidebar.png";
-import new_access_token from "./new_access_token.png";
-import "./CanvasIntegrationPage.css";
-import "./AnimateChoice.css";
-import useAxiosPrivate from "../hooks/useAxiosPrivate";
+import canvas_sidebar from "../canvas_sidebar.png";
+import new_access_token from "../new_access_token.png";
+import "../CanvasIntegrationPage.css";
+import "../AnimateChoice.css";
+import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 import { useWindowWidth } from "@react-hook/window-size";
 import { useNavigate } from "react-router-dom";
-import UserContext from "../context/UserContext";
+import UserContext from "../../context/UserContext";
 //currently theres some repeat stuff in the two files canvas integration and animate choice.
-import cat from "../images/orangecat.png";
+import cat from "../../images/orangecat.png";
 
 //not right
 const USER_URL = "/user-data/";

@@ -6,7 +6,7 @@ import InventoryBoxMobile from "./Inventory/InventoryBoxMobile.js";
 import PetProfPage from "./PageDisplay/PetProfPage.js";
 import CalendarPageMobile from "./CalendarMobile/CalendarPageMobile.js";
 import TaskPageMobile from "./PageDisplay/TaskMobile/TaskPageMobile.js";
-import ProfileAccountPageMobile from "./ProfileAccountPageMobile";
+import ProfileAccountPageMobile from "./ProfileAccountTabMobile/ProfileAccountPageMobile";
 import canvas_bug from "../images/canvas_bug.png";
 import useAxiosPrivate from "../hooks/useAxiosPrivate";
 import UserContext from "../context/UserContext";

@@ -4,7 +4,6 @@ import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import PetProfileMobile from "./PetProfileMobile.js";
 import CanvasIntegrationPageMobileModal from "./CanvasIntegrationMobileModal.js";
-import Logout from "./LoginLogout/Logout.js"
 import "./ProfileAccountPageMobile.css";
 
 
