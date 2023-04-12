@@ -1,5 +1,5 @@
 import "../textbox.css";
-import Card from "react-bootstrap/Card";
+import { Card, Modal } from "react-bootstrap";
 import { useState, useEffect, useContext } from "react";
 import canvas_sidebar from "../canvas_sidebar.png";
 import new_access_token from "../new_access_token.png";
@@ -16,7 +16,7 @@ import cat from "../../images/orangecat.png";
 const USER_URL = "/user-data/";
 const COURSES_URL = "/canvas/";
 
-const CanvasIntegrationPageMobile= () => {
+const CanvasIntegrationPageMobile= ({ showCanvasPage, handleCloseCanvasPage}) => {
   const { shareData } = useContext(UserContext);
   const axiosPrivate = useAxiosPrivate();
   //  const [submittedText, setSubmittedText] = useState(null);
@@ -135,6 +135,13 @@ const CanvasIntegrationPageMobile= () => {
   );
 
   return (
+    <Modal className="createtask-modal-mobile" backdrop="static" show={showCanvasPage} onHide={handleCloseCanvasPage}>
+      <Modal.Header closeButton>        
+      </Modal.Header>
+        <Modal.Body>
+
+          
+    
     <div className="body-canvas-mobile">
       {retrievingAssignments ? (
         <div className="loading-parent">{loadingImage}</div>
@@ -203,6 +210,9 @@ const CanvasIntegrationPageMobile= () => {
         {nameError !== "" ? <p>{nameError}</p> : <></>}
       </form>
     </div>
+
+    </Modal.Body>
+    </Modal>
   );
 };
 export default CanvasIntegrationPageMobile;
