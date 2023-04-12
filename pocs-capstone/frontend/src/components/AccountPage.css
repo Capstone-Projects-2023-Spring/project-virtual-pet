@@ -49,3 +49,7 @@
     justify-content: center;
     align-items: center;
 }
+
+.button-enable-notifications-account {
+    flex-direction: column;
+}

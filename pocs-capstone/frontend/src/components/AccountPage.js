@@ -31,22 +31,44 @@ function AccountPage() {
     });
   }, []);
 
-  function sendNotification() {
-    const testtoken = "d2ulR6z2cJK8k9pgz__CX-:APA91bF9BNNADNb1i0GdN5vGPHLxA7ORb7GAQwfir24lfKZH3ogqa_ITOkes7eWrCVoQQtTZ2-lqwqm3YqvpjbKqCwG7BRCHIYgA83SxDqs_pjjYud9LEcS11HO8vPwIr05xOUuE_EsY"
-    console.log("sending notification to ", testtoken)
-    const data = {
-      'token': testtoken,
-      'title': 'notification',
-      'body': 'This is a test'
-    };
+  function handleSendTestNotification() {
+    console.log("In the handleSendTestNotification function")
+    let counter = 0;
+    const maxCount = 5;
+    const intervalId = setInterval(() => {
+      if (counter === maxCount) {
+        clearInterval(intervalId);
+      } else {
+        sendTestNotification();
+        counter++;
+      }
+    }, 1 * 30 * 1000);
 
+  }
+
+  function sendTestNotification() {
     axiosPrivate
-      .post('/send-notification/', data)
+      .get("/user-data/")
       .then((response) => {
-        console.log("Notif sent:", response.data)
-      })
-      .catch((err) => {
-        console.log('Failed to send notif');
+        const token = response.data[0].firebase_tokens;
+
+        console.log("sending notification to ", token)
+        const data = {
+          'token': token,
+          'title': 'A new notification!',
+          'body': 'This is a test notification that should send 5 times, 30 seconds apart.'
+        };
+
+        axiosPrivate
+          .post('/send-notification/', data)
+          .then((response) => {
+            console.log("Notif sent:", response.data)
+          })
+          .catch((err) => {
+            console.log('Failed to send notif');
+          });
+      }).catch((err) => {
+        console.log('Fail');
       });
   }
 
@@ -240,18 +262,19 @@ function AccountPage() {
               <Form.Label>Enable push notifications:</Form.Label>
             </Form.Group>
             <div className="button-enable-notifications-account">
+              <p>Click "Turn on" to receive a popup to enable push notifications. If your token expires/refreshes, you'll need to click it again (working on fixing this!).</p>
               <Button
                 style={{ marginTop: '20px', marginBottom: '20px' }}
                 onClick={handleGetFirebaseToken}
               /*disabled={permission === 'granted' || permission === 'denied'}*/
               > Turn on
               </Button>
-
+              <p>Click "Test" to send a background test notification 5 times, 30 seconds apart. You'll need to have the app running in the background (i.e. switch to another tab) to see the notifications.</p>
               <Button
                 style={{ marginTop: '20px', marginBottom: '20px' }}
-                onClick={sendNotification}
+                onClick={handleSendTestNotification}
               /*disabled={permission === 'granted' || permission === 'denied'}*/
-              > send a notification
+              > Test
               </Button>
 
             </div>
