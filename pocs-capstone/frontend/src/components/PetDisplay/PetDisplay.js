@@ -38,25 +38,32 @@ const USER_URL = "/user-data/"
 const TODAY = new Date()
 
 const WEIGHTS = [
-    '5 paperclips',
-    '1 nickel',
-    '2 pieces of bubblegum',
-    '3 mulberries',
-    '1/2 a large radish',
-    '13 sequins',
-    '4 miniature toadstools',
-    '7 acorns',
+    '15 paperclips',
+    '3 nickels',
+    '5 pieces of bubblegum',
+    '4 mullberries',
+    '2/3 a medium radish',
+    '461 sequins',
+    '25 miniature toadstools',
+    '5 acorns',
     '1 small egg',
-    '8.5 grains of rice',
-    '5 teaspoons of cinnamon',
-    '9 apple seeds',
-    '1/3 of a grapefruit',
-    '11 sunflower petals',
-    '1 gray pebble',
-    '3 jellybeans',
-    '4 almond slivers',
-    '3/4 a slice of multigrain bread',
-    '1 handful of cotton balls'
+    '231.5 grains of rice',
+    '5 spoonfuls of cinnamon',
+    '272 apple seeds',
+    '1/17 of a grapefruit',
+    '8 cups of rose petals',
+    '2 tiny gray pebbles',
+    '12 jellybeans',
+    '1 strawberry',
+    '3 sheets of US letter sized printer paper',
+    '300 almond slivers',
+    '23/4 a slice of multigrain bread',
+    '1 big handful of cotton balls',
+    '4 clementine slices',
+    '150 wooden toothpicks',
+    '1 large thimble',
+    '3 #2 HB yellow Ticonderoga wooden pencils'
+
 ];
 
 const PetDisplay = () => {
