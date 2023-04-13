@@ -361,7 +361,7 @@ const PetDisplay = () => {
         const interval = setInterval(() => {
           const randomIndex = Math.floor(Math.random() * WEIGHTS.length);
           setCurrentWeight(WEIGHTS[randomIndex]);
-        }, 60 * 1000); // change weight every 60 seconds
+        }, 5 * 60 * 1000); // change weight every 5 minutes
         return () => clearInterval(interval);
       }, []); 
 
