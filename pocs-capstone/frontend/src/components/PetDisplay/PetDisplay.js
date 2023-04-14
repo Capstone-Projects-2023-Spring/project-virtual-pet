@@ -42,13 +42,13 @@ const WEIGHTS = [
     '3 nickels',
     '5 pieces of bubblegum',
     '4 mullberries',
-    '2/3 a medium radish',
+    '2/3 of a medium radish',
     '461 sequins',
     '25 miniature toadstools',
     '5 acorns',
     '1 small egg',
     '231.5 grains of rice',
-    '5 spoonfuls of cinnamon',
+    '6 teaspoonfuls of cinnamon',
     '272 apple seeds',
     '1/17 of a grapefruit',
     '8 cups of rose petals',
@@ -57,12 +57,12 @@ const WEIGHTS = [
     '1 strawberry',
     '3 sheets of US letter sized printer paper',
     '300 almond slivers',
-    '23/4 a slice of multigrain bread',
+    '23/4 of a slice of multigrain bread',
     '1 big handful of cotton balls',
     '4 clementine slices',
     '150 wooden toothpicks',
     '1 large thimble',
-    '3 #2 HB yellow Ticonderoga wooden pencils'
+    '3 wooden pencils'
 
 ];
 
