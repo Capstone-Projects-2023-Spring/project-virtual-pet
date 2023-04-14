@@ -168,6 +168,9 @@ const CanvasIntegrationPageMobile= ({ showCanvasPage, handleCloseCanvasPage}) =>
                     <br></br><br></br>
                     5. Select "Generate token", and copy and paste it below!
                     <br></br><br></br>
+                    <span style={{fontWeight: "bold"}}>Note: Canvas token can't be generate or accessed in the canvas mobile app.
+                    You must use a browser.</span>
+                    <br></br><br></br>
                     Once your token is submitted, you will be redirected to the Main
                     Page. A new 'Canvas' button will appear in your tabs.
                     Click that button any time to retrieve or update your
