@@ -1,5 +1,5 @@
 import "../textbox.css";
-import { Card, Modal } from "react-bootstrap";
+import { Card, Modal, Stack, Form, Button, Col } from "react-bootstrap";
 import { useState, useEffect, useContext } from "react";
 import canvas_sidebar from "../canvas_sidebar.png";
 import new_access_token from "../new_access_token.png";
@@ -11,26 +11,23 @@ import { useNavigate } from "react-router-dom";
 import UserContext from "../../context/UserContext";
 //currently theres some repeat stuff in the two files canvas integration and animate choice.
 import cat from "../../images/orangecat.png";
+import { CardBody } from "reactstrap";
+import GlobalContext from "../../context/GlobalContext";
 
 //not right
 const USER_URL = "/user-data/";
 const COURSES_URL = "/canvas/";
 
 const CanvasIntegrationPageMobile= ({ showCanvasPage, handleCloseCanvasPage}) => {
+
   const { shareData } = useContext(UserContext);
   const axiosPrivate = useAxiosPrivate();
-  //  const [submittedText, setSubmittedText] = useState(null);
+  const nav = useNavigate();
   const [canvas_token, setEnteredText] = useState("");
   const [nameError, setNameError] = useState("");
-
   const [tokenReady, setTokenReady] = useState(false);
   const [retrievingAssignments, setRetrievingAssignments] = useState(false);
-
   const [submitText, setSubmitText] = useState("Submit");
-
-  const nav = useNavigate();
-
-  const width = useWindowWidth();
 
   const setSubmittingTokenState = (text) => {
     setRetrievingAssignments(true);
@@ -134,84 +131,80 @@ const CanvasIntegrationPageMobile= ({ showCanvasPage, handleCloseCanvasPage}) =>
     </div>
   );
 
+  const closeModal = () => {
+    setNameError("");
+    handleCloseCanvasPage();
+  }
+
   return (
-    <Modal className="createtask-modal-mobile" backdrop="static" show={showCanvasPage} onHide={handleCloseCanvasPage}>
+    <Modal className="createtask-modal-mobile" backdrop="static" show={showCanvasPage} onHide={closeModal}>
       <Modal.Header closeButton>        
       </Modal.Header>
-        <Modal.Body>
+        <Modal.Body>  
 
-          
-    
-    <div className="body-canvas-mobile">
-      {retrievingAssignments ? (
-        <div className="loading-parent">{loadingImage}</div>
-      ) : (
-        <>
-          {/* <Card > */}
-            <Card.Header className="pet-choice">
-              <center>
-                <h1 style={{fontSize: "18px", justifyContent: "center"}}>ADD YOUR CANVAS ACCOUNT!</h1>
-              </center>
-            </Card.Header>
-          {/* </Card> */}
-          <hr />
-          <Card.Title className="text">
-            Follow these steps to link your Canvas account with Study Buddy!{" "}
-          </Card.Title>
-          <Card.Body className="text">
-            <p>
-              {" "}
-              1. Access your Canvas account, and select your profile on the
-              sidebar:{" "}
-            </p>
-            <p></p>
-            <img src={canvas_sidebar} alt="Canvas Sidebar"></img>
-            <p></p> 2. Select settings.
-            <p></p> 3. Under approved integrations, scroll all the way to the
-            bottom!
-            <p></p> Select "New access token".
-            <p></p> <img src={new_access_token} alt="+ New access token"></img>
-            <p></p> 4. Enter a purpose and expiration date (ex. study buddy, and
-            the end of your semester date).
-            <p></p> Select "Generate token", and copy and paste it here!
-            <div style={{ fontSize: "24px" }}>
-              <p>
-                Once your token is saved, you will be redirected to the Main
-                Page.<br></br>A new 'Canvas' button will appear in your tabs.{" "}
-                <br></br>Click that button any time to retrieve or update your
-                Canvas Tasks!!
-              </p>{" "}
-            </div>
-          </Card.Body>
-
-          <form
-            className="submit_canvas"
-            onSubmit={(event) => handleSubmit(event)}
-          >
-            <input
-              className="input"
-              type="text"
-              placeholder="Enter token here!"
-              value={canvas_token}
-              disabled={retrievingAssignments ? true : false}
-              onChange={textChangeHandler}
-            />
-            <button
-              className="button"
-              type="submit"
-              disabled={retrievingAssignments ? true : false}
-            >
-              {submitText}
-            </button>
-          </form>
-        </>
-      )}
-      <form className="submit_canvas">
-        {nameError !== "" ? <p>{nameError}</p> : <></>}
-      </form>
-    </div>
-
-    </Modal.Body>
+        <div className="body-canvas-mobile">
+          {retrievingAssignments ? (
+            <div className="loading-parent">{loadingImage}</div>
+          ) : (
+            <>           
+              <div className="mini-page">
+                <Card className='pet-profile-position'>
+                  <Card.Header>
+                    <Stack direction="horizontal" gap={3}>
+                      <div className='pet-profile-header'>Follow these steps to link your Canvas account with Study Buddy!</div>
+                    </Stack>
+                  </Card.Header>
+                  <CardBody>
+                    1. Access your Canvas account, and select your profile on the
+                    sidebar: <br></br>
+                    <center><img src={canvas_sidebar} alt="Canvas Sidebar"></img></center>
+                    <br></br>
+                    2. Select settings.
+                    <br></br><br></br>
+                    3. Under approved integrations, scroll all the way to the bottom!
+                    <br></br><br></br>
+                    4. Enter a purpose and expiration date (ex. study buddy, and
+                    the end of your semester date).
+                    <br></br><br></br>
+                    5. Select "Generate token", and copy and paste it below!
+                    <br></br><br></br>
+                    Once your token is submitted, you will be redirected to the Main
+                    Page. A new 'Canvas' button will appear in your tabs.
+                    Click that button any time to retrieve or update your
+                    Canvas Tasks!!<br></br><br></br>
+                    <Form
+                      id="canvas_form"
+                      className="submit_canvas"
+                      onSubmit={(event) => handleSubmit(event)}
+                    >
+                      <Form.Group className="mb-2">
+                        <Col sm={4}>
+                          <Form.Control
+                            type="text"
+                            value={canvas_token}
+                            disabled={retrievingAssignments ? true : false}
+                            onChange={textChangeHandler}
+                            placeholder={"Enter canvas token here!"}
+                          />
+                        </Col>
+                      </Form.Group>
+                        {nameError !== "" ? <p style={{fontSize: "20px"}}>{nameError}</p> : <></>}
+                    
+                        <Button
+                          style={{ marginTop: "10px", marginBottom: "0px" }}
+                          type="submit"
+                          disabled={retrievingAssignments ? true : false}
+                        >
+                        {submitText}
+                      </Button>
+                    </Form>
+                  </CardBody>   
+                </Card>
+              </div>
+            </>
+          )}
+        </div>
+        </Modal.Body>
     </Modal>
   );
 };

@@ -54,7 +54,7 @@ function PetProfileMobile(props) {
 
 
   return (
-    <Modal className="createtask-modal-mobile" backdrop="static" show={props.showPetProf} onHide={props.handleClosePet}>
+    <Modal className="createtask-modal-mobile" style={{ overflow: "hidden" }} backdrop="static" show={props.showPetProf} onHide={props.handleClosePet}>
       <Modal.Header closeButton>
         {/* <Modal.Title>Pet Profile</Modal.Title> */}
         
