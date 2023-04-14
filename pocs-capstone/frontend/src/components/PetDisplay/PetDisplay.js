@@ -328,7 +328,7 @@ const PetDisplay = () => {
     return (
         <div className='pet-display'>
             <Card style={{ width: '25rem' }}>
-                <Card.Header className='pet-name'>{contextHandler?.avatarInfo.pet_name} + branch SB-24</Card.Header>
+                <Card.Header className='pet-name'>{contextHandler?.avatarInfo.pet_name}</Card.Header>
 
                 <div className="Board" >
 
