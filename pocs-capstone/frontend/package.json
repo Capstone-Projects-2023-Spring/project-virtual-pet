@@ -27,6 +27,7 @@
     "react-dnd": "^16.0.1",
     "react-dnd-html5-backend": "^16.0.1",
     "react-dom": "^18.2.0",
+    "react-onesignal": "^2.0.4",
     "react-responsive-spritesheet": "^2.3.9",
     "react-router-dom": "^6.8.2",
     "react-scripts": "^5.0.1",
