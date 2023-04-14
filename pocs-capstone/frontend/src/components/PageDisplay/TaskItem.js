@@ -1,11 +1,14 @@
 
 import './PageDisplay.css'
-import { CloseButton, Stack, Badge, Form, ListGroup } from 'react-bootstrap';
+import { CloseButton, Stack, Badge, Form, ListGroup, Toast, ToastContainer } from 'react-bootstrap';
 import CreateTaskForm from './CreateTaskForm';
 import { useState } from 'react'
 
-const TaskItem = ({ task, updateTask, deleteTask }) => {
+const TaskItem = ({ task, updateTask, deleteTask, setOtherToast, otherToast}) => {
     const [showCreateTask, setShowCreateTask] = useState(false);
+    const [showToast, setShowToast] = useState(false);
+    const [timeLeft, setTimeLeft] = useState("");
+    const [delayToast, setDelayToast] = useState(2500)
 
     const handleClose = () => setShowCreateTask(false);
     const handleShow = () => setShowCreateTask(true);
@@ -13,6 +16,7 @@ const TaskItem = ({ task, updateTask, deleteTask }) => {
     const calculateDueDate = (date) => {
         const today_date = new Date()
         const due_date = new Date(`${date}T00:00:00`)
+
         const year_diff = due_date.getYear() - today_date.getYear()
         const mon_diff = due_date.getMonth() - today_date.getMonth()
         const date_diff = Math.round((Date.parse(due_date) - Date.parse(today_date)) / 86400000) + 1
@@ -26,7 +30,53 @@ const TaskItem = ({ task, updateTask, deleteTask }) => {
 
     }
 
+    const completeTask = (taskItem) => {
+
+        // Ranges: 
+        // SMALL: 0-1 hour
+        // MEDIUM: 1-4 hour(s)
+        // LARGE: 4-72 hours
+        // CAKE: 72-168 hours
+        // Users should have at LEAST spent the lower range amount of time with a task before being able to complete it 
+        // make users wait for 1 minute before they're able to complete a small task?
+
+        const timeRequired = {
+            "S": 1 / 60,
+            "M": 1,
+            "L": 4,
+            "C": 72
+        }
+
+        const atLeast = {
+            "S": "1 minute",
+            "M": "1 hour",
+            "L": "4 hours",
+            "C": "3 days"
+        }
+
+        // Hours difference between when the task was created and now 
+        const hourDiff = Math.abs((new Date()) - new Date(taskItem.created_date)) / 36e5;
+        // const canComplete = hourDiff >= timeRequired[taskItem.task_type] ? true : false
+        const canComplete = taskItem.received ? true : hourDiff >= timeRequired[taskItem.task_type] ? true : false
+        // console.log("ALREADY RECEIVED ITEM / FINISHED TASK BEFORE?", taskItem.received, "CAN THIS BE COMPLETED", canComplete, "HOURS SINCE CREATED:", hourDiff, "TASK SIZE:", taskItem.task_type, "HOURS NEEDED TO COMPLETE TASK TYPE", timeRequired[taskItem.task_type])
+        if (canComplete === true) {
+            setShowToast(false)
+            
+            updateTask(taskItem.task_id)
+
+        }
+        else {
+            setTimeLeft(atLeast[taskItem.task_type])
+            
+            setShowToast(true)
+            
+        }
+
+    }
+
     const computeStyle = `mb-3 ${task.completed ? "completed-checkbox" : "noncompleted-checkbox"}`
+
+
 
     return (
 
@@ -73,7 +123,8 @@ const TaskItem = ({ task, updateTask, deleteTask }) => {
                                     <Form >
                                         <div key="default-checkbox" className={computeStyle}>
                                             {/* <div key="default-checkbox" className="mb-3 noncompleted-checkbox"> */}
-                                            <Form.Check defaultChecked={task.completed} type="checkbox" id="default-checkbox" onClick={() => { updateTask(task.task_id) }} />
+                                            {/* (!canCompleteTask && !task.completed) */}
+                                            <Form.Check checked={task.completed} onChange={e => { }} type="checkbox" id="default-checkbox" onClick={() => { completeTask(task) }} />
                                         </div>
                                     </Form>
                                 </ListGroup.Item>
@@ -98,12 +149,29 @@ const TaskItem = ({ task, updateTask, deleteTask }) => {
                                     <CloseButton onClick={() => deleteTask(task.task_id)} />
 
                                 </ListGroup.Item>
-                                
+
                             </ListGroup >
                             <CreateTaskForm {...{ showCreateTask, handleClose, task }} />
                         </>
                     )
             }
+
+            <ToastContainer position='top-end' className="p-3">
+                <Toast onClose={() => {setShowToast(false)}} show={showToast} delay={delayToast} autohide>
+                    <Toast.Header>
+                       
+                        <img src="holder.js/20x20?text=%20" className="rounded me-2" alt="" />
+                        <strong className="me-auto">Tasks</strong>
+                        <small className="text-muted">just now</small>
+                    </Toast.Header>
+                    <Toast.Body>
+                        You can't complete this task just yet!
+                        <p>Wait at least <b>{timeLeft}</b> to complete this task.</p>
+
+                    </Toast.Body>
+                </Toast>
+            </ToastContainer>
+
         </>
 
     )

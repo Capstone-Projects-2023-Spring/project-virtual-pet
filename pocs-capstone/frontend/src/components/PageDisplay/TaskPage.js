@@ -9,7 +9,6 @@ import { Tab, Tabs, Button, Stack, Card } from 'react-bootstrap';
 const TaskPage = () => {
     const [showCreateTask, setShowCreateTask] = useState(false);
     const [filterTodo, setFilterTodo] = useState('all')
-
     const handleClose = () => setShowCreateTask(false);
     const handleShow = () => setShowCreateTask(true);
 
