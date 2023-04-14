@@ -44,6 +44,20 @@ const Header = ({  }) => {
         resetSubmitTokenState(
           "Error getting assignments. Please check your token and try again."
         );
+        alert("There is problem with your canvas token!\nPlease resubmit your token!\nThe header button will now disappear!")
+        const url = "/user-data/" + userInfo.id + "/";
+        const tok = {
+          canvas_token: "BADTOKEN"
+        }
+
+        axiosPrivate.patch(url,tok )
+        .then((response) => {
+          console.log(response.data);
+          setUserInfo(response.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
       });
   }
 
@@ -81,7 +95,7 @@ const Header = ({  }) => {
           </Navbar.Brand>
         </div>
 
-        {userInfo.canvas_token != "" ? (
+        {userInfo.canvas_token !== "BADTOKEN" ? (
           <div style={{ display: "grid", gridAutoFlow: "column" }}>
             <button className="container-canvas-logo" onClick={getCourses}>
               <img
