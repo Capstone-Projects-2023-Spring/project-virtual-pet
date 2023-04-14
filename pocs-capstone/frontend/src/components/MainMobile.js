@@ -1,6 +1,6 @@
 import PetDisplayMobile from "./PetDisplay/PetDisplayMobile"
 import { useState, useContext, useRef } from "react";
-import "./MainMobile.css";
+import './MainMobile.css';
 import GlobalContext from "../context/GlobalContext.js";
 import InventoryBoxMobile from "./Inventory/InventoryBoxMobile.js";
 import PetProfPage from "./PageDisplay/PetProfPage.js";
@@ -17,13 +17,8 @@ import { useNavigate } from "react-router-dom";
 
 const COURSES_URL = "/canvas/";
 
-
-
-
 const MainMobile = () => {
   const handlers = useContext(GlobalContext);
-
-
 
   const [activeTab, setActiveTab] = useState(0);
   const axiosPrivate = useAxiosPrivate();
