@@ -15,9 +15,13 @@ import GlobalContext from "../context/GlobalContext.js";
 import UserContext from "../context/UserContext";
 import CalculateXP from "../algos/assignXP.js";
 import CalculatePetLevel from "../algos/calculatePetLevel.js";
-
+import runOneSignal from '../onesignal.js';
 
 const Main = () => {
+  useEffect(() => {
+    runOneSignal();
+  })
+
   const axiosPrivate = useAxiosPrivate();
   const [avatarInfo, setAvatar] = useState({});
   const width = useWindowWidth();
@@ -246,7 +250,7 @@ const Main = () => {
   }
 
   // const handlers = {
-    
+
   // }
 
 
@@ -332,7 +336,7 @@ const Main = () => {
   };
   // Moved from PetDisplay - passed base type and level when called in Candy
   const getExp = (candy_base_type, candy_level) => {
-  
+
     const received_xp = CalculateXP(candy_base_type, candy_level);
 
 
@@ -341,17 +345,17 @@ const Main = () => {
     const today = new Date();
     const todayString = today.toISOString().split("T")[0];
 
-   
+
     const updatedAvatar = {
       ...avatarInfo,
       total_xp: total_xp,
       last_feed: todayString,
     };
-  
+
     axiosPrivate
       .patch(`/avatar/${avatarInfo.avatar_id}/`, updatedAvatar)
       .then((response) => {
-      
+
         setAvatar(response.data); //change this to add to previous state instead of replacing completely (in case of >1 avatar for 1 user)
         getLevel(avatarInfo.total_xp);
       })
