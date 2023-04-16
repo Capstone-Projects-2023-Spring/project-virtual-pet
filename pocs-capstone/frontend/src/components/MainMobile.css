@@ -4,7 +4,8 @@
   grid-template-columns: 100%;
   height: 100vh;
   width: 100vw;
-  background-color: rgb(255, 255, 255);
+  overflow: hidden;
+  background-color: rgb(255, 198, 198);
   /* grid-template-areas: 'myBottom myBottom ...' 'myBottom myBottom ...'; */
 }
 
@@ -35,7 +36,7 @@
 
 .tab-container {
   position: absolute;
-  bottom: 0;
+  bottom: calc(env(safe-area-inset-bottom) + 16px);
   left: 0;
   width: 100vw;
   display: flex;
@@ -87,6 +88,7 @@
   /* justify-content: space-between; */
   /* height: 48vh; */
   overflow:auto;
+
   /* height: auto; */
 
   
