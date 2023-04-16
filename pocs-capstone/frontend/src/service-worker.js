@@ -6,12 +6,29 @@
 // code you'd like.
 // You can also remove this file if you'd prefer not to use a
 // service worker, and the Workbox build step will be skipped.
+importScripts('https://cdn.onesignal.com/sdks/OneSignalSDKWorker.js');
 
 import { clientsClaim } from 'workbox-core';
 import { ExpirationPlugin } from 'workbox-expiration';
 import { precacheAndRoute, createHandlerBoundToURL } from 'workbox-precaching';
 import { registerRoute } from 'workbox-routing';
 import { StaleWhileRevalidate } from 'workbox-strategies';
+
+self.addEventListener('activate', (event) => {
+  event.waitUntil(
+    Promise.resolve()
+      .then(() => {
+        // Add OneSignal initialization code here
+        OneSignal.init({
+          appId: '03d68522-7024-4cff-a04b-8f49eb789abe',
+        });
+      })
+      .then(() => {
+        self.registration.showNotification('ServiceWorker is activated!');
+      })
+  );
+});
+
 
 clientsClaim();
 
