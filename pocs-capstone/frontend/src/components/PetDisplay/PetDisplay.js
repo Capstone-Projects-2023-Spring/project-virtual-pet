@@ -72,7 +72,7 @@ const PetDisplay = () => {
     //TODO - shouldn't call calc-pet-lev 3 times
     const axiosPrivate = useAxiosPrivate();
     const [mood,setMood]=useState(NEUTRAL); //H = happy, S = Sad, N = Neutral
-    const [mooddesc, setMoodDesc] = useState("Content");
+    const [mooddesc, setMoodDesc] = useState("");
     const [avatarImage, setAvatarImage] = useState(null);
     //const avatar_handler = useContext(AvatarContext);
     const contextHandler = useContext(GlobalContext);
