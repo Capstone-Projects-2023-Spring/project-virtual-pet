@@ -170,7 +170,7 @@ function AccountPage() {
           </Form>
         </div>
 
-        <p>Site version as of 3:48pm 4/16/23</p>
+        <p>Site version as of 2:41pm 4/17/23</p>
       </Card>
     </div>
   );
