@@ -15,7 +15,7 @@ const TaskNoticeMobile = ({ showNotice, setShowNotice, task }) => {
         <>
             <Modal centered className="task-notice-modal-mobile"  show={showNotice} onHide={handleClose}>
                 <Modal.Header closeButton >
-                    <Modal.Title>Task Completion Notice</Modal.Title>  
+                    <Modal.Title className="task-notice-modal-title-mobile">Task Completion Notice</Modal.Title>  
                 </Modal.Header>
                 <Modal.Body style={{ 'textAlign': 'center' }}>
                     {/* <span > */}

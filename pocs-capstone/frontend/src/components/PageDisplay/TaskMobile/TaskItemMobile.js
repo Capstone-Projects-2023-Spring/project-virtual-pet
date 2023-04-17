@@ -108,7 +108,7 @@ const TaskItemMobile = ({ task, updateTask, deleteTask }) => {
 
                                     <Form>
                                         <div key="default-checkbox" className={computeStyle}>
-                                            <Form.Check checked={task.completed} type="checkbox" id="default-checkbox" onClick={() => { completeTask(task) }} />
+                                            <Form.Check checked={task.completed} onChange={e => { }} type="checkbox" id="default-checkbox" onClick={() => { completeTask(task) }} />
                                         </div>
                                     </Form>
 
