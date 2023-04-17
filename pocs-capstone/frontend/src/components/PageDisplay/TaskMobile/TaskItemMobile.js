@@ -2,11 +2,13 @@
 // import './PageDisplay.css'
 import { CloseButton, Stack, Badge, Form, ListGroup } from 'react-bootstrap';
 import CreateTaskFormMobile from './CreateTaskFormMobile';
+import TaskNotice from './TaskNoticeMobile'
 import { useState } from 'react';
 import "./TaskPageMobile.css";
 
 const TaskItemMobile = ({ task, updateTask, deleteTask }) => {
     const [showCreateTask, setShowCreateTask] = useState(false);
+    const [showNotice, setShowNotice] = useState(false)
 
     const handleClose = () => setShowCreateTask(false);
     const handleShow = () => setShowCreateTask(true);
@@ -20,6 +22,37 @@ const TaskItemMobile = ({ task, updateTask, deleteTask }) => {
 
         const [mag, format] = (mon_diff === 0 && year_diff === 0) ? [date_diff, 'day'] : mon_diff < 12 && year_diff === 0 ? [mon_diff, 'month'] : [year_diff, 'year']
         return mag > 0 ? (mag === 1 ? `in ${mag} ${format}` : `in ${mag} ${format}s`) : mag < 0 ? (mag === -1 ? `${Math.abs(mag)} ${format} ago` : `${Math.abs(mag)} ${format}s ago`) : ``
+
+    }
+
+    const completeTask = (taskItem) => {
+
+        // Ranges: 
+        // SMALL: 0-1 hour
+        // MEDIUM: 1-4 hour(s)
+        // LARGE: 4-72 hours
+        // CAKE: 72-168 hours
+        // Users should have at LEAST spent the lower range amount of time with a task before being able to complete it 
+        // make users wait for 1 minute before they're able to complete a small task?
+
+        const timeRequired = {
+            "S": 1 / 60,
+            "M": 1,
+            "L": 4,
+            "C": 72
+        }
+
+        // Hours difference between when the task was created and now 
+        const hourDiff = Math.abs((new Date()) - new Date(taskItem.created_date)) / 36e5;
+        const canComplete = taskItem.received ? true : hourDiff >= timeRequired[taskItem.task_type] ? true : false
+        // console.log("ALREADY RECEIVED ITEM / FINISHED TASK BEFORE?", taskItem.received, "CAN THIS BE COMPLETED", canComplete, "HOURS SINCE CREATED:", hourDiff, "TASK SIZE:", taskItem.task_type, "HOURS NEEDED TO COMPLETE TASK TYPE", timeRequired[taskItem.task_type])
+        if (canComplete === true) {
+            updateTask(taskItem.task_id)
+
+        }
+        else {
+            setShowNotice(true)
+        }
 
     }
 
@@ -75,7 +108,7 @@ const TaskItemMobile = ({ task, updateTask, deleteTask }) => {
 
                                     <Form>
                                         <div key="default-checkbox" className={computeStyle}>
-                                            <Form.Check defaultChecked={task.completed} type="checkbox" id="default-checkbox" onClick={() => { updateTask(task.task_id) }} />
+                                            <Form.Check checked={task.completed} type="checkbox" id="default-checkbox" onClick={() => { completeTask(task) }} />
                                         </div>
                                     </Form>
 
@@ -106,6 +139,7 @@ const TaskItemMobile = ({ task, updateTask, deleteTask }) => {
                                 </ListGroup.Item>
                             </ListGroup >
                             <CreateTaskFormMobile {...{ showCreateTask, handleClose, task }} />
+                            <TaskNotice showNotice={showNotice} setShowNotice={setShowNotice} task={task} />
                         </>
                     )
             }

@@ -76,7 +76,7 @@
 }
 
 
-.createtask-modal-mobile {
+.task-notice-modal-mobile, .createtask-modal-mobile {
     width: 100vw;
     height: 80vh;
     font-size: calc(1.5vw + 1vh);

@@ -33,7 +33,7 @@ function CreateTaskForm(props) {
   }
 
   return (
-    <Modal className="createtask-modal-mobile" backdrop="static" show={props.showCreateTask} onHide={props.handleClose}>
+    <Modal centered className="createtask-modal-mobile" backdrop="static" show={props.showCreateTask} onHide={props.handleClose}>
       <Modal.Header closeButton>
         <Modal.Title>{title}</Modal.Title>
       </Modal.Header>
