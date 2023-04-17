@@ -17,6 +17,7 @@ import white_H_gif from '../../images/white_happy_gif.gif'
 import white_S_gif from '../../images/white_sad_gif.gif'
 import tux_H_gif from '../../images/tux_happy_gif.gif'
 import tux_S_gif from '../../images/tux_sad_gif.gif'
+import white_click from '../../images/whitecatclick_frame1_scaled_5x_pngcrushed.png' 
 import { useDrop } from "react-dnd";
 import { useContext, useEffect, useRef, useState } from 'react';
 import Spritesheet from 'react-responsive-spritesheet'
@@ -73,10 +74,11 @@ const PetDisplay = () => {
     const axiosPrivate = useAxiosPrivate();
     const [mood,setMood]=useState(NEUTRAL); //H = happy, S = Sad, N = Neutral
     const [avatarImage, setAvatarImage] = useState(null);
+    const [click, setClick] = useState(true);
     //const avatar_handler = useContext(AvatarContext);
     const contextHandler = useContext(GlobalContext);
     const [spritesheetInstance, setSpritesheetInstance] = useState(null);
-    //const [exp, setExp] = useState(avatar_handler.avatarInfo.total_xp);
+    //const [exp, setExp] = useState(avatar_handler.avatarInfo.total_   `xp);
     const [level, setLevel] = useState(CalculatePetLevel(contextHandler?.avatarInfo.total_xp).LEVEL);
     //const [remainder, setRemainder] = useState(CalculatePetLevel(avatar_handler.avatarInfo.total_xp).REMAINDER);
     //const [next_level, setNextLevel] = useState(CalculatePetLevel(avatar_handler.avatarInfo.total_xp).REMAINDER);  
@@ -96,15 +98,27 @@ const PetDisplay = () => {
         contextHandler?.setSpritesheetInstance(spritesheet);
     }
 
-    const handleClick = (spritesheet) => {
-        spritesheet.goToAndPlay(1);
-        spritesheet.pause();
-    }
+
+    const handleClick = () => {
+        setClick(true);
+        setAvatarImage(white_click);
+        setTimeout(() => {
+          setAvatarImage(getavatarImage(contextHandler?.avatarInfo));
+          console.log(getavatarImage(contextHandler?.avatarInfo))
+        }, 2000);
+        setClick(false);
+      };
+
 
     function dateDelta(date1,date2){
        return Math.floor((date1-date2)/(1000*60*60*24))
     }
-
+    // useEffect(() => {
+    //     const timer = setTimeout(() => {
+    //       setValue(prevValue);
+    //     }, 3000);
+    //     return () => clearTimeout(timer);
+    //   }, [value]);
 
     //We should calculate the pets modd on change of state
     /*
@@ -190,97 +204,101 @@ const PetDisplay = () => {
 
     //TEMP USE EFFECT TO SEE MOOD
     //Mary, plug in your state changes here!!
+
+    const getavatarImage = (pet) => {
+        switch (pet.avatar_type) {
+            case 'CT':
+                console.log(pet.palette);
+                switch (pet.palette) {
+                    case 0:
+                       if(mood==='N'){
+                            setAvatarImage(orange_cat);
+                       //} else {
+                        //    setAvatarImage(`orange_${mood}_gif`)
+                           // console.log(`orange_${mood}_gif`)
+                       } else if (mood === 'H'){
+                            setAvatarImage(orange_H_gif);
+                       } else {
+                            setAvatarImage(orange_S_gif);
+                       }
+                    return
+                    case 1:
+                        if(mood==='N'){
+                            setAvatarImage(gray_cat);
+                       } else if(mood==='H'){
+                            setAvatarImage(gray_H_gif);
+                            // setAvatarImage(`gray_${mood}_gif`)
+                            // console.log(`gray_${mood}_gif`)
+                       } else {
+                        setAvatarImage(gray_S_gif);
+                       }
+                    return
+                    case 2:
+                        case 1:
+                        // if(click===true){
+                        //     setAvatarImage(white_click);
+                        // }
+                        if(mood==='N'){
+                            setAvatarImage(white_cat);
+                       } else if(mood==='H'){
+                            setAvatarImage(white_H_gif);
+                            // setAvatarImage(`gray_${mood}_gif`)
+                            // console.log(`gray_${mood}_gif`)
+                       } else {
+                        setAvatarImage(white_S_gif);
+                       }
+                    
+                    return
+                    case 3:
+                        case 1:
+                        if(mood==='N'){
+                            setAvatarImage(tux_cat);
+                       } else if(mood==='H'){
+                            setAvatarImage(tux_H_gif);
+                            // setAvatarImage(`gray_${mood}_gif`)
+                            // console.log(`gray_${mood}_gif`)
+                       } else {
+                        setAvatarImage(tux_S_gif);
+                       }
+                    return
+                    // case 2:
+                    //     if(mood==='N'){
+                    //         setAvatarImage(orange_cat);
+                    //    //} else {
+                    //     //    setAvatarImage(`orange_${mood}_gif`)
+                    //        // console.log(`orange_${mood}_gif`)
+                    //    } else if (mood === 'H'){
+                    //         setAvatarImage(orange_H_gif);
+                    //    } else {
+                    //         setAvatarImage(orange_S_gif);
+                    //    }
+                    
+                       // switch(mood){
+                    //         case 'N':
+                    //             setAvatarImage(gray_cat);
+                    //         case 'H':
+                    //             setAvatarImage(gray_H_gif);
+                    //         case 'S':
+                    //             setAvatarImage(gray_S_gif);
+                    //   //  }
+                        
+                        // CHANGE TO IMAGE OF OTHER CAT (black palette)
+                        // return require('../../images/graycat.png')
+                       // return graysheet;
+                }
+            
+
+            case 'DG':
+                return ''
+            case 'CR':
+                return ''
+            case 'RK':
+                return ''
+        } }
     useEffect(()=>{
         console.log("MOOD------>",mood)
-        const getavatarImage = (pet) => {
-            switch (pet.avatar_type) {
-                case 'CT':
-                    console.log(pet.palette);
-                    switch (pet.palette) {
-                        case 0:
-                           if(mood==='N'){
-                                setAvatarImage(orange_cat);
-                           //} else {
-                            //    setAvatarImage(`orange_${mood}_gif`)
-                               // console.log(`orange_${mood}_gif`)
-                           } else if (mood === 'H'){
-                                setAvatarImage(orange_H_gif);
-                           } else {
-                                setAvatarImage(orange_S_gif);
-                           }
-                        return
-                        case 1:
-                            if(mood==='N'){
-                                setAvatarImage(gray_cat);
-                           } else if(mood==='H'){
-                                setAvatarImage(gray_H_gif);
-                                // setAvatarImage(`gray_${mood}_gif`)
-                                // console.log(`gray_${mood}_gif`)
-                           } else {
-                            setAvatarImage(gray_S_gif);
-                           }
-                        return
-                        case 2:
-                            case 1:
-                            if(mood==='N'){
-                                setAvatarImage(white_cat);
-                           } else if(mood==='H'){
-                                setAvatarImage(white_H_gif);
-                                // setAvatarImage(`gray_${mood}_gif`)
-                                // console.log(`gray_${mood}_gif`)
-                           } else {
-                            setAvatarImage(white_S_gif);
-                           }
-                        return
-                        case 3:
-                            case 1:
-                            if(mood==='N'){
-                                setAvatarImage(tux_cat);
-                           } else if(mood==='H'){
-                                setAvatarImage(tux_H_gif);
-                                // setAvatarImage(`gray_${mood}_gif`)
-                                // console.log(`gray_${mood}_gif`)
-                           } else {
-                            setAvatarImage(tux_S_gif);
-                           }
-                        return
-                        // case 2:
-                        //     if(mood==='N'){
-                        //         setAvatarImage(orange_cat);
-                        //    //} else {
-                        //     //    setAvatarImage(`orange_${mood}_gif`)
-                        //        // console.log(`orange_${mood}_gif`)
-                        //    } else if (mood === 'H'){
-                        //         setAvatarImage(orange_H_gif);
-                        //    } else {
-                        //         setAvatarImage(orange_S_gif);
-                        //    }
-                        
-                           // switch(mood){
-                        //         case 'N':
-                        //             setAvatarImage(gray_cat);
-                        //         case 'H':
-                        //             setAvatarImage(gray_H_gif);
-                        //         case 'S':
-                        //             setAvatarImage(gray_S_gif);
-                        //   //  }
-                            
-                            // CHANGE TO IMAGE OF OTHER CAT (black palette)
-                            // return require('../../images/graycat.png')
-                           // return graysheet;
-                    }
-                
-    
-                case 'DG':
-                    return ''
-                case 'CR':
-                    return ''
-                case 'RK':
-                    return ''
-            }
-        }
     getavatarImage(contextHandler?.avatarInfo);
-    },[mood])
+    },[mood,,click]);
 
 
     const retAvatarImage = () => {
@@ -374,7 +392,7 @@ const PetDisplay = () => {
 
                     <div className='p-sprite-display'>
                         <img src={bgimage} alt="background" className="bg-sprite" />
-                        <img src = {avatarImage} className = "p-sprite"></img>
+                        <img src = {avatarImage} className = "p-sprite" onClick={handleClick}></img>
                         {/* <img src = {retAvatarImage(contextHandler?.avatarInfo)} className = "p-sprite"></img> */}
                         {/* <Spritesheet
                             image={avatarImage(contextHandler?.avatarInfo)}
