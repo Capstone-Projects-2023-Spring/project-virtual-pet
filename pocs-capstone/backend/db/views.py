@@ -109,13 +109,17 @@ def mock_profile_data():
     print("HERE")
     _tasks = []
     try:
-        for i in range(1, 6):
-            print("HERE:"+str(i))
+        for i in range(1, 50):
+           
+            if i%6 == 0:
+                continue
+            print("HERE:"+str(i%6 ))
+            
             _tasks.append({'title': "A legitimate task",
                         'due_date': "2023-06-01",
 
                         'task_type': 'S',
-                        'task_level': i,  # TODO - this should be set here!
+                        'task_level': i%6,  # TODO - this should be set here!
                         # 'recurring': 'false',
                         # 'recurring_time_delta': 0,
                         'course_title': 'Capstone',
@@ -129,7 +133,7 @@ def mock_profile_data():
                         'due_date': "2023-06-01",
 
                         'task_type': 'M',
-                        'task_level': i,  # TODO - this should be set here!
+                        'task_level': i%6,  # TODO - this should be set here!
                         # 'recurring': 'false',
                         # 'recurring_time_delta': 0,
                         'course_title': 'Capstone',
@@ -144,7 +148,7 @@ def mock_profile_data():
                         'due_date': "2023-06-01",
 
                         'task_type': 'L',
-                        'task_level': i,  # TODO - this should be set here!
+                        'task_level': i%6,  # TODO - this should be set here!
                         # 'recurring': 'false',
                         # 'recurring_time_delta': 0,
                         'course_title': 'Capstone',
@@ -158,7 +162,7 @@ def mock_profile_data():
                         'due_date': "2023-06-01",
 
                         'task_type': 'C',
-                        'task_level': i,  # TODO - this should be set here!
+                        'task_level': i%6,  # TODO - this should be set here!
                         # 'recurring': 'false',
                         # 'recurring_time_delta': 0,
                         'course_title': 'Capstone',
@@ -179,13 +183,15 @@ def mock_completed_data():
 
     _tasks = []
     
-    for i in range(1, 6):
-
+    for i in range(1, 50):
+        if i%6 == 0:
+                continue
+        print("HERE:"+str(i%6))
         _tasks.append({'title': "A legitimate task",
                       'due_date': "2023-06-01",
 
                        'task_type': 'S',
-                       'task_level': i,  # TODO - this should be set here!
+                       'task_level': i%6,  # TODO - this should be set here!
                        # 'recurring': 'false',
                        # 'recurring_time_delta': 0,
                        'course_title': 'Capstone',
@@ -200,7 +206,7 @@ def mock_completed_data():
                       'due_date': "2023-06-01",
 
                        'task_type': 'M',
-                       'task_level': i,  # TODO - this should be set here!
+                       'task_level': i%6,  # TODO - this should be set here!
                        # 'recurring': 'false',
                        # 'recurring_time_delta': 0,
                        'course_title': 'Capstone',
@@ -215,7 +221,7 @@ def mock_completed_data():
                        'due_date': "2023-06-01",
 
                        'task_type': 'L',
-                       'task_level': i,  # TODO - this should be set here!
+                       'task_level': i%6,  # TODO - this should be set here!
                        # 'recurring': 'false',
                        # 'recurring_time_delta': 0,
                        'course_title': 'Capstone',
@@ -229,7 +235,7 @@ def mock_completed_data():
                        'due_date': "2023-06-01",
 
                        'task_type': 'C',
-                       'task_level': i,  # TODO - this should be set here!
+                       'task_level': i%6,  # TODO - this should be set here!
                        # 'recurring': 'false',
                        # 'recurring_time_delta': 0,
                        'course_title': 'Capstone',
