@@ -110,7 +110,7 @@ const MainMobile = () => {
             <Tab icon={<PersonPin />} />
 
 
-            { userInfo.canvas_token !== "BADTOKEN" ?  (
+            { userInfo.canvas_token !== "" && userInfo.canvas_token !== "BADTOKEN" ?  (
 
                 <div >
                   <button className="container-canvas-logo" onClick={getCourses}>
