@@ -95,7 +95,7 @@ const Header = ({  }) => {
           </Navbar.Brand>
         </div>
 
-        {userInfo.canvas_token !== "BADTOKEN" ? (
+        {userInfo.canvas_token !== "" && userInfo.canvas_token !== "BADTOKEN" ? (
           <div style={{ display: "grid", gridAutoFlow: "column" }}>
             <button className="container-canvas-logo" onClick={getCourses}>
               <img
