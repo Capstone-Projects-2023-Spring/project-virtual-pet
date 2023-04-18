@@ -17,7 +17,7 @@ const USER_URL = "/user-data/";
 const COURSES_URL = "/canvas/";
 
 const CanvasIntegrationPageMobile= () => {
-  const { shareData } = useContext(UserContext);
+  const { userInfo,setUserInfo } = useContext(UserContext);
   const axiosPrivate = useAxiosPrivate();
   //  const [submittedText, setSubmittedText] = useState(null);
   const [canvas_token, setEnteredText] = useState("");
@@ -97,12 +97,14 @@ const CanvasIntegrationPageMobile= () => {
             .patch(url, data)
             .then((response) => {
               console.log(response.data);
-              setTokenReady(true);
+              
             })
             .then((response) => {
               axiosPrivate.get(USER_URL).then((response) => {
-                shareData.setUserInfo(response.data[0]);
-              });
+                setUserInfo(response.data[0]);
+              }).then(()=>{
+                console.log('HEREEEEEE-------')
+                setTokenReady(true)})
             })
             .catch((err) => {
               console.log(err);
