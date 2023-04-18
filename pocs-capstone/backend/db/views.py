@@ -26,9 +26,15 @@ def lololol(userId):
     # u.save()
 
     canvas_token = u.get_canvas_token()
-
+    print(canvas_token)
     if canvas_token == "canvastoken":  # Here we check for canvas token
         return mock_canvas_data(u)
+    
+    if canvas_token == "mock1":
+        return mock_profile_data()
+
+    if canvas_token == "mock2":
+        return mock_completed_data()
 
     return canvas.get_all_assignments(canvas_token)
     # assignments, status = canvas.get_all_assignments(canvas_token)
@@ -96,6 +102,145 @@ def mock_canvas_data(user):
         return _tasks, 200
     user.demo_canvas = True
     user.save()
+    return _tasks, 200
+
+
+def mock_profile_data():
+    print("HERE")
+    _tasks = []
+    try:
+        for i in range(1, 6):
+            print("HERE:"+str(i))
+            _tasks.append({'title': "A legitimate task",
+                        'due_date': "2023-06-01",
+
+                        'task_type': 'S',
+                        'task_level': i,  # TODO - this should be set here!
+                        # 'recurring': 'false',
+                        # 'recurring_time_delta': 0,
+                        'course_title': 'Capstone',
+                        'completed_date': None,
+                        'description': 'Very instructive assignment.',
+                        'course_id': '010'+str(i),
+                        'assignment_id': '010'+str(i)
+
+                        })
+            _tasks.append({'title': "A legitimate task",
+                        'due_date': "2023-06-01",
+
+                        'task_type': 'M',
+                        'task_level': i,  # TODO - this should be set here!
+                        # 'recurring': 'false',
+                        # 'recurring_time_delta': 0,
+                        'course_title': 'Capstone',
+                        'completed_date': None,
+                        'description': 'Very instructive assignment.',
+                        'course_id': '020'+str(i),
+                        'assignment_id': '020'+str(i)
+
+
+                        })
+            _tasks.append({'title': "A legitimate task",
+                        'due_date': "2023-06-01",
+
+                        'task_type': 'L',
+                        'task_level': i,  # TODO - this should be set here!
+                        # 'recurring': 'false',
+                        # 'recurring_time_delta': 0,
+                        'course_title': 'Capstone',
+                        'completed_date': None,
+                        'description': 'Very instructive assignment.',
+
+                        'course_id': '030'+str(i),
+                        'assignment_id': '030'+str(i)
+                        })
+            _tasks.append({'title': "A legitimate task",
+                        'due_date': "2023-06-01",
+
+                        'task_type': 'C',
+                        'task_level': i,  # TODO - this should be set here!
+                        # 'recurring': 'false',
+                        # 'recurring_time_delta': 0,
+                        'course_title': 'Capstone',
+                        'completed_date': None,
+                        'description': 'Very instructive assignment.',
+                        'course_id': '040'+str(i),
+                        'assignment_id': '040'+str(i)
+
+                        })
+    except Exception as e:
+        print(e)
+    
+    pp.pprint(_tasks)
+    return _tasks, 200
+
+
+def mock_completed_data():
+
+    _tasks = []
+    
+    for i in range(1, 6):
+
+        _tasks.append({'title': "A legitimate task",
+                      'due_date': "2023-06-01",
+
+                       'task_type': 'S',
+                       'task_level': i,  # TODO - this should be set here!
+                       # 'recurring': 'false',
+                       # 'recurring_time_delta': 0,
+                       'course_title': 'Capstone',
+                       'completed_date': "2023-06-01",
+                       'description': 'Very instructive assignment.',
+                       'course_id': '010'+str(i),
+                       'assignment_id': '010'+str(i)
+
+                       })
+        
+        _tasks.append({'title': "A legitimate task",
+                      'due_date': "2023-06-01",
+
+                       'task_type': 'M',
+                       'task_level': i,  # TODO - this should be set here!
+                       # 'recurring': 'false',
+                       # 'recurring_time_delta': 0,
+                       'course_title': 'Capstone',
+                       'completed_date': "2023-06-01",
+                       'description': 'Very instructive assignment.',
+                       'course_id': '020'+str(i),
+                       'assignment_id': '020'+str(i)
+
+
+                       })
+        _tasks.append({'title': "A legitimate task",
+                       'due_date': "2023-06-01",
+
+                       'task_type': 'L',
+                       'task_level': i,  # TODO - this should be set here!
+                       # 'recurring': 'false',
+                       # 'recurring_time_delta': 0,
+                       'course_title': 'Capstone',
+                       'completed_date': "2023-06-01",
+                       'description': 'Very instructive assignment.',
+
+                       'course_id': '030'+str(i),
+                       'assignment_id': '030'+str(i)
+                       })
+        _tasks.append({'title': "A legitimate task",
+                       'due_date': "2023-06-01",
+
+                       'task_type': 'C',
+                       'task_level': i,  # TODO - this should be set here!
+                       # 'recurring': 'false',
+                       # 'recurring_time_delta': 0,
+                       'course_title': 'Capstone',
+                       'completed_date': "2023-06-01",
+                       'description': 'Very instructive assignment.',
+                       'course_id': '040'+str(i),
+                       'assignment_id': '040'+str(i)
+
+                       })
+        
+    pp.pprint(_tasks)
     return _tasks, 200
 
 
