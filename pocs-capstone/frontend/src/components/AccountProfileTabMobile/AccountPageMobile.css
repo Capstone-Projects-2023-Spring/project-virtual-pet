@@ -1,0 +1,56 @@
+/* flex container */
+/* .account-page-display-mobile {
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    background-color: rgb(255, 198, 198);
+    padding: 20px;
+
+} */
+
+.account-profile-card-mobile {
+    flex: 1 1 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80vw;
+    margin-left: auto;
+    margin-right: auto;
+    height: 100vh;
+} 
+
+.account-profile-header-mobile {
+    font-weight: bold;
+    font-size: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40vw;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.form-content-mobile {
+    width: 100%;
+    padding: 10px;
+}
+
+
+/* .nav-tabs .nav-link{
+    background-color: rgba(229, 179, 192, 0.563);
+    color:rgb(217, 91, 91);
+    font-size: calc(1.3vw + 1vh);
+    font-weight: bold;
+    margin: 0px;
+
+    letter-spacing: 0.5px;
+    border-width: 0px;
+} */
+
+.submit-button-mobile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
