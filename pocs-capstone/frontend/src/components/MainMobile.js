@@ -1,6 +1,7 @@
 import PetDisplayMobile from "./PetDisplay/PetDisplayMobile"
 import { useState, useContext, useRef, useEffect } from "react";
 import "./MainMobile.css";
+
 import GlobalContext from "../context/GlobalContext.js";
 import InventoryBoxMobile from "./Inventory/InventoryBoxMobile.js";
 import CalendarPageMobile from "./CalendarMobile/CalendarPageMobile.js";
@@ -19,6 +20,7 @@ const COURSES_URL = "/canvas/";
 const USER_URL = "/user-data/";
 
 const MainMobile = () => {
+
   const handlers = useContext(GlobalContext);
   const [activeTab, setActiveTab] = useState(0);
   const axiosPrivate = useAxiosPrivate();

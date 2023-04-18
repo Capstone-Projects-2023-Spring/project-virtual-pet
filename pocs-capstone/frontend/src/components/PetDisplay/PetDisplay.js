@@ -36,6 +36,36 @@ const HAPPY = 'H'
 const TASK_URL = "/tasks/"
 const USER_URL = "/user-data/"
 const TODAY = new Date()
+
+const WEIGHTS = [
+    '15 paperclips',
+    '3 nickels',
+    '5 pieces of bubblegum',
+    '4 mullberries',
+    '2/3 of a medium radish',
+    '461 sequins',
+    '25 miniature toadstools',
+    '5 acorns',
+    '1 small egg',
+    '231.5 grains of rice',
+    '6 teaspoonfuls of cinnamon',
+    '272 apple seeds',
+    '1/17 of a grapefruit',
+    '8 cups of rose petals',
+    '2 tiny gray pebbles',
+    '12 jellybeans',
+    '1 strawberry',
+    '3 sheets of US letter sized printer paper',
+    '300 almond slivers',
+    '23/4 of a slice of multigrain bread',
+    '1 big handful of cotton balls',
+    '4 clementine slices',
+    '150 wooden toothpicks',
+    '1 large thimble',
+    '3 wooden pencils'
+
+];
+
 const PetDisplay = () => {
 
   
@@ -325,6 +355,16 @@ const PetDisplay = () => {
     //     }),
     // }), [contextHandler.inv])
 
+    // Easter egg: randomly change pet's weight every minute (change the 60 to something else to change tinme interval)
+    const [currentWeight, setCurrentWeight] = useState(WEIGHTS[0]); // initialize with first weight in the array
+    useEffect(() => {
+        const interval = setInterval(() => {
+          const randomIndex = Math.floor(Math.random() * WEIGHTS.length);
+          setCurrentWeight(WEIGHTS[randomIndex]);
+        }, 5 * 60 * 1000); // change weight every 5 minutes
+        return () => clearInterval(interval);
+      }, []); 
+
     return (
         <div className='pet-display'>
             <Card style={{ width: '25rem' }}>
@@ -373,7 +413,7 @@ const PetDisplay = () => {
                     </ListGroup.Item>
                     <ListGroup.Item className='pd-position'>
                         <div className='pet-label'>WEIGHT: </div>
-                        <div>5 Paper Clips</div>
+                        <div>{currentWeight}</div>
                     </ListGroup.Item>
                 </ListGroup>
             </Card>
