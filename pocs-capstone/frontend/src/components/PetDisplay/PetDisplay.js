@@ -298,7 +298,7 @@ const PetDisplay = () => {
     useEffect(()=>{
         console.log("MOOD------>",mood)
     getavatarImage(contextHandler?.avatarInfo);
-    },[mood,,click]);
+    },[mood,click]);
 
 
     const retAvatarImage = () => {
