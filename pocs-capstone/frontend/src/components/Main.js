@@ -30,6 +30,7 @@ const Main = () => {
   const [level_info, setLevelInfo] = useState(
     CalculatePetLevel(avatarInfo.total_xp)
   );
+  const [mooddesc, setMoodDesc] = useState("");
   const [spritesheetInstance, setSpritesheetInstance] = useState(null);
   const [taskList, setTaskList] = useState([])
   const userContext = useContext(UserContext)
@@ -386,6 +387,8 @@ const Main = () => {
     deleteTask,
     deleteAllTasks,
     updateTask,
+    mooddesc,
+    setMoodDesc
   };
 
   const animate = {

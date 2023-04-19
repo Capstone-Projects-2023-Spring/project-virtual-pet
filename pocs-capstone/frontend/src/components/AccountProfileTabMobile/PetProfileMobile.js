@@ -24,7 +24,6 @@ function PetProfileMobile(props) {
 
   const [petName, setPetName] = useState("");
   const [flavourText, setFlavourText] = useState("");
-  const [mood,setMood]=useState(NEUTRAL); //H = happy, S = Sad, N = Neutral
 
 
   const handlePetNameChange = (event) => {
@@ -125,19 +124,7 @@ function PetProfileMobile(props) {
 
       </Modal.Body>
     </Modal >
-
-
-
-
-
   );
 }
 
-
 export default PetProfileMobile
-
-
-
-
-
-
