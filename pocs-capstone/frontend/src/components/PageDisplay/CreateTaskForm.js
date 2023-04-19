@@ -13,6 +13,9 @@ function CreateTaskForm(props) {
   const title = props.task ? "Task Details" : "Create Task"
   const buttonText = props.task ? "Save" : "Create Task"
 
+  const minDateCake = new Date()
+  minDateCake.setDate(minDateCake.getDate() + 3)
+
   const { Formik } = formik;
   const schema = yup.object().shape({
 
@@ -121,12 +124,26 @@ function CreateTaskForm(props) {
                 <Form.Group controlId="validationFormik03">
                   <Form.Label>Due Date</Form.Label>
                   <Form.Control
-
+                    min={values.size !== 'C' ? null : minDateCake.toISOString().slice(0, 10)}
                     type="date"
                     placeholder="due_date"
                     name="due_date"
                     value={values.due_date}
-                    onChange={handleChange} />
+                    onChange={e => {
+                      handleChange(e)
+                      // if(e.target.value )
+                      console.log("NEW DATE", e.target.value)
+                      const newDate = new Date(e.target.value)
+                      console.log("NEWER DATE", newDate)
+                      // console.log("date and task size",chosenDate, minDateCake, )
+                      if(values.size === 'C'  &&  newDate >= minDateCake){
+                        console.log("VALID DATES")
+                        // errors.due_date = {}
+                        
+
+                      }
+                    }} 
+                    isInvalid={!!errors.due_date}/>
                   <Form.Control.Feedback type="invalid">
                     {errors.due_date}
                   </Form.Control.Feedback>
@@ -156,7 +173,18 @@ function CreateTaskForm(props) {
                     placeholder="Select Size"
                     name="size"
                     value={values.size}
-                    onChange={handleChange}
+                    onChange={e=> {
+
+                      handleChange(e)
+                      const chosenDate = new Date(values.due_date)
+                      console.log("date and task size",chosenDate, e.target.value,minDateCake, )
+                      if(e.target.value === 'C'  &&  chosenDate < minDateCake){
+                        console.log("ERROR CANT PICK A DATE> ANOTHER",errors)
+                        errors.due_date = 'This is a large task! It should take at least 3 days to finish. Please pick another date.'
+                        
+
+                      }
+                    }}
                     isInvalid={!!errors.size}
                   >
                     <option value="S">Less than an hour</option>

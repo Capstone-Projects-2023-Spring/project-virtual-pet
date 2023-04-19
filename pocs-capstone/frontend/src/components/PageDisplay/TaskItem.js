@@ -17,11 +17,14 @@ const TaskItem = ({ task, updateTask, deleteTask }) => {
         const today_date = new Date()
         const due_date = new Date(`${date}T00:00:00`)
 
+        // console.log(today_date, due_date)
         const year_diff = due_date.getYear() - today_date.getYear()
         const mon_diff = due_date.getMonth() - today_date.getMonth()
         const date_diff = Math.round((Date.parse(due_date) - Date.parse(today_date)) / 86400000) + 1
 
-        const [mag, format] = (mon_diff <= 1 && year_diff === 0 && date_diff <= 30 && date_diff >= 0) ? [date_diff, 'day'] : mon_diff < 12 && year_diff === 0 ? [mon_diff, 'month'] : [year_diff, 'year']
+        const [mag, format] = (mon_diff <= 1 && year_diff === 0) ? [date_diff, 'day'] : mon_diff < 12 && year_diff === 0 ? [mon_diff, 'month'] : [year_diff, 'year']
+
+        // console.log("mag and format", mag, format)
         const dueD = mag > 0 ? (mag === 1 ? `in ${mag} ${format}` : `in ${mag} ${format}s`) : mag < 0 ? (mag === -1 ? `${Math.abs(mag)} ${format} ago` : `${Math.abs(mag)} ${format}s ago`) : `Today`
 
         return dueD
@@ -39,7 +42,7 @@ const TaskItem = ({ task, updateTask, deleteTask }) => {
         // make users wait for 1 minute before they're able to complete a small task?
 
         const timeRequired = {
-            "S": 1 / 60,
+            "S": 0,
             "M": 1,
             "L": 4,
             "C": 72

@@ -36,7 +36,7 @@ const TaskItemMobile = ({ task, updateTask, deleteTask }) => {
         // make users wait for 1 minute before they're able to complete a small task?
 
         const timeRequired = {
-            "S": 1 / 60,
+            "S": 0,
             "M": 1,
             "L": 4,
             "C": 72
