@@ -111,31 +111,27 @@
   height: 15vh;
 }
 
+/* EXP RATIO  */
 .experience-ratio {
-
   font-family: pixelFont;
   font-size: calc(0.4vw + 1vh);
-  /* text-align:center; */
-
-
 }
 
-/* .experience-ratio {
-  font-size: small;
+/* LEVEL text for MOBILE */
+.pbar-text-mobile {
+  font-size: calc(0.7vw + 1.3vh);
+  font-weight: bold;
+  padding: 0px 5px;
+  font-family: pixelFont;
+}
 
-
-} */
-
+/* text for LEVEL, MOOD, and WEIGHT */
 .pet-label,
 .pbar-text {
   font-size: calc(0.6vw + 1vh);
   font-weight: bold;
   padding: 0px 10px;
   font-family: pixelFont;
-  /* font-size: calc(0.7vw + 1.3vh);
-  font-weight: bold;
-  padding: 0px 5px;
-  font-family: pixelFont; */
 }
 
 .pd-bg {
@@ -161,15 +157,16 @@
   /* height: 50vh; */
 }
 .p-sprite-display-mobile {
-
   width: 100%;
   max-height: 400px;
   align-items: center;
 }
 
+/* LEVEL, EXP BAR, EXP RATIO mobile */
 .mobileBar {
   display: inline-grid;
   grid-auto-flow: column;
+  align-items: center;
   margin-top: 5px;
   margin-bottom: 5px;
   width:100%;

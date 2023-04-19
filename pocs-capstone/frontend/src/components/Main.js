@@ -15,6 +15,7 @@ import GlobalContext from "../context/GlobalContext.js";
 import UserContext from "../context/UserContext";
 import CalculateXP from "../algos/assignXP.js";
 import CalculatePetLevel from "../algos/calculatePetLevel.js";
+import expGain from '../audio/expgain.mp3';
 
 
 const Main = () => {
@@ -31,6 +32,9 @@ const Main = () => {
     CalculatePetLevel(avatarInfo.total_xp)
   );
   const [prev_level_info, setPrevLevelInfo] = useState({})
+
+  const gainExpAudio = new Audio(expGain)
+  gainExpAudio.volume = 0.05
   const [leveledUp, setLeveledUp] = useState(false)
   const [spritesheetInstance, setSpritesheetInstance] = useState(null);
   const [taskList, setTaskList] = useState([])
@@ -365,6 +369,7 @@ const Main = () => {
         }
       
         setAvatar(response.data); //change this to add to previous state instead of replacing completely (in case of >1 avatar for 1 user)
+        gainExpAudio.play()
         getLevel(avatarInfo.total_xp);
 
         
