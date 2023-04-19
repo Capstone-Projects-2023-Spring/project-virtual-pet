@@ -30,6 +30,8 @@ const Main = () => {
   const [level_info, setLevelInfo] = useState(
     CalculatePetLevel(avatarInfo.total_xp)
   );
+  const [prev_level_info, setPrevLevelInfo] = useState({})
+  const [leveledUp, setLeveledUp] = useState(false)
   const [spritesheetInstance, setSpritesheetInstance] = useState(null);
   const [taskList, setTaskList] = useState([])
   const userContext = useContext(UserContext)
@@ -332,6 +334,7 @@ const Main = () => {
   };
   // Moved from PetDisplay - passed base type and level when called in Candy
   const getExp = (candy_base_type, candy_level) => {
+    console.log("HELLOOOERONKEJRNGEKJRG")
   
     const received_xp = CalculateXP(candy_base_type, candy_level);
 
@@ -340,20 +343,33 @@ const Main = () => {
 
     const today = new Date();
     const todayString = today.toISOString().split("T")[0];
-
+    
+    const prevLevel = CalculatePetLevel(avatarInfo.total_xp)
+    setPrevLevelInfo(prevLevel)
    
     const updatedAvatar = {
       ...avatarInfo,
       total_xp: total_xp,
       last_feed: todayString,
     };
+
+    console.log("PREV LEVEL", prevLevel)
   
     axiosPrivate
       .patch(`/avatar/${avatarInfo.avatar_id}/`, updatedAvatar)
-      .then((response) => {
+      .then((response) => { 
+        
+        // console.log('RESPONSE:', response)
+        const nextLevel = CalculatePetLevel(response.data.total_xp)
+        // console.log("LEVELS", prevLevel.LEVEL, nextLevel.LEVEL)
+        if (prevLevel.LEVEL < nextLevel.LEVEL){
+          setLeveledUp(true)
+        }
       
         setAvatar(response.data); //change this to add to previous state instead of replacing completely (in case of >1 avatar for 1 user)
         getLevel(avatarInfo.total_xp);
+
+        
       })
       .catch((err) => {
         console.log(err);
@@ -380,6 +396,9 @@ const Main = () => {
     animateSpriteSheet,
     setSpritesheetInstance,
     getExp,
+    leveledUp, 
+    setLeveledUp,
+    prev_level_info,
     width,
     taskList,
     addTask,

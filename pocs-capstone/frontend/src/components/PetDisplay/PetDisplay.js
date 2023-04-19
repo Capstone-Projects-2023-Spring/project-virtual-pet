@@ -27,6 +27,7 @@ import CalculatePetLevel from '../../algos/calculatePetLevel';
 //import AvatarContext from "../../context/AvatarContext";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 import GlobalContext from '../../context/GlobalContext.js';
+import context from 'react-bootstrap/esm/AccordionContext.js';
 // (next level - remainder) / (next level) //
 
 const SAD = 'S'
@@ -73,18 +74,16 @@ const PetDisplay = () => {
     const axiosPrivate = useAxiosPrivate();
     const [mood,setMood]=useState(NEUTRAL); //H = happy, S = Sad, N = Neutral
     const [avatarImage, setAvatarImage] = useState(null);
-    //const avatar_handler = useContext(AvatarContext);
+
     const contextHandler = useContext(GlobalContext);
     const [spritesheetInstance, setSpritesheetInstance] = useState(null);
-    //const [exp, setExp] = useState(avatar_handler.avatarInfo.total_xp);
-    const [level, setLevel] = useState(CalculatePetLevel(contextHandler?.avatarInfo.total_xp).LEVEL);
-    //const [remainder, setRemainder] = useState(CalculatePetLevel(avatar_handler.avatarInfo.total_xp).REMAINDER);
-    //const [next_level, setNextLevel] = useState(CalculatePetLevel(avatar_handler.avatarInfo.total_xp).REMAINDER);  
-    const [level_info, setLevelInfo] = useState(CalculatePetLevel(contextHandler?.avatarInfo.total_xp))
-   // const [ratio,setRatio] = useState(level_info.NEXT_LEVEL-level_info.REMAINDER/level_info.NEXT_LEVEL ) //TODO susss
 
-   //const [pet, setPet] = useState(contextHandler?.avatarInfo);
-   //var pet = contextHandler?.avatarInfo;
+    const [level, setLevel] = useState(CalculatePetLevel(contextHandler?.avatarInfo.total_xp).LEVEL);
+
+    const [level_info, setLevelInfo] = useState(CalculatePetLevel(contextHandler?.avatarInfo.total_xp))
+
+   const [progressNow, setProgressNow] = useState(0)
+
     function animateSpriteSheet() {
         if (contextHandler?.spritesheetInstance) {
             contextHandler?.spritesheetInstance.goToAndPlay(1);
@@ -104,6 +103,16 @@ const PetDisplay = () => {
     function dateDelta(date1,date2){
        return Math.floor((date1-date2)/(1000*60*60*24))
     }
+
+    // const updateProgressNowHandler = () => {
+        
+    //     if (progressNow > 100){
+    //      setProgressNow(100)
+    //      clearInterval(updateProgressNowHandler)
+
+    //     }
+    //     setProgressNow(s => s+1)
+    // }
 
 
     //We should calculate the pets modd on change of state
@@ -136,18 +145,18 @@ const PetDisplay = () => {
             const last_feed = new Date(contextHandler.avatarInfo.last_feed)
             
             const feed_delta = dateDelta(TODAY,last_feed) //elapsed time since last feed
-            console.log("FEED DELTA",feed_delta,TODAY,last_feed)
+            // console.log("FEED DELTA",feed_delta,TODAY,last_feed)
             if (feed_delta<=3 && feed_delta>1){
                 setMood(NEUTRAL)
-                console.log("FEED NEUTRAL",feed_delta)
+                // console.log("FEED NEUTRAL",feed_delta)
             }
             else if (feed_delta<=1){
                 setMood(HAPPY)
-                console.log("FEED HAPPY",feed_delta)
+                // console.log("FEED HAPPY",feed_delta)
              }
             else {
                 setMood(SAD)
-                console.log("FEED SAD",feed_delta)
+                // console.log("FEED SAD",feed_delta)
                 feed_flag=true
             }
     
@@ -164,24 +173,20 @@ const PetDisplay = () => {
                             setMood(SAD)
                             console.log("TASK SAD")
                             return
-                        }
-                        
+                        } 
                     }
-                    
                 }
                 )
-    
-              
             pass_task_check = true
             })       
               if(pass_task_check){ // guard because axios call is async
                     if(feed_flag){
                         setMood(NEUTRAL)
-                        console.log("TASK NEUTRAL")
+                        // console.log("TASK NEUTRAL")
                         return
                     }
                     setMood(HAPPY) //TODO we'll check grades here as well
-                    console.log("TASK HAPPY")
+                    // console.log("TASK HAPPY")
                     return
                 }
     
@@ -191,11 +196,11 @@ const PetDisplay = () => {
     //TEMP USE EFFECT TO SEE MOOD
     //Mary, plug in your state changes here!!
     useEffect(()=>{
-        console.log("MOOD------>",mood)
+        // console.log("MOOD------>",mood)
         const getavatarImage = (pet) => {
             switch (pet.avatar_type) {
                 case 'CT':
-                    console.log(pet.palette);
+                    // console.log(pet.palette);
                     switch (pet.palette) {
                         case 0:
                            if(mood==='N'){
@@ -286,74 +291,15 @@ const PetDisplay = () => {
     const retAvatarImage = () => {
         return avatarImage;
     }
-    
-/*
-    const getExp = (candy) => {
-        //console.log('WTF')
-        //getLevel()
-        //console.log("HELO?", contextHandler.avatarInfo)
-        //console.log("CANDY----->",candy)
-        const received_xp = CalculateXP(candy.candy_base_type, candy.candy_level)
-    
-        const total_xp = received_xp + contextHandler?.avatarInfo.total_xp
-        
-        console.log("TOTAL XP----------->", total_xp)
-        const updatedAvatar = {
-            ...contextHandler?.avatarInfo,
-            total_xp:total_xp
-          };
-          console.log("UPDATED AVATAR",updatedAvatar)
-          axiosPrivate
-            .patch(`/avatar/${contextHandler?.avatarInfo.avatar_id}/`, updatedAvatar)
-            .then((response) => {
-              console.log("response.data:", response.data);
-              contextHandler?.setAvatar(response.data); //change this to add to previous state instead of replacing completely (in case of >1 avatar for 1 user)
-              getLevel(contextHandler?.avatarInfo.total_xp)
-                
-            })
-            .catch((err) => {
-              console.log(err);
-            });
-  };
 
-    */
 
     useEffect (() => {
         //  [level, remain, next_level] = CalculatePetLevel(exp);
         setLevelInfo(CalculatePetLevel(contextHandler.avatarInfo?.total_xp));
-        //console.log("LVL,REMAIN,NEXT",petInfo.LEVEL,petInfo.REMAINDER,petInfo.NEXT_LEVEL)
-        //setExp(avatar_handler.avatarInfo.total_xp);
-        //setLevel(petInfo.LEVEL);
-        //setRemainder(petInfo.REMAINDER);
-        //setNextLevel(petInfo.NEXT_LEVEL);
 
-        //setRatio(Math.floor(100*((level_info.NEXT_LEVEL-level_info.REMAINDER)/level_info.NEXT_LEVEL)));
-       // animateSpriteSheet();
-        //  if(remainder===0){
-        //     setExp(0);
-        //   }
 
     },[contextHandler])
 
-    //let handlers = useContext(InventoryContext)
-    // Accepts images(candy) and calls candyDropped() when a candy is fed
-    // let [{ isOver }, drop] = useDrop(() => ({
-    //     // What objects to accept
-    //     accept: "image",
-    //     drop: (item) => {
-    //         let candy = contextHandler.inv.find((candy) => candy.inventory_id === item.id)
-            
-    //         console.log("CANDY------>",candy)
-    //         getExp(candy);
-    //         console.log(item)
-    //         //console.log(handlers.inv.find(item.id));
-    //         contextHandler.updateInventory(item.id);
-            
-    //     },
-    //     collect: (monitor) => ({
-    //         isOver: !!monitor.isOver(),
-    //     }),
-    // }), [contextHandler.inv])
 
     // Easter egg: randomly change pet's weight every minute (change the 60 to something else to change tinme interval)
     const [currentWeight, setCurrentWeight] = useState(WEIGHTS[0]); // initialize with first weight in the array
@@ -365,6 +311,53 @@ const PetDisplay = () => {
         return () => clearInterval(interval);
       }, []); 
 
+    useEffect( ()=> {
+        
+        const prevLevel = contextHandler?.prev_level_info
+
+        if(prevLevel.LEVEL < level_info.LEVEL && contextHandler.leveledUp){
+            // this calls twice? 
+            console.log("PREVIOUS LEVEL", contextHandler?.prev_level_info, "CURRENT LEVEL", level_info)
+
+            const updateProgressNowHandler = setInterval(() => {
+
+                console.log("PROGRESS NOW: ", progressNow, "LEVLINFO", level_info)
+
+                if (progressNow > 70){
+                    console.log("PROGRESS NOW GREATER THAN LEVEL_INFO RATIO", progressNow, level_info.RATIO)
+                    // setProgressNow(level_info.RATIO)
+                    setProgressNow(70)
+                    contextHandler?.setLeveledUp(false)
+                    clearInterval(updateProgressNowHandler)
+                    
+                    
+                    
+                }
+                setProgressNow(s => s+1)
+            }, 50)
+
+        }
+       
+        // if (contextHandler?.leveledUp ) {
+        //     console.log("leveledup?", contextHandler?.leveledUp, "PROGRESSNOW", progressNow, "LEVELINFO", level_info)
+        //     const updateProgressNowHandler = setInterval(() => {
+        //         if (progressNow > level_info.RATIO ){
+        //         console.log("PROGRESS NOW GREATER THAN LEVEL_INFO RATIO", progressNow, level_info.RATIO)
+        //          setProgressNow(level_info.RATIO)
+        //          clearInterval(updateProgressNowHandler)
+        //         //  setProgressNow(0)
+        //          contextHandler?.setLeveledUp(false)
+        //          setProgressNow(0)
+                 
+        //         }
+        //         setProgressNow(s => s+1)
+        //        }, 50)
+              
+        // }
+    }, [contextHandler])
+
+    
+
     return (
         <div className='pet-display'>
             <Card style={{ width: '25rem' }}>
@@ -375,28 +368,13 @@ const PetDisplay = () => {
                     <div className='p-sprite-display'>
                         <img src={bgimage} alt="background" className="bg-sprite" />
                         <img src = {avatarImage} className = "p-sprite"></img>
-                        {/* <img src = {retAvatarImage(contextHandler?.avatarInfo)} className = "p-sprite"></img> */}
-                        {/* <Spritesheet
-                            image={avatarImage(contextHandler?.avatarInfo)}
-                            refs={spriteSheetRef}
-                            className="p-sprite"
-                            stopLastFrame={true}
-                            widthFrame={255}
-                            heightFrame={350}
-                            steps={5}
-                            fps={3}
-                            loop={false}
-                            autoplay={false}
-                            isResponsive={false}
-                            getInstance={handleGetInstance}
-                            onClick={spritesheet => { handleClick(spritesheet) }}
-                        /> */}
                     </div>
                 </div>
                 <div className="pbar-exp">
                 
                 <div className='pbar-text'>LVL:{level_info.LEVEL} </div>
-                <ProgressBar now={(level_info.RATIO)} variant='success' style={{ width: '18rem' }} />
+                {/* <ProgressBar now={(level_info.RATIO)} variant='success' style={{ width: '18rem' }} /> */}
+                <ProgressBar now={!contextHandler?.leveledUp ? level_info.RATIO : progressNow} variant='success' style={{ width: '18rem' }} />
                 
                 <div className='experience-ratio'>{level_info.NEXT_LEVEL-level_info.REMAINDER}/{level_info.NEXT_LEVEL}</div>
             </div>

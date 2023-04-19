@@ -34,12 +34,12 @@ function InventoryBox() {
                             <div className='inventory-header'>
                                 ITEMS
                             </div>
-                            {/* <div className="ms-auto">
+                            <div className="ms-auto">
                                 <Button variant="primary" onClick={contextHandler?.postFullInventory}>+ Populate Inv.</Button>
                             </div>
                             <div>
                                 <Button variant="danger" onClick={contextHandler?.deleteAll}>- Delete All</Button>
-                            </div> */}
+                            </div>
                         </Stack>
                     </Card.Header>
 
