@@ -18,7 +18,7 @@ const USER_URL = "/user-data/";
 const COURSES_URL = "/canvas/";
 
 const CanvasIntegrationPage = () => {
-  const { shareData } = useContext(UserContext);
+  const { userInfo,setUserInfo } = useContext(UserContext);
   const axiosPrivate = useAxiosPrivate();
   //  const [submittedText, setSubmittedText] = useState(null);
   const [canvas_token, setEnteredText] = useState("");
@@ -68,7 +68,7 @@ const CanvasIntegrationPage = () => {
         });
     */
     }
-  }, [tokenReady, axiosPrivate, nav]); // there was an error here if axiosPrivate and nav were not present
+  }, [tokenReady]); // there was an error here if axiosPrivate and nav were not present
 
   const textChangeHandler = (i) => {
     setEnteredText(i.target.value);
@@ -98,12 +98,15 @@ const CanvasIntegrationPage = () => {
             .patch(url, data)
             .then((response) => {
               console.log(response.data);
-              setTokenReady(true);
+             
             })
             .then((response) => {
               axiosPrivate.get(USER_URL).then((response) => {
-                shareData.setUserInfo(response.data[0]);
-              });
+                setUserInfo(response.data[0]);
+               
+              }).then(()=>{
+              console.log('HEREEEEEE-------')
+              setTokenReady(true)})
             })
             .catch((err) => {
               console.log(err);

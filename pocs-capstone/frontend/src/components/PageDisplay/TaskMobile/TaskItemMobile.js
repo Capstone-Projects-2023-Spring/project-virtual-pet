@@ -76,7 +76,7 @@ const TaskItemMobile = ({ task, updateTask, deleteTask }) => {
                                     <div className="ms-2 me-auto">
                                         <div>
                                             <div className="fw-bold task-title-mobile task-description">{task.title}</div>
-                                            <div className="task-description-mobile">Course{task.course_id}</div>
+                                            <div className="task-description-mobile">Course: {task.course_title}</div>
                                             <div className='task-description-mobile'>{task.description}</div>
                                             {task.due_date ?
                                                 <div className='due-date-mobile'>Due {calculateDueDate(task.due_date)}</div> :

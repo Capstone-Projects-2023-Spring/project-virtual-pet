@@ -70,15 +70,14 @@ const TaskItem = ({ task, updateTask, deleteTask }) => {
                     <>
                         <ListGroup horizontal className="my-2 list-group-task">
                             {/* <ListGroup.Item className='course-id'>
-                                    <div>
-
-                                        <div className="fw-bold">Course {task.course_id}</div>
-                                    </div>
-                                </ListGroup.Item> */}
+                        <div>
+                            <div className="fw-bold">Course {task.course_id}</div>
+                        </div>
+                    </ListGroup.Item> */}
                             <ListGroup.Item className='task-item'>
                                 <div className="ms-2 me-auto">
                                     <div className="fw-bold task-title task-description">{task.title}</div>
-                                    <div className="task-description">Course {task.course_id}</div>
+                                    <div className="task-description">Course: {task.course_title}</div>
                                     <div className='task-description'>{task.description}</div>
                                     {task.due_date ?
                                         <div className='due-date'>Due {calculateDueDate(task.due_date)}</div> :
