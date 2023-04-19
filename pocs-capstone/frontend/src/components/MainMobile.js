@@ -94,7 +94,8 @@ const MainMobile = () => {
             <Modal className="createtask-modal-mobile" backdrop="static" show={canvasError} onHide={setCanvasError} >
             <Modal.Header closeButton>        
             </Modal.Header>
-            <ModalBody style={{fontSize:"20px"}}><center>There is problem with your canvas token!<br></br>Please resubmit your token!</center></ModalBody>
+            <ModalBody style={{fontSize:"20px"}}><center>There is problem with your canvas token!<br></br>Please resubmit your token!<br></br>
+            The canvas button in your tabs will now disappear</center></ModalBody>
             </Modal>
             
             {activeTab === 0 && <TaskPageMobile/>}
