@@ -9,6 +9,7 @@ import GlobalContext from "../../context/GlobalContext";
 import MobilePetMoodContext from '../../context/MobilePetMoodContext';
 import { useContext } from 'react'
 import { CardBody } from 'reactstrap';
+import "./PetProfileMobile.css";
 
 const SAD = 'S'
 const NEUTRAL = 'N'
@@ -64,7 +65,7 @@ function PetProfileMobile(props) {
 
 //style={{ overflow: "hidden" }}
   return (
-    <Modal className="createtask-modal-mobile"  backdrop="static" show={props.showPetProf} onHide={props.handleClosePet}>
+    <Modal className="petprofile-modal-mobile"  backdrop="static" show={props.showPetProf} onHide={props.handleClosePet}>
       <Modal.Header closeButton>
         {/* <Modal.Title>Pet Profile</Modal.Title> */}
         
@@ -78,7 +79,7 @@ function PetProfileMobile(props) {
             <div className='pet-profile-header'>Pet Profile</div>
           </Stack>
         </Card.Header>
-          <CardBody style={{fontSize: "14px", paddingLeft: "20px", paddingRight: "20px"}}>
+          <CardBody style={{fontSize: "14px", paddingLeft: "20px", paddingRight:"20px"}}>
           <strong>Pet Mood:</strong> {moodHandler?.petMoodDesc}<br></br><br></br>
           <strong>Pet Weight:</strong> Unknown
           </CardBody>
