@@ -45,7 +45,7 @@ const TaskItem = ({ task, updateTask, deleteTask }) => {
                                 <ListGroup.Item className='task-item'>
                                     <div className="ms-2 me-auto">
                                         <div className="fw-bold task-title task-description">{task.title}</div>
-                                        <div className="task-description">Course {task.course_id}</div>
+                                        <div className="task-description">Course: {task.course_title}</div>
                                         <div className='task-description'>{task.description}</div>
                                         {task.due_date ?
                                             <div className='due-date'>Due {calculateDueDate(task.due_date)}</div> :
