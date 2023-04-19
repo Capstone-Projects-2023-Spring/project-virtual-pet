@@ -20,7 +20,7 @@ const COURSES_URL = "/canvas/";
 
 const CanvasIntegrationPageMobile= ({ showCanvasPage, handleCloseCanvasPage}) => {
 
-  const { shareData } = useContext(UserContext);
+  const { userInfo,setUserInfo } = useContext(UserContext);
   const axiosPrivate = useAxiosPrivate();
   const nav = useNavigate();
   const [canvas_token, setEnteredText] = useState("");
@@ -98,8 +98,10 @@ const CanvasIntegrationPageMobile= ({ showCanvasPage, handleCloseCanvasPage}) =>
             })
             .then((response) => {
               axiosPrivate.get(USER_URL).then((response) => {
-                shareData.setUserInfo(response.data[0]);
-              });
+                setUserInfo(response.data[0]);
+              }).then(()=>{
+                console.log('HEREEEEEE-------')
+                setTokenReady(true)})
             })
             .catch((err) => {
               console.log(err);

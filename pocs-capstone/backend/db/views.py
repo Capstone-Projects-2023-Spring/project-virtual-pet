@@ -6,6 +6,7 @@ from rest_framework import viewsets
 from rest_framework.permissions import AllowAny
 from .serializers import *
 from .models import *
+from .models import NewUser
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.views import APIView
@@ -15,17 +16,238 @@ from db.studybuddyemail import send_email
 import db.canvasrequests as canvas
 import pprint
 
+pp = pprint.PrettyPrinter(indent=2)
+
+
 def lololol(userId):
 
-    _user = NewUser.objects.filter(id=userId)
-    canvas_token = _user[0].get_canvas_token()
+    u = NewUser.objects.get(id=userId)
+    # u.demo_canvas=False
+    # u.save()
 
-    assignments, status = canvas.get_all_assignments(canvas_token)
-    # _userid = self.request.user
+    canvas_token = u.get_canvas_token()
+    print(canvas_token)
+    if canvas_token == "canvastoken":  # Here we check for canvas token
+        return mock_canvas_data(u)
+    
+    if canvas_token == "mock1":
+        return mock_profile_data()
 
-    # print(_user[0].get_canvas_token())
-    # print(_user)
-    return assignments, status
+    if canvas_token == "mock2":
+        return mock_completed_data()
+
+    return canvas.get_all_assignments(canvas_token)
+    # assignments, status = canvas.get_all_assignments(canvas_token)
+
+    # return assignments, status
+
+
+def mock_canvas_data(user):
+
+    _tasks = []
+
+    for i in range(1, 3):
+        _tasks.append({'title': "Homework",
+                      'due_date': "2023-06-01",
+
+                       'task_type': 'S',
+                       'task_level': 3,  # TODO - this should be set here!
+                       # 'recurring': 'false',
+                       # 'recurring_time_delta': 0,
+                       'course_title': 'Capstone',
+                       'completed_date': None,
+                       'description': 'Very instructive assignment.',
+                       'course_id': '000'+str(i),
+                       'assignment_id': str(i)+'000'
+
+                       })
+
+    for i in range(3, 5):
+        _tasks.append({'title': "Quiz",
+                      'due_date': "2023-06-01",
+
+                       'task_type': 'M',
+                       'task_level': 3,  # TODO - this should be set here!
+                       # 'recurring': 'false',
+                       # 'recurring_time_delta': 0,
+                       'course_title': 'Capstone',
+                       'completed_date': None,
+                       'description': 'Very instructive assignment.',
+                       'course_id': '000'+str(i),
+                       'assignment_id': str(i)+'000'
+
+                       })
+
+    _tasks.append({'title': "Project",
+                   'due_date': "2023-06-01",
+
+                   'task_type': 'C',
+                   'task_level': 3,  # TODO - this should be set here!
+                   # 'recurring': 'false',
+                   # 'recurring_time_delta': 0,
+                   'course_title': 'Capstone',
+                   'completed_date': None,
+                   'description': 'Very instructive assignment.',
+                   'course_id': '0005',
+                   'assignment_id': '5000'
+
+                   })
+
+    if user.demo_canvas == True:
+        _tasks[0]['completed_date'] = "2023-06-01"
+        user.demo_canvas = True
+        user.save()
+        print(user.demo_canvas)
+        pp.pprint(_tasks)
+        return _tasks, 200
+    user.demo_canvas = True
+    user.save()
+    return _tasks, 200
+
+
+def mock_profile_data():
+    print("HERE")
+    _tasks = []
+    try:
+        for i in range(1, 50):
+           
+            if i%6 == 0:
+                continue
+            print("HERE:"+str(i%6 ))
+            
+            _tasks.append({'title': "A legitimate task",
+                        'due_date': "2023-06-01",
+
+                        'task_type': 'S',
+                        'task_level': i%6,  # TODO - this should be set here!
+                        # 'recurring': 'false',
+                        # 'recurring_time_delta': 0,
+                        'course_title': 'Capstone',
+                        'completed_date': None,
+                        'description': 'Very instructive assignment.',
+                        'course_id': '010'+str(i),
+                        'assignment_id': '010'+str(i)
+
+                        })
+            _tasks.append({'title': "A legitimate task",
+                        'due_date': "2023-06-01",
+
+                        'task_type': 'M',
+                        'task_level': i%6,  # TODO - this should be set here!
+                        # 'recurring': 'false',
+                        # 'recurring_time_delta': 0,
+                        'course_title': 'Capstone',
+                        'completed_date': None,
+                        'description': 'Very instructive assignment.',
+                        'course_id': '020'+str(i),
+                        'assignment_id': '020'+str(i)
+
+
+                        })
+            _tasks.append({'title': "A legitimate task",
+                        'due_date': "2023-06-01",
+
+                        'task_type': 'L',
+                        'task_level': i%6,  # TODO - this should be set here!
+                        # 'recurring': 'false',
+                        # 'recurring_time_delta': 0,
+                        'course_title': 'Capstone',
+                        'completed_date': None,
+                        'description': 'Very instructive assignment.',
+
+                        'course_id': '030'+str(i),
+                        'assignment_id': '030'+str(i)
+                        })
+            _tasks.append({'title': "A legitimate task",
+                        'due_date': "2023-06-01",
+
+                        'task_type': 'C',
+                        'task_level': i%6,  # TODO - this should be set here!
+                        # 'recurring': 'false',
+                        # 'recurring_time_delta': 0,
+                        'course_title': 'Capstone',
+                        'completed_date': None,
+                        'description': 'Very instructive assignment.',
+                        'course_id': '040'+str(i),
+                        'assignment_id': '040'+str(i)
+
+                        })
+    except Exception as e:
+        print(e)
+    
+    pp.pprint(_tasks)
+    return _tasks, 200
+
+
+def mock_completed_data():
+
+    _tasks = []
+    
+    for i in range(1, 50):
+        if i%6 == 0:
+                continue
+        print("HERE:"+str(i%6))
+        _tasks.append({'title': "A legitimate task",
+                      'due_date': "2023-06-01",
+
+                       'task_type': 'S',
+                       'task_level': i%6,  # TODO - this should be set here!
+                       # 'recurring': 'false',
+                       # 'recurring_time_delta': 0,
+                       'course_title': 'Capstone',
+                       'completed_date': "2023-06-01",
+                       'description': 'Very instructive assignment.',
+                       'course_id': '010'+str(i),
+                       'assignment_id': '010'+str(i)
+
+                       })
+        
+        _tasks.append({'title': "A legitimate task",
+                      'due_date': "2023-06-01",
+
+                       'task_type': 'M',
+                       'task_level': i%6,  # TODO - this should be set here!
+                       # 'recurring': 'false',
+                       # 'recurring_time_delta': 0,
+                       'course_title': 'Capstone',
+                       'completed_date': "2023-06-01",
+                       'description': 'Very instructive assignment.',
+                       'course_id': '020'+str(i),
+                       'assignment_id': '020'+str(i)
+
+
+                       })
+        _tasks.append({'title': "A legitimate task",
+                       'due_date': "2023-06-01",
+
+                       'task_type': 'L',
+                       'task_level': i%6,  # TODO - this should be set here!
+                       # 'recurring': 'false',
+                       # 'recurring_time_delta': 0,
+                       'course_title': 'Capstone',
+                       'completed_date': "2023-06-01",
+                       'description': 'Very instructive assignment.',
+
+                       'course_id': '030'+str(i),
+                       'assignment_id': '030'+str(i)
+                       })
+        _tasks.append({'title': "A legitimate task",
+                       'due_date': "2023-06-01",
+
+                       'task_type': 'C',
+                       'task_level': i%6,  # TODO - this should be set here!
+                       # 'recurring': 'false',
+                       # 'recurring_time_delta': 0,
+                       'course_title': 'Capstone',
+                       'completed_date': "2023-06-01",
+                       'description': 'Very instructive assignment.',
+                       'course_id': '040'+str(i),
+                       'assignment_id': '040'+str(i)
+
+                       })
+        
+    pp.pprint(_tasks)
+    return _tasks, 200
 
 
 class CustomUserCreate(APIView):
@@ -66,65 +288,47 @@ class BlacklistTokenView(APIView):
 
 class CanvasView(APIView):
     permission_classes = [IsAuthenticated,]
-    
+
     def __enter_inventory_item(self, _user, old_date, new_task):
-        pp = pprint.PrettyPrinter(indent=4)
-        print(type(old_date))
-        print(type(new_task.completed_date))
-        #print((old_task.completed_date!=None) and (new_task.completed_date != None))
-        
-        if ((old_date!=None) and (new_task.completed_date != None)):
+
+        if ((old_date != None) and (new_task.completed_date != None)):
             new_task.completed = True
             new_task.save()
-            print("Guarded Completed Update:")
-            #pp.pprint(old_task)
-            #pp.pprint(new_task)
-            #print("{} {}".format(old_task, new_task))
             return
-        
+
         if old_date == None:
-            # print(
-            #     "COMPLETED - {} {}".format(old_task.completed_date, new_task.completed_date))
             if new_task.completed_date != None:  # first time completed
-                
-                new_task.completed = True # The task has officially been completed!
+
+                new_task.completed = True  # The task has officially been completed!
                 new_task.save()
-                #print("Old &")
-                #pp.pprint(new_task)
+
                 try:
                     obj = Inventory.objects.get(
                         user=_user, candy_base_type=new_task.task_type, candy_level=new_task.task_level)
                     updated_quantity = obj.quantity + 1
                     obj.quantity = updated_quantity
                     obj.save()  # inventory is updated
-                    print("Update Inventory:")
-                    pp.pprint(obj)
+
                 except Inventory.DoesNotExist:
                     obj = Inventory(
                         user=_user, candy_base_type=new_task.task_type, candy_level=new_task.task_level, quantity=1)
                     obj.save()  # new inventory item now created
-                    print("Create Inventory:")
-                    pp.pprint(obj)
-
-        # print(
-        #     "DUE DATES - {} {}".format(old_task['due_date'], new_task.due_date))
         pass
 
     def get(self, request):
+
         pp = pprint.PrettyPrinter(indent=4)
         test_task = Task.objects.filter(unique_canvas_tag="knownbadtag")
-        pp.pprint(test_task)
-        # $print("1 HEREERERERE")
+
         __user = self.request.user
         _user = self.request.user.id
         course_data, _status = lololol(_user)
+
         if _status != 200:
             return Response(None, _status)
+        if course_data == None:  # this fixes a rare bug
+            return Response(None, _status)
 
-        # if not course_data:
-        #    return Response(None,status=status.HTTP_401_UNAUTHORIZED)
-        # print("USER_ID:"+str(_user))
-      
         try:
 
             for x in course_data:
@@ -136,34 +340,27 @@ class CanvasView(APIView):
 
                     old_task = Task.objects.filter(unique_canvas_tag=tag)
                     old_date = None
-                    if(old_task.count()):
+
+                    if (old_task.count()):
                         old_date = old_task[0].completed_date
-                        pp.pprint("COMPLETED DATE: "+str(old_task[0]))
-                        pp.pprint("COMPLETED DATE: "+str(old_task[0].completed_date))
                     else:
-                        print("YUP")
-                    # print("TAG" + x['unique_canvas_tag'])
+                        pass
+
                     serializer = CanvasSerializer(x)
-                    # print(serializer.data)
-                    temp = serializer.data # task data BEFORE update
-                    #print("-------------TEMP-----------")
-                    #pp.pprint(temp)
+                    temp = serializer.data  # task data BEFORE update
+
                     obj, created = Task.objects.update_or_create(
                         unique_canvas_tag=tag, defaults=serializer.data)  # TODO validate the dat
-                    
-                    # print(dir(obj))
 
                     if created:
-                        print("Created: ")
-                        pp.pprint("{}".format(obj))
                         if obj.completed_date != None:
                             obj.completed = True
                             obj.save()
+                            print("CREATED")
                     else:  # operate on object here
-                        old_task=old_task[0]
-                        pp.pprint("what is is here?: "+str(old_task.completed_date))
+                        old_task = old_task[0]
                         self.__enter_inventory_item(__user, old_date, obj)
-                        # print("updated")
+
                 except Exception as e:
                     print(e)
 
@@ -180,7 +377,6 @@ class NewUserViewSet(viewsets.ModelViewSet):
 
     # query tasks by user.
     def get_queryset(self):
-        # _user = JWTAuthentication(self.request)
         _user = self.request.user.id
         return NewUser.objects.filter(id=_user)
 
@@ -191,7 +387,6 @@ class TaskViewSet(viewsets.ModelViewSet):
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
-        # return super().perform_create(self,serializer)
     # query tasks by user.
 
     def get_queryset(self):
@@ -205,7 +400,6 @@ class AvatarViewSet(viewsets.ModelViewSet):
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
-        # return super().perform_create(self,serializer)
     # query tasks by user.
 
     def get_queryset(self):
@@ -219,7 +413,6 @@ class InventoryViewSet(viewsets.ModelViewSet):
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
-        # return super().perform_create(self,serializer)
     # query tasks by user.
 
     def get_queryset(self):
