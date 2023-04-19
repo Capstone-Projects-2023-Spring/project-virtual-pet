@@ -6,6 +6,7 @@ import { Link, useNavigate, useLocation } from "react-router-dom";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 import AvatarContext from "../../context/AvatarContext";
 import GlobalContext from "../../context/GlobalContext";
+import MobilePetMoodContext from '../../context/MobilePetMoodContext';
 import { useContext } from 'react'
 import { CardBody } from 'reactstrap';
 
@@ -24,6 +25,7 @@ function PetProfileMobile(props) {
 
   const [petName, setPetName] = useState("");
   const [flavourText, setFlavourText] = useState("");
+  const moodHandler = useContext(MobilePetMoodContext);
 
 
   const handlePetNameChange = (event) => {
@@ -76,9 +78,9 @@ function PetProfileMobile(props) {
             <div className='pet-profile-header'>Pet Profile</div>
           </Stack>
         </Card.Header>
-          <CardBody style={{fontSize: "16px"}}>
-          Pet Mood: Big Chillin<br></br>
-          Pet Weight: Lite
+          <CardBody style={{fontSize: "14px", paddingLeft: "20px", paddingRight: "20px"}}>
+          <strong>Pet Mood:</strong> {moodHandler?.petMoodDesc}<br></br><br></br>
+          <strong>Pet Weight:</strong> Unknown
           </CardBody>
           <Form
             onSubmit={handleSubmit}

@@ -15,6 +15,7 @@ import CalculatePetLevel from "../../algos/calculatePetLevel";
 //import AvatarContext from "../../context/AvatarContext";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 import GlobalContext from "../../context/GlobalContext.js";
+import MobilePetMoodContext from "../../context/MobilePetMoodContext.js";
 import orange_H_gif from '../../images/orange_happy_gif.gif'
 import orange_S_gif from '../../images/orange_sad_gif.gif'
 import gray_H_gif from '../../images/gray_happy_gif.gif'
@@ -44,6 +45,7 @@ const PetDisplay = () => {
   const [avatarImage, setAvatarImage] = useState(null);
   //const avatar_handler = useContext(AvatarContext);
   const contextHandler = useContext(GlobalContext);
+  const moodHandler = useContext(MobilePetMoodContext);
   const [spritesheetInstance, setSpritesheetInstance] = useState(null);
   //const [exp, setExp] = useState(avatar_handler.avatarInfo.total_xp);
   //const [level, setLevel] = useState(CalculatePetLevel(avatar_handler.avatarInfo.total_xp).LEVEL);
@@ -94,7 +96,8 @@ const PetDisplay = () => {
             const birthday_delta = dateDelta(birthday,TODAY)
             if (birthday_delta<1 && birthday_delta>=0){
                 setMood(HAPPY)
-                contextHandler?.setMoodDesc("I'm so happy it's your birthday!! Yippee!!")
+                // setMoodDesc("I'm so happy it's your birthday!! Yippee!!")
+                moodHandler?.setPetMoodDesc("I'm so happy it's your birthday!! Yippee!!")
                 console.log("BIRTHDAY HAPPY:",birthday_delta)
                 return
             }
@@ -107,17 +110,20 @@ const PetDisplay = () => {
             console.log("FEED DELTA",feed_delta,TODAY,last_feed)
             if (feed_delta<=3 && feed_delta>1){
                 setMood(NEUTRAL)
-                contextHandler?.setMoodDesc("I'm feeling content.")
+                // setMoodDesc("I'm feeling content.")
+                moodHandler?.setPetMoodDesc("I'm feeling content.")
                 console.log("FEED NEUTRAL",feed_delta)
             }
             else if (feed_delta<=1){
                 setMood(HAPPY)
-                contextHandler?.setMoodDesc("Candy is so yummy! I'm so happy!")
+                // contextHandler?.setMoodDesc("Candy is so yummy! I'm so happy!")
+                moodHandler?.setPetMoodDesc("Candy is so yummy! I'm so happy!")
                 console.log("FEED HAPPY",feed_delta)
              }
             else {
                 setMood(SAD)
-                contextHandler?.setMoodDesc("I'm hungry :(")
+                // contextHandler?.setMoodDesc("I'm hungry :(")
+                moodHandler?.setPetMoodDesc("I'm hungry :(")
                 console.log("FEED SAD",feed_delta)
                 feed_flag=true
             }
@@ -133,7 +139,8 @@ const PetDisplay = () => {
                         console.log("TASK DELTA----->",task_delta,item.due_date,TODAY,item.completed)
                         if (task_delta<0){
                             setMood(SAD)
-                            contextHandler?.setMoodDesc("I'm stressed. You have overdue tasks... please complete them :(")
+                            // contextHandler?.setMoodDesc("I'm stressed. You have overdue tasks... please complete them :(")
+                            moodHandler?.setPetMoodDesc("I'm stressed. You have overdue tasks... please complete them :(")
                             console.log("TASK SAD")
                             return
                         }
@@ -146,12 +153,14 @@ const PetDisplay = () => {
               if(pass_task_check){ // guard because axios call is async
                     if(feed_flag){
                         setMood(NEUTRAL)
-                        contextHandler?.setMoodDesc("I'm feeling content.")
+                        // contextHandler?.setMoodDesc("I'm feeling content.")
+                        moodHandler?.setPetMoodDesc("I'm feeling content.")
                         console.log("TASK NEUTRAL")
                         return
                     }
                     setMood(HAPPY) //TODO we'll check grades here as well
-                    contextHandler?.setMoodDesc("You've gotten so much done! I'm so happy! :D")
+                    // contextHandler?.setMoodDesc("You've gotten so much done! I'm so happy! :D")
+                    moodHandler?.setPetMoodDesc("You've gotten so much done! I'm so happy! :D")
                     console.log("TASK HAPPY")
                     return
                 }
