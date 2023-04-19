@@ -23,9 +23,7 @@
   display: flex;
   justify-content: center;
 }
-.experience-ratio {
-  font-size: small;
-}
+
 
 .bg-sprite {
   position: relative;
@@ -78,17 +76,23 @@
 }
 
 .pbar-exp {
-  justify-content: center;
+  display:flex;
+  flex-direction: row;
+  justify-content: space-around;
+  /* justify-content: center; */
+
   padding: 10px;
   border-style: solid none;
   border-width: 1.5px;
   border-color: gray;
+  width: 100%
 }
 
 .pd-position,
 .pbar-exp {
   display: flex;
   align-items: center;
+  background-color: rgb(255, 255, 255);
 }
 
 .pet-desc {
@@ -105,12 +109,31 @@
   height: 15vh;
 }
 
+.experience-ratio {
+
+  font-family: pixelFont;
+  font-size: calc(0.4vw + 1vh);
+  /* text-align:center; */
+
+
+}
+
+/* .experience-ratio {
+  font-size: small;
+
+
+} */
+
 .pet-label,
 .pbar-text {
-  font-size: calc(0.7vw + 1.3vh);
+  font-size: calc(0.6vw + 1vh);
+  font-weight: bold;
+  padding: 0px 10px;
+  font-family: pixelFont;
+  /* font-size: calc(0.7vw + 1.3vh);
   font-weight: bold;
   padding: 0px 5px;
-  font-family: pixelFont;
+  font-family: pixelFont; */
 }
 
 .pd-bg {
@@ -127,6 +150,7 @@
 
 .progress {
   border-radius: 5px;
+  border-style: solid;
 }
 .pet-display-mobile {
   display: flex;
@@ -184,4 +208,4 @@
 
 .progress-bar[aria-valuenow="0"] {
   transition: none;
-}
+} 

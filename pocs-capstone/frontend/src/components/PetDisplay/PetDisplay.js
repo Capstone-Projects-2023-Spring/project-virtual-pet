@@ -1,6 +1,5 @@
 import PetSprite from './PetSprite.js'
-import Card from 'react-bootstrap/Card';
-import ListGroup from 'react-bootstrap/ListGroup';
+import { Card, ListGroup, ProgressBar } from 'react-bootstrap';
 import './PetDisplay.css'
 import '../Inventory/Inventory.css'
 // import orangesheet from '../../../src/images/orange_happy_sheet.png'
@@ -17,17 +16,18 @@ import white_H_gif from '../../images/white_happy_gif.gif'
 import white_S_gif from '../../images/white_sad_gif.gif'
 import tux_H_gif from '../../images/tux_happy_gif.gif'
 import tux_S_gif from '../../images/tux_sad_gif.gif'
+import dingSound from '../../audio/dingsound.mp3';
 import { useDrop } from "react-dnd";
 import { useContext, useEffect, useRef, useState } from 'react';
 import Spritesheet from 'react-responsive-spritesheet'
 import bgimage from '../../images/bg.gif'
-import ProgressBar from 'react-bootstrap/ProgressBar';
 import CalculateXP from '../../algos/assignXP';
 import CalculatePetLevel from '../../algos/calculatePetLevel';
 //import AvatarContext from "../../context/AvatarContext";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 import GlobalContext from '../../context/GlobalContext.js';
 import context from 'react-bootstrap/esm/AccordionContext.js';
+
 // (next level - remainder) / (next level) //
 
 const SAD = 'S'
@@ -69,10 +69,10 @@ const WEIGHTS = [
 
 const PetDisplay = () => {
 
-  
+
     //TODO - shouldn't call calc-pet-lev 3 times
     const axiosPrivate = useAxiosPrivate();
-    const [mood,setMood]=useState(NEUTRAL); //H = happy, S = Sad, N = Neutral
+    const [mood, setMood] = useState(NEUTRAL); //H = happy, S = Sad, N = Neutral
     const [avatarImage, setAvatarImage] = useState(null);
 
     const contextHandler = useContext(GlobalContext);
@@ -82,7 +82,10 @@ const PetDisplay = () => {
 
     const [level_info, setLevelInfo] = useState(CalculatePetLevel(contextHandler?.avatarInfo.total_xp))
 
-   const [progressNow, setProgressNow] = useState(0)
+    const [progressNow, setProgressNow] = useState(0)
+
+    const levelUpAudio = new Audio(dingSound);
+
 
     function animateSpriteSheet() {
         if (contextHandler?.spritesheetInstance) {
@@ -100,12 +103,12 @@ const PetDisplay = () => {
         spritesheet.pause();
     }
 
-    function dateDelta(date1,date2){
-       return Math.floor((date1-date2)/(1000*60*60*24))
+    function dateDelta(date1, date2) {
+        return Math.floor((date1 - date2) / (1000 * 60 * 60 * 24))
     }
 
     // const updateProgressNowHandler = () => {
-        
+
     //     if (progressNow > 100){
     //      setProgressNow(100)
     //      clearInterval(updateProgressNowHandler)
@@ -121,81 +124,80 @@ const PetDisplay = () => {
         if pet hasn't been fed in a while but tasks are complete pet is neutral
         if pet tasks are overdue, pet is sad
     */
-        useEffect (()=>
-        {
-            
-            var tasks;
-            var user;
-            var feed_flag = false;
-            
-    
-            axiosPrivate.get(USER_URL).then(response=>{
-                user=response?.data
-                const birthday = new Date(user?.birthday)
-                        //if it's your birthday, your pet is happy
-            const birthday_delta = dateDelta(birthday,TODAY)
-            if (birthday_delta<1 && birthday_delta>=0){
+    useEffect(() => {
+
+        var tasks;
+        var user;
+        var feed_flag = false;
+
+
+        axiosPrivate.get(USER_URL).then(response => {
+            user = response?.data
+            const birthday = new Date(user?.birthday)
+            //if it's your birthday, your pet is happy
+            const birthday_delta = dateDelta(birthday, TODAY)
+            if (birthday_delta < 1 && birthday_delta >= 0) {
                 setMood(HAPPY)
-                console.log("BIRTHDAY HAPPY:",birthday_delta)
+                console.log("BIRTHDAY HAPPY:", birthday_delta)
                 return
             }
-            })
-            
-            const last_interaction = contextHandler.avatarInfo.last_interaction
-            const last_feed = new Date(contextHandler.avatarInfo.last_feed)
-            
-            const feed_delta = dateDelta(TODAY,last_feed) //elapsed time since last feed
-            // console.log("FEED DELTA",feed_delta,TODAY,last_feed)
-            if (feed_delta<=3 && feed_delta>1){
-                setMood(NEUTRAL)
-                // console.log("FEED NEUTRAL",feed_delta)
-            }
-            else if (feed_delta<=1){
-                setMood(HAPPY)
-                // console.log("FEED HAPPY",feed_delta)
-             }
-            else {
-                setMood(SAD)
-                // console.log("FEED SAD",feed_delta)
-                feed_flag=true
-            }
-    
-            var pass_task_check = false
-            //if overdue assignments, pet is sad
-            axiosPrivate.get(TASK_URL).then(response=>{
-                tasks = response?.data
-                tasks.forEach(item => {
-                    if (!item.completed){
-                        const due = new Date(item.due_date)
-                        const task_delta = dateDelta(due, TODAY)
-                        console.log("TASK DELTA----->",task_delta,item.due_date,TODAY,item.completed)
-                        if (task_delta<0){
-                            setMood(SAD)
-                            console.log("TASK SAD")
-                            return
-                        } 
-                    }
-                }
-                )
-            pass_task_check = true
-            })       
-              if(pass_task_check){ // guard because axios call is async
-                    if(feed_flag){
-                        setMood(NEUTRAL)
-                        // console.log("TASK NEUTRAL")
+        })
+
+        const last_interaction = contextHandler.avatarInfo.last_interaction
+        const last_feed = new Date(contextHandler.avatarInfo.last_feed)
+
+        const feed_delta = dateDelta(TODAY, last_feed) //elapsed time since last feed
+        // console.log("FEED DELTA",feed_delta,TODAY,last_feed)
+        if (feed_delta <= 3 && feed_delta > 1) {
+            setMood(NEUTRAL)
+            // console.log("FEED NEUTRAL",feed_delta)
+        }
+        else if (feed_delta <= 1) {
+            setMood(HAPPY)
+            // console.log("FEED HAPPY",feed_delta)
+        }
+        else {
+            setMood(SAD)
+            // console.log("FEED SAD",feed_delta)
+            feed_flag = true
+        }
+
+        var pass_task_check = false
+        //if overdue assignments, pet is sad
+        axiosPrivate.get(TASK_URL).then(response => {
+            tasks = response?.data
+            tasks.forEach(item => {
+                if (!item.completed) {
+                    const due = new Date(item.due_date)
+                    const task_delta = dateDelta(due, TODAY)
+                    console.log("TASK DELTA----->", task_delta, item.due_date, TODAY, item.completed)
+                    if (task_delta < 0) {
+                        setMood(SAD)
+                        console.log("TASK SAD")
                         return
                     }
-                    setMood(HAPPY) //TODO we'll check grades here as well
-                    // console.log("TASK HAPPY")
-                    return
                 }
-    
+            }
+            )
+            pass_task_check = true
+        })
+        if (pass_task_check) { // guard because axios call is async
+            if (feed_flag) {
+                setMood(NEUTRAL)
+                // console.log("TASK NEUTRAL")
+                return
+            }
+            setMood(HAPPY) //TODO we'll check grades here as well
+            // console.log("TASK HAPPY")
+            return
         }
-        ,[contextHandler]);
+
+    }
+        , [contextHandler]);
 
     //TEMP USE EFFECT TO SEE MOOD
     //Mary, plug in your state changes here!!
-    useEffect(()=>{
+    useEffect(() => {
         // console.log("MOOD------>",mood)
         const getavatarImage = (pet) => {
             switch (pet.avatar_type) {
@@ -203,52 +205,52 @@ const PetDisplay = () => {
                     // console.log(pet.palette);
                     switch (pet.palette) {
                         case 0:
-                           if(mood==='N'){
+                            if (mood === 'N') {
                                 setAvatarImage(orange_cat);
-                           //} else {
-                            //    setAvatarImage(`orange_${mood}_gif`)
-                               // console.log(`orange_${mood}_gif`)
-                           } else if (mood === 'H'){
+                                //} else {
+                                //    setAvatarImage(`orange_${mood}_gif`)
+                                // console.log(`orange_${mood}_gif`)
+                            } else if (mood === 'H') {
                                 setAvatarImage(orange_H_gif);
-                           } else {
+                            } else {
                                 setAvatarImage(orange_S_gif);
-                           }
-                        return
+                            }
+                            return
                         case 1:
-                            if(mood==='N'){
+                            if (mood === 'N') {
                                 setAvatarImage(gray_cat);
-                           } else if(mood==='H'){
+                            } else if (mood === 'H') {
                                 setAvatarImage(gray_H_gif);
                                 // setAvatarImage(`gray_${mood}_gif`)
                                 // console.log(`gray_${mood}_gif`)
-                           } else {
-                            setAvatarImage(gray_S_gif);
-                           }
-                        return
+                            } else {
+                                setAvatarImage(gray_S_gif);
+                            }
+                            return
                         case 2:
-                            case 1:
-                            if(mood==='N'){
+                        case 1:
+                            if (mood === 'N') {
                                 setAvatarImage(white_cat);
-                           } else if(mood==='H'){
+                            } else if (mood === 'H') {
                                 setAvatarImage(white_H_gif);
                                 // setAvatarImage(`gray_${mood}_gif`)
                                 // console.log(`gray_${mood}_gif`)
-                           } else {
-                            setAvatarImage(white_S_gif);
-                           }
-                        return
+                            } else {
+                                setAvatarImage(white_S_gif);
+                            }
+                            return
                         case 3:
-                            case 1:
-                            if(mood==='N'){
+                        case 1:
+                            if (mood === 'N') {
                                 setAvatarImage(tux_cat);
-                           } else if(mood==='H'){
+                            } else if (mood === 'H') {
                                 setAvatarImage(tux_H_gif);
                                 // setAvatarImage(`gray_${mood}_gif`)
                                 // console.log(`gray_${mood}_gif`)
-                           } else {
-                            setAvatarImage(tux_S_gif);
-                           }
-                        return
+                            } else {
+                                setAvatarImage(tux_S_gif);
+                            }
+                            return
                         // case 2:
                         //     if(mood==='N'){
                         //         setAvatarImage(orange_cat);
@@ -260,8 +262,8 @@ const PetDisplay = () => {
                         //    } else {
                         //         setAvatarImage(orange_S_gif);
                         //    }
-                        
-                           // switch(mood){
+
+                        // switch(mood){
                         //         case 'N':
                         //             setAvatarImage(gray_cat);
                         //         case 'H':
@@ -269,13 +271,13 @@ const PetDisplay = () => {
                         //         case 'S':
                         //             setAvatarImage(gray_S_gif);
                         //   //  }
-                            
-                            // CHANGE TO IMAGE OF OTHER CAT (black palette)
-                            // return require('../../images/graycat.png')
-                           // return graysheet;
+
+                        // CHANGE TO IMAGE OF OTHER CAT (black palette)
+                        // return require('../../images/graycat.png')
+                        // return graysheet;
                     }
-                
-    
+
+
                 case 'DG':
                     return ''
                 case 'CR':
@@ -284,8 +286,8 @@ const PetDisplay = () => {
                     return ''
             }
         }
-    getavatarImage(contextHandler?.avatarInfo);
-    },[mood])
+        getavatarImage(contextHandler?.avatarInfo);
+    }, [mood])
 
 
     const retAvatarImage = () => {
@@ -293,70 +295,54 @@ const PetDisplay = () => {
     }
 
 
-    useEffect (() => {
+    useEffect(() => {
         //  [level, remain, next_level] = CalculatePetLevel(exp);
         setLevelInfo(CalculatePetLevel(contextHandler.avatarInfo?.total_xp));
+        setProgressNow(level_info.RATIO)
 
 
-    },[contextHandler])
+    }, [contextHandler])
 
 
     // Easter egg: randomly change pet's weight every minute (change the 60 to something else to change tinme interval)
     const [currentWeight, setCurrentWeight] = useState(WEIGHTS[0]); // initialize with first weight in the array
     useEffect(() => {
         const interval = setInterval(() => {
-          const randomIndex = Math.floor(Math.random() * WEIGHTS.length);
-          setCurrentWeight(WEIGHTS[randomIndex]);
+            const randomIndex = Math.floor(Math.random() * WEIGHTS.length);
+            setCurrentWeight(WEIGHTS[randomIndex]);
         }, 5 * 60 * 1000); // change weight every 5 minutes
         return () => clearInterval(interval);
-      }, []); 
+    }, []);
 
-    useEffect( ()=> {
-        
+
+    useEffect(() => {
+
         const prevLevel = contextHandler?.prev_level_info
+        if (prevLevel.LEVEL < level_info.LEVEL && contextHandler.leveledUp) {
+            // console.log("PREVIOUS LEVEL", contextHandler?.prev_level_info, "CURRENT LEVEL", level_info)
 
-        if(prevLevel.LEVEL < level_info.LEVEL && contextHandler.leveledUp){
-            // this calls twice? 
-            console.log("PREVIOUS LEVEL", contextHandler?.prev_level_info, "CURRENT LEVEL", level_info)
+            // set the progress bar value to 100
+            setProgressNow(100)
 
-            const updateProgressNowHandler = setInterval(() => {
+            // wait one second before transtioning to 0. CSS makes sure the transition to 0 isn't shown 
+            setTimeout(() => {
 
-                console.log("PROGRESS NOW: ", progressNow, "LEVLINFO", level_info)
+                // play level up audio
+                levelUpAudio.play();
 
-                if (progressNow > 70){
-                    console.log("PROGRESS NOW GREATER THAN LEVEL_INFO RATIO", progressNow, level_info.RATIO)
-                    // setProgressNow(level_info.RATIO)
-                    setProgressNow(70)
-                    contextHandler?.setLeveledUp(false)
-                    clearInterval(updateProgressNowHandler)
-                    
-                    
-                    
-                }
-                setProgressNow(s => s+1)
-            }, 50)
+                // reset level to 0
+                setProgressNow(0)
 
+                // another set timeout for transtions 
+                setTimeout(() => {
+                    setProgressNow(level_info.RATIO)
+                    contextHandler.setLeveledUp(false)
+                }, 600)
+            }, 1000)
         }
-       
-        // if (contextHandler?.leveledUp ) {
-        //     console.log("leveledup?", contextHandler?.leveledUp, "PROGRESSNOW", progressNow, "LEVELINFO", level_info)
-        //     const updateProgressNowHandler = setInterval(() => {
-        //         if (progressNow > level_info.RATIO ){
-        //         console.log("PROGRESS NOW GREATER THAN LEVEL_INFO RATIO", progressNow, level_info.RATIO)
-        //          setProgressNow(level_info.RATIO)
-        //          clearInterval(updateProgressNowHandler)
-        //         //  setProgressNow(0)
-        //          contextHandler?.setLeveledUp(false)
-        //          setProgressNow(0)
-                 
-        //         }
-        //         setProgressNow(s => s+1)
-        //        }, 50)
-              
-        // }
+
     }, [contextHandler])
 
-    
 
     return (
         <div className='pet-display'>
@@ -367,17 +353,15 @@ const PetDisplay = () => {
 
                     <div className='p-sprite-display'>
                         <img src={bgimage} alt="background" className="bg-sprite" />
-                        <img src = {avatarImage} className = "p-sprite"></img>
+                        <img src={avatarImage} className="p-sprite"></img>
                     </div>
                 </div>
                 <div className="pbar-exp">
-                
-                <div className='pbar-text'>LVL:{level_info.LEVEL} </div>
-                {/* <ProgressBar now={(level_info.RATIO)} variant='success' style={{ width: '18rem' }} /> */}
-                <ProgressBar now={!contextHandler?.leveledUp ? level_info.RATIO : progressNow} variant='success' style={{ width: '18rem' }} />
-                
-                <div className='experience-ratio'>{level_info.NEXT_LEVEL-level_info.REMAINDER}/{level_info.NEXT_LEVEL}</div>
-            </div>
+
+                    <div className='pbar-text'>LV.{level_info.LEVEL} </div>
+                    <ProgressBar now={(progressNow)} variant='success' style={{ width: '15rem' }} />
+                    <div className='experience-ratio'>{level_info.NEXT_LEVEL - level_info.REMAINDER}/{level_info.NEXT_LEVEL}</div>
+                </div>
                 <Card.Body className='pd-bg'>
 
                     <Card.Text className='pet-desc-text'>

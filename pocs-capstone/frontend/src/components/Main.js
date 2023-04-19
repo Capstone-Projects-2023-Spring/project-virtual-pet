@@ -359,9 +359,7 @@ const Main = () => {
       .patch(`/avatar/${avatarInfo.avatar_id}/`, updatedAvatar)
       .then((response) => { 
         
-        // console.log('RESPONSE:', response)
         const nextLevel = CalculatePetLevel(response.data.total_xp)
-        // console.log("LEVELS", prevLevel.LEVEL, nextLevel.LEVEL)
         if (prevLevel.LEVEL < nextLevel.LEVEL){
           setLeveledUp(true)
         }
