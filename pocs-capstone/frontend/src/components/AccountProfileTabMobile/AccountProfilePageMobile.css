@@ -1,5 +1,18 @@
-.link-container-mobile {
+.account-profile-container-mobile {
+    /* margin: 10px; */
+    /* width: 100vw;
+    height: 100vh; */
+    /* justify-content: center;
+    align-items: center; */
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.profile-account-button-mobile {
+    width: 80vw;
     margin: 10px;
+    background-color: pink;
+    color:black;   
 }
 
 .pet-profile-button-mobile {
@@ -8,7 +21,7 @@
     align-items: center; */
     /* margin:10px; */
     width: 80vw;
-    margin: 20px;
+    margin: 10px;
     background-color: pink;
     color:black;
     
@@ -18,7 +31,7 @@
 .canvas-button-mobile {
     
     width: 80vw;
-    margin: 20px;
+    margin: 10px;
     background-color: pink;
     color:black;
 
@@ -26,7 +39,7 @@
 
 .logout-button-mobile {
     width: 80vw;
-    margin: 20px;
+    margin: 10px;
     background-color: pink;
     color:black;
     

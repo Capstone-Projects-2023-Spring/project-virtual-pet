@@ -89,6 +89,8 @@ class NewUser(AbstractBaseUser, PermissionsMixin):  # TODO rename to something l
     is_active = models.BooleanField(default=True)
     canvas_token = models.CharField(max_length=512, default="")
     tutorial = models.BooleanField(default=True)
+    demo_canvas = models.BooleanField(default=False)
+
 
     objects = CustomAccountManager()
 
@@ -129,7 +131,7 @@ class Avatar(models.Model):
     last_feed = models.DateField(default=None)
     pet_name = models.CharField(max_length=32, default='')
     flavour_text = models.TextField(
-        max_length=256, default='Welcome to Study Buddy!', blank=True, null=True) 
+        max_length=256, default='Welcome to Study Buddy!', blank=True, null=True)
     palette = models.IntegerField(default=0)
 
     def __str__(self):
@@ -219,6 +221,11 @@ class Task(models.Model):
     received = models.BooleanField(default=False)
     unique_canvas_tag = models.CharField(
         max_length=256, default=None, null=True, blank=True)
+    course_title = models.CharField(
+        max_length=256, default=None, null=True, blank=True)
+    tags = models.JSONField(default=None, null=True, blank=True)
+
+
 
     def __str__(self):
         """Task toString method

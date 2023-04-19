@@ -55,7 +55,6 @@ class TaskSerializer(serializers.ModelSerializer):
     class Meta:
         model = Task
         fields = [
-            # 'username',
             'task_id',
             'title',
             'due_date',
@@ -71,6 +70,8 @@ class TaskSerializer(serializers.ModelSerializer):
             'course_id',
             'assignment_id',
             'received',
+            'tags',
+            'course_title',
         ]
 
 
@@ -107,6 +108,8 @@ class CanvasSerializer(serializers.ModelSerializer):
             'assignment_id',
             'unique_canvas_tag',
             'received',
+            'tags',
+            'course_title',
         ]
     # TODO - consider overriding create rather than doing validation in the view
     """
