@@ -15,6 +15,7 @@ function CreateTaskForm(props) {
 
   const minDateCake = new Date()
   minDateCake.setDate(minDateCake.getDate() + 3)
+  minDateCake.setHours(0, 0, 0, 0)
 
   const { Formik } = formik;
   const schema = yup.object().shape({
@@ -76,9 +77,7 @@ function CreateTaskForm(props) {
             due_date: props.task ? props.task.due_date ? props.task.due_date : '' : '',
           }}
         >
-          {({
-            handleSubmit, handleChange, handleBlur, values, touched, isValid, errors,
-          }) => (
+          {({ handleSubmit, handleChange, handleBlur, values, touched, isValid, errors }) => (
             <Form noValidate onSubmit={handleSubmit}>
               <Stack gap={2} className="col-md-12 mx-auto">
                 <Form.Group controlId="validationFormik01">
@@ -121,37 +120,8 @@ function CreateTaskForm(props) {
 
                 <br />
 
+
                 <Form.Group controlId="validationFormik03">
-                  <Form.Label>Due Date</Form.Label>
-                  <Form.Control
-                    min={values.size !== 'C' ? null : minDateCake.toISOString().slice(0, 10)}
-                    type="date"
-                    placeholder="due_date"
-                    name="due_date"
-                    value={values.due_date}
-                    onChange={e => {
-                      handleChange(e)
-                      // if(e.target.value )
-                      console.log("NEW DATE", e.target.value)
-                      const newDate = new Date(e.target.value)
-                      console.log("NEWER DATE", newDate)
-                      // console.log("date and task size",chosenDate, minDateCake, )
-                      if(values.size === 'C'  &&  newDate >= minDateCake){
-                        console.log("VALID DATES")
-                        // errors.due_date = {}
-                        
-
-                      }
-                    }} 
-                    isInvalid={!!errors.due_date}/>
-                  <Form.Control.Feedback type="invalid">
-                    {errors.due_date}
-                  </Form.Control.Feedback>
-                </Form.Group>
-
-                <br />
-
-                <Form.Group controlId="validationFormik04">
                   <Form.Label>Time to Complete Task</Form.Label>
                   <OverlayTrigger
                     key="top"
@@ -173,20 +143,9 @@ function CreateTaskForm(props) {
                     placeholder="Select Size"
                     name="size"
                     value={values.size}
-                    onChange={e=> {
-
-                      handleChange(e)
-                      const chosenDate = new Date(values.due_date)
-                      console.log("date and task size",chosenDate, e.target.value,minDateCake, )
-                      if(e.target.value === 'C'  &&  chosenDate < minDateCake){
-                        console.log("ERROR CANT PICK A DATE> ANOTHER",errors)
-                        errors.due_date = 'This is a large task! It should take at least 3 days to finish. Please pick another date.'
-                        
-
-                      }
-                    }}
-                    isInvalid={!!errors.size}
-                  >
+                    onChange={handleChange}
+                    isInvalid={values.size === 'C' && (new Date(values.due_date.replace(/-/g, '\/'))) < minDateCake}
+>
                     <option value="S">Less than an hour</option>
                     <option value="M">Between 1 and 4 hours</option>
                     <option value="L">Between 4 hours and 3 days</option>
@@ -194,6 +153,24 @@ function CreateTaskForm(props) {
                   </Form.Select>
                   <Form.Control.Feedback type="invalid">
                     {errors.size}
+                  </Form.Control.Feedback>
+                </Form.Group>
+
+
+                <br />
+
+                <Form.Group controlId="validationFormik04">
+                  <Form.Label>Due Date</Form.Label>
+                  <Form.Control
+                    min={values.size !== 'C' ? null : minDateCake.toISOString().slice(0, 10)}
+                    type="date"
+                    placeholder="due_date"
+                    name="due_date"
+                    value={values.due_date}
+                    onChange={handleChange}
+                    isInvalid={values.size === 'C' && (new Date(values.due_date.replace(/-/g, '\/'))) < minDateCake} />
+                  <Form.Control.Feedback type="invalid">
+                    This is a CAKE task! It should take at least 3 days to finish. Please pick another date.
                   </Form.Control.Feedback>
                 </Form.Group>
 
