@@ -57,7 +57,7 @@ const WEIGHTS = [
     '1 strawberry',
     '3 sheets of US letter sized printer paper',
     '300 almond slivers',
-    '23/4 of a slice of multigrain bread',
+    '3/4 of a slice of multigrain bread',
     '1 big handful of cotton balls',
     '4 clementine slices',
     '150 wooden toothpicks',
@@ -363,15 +363,19 @@ const PetDisplay = () => {
     //     }),
     // }), [contextHandler.inv])
 
-    // Easter egg: randomly change pet's weight every minute (change the 60 to something else to change tinme interval)
-    const [currentWeight, setCurrentWeight] = useState(WEIGHTS[0]); // initialize with first weight in the array
+    // Easter egg: randomly change pet's weight every minute (change the 60 to something else to change time interval
+    const [currentWeight, setCurrentWeight] = useState(() => {
+        const randomIndex = Math.floor(Math.random() * WEIGHTS.length);
+            return WEIGHTS[randomIndex];
+    });
+
     useEffect(() => {
-        const interval = setInterval(() => {
-          const randomIndex = Math.floor(Math.random() * WEIGHTS.length);
-          setCurrentWeight(WEIGHTS[randomIndex]);
-        }, 5 * 60 * 1000); // change weight every 5 minutes
-        return () => clearInterval(interval);
-      }, []); 
+      const interval = setInterval(() => {
+        const randomIndex = Math.floor(Math.random() * WEIGHTS.length);
+        setCurrentWeight(WEIGHTS[randomIndex]);
+      }, 5 * 60 * 1000); // change weight every 5 minutes
+      return () => clearInterval(interval);
+    }, []);
 
     return (
         <div className='pet-display'>
