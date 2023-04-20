@@ -112,6 +112,8 @@ function CreateTaskForm(props) {
                 <Form.Group controlId="validationFormik04">
                   <Form.Label>Time to Complete Task</Form.Label>
                   <OverlayTrigger
+                    trigger='click'
+                    rootClose
                     key="top"
                     placement="top"
                     overlay={
