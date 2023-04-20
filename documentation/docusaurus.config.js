@@ -20,7 +20,7 @@ const main_template_jira_scripts = () => {
 //const title = ''+process.env.PROJECT_NAME.replaceAll('-',' ').split(' ').map((word) => {
 //  return word[0].toUpperCase() + word.substring(1);
 //}).join(' ');
-const title = 'My Study Buddy';
+const title = 'Study Buddy';
 
 
 /** @type {import('@docusaurus/types').Config} */
