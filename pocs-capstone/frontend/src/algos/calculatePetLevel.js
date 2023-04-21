@@ -166,7 +166,7 @@ function CalculatePetLevel(xp) {
   var remainder = 0;
   var next_level = 0;
   var ratio = 0;
-  console.log("XP------> ",xp)
+  // console.log("XP------> ",xp)
 
 
   for (let l = 0; l < n; l++) {
