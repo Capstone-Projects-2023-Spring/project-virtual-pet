@@ -6,7 +6,6 @@ import { useState, useEffect, useRef, useContext } from "react";
 import { useWindowWidth } from "@react-hook/window-size";
 import useAxiosPrivate from "../hooks/useAxiosPrivate.js";
 import "./Main.css";
-
 import PopulateInv from "./Inventory/PopulateInv";
 import LockedInv from "./Inventory/LockedInv.js";
 import AvatarContext from "../context/AvatarContext";
