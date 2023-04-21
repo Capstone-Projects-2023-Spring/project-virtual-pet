@@ -114,3 +114,8 @@ pocs-capstone/backend/db/__pycache__/studybuddyemail.cpython-310.pyc
 pocs-capstone/backend/deleteme.txt
 pocs-capstone/backend/database/db.sqlite3
 pocs-capstone/backend/database/db.sqlite3
+pocs-capstone/frontend/src/components/Tutorial/Tutorial-screenshots/original screenshots/account-management.png
+pocs-capstone/frontend/src/components/Tutorial/Tutorial-screenshots/original screenshots/active-tasks.png
+pocs-capstone/frontend/src/components/Tutorial/Tutorial-screenshots/original screenshots/calendar.png
+pocs-capstone/frontend/src/components/Tutorial/Tutorial-screenshots/original screenshots/completed-tasks.png
+pocs-capstone/frontend/src/components/Tutorial/Tutorial-screenshots/original screenshots/inventory.png
