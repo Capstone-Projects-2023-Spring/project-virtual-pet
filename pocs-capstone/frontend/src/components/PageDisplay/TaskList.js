@@ -5,11 +5,18 @@ import TaskItem from './TaskItem'
 import GlobalContext from "../../context/GlobalContext.js";
 import { useContext, useState } from 'react'
 
-const TaskList = ({ filter }) => {
+const TaskList = ({ showAll, filterTags, filterTaskType }) => {
     const handlers = useContext(GlobalContext)
-    const showTasks = filter === 'all' ?
-        handlers?.taskList.filter(task => !task.completed) :
-        handlers?.taskList.filter(task => task.completed)
+
+    console.log("FILTER TASK TYPES", filterTaskType)
+
+    const taskFilterCondition = (item) => {
+        if(filterTaskType.length===1){
+            return filterTaskType[0]==='canvas' ? item.course_id!==0 && item.assignment_id!==0 : item.course_id===0 && item.assignment_id===0
+        }
+        return true
+    }
+    const showTasks = handlers?.taskList.filter(task => task.completed !== showAll).filter(task => filterTags.every(fT => task.tags?.includes(fT))).filter(taskFilterCondition)
 
     const taskListHandlers = {
         updateTask: handlers.updateTask,
@@ -27,7 +34,7 @@ const TaskList = ({ filter }) => {
                     </ListGroup>
                     :
                     <>        
-                        {filter === 'completed' ?
+                        {showAll === false ?
                             (
                                 <div className='delete-com-tasks "mb-2"'>
                                     <Stack className="col-md-5 mx-auto">

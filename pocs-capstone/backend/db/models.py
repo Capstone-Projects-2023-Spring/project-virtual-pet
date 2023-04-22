@@ -227,7 +227,7 @@ class Task(models.Model):
         max_length=256, default=None, null=True, blank=True)
     course_title = models.CharField(
         max_length=256, default=None, null=True, blank=True)
-    tags = models.JSONField(default=None, null=True, blank=True)
+    tags = models.JSONField(default=list, null=False, blank=True)
 
 
 

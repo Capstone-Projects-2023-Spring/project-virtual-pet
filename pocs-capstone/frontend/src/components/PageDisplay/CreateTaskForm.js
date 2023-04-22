@@ -8,6 +8,7 @@ import infoicon from '../../images/info_icon.png'
 
 import * as yup from "yup";
 import * as formik from 'formik'
+import { ExpandLessSharp } from '@material-ui/icons';
 
 
 function CreateTaskForm(props) {
@@ -18,11 +19,49 @@ function CreateTaskForm(props) {
   const buttonText = props.task ? "Save" : "Create Task"
 
 
-  const [tags, setTags] = useState(props.task ? props.task.tags : [])
+  const [tags, setTags] = useState([])
   const [tagValue, setTagValue] = useState("")
   const [tagError, setTagError] = useState("")
 
   // console.log("PROP TASK TAGS",props.task ? props.task : "NONE?", "TAGS", tags)
+
+  // console.log("TASK ITEM", props.task)
+
+  useEffect(() => {
+    // check it's the updating version of the CreateTaskForm
+    if (props.task) {
+      // make sure to remove any tags that may have been removed from the global tags list
+      props.task.tags?.forEach((tagItem) => {
+        const findTagItem = userHandler?.userInfo?.tags?.find(t => t === tagItem)
+        if (findTagItem) {
+          // console.log('IN GLOBAL LIST', userHandler?.userInfo?.tags, findTagItem)
+        }
+        else {
+          const newTags = props.task.tags.filter(t => t!==tagItem)
+          const taskItemChanged = {
+            ...props.task,
+            tags: newTags
+          }
+          axiosPrivate.put(`/tasks/${props.task.task_id}/`, taskItemChanged)
+            .then(r => {
+              setTags(newTags)
+            })
+          
+
+        }
+      })
+    }
+
+    // console.log("TAGS AFTER FILTER", tags, props.task)
+
+  }, [userHandler?.userInfo?.tags])
+
+  // on 
+  useEffect(() => {
+    if (props.task){
+      setTags(props.task.tags)
+    }
+  }, [])
 
   const minDateCake = new Date()
   minDateCake.setDate(minDateCake.getDate() + 3)
@@ -149,14 +188,14 @@ function CreateTaskForm(props) {
             }
             else {
               handlers.addTask(valuesAndTags)
-              
+
             }
 
             props.handleClose()
 
             // after submitting, reset input field and set tags to empty only if the props.task object is empty (meaning the component has been rendered for adding tasks only NOT udpating)
             setTagValue("")
-            if(!props.task){
+            if (!props.task) {
               setTags([])
             }
 
