@@ -13,7 +13,7 @@ import click_to_complete from "./Tutorial-screenshots/click-to-complete-tasks.pn
 import { useState, useRef, useEffect } from "react";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 import { useNavigate } from "react-router-dom";
-import { useWindowWidth } from "@react-hook/window-size";
+import { useWindowWidth, useWindowHeight } from "@react-hook/window-size";
 import Carousel from "react-bootstrap/Carousel";
 
 const YESTERDAY = new Date();
@@ -37,65 +37,6 @@ const TASK1 =
   "You are ready to adopt your pet. Complete this task to make it official and recieve your first candy reward. This will make them content!";
 const TASK2 =
   "Make sure pet is well fed! After you adopt, navigate to the inventory page and feed your pet a candy. This will make them very happy!";
-
-const items = [
-  <div className="alice-box">
-    {" "}
-    <div className="header-tut">
-      <div className="header-text-tut">How To Use Study Buddy!</div>
-    </div>
-    <div className="tut-imagebox">
-      <img className="tut-image" src={active_tasks}></img>
-    </div>{" "}
-    <div className="tut-textbox">
-      <span className="tut-text">{TUT_TEXT[0]} </span>
-    </div>{" "}
-  </div>,
-
-  <div className="alice-box">
-    <div className="header-tut">
-      <div className="header-text-tut">Completing Tasks!</div>
-    </div>
-    <img className="tut-image" src={click_to_complete}></img>
-    <div className="tut-textbox">
-      {" "}
-      <span className="tut-text">{TUT_TEXT[1]} </span>
-    </div>{" "}
-  </div>,
-
-  <div className="alice-box">
-    <div className="header-tut">
-      <div className="header-text-tut">View Completed Tasks!</div>
-    </div>
-    <img className="tut-image" src={completed_tasks}></img>
-    <div className="tut-textbox">
-      {" "}
-      <span className="tut-text">{TUT_TEXT[2]} </span>
-    </div>{" "}
-  </div>,
-
-  <div className="alice-box">
-    <div className="header-tut">
-      <div className="header-text-tut">Feed Your Pet!</div>
-    </div>
-    <img className="tut-image" src={inventory}></img>
-    <div className="tut-textbox">
-      {" "}
-      <span className="tut-text">{TUT_TEXT[3]} </span>
-    </div>{" "}
-  </div>,
-
-  <div className="alice-box">
-    <div className="header-tut">
-      <div className="header-text-tut">View Your Calendar!</div>
-    </div>
-    <img className="tut-image" src={calendar}></img>
-    <div className="tut-textbox">
-      {" "}
-      <span className="tut-text">{TUT_TEXT[4]} </span>
-    </div>{" "}
-  </div>,
-];
 
 const Tutorial = () => {
   const axiosPrivate = useAxiosPrivate();
@@ -147,6 +88,7 @@ const Tutorial = () => {
 
   const nav = useNavigate();
   const width = useWindowWidth();
+  const height = useWindowHeight();
 
   useEffect(() => {
     addTutorialTasks();
@@ -157,11 +99,146 @@ const Tutorial = () => {
     setTutText(TUT_TEXT[selectedPet]);
   };
 
-  return (
-    <div className="alice-container">
-      <AliceCarousel mouseTracking items={items}/>
-    </div>
-  );
+  if (height > 700) {
+    let items = [
+      <div className="alice-box">
+        {" "}
+        <div className="header-tut">
+          <div className="header-text-tut">How To Use Study Buddy!</div>
+        </div>
+        <div className="tut-imagebox">
+          <img className="tut-image" src={active_tasks}></img>
+        </div>{" "}
+        <div className="tut-textbox">
+          <span className="tut-text">{TUT_TEXT[0]} </span>
+        </div>{" "}
+      </div>,
+
+      <div className="alice-box">
+        <div className="header-tut">
+          <div className="header-text-tut">Completing Tasks!</div>
+        </div>
+        <img className="tut-image" src={click_to_complete}></img>
+        <div className="tut-textbox">
+          {" "}
+          <span className="tut-text">{TUT_TEXT[1]} </span>
+        </div>{" "}
+      </div>,
+
+      <div className="alice-box">
+        <div className="header-tut">
+          <div className="header-text-tut">View Completed Tasks!</div>
+        </div>
+        <img className="tut-image" src={completed_tasks}></img>
+        <div className="tut-textbox">
+          {" "}
+          <span className="tut-text">{TUT_TEXT[2]} </span>
+        </div>{" "}
+      </div>,
+
+      <div className="alice-box">
+        <div className="header-tut">
+          <div className="header-text-tut">Feed Your Pet!</div>
+        </div>
+        <img className="tut-image" src={inventory}></img>
+        <div className="tut-textbox">
+          {" "}
+          <span className="tut-text">{TUT_TEXT[3]} </span>
+        </div>{" "}
+      </div>,
+
+      <div className="alice-box">
+        <div className="header-tut">
+          <div className="header-text-tut">View Your Calendar!</div>
+        </div>
+        <img className="tut-image" src={calendar}></img>
+        <div className="tut-textbox">
+          {" "}
+          <span className="tut-text">{TUT_TEXT[4]} </span>
+        </div>{" "}
+      </div>,
+    ];
+    if (width < 1128) {
+      return (
+        <html>
+          <body>
+            <div className="alice-container">
+              <AliceCarousel
+                mouseTracking
+                disableButtonsControls={true}
+                items={items}
+              />
+              <div className="padding-container"></div>
+            </div>
+          </body>
+        </html>
+      );
+    }
+
+    return (
+      <div className="alice-container">
+        <AliceCarousel mouseTracking items={items} />
+      </div>
+    );
+  } else {
+    let items = [
+      <div className="alice-box">
+        {" "}
+        <div className="tut-imagebox">
+          <img className="tut-image" src={active_tasks}></img>
+        </div>{" "}
+        <div className="tut-textbox">
+          <span className="tut-text">{TUT_TEXT[0]} </span>
+        </div>{" "}
+      </div>,
+
+      <div className="alice-box">
+        <img className="tut-image" src={click_to_complete}></img>
+        <div className="tut-textbox">
+          {" "}
+          <span className="tut-text">{TUT_TEXT[1]} </span>
+        </div>{" "}
+      </div>,
+
+      <div className="alice-box">
+        <img className="tut-image" src={completed_tasks}></img>
+        <div className="tut-textbox">
+          {" "}
+          <span className="tut-text">{TUT_TEXT[2]} </span>
+        </div>{" "}
+      </div>,
+
+      <div className="alice-box">
+        <img className="tut-image" src={inventory}></img>
+        <div className="tut-textbox">
+          {" "}
+          <span className="tut-text">{TUT_TEXT[3]} </span>
+        </div>{" "}
+      </div>,
+
+      <div className="alice-box">
+        <img className="tut-image" src={calendar}></img>
+        <div className="tut-textbox">
+          {" "}
+          <span className="tut-text">{TUT_TEXT[4]} </span>
+        </div>{" "}
+      </div>,
+    ];
+    return (
+      <html>
+        <body>
+          <div className="alice-container">
+            <AliceCarousel
+              mouseTracking
+              disableButtonsControls={true}
+              items={items}
+            />
+            <div className="padding-container"></div>
+          </div>
+        </body>
+      </html>
+    );
+  }
 };
 /*
   //contains sprite sheets

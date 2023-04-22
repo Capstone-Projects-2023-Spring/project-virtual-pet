@@ -11,6 +11,14 @@
   flex-direction: column;
 
   align-items: center;
+  
+}
+.padding-container{
+  height: auto;
+  margin: auto;
+  padding-bottom: 10px;
+  background-color: rgb(255, 198, 198); 
+  bottom: calc(env(safe-area-inset-bottom) + 16px);
 }
 
 .alice-carousel {
@@ -44,6 +52,12 @@
   background-color: bisque;
   border: rgb(33, 33, 33);
   max-width: 100%;
+  margin-left: auto;
+  margin-right:auto;
+  border-width: 5px;
+  border-style: double;
+  padding-left: 10px;
+  padding-right: 10px
 }
 
 .header-text-tut {
@@ -88,4 +102,10 @@
   padding-right: 10px;
   background-color: antiquewhite;
   max-width: 900px;
+}
+
+html, body {
+  height: 100vh;
+  width: 100vw; 
+  background-color: rgb(255, 198, 198); 
 }
