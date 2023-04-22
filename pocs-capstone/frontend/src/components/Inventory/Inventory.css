@@ -100,7 +100,8 @@ img {
 
   /* grid-template-columns: auto auto auto auto auto; */
   /* https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-rows */
-  grid-template-columns: repeat(auto-fill, 180px);
+  /* grid-template-columns: repeat(auto-fill, 180px); */
+  grid-template-columns: 1fr 1fr 1fr 1fr;
 
   grid-auto-rows: 170px;
 
@@ -119,7 +120,8 @@ img {
 
   /* grid-template-columns: auto auto auto auto auto; */
   /* https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-rows */
-  grid-template-columns: repeat(auto-fill, 70px);
+  /* grid-template-columns: repeat(auto-fill, 70px); */
+  grid-template-columns: 1fr 1fr 1fr 1fr;
 
   grid-auto-rows: 78px;
   overflow: hidden;
@@ -158,6 +160,7 @@ img {
   }
 }
 
+/* Iphone 12 Pro Max ShoutOut Mary */
 @media only screen and (min-height: 926px) {
   .inventory-wrapper-sizes-mobile {
 
