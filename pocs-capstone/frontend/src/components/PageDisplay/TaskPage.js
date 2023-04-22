@@ -2,11 +2,13 @@ import './PageDisplay.css'
 import './TaskPage.css'
 import CreateTaskForm from './CreateTaskForm';
 import TaskList from './TaskList'
-import { useState } from 'react';
-import { Tab, Tabs, Button, Stack, Card } from 'react-bootstrap';
+import UserContext from "../../context/UserContext";
+import { useState, useContext } from 'react';
+import { Tab, Tabs, Button, Stack, Card, Dropdown, Form, ListGroup} from 'react-bootstrap';
 
 // { taskList, newTitle, newDesc, newSize, newDate, setAvatarInfo, setInventory, setTaskList, handleCompleteCheck, handleTitleChange, handleDescChange, handleSizeChange, handleDateChange, addTask, deleteTask }
 const TaskPage = () => {
+    const userHandler = useContext(UserContext)
     const [showCreateTask, setShowCreateTask] = useState(false);
     const [filterTodo, setFilterTodo] = useState('all')
     const handleClose = () => setShowCreateTask(false);
@@ -21,7 +23,39 @@ const TaskPage = () => {
                         <div className='to-do-header'>
                             TO-DO
                         </div>
-                        
+                        <div>
+                            <Dropdown className="d-inline mx-2" autoClose="outside">
+                                <Dropdown.Toggle id="dropdown-autoclose-outside">
+                                    Tags
+                                </Dropdown.Toggle>
+
+                                <Dropdown.Menu>
+                                    <ListGroup>
+
+                                        {userHandler?.userInfo?.tags?.map((tagItem, index) => {
+                                            return (
+                                                // <Dropdown.Item key={index} href="#">
+                                                <ListGroup.Item key = {index}>
+                                                    <Form>
+                                                        <Form.Check type="checkbox" label={tagItem} />
+
+                                                    </Form>
+
+                                                </ListGroup.Item>
+
+
+                                                // </Dropdown.Item>
+                                            )
+                                        })}
+                                    </ListGroup>
+                                    {/* <Dropdown.Item href="#">Menu Item</Dropdown.Item>
+                                    <Dropdown.Item href="#">Menu Item</Dropdown.Item>
+                                    <Dropdown.Item href="#">Menu Item</Dropdown.Item> */}
+                                </Dropdown.Menu>
+                            </Dropdown>
+
+                        </div>
+
                         <div className="ms-auto">
                             <Tabs
                                 id="controlled-tab-example"
