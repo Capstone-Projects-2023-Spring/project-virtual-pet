@@ -4,70 +4,39 @@
 }
 
 
+.alice-container {
+  height: 100%;
+  background-color: rgb(255, 198, 198); 
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+}
+
+.alice-carousel {
+  
+  flex-direction: column;
+
+  background-color: rgb(255, 198, 198);
+  max-height: 100%;
+
+}
+
 .alice-box {
- 
   height: 100%;
   justify-content: center;
   align-items: center;
   text-align: center;
 }
 
-.alice-carousel {
-  position: relative;
-  width: auto;
-  height: auto;
-  background-color: rgb(255, 198, 198);
-  direction: ltr;
-}
-
-/* border-radius: 15px; */
-/* display: flex;
-  align-items: center;
-  position: relative; */
-
-/* IMPORTANT:KEEP AS MIN HEIGHT NOT HEIGHT*/
-/* https://www.freecodecamp.org/news/how-to-keep-your-footer-where-it-belongs-59c6aa05c59c/ */
-/* min-height: 100vh;
-  background-color: rgb(255, 198, 198); */
-/* padding: 0px 5px; */
-
-.tut-box {
-  justify-items: center;
-  text-align: center;
-  justify-self: center;
-  align-items: center;
-  border-width: 5px;
-  border-style: double;
-  padding-left: 10px;
-  padding-right: 10px;
-  background-color: antiquewhite;
-
-  /* max-width: 500px;
-  text-align: center;
-  justify-self: center;
-
-  padding-left: 5px;
-  padding-right: 5px;
-  border:rgb(33, 33, 33);
-  border-width: 10px;
-  border-style: double; */
-}
-.tut-text {
-  max-width: 100px;
-  font-family: pixelFont;
-  padding-bottom: 10px;
-  text-align: center;
-  justify-self: center;
-
-}
-
 .tut-image {
   text-align: center;
-  width: 100%;
+ 
   display: block;
   margin: auto;
-  max-height: 800px;
-  max-width: 400px;
+  width:auto;
+ 
+  max-width: 100%;
 }
 
 .header-tut {
@@ -81,10 +50,42 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 10%;
-
   font-family: pixelFont;
-  /* background-color: rgb(33, 33, 33);*/
   font-weight: bold;
   font-size: 18px;
+}
+
+.tut-imagebox {
+  text-align: center;
+ 
+  display: block;
+  margin: auto;
+  width:100vw;
+  max-height: 100%;
+  max-width: 100%;
+}
+
+.tut-text {
+  max-width: 100px;
+  font-family: pixelFont;
+  padding-bottom: 10px;
+  text-align: center;
+  justify-self: center;
+}
+
+
+
+.tut-textbox {
+  justify-items: center;
+  text-align: center;
+  justify-self: center;
+  align-items: center;
+  margin-left: auto;
+  margin-right:auto;
+  border-width: 5px;
+  border-style: double;
+  padding-left: 10px;
+  padding-right: 10px;
+  background-color: antiquewhite;
+  max-width: 900px;
 }

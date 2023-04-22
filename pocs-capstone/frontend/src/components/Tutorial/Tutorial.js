@@ -44,18 +44,20 @@ const items = [
     <div className="header-tut">
       <div className="header-text-tut">How To Use Study Buddy!</div>
     </div>
-    <img className="tut-image" src={active_tasks}></img>
-    <div className="tut-box">
+    <div className="tut-imagebox">
+      <img className="tut-image" src={active_tasks}></img>
+    </div>{" "}
+    <div className="tut-textbox">
       <span className="tut-text">{TUT_TEXT[0]} </span>
     </div>{" "}
   </div>,
-  
+
   <div className="alice-box">
     <div className="header-tut">
       <div className="header-text-tut">Completing Tasks!</div>
     </div>
     <img className="tut-image" src={click_to_complete}></img>
-    <div className="tut-box">
+    <div className="tut-textbox">
       {" "}
       <span className="tut-text">{TUT_TEXT[1]} </span>
     </div>{" "}
@@ -66,29 +68,29 @@ const items = [
       <div className="header-text-tut">View Completed Tasks!</div>
     </div>
     <img className="tut-image" src={completed_tasks}></img>
-    <div className="tut-box">
+    <div className="tut-textbox">
       {" "}
       <span className="tut-text">{TUT_TEXT[2]} </span>
     </div>{" "}
   </div>,
 
-<div className="alice-box">
+  <div className="alice-box">
     <div className="header-tut">
       <div className="header-text-tut">Feed Your Pet!</div>
     </div>
     <img className="tut-image" src={inventory}></img>
-    <div className="tut-box">
+    <div className="tut-textbox">
       {" "}
       <span className="tut-text">{TUT_TEXT[3]} </span>
     </div>{" "}
   </div>,
 
-<div className="alice-box">
+  <div className="alice-box">
     <div className="header-tut">
       <div className="header-text-tut">View Your Calendar!</div>
     </div>
     <img className="tut-image" src={calendar}></img>
-    <div className="tut-box">
+    <div className="tut-textbox">
       {" "}
       <span className="tut-text">{TUT_TEXT[4]} </span>
     </div>{" "}
@@ -155,7 +157,11 @@ const Tutorial = () => {
     setTutText(TUT_TEXT[selectedPet]);
   };
 
-  return <AliceCarousel mouseTracking items={items} />;
+  return (
+    <div className="alice-container">
+      <AliceCarousel mouseTracking items={items}/>
+    </div>
+  );
 };
 /*
   //contains sprite sheets
