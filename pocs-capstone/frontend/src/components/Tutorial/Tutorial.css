@@ -9,16 +9,19 @@
   background-color: rgb(255, 198, 198); 
   display: flex;
   flex-direction: column;
-
+  position: relative;
   align-items: center;
+  bottom: 0;
   
 }
+
 .padding-container{
   height: auto;
   margin: auto;
+  bottom: 0;
   padding-bottom: 10px;
   background-color: rgb(255, 198, 198); 
-  bottom: calc(env(safe-area-inset-bottom) + 16px);
+  bottom: 0;
 }
 
 .alice-carousel {
@@ -27,6 +30,7 @@
 
   background-color: rgb(255, 198, 198);
   max-height: 100%;
+  bottom: 0;
 
 }
 
@@ -87,8 +91,6 @@
   justify-self: center;
 }
 
-
-
 .tut-textbox {
   justify-items: center;
   text-align: center;
@@ -101,11 +103,62 @@
   padding-left: 10px;
   padding-right: 10px;
   background-color: antiquewhite;
-  max-width: 900px;
+  max-width: 95vw;
 }
 
 html, body {
   height: 100vh;
   width: 100vw; 
   background-color: rgb(255, 198, 198); 
+}
+
+/*desktop styles*/
+@media (min-width: 1130px) {
+  .tut-imagebox {
+    text-align: center;
+    display: block;
+    margin: auto;
+    width: auto;
+    max-height: 75vh;
+    max-width: 100%;
+  }
+
+  .alice-carousel {
+  
+    flex-direction: column;
+    background-color: rgb(255, 198, 198);
+    max-height: 100vh;
+  }
+
+  .alice-box {
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  .tut-image {
+    text-align: center;
+   
+    display: block;
+    margin: auto;
+    width:auto;
+    max-height: 75vh;
+    max-width: 100%;
+  }
+
+  .tut-textbox {
+    justify-items: center;
+    text-align: center;
+    justify-self: center;
+    align-items: center;
+    margin-left: auto;
+    margin-right:auto;
+    border-width: 5px;
+    border-style: double;
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: antiquewhite;
+    max-width: 70vw;
+  }
 }
