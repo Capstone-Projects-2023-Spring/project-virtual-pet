@@ -18,10 +18,9 @@
 .padding-container{
   height: auto;
   margin: auto;
-  bottom: 0;
   padding-bottom: 10px;
   background-color: rgb(255, 198, 198); 
-  bottom: 0;
+  bottom: calc(env(safe-area-inset-bottom) + 16px);
 }
 
 .alice-carousel {
