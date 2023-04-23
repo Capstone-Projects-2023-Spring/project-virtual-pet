@@ -16,7 +16,7 @@ const TaskPage = () => {
     const [showCreateTask, setShowCreateTask] = useState(false);
     const [filterTodo, setFilterTodo] = useState(true)
     
-    const handleClose = () => setShowCreateTask(false);
+    
     const handleShow = () => setShowCreateTask(true);
 
     const deleteTagGlobal = (tagItem) => {
@@ -142,7 +142,7 @@ const TaskPage = () => {
 
             </Card>
 
-            <CreateTaskForm {...{ showCreateTask, handleClose }} />
+            <CreateTaskForm {...{ showCreateTask, setShowCreateTask }} />
 
         </div>
 

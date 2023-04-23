@@ -9,14 +9,12 @@ import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 
 const TaskItem = ({ task, updateTask, deleteTask, setTaskList, taskList }) => {
 
-    console.log('LOADING TASK', task)
     const axiosPrivate = useAxiosPrivate();
     const [showCreateTask, setShowCreateTask] = useState(false);
     const [showNotice, setShowNotice] = useState(false)
     // const [tags, setTags] = useState(task?.tags)
     const userHandler = useContext(UserContext)
 
-    const handleClose = () => setShowCreateTask(false);
     const handleShow = () => setShowCreateTask(true);
 
     const calculateDueDate = (date) => {
@@ -103,7 +101,7 @@ const TaskItem = ({ task, updateTask, deleteTask, setTaskList, taskList }) => {
                                     <></>
                             }
                         </ListGroup >
-                        <CreateTaskForm {...{ showCreateTask, handleClose, task }} />
+                        <CreateTaskForm {...{ showCreateTask, setShowCreateTask, task }} />
                     </>
                     :
 
@@ -143,7 +141,7 @@ const TaskItem = ({ task, updateTask, deleteTask, setTaskList, taskList }) => {
                             </ListGroup.Item>
 
                         </ListGroup >
-                        <CreateTaskForm showCreateTask={showCreateTask} handleClose={handleClose} task={task} />
+                        <CreateTaskForm showCreateTask={showCreateTask} setShowCreateTask={setShowCreateTask} task={task} />
                         <TaskNotice showNotice={showNotice} setShowNotice={setShowNotice} task={task} />
                     </>
             }

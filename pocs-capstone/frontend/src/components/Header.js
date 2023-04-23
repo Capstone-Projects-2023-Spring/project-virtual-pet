@@ -10,17 +10,17 @@ import UserContext from "../context/UserContext";
 
 const COURSES_URL = "/canvas/";
 
-const Header = ({  }) => {
+const Header = ({ }) => {
   const axiosPrivate = useAxiosPrivate();
   const nav = useNavigate();
-  const {userInfo,setUserInfo} = useContext(UserContext)
+  const { userInfo, setUserInfo } = useContext(UserContext)
   //  const [submittedText, setSubmittedText] = useState(null);
   const [nameError, setNameError] = useState("");
 
   const [tokenReady, setTokenReady] = useState(false);
   const [retrievingAssignments, setRetrievingAssignments] = useState(false);
 
- 
+
 
   const resetSubmitTokenState = (text) => {
     setRetrievingAssignments(false);
@@ -36,8 +36,24 @@ const Header = ({  }) => {
       .then((response) => {
         //we were successful
         //return state and navigate to main
+
+        // fetch unique list of courses
+        const uniqueCourses = [...new Set(response.data.map(item => item.course_title))]
+
+        // combine with global tag list - make sure it's unique
+        const updateGlobalTags = userInfo.tags.concat(uniqueCourses.filter((item) => userInfo.tags.indexOf(item) < 0))
+
+        const updatedUser = {...userInfo, tags: updateGlobalTags}
+        axiosPrivate.put(`/user-data/${userInfo.id}/`, updatedUser)
+          .then((response) => {
+            setUserInfo(updatedUser);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+
         resetSubmitTokenState("Please reload tasks!");
-        nav(0)       
+        nav(0)
       })
       .catch((err) => {
         console.log(err);
@@ -50,14 +66,14 @@ const Header = ({  }) => {
           canvas_token: "BADTOKEN"
         }
 
-        axiosPrivate.patch(url,tok )
-        .then((response) => {
-          console.log(response.data);
-          setUserInfo(response.data);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+        axiosPrivate.patch(url, tok)
+          .then((response) => {
+            console.log(response.data);
+            setUserInfo(response.data);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
       });
   }
 
@@ -104,7 +120,7 @@ const Header = ({  }) => {
                 }
                 alt="CanvasBug"
                 src={canvas_bug}
-                //style={{gridRow:'2'}}
+              //style={{gridRow:'2'}}
               ></img>
             </button>
             <span style={{ color: "white" }}>{nameError}</span>

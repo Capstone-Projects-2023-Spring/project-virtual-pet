@@ -1,40 +1,93 @@
-import { Tooltip, OverlayTrigger, Stack, Form, Button, Modal, Image } from 'react-bootstrap';
+import { Tooltip, OverlayTrigger, Stack, Form, Button, Modal, Image, Dropdown } from 'react-bootstrap';
 
 import GlobalContext from "../../context/GlobalContext.js";
 import UserContext from "../../context/UserContext";
-import { useContext, useState, useEffect } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 import infoicon from '../../images/info_icon.png'
 
 import * as yup from "yup";
 import * as formik from 'formik'
 
+const CustomMenu = React.forwardRef(
+  ({ style, className, 'aria-labelledby': labeledBy, tags, setTags, tagValue, setTagValue, tagError, setTagError, globalTags }, ref) => {
 
-function CreateTaskForm({ showCreateTask, handleClose, task }) {
+
+    console.log("GLOBAL TAGS ", globalTags, "ERROR", tagError)
+    const addGlobalTag = (gTag) => {
+      setTagError("")
+
+      if (gTag.trim() !== "" && !tags.find(tagItem => tagItem === gTag && gTag.match(/^[0-9a-z]+$/))) {
+
+        setTags(tags.concat(gTag))
+      }
+    }
+
+    return (
+      <div
+        ref={ref}
+        style={style}
+        className={className}
+        aria-labelledby={labeledBy}
+      >
+        <Form.Control
+          type="text"
+          placeholder="Add tags..."
+          name="tags"
+          value={tagValue}
+          onChange={e => setTagValue(e.target.value)}
+          isInvalid={tagError !== ""}
+        />
+        <Form.Control.Feedback type="invalid">
+          {tagError}
+        </Form.Control.Feedback>
+
+        <ul className="list-unstyled">
+          {globalTags.map((gTag, index) =>
+            <li key={index}>
+              <button type="button" onClick={(e) => addGlobalTag(gTag)}>
+                {gTag}
+              </button>
+
+            </li>
+          )}
+        </ul>
+      </div>
+    );
+  },
+);
+
+
+function CreateTaskForm({ showCreateTask, setShowCreateTask, task }) {
   const axiosPrivate = useAxiosPrivate();
   const handlers = useContext(GlobalContext)
   const userHandler = useContext(UserContext)
   const title = task ? "Task Details" : "Create Task"
   const buttonText = task ? "Save" : "Create Task"
 
+
+
   // set state of tags to an empty array or the task's tag list - depends on if the user is creating or updating a task
   const [tags, setTags] = useState(task ? task.tags : [])
   const [tagValue, setTagValue] = useState("")
   const [tagError, setTagError] = useState("")
 
-  console.log(`Current Tags: ${tags}`)
-
-  useEffect(() => {
-    console.log(`CreateTaskForm Render for: ${title}, Value of tags on start: ${tags} `)
-  }, [])
-  // call once on render 
+  // trigger useEffect on mount and when there are changes to userInfo --> from the TaskPage component, userinfo is updated when tags are deleted from the global list
+  // This useEffect is called whenever the user deletes a tag from the GLOBAL tag list -> said tag should be removed from the tag list of INDIVIDUAL task items 
   useEffect(() => {
     // check it's the updating version of the CreateTaskForm
-    console.log("USEEFFECT TRIGGERED")
-    if (task) {
+    // console.log("USEEFFECT TRIGGERED")
 
+    
+    const found = tags.every(t => userHandler?.userInfo?.tags?.includes(t))
+    // Check to make sure this is the 'update task' version of CreateTaskForm - rendered from TaskItem rather than the TaskPage AddTask button
+    // also make sure there is a discrepancy - dont just run this for every task
+    if (task && !found) {
+
+      // go through each tag the task owns and only return tags exist in the global tag list
       const removeTags = tags.filter(t => userHandler?.userInfo?.tags?.includes(t))
-      console.log(`REMOVING TAGS IF DON'T EXIST IN GLOBAL TAG LIST ${removeTags}`)
+      // console.log(`NEW TAGS LIST (COMPARED TO GLOBAL TAG LIST) ${removeTags}`)
+
       const taskItemChanged = {
         ...task,
         tags: removeTags
@@ -45,26 +98,19 @@ function CreateTaskForm({ showCreateTask, handleClose, task }) {
           // handlers?.setTaskList(handlers?.taskList.map(t=> t.task_id === task.task_id ? r.data : t))
 
           // hate that this fucking worked ...
+          // setTaskList not working? - instead make an Axios GET request to update the state of taskList 
           axiosPrivate.get(`/tasks/`)
             .then(r => {
-              console.log("FETCH ALL TASKS RESET :", r.data)
+              // console.log("FETCH ALL TASKS RESET :", r.data)
               handlers?.setTaskList(r.data)
             })
             .catch((err) => {
               console.log(err);
             })
         })
-
-
     }
 
-    // console.log(`NEW VALUE OF TAGS AFTER CHECKING GLOBAL TAG LIST ${tags}`)
-
-    // trigger useEffect on mount and when there are changes to userInfo --> from TaskPage, userinfo is updated when tags are deleted
   }, [userHandler.userInfo])
-
-  // on render make sure the tags state is set to the correct value
-
 
 
   const minDateCake = new Date()
@@ -88,18 +134,42 @@ function CreateTaskForm({ showCreateTask, handleClose, task }) {
     margin: '7px',
   }
 
-  // console.log("USER INFO:", userHandler?.userInfo?.tags, "TAGS CURRENT", tags)
 
-  // When the user enters a tag, trim the word, make sure it's valid, and add to the tags state list
+  // Adding user submitted tags to tag state and updating global list of tags + tag validation
   const handleTagSubmit = (e) => {
     console.log(`SUBMITTING TAG: ${tagValue}`)
     e.preventDefault()
-    if (tagValue.trim() !== "") {
-      // https://stackoverflow.com/questions/4434076/best-way-to-alphanumeric-check-in-javascript
-      if (!tags.find(tagItem => tagItem === tagValue.trim()) && tagValue.match(/^[0-9a-z]+$/)) {
-        setTags(tags.concat(tagValue.trim()))
-      }
+    // https://stackoverflow.com/questions/4434076/best-way-to-alphanumeric-check-in-javascript
+    if (tagValue.trim() !== "" && !tags.find(tagItem => tagItem === tagValue.trim()) && tagValue.match(/^[0-9a-z]+$/)) {
+      setTagError("")
+      // setTags(tags.concat(tagValue.trim()))
+      const currentTags = tags.concat(tagValue.trim())
+      setTags(currentTags)
+
+      console.log(`Combining global tags and current tags - global: ${userHandler.userInfo.tags}, local tags: ${currentTags}`)
+      const updateGlobalTags = currentTags.concat(userHandler.userInfo.tags.filter((item) => currentTags.indexOf(item) < 0))
+      console.log(`GLOBAL TAGS UPDATED LIST: ${updateGlobalTags}`)
+      const updatedUser = {
+        ...userHandler?.userInfo,
+        tags: updateGlobalTags
+      };
+      axiosPrivate
+        .patch(`/user-data/${updatedUser.id}/`, updatedUser)
+        .then((response) => {
+          userHandler?.setUserInfo(response.data)
+          console.log(`END RESULT OF UPDATING GLOBAL tags: ${response.data}`)
+
+
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+
     }
+    else {
+      setTagError("Invalid tag - no special characters, spaces, uppercase letters, etc")
+    }
+
     setTagValue("")
   }
 
@@ -110,25 +180,17 @@ function CreateTaskForm({ showCreateTask, handleClose, task }) {
 
   }
 
+  const handleClose = () => {
+    setShowCreateTask(false);
+  
+  }
+
+
   return (
-    <Modal backdrop="static" show={showCreateTask} onHide={handleClose}>
+    <Modal backdrop="static" show={showCreateTask} onHide={(e)=> {handleClose(); console.log("ON HIDE",e)}}>
+
       <Modal.Header closeButton>
         <Modal.Title>{title}</Modal.Title>
-        {/* <OverlayTrigger
-          key="bottom"
-          placement="bottom"
-          overlay={
-            <Tooltip id="tooltip-top" style={{ fontSize: '12px', width: '200px' }}>
-              {taskDesc}
-            </Tooltip>
-          }
-        >
-          <Image
-            src={infoicon}
-            alt="more info icon image"
-            style={iconStyle}
-          />
-        </OverlayTrigger> */}
       </Modal.Header>
       <Modal.Body>
 
@@ -136,25 +198,6 @@ function CreateTaskForm({ showCreateTask, handleClose, task }) {
           validationSchema={schema}
           onSubmit={(values) => {
             console.log("SUBMITTING FORM", values)
-
-            // When the user submits the forms, add the tags the user added to the larger global tag list (unique values only)
-            console.log(`Combining global tags and current tags - global: ${userHandler.userInfo.tags}, local tags: ${tags}`)
-            const updateGlobalTags = tags.concat(userHandler.userInfo.tags.filter((item) => tags.indexOf(item) < 0))
-            console.log(`GLOBAL TAGS UPDATED LIST: ${updateGlobalTags}`)
-            const updatedUser = {
-              ...userHandler?.userInfo,
-              tags: updateGlobalTags
-            };
-            axiosPrivate
-              .patch(`/user-data/${updatedUser.id}/`, updatedUser)
-              .then((response) => {
-                userHandler?.setUserInfo(response.data)
-              })
-              .catch((err) => {
-                console.log(err);
-              });
-            console.log(`END RESULT OF UPDATING GLOBAL tags: ${userHandler.userInfo.tags}`)
-
 
             const valuesAndTags = { ...values, tagList: tags }
             if (task) {
@@ -289,16 +332,53 @@ function CreateTaskForm({ showCreateTask, handleClose, task }) {
               </Form>
 
 
+              {/* <Dropdown className="d-inline mx-2" autoClose="outside">
+                <Dropdown.Toggle id="dropdown-autoclose-outside dropdown-button-drop-down-centered">
+                  Add Tags
+                </Dropdown.Toggle>
+
+                <Dropdown.Menu as={CustomMenu}>
+                  {userHandler?.userInfo?.tags?.map((tagItem, index) => 
+                    <Dropdown.Item eventKey={index}>{tagItem}</Dropdown.Item>
+                  )}
+                </Dropdown.Menu>
+              </Dropdown> */}
+
+
               <Form onSubmit={handleTagSubmit}>
                 {/* <Form.Group> */}
                 <Form.Label>Tags</Form.Label>
-                <Form.Control
+                <Dropdown className="d-inline mx-2" autoClose="outside">
+                  <Dropdown.Toggle id="dropdown-autoclose-outside dropdown-button-drop-down-centered">
+                    Add Tags
+                  </Dropdown.Toggle>
+
+                  <Dropdown.Menu as={CustomMenu}
+                    tags={tags}
+                    setTags={setTags}
+                    tagValue={tagValue}
+                    setTagValue={setTagValue}
+                    tagError={tagError}
+                    setTagError={setTagError}
+                    globalTags={userHandler?.userInfo?.tags}
+                  >
+                    {userHandler?.userInfo?.tags?.map((tagItem, index) =>
+                      <Dropdown.Item key={index} eventKey={index}>{tagItem}</Dropdown.Item>
+                    )}
+                  </Dropdown.Menu>
+                </Dropdown>
+
+                {/* <Form.Control
                   type="text"
                   placeholder="Add tags..."
                   name="tags"
                   value={tagValue}
                   onChange={e => setTagValue(e.target.value)}
+                  isInvalid={tagError !== ""}
                 />
+                <Form.Control.Feedback type="invalid">
+                  {tagError}
+                </Form.Control.Feedback> */}
               </Form>
 
               <ul>
@@ -313,10 +393,7 @@ function CreateTaskForm({ showCreateTask, handleClose, task }) {
                   )
                 })}
               </ul>
-
-
               <Button onClick={handleSubmit} className="col-md-5 mx-auto" type="submit">{buttonText}</Button>
-
             </>
           )}
 

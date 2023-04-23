@@ -134,7 +134,7 @@ const PetDisplay = () => {
             if (birthday_delta < 1 && birthday_delta >= 0) {
                 setMood(HAPPY)
                 setMoodDesc("I'm so happy it's your birthday!! Yippee!!")
-                console.log("BIRTHDAY HAPPY:", birthday_delta)
+                // console.log("BIRTHDAY HAPPY:", birthday_delta)
                 return
             }
         })
@@ -143,20 +143,20 @@ const PetDisplay = () => {
         const last_feed = new Date(contextHandler.avatarInfo.last_feed)
 
         const feed_delta = dateDelta(TODAY, last_feed) //elapsed time since last feed
-        console.log("FEED DELTA", feed_delta, TODAY, last_feed)
+        // console.log("FEED DELTA", feed_delta, TODAY, last_feed)
         if (feed_delta <= 3 && feed_delta > 1) {
             setMood(NEUTRAL)
             setMoodDesc("I'm feeling content.")
-            console.log("FEED NEUTRAL", feed_delta)
+            // console.log("FEED NEUTRAL", feed_delta)
         }
         else if (feed_delta <= 1) {
             setMood(HAPPY)
             setMoodDesc("Candy is so yummy! I'm so happy!")
-            console.log("FEED HAPPY", feed_delta)
+            // console.log("FEED HAPPY", feed_delta)
         }
         else {
             setMood(SAD)
-            console.log("FEED SAD", feed_delta)
+            // console.log("FEED SAD", feed_delta)
             setMoodDesc("I'm hungry :(")
             feed_flag = true
         }
@@ -169,10 +169,10 @@ const PetDisplay = () => {
                 if (!item.completed) {
                     const due = new Date(item.due_date)
                     const task_delta = dateDelta(due, TODAY)
-                    console.log("TASK DELTA----->", task_delta, item.due_date, TODAY, item.completed)
+                    // console.log("TASK DELTA----->", task_delta, item.due_date, TODAY, item.completed)
                     if (task_delta < 0) {
                         setMood(SAD)
-                        console.log("TASK SAD")
+                        // console.log("TASK SAD")
                         setMoodDesc("I'm stressed. You have overdue tasks... please complete them :(")
                         return
                     }
@@ -189,12 +189,12 @@ const PetDisplay = () => {
             if (feed_flag) {
                 setMood(NEUTRAL)
                 setMoodDesc("I'm feeling content.")
-                console.log("TASK NEUTRAL")
+                // console.log("TASK NEUTRAL")
                 return
             }
             setMood(HAPPY) //TODO we'll check grades here as well
             setMoodDesc("You've gotten so much done! I'm so happy! :D")
-            console.log("TASK HAPPY")
+            // console.log("TASK HAPPY")
             return
         }
 
@@ -204,11 +204,11 @@ const PetDisplay = () => {
     //TEMP USE EFFECT TO SEE MOOD
     //Mary, plug in your state changes here!!
     useEffect(() => {
-        console.log("MOOD------>", mood)
+        // console.log("MOOD------>", mood)
         const getavatarImage = (pet) => {
             switch (pet.avatar_type) {
                 case 'CT':
-                    console.log(pet.palette);
+                    // console.log(pet.palette);
                     switch (pet.palette) {
                         case 0:
                             if (mood === 'N') {
