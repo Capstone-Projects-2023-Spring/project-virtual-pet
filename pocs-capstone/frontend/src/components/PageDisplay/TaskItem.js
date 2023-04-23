@@ -19,33 +19,6 @@ const TaskItem = ({ task, updateTask, deleteTask, setTaskList, taskList }) => {
     const handleClose = () => setShowCreateTask(false);
     const handleShow = () => setShowCreateTask(true);
 
-    // useEffect(() => {
-    //     // check it's the updating version of the CreateTaskForm
-    //     console.log("USEEFFECT TRIGGERED in TASK ITEM:", tags, userHandler?.userInfo?.tags,)
-
-
-    //     const removeTags = tags.filter(t => userHandler?.userInfo?.tags?.includes(t))
-
-    //     console.log(`REMOVING TAGS IF DON'T EXIST IN GLOBAL TAG LIST ${removeTags}`)
-    //     const taskItemChanged = {
-    //         ...task,
-    //         tags: removeTags
-    //     }
-    //     // axiosPrivate.patch(`/tasks/${task.task_id}/`, taskItemChanged)
-    //     //     .then(r => {
-    //     //         // updateTask(task.task_id, taskItemChanged)
-    //     //     })
-
-    //     axiosPrivate.put(`/tasks/${task.task_id}/`, taskItemChanged)
-    //         .then(r => {
-    //             setTaskList(taskList.map(t => t.task_id === task.task_id ? r.data : t))
-    //             console.log(`Task updated: ${r.data}`)
-    //         })
-    //     console.log(`NEW VALUE OF TAGS AFTER CHECKING GLOBAL TAG LIST ${tags}`)
-
-    // }, [userHandler.userInfo])
-
-
     const calculateDueDate = (date) => {
         const today_date = new Date()
         const due_date = new Date(`${date}T00:00:00`)

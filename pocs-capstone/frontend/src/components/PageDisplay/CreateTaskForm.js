@@ -58,7 +58,8 @@ function CreateTaskForm({ showCreateTask, handleClose, task }) {
 
     }
 
-    console.log(`NEW VALUE OF TAGS AFTER CHECKING GLOBAL TAG LIST ${tags}`)
+    // console.log(`NEW VALUE OF TAGS AFTER CHECKING GLOBAL TAG LIST ${tags}`)
+
     // trigger useEffect on mount and when there are changes to userInfo --> from TaskPage, userinfo is updated when tags are deleted
   }, [userHandler.userInfo])
 

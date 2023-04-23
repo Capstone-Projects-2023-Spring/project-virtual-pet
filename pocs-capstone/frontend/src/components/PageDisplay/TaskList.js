@@ -1,9 +1,8 @@
 
 import { ListGroup, Stack, Button } from 'react-bootstrap';
 import TaskItem from './TaskItem'
-// import TaskListContext from '../../context/TaskListContext'
 import GlobalContext from "../../context/GlobalContext.js";
-import { useContext, useState } from 'react'
+import { useContext } from 'react'
 
 const TaskList = ({ showAll, filterTags, filterTaskType }) => {
     const handlers = useContext(GlobalContext)
@@ -23,7 +22,7 @@ const TaskList = ({ showAll, filterTags, filterTaskType }) => {
         taskList: handlers.taskList
     }
 
-    console.log(`TASKS: ${showTasks}`)
+    // console.log(`TASKS: ${showTasks}`)
     
 
     return (

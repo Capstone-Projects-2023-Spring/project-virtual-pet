@@ -3,29 +3,22 @@ import './TaskPage.css'
 import CreateTaskForm from './CreateTaskForm';
 import TaskList from './TaskList'
 import UserContext from "../../context/UserContext";
-import { useState, useContext, useEffect } from 'react';
+import { useState, useContext } from 'react';
 import { Tab, Tabs, Button, Stack, Card, Dropdown, Form, ListGroup } from 'react-bootstrap';
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
-import GlobalContext from '../../context/GlobalContext';
 
 // { taskList, newTitle, newDesc, newSize, newDate, setAvatarInfo, setInventory, setTaskList, handleCompleteCheck, handleTitleChange, handleDescChange, handleSizeChange, handleDateChange, addTask, deleteTask }
 const TaskPage = () => {
     const userHandler = useContext(UserContext)
-    const taskHandler = useContext(GlobalContext)
-    const axiosPrivate = useAxiosPrivate();
-    const [showCreateTask, setShowCreateTask] = useState(false);
-    const [filterTodo, setFilterTodo] = useState(true)
+    const axiosPrivate = useAxiosPrivate()
     const [selectedTags, setSelectedTags] = useState([])
     const [taskTypes, setTaskTypes] = useState([])
-
+    const [showCreateTask, setShowCreateTask] = useState(false);
+    const [filterTodo, setFilterTodo] = useState(true)
+    
     const handleClose = () => setShowCreateTask(false);
     const handleShow = () => setShowCreateTask(true);
 
-
-    // console.log("FILTER SELECTS", selectedTags)
-
-    // console.log("USER INFO!!!", userHandler?.userInfo)
-    
     const deleteTagGlobal = (tagItem) => {
         const newTags = userHandler?.userInfo?.tags?.filter(tag => tag !== tagItem)
         const updatedUser = {
@@ -44,9 +37,7 @@ const TaskPage = () => {
     }
 
     const handleTagCheck = (e, tagItem) => {
-        // console.log("clicked", e.target.checked, tagItem)
         if (e.target.checked && !selectedTags.find(t => t === tagItem)) {
-
             setSelectedTags(selectedTags.concat(tagItem))
         }
         else {
@@ -69,9 +60,6 @@ const TaskPage = () => {
         }
     }
 
-
-    // console.log("tasks TYPE", taskTypes)
-
     return (
         <div className="mini-page">
             <Card className='tasklist-position'>
@@ -80,6 +68,18 @@ const TaskPage = () => {
 
                         <div className='to-do-header'>
                             TO-DO
+                        </div>
+                        <div>
+                            Global tags:
+                            {userHandler?.userInfo?.tags?.map((item, index) => {
+                                return (
+                                    <p key={index}>
+                                        {item}
+                                    </p>
+                                )
+                            })}
+
+
                         </div>
                         <div className="ms-auto">
                             <Dropdown className="d-inline mx-2" autoClose="outside">
@@ -112,7 +112,6 @@ const TaskPage = () => {
                                     </ListGroup>
                                 </Dropdown.Menu>
                             </Dropdown>
-
                         </div>
 
                         <div >
@@ -121,7 +120,6 @@ const TaskPage = () => {
                                 defaultActiveKey="all"
                                 activeKey={filterTodo === true ? 'all' : 'completed'}
                                 onSelect={(f) => {
-
                                     setFilterTodo(f === 'all' ? true : false)
                                 }}
 
@@ -145,18 +143,7 @@ const TaskPage = () => {
             </Card>
 
             <CreateTaskForm {...{ showCreateTask, handleClose }} />
-            <div>
-                Global tags:
-                {userHandler?.userInfo?.tags?.map((item, index) => {
-                    return (
-                        <p key={index}>
-                            {item}
-                        </p>
-                    )
-                })}
 
-
-            </div>
         </div>
 
     )

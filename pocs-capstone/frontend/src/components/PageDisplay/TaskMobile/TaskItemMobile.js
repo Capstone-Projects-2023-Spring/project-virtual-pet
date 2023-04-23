@@ -118,8 +118,9 @@ const TaskItemMobile = ({ task, updateTask, deleteTask }) => {
                                         <div className="fw-bold task-description">
 
                                             <Stack direction="horizontal" gap={1}>
-
+                                                 
                                                 <div className='task-title-mobile'>{task.title}</div>
+                                                <div className='task-badge-mobile'>{task.tags}</div>
                                                 <div className='task-badge-mobile'><Badge bg="secondary">Size: {task.task_type}</Badge></div>
                                                 <div className='task-badge-mobile'><Badge bg="secondary">Level: {task.task_level}</Badge></div>
                                             </Stack>
@@ -138,7 +139,7 @@ const TaskItemMobile = ({ task, updateTask, deleteTask }) => {
 
                                 </ListGroup.Item>
                             </ListGroup >
-                            <CreateTaskFormMobile {...{ showCreateTask, handleClose, task }} />
+                            <CreateTaskFormMobile showCreateTask={showCreateTask} handleClose={handleClose} task={task} />
                             <TaskNotice showNotice={showNotice} setShowNotice={setShowNotice} task={task} />
                         </>
                     )
