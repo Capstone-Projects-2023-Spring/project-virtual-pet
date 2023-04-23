@@ -99,7 +99,7 @@ const Tutorial = () => {
     setTutText(TUT_TEXT[selectedPet]);
   };
 
-  if (height > 700) {
+  if (height > 0) {
     let items = [
       <div className="alice-box">
         {" "}
@@ -160,8 +160,10 @@ const Tutorial = () => {
     ];
     if (width < 1128) {
       return (
+        /*
         <html>
           <body>
+          */
             <div className="alice-container">
               <AliceCarousel
                 mouseTracking
@@ -170,8 +172,10 @@ const Tutorial = () => {
               />
               <div className="padding-container"></div>
             </div>
+            /*
           </body>
         </html>
+        */
       );
     }
 
@@ -225,9 +229,11 @@ const Tutorial = () => {
       </div>,
     ];
     return (
+      /*
       <html>
         <body>
-          <div className="alice-container">
+        */
+        <div className="alice-container">
             <AliceCarousel
               mouseTracking
               disableButtonsControls={true}
@@ -235,8 +241,10 @@ const Tutorial = () => {
             />
             <div className="padding-container"></div>
           </div>
+          /*
         </body>
       </html>
+      */
     );
   }
 };

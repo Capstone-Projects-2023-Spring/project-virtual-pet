@@ -43,7 +43,7 @@
   display: block;
   margin: auto;
   width:auto;
-  max-height: 75vh;
+  max-height: 70vh;
   max-width: 100%;
 }
 
@@ -51,7 +51,7 @@
   top: 0;
   background-color: bisque;
   border: rgb(33, 33, 33);
-  max-width: 100%;
+  max-width: 95vw;
   margin-left: auto;
   margin-right:auto;
   border-width: 5px;
@@ -98,6 +98,7 @@
   border-style: double;
   padding-left: 10px;
   padding-right: 10px;
+  font-size: 14px;
   background-color: antiquewhite;
   max-width: 95vw;
 }
@@ -108,14 +109,97 @@ html, body {
   background-color: rgb(255, 198, 198); 
   overflow: hidden;
 }
+@media (min-height: 667px) {
+
+  .alice-container {
+    max-height: 100vh;
+    height: auto;
+    background-color: rgb(255, 198, 198); 
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    align-items: center;
+    padding-top: 10px;
+    bottom: 0;
+  }
+
+}
+@media (min-height: 800px) {
+
+  .alice-container {
+    max-height: 100vh;
+    height: auto;
+    background-color: rgb(255, 198, 198); 
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    align-items: center;
+    padding-top: 50px;
+    bottom: 0;
+    height:100vh;
+ 
+  }
+
+  .tut-image {
+    text-align: center;
+   
+    display: block;
+    margin: auto;
+    width:auto;
+    max-height: 70vh;
+    padding-top: 70px;
+    padding-bottom: 20px;
+    max-width: 100%;
+  }
+  
+
+}
+
 
 /*desktop styles*/
 @media (min-width: 1130px) {
+
+.alice-container {
+  max-height: 100vh;
+  height: 100vh;
+  background-color: rgb(255, 198, 198); 
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  align-items: center;
+  padding-top: 20px;
+  bottom: 0;
+
+}
+  .header-tut {
+    top: 10;
+    background-color: bisque;
+    border: rgb(33, 33, 33);
+    max-width: 30vw;
+    margin-left: auto;
+    margin-right:auto;
+    border-width: 5px;
+    border-style: double;
+ 
+    padding-left: 10px;
+    padding-right: 10px
+  }
+  
+  .header-text-tut {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: pixelFont;
+    font-weight: bold;
+    font-size: 18px;
+  }
+  
   .alice-carousel {
   
     flex-direction: column;
     background-color: rgb(255, 198, 198);
     max-height: 100vh;
+    height: 100vh;
   }
 
   .alice-box {
@@ -157,6 +241,6 @@ html, body {
     padding-left: 10px;
     padding-right: 10px;
     background-color: antiquewhite;
-    max-width: 70vw;
+    max-width: 20vw;
   }
 }
