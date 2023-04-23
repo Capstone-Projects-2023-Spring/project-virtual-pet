@@ -140,8 +140,19 @@ const TaskPage = () => {
             </Card>
 
             <CreateTaskForm {...{ showCreateTask, handleClose }} />
-
+            <div>
+                zGlobal tags:
+                {userHandler?.userInfo?.tags?.map((item) => {
+                    return(
+                        <p>
+                            {item}
+                        </p>
+                    )
+                })}
+                
+            </div>
         </div>
+        
     )
 }
 

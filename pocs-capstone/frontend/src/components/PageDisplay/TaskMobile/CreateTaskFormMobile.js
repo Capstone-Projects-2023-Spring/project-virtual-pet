@@ -1,7 +1,9 @@
 import { Tooltip, OverlayTrigger, Stack, Form, Button, Modal, Image } from 'react-bootstrap';
 
 import GlobalContext from '../../../context/GlobalContext'
-import { useContext } from 'react'
+import UserContext from "../../../context/UserContext";
+import { useContext, useState, useEffect } from 'react'
+import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
 import infoicon from '../../../images/info_icon.png'
 
 import * as yup from "yup";
@@ -9,10 +11,44 @@ import * as formik from 'formik'
 
 
 function CreateTaskForm(props) {
-
+  const axiosPrivate = useAxiosPrivate();
   const handlers = useContext(GlobalContext);
+  const userHandler = useContext(UserContext)
   const title = props.task ? "Task Details" : "Create Task"
   const buttonText = props.task ? "Save" : "Create Task"
+
+  const [tags, setTags] = useState([])
+  const [tagValue, setTagValue] = useState("")
+  const [tagError, setTagError] = useState("")
+
+  useEffect(() => {
+    // check it's the updating version of the CreateTaskForm
+    if (props.task) {
+      // make sure to remove any tags that may have been removed from the global tags list
+      props.task.tags?.forEach((tagItem) => {
+        const findTagItem = userHandler?.userInfo?.tags?.find(t => t === tagItem)
+        if (!findTagItem) {
+          const newTags = props.task.tags.filter(t => t !== tagItem)
+          const taskItemChanged = {
+            ...props.task,
+            tags: newTags
+          }
+          axiosPrivate.put(`/tasks/${props.task.task_id}/`, taskItemChanged)
+            .then(r => {
+              setTags(newTags)
+            })
+
+        }
+      })
+    }
+  }, [userHandler?.userInfo?.tags])
+
+  // on render make sure the tags state is set to the correct value
+  useEffect(() => {
+    if (props.task) {
+      setTags(props.task.tags)
+    }
+  }, [])
 
   const minDateCake = new Date()
   minDateCake.setDate(minDateCake.getDate() + 3)
@@ -20,7 +56,6 @@ function CreateTaskForm(props) {
 
   const { Formik } = formik;
   const schema = yup.object().shape({
-
     title: yup.string().required(),
     description: yup.string(),
     size: yup.string().required(),
@@ -34,6 +69,17 @@ function CreateTaskForm(props) {
   const iconStyle = {
     width: '20px',
     margin: '7px',
+  }
+
+  // When the user enters a tag, trim the word, make sure it's valid, and add to the tags state list
+  const handleTagSubmit = (e) => {
+    e.preventDefault()
+    if (tagValue.trim() !== "") {
+      if (!tags.find(tagItem => tagItem === tagValue.trim()) && tagValue.match(/^[0-9a-z]+$/)) {
+        setTags(tags.concat(tagValue.trim()))
+      }
+    }
+    setTagValue("")
   }
 
   return (

@@ -87,6 +87,7 @@ const Main = () => {
   }, [])
 
   const updateTask = (id, newTask) => {
+
     // console.log("Getting caled?", id, newTask)
     const taskItem = taskList.find(t => t.task_id === id)
 
@@ -103,6 +104,7 @@ const Main = () => {
     axiosPrivate.put(`${baseURL}${id}/`, taskItemChanged)
       .then(r => {
         setTaskList(taskList.map(t => t.task_id === id ? r.data : t))
+        console.log(`Task updated: ${r.data}`)
       })
   }
 
@@ -207,7 +209,7 @@ const Main = () => {
 
     // console.log("CREATED TSAK ON ", d)
 
-
+    console.log("NEW TASK", formValues)
 
     const taskLevelD = determineTaskLevel(userContext.userInfo.join_date)
 
@@ -229,13 +231,10 @@ const Main = () => {
       tags: formValues.tagList
 
     }
-
-
-    console.log("NEW TASK", newTask)
-
     axiosPrivate.post(baseURL, newTask)
       .then(r => {
         setTaskList(taskList.concat(r.data))
+        console.log(`New Task added: ${r.data}`)
       })
   }
 

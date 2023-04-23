@@ -11,8 +11,8 @@ const TaskList = ({ showAll, filterTags, filterTaskType }) => {
     console.log("FILTER TASK TYPES", filterTaskType)
 
     const taskFilterCondition = (item) => {
-        if(filterTaskType.length===1){
-            return filterTaskType[0]==='canvas' ? item.course_id!==0 && item.assignment_id!==0 : item.course_id===0 && item.assignment_id===0
+        if (filterTaskType.length === 1) {
+            return filterTaskType[0] === 'canvas' ? item.course_id !== 0 && item.assignment_id !== 0 : item.course_id === 0 && item.assignment_id === 0
         }
         return true
     }
@@ -33,7 +33,7 @@ const TaskList = ({ showAll, filterTags, filterTaskType }) => {
                         </ListGroup.Item>
                     </ListGroup>
                     :
-                    <>        
+                    <>
                         {showAll === false ?
                             (
                                 <div className='delete-com-tasks "mb-2"'>
@@ -48,8 +48,11 @@ const TaskList = ({ showAll, filterTags, filterTaskType }) => {
                         <ListGroup className="task-scroll">
                             {showTasks.map(t => <TaskItem key={t.task_id} task={t} {...taskListHandlers} />)}
                         </ListGroup>
+
                     </>
             }
+
+
         </>
     )
 

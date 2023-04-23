@@ -8,7 +8,6 @@ import infoicon from '../../images/info_icon.png'
 
 import * as yup from "yup";
 import * as formik from 'formik'
-import { ExpandLessSharp } from '@material-ui/icons';
 
 
 function CreateTaskForm(props) {
@@ -18,50 +17,40 @@ function CreateTaskForm(props) {
   const title = props.task ? "Task Details" : "Create Task"
   const buttonText = props.task ? "Save" : "Create Task"
 
-
-  const [tags, setTags] = useState([])
+  // set state of tags to an empty array or the task's tag list - depends on if the user is creating or updating a task
+  const [tags, setTags] = useState(props.task ? props.task.tags : [])
   const [tagValue, setTagValue] = useState("")
   const [tagError, setTagError] = useState("")
 
-  // console.log("PROP TASK TAGS",props.task ? props.task : "NONE?", "TAGS", tags)
+  console.log(`Current Tags: ${tags}`)
 
-  // console.log("TASK ITEM", props.task)
-
+  useEffect(()=>{
+    console.log(`CreateTaskForm Render for: ${title}, Value of tags on start: ${tags} `)
+  },[])
+  // call once on render 
   useEffect(() => {
     // check it's the updating version of the CreateTaskForm
+    console.log("USEEFFECT TRIGGERED")
     if (props.task) {
-      // make sure to remove any tags that may have been removed from the global tags list
-      props.task.tags?.forEach((tagItem) => {
-        const findTagItem = userHandler?.userInfo?.tags?.find(t => t === tagItem)
-        if (findTagItem) {
-          // console.log('IN GLOBAL LIST', userHandler?.userInfo?.tags, findTagItem)
-        }
-        else {
-          const newTags = props.task.tags.filter(t => t!==tagItem)
-          const taskItemChanged = {
-            ...props.task,
-            tags: newTags
-          }
-          axiosPrivate.put(`/tasks/${props.task.task_id}/`, taskItemChanged)
-            .then(r => {
-              setTags(newTags)
-            })
-          
 
-        }
-      })
+      const removeTags = tags.filter(t => userHandler?.userInfo?.tags?.includes(t))
+      console.log(`REMOVING TAGS IF DON'T EXIST IN GLOBAL TAG LIST ${removeTags}`)
+      const taskItemChanged = {
+        ...props.task,
+        tags: removeTags
+      }
+      axiosPrivate.put(`/tasks/${props.task.task_id}/`, taskItemChanged)
+        .then(r => {
+          setTags(removeTags)
+        })
     }
 
-    // console.log("TAGS AFTER FILTER", tags, props.task)
+    console.log(`NEW VALUE OF TAGS AFTER CHECKING GLOBAL TAG LIST ${tags}`)
+   
+  }, [userHandler.userInfo.tags])
 
-  }, [userHandler?.userInfo?.tags])
+  // on render make sure the tags state is set to the correct value
 
-  // on 
-  useEffect(() => {
-    if (props.task){
-      setTags(props.task.tags)
-    }
-  }, [])
 
   const minDateCake = new Date()
   minDateCake.setDate(minDateCake.getDate() + 3)
@@ -88,6 +77,7 @@ function CreateTaskForm(props) {
 
   // When the user enters a tag, trim the word, make sure it's valid, and add to the tags state list
   const handleTagSubmit = (e) => {
+    console.log(`SUBMITTING TAG: ${tagValue}`)
     e.preventDefault()
     if (tagValue.trim() !== "") {
       // https://stackoverflow.com/questions/4434076/best-way-to-alphanumeric-check-in-javascript
@@ -95,35 +85,13 @@ function CreateTaskForm(props) {
         setTags(tags.concat(tagValue.trim()))
       }
     }
-
     setTagValue("")
   }
 
   const deleteTag = (index, tagItem) => {
-
-    // deleting a tagged item: remove from 
+    // deleting a tagged item: remove from state - don't need to make an axios call from here, updateTask and addTask will do so with the latest version of the tags state 
     setTags(tags.filter((t, i) => i !== index))
-
-    // dont delete it from the globallsit - only from the tags filtering component 
-    // if (!userHandler.userInfo.tags.find(t => t === tagItem)) {
-
-    //   const updatedUser = {
-    //     ...userHandler?.userInfo,
-    //     tags: userHandler?.userInfo.tags.filter(t=> t!==tagItem)
-    //   };
-    //   axiosPrivate
-    //     .patch(`/user-data/${updatedUser.id}/`, updatedUser)
-    //     .then((response) => {
-    //       console.log("response.data USER:", response.data);
-    //       userHandler.setUserInfo(response.data)
-    //       setTagValue("")
-    //     })
-    //     .catch((err) => {
-    //       console.log(err);
-    //     });
-
-    // }
-
+    console.log(`REMOVING TAGS: ${tags}`)
 
   }
 
@@ -152,36 +120,28 @@ function CreateTaskForm(props) {
         <Formik
           validationSchema={schema}
           onSubmit={(values) => {
-            // console.log("BEFORE", values)
-
-            // Loop through each tag 
+            console.log("SUBMITTING FORM", values)
 
             // When the user submits the forms, add the tags the user added to the larger global tag list (unique values only)
-            tags.forEach(t => {
-              // if the tag cant be found in the global tag list, add it 
-              if (!userHandler?.userInfo?.tags?.find(tagItem => tagItem === t)) {
+            console.log(`Combining global tags and current tags - global: ${userHandler.userInfo.tags}, local tags: ${tags}`)
+            const updateGlobalTags = tags.concat(userHandler.userInfo.tags.filter((item) => tags.indexOf(item) < 0))
+            console.log(`GLOBAL TAGS UPDATED LIST: ${updateGlobalTags}`)
+            const updatedUser = {
+              ...userHandler?.userInfo,
+              tags: updateGlobalTags
+            };
+            axiosPrivate
+              .patch(`/user-data/${updatedUser.id}/`, updatedUser)
+              .then((response) => {
+                userHandler?.setUserInfo(response.data)
+              })
+              .catch((err) => {
+                console.log(err);
+              });
+            console.log(`END RESULT OF UPDATING GLOBAL tags: ${userHandler.userInfo.tags}`)
 
-                // update the global tags list in the userInfo object
-                const updatedUser = {
-                  ...userHandler?.userInfo,
-                  tags: userHandler?.userInfo?.tags?.concat(t)
-                };
-                axiosPrivate
-                  .patch(`/user-data/${updatedUser.id}/`, updatedUser)
-                  .then((response) => {
-                    // console.log("response.data USER:", response.data);
-                    userHandler?.setUserInfo(response.data)
-                  })
-                  .catch((err) => {
-                    console.log(err);
-                  });
-
-              }
-
-            })
-
+            
             const valuesAndTags = { ...values, tagList: tags }
-            // console.log("AFTER", valuesAndTags)
             if (props.task) {
 
               handlers.updateTask(props.task.task_id, valuesAndTags)
@@ -196,6 +156,7 @@ function CreateTaskForm(props) {
             // after submitting, reset input field and set tags to empty only if the props.task object is empty (meaning the component has been rendered for adding tasks only NOT udpating)
             setTagValue("")
             if (!props.task) {
+              console.log(`Should only see this console log if user created a new TASK ${props.task}`)
               setTags([])
             }
 
