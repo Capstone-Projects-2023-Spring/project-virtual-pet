@@ -3,14 +3,47 @@ import './PageDisplay.css'
 import { CloseButton, Stack, Badge, Form, ListGroup } from 'react-bootstrap'
 import CreateTaskForm from './CreateTaskForm'
 import TaskNotice from './TaskNotice'
-import { useState } from 'react'
+import UserContext from "../../context/UserContext";
+import { useState, useContext, useEffect } from 'react'
+import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 
-const TaskItem = ({ task, updateTask, deleteTask }) => {
+const TaskItem = ({ task, updateTask, deleteTask, setTaskList, taskList }) => {
+
+    console.log('LOADING TASK', task)
+    const axiosPrivate = useAxiosPrivate();
     const [showCreateTask, setShowCreateTask] = useState(false);
     const [showNotice, setShowNotice] = useState(false)
+    // const [tags, setTags] = useState(task?.tags)
+    const userHandler = useContext(UserContext)
 
     const handleClose = () => setShowCreateTask(false);
     const handleShow = () => setShowCreateTask(true);
+
+    // useEffect(() => {
+    //     // check it's the updating version of the CreateTaskForm
+    //     console.log("USEEFFECT TRIGGERED in TASK ITEM:", tags, userHandler?.userInfo?.tags,)
+
+
+    //     const removeTags = tags.filter(t => userHandler?.userInfo?.tags?.includes(t))
+
+    //     console.log(`REMOVING TAGS IF DON'T EXIST IN GLOBAL TAG LIST ${removeTags}`)
+    //     const taskItemChanged = {
+    //         ...task,
+    //         tags: removeTags
+    //     }
+    //     // axiosPrivate.patch(`/tasks/${task.task_id}/`, taskItemChanged)
+    //     //     .then(r => {
+    //     //         // updateTask(task.task_id, taskItemChanged)
+    //     //     })
+
+    //     axiosPrivate.put(`/tasks/${task.task_id}/`, taskItemChanged)
+    //         .then(r => {
+    //             setTaskList(taskList.map(t => t.task_id === task.task_id ? r.data : t))
+    //             console.log(`Task updated: ${r.data}`)
+    //         })
+    //     console.log(`NEW VALUE OF TAGS AFTER CHECKING GLOBAL TAG LIST ${tags}`)
+
+    // }, [userHandler.userInfo])
 
 
     const calculateDueDate = (date) => {
@@ -118,6 +151,7 @@ const TaskItem = ({ task, updateTask, deleteTask }) => {
                                     <div className="fw-bold task-description">
                                         <Stack direction="horizontal" gap={2}>
                                             <div className='task-title'>{task.title}</div>
+                                            <div>{task.tags}</div>
                                             <div><Badge bg="secondary">Size: {task.task_type}</Badge></div>
                                             <div><Badge bg="secondary">Level: {task.task_level}</Badge></div>
                                         </Stack>
@@ -136,7 +170,7 @@ const TaskItem = ({ task, updateTask, deleteTask }) => {
                             </ListGroup.Item>
 
                         </ListGroup >
-                        <CreateTaskForm {...{ showCreateTask, handleClose, task }} />
+                        <CreateTaskForm showCreateTask={showCreateTask} handleClose={handleClose} task={task} />
                         <TaskNotice showNotice={showNotice} setShowNotice={setShowNotice} task={task} />
                     </>
             }

@@ -10,46 +10,60 @@ import * as yup from "yup";
 import * as formik from 'formik'
 
 
-function CreateTaskForm(props) {
+function CreateTaskForm({ showCreateTask, handleClose, task }) {
   const axiosPrivate = useAxiosPrivate();
   const handlers = useContext(GlobalContext)
   const userHandler = useContext(UserContext)
-  const title = props.task ? "Task Details" : "Create Task"
-  const buttonText = props.task ? "Save" : "Create Task"
+  const title = task ? "Task Details" : "Create Task"
+  const buttonText = task ? "Save" : "Create Task"
 
   // set state of tags to an empty array or the task's tag list - depends on if the user is creating or updating a task
-  const [tags, setTags] = useState(props.task ? props.task.tags : [])
+  const [tags, setTags] = useState(task ? task.tags : [])
   const [tagValue, setTagValue] = useState("")
   const [tagError, setTagError] = useState("")
 
   console.log(`Current Tags: ${tags}`)
 
-  useEffect(()=>{
+  useEffect(() => {
     console.log(`CreateTaskForm Render for: ${title}, Value of tags on start: ${tags} `)
-  },[])
+  }, [])
   // call once on render 
   useEffect(() => {
     // check it's the updating version of the CreateTaskForm
     console.log("USEEFFECT TRIGGERED")
-    if (props.task) {
+    if (task) {
 
       const removeTags = tags.filter(t => userHandler?.userInfo?.tags?.includes(t))
       console.log(`REMOVING TAGS IF DON'T EXIST IN GLOBAL TAG LIST ${removeTags}`)
       const taskItemChanged = {
-        ...props.task,
+        ...task,
         tags: removeTags
       }
-      axiosPrivate.put(`/tasks/${props.task.task_id}/`, taskItemChanged)
+      axiosPrivate.put(`/tasks/${task.task_id}/`, taskItemChanged)
         .then(r => {
           setTags(removeTags)
+          // handlers?.setTaskList(handlers?.taskList.map(t=> t.task_id === task.task_id ? r.data : t))
+
+          // hate that this fucking worked ...
+          axiosPrivate.get(`/tasks/`)
+            .then(r => {
+              console.log("FETCH ALL TASKS RESET :", r.data)
+              handlers?.setTaskList(r.data)
+            })
+            .catch((err) => {
+              console.log(err);
+            })
         })
+
+
     }
 
     console.log(`NEW VALUE OF TAGS AFTER CHECKING GLOBAL TAG LIST ${tags}`)
-   
-  }, [userHandler.userInfo.tags])
+    // trigger useEffect on mount and when there are changes to userInfo --> from TaskPage, userinfo is updated when tags are deleted
+  }, [userHandler.userInfo])
 
   // on render make sure the tags state is set to the correct value
+
 
 
   const minDateCake = new Date()
@@ -96,7 +110,7 @@ function CreateTaskForm(props) {
   }
 
   return (
-    <Modal backdrop="static" show={props.showCreateTask} onHide={props.handleClose}>
+    <Modal backdrop="static" show={showCreateTask} onHide={handleClose}>
       <Modal.Header closeButton>
         <Modal.Title>{title}</Modal.Title>
         {/* <OverlayTrigger
@@ -140,32 +154,32 @@ function CreateTaskForm(props) {
               });
             console.log(`END RESULT OF UPDATING GLOBAL tags: ${userHandler.userInfo.tags}`)
 
-            
-            const valuesAndTags = { ...values, tagList: tags }
-            if (props.task) {
 
-              handlers.updateTask(props.task.task_id, valuesAndTags)
+            const valuesAndTags = { ...values, tagList: tags }
+            if (task) {
+
+              handlers.updateTask(task.task_id, valuesAndTags)
             }
             else {
               handlers.addTask(valuesAndTags)
 
             }
 
-            props.handleClose()
+            handleClose()
 
-            // after submitting, reset input field and set tags to empty only if the props.task object is empty (meaning the component has been rendered for adding tasks only NOT udpating)
+            // after submitting, reset input field and set tags to empty only if the task object is empty (meaning the component has been rendered for adding tasks only NOT udpating)
             setTagValue("")
-            if (!props.task) {
-              console.log(`Should only see this console log if user created a new TASK ${props.task}`)
+            if (!task) {
+              console.log(`Should only see this console log if user created a new TASK ${task}`)
               setTags([])
             }
 
           }}
           initialValues={{
-            title: props.task ? props.task.title : '',
-            description: props.task ? props.task.description : '',
-            size: props.task ? props.task.task_type : 'S',
-            due_date: props.task ? props.task.due_date ? props.task.due_date : '' : '',
+            title: task ? task.title : '',
+            description: task ? task.description : '',
+            size: task ? task.task_type : 'S',
+            due_date: task ? task.due_date ? task.due_date : '' : '',
           }}
         >
           {({ handleSubmit, handleChange, handleBlur, values, touched, isValid, errors }) => (

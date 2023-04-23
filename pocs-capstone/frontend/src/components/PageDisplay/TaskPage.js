@@ -6,10 +6,12 @@ import UserContext from "../../context/UserContext";
 import { useState, useContext, useEffect } from 'react';
 import { Tab, Tabs, Button, Stack, Card, Dropdown, Form, ListGroup } from 'react-bootstrap';
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
+import GlobalContext from '../../context/GlobalContext';
 
 // { taskList, newTitle, newDesc, newSize, newDate, setAvatarInfo, setInventory, setTaskList, handleCompleteCheck, handleTitleChange, handleDescChange, handleSizeChange, handleDateChange, addTask, deleteTask }
 const TaskPage = () => {
     const userHandler = useContext(UserContext)
+    const taskHandler = useContext(GlobalContext)
     const axiosPrivate = useAxiosPrivate();
     const [showCreateTask, setShowCreateTask] = useState(false);
     const [filterTodo, setFilterTodo] = useState(true)
@@ -19,9 +21,11 @@ const TaskPage = () => {
     const handleClose = () => setShowCreateTask(false);
     const handleShow = () => setShowCreateTask(true);
 
+
     // console.log("FILTER SELECTS", selectedTags)
 
     // console.log("USER INFO!!!", userHandler?.userInfo)
+    
     const deleteTagGlobal = (tagItem) => {
         const newTags = userHandler?.userInfo?.tags?.filter(tag => tag !== tagItem)
         const updatedUser = {
@@ -36,6 +40,7 @@ const TaskPage = () => {
             .catch((err) => {
                 console.log(err);
             });
+
     }
 
     const handleTagCheck = (e, tagItem) => {
@@ -56,11 +61,11 @@ const TaskPage = () => {
 
 
     const handleTaskCheck = (e, typeItem) => {
-        if(e.target.checked && !taskTypes.find(type => type === typeItem)){
+        if (e.target.checked && !taskTypes.find(type => type === typeItem)) {
             setTaskTypes(taskTypes.concat(typeItem))
         }
         else {
-            setTaskTypes(taskTypes.filter(type => type!== typeItem))
+            setTaskTypes(taskTypes.filter(type => type !== typeItem))
         }
     }
 
@@ -85,8 +90,8 @@ const TaskPage = () => {
                                 <Dropdown.Menu>
                                     <Form onSubmit={e => e.preventDefault()}>
                                         <Stack direction="horizontal">
-                                            <Form.Check type="checkbox" label='Canvas Assignemnts' onChange={(e)=>{ handleTaskCheck(e, 'canvas')}}/>
-                                            <Form.Check type="checkbox" label='My Tasks' onChange={(e)=>{ handleTaskCheck(e, 'usertasks')}}/>
+                                            <Form.Check type="checkbox" label='Canvas Assignemnts' onChange={(e) => { handleTaskCheck(e, 'canvas') }} />
+                                            <Form.Check type="checkbox" label='My Tasks' onChange={(e) => { handleTaskCheck(e, 'usertasks') }} />
                                         </Stack>
 
                                     </Form>
@@ -114,10 +119,10 @@ const TaskPage = () => {
                             <Tabs
                                 id="controlled-tab-example"
                                 defaultActiveKey="all"
-                                activeKey={filterTodo===true ? 'all' : 'completed'}
+                                activeKey={filterTodo === true ? 'all' : 'completed'}
                                 onSelect={(f) => {
 
-                                    setFilterTodo(f==='all' ? true : false)
+                                    setFilterTodo(f === 'all' ? true : false)
                                 }}
 
                                 className="mb-3 to-tabs">
@@ -135,24 +140,25 @@ const TaskPage = () => {
                     </Stack>
                 </Card.Header>
 
-                <TaskList showAll={filterTodo} filterTags={selectedTags} filterTaskType={taskTypes}/>
+                <TaskList showAll={filterTodo} filterTags={selectedTags} filterTaskType={taskTypes} />
 
             </Card>
 
             <CreateTaskForm {...{ showCreateTask, handleClose }} />
             <div>
-                zGlobal tags:
-                {userHandler?.userInfo?.tags?.map((item) => {
-                    return(
-                        <p>
+                Global tags:
+                {userHandler?.userInfo?.tags?.map((item, index) => {
+                    return (
+                        <p key={index}>
                             {item}
                         </p>
                     )
                 })}
-                
+
+
             </div>
         </div>
-        
+
     )
 }
 

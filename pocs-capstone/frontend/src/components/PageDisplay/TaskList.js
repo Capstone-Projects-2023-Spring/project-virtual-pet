@@ -8,8 +8,6 @@ import { useContext, useState } from 'react'
 const TaskList = ({ showAll, filterTags, filterTaskType }) => {
     const handlers = useContext(GlobalContext)
 
-    console.log("FILTER TASK TYPES", filterTaskType)
-
     const taskFilterCondition = (item) => {
         if (filterTaskType.length === 1) {
             return filterTaskType[0] === 'canvas' ? item.course_id !== 0 && item.assignment_id !== 0 : item.course_id === 0 && item.assignment_id === 0
@@ -21,7 +19,12 @@ const TaskList = ({ showAll, filterTags, filterTaskType }) => {
     const taskListHandlers = {
         updateTask: handlers.updateTask,
         deleteTask: handlers.deleteTask,
+        setTaskList: handlers.setTaskList,
+        taskList: handlers.taskList
     }
+
+    console.log(`TASKS: ${showTasks}`)
+    
 
     return (
         <>
@@ -48,14 +51,10 @@ const TaskList = ({ showAll, filterTags, filterTaskType }) => {
                         <ListGroup className="task-scroll">
                             {showTasks.map(t => <TaskItem key={t.task_id} task={t} {...taskListHandlers} />)}
                         </ListGroup>
-
                     </>
             }
-
-
         </>
     )
-
 }
 
 

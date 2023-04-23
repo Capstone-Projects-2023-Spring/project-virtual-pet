@@ -413,6 +413,7 @@ const Main = () => {
     prev_level_info,
     width,
     taskList,
+    setTaskList,
     addTask,
     deleteTask,
     deleteAllTasks,
