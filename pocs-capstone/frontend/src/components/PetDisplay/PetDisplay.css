@@ -181,6 +181,7 @@
   margin-bottom: 5px;
   width:100%;
 }
+
 .pet-container-mobile {
     background-image: url("../../images/bg.gif");
     /* background-size: 50vh; */
@@ -190,6 +191,8 @@
     /* height: 60%; */
     height: calc(100vh - 350px - 70%);
     /* height: calc(100vh - 60vh); */
+    /* height: 35vh;
+    width: 90vw; */
     background-size: cover;
     /* background-size: ; */
     background-position: center center;
@@ -199,6 +202,31 @@
     align-items: center;
     overflow:hidden;
     margin: 0 auto;
+}
+
+/* Iphone 12 Pro Max ShoutOut Mary */
+@media only screen and (min-height: 926px) {
+  .pet-container-mobile {
+    background-image: url("../../images/bg.gif");
+    /* background-size: 50vh; */
+    /* width:80%; */
+    /* max-height: 50vh; */
+    /* height: 50vh; */
+    /* height: 60%; */
+    /* height: calc(100vh - 350px - 70%); */
+    /* height: calc(100vh - 60vh); */
+    height: 35vh;
+    width: 90vw;
+    background-size: cover;
+    /* background-size: ; */
+    background-position: center center;
+    justify-content: center;
+    /* width:50vh; */
+    display:flex;
+    align-items: center;
+    overflow:hidden;
+    margin: 0 auto;
+}
 }
 
 .sprite-sheet-mobile{
