@@ -53,7 +53,7 @@ const PetDisplay = () => {
   //TODO - shouldn't call calc-pet-lev 3 times
   const axiosPrivate = useAxiosPrivate();
   const [mood, setMood] = useState(NEUTRAL); //H = happy, S = Sad, N = Neutral
-  // const [mooddesc, setMoodDesc] = useState("");
+  const [mooddesc, setMoodDesc] = useState("");
   const [avatarImage, setAvatarImage] = useState(null);
   //const avatar_handler = useContext(AvatarContext);
   const contextHandler = useContext(GlobalContext);
@@ -109,9 +109,10 @@ const PetDisplay = () => {
       const birthday_delta = dateDelta(birthday, TODAY);
       if (birthday_delta < 1 && birthday_delta >= 0) {
         setMood(HAPPY);
-        moodHandler?.setPetMoodDesc(
-          "I'm so happy it's your birthday!! Yippee!!"
-        );
+        // setMoodDesc(
+        //   "I'm so happy it's your birthday!! Yippee!!"
+        // );
+        moodHandler?.setPetMoodDesc("I'm so happy it's your birthday!! Yippee!!");
         console.log("BIRTHDAY HAPPY:", birthday_delta);
         return;
       }
@@ -129,14 +130,17 @@ const PetDisplay = () => {
     console.log("FEED DELTA", feed_delta, last_feed, TODAY);
     if (feed_delta <= 3 && feed_delta > 1) {
       setMood(NEUTRAL);
+      setMoodDesc("I'm feeling content.");
       moodHandler?.setPetMoodDesc("I'm feeling content.");
       console.log("FEED NEUTRAL", feed_delta);
     } else if (feed_delta <= 1) {
       setMood(HAPPY);
+      setMoodDesc("Candy is so yummy! I'm so happy!");
       moodHandler?.setPetMoodDesc("Candy is so yummy! I'm so happy!");
       console.log("FEED HAPPY", feed_delta);
     } else {
       setMood(SAD);
+      setMoodDesc("I'm hungry :(");
       moodHandler?.setPetMoodDesc("I'm hungry :(");
       console.log("FEED SAD", feed_delta);
       feed_flag = true;
@@ -165,26 +169,29 @@ const PetDisplay = () => {
           );
           if (task_delta < 0) {
             setMood(SAD);
-            moodHandler?.setPetMoodDesc(
+            setMoodDesc(
               "You've gotten so much done! I'm so happy! :D"
             );
+            moodHandler?.setPetMoodDesc("You've gotten so much done! I'm so happy! :D");
             console.log("TASK SAD");
             return;
           }
         }
-      });
+      })
 
       pass_task_check = true;
-    });
+    })
     if (pass_task_check) {
       // guard because axios call is async
       if (feed_flag) {
         setMood(NEUTRAL);
+        setMoodDesc("I'm feeling content.");
         moodHandler?.setPetMoodDesc("I'm feeling content.");
         console.log("TASK NEUTRAL");
         return;
       }
       setMood(HAPPY); //TODO we'll check grades here as well
+      setMoodDesc("You've gotten so much done! I'm so happy! :D");
       moodHandler?.setPetMoodDesc("You've gotten so much done! I'm so happy! :D");
       console.log("TASK HAPPY");
       return;
@@ -258,6 +265,7 @@ const PetDisplay = () => {
       }
     };
     getavatarImage(contextHandler?.avatarInfo);
+    // moodHandler?.setPetMoodDesc(mooddesc);
   }, [mood]);
 
   const spriteSheetRef = useRef(null);
