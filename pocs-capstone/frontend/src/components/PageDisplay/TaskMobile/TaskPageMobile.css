@@ -76,10 +76,14 @@
 }
 
 
-.createtask-modal-mobile {
+.task-notice-modal-mobile, .createtask-modal-mobile {
     width: 100vw;
     height: 80vh;
     font-size: calc(1.5vw + 1vh);
+}
+
+.task-notice-modal-title-mobile {
+    font-size: 5vw;
 }
 
 .createtask-modal-mobile #validationFormik01, .createtask-modal-mobile #validationFormik02, .createtask-modal-mobile #validationFormik03, .createtask-modal-mobile #validationFormik04 {

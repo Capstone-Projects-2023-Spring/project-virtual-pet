@@ -15,6 +15,7 @@ import CalculatePetLevel from "../../algos/calculatePetLevel";
 //import AvatarContext from "../../context/AvatarContext";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 import GlobalContext from "../../context/GlobalContext.js";
+import MobilePetMoodContext from "../../context/MobilePetMoodContext.js";
 import orange_H_gif from "../../images/orange_happy_gif.gif";
 import orange_S_gif from "../../images/orange_sad_gif.gif";
 import gray_H_gif from "../../images/gray_happy_gif.gif";
@@ -37,20 +38,26 @@ const HAPPY = "H";
 const TASK_URL = "/tasks/";
 const USER_URL = "/user-data/";
 
-
 var YESTERDAY = new Date(Date.now() - 86400000);
 var TODAY = new Date();
-YESTERDAY = new Date(YESTERDAY.toLocaleString('en-US', { timeZone: 'America/New_York' }).split(',')[0])
-TODAY = new Date(TODAY.toLocaleString('en-US', { timeZone: 'America/New_York' }).split(',')[0])
+YESTERDAY = new Date(
+  YESTERDAY.toLocaleString("en-US", { timeZone: "America/New_York" }).split(
+    ","
+  )[0]
+);
+TODAY = new Date(
+  TODAY.toLocaleString("en-US", { timeZone: "America/New_York" }).split(",")[0]
+);
 
 const PetDisplay = () => {
   //TODO - shouldn't call calc-pet-lev 3 times
   const axiosPrivate = useAxiosPrivate();
   const [mood, setMood] = useState(NEUTRAL); //H = happy, S = Sad, N = Neutral
-  const [mooddesc, setMoodDesc] = useState("");
+  // const [mooddesc, setMoodDesc] = useState("");
   const [avatarImage, setAvatarImage] = useState(null);
   //const avatar_handler = useContext(AvatarContext);
   const contextHandler = useContext(GlobalContext);
+  const moodHandler = useContext(MobilePetMoodContext);
   const [spritesheetInstance, setSpritesheetInstance] = useState(null);
   //const [exp, setExp] = useState(avatar_handler.avatarInfo.total_xp);
   //const [level, setLevel] = useState(CalculatePetLevel(avatar_handler.avatarInfo.total_xp).LEVEL);
@@ -102,7 +109,9 @@ const PetDisplay = () => {
       const birthday_delta = dateDelta(birthday, TODAY);
       if (birthday_delta < 1 && birthday_delta >= 0) {
         setMood(HAPPY);
-        setMoodDesc("I'm so happy it's your birthday!! Yippee!!");
+        moodHandler?.setPetMoodDesc(
+          "I'm so happy it's your birthday!! Yippee!!"
+        );
         console.log("BIRTHDAY HAPPY:", birthday_delta);
         return;
       }
@@ -110,63 +119,54 @@ const PetDisplay = () => {
 
     const last_interaction = contextHandler.avatarInfo.last_interaction;
     var last_feed = new Date(contextHandler.avatarInfo.last_feed);
-    last_feed = new Date(last_feed.toLocaleString('en-US', { timeZone: 'America/New_York' }).split(',')[0])
+    last_feed = new Date(
+      last_feed
+        .toLocaleString("en-US", { timeZone: "America/New_York" })
+        .split(",")[0]
+    );
 
     const feed_delta = dateDelta(TODAY, last_feed); //elapsed time since last feed
     console.log("FEED DELTA", feed_delta, last_feed, TODAY);
-    
     if (feed_delta <= 3 && feed_delta > 1) {
-     
       setMood(NEUTRAL);
-      setMoodDesc("I'm feeling content.");
+      moodHandler?.setPetMoodDesc("I'm feeling content.");
       console.log("FEED NEUTRAL", feed_delta);
-    
     } else if (feed_delta <= 1) {
-      
       setMood(HAPPY);
-      setMoodDesc("Candy is so yummy! I'm so happy!");
+      moodHandler?.setPetMoodDesc("Candy is so yummy! I'm so happy!");
       console.log("FEED HAPPY", feed_delta);
-    
     } else {
-    
       setMood(SAD);
-      setMoodDesc("I'm hungry :(");
+      moodHandler?.setPetMoodDesc("I'm hungry :(");
       console.log("FEED SAD", feed_delta);
       feed_flag = true;
-    
     }
 
     var pass_task_check = false;
     //if overdue assignments, pet is sad
     axiosPrivate.get(TASK_URL).then((response) => {
-      
       tasks = response?.data;
-
       tasks.forEach((item) => {
-
         if (!item.completed) {
+          const _due = item.due_date.split("-");
+          console.log("_due----->", _due);
 
-          const _due = item.due_date.split('-')
-          console.log("_due----->",_due)
-        
-          var due = new Date(_due[0],Number(_due[1])-1,_due[2]);
-   
+          var due = new Date(_due[0], Number(_due[1]) - 1, _due[2]);
+
           const task_delta = dateDelta(due, TODAY);
-          
-          console.log("ITEM DUE DATE:",item.due_date)
+
+          console.log("ITEM DUE DATE:", item.due_date);
           console.log(
             "TASK DELTA----->",
             task_delta,
-            due,
+            item.due_date,
             TODAY,
-            item.completed,
-            (due==TODAY)
+            item.completed
           );
-
           if (task_delta < 0) {
             setMood(SAD);
-            setMoodDesc(
-              "I'm stressed. You have overdue tasks... please complete them :("
+            moodHandler?.setPetMoodDesc(
+              "You've gotten so much done! I'm so happy! :D"
             );
             console.log("TASK SAD");
             return;
@@ -176,17 +176,16 @@ const PetDisplay = () => {
 
       pass_task_check = true;
     });
-
     if (pass_task_check) {
       // guard because axios call is async
       if (feed_flag) {
         setMood(NEUTRAL);
-        setMoodDesc("I'm feeling content.");
+        moodHandler?.setPetMoodDesc("I'm feeling content.");
         console.log("TASK NEUTRAL");
         return;
       }
       setMood(HAPPY); //TODO we'll check grades here as well
-      setMoodDesc("You've gotten so much done! I'm so happy! :D");
+      moodHandler?.setPetMoodDesc("You've gotten so much done! I'm so happy! :D");
       console.log("TASK HAPPY");
       return;
     }

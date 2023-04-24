@@ -86,9 +86,8 @@ const Main = () => {
   }, [])
 
   const updateTask = (id, newTask) => {
+    // console.log("Getting caled?", id, newTask)
     const taskItem = taskList.find(t => t.task_id === id)
-
-
 
     const taskItemChanged = newTask == null ?
       { ...taskItem, completed: !taskItem.completed, completed_date: (taskItem.completed_date === null ? new Date().toISOString().split('T')[0] : null) } :
@@ -199,6 +198,15 @@ const Main = () => {
   }
 
   const addTask = (formValues) => {
+    // var d = new Date();
+    // console.log("INITIAL DATE", d)
+
+    // d.setMinutes(d.getMinutes() - 1);   
+    // d.setDate(6)
+
+    // console.log("CREATED TSAK ON ", d)
+
+
 
     const taskLevelD = determineTaskLevel(userContext.userInfo.join_date)
 
@@ -206,6 +214,7 @@ const Main = () => {
       title: formValues.title,
       due_date: formValues.due_date === "" ? null : formValues.due_date,
       created_date: new Date().toISOString(),
+      // created_date: d,
       completed_date: null,
       completed: false,
       active: true,
@@ -218,7 +227,7 @@ const Main = () => {
       assignment_id: 0
     }
 
-    // console.log("NEW TASK", newTask)
+    console.log("NEW TASK", newTask)
 
     axiosPrivate.post(baseURL, newTask)
       .then(r => {
@@ -235,9 +244,10 @@ const Main = () => {
   }
 
   const deleteAllTasks = (completedTasks) => {
-    // delete all completed tasks
+
     if (completedTasks.length) {
       completedTasks.forEach(t => {
+        
         axiosPrivate.delete(`${baseURL}${t.task_id}/`)
           .catch(e => {
             console.log("ERROR TASKS", e)
@@ -250,9 +260,6 @@ const Main = () => {
     setTaskList(keepTasks)
   }
 
-  // const handlers = {
-    
-  // }
 
 
 
@@ -437,3 +444,5 @@ const Main = () => {
   }
 };
 export default Main;
+
+
