@@ -11,6 +11,13 @@
     
 }
 
+.tasklist-position{
+    display: flex;
+    flex-direction: column;
+    min-width: 100%;
+    min-height: 50%;
+}
+
 .to-tabs .nav-link.active {
     background-color: rgba(255, 255, 255, 0);
     color: rgb(43, 99, 158);
@@ -31,6 +38,7 @@
 /* Tab content height for TaskPage Component only */
 #justify-tab-example-tabpane-tasks {
     height: 98%;
+    background-color: rgb(255, 198, 198);
 }
 
 /* Grid wrapper for TaskPage component */
@@ -47,7 +55,7 @@
 .task-scroll {
     /* min-height: 20vh; */
     min-height: 85vh;
-    max-height: 85vh;
+    max-height: 100%;
     border-radius: 0px !important;
 
     margin-bottom: 10px;
@@ -173,7 +181,6 @@
 
 
 /* CHECKOFF button CSS */
-
 
 
 

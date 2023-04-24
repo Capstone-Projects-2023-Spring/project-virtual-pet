@@ -2,7 +2,8 @@
 import { ListGroup, Stack, Button } from 'react-bootstrap';
 import TaskItem from './TaskItem'
 import GlobalContext from "../../context/GlobalContext.js";
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
+import './TaskPage.css'
 
 const TaskList = ({ showAll, filterTags, filterTaskType }) => {
     const handlers = useContext(GlobalContext)
@@ -27,7 +28,7 @@ const TaskList = ({ showAll, filterTags, filterTaskType }) => {
         <>
             {
                 showTasks.length === 0 ?
-                    <ListGroup variant="flush">
+                    <ListGroup className='tasklist-position' variant="flush">
                         <ListGroup.Item className="d-flex justify-content-between align-items-start">
                             No tasks!
                         </ListGroup.Item>
