@@ -4,6 +4,7 @@ import TaskItem from './TaskItem'
 // import TaskListContext from '../../context/TaskListContext'
 import GlobalContext from "../../context/GlobalContext.js";
 import { useContext } from 'react'
+import './TaskPage.css'
 
 const TaskList = ({ filter }) => {
     const handlers = useContext(GlobalContext)
@@ -13,7 +14,7 @@ const TaskList = ({ filter }) => {
 
     if (showTasks.length === 0) {
         return (
-            <ListGroup variant="flush">
+            <ListGroup className="tasklist-position" variant="flush">
                 <ListGroup.Item className="d-flex justify-content-between align-items-start">
                     No tasks!
                 </ListGroup.Item>

@@ -19,7 +19,7 @@ import tux_cat from "../images/tux_cat_scaled_5x_pngcrushed.png";
 const AVATAR_URL = "/avatar/";
 const PETNAME_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
 
-var YESTERDAY = new Date(Date.now() - 86400000);
+var YESTERDAY = new Date(Date.now() - 2*86400000);
 var TODAY = new Date();
 YESTERDAY = new Date(YESTERDAY.toLocaleString('en-US', { timeZone: 'America/New_York' }).split(',')[0])
 TODAY = new Date(TODAY.toLocaleString('en-US', { timeZone: 'America/New_York' }).split(',')[0])
