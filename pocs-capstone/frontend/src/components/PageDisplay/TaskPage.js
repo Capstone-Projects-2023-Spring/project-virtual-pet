@@ -16,7 +16,6 @@ const TaskPage = () => {
     const [showCreateTask, setShowCreateTask] = useState(false);
     const [filterTodo, setFilterTodo] = useState(true)
     
-    
     const handleShow = () => setShowCreateTask(true);
 
     const deleteTagGlobal = (tagItem) => {

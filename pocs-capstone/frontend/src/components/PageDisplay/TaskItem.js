@@ -5,15 +5,12 @@ import CreateTaskForm from './CreateTaskForm'
 import TaskNotice from './TaskNotice'
 import UserContext from "../../context/UserContext";
 import { useState, useContext, useEffect } from 'react'
-import useAxiosPrivate from "../../hooks/useAxiosPrivate";
+
 
 const TaskItem = ({ task, updateTask, deleteTask, setTaskList, taskList }) => {
 
-    const axiosPrivate = useAxiosPrivate();
     const [showCreateTask, setShowCreateTask] = useState(false);
     const [showNotice, setShowNotice] = useState(false)
-    // const [tags, setTags] = useState(task?.tags)
-    const userHandler = useContext(UserContext)
 
     const handleShow = () => setShowCreateTask(true);
 
@@ -141,7 +138,7 @@ const TaskItem = ({ task, updateTask, deleteTask, setTaskList, taskList }) => {
                             </ListGroup.Item>
 
                         </ListGroup >
-                        <CreateTaskForm showCreateTask={showCreateTask} setShowCreateTask={setShowCreateTask} task={task} />
+                        <CreateTaskForm {...{ showCreateTask, setShowCreateTask, task }} />
                         <TaskNotice showNotice={showNotice} setShowNotice={setShowNotice} task={task} />
                     </>
             }

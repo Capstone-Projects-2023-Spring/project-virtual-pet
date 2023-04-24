@@ -10,17 +10,25 @@ import * as yup from "yup";
 import * as formik from 'formik'
 
 const CustomMenu = React.forwardRef(
-  ({ style, className, 'aria-labelledby': labeledBy, tags, setTags, tagValue, setTagValue, tagError, setTagError, globalTags }, ref) => {
+  ({ style, className, 'aria-labelledby': labeledBy, tags, setTags, tagValue, setTagValue, tagError, setTagError, globalTags, updateTaskItem, task }, ref) => {
 
 
-    console.log("GLOBAL TAGS ", globalTags, "ERROR", tagError)
+    // console.log("GLOBAL TAGS ", globalTags, "ERROR", tagError)
     const addGlobalTag = (gTag) => {
-      setTagError("")
+      console.log("adding", gTag)
 
       if (gTag.trim() !== "" && !tags.find(tagItem => tagItem === gTag && gTag.match(/^[0-9a-z]+$/))) {
+        const newTags = tags.concat(gTag)
+        setTags(newTags)
 
-        setTags(tags.concat(gTag))
+        if (task) {
+          console.log("undefined?", task)
+          updateTaskItem(newTags, task)
+
+        }
+
       }
+      setTagError("")
     }
 
     return (
@@ -65,12 +73,44 @@ function CreateTaskForm({ showCreateTask, setShowCreateTask, task }) {
   const title = task ? "Task Details" : "Create Task"
   const buttonText = task ? "Save" : "Create Task"
 
-
+  // console.log("TASK", task)
 
   // set state of tags to an empty array or the task's tag list - depends on if the user is creating or updating a task
   const [tags, setTags] = useState(task ? task.tags : [])
   const [tagValue, setTagValue] = useState("")
   const [tagError, setTagError] = useState("")
+
+
+  const updateTaskItem = (tagsChanged, task) => {
+    const taskItemChanged = {
+      ...task,
+      tags: tagsChanged
+    }
+    axiosPrivate.put(`/tasks/${task.task_id}/`, taskItemChanged)
+      .then(r => {
+        setTags(tagsChanged)
+        // handlers?.setTaskList(handlers?.taskList.map(t=> t.task_id === task.task_id ? r.data : t))
+
+        // hate that this fucking worked ...
+        // setTaskList not working? - instead make an Axios GET request to update the state of taskList 
+        // console.log("CHANGE TO TASK", r.data)
+        // const taskListUpdate = handlers?.taskList.map(t => t.task_id === task.task_id ? r.data : t)
+        // console.log("UPDATEDTASKLSIT", taskListUpdate)
+        // handlers?.setTaskList(taskListUpdate)
+        axiosPrivate.get(`/tasks/`)
+          .then(r => {
+            // console.log("FETCH ALL TASKS RESET :", r.data)
+            handlers?.setTaskList(r.data)
+          })
+          .catch((err) => {
+            console.log("setting task error", err);
+          })
+      })
+      .catch((err) => {
+        console.log("CANT UPDATE TASKLIST?", err);
+      });
+
+  }
 
   // trigger useEffect on mount and when there are changes to userInfo --> from the TaskPage component, userinfo is updated when tags are deleted from the global list
   // This useEffect is called whenever the user deletes a tag from the GLOBAL tag list -> said tag should be removed from the tag list of INDIVIDUAL task items 
@@ -78,39 +118,25 @@ function CreateTaskForm({ showCreateTask, setShowCreateTask, task }) {
     // check it's the updating version of the CreateTaskForm
     // console.log("USEEFFECT TRIGGERED")
 
-    
+
     const found = tags.every(t => userHandler?.userInfo?.tags?.includes(t))
     // Check to make sure this is the 'update task' version of CreateTaskForm - rendered from TaskItem rather than the TaskPage AddTask button
     // also make sure there is a discrepancy - dont just run this for every task
-    if (task && !found) {
+    console.log("VALUE OF FOUND: ", found, userHandler?.userInfo?.tags)
+    // important to add third condition : makes sure you're not comparing to an empty global list of tags - else value of found will turn out different 
+    if (task && !found && userHandler?.userInfo?.tags) {
+      console.log("this betch?")
 
       // go through each tag the task owns and only return tags exist in the global tag list
       const removeTags = tags.filter(t => userHandler?.userInfo?.tags?.includes(t))
       // console.log(`NEW TAGS LIST (COMPARED TO GLOBAL TAG LIST) ${removeTags}`)
 
-      const taskItemChanged = {
-        ...task,
-        tags: removeTags
-      }
-      axiosPrivate.put(`/tasks/${task.task_id}/`, taskItemChanged)
-        .then(r => {
-          setTags(removeTags)
-          // handlers?.setTaskList(handlers?.taskList.map(t=> t.task_id === task.task_id ? r.data : t))
+      updateTaskItem(removeTags, task)
 
-          // hate that this fucking worked ...
-          // setTaskList not working? - instead make an Axios GET request to update the state of taskList 
-          axiosPrivate.get(`/tasks/`)
-            .then(r => {
-              // console.log("FETCH ALL TASKS RESET :", r.data)
-              handlers?.setTaskList(r.data)
-            })
-            .catch((err) => {
-              console.log(err);
-            })
-        })
     }
 
   }, [userHandler.userInfo])
+
 
 
   const minDateCake = new Date()
@@ -144,7 +170,15 @@ function CreateTaskForm({ showCreateTask, setShowCreateTask, task }) {
       setTagError("")
       // setTags(tags.concat(tagValue.trim()))
       const currentTags = tags.concat(tagValue.trim())
-      setTags(currentTags)
+
+      if (task) {
+        updateTaskItem(currentTags, task)
+      }
+      else{
+        setTags(currentTags)
+      }
+      
+
 
       console.log(`Combining global tags and current tags - global: ${userHandler.userInfo.tags}, local tags: ${currentTags}`)
       const updateGlobalTags = currentTags.concat(userHandler.userInfo.tags.filter((item) => currentTags.indexOf(item) < 0))
@@ -162,32 +196,37 @@ function CreateTaskForm({ showCreateTask, setShowCreateTask, task }) {
 
         })
         .catch((err) => {
-          console.log(err);
+          console.log("CANT UPDATE USER", err);
         });
 
     }
     else {
       setTagError("Invalid tag - no special characters, spaces, uppercase letters, etc")
+      setTimeout(() => {
+        setTagError("")
+      }, 2000)
     }
 
     setTagValue("")
   }
 
   const deleteTag = (index, tagItem) => {
-    // deleting a tagged item: remove from state - don't need to make an axios call from here, updateTask and addTask will do so with the latest version of the tags state 
-    setTags(tags.filter((t, i) => i !== index))
-    console.log(`REMOVING TAGS: ${tags}`)
-
+    const updateTags = tags.filter((t, i) => i !== index)
+    updateTaskItem(updateTags, task)
   }
 
   const handleClose = () => {
+    if (!task) {
+
+      setTags([])
+    }
     setShowCreateTask(false);
-  
+
   }
 
 
   return (
-    <Modal backdrop="static" show={showCreateTask} onHide={(e)=> {handleClose(); console.log("ON HIDE",e)}}>
+    <Modal backdrop="static" show={showCreateTask} onHide={(e) => { handleClose(); console.log("ON HIDE", e) }}>
 
       <Modal.Header closeButton>
         <Modal.Title>{title}</Modal.Title>
@@ -214,7 +253,7 @@ function CreateTaskForm({ showCreateTask, setShowCreateTask, task }) {
             // after submitting, reset input field and set tags to empty only if the task object is empty (meaning the component has been rendered for adding tasks only NOT udpating)
             setTagValue("")
             if (!task) {
-              console.log(`Should only see this console log if user created a new TASK ${task}`)
+              // console.log(`Should only see this console log if user created a new TASK ${task}`)
               setTags([])
             }
 
@@ -330,19 +369,17 @@ function CreateTaskForm({ showCreateTask, setShowCreateTask, task }) {
 
                 </Stack>
               </Form>
-
-
-              {/* <Dropdown className="d-inline mx-2" autoClose="outside">
-                <Dropdown.Toggle id="dropdown-autoclose-outside dropdown-button-drop-down-centered">
-                  Add Tags
-                </Dropdown.Toggle>
-
-                <Dropdown.Menu as={CustomMenu}>
-                  {userHandler?.userInfo?.tags?.map((tagItem, index) => 
-                    <Dropdown.Item eventKey={index}>{tagItem}</Dropdown.Item>
-                  )}
-                </Dropdown.Menu>
-              </Dropdown> */}
+              <div>
+                <ul>
+                  {task?.tags?.map((tagItem, index) => {
+                    return (
+                      <li key={index}>
+                        {tagItem}
+                      </li>
+                    )
+                  })}
+                </ul>
+              </div>
 
 
               <Form onSubmit={handleTagSubmit}>
@@ -361,24 +398,14 @@ function CreateTaskForm({ showCreateTask, setShowCreateTask, task }) {
                     tagError={tagError}
                     setTagError={setTagError}
                     globalTags={userHandler?.userInfo?.tags}
+                    updateTaskItem={updateTaskItem}
+                    task={task}
                   >
                     {userHandler?.userInfo?.tags?.map((tagItem, index) =>
                       <Dropdown.Item key={index} eventKey={index}>{tagItem}</Dropdown.Item>
                     )}
                   </Dropdown.Menu>
                 </Dropdown>
-
-                {/* <Form.Control
-                  type="text"
-                  placeholder="Add tags..."
-                  name="tags"
-                  value={tagValue}
-                  onChange={e => setTagValue(e.target.value)}
-                  isInvalid={tagError !== ""}
-                />
-                <Form.Control.Feedback type="invalid">
-                  {tagError}
-                </Form.Control.Feedback> */}
               </Form>
 
               <ul>

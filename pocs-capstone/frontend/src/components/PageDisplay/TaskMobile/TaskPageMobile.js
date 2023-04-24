@@ -14,7 +14,6 @@ const TaskPageMobile = () => {
     const [showCreateTask, setShowCreateTask] = useState(false);
     const [filterTodo, setFilterTodo] = useState(true)
 
-    const handleClose = () => setShowCreateTask(false);
     const handleShow = () => setShowCreateTask(true);
 
     const deleteTagGlobal = (tagItem) => {
@@ -85,6 +84,18 @@ const TaskPageMobile = () => {
                             </Tabs>
 
                         </div>
+                        <div>
+                            Global tags:
+                            {userHandler?.userInfo?.tags?.map((item, index) => {
+                                return (
+                                    <p key={index}>
+                                        {item}
+                                    </p>
+                                )
+                            })}
+
+
+                        </div>
                         <div className="ms-auto">
                             <Dropdown className="d-inline mx-2" autoClose="outside">
                                 <Dropdown.Toggle id="dropdown-autoclose-outside">
@@ -135,7 +146,7 @@ const TaskPageMobile = () => {
 
             </Card>
 
-            <CreateTaskFormMobile {...{ showCreateTask, handleClose }} />
+            <CreateTaskFormMobile {...{ showCreateTask, setShowCreateTask }} />
 
         </div>
     )

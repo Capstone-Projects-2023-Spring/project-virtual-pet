@@ -20,8 +20,6 @@ const Header = ({ }) => {
   const [tokenReady, setTokenReady] = useState(false);
   const [retrievingAssignments, setRetrievingAssignments] = useState(false);
 
-
-
   const resetSubmitTokenState = (text) => {
     setRetrievingAssignments(false);
     setNameError(text);
@@ -35,28 +33,38 @@ const Header = ({ }) => {
       .get(COURSES_URL)
       .then((response) => {
         //we were successful
+        // console.log("RESPONSE", response)
         //return state and navigate to main
 
         // fetch unique list of courses
         const uniqueCourses = [...new Set(response.data.map(item => item.course_title))]
 
-        // combine with global tag list - make sure it's unique
+        // // combine with global tag list - make sure it's unique
         const updateGlobalTags = userInfo.tags.concat(uniqueCourses.filter((item) => userInfo.tags.indexOf(item) < 0))
+        // console.log("GLOBAL TAGSSs", updateGlobalTags, "UNIQUE COURSES", uniqueCourses)
 
-        const updatedUser = {...userInfo, tags: updateGlobalTags}
+        // setUpdateTag(updateGlobalTags)
+        const updatedUser = {
+          ...userInfo,
+          tags: updateGlobalTags
+        }
+        // console.log("UPDATED USER", updatedUser)
         axiosPrivate.put(`/user-data/${userInfo.id}/`, updatedUser)
           .then((response) => {
+            console.log("WHY AINT THIS HAPPENING?", response)
             setUserInfo(updatedUser);
+            resetSubmitTokenState("Please reload tasks!");
+            nav(0)
           })
           .catch((err) => {
-            console.log(err);
+            console.log("NAH?", err);
           });
 
-        resetSubmitTokenState("Please reload tasks!");
-        nav(0)
+
+
       })
       .catch((err) => {
-        console.log(err);
+        console.log("?", err);
         resetSubmitTokenState(
           "Error getting assignments. Please check your token and try again."
         );
@@ -75,6 +83,27 @@ const Header = ({ }) => {
             console.log(err);
           });
       });
+
+
+    // const uniqueCourses = [...new Set(response.data.map(item => item.course_title))]
+
+    // // combine with global tag list - make sure it's unique
+    // const updateGlobalTags = userInfo.tags.concat(uniqueCourses.filter((item) => userInfo.tags.indexOf(item) < 0))
+    // console.log("GLOBAL TAGS", updateGlobalTags, "UNIQUE COURSES", uniqueCourses)
+
+    // const updatedUser = {
+    //   ...userInfo,
+    //   tags: updateGlobalTags
+    // }
+    // console.log("UPDATED USER", updatedUser)
+    // axiosPrivate.patch(`/user-data/${userInfo.id}/`, updatedUser)
+    //   .then((response) => {
+    //     console.log("WHY AINT THIS HAPPENING?", response)
+    //     setUserInfo(updatedUser);
+    //   })
+    //   .catch((err) => {
+    //     console.log("NAH?", err);
+    //   });
   }
 
   const headerStyle = {
@@ -113,7 +142,7 @@ const Header = ({ }) => {
 
         {userInfo.canvas_token !== "" && userInfo.canvas_token !== "BADTOKEN" ? (
           <div style={{ display: "grid", gridAutoFlow: "column" }}>
-            <button className="container-canvas-logo" onClick={getCourses}>
+            <button type="button" className="container-canvas-logo" onClick={getCourses}>
               <img
                 className={
                   retrievingAssignments ? "canvas-loading" : "logo-canvas"

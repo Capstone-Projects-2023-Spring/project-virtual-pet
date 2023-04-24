@@ -97,7 +97,7 @@ const TaskItemMobile = ({ task, updateTask, deleteTask }) => {
                                         <></>
                                 }
                             </ListGroup >
-                            <CreateTaskFormMobile {...{ showCreateTask, handleClose, task }} />
+                            <CreateTaskFormMobile {...{ showCreateTask, setShowCreateTask, task }} />
                         </>
                     ) :
 
@@ -139,7 +139,7 @@ const TaskItemMobile = ({ task, updateTask, deleteTask }) => {
 
                                 </ListGroup.Item>
                             </ListGroup >
-                            <CreateTaskFormMobile showCreateTask={showCreateTask} handleClose={handleClose} task={task} />
+                            <CreateTaskFormMobile {...{ showCreateTask, setShowCreateTask, task }} />
                             <TaskNotice showNotice={showNotice} setShowNotice={setShowNotice} task={task} />
                         </>
                     )
