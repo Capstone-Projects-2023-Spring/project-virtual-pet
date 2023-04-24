@@ -3,6 +3,7 @@ import { useState, useContext, useRef, useEffect } from "react";
 import "./MainMobile.css";
 
 import GlobalContext from "../context/GlobalContext.js";
+import MobilePetMoodContext from "../context/MobilePetMoodContext";
 import InventoryBoxMobile from "./Inventory/InventoryBoxMobile.js";
 import CalendarPageMobile from "./CalendarMobile/CalendarPageMobile.js";
 import TaskPageMobile from "./PageDisplay/TaskMobile/TaskPageMobile.js";
@@ -31,7 +32,10 @@ const MainMobile = () => {
   const [tokenReady, setTokenReady] = useState(false);
   const [retrievingAssignments, setRetrievingAssignments] = useState(false);
   const [canvasError, setCanvasError] = useState(false);
+  const [petMoodDesc, setPetMoodDesc] = useState("");
 
+  const moodHandlers = { petMoodDesc, setPetMoodDesc }
+  
 
   const resetSubmitTokenState = (text) => {
     setRetrievingAssignments(false);
@@ -101,25 +105,29 @@ const MainMobile = () => {
   }
 
 
-  return (
-    <div className="container-m" width={handlers?.width}>
-      <div className="top-container-mobile">
-        <PetDisplayMobile value={handlers} />
-      </div>
+    return (
+        <div className="container-m" width={handlers?.width}>
+            <MobilePetMoodContext.Provider value={moodHandlers} >
+            <div className="top-container-mobile">
+            <PetDisplayMobile value={handlers}/>
+            </div>
 
-      <div className="bottom-container-mobile">
-        <Modal className="createtask-modal-mobile" backdrop="static" show={canvasError} onHide={setCanvasError} >
-          <Modal.Header closeButton>
-          </Modal.Header>
-          <ModalBody style={{ fontSize: "20px" }}><center>There is problem with your canvas token!<br></br>Please resubmit your token!</center></ModalBody>
-        </Modal>
-
-        {activeTab === 0 && <TaskPageMobile />}
-        {activeTab === 1 && <CalendarPageMobile />}
-        {activeTab === 2 && <InventoryBoxMobile />}
-        {activeTab === 3 && <AccountProfilePageMobile />}
-
-      </div>
+            <div className="bottom-container-mobile">
+            <Modal className="createtask-modal-mobile" backdrop="static" show={canvasError} onHide={setCanvasError} >
+            <Modal.Header closeButton>        
+            </Modal.Header>
+            <ModalBody style={{fontSize:"20px"}}><center>There is problem with your canvas token!<br></br>Please resubmit your token!<br></br>
+            The canvas button in your tabs will now disappear</center></ModalBody>
+            </Modal>
+            
+            {activeTab === 0 && <TaskPageMobile/>}
+            {activeTab === 1 && <CalendarPageMobile/> }
+            {activeTab === 2 && <InventoryBoxMobile/>}
+            {activeTab === 3 && <AccountProfilePageMobile/>}
+            
+        
+            </div>
+            </MobilePetMoodContext.Provider>
 
       <div className="tab-container">
         <Tabs value={activeTab} onChange={(event, newValue) => setActiveTab(newValue)}>
