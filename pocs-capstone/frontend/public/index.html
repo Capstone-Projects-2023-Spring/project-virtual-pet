@@ -7,7 +7,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="Web site created using create-react-app" />
-  <link rel="shortcut icon" href="favicon.ico"/>
+  <link rel="shortcut icon" href="favicon.ico" />
 
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -33,6 +33,24 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
   <title>Study Buddy</title>
+  <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" defer></script>
+  <script>
+    window.OneSignal = window.OneSignal || [];
+    OneSignal.push(function () {
+      OneSignal.init({
+        appId: "03d68522-7024-4cff-a04b-8f49eb789abe",
+        safari_web_id: "web.onesignal.auto.4da9f50a-e5cd-4bfe-8999-da1af6f61d49",
+        notifyButton: {
+          enable: true,
+        },
+        allowLocalhostAsSecureOrigin: true,
+        welcomeNotification: {
+          title: "Welcome to Study Buddy",
+          message: "Thanks for subscribing to push notifications!",
+        },
+      });
+    });
+  </script>
 </head>
 
 <body>
