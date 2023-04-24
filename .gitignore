@@ -109,13 +109,18 @@ pocs-capstone/backend/db/migrations/__pycache__/0002_rename_user_name_newuser_us
 pocs-capstone/backend/db/__pycache__/authenticate.cpython-310.pyc
 pocs-capstone/backend/db.sqlite3
 pocs-capstone/backend/.env
+pocs-capstone/backend/database/db.sqlite3
 pocs-capstone/backend/db/__pycache__/studybuddyemail.cpython-310.pyc
 pocs-capstone/backend/db/__pycache__/studybuddyemail.cpython-310.pyc
 pocs-capstone/backend/deleteme.txt
 pocs-capstone/backend/database/db.sqlite3
 pocs-capstone/backend/database/db.sqlite3
+<<<<<<< HEAD
 pocs-capstone/frontend/src/components/Tutorial/Tutorial-screenshots/original screenshots/account-management.png
 pocs-capstone/frontend/src/components/Tutorial/Tutorial-screenshots/original screenshots/active-tasks.png
 pocs-capstone/frontend/src/components/Tutorial/Tutorial-screenshots/original screenshots/calendar.png
 pocs-capstone/frontend/src/components/Tutorial/Tutorial-screenshots/original screenshots/completed-tasks.png
 pocs-capstone/frontend/src/components/Tutorial/Tutorial-screenshots/original screenshots/inventory.png
+=======
+pocs-capstone/backend/database/db.sqlite3
+>>>>>>> 3a1ba266853308c94e3837d2bd4323a740956152
