@@ -23,9 +23,7 @@
   display: flex;
   justify-content: center;
 }
-.experience-ratio {
-  font-size: small;
-}
+
 
 .bg-sprite {
   position: relative;
@@ -56,9 +54,11 @@
 .p-sprite {
   /* width: 50%; */
   position: absolute;
+  width: 205px;
+  height: 290px;
   /* top: 30px;
     left: 30px; */
-  top: 180px;
+  top: 220px;
   /*width: 50%;
     /* border: 1px solid #000000; */
 }
@@ -78,17 +78,23 @@
 }
 
 .pbar-exp {
-  justify-content: center;
+  display:flex;
+  flex-direction: row;
+  justify-content: space-around;
+  /* justify-content: center; */
+
   padding: 10px;
   border-style: solid none;
   border-width: 1.5px;
   border-color: gray;
+  width: 100%
 }
 
 .pd-position,
 .pbar-exp {
   display: flex;
   align-items: center;
+  background-color: rgb(255, 255, 255);
 }
 
 .pet-desc {
@@ -105,11 +111,26 @@
   height: 15vh;
 }
 
-.pet-label,
-.pbar-text {
+/* EXP RATIO  */
+.experience-ratio {
+  font-family: pixelFont;
+  font-size: calc(0.4vw + 1vh);
+}
+
+/* LEVEL text for MOBILE */
+.pbar-text-mobile {
   font-size: calc(0.7vw + 1.3vh);
   font-weight: bold;
   padding: 0px 5px;
+  font-family: pixelFont;
+}
+
+/* text for LEVEL, MOOD, and WEIGHT */
+.pet-label,
+.pbar-text {
+  font-size: calc(0.6vw + 1vh);
+  font-weight: bold;
+  padding: 0px 10px;
   font-family: pixelFont;
 }
 
@@ -127,6 +148,7 @@
 
 .progress {
   border-radius: 5px;
+  border-style: solid;
 }
 .pet-display-mobile {
   display: flex;
@@ -135,15 +157,16 @@
   /* height: 50vh; */
 }
 .p-sprite-display-mobile {
-
   width: 100%;
   max-height: 400px;
   align-items: center;
 }
 
+/* LEVEL, EXP BAR, EXP RATIO mobile */
 .mobileBar {
   display: inline-grid;
   grid-auto-flow: column;
+  align-items: center;
   margin-top: 5px;
   margin-bottom: 5px;
   width:100%;
@@ -182,3 +205,6 @@
 }
 
 
+.progress-bar[aria-valuenow="0"] {
+  transition: none;
+} 

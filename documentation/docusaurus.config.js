@@ -20,7 +20,7 @@ const main_template_jira_scripts = () => {
 //const title = ''+process.env.PROJECT_NAME.replaceAll('-',' ').split(' ').map((word) => {
 //  return word[0].toUpperCase() + word.substring(1);
 //}).join(' ');
-const title = 'My Study Buddy';
+const title = 'Study Buddy';
 
 
 /** @type {import('@docusaurus/types').Config} */
@@ -118,10 +118,9 @@ const config = {
             position: 'left',
             label: 'Documentation',
           },{
-            to: '/tutorial/Intro',
-            label: 'Docusaurus Tutorial',
+            href: 'https://studybuddy.life',
+            label: 'StudyBuddy.life',
             position: 'left',
-            activeBaseRegex: `/tutorial/`,
           },
           {
             to: '/resources/Links',
@@ -210,17 +209,6 @@ const config = {
         sidebarPath: require.resolve('./sidebars.js'),
         // ... other options
       },
-    ],
-    [
-      '@docusaurus/plugin-content-docs',
-      {
-        id: 'tutorial',
-        path: 'tutorial',
-        routeBasePath: 'tutorial',
-        sidebarPath: require.resolve('./sidebars.js'),
-        // ... other options
-      },
-
     ],
     [
       "docusaurus2-dotenv-2",
