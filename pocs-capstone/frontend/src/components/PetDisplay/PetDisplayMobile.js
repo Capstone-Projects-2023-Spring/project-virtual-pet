@@ -28,6 +28,9 @@ import white_H_gif from "../../images/white_happy_gif.gif";
 import white_S_gif from "../../images/white_sad_gif.gif";
 import tux_H_gif from "../../images/tux_happy_gif.gif";
 import tux_S_gif from "../../images/tux_sad_gif.gif";
+import gray_N_prop from '../../images/propeller_hat.gif'
+import gray_H_prop from '../../images/prop_happy.gif'
+import gray_S_prop from '../../images/prop_sad.gif'
 // (next level - remainder) / (next level) //
 import dingSound from "../../audio/dingsound.mp3";
 
