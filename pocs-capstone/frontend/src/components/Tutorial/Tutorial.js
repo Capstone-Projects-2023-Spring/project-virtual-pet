@@ -111,7 +111,7 @@ const Tutorial = () => {
   };
 
   const spriteRefs = [useRef(null), useRef(null)];
-  const [selectedIndex, setSelectedIndex] = useState(0);
+  const [activeIndex, setActiveIndex] = useState(0);
   const [tutText, setTutText] = useState(TUT_TEXT[0]);
   const [nameError, setNameError] = useState("");
 
@@ -123,6 +123,18 @@ const Tutorial = () => {
     addTutorialTasks();
   }, []);
 
+
+  const onResizeEvent = ({e}) => {
+
+    if (e.type==='resize'){
+        setActiveIndex(e.item)
+    }
+
+      }
+    
+  const syncActiveIndex = ({ item }) => setActiveIndex(item);
+
+
   if (height > 600) {
     let items = [
       <div className="alice-box">
@@ -130,7 +142,7 @@ const Tutorial = () => {
         <div className="header-tut">
           <div className="header-text-tut">How To Use Study Buddy!</div>
         </div>
-        <img className="tut-image" src={active_tasks}></img>
+        <img className="tut-image" alt="active tasks" src={active_tasks}></img>
         <div className="tut-textbox">
           <span className="tut-text">{TUT_TEXT[0]} </span>
         </div>{" "}
@@ -140,7 +152,7 @@ const Tutorial = () => {
         <div className="header-tut">
           <div className="header-text-tut">Completing Tasks!</div>
         </div>
-        <img className="tut-image" src={click_to_complete}></img>
+        <img className="tut-image" alt="click to complete tasks "src={click_to_complete}></img>
         <div className="tut-textbox">
           {" "}
           <span className="tut-text">{TUT_TEXT[1]} </span>
@@ -151,7 +163,7 @@ const Tutorial = () => {
         <div className="header-tut">
           <div className="header-text-tut">View Completed Tasks!</div>
         </div>
-        <img className="tut-image" src={completed_tasks}></img>
+        <img className="tut-image" alt="completed tasks" src={completed_tasks}></img>
         <div className="tut-textbox">
           {" "}
           <span className="tut-text">{TUT_TEXT[2]} </span>
@@ -162,7 +174,7 @@ const Tutorial = () => {
         <div className="header-tut">
           <div className="header-text-tut">Feed Your Pet!</div>
         </div>
-        <img className="tut-image" src={inventory}></img>
+        <img className="tut-image" alt="inventory" src={inventory}></img>
         <div className="tut-textbox">
           {" "}
           <span className="tut-text">{TUT_TEXT[3]} </span>
@@ -173,7 +185,7 @@ const Tutorial = () => {
         <div className="header-tut">
           <div className="header-text-tut">View Your Calendar!</div>
         </div>
-        <img className="tut-image" src={calendar}></img>
+        <img className="tut-image" alt="calendar" src={calendar}></img>
         <div className="tut-textbox">
           {" "}
           <span className="tut-text">{TUT_TEXT[4]} </span>
@@ -228,6 +240,10 @@ const Tutorial = () => {
             mouseTracking
             disableButtonsControls={true}
             items={items}
+            onResizeEvent={false}
+            activeIndex={activeIndex}
+            onSlideChanged={syncActiveIndex}
+  
           />
           <div className="padding-container"></div>
         </div>
@@ -240,7 +256,13 @@ const Tutorial = () => {
 
     return (
       <div className="alice-container">
-        <AliceCarousel mouseTracking items={items} />
+        <AliceCarousel 
+        mouseTracking items={items}
+        onResizeEvent={false}
+        activeIndex={activeIndex}
+        onSlideChanged={syncActiveIndex}
+
+        />
       </div>
     );
   } else {
@@ -248,7 +270,7 @@ const Tutorial = () => {
       <div className="alice-box">
         {" "}
         <div className="tut-imagebox">
-          <img className="tut-image" src={active_tasks}></img>
+          <img className="tut-image" alt="active tasks" src={active_tasks}></img>
         </div>{" "}
         <div className="tut-textbox">
           <span className="tut-text">{TUT_TEXT[0]} </span>
@@ -256,7 +278,7 @@ const Tutorial = () => {
       </div>,
 
       <div className="alice-box">
-        <img className="tut-image" src={click_to_complete}></img>
+        <img className="tut-image" alt="click to complete task" src={click_to_complete}></img>
         <div className="tut-textbox">
           {" "}
           <span className="tut-text">{TUT_TEXT[1]} </span>
@@ -264,7 +286,7 @@ const Tutorial = () => {
       </div>,
 
       <div className="alice-box">
-        <img className="tut-image" src={completed_tasks}></img>
+        <img className="tut-image" alt="completed task list" src={completed_tasks}></img>
         <div className="tut-textbox">
           {" "}
           <span className="tut-text">{TUT_TEXT[2]} </span>
@@ -272,7 +294,7 @@ const Tutorial = () => {
       </div>,
 
       <div className="alice-box">
-        <img className="tut-image" src={inventory}></img>
+        <img className="tut-image" alt="inventory" src={inventory}></img>
         <div className="tut-textbox">
           {" "}
           <span className="tut-text">{TUT_TEXT[3]} </span>
@@ -280,7 +302,7 @@ const Tutorial = () => {
       </div>,
 
       <div className="alice-box">
-        <img className="tut-image" src={calendar}></img>
+        <img className="tut-image" alt = "calendar" src={calendar}></img>
         <div className="tut-textbox">
           {" "}
           <span className="tut-text">{TUT_TEXT[4]} </span>
@@ -334,6 +356,10 @@ const Tutorial = () => {
           mouseTracking
           disableButtonsControls={true}
           items={items}
+          onResizeEvent={false}
+          activeIndex={activeIndex}
+          onSlideChanged={syncActiveIndex}
+      
         />
         <div className="padding-container"></div>
       </div>
