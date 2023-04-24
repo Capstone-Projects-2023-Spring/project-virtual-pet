@@ -35,8 +35,9 @@
 }
 
 .tab-container {
-  position: absolute;
-  bottom: calc(env(safe-area-inset-bottom) + 16px);
+  position: fixed;
+  padding-bottom: calc(env(safe-area-inset-bottom) + 16px);
+  bottom: 0;
   left: 0;
   width: 100vw;
   display: flex;

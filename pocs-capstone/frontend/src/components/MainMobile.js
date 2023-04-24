@@ -105,7 +105,7 @@ const MainMobile = () => {
         
             </div>
 
-            <div className="tab-container">
+            <div className="tab-container" height={handlers?.height}>
           <Tabs value={activeTab} onChange={(event, newValue) => setActiveTab(newValue)}>
             <Tab icon={<List />} />
             <Tab icon={<CalendarToday />} />
