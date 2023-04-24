@@ -12,7 +12,8 @@ import useAxiosPrivate from "../hooks/useAxiosPrivate";
 import UserContext from "../context/UserContext";
 import { Tabs, Tab } from '@material-ui/core';
 import InventoryIcon from '@mui/icons-material/Inventory';
-import {List, PersonPin, CalendarToday, } from '@material-ui/icons';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import {List, CalendarToday, } from '@material-ui/icons';
 import { useNavigate } from "react-router-dom";
 import { Modal, ModalBody } from "react-bootstrap";
 
@@ -109,7 +110,7 @@ const MainMobile = () => {
             <Tab icon={<List />} />
             <Tab icon={<CalendarToday />} />
             <Tab icon={<InventoryIcon />} />
-            <Tab icon={<PersonPin />} />
+            <Tab icon={<AccountCircleIcon />} />
 
 
             { userInfo.canvas_token !== "" && userInfo.canvas_token !== "BADTOKEN" ?  (
