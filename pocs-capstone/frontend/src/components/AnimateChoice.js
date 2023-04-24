@@ -63,9 +63,12 @@ const AnimateChoice = () => {
             updatedShowTextBox[index] = false;
             setShowTextBox(updatedShowTextBox);
             
-            const currentDate = new Date().toISOString().slice(0, 10)
-            const last_feed = currentDate;
-            const last_interaction = currentDate;
+             const currentDate = new Date();
+             currentDate.setDate(currentDate.getDate() - 2)
+            const startDate = currentDate.toISOString().slice(0, 10)
+            console.log(startDate);
+            const last_feed = startDate;
+            const last_interaction = startDate;
             const total_xp = 1;
             
             const petInfo = {
