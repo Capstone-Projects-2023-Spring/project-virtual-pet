@@ -243,3 +243,102 @@
 .task-notice-modal .modal-dialog {
     margin-top: 30vh;
 }
+
+
+
+.createtask-modal .modal-dialog{
+    width: 20vw;
+    height: 50vh;
+    /* height: 50vh; */
+    font-size: calc(0.5vw + 0.5vh);
+}
+
+.createtask-modal #validationFormik01, 
+.createtask-modal #validationFormik02, 
+.createtask-modal #validationFormik03, 
+.createtask-modal #validationFormik04,
+.createtask-modal #validationFormik05,
+.add-tag-dropdown {
+    font-size: calc(0.5vw + 0.5vh);
+}
+
+.createtask-modal .modal-title {
+    font-size: calc(1vw + 0.5vh);
+}
+.createtask-modal .modal-header {
+    padding: 14px;
+}
+
+.submit-button-modal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* Tags Dropdown CSS */
+.tag-type-checkoff {
+    margin: 5px 15px;
+}
+
+.tag-checkoff.list-group-item {
+    border-radius: 0px;
+}
+
+.tag-checkoff .form-check-input, .tag-type-checkoff .form-check-input{
+    width:1vw;
+    height:1vw;
+}
+
+.tag-type-checkoff .form-check-label, .tag-checkoff .form-check-label, .clear-tags .btn {
+    font-size: calc(0.5vw + 0.5vh);
+}
+
+.tag-checkoff .btn-close {
+    width: 0.5rem;
+    height: 0.5rem;
+}
+
+.clear-tags {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px 0px 0px 0px;
+    
+}
+
+/* For the Task edit / create component tag dropdown*/
+.tasks-dropdown-tags {
+    max-height: 40vh;
+    overflow: scroll;
+    border-radius: 0px;
+}
+
+.tasks-tags {
+    overflow: scroll;
+    max-height: 15vh;
+    /* padding: 5px; */
+
+}
+
+/* button to add from global tag list */
+.tag-select.list-group-item {
+    border-radius: 0px;
+}
+
+.tag-select.btn {
+    font-size: calc(0.5vw + 0.5vh);
+    text-align: start;
+    border-radius: 0px !important;
+    
+}
+
+/* add tags toggle */
+.add-tag-dropdown {
+    width: 100%;
+}
+
+/* padding around buttons */
+.dropdown-menu.show {
+    padding: 10px;
+}

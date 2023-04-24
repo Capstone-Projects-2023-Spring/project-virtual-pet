@@ -1,4 +1,4 @@
-import { Tooltip, OverlayTrigger, Stack, Form, Button, Modal, Image, Dropdown } from 'react-bootstrap';
+import { Tooltip, OverlayTrigger, Stack, Form, Button, Modal, Image, Dropdown, ListGroup, CloseButton } from 'react-bootstrap';
 
 import GlobalContext from "../../../context/GlobalContext.js";
 import UserContext from "../../../context/UserContext";
@@ -44,16 +44,9 @@ const CustomMenu = React.forwardRef(
           {tagError}
         </Form.Control.Feedback>
 
-        <ul className="list-unstyled">
-          {globalTags.map((gTag, index) =>
-            <li key={index}>
-              <button type="button" onClick={(e) => addGlobalTag(gTag)}>
-                {gTag}
-              </button>
-
-            </li>
-          )}
-        </ul>
+        <ListGroup className="tasks-dropdown-tags-mobile">
+          {globalTags.map((gTag, index) => <Button variant="light" type="button" className="tag-select-mobile" onClick={(e) => addGlobalTag(gTag)}>{gTag}</Button>)}
+        </ListGroup>
       </div>
     );
   },
@@ -194,7 +187,7 @@ function CreateTaskFormMobile({ showCreateTask, setShowCreateTask, task }) {
   }
 
   return (
-    <Modal centered className="createtask-modal-mobile" backdrop="static" show={showCreateTask} onHide={(e) => { handleClose(); console.log("ON HIDE", e) }}>
+    <Modal centered className="createtask-modal-mobile" backdrop="static" show={showCreateTask} onHide={(e) => { handleClose() }}>
 
       <Modal.Header closeButton>
         <Modal.Title>{title}</Modal.Title>
@@ -347,43 +340,49 @@ function CreateTaskFormMobile({ showCreateTask, setShowCreateTask, task }) {
  */}
 
               <Form onSubmit={handleTagSubmit}>
-                {/* <Form.Group> */}
-                <Form.Label>Tags</Form.Label>
-                <Dropdown className="d-inline mx-2" autoClose="outside">
-                  <Dropdown.Toggle id="dropdown-autoclose-outside dropdown-button-drop-down-centered">
-                    Add Tags
-                  </Dropdown.Toggle>
+                <Form.Group controlId="validationFormik05">
+                  <div><Form.Label>Tags</Form.Label></div>
+                  <Dropdown className="d-inline mx-2" autoClose="outside">
+                    <Dropdown.Toggle drop="down-centered" className="add-tag-dropdown-mobile" id="dropdown-autoclose-outside dropdown-button-drop-down-centered">
+                      Add Tags
+                    </Dropdown.Toggle>
 
-                  <Dropdown.Menu as={CustomMenu}
-                    tags={tags}
-                    setTags={setTags}
-                    tagValue={tagValue}
-                    setTagValue={setTagValue}
-                    tagError={tagError}
-                    setTagError={setTagError}
-                    globalTags={userHandler?.userInfo?.tags}
-                    task={task}
-                  >
-                    {userHandler?.userInfo?.tags?.map((tagItem, index) =>
-                      <Dropdown.Item key={index} eventKey={index}>{tagItem}</Dropdown.Item>
-                    )}
-                  </Dropdown.Menu>
-                </Dropdown>
+                    <Dropdown.Menu as={CustomMenu}
+                      tags={tags}
+                      setTags={setTags}
+                      tagValue={tagValue}
+                      setTagValue={setTagValue}
+                      tagError={tagError}
+                      setTagError={setTagError}
+                      globalTags={userHandler?.userInfo?.tags}
+                      task={task}
+                    >
+                      {userHandler?.userInfo?.tags?.map((tagItem, index) =>
+                        <Dropdown.Item key={index} eventKey={index}>{tagItem}</Dropdown.Item>
+                      )}
+                    </Dropdown.Menu>
+                  </Dropdown>
+                </Form.Group>
               </Form>
 
-              <ul>
-                {tags.map((tagItem, index) => {
-                  return (
-                    <li key={index}>
-                      {tagItem}
-                      <button onClick={() => deleteTag(index)}>
+              <ul className='tasks-tags-mobile'>
+                <div>
+                  {tags.map((tagItem, index) => {
+                    return (
+                      <li key={index}>
+                        <CloseButton onClick={() => deleteTag(index)} />
+                        {tagItem}
+                      </li>
+                    )
+                  })}
 
-                      </button>
-                    </li>
-                  )
-                })}
+                </div>
+
               </ul>
-              <Button onClick={handleSubmit} className="col-md-5 mx-auto" type="submit">{buttonText}</Button>
+              <div className="submit-button-modal-mobile">
+                <Button onClick={handleSubmit} className="col-md-5 mx-auto" type="submit">{buttonText}</Button>
+              </div>
+
             </>
           )}
         </Formik>

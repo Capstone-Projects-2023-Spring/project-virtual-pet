@@ -121,7 +121,7 @@ const TaskItemMobile = ({ task, updateTask, deleteTask }) => {
                                             <Stack direction="horizontal" gap={1}>
 
                                                 <div className='task-title-mobile'>{task.title}</div>
-                                                <div className='task-badge-mobile'>{task.tags}</div>
+                                                {/* <div className='task-badge-mobile'>{task.tags}</div> */}
                                                 <div className='task-badge-mobile'><Badge bg="secondary">Size: {task.task_type}</Badge></div>
                                                 <div className='task-badge-mobile'><Badge bg="secondary">Level: {task.task_level}</Badge></div>
                                             </Stack>

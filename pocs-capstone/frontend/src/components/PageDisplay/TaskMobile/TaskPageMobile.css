@@ -86,7 +86,11 @@
     font-size: 5vw;
 }
 
-.createtask-modal-mobile #validationFormik01, .createtask-modal-mobile #validationFormik02, .createtask-modal-mobile #validationFormik03, .createtask-modal-mobile #validationFormik04 {
+.createtask-modal-mobile #validationFormik01, 
+.createtask-modal-mobile #validationFormik02, 
+.createtask-modal-mobile #validationFormik03, 
+.createtask-modal-mobile #validationFormik04,
+.add-tag-dropdown-mobile {
     font-size: calc(1.5vw + 1vh);
 }
 
@@ -125,4 +129,103 @@
 
 .task-scroll-mobile {
     overflow: auto;
+}
+
+
+.createtask-modal-mobile .modal-title {
+    font-size: calc(2vw + 1vh);
+}
+
+
+.submit-button-modal-mobile {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.submit-button-modal-mobile .btn {
+    font-size: calc(2vw + 1vh);
+}
+
+/* Tags Dropdown CSS */
+.tag-type-checkoff-mobile {
+    margin: 5px 15px;
+    
+}
+
+
+.tag-checkoff-mobile.list-group-item {
+    /* border-radius: 0px; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0px !important;
+    /* padding: 10px 15px; */
+
+}
+
+.tag-checkoff-mobile .form-check-input, .tag-type-checkoff-mobile .form-check-input{
+    width: 4vw;
+    height: 4vw;
+}
+
+.tag-type-checkoff-mobile .form-check-label, .tag-checkoff-mobile .form-check-label, .clear-tags-mobile .btn{
+    font-size: calc(1vw + 0.75vh);
+}
+
+.tag-checkoff-mobile .btn-close, .tasks-tags-mobile .btn-close{
+    width: 0.25rem;
+    height: 0.25rem;
+}
+
+.clear-tags-mobile {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px 0px 0px 0px;   
+}
+
+/* dropdown for tags globallist TaskPage */
+.dropdown-tags-mobile {
+    max-height: 20vh;
+    overflow: scroll;
+}
+
+
+
+/* For the Task edit / create component tag dropdown*/
+.tasks-dropdown-tags-mobile {
+    max-height: 20vh;
+    overflow: scroll;
+    border-radius: 0px;
+}
+
+/* selected tags added to task item */
+.tasks-tags-mobile {
+    overflow: scroll;
+    max-height: 15vh;
+    /* padding: 5px; */
+
+}
+
+/* button to add from global tag list */
+.tag-select-mobile.list-group-item {
+    border-radius: 0px;
+}
+
+.tag-select-mobile.btn {
+    font-size: calc(1vw + 0.75vh);
+    text-align: start;
+    border-radius: 0px !important;
+    
+}
+
+/* add tags toggle */
+.add-tag-dropdown-mobile {
+    width: 100%;
+}
+
+/* padding around buttons */
+.dropdown-menu.show {
+    padding: 10px;
 }

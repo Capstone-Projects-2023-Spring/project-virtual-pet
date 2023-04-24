@@ -1,4 +1,4 @@
-import { Tooltip, OverlayTrigger, Stack, Form, Button, Modal, Image, Dropdown } from 'react-bootstrap';
+import { Tooltip, OverlayTrigger, Stack, Form, Button, Modal, Image, Dropdown, ListGroup, CloseButton } from 'react-bootstrap';
 
 import GlobalContext from "../../context/GlobalContext.js";
 import UserContext from "../../context/UserContext";
@@ -43,17 +43,9 @@ const CustomMenu = React.forwardRef(
         <Form.Control.Feedback type="invalid">
           {tagError}
         </Form.Control.Feedback>
-
-        <ul className="list-unstyled">
-          {globalTags.map((gTag, index) =>
-            <li key={index}>
-              <button type="button" onClick={(e) => addGlobalTag(gTag)}>
-                {gTag}
-              </button>
-
-            </li>
-          )}
-        </ul>
+        <ListGroup className="tasks-dropdown-tags">
+          {globalTags.map((gTag, index) => <Button variant="light" type="button" className="tag-select" onClick={(e) => addGlobalTag(gTag)}>{gTag}</Button> )}
+        </ListGroup>
       </div>
     );
   },
@@ -194,8 +186,7 @@ function CreateTaskForm({ showCreateTask, setShowCreateTask, task }) {
   }
 
   return (
-    <Modal backdrop="static" show={showCreateTask} onHide={(e) => { handleClose(); console.log("ON HIDE", e) }}>
-
+    <Modal backdrop="static" className="createtask-modal" show={showCreateTask} onHide={(e) => { handleClose() }}>
       <Modal.Header closeButton>
         <Modal.Title>{title}</Modal.Title>
       </Modal.Header>
@@ -255,8 +246,6 @@ function CreateTaskForm({ showCreateTask, setShowCreateTask, task }) {
 
                   </Form.Group>
 
-                  <br />
-
                   <Form.Group controlId="validationFormik02">
                     <Form.Label>Description</Form.Label>
 
@@ -274,9 +263,6 @@ function CreateTaskForm({ showCreateTask, setShowCreateTask, task }) {
                     </Form.Control.Feedback>
 
                   </Form.Group>
-
-                  <br />
-
 
                   <Form.Group controlId="validationFormik03">
                     <Form.Label>Time to Complete Task</Form.Label>
@@ -313,9 +299,6 @@ function CreateTaskForm({ showCreateTask, setShowCreateTask, task }) {
                     </Form.Control.Feedback>
                   </Form.Group>
 
-
-                  <br />
-
                   <Form.Group controlId="validationFormik04">
                     <Form.Label>Due Date</Form.Label>
                     <Form.Control
@@ -330,7 +313,7 @@ function CreateTaskForm({ showCreateTask, setShowCreateTask, task }) {
                       This is a CAKE task! It should take at least 3 days to finish. Please pick another date.
                     </Form.Control.Feedback>
                   </Form.Group>
-                  <br />
+
                 </Stack>
               </Form>
               {/* <div>
@@ -345,45 +328,56 @@ function CreateTaskForm({ showCreateTask, setShowCreateTask, task }) {
                 </ul>
               </div>
  */}
-
+              <br />
               <Form onSubmit={handleTagSubmit}>
-                {/* <Form.Group> */}
-                <Form.Label>Tags</Form.Label>
-                <Dropdown className="d-inline mx-2" autoClose="outside">
-                  <Dropdown.Toggle id="dropdown-autoclose-outside dropdown-button-drop-down-centered">
-                    Add Tags
-                  </Dropdown.Toggle>
+                <Form.Group controlId="validationFormik05">
+                  <Form.Label>Tags</Form.Label>
 
-                  <Dropdown.Menu as={CustomMenu}
-                    tags={tags}
-                    setTags={setTags}
-                    tagValue={tagValue}
-                    setTagValue={setTagValue}
-                    tagError={tagError}
-                    setTagError={setTagError}
-                    globalTags={userHandler?.userInfo?.tags}
-                    task={task}
-                  >
-                    {userHandler?.userInfo?.tags?.map((tagItem, index) =>
-                      <Dropdown.Item key={index} eventKey={index}>{tagItem}</Dropdown.Item>
-                    )}
-                  </Dropdown.Menu>
-                </Dropdown>
+                  <Dropdown className="d-inline mx-2" autoClose="outside">
+
+                    <Dropdown.Toggle drop="down-centered" className="add-tag-dropdown" id="dropdown-autoclose-outside dropdown-button-drop-down-centered">
+                      Add Tags
+                    </Dropdown.Toggle>
+                    <Dropdown.Menu
+                      as={CustomMenu}
+                      tags={tags}
+                      setTags={setTags}
+                      tagValue={tagValue}
+                      setTagValue={setTagValue}
+                      tagError={tagError}
+                      setTagError={setTagError}
+                      globalTags={userHandler?.userInfo?.tags}
+                      task={task}
+                    >
+                      {userHandler?.userInfo?.tags?.map((tagItem, index) =>
+                        <Dropdown.Item key={index} eventKey={index}>{tagItem}</Dropdown.Item>
+                      )}
+                    </Dropdown.Menu>
+                  </Dropdown>
+
+                </Form.Group>
+
               </Form>
 
-              <ul>
-                {tags.map((tagItem, index) => {
-                  return (
-                    <li key={index}>
-                      {tagItem}
-                      <button onClick={() => deleteTag(index)}>
+              <ul className='tasks-tags'>
+                <div>
+                  {tags.map((tagItem, index) => {
+                    return (
+                      <li key={index}>
+                        <CloseButton onClick={() => deleteTag(index)}/>
+                        {tagItem}
 
-                      </button>
-                    </li>
-                  )
-                })}
+                      </li>
+                    )
+                  })}
+
+                </div>
+
               </ul>
-              <Button onClick={handleSubmit} className="col-md-5 mx-auto" type="submit">{buttonText}</Button>
+              <div className="submit-button-modal">
+                <Button onClick={handleSubmit} className="col-md-8" type="submit">{buttonText}</Button>
+              </div>
+
             </>
           )}
         </Formik>

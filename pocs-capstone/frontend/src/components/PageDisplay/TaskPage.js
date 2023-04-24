@@ -4,7 +4,7 @@ import CreateTaskForm from './CreateTaskForm';
 import TaskList from './TaskList'
 import UserContext from "../../context/UserContext";
 import { useState, useContext } from 'react';
-import { Tab, Tabs, Button, Stack, Card, Dropdown, Form, ListGroup } from 'react-bootstrap';
+import { Tab, Tabs, Button, Stack, Card, Dropdown, Form, ListGroup, CloseButton } from 'react-bootstrap';
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 
 // { taskList, newTitle, newDesc, newSize, newDate, setAvatarInfo, setInventory, setTaskList, handleCompleteCheck, handleTitleChange, handleDescChange, handleSizeChange, handleDateChange, addTask, deleteTask }
@@ -15,7 +15,7 @@ const TaskPage = () => {
     const [taskTypes, setTaskTypes] = useState([])
     const [showCreateTask, setShowCreateTask] = useState(false);
     const [filterTodo, setFilterTodo] = useState(true)
-    
+
     const handleShow = () => setShowCreateTask(true);
 
     const deleteTagGlobal = (tagItem) => {
@@ -90,28 +90,34 @@ const TaskPage = () => {
                                 </Dropdown.Toggle>
 
                                 <Dropdown.Menu>
-                                    <Form onSubmit={e => e.preventDefault()}>
-                                        <Stack direction="horizontal">
+                                    <Form onSubmit={e => e.preventDefault()} className='tag-type-checkoff'>
+                                        <Stack direction="vertical">
                                             <Form.Check checked={getCheckedType('canvas')} type="checkbox" label='Canvas Assignemnts' onChange={(e) => { handleTaskCheck(e, 'canvas') }} />
                                             <Form.Check checked={getCheckedType('usertasks')} type="checkbox" label='My Tasks' onChange={(e) => { handleTaskCheck(e, 'usertasks') }} />
                                         </Stack>
 
                                     </Form>
-                                    <ListGroup>
+                                    <ListGroup className="dropdown-tags">
                                         {userHandler?.userInfo?.tags?.map((tagItem, index) => {
                                             return (
-                                                <ListGroup.Item key={index}>
+                                                <ListGroup.Item key={index} className="tag-checkoff">
                                                     <Form onSubmit={e => e.preventDefault()}>
-                                                        <Form.Check checked={getChecked(tagItem)} type="checkbox" label={tagItem} onChange={(e) => { handleTagCheck(e, tagItem) }} />
-                                                        <Button onClick={() => deleteTagGlobal(tagItem)}>x</Button>
+                                                        <Stack direction="horizontal">
+                                                            <Form.Check checked={getChecked(tagItem)} type="checkbox" label={tagItem} onChange={(e) => { handleTagCheck(e, tagItem) }} />
+                                                            <CloseButton onClick={() => deleteTagGlobal(tagItem)} />
+                                                        </Stack>
+
                                                     </Form>
                                                 </ListGroup.Item>
                                             )
                                         })}
-                                        <Form onSubmit={e => e.preventDefault()}>
-                                            <Button onClick={() => {setSelectedTags([]); setTaskTypes([])}}>Clear Tags</Button>
-                                        </Form>
                                     </ListGroup>
+                                    <Form onSubmit={e => e.preventDefault()}>
+                                        <div className="clear-tags">
+                                            <Button onClick={() => { setSelectedTags([]); setTaskTypes([]) }}>Clear Tags</Button>
+                                        </div>
+
+                                    </Form>
                                 </Dropdown.Menu>
                             </Dropdown>
                         </div>
