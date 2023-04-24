@@ -104,7 +104,7 @@ const Main = () => {
     axiosPrivate.put(`${baseURL}${id}/`, taskItemChanged)
       .then(r => {
         setTaskList(taskList.map(t => t.task_id === id ? r.data : t))
-        console.log(`Task updated: ${r.data}`)
+        console.log(`Task updated: ${r.data.tags}`)
       })
   }
 

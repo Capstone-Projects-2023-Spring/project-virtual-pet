@@ -38,7 +38,6 @@ const Header = ({ }) => {
 
         // fetch unique list of courses
         const uniqueCourses = [...new Set(response.data.map(item => item.course_title))]
-
         // // combine with global tag list - make sure it's unique
         const updateGlobalTags = userInfo.tags.concat(uniqueCourses.filter((item) => userInfo.tags.indexOf(item) < 0))
         // console.log("GLOBAL TAGSSs", updateGlobalTags, "UNIQUE COURSES", uniqueCourses)

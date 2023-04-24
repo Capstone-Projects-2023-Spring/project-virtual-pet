@@ -9,25 +9,18 @@ import infoicon from '../../../images/info_icon.png'
 import * as yup from "yup";
 import * as formik from 'formik'
 
-
 const CustomMenu = React.forwardRef(
-  ({ style, className, 'aria-labelledby': labeledBy, tags, setTags, tagValue, setTagValue, tagError, setTagError, globalTags, updateTaskItem, task }, ref) => {
+  ({ style, className, 'aria-labelledby': labeledBy, tags, setTags, tagValue, setTagValue, tagError, setTagError, globalTags, task, handlers }, ref) => {
 
-
-    // console.log("GLOBAL TAGS ", globalTags, "ERROR", tagError)
+    // User selects pre-existing global tag to apply to the task item
     const addGlobalTag = (gTag) => {
-      console.log("adding", gTag)
 
-      if (gTag.trim() !== "" && !tags.find(tagItem => tagItem === gTag && gTag.match(/^[0-9a-z]+$/))) {
+      if (gTag.trim() !== "" && !tags.find(tagItem => tagItem === gTag.trim())) {
         const newTags = tags.concat(gTag)
         setTags(newTags)
-
         if (task) {
-          console.log("undefined?", task)
-          updateTaskItem(newTags, task)
-
+          handlers?.updateTask(task.task_id, { ...task, tagList: newTags })
         }
-
       }
       setTagError("")
     }
@@ -74,65 +67,45 @@ function CreateTaskFormMobile({ showCreateTask, setShowCreateTask, task }) {
   const title = task ? "Task Details" : "Create Task"
   const buttonText = task ? "Save" : "Create Task"
 
-  // console.log("TASK", task)
-
   // set state of tags to an empty array or the task's tag list - depends on if the user is creating or updating a task
   const [tags, setTags] = useState(task ? task.tags : [])
   const [tagValue, setTagValue] = useState("")
   const [tagError, setTagError] = useState("")
 
 
-  const updateTaskItem = (tagsChanged, task) => {
-    const taskItemChanged = {
-      ...task,
-      tags: tagsChanged
-    }
-    axiosPrivate.put(`/tasks/${task.task_id}/`, taskItemChanged)
-      .then(r => {
-        setTags(tagsChanged)
-        // handlers?.setTaskList(handlers?.taskList.map(t=> t.task_id === task.task_id ? r.data : t))
-
-        // hate that this fucking worked ...
-        // setTaskList not working? - instead make an Axios GET request to update the state of taskList 
-        // console.log("CHANGE TO TASK", r.data)
-        // const taskListUpdate = handlers?.taskList.map(t => t.task_id === task.task_id ? r.data : t)
-        // console.log("UPDATEDTASKLSIT", taskListUpdate)
-        // handlers?.setTaskList(taskListUpdate)
-        axiosPrivate.get(`/tasks/`)
-          .then(r => {
-            // console.log("FETCH ALL TASKS RESET :", r.data)
-            handlers?.setTaskList(r.data)
-          })
-          .catch((err) => {
-            console.log("setting task error", err);
-          })
-      })
-      .catch((err) => {
-        console.log("CANT UPDATE TASKLIST?", err);
-      });
-
-  }
+  // console.log("TASK, tags, and global state", task, tags, userHandler?.userInfo?.tags)
 
   // trigger useEffect on mount and when there are changes to userInfo --> from the TaskPage component, userinfo is updated when tags are deleted from the global list
   // This useEffect is called whenever the user deletes a tag from the GLOBAL tag list -> said tag should be removed from the tag list of INDIVIDUAL task items 
   useEffect(() => {
     // check it's the updating version of the CreateTaskForm
-    // console.log("USEEFFECT TRIGGERED")
-
-
     const found = tags.every(t => userHandler?.userInfo?.tags?.includes(t))
     // Check to make sure this is the 'update task' version of CreateTaskForm - rendered from TaskItem rather than the TaskPage AddTask button
     // also make sure there is a discrepancy - dont just run this for every task
-    console.log("VALUE OF FOUND: ", found, userHandler?.userInfo?.tags)
     // important to add third condition : makes sure you're not comparing to an empty global list of tags - else value of found will turn out different 
     if (task && !found && userHandler?.userInfo?.tags) {
-      console.log("this betch?")
-
       // go through each tag the task owns and only return tags exist in the global tag list
       const removeTags = tags.filter(t => userHandler?.userInfo?.tags?.includes(t))
-      // console.log(`NEW TAGS LIST (COMPARED TO GLOBAL TAG LIST) ${removeTags}`)
 
-      updateTaskItem(removeTags, task)
+      setTags(removeTags)
+      axiosPrivate.put(`/tasks/${task.task_id}/`, { ...task, tags: removeTags })
+        .then(r => {
+
+          // Get is needed because when a tag is removed from the global list,
+          // too many useEffect trigger for different task items, 
+          // and the setTaskList updates too many times in a row, undoing prev changes from other useeffect state calls
+          axiosPrivate.get(`/tasks/`)
+            .then(r => {
+              handlers?.setTaskList(r.data)
+            })
+            .catch((err) => {
+              console.log("setting task error", err);
+            })
+        })
+        .catch((err) => {
+          console.log("CANT UPDATE TASKLIST?", err);
+        });
+
 
     }
 
@@ -167,23 +140,19 @@ function CreateTaskFormMobile({ showCreateTask, setShowCreateTask, task }) {
     console.log(`SUBMITTING TAG: ${tagValue}`)
     e.preventDefault()
     // https://stackoverflow.com/questions/4434076/best-way-to-alphanumeric-check-in-javascript
-    if (tagValue.trim() !== "" && !tags.find(tagItem => tagItem === tagValue.trim()) && tagValue.match(/^[0-9a-z]+$/)) {
+    if (tagValue.trim() !== "" && !tags.find(tagItem => tagItem === tagValue.trim())) {
       setTagError("")
       // setTags(tags.concat(tagValue.trim()))
       const currentTags = tags.concat(tagValue.trim())
 
+      setTags(currentTags)
       if (task) {
-        updateTaskItem(currentTags, task)
+        handlers?.updateTask(task.task_id, { ...task, tagList: currentTags })
       }
-      else{
-        setTags(currentTags)
-      }
-      
 
-
-      console.log(`Combining global tags and current tags - global: ${userHandler.userInfo.tags}, local tags: ${currentTags}`)
-      const updateGlobalTags = currentTags.concat(userHandler.userInfo.tags.filter((item) => currentTags.indexOf(item) < 0))
-      console.log(`GLOBAL TAGS UPDATED LIST: ${updateGlobalTags}`)
+      // console.log(`Combining global tags and current tags - global: ${userHandler.userInfo.tags}, local tags: ${currentTags}`)
+      const updateGlobalTags = currentTags.concat(userHandler?.userInfo?.tags?.filter((item) => currentTags.indexOf(item) < 0))
+      // console.log(`GLOBAL TAGS UPDATED LIST: ${updateGlobalTags}`)
       const updatedUser = {
         ...userHandler?.userInfo,
         tags: updateGlobalTags
@@ -202,7 +171,7 @@ function CreateTaskFormMobile({ showCreateTask, setShowCreateTask, task }) {
 
     }
     else {
-      setTagError("Invalid tag - no special characters, spaces, uppercase letters, etc")
+      setTagError("No repeat tags!")
       setTimeout(() => {
         setTagError("")
       }, 2000)
@@ -213,18 +182,16 @@ function CreateTaskFormMobile({ showCreateTask, setShowCreateTask, task }) {
 
   const deleteTag = (index, tagItem) => {
     const updateTags = tags.filter((t, i) => i !== index)
-    updateTaskItem(updateTags, task)
+    handlers?.updateTask(task.task_id, { ...task, tagList: updateTags })
+    setTags(updateTags)
   }
 
   const handleClose = () => {
     if (!task) {
-
       setTags([])
     }
     setShowCreateTask(false);
-
   }
-
 
   return (
     <Modal centered className="createtask-modal-mobile" backdrop="static" show={showCreateTask} onHide={(e) => { handleClose(); console.log("ON HIDE", e) }}>
@@ -241,11 +208,10 @@ function CreateTaskFormMobile({ showCreateTask, setShowCreateTask, task }) {
 
             const valuesAndTags = { ...values, tagList: tags }
             if (task) {
-
-              handlers.updateTask(task.task_id, valuesAndTags)
+              handlers?.updateTask(task.task_id, valuesAndTags)
             }
             else {
-              handlers.addTask(valuesAndTags)
+              handlers?.addTask(valuesAndTags)
 
             }
 
@@ -364,13 +330,10 @@ function CreateTaskFormMobile({ showCreateTask, setShowCreateTask, task }) {
                       This is a CAKE task! It should take at least 3 days to finish. Please pick another date.
                     </Form.Control.Feedback>
                   </Form.Group>
-
                   <br />
-
-
                 </Stack>
               </Form>
-              <div>
+              {/* <div>
                 <ul>
                   {task?.tags?.map((tagItem, index) => {
                     return (
@@ -381,7 +344,7 @@ function CreateTaskFormMobile({ showCreateTask, setShowCreateTask, task }) {
                   })}
                 </ul>
               </div>
-
+ */}
 
               <Form onSubmit={handleTagSubmit}>
                 {/* <Form.Group> */}
@@ -399,7 +362,6 @@ function CreateTaskFormMobile({ showCreateTask, setShowCreateTask, task }) {
                     tagError={tagError}
                     setTagError={setTagError}
                     globalTags={userHandler?.userInfo?.tags}
-                    updateTaskItem={updateTaskItem}
                     task={task}
                   >
                     {userHandler?.userInfo?.tags?.map((tagItem, index) =>
@@ -424,24 +386,15 @@ function CreateTaskFormMobile({ showCreateTask, setShowCreateTask, task }) {
               <Button onClick={handleSubmit} className="col-md-5 mx-auto" type="submit">{buttonText}</Button>
             </>
           )}
-
         </Formik>
-
-
-
-
       </Modal.Body>
-    </Modal >
-
-
-
-
-
+    </Modal>
   );
 }
 
-
 export default CreateTaskFormMobile
+
+
 
 
 

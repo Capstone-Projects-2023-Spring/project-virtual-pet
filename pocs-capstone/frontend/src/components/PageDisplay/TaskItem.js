@@ -2,15 +2,16 @@
 import './PageDisplay.css'
 import { CloseButton, Stack, Badge, Form, ListGroup } from 'react-bootstrap'
 import CreateTaskForm from './CreateTaskForm'
+import TaskTagAdd from './TaskTagAdd'
 import TaskNotice from './TaskNotice'
-import UserContext from "../../context/UserContext";
-import { useState, useContext, useEffect } from 'react'
+import { useState } from 'react'
 
 
-const TaskItem = ({ task, updateTask, deleteTask, setTaskList, taskList }) => {
+const TaskItem = ({ task, updateTask, deleteTask }) => {
 
     const [showCreateTask, setShowCreateTask] = useState(false);
     const [showNotice, setShowNotice] = useState(false)
+
 
     const handleShow = () => setShowCreateTask(true);
 
@@ -78,10 +79,12 @@ const TaskItem = ({ task, updateTask, deleteTask, setTaskList, taskList }) => {
                             <div className="fw-bold">Course {task.course_id}</div>
                         </div>
                     </ListGroup.Item> */}
+                        {/* <ListGroup.Item className='task-item' action onClick={handleShow}> */}
                             <ListGroup.Item className='task-item'>
                                 <div className="ms-2 me-auto">
                                     <div className="fw-bold task-title task-description">{task.title}</div>
                                     <div className="task-description">Course: {task.course_title}</div>
+                                    {/* <div className="task-description">{task.tags}</div> */}
                                     <div className='task-description'>{task.description}</div>
                                     {task.due_date ?
                                         <div className='due-date'>Due {calculateDueDate(task.due_date)}</div> :
@@ -98,6 +101,9 @@ const TaskItem = ({ task, updateTask, deleteTask, setTaskList, taskList }) => {
                                     <></>
                             }
                         </ListGroup >
+                        {/* <TaskTagAdd {...{ showCreateTask, setShowCreateTask, task }} /> */}
+
+                        {/* KEEP THIS - although you cant edit canvas tasks still needs the useEffect which triggers on global tag deletion */}
                         <CreateTaskForm {...{ showCreateTask, setShowCreateTask, task }} />
                     </>
                     :
@@ -119,7 +125,7 @@ const TaskItem = ({ task, updateTask, deleteTask, setTaskList, taskList }) => {
                                     <div className="fw-bold task-description">
                                         <Stack direction="horizontal" gap={2}>
                                             <div className='task-title'>{task.title}</div>
-                                            <div>{task.tags}</div>
+                                            {/* <div>{task.tags}</div> */}
                                             <div><Badge bg="secondary">Size: {task.task_type}</Badge></div>
                                             <div><Badge bg="secondary">Level: {task.task_level}</Badge></div>
                                         </Stack>

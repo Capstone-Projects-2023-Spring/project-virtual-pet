@@ -97,6 +97,7 @@ const TaskItemMobile = ({ task, updateTask, deleteTask }) => {
                                         <></>
                                 }
                             </ListGroup >
+                            {/* KEEP THIS - although you cant edit canvas tasks still needs the useEffect which triggers on global tag deletion */}
                             <CreateTaskFormMobile {...{ showCreateTask, setShowCreateTask, task }} />
                         </>
                     ) :
@@ -118,7 +119,7 @@ const TaskItemMobile = ({ task, updateTask, deleteTask }) => {
                                         <div className="fw-bold task-description">
 
                                             <Stack direction="horizontal" gap={1}>
-                                                 
+
                                                 <div className='task-title-mobile'>{task.title}</div>
                                                 <div className='task-badge-mobile'>{task.tags}</div>
                                                 <div className='task-badge-mobile'><Badge bg="secondary">Size: {task.task_type}</Badge></div>

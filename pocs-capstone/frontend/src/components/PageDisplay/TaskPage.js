@@ -49,6 +49,11 @@ const TaskPage = () => {
         return selectedTags.find(t => t === tagItem) ? true : false
     }
 
+    const getCheckedType = (tagItem) => {
+        // if tagItem exists in the selectedTags list, it has been checked off. Return true.
+        return taskTypes.find(t => t === tagItem) ? true : false
+    }
+
 
     const handleTaskCheck = (e, typeItem) => {
         if (e.target.checked && !taskTypes.find(type => type === typeItem)) {
@@ -68,7 +73,7 @@ const TaskPage = () => {
                         <div className='to-do-header'>
                             TO-DO
                         </div>
-                        <div>
+                        {/* <div>
                             Global tags:
                             {userHandler?.userInfo?.tags?.map((item, index) => {
                                 return (
@@ -77,9 +82,7 @@ const TaskPage = () => {
                                     </p>
                                 )
                             })}
-
-
-                        </div>
+                        </div> */}
                         <div className="ms-auto">
                             <Dropdown className="d-inline mx-2" autoClose="outside">
                                 <Dropdown.Toggle id="dropdown-autoclose-outside">
@@ -89,8 +92,8 @@ const TaskPage = () => {
                                 <Dropdown.Menu>
                                     <Form onSubmit={e => e.preventDefault()}>
                                         <Stack direction="horizontal">
-                                            <Form.Check type="checkbox" label='Canvas Assignemnts' onChange={(e) => { handleTaskCheck(e, 'canvas') }} />
-                                            <Form.Check type="checkbox" label='My Tasks' onChange={(e) => { handleTaskCheck(e, 'usertasks') }} />
+                                            <Form.Check checked={getCheckedType('canvas')} type="checkbox" label='Canvas Assignemnts' onChange={(e) => { handleTaskCheck(e, 'canvas') }} />
+                                            <Form.Check checked={getCheckedType('usertasks')} type="checkbox" label='My Tasks' onChange={(e) => { handleTaskCheck(e, 'usertasks') }} />
                                         </Stack>
 
                                     </Form>
@@ -106,7 +109,7 @@ const TaskPage = () => {
                                             )
                                         })}
                                         <Form onSubmit={e => e.preventDefault()}>
-                                            <Button onClick={() => setSelectedTags([])}>Clear Tags</Button>
+                                            <Button onClick={() => {setSelectedTags([]); setTaskTypes([])}}>Clear Tags</Button>
                                         </Form>
                                     </ListGroup>
                                 </Dropdown.Menu>

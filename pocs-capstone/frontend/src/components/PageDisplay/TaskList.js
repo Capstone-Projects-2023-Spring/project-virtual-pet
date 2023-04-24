@@ -17,9 +17,7 @@ const TaskList = ({ showAll, filterTags, filterTaskType }) => {
 
     const taskListHandlers = {
         updateTask: handlers.updateTask,
-        deleteTask: handlers.deleteTask,
-        setTaskList: handlers.setTaskList,
-        taskList: handlers.taskList
+        deleteTask: handlers.deleteTask
     }
 
     // console.log(`TASKS: ${showTasks}`)
