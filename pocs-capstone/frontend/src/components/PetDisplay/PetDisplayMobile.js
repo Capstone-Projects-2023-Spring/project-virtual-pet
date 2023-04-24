@@ -148,8 +148,9 @@ const PetDisplay = () => {
 
           const _due = item.due_date.split('-')
           console.log("_due----->",_due)
+        
           var due = new Date(_due[0],Number(_due[1])-1,_due[2]);
-
+   
           const task_delta = dateDelta(due, TODAY);
           
           console.log("ITEM DUE DATE:",item.due_date)
