@@ -4,7 +4,7 @@ import './index.css';
 import App from './App';
 import { AuthProvider } from './context/AuthProvider';
 import { BrowserRouter, Routes, Route} from 'react-router-dom';
-//import * as serviceWorkerRegistration from './serviceWorkerRegistration';
+import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 //import reportWebVitals from './reportWebVitals'; //TODO return and revisit this vitals stuff
 
 //const root = ReactDOM.createRoot(document.getElementById('root'));
