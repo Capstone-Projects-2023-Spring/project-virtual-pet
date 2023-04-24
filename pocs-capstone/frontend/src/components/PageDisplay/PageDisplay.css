@@ -1,6 +1,7 @@
 /* flex container */
 .page-display {
-    width: 100vw;
+    width: 60vw;
+    max-width: 60vw;
     height: 100vh;
     display: flex;
     align-items: stretch;
@@ -8,7 +9,7 @@
     flex-direction: column;
     background-color: rgb(255, 198, 198);
     padding: 10px;
-    overflow:visible;
+    overflow-x: hidden;
 }
 
 
@@ -82,5 +83,3 @@
     margin: 0 auto;
     text-align: center;
 }
-
-
