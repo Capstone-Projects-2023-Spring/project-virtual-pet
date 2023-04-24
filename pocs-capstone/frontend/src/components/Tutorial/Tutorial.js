@@ -9,18 +9,46 @@ import inventory from "./Tutorial-screenshots/inventory.png";
 import calendar from "./Tutorial-screenshots/calendar.png";
 import click_to_complete from "./Tutorial-screenshots/click-to-complete-tasks.png";
 
+import kittycat from "../../images/orangecat.png";
+
 //import Card from "react-bootstrap/Card";
 import { useState, useRef, useEffect } from "react";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 import { useNavigate } from "react-router-dom";
 import { useWindowWidth, useWindowHeight } from "@react-hook/window-size";
-import Carousel from "react-bootstrap/Carousel";
+import { Card } from "react-bootstrap";
 
-const YESTERDAY = new Date();
-YESTERDAY.setDate(YESTERDAY.getDate() - 1);
-const TODAY = new Date();
-TODAY.setDate(TODAY.getDate() - 1);
+var YESTERDAY = new Date(Date.now() - 86400000);
 
+var TODAY = new Date();
+//TODAY.setDate(TODAY.toISOString().split('T')[0])
+
+console.log(
+  "YESTERDAY as string------>",
+  YESTERDAY.toLocaleString("en-US", { timeZone: "America/New_York" }).split(
+    ","
+  )[0]
+);
+console.log(
+  "TODAY as localestring------>",
+  TODAY.toLocaleString("en-US", { timeZone: "America/New_York" }).split(",")[0]
+);
+YESTERDAY = new Date(
+  YESTERDAY.toLocaleString("en-US", { timeZone: "America/New_York" }).split(
+    ","
+  )[0]
+);
+TODAY = new Date(
+  TODAY.toLocaleString("en-US", { timeZone: "America/New_York" }).split(",")[0]
+);
+console.log(
+  "YESTERDAY as localestring------>",
+  YESTERDAY.toLocaleString("en-US", { timeZone: "America/New_York" })
+); //.split(',')[0])
+console.log(
+  "TODAY as localestring------>",
+  TODAY.toLocaleString("en-US", { timeZone: "America/New_York" })
+); //.split(',')[0])
 const TUT_TEXT = [
   "This is your homescreen! You can view your pets status and create tasks here!",
   "If you created the task, you can click the box on the left of the task to complete it!",
@@ -44,9 +72,9 @@ const Tutorial = () => {
   const addTutorialTasks = () => {
     const tutTask1 = {
       title: TITLE1,
-      due_date: null,
+      due_date: YESTERDAY.toISOString().split("T")[0],
       created_date: new Date().toISOString(),
-      completed_date: YESTERDAY.toISOString,
+
       completed: false,
       active: true,
       task_type: "S",
@@ -60,9 +88,9 @@ const Tutorial = () => {
 
     const tutTask2 = {
       title: TITLE2,
-      due_date: null,
+      due_date: TODAY.toISOString().split("T")[0],
       created_date: new Date().toISOString(),
-      completed_date: TODAY.toISOString,
+
       completed: false,
       active: true,
       task_type: "S",
@@ -73,6 +101,7 @@ const Tutorial = () => {
       course_id: 0,
       assignment_id: 0,
     };
+    console.log(tutTask1, tutTask2);
 
     // console.log("NEW TASK", newTask)
 
@@ -94,21 +123,14 @@ const Tutorial = () => {
     addTutorialTasks();
   }, []);
 
-  const handleSelect = (selectedPet) => {
-    setSelectedIndex(selectedPet);
-    setTutText(TUT_TEXT[selectedPet]);
-  };
-
-  if (height > 0) {
+  if (height > 600) {
     let items = [
       <div className="alice-box">
         {" "}
         <div className="header-tut">
           <div className="header-text-tut">How To Use Study Buddy!</div>
         </div>
-        <div className="tut-imagebox">
-          <img className="tut-image" src={active_tasks}></img>
-        </div>{" "}
+        <img className="tut-image" src={active_tasks}></img>
         <div className="tut-textbox">
           <span className="tut-text">{TUT_TEXT[0]} </span>
         </div>{" "}
@@ -157,6 +179,43 @@ const Tutorial = () => {
           <span className="tut-text">{TUT_TEXT[4]} </span>
         </div>{" "}
       </div>,
+
+      <div className="alice-box">
+        <h1 style={{ fontSize: 24 }}>
+          <center>WELCOME TO STUDY BUDDY!</center>
+        </h1>
+        <img src={kittycat} alt="cat" className="image-kitty-mobile" />
+        <center>
+          <Card className="card-about-mobile">
+            <Card.Title className="card-title-mobile">Thank you!</Card.Title>
+            <Card.Body className="card-body-mobile">
+              Study buddy allows you to take care of a virtual pet to achieve
+              your study goals! Choose from a variety of pets and colors of pets
+              to find the buddy you like best. By completing tasks, you can
+              receive candies of various sizes to feed your pet and watch it
+              grow. Integrate your institution Canvas account to have your pet
+              keep track of your school assignments. With Study Buddy, you get a
+              cute way to make keeping up with your schoolwork and personal
+              study goals fun! Click on the buttons below to register or log in
+              to see your buddy.
+            </Card.Body>
+          </Card>
+        </center>
+        <div>
+          <center>
+            <button
+              className="landingbutton-register-mobile"
+              id="to-homescreen"
+              type="submit"
+              onClick={() => {
+                nav("/");
+              }}
+            >
+              Go To Home Screen!
+            </button>
+          </center>
+        </div>
+      </div>,
     ];
     if (width < 1128) {
       return (
@@ -164,15 +223,15 @@ const Tutorial = () => {
         <html>
           <body>
           */
-            <div className="alice-container">
-              <AliceCarousel
-                mouseTracking
-                disableButtonsControls={true}
-                items={items}
-              />
-              <div className="padding-container"></div>
-            </div>
-            /*
+        <div className="alice-container">
+          <AliceCarousel
+            mouseTracking
+            disableButtonsControls={true}
+            items={items}
+          />
+          <div className="padding-container"></div>
+        </div>
+        /*
           </body>
         </html>
         */
@@ -227,21 +286,58 @@ const Tutorial = () => {
           <span className="tut-text">{TUT_TEXT[4]} </span>
         </div>{" "}
       </div>,
+
+      <div className="alice-box">
+        <h1 style={{ fontSize: 24 }}>
+          <center>WELCOME TO STUDY BUDDY!</center>
+        </h1>
+        <img src={kittycat} alt="cat" className="image-kitty-mobile" />
+        <center>
+          <Card className="card-about">
+            <Card.Title className="card-title-mobile">Tahnk you!</Card.Title>
+            <Card.Body className="card-body-mobile">
+              Study buddy allows you to take care of a virtual pet to achieve
+              your study goals! Choose from a variety of pets and colors of pets
+              to find the buddy you like best. By completing tasks, you can
+              receive candies of various sizes to feed your pet and watch it
+              grow. Integrate your institution Canvas account to have your pet
+              keep track of your school assignments. With Study Buddy, you get a
+              cute way to make keeping up with your schoolwork and personal
+              study goals fun! Click on the buttons below to register or log in
+              to see your buddy.
+            </Card.Body>
+          </Card>
+        </center>
+        <div>
+          <center>
+            <button
+              className="landingbutton-register-mobile"
+              id="to-homescreen"
+              type="submit"
+              onClick={() => {
+                nav("/");
+              }}
+            >
+              Go To Home Screen!
+            </button>
+          </center>
+        </div>
+      </div>,
     ];
     return (
       /*
       <html>
         <body>
         */
-        <div className="alice-container">
-            <AliceCarousel
-              mouseTracking
-              disableButtonsControls={true}
-              items={items}
-            />
-            <div className="padding-container"></div>
-          </div>
-          /*
+      <div className="alice-container">
+        <AliceCarousel
+          mouseTracking
+          disableButtonsControls={true}
+          items={items}
+        />
+        <div className="padding-container"></div>
+      </div>
+      /*
         </body>
       </html>
       */
