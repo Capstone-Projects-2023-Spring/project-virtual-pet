@@ -8,12 +8,15 @@
 @media (min-height: 667px) {
   .section-login-register {
     max-height: 100vh;
-    font-size: xx-small;
+    font-size: medium;
   }
 }
 
 /*Larger phone*/
 @media (min-height: 800px) {
+  .section-login-register{
+    font-size: medium;
+    }
 }
 
 /*desktop styles*/

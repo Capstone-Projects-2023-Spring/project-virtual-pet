@@ -90,7 +90,7 @@
 }
 
 .pbar-exp {
-  display:flex;
+  display: flex;
   flex-direction: row;
   justify-content: space-around;
   /* justify-content: center; */
@@ -99,7 +99,7 @@
   border-style: solid none;
   border-width: 1.5px;
   border-color: gray;
-  width: 100%
+  width: 100%;
 }
 
 .pd-position,
@@ -181,42 +181,41 @@
   align-items: center;
   margin-top: 5px;
   margin-bottom: 5px;
-  width:100%;
+  width: 100%;
 }
 .pet-container-mobile {
-    background-image: url("../../images/bg.gif");
-    /* background-size: 50vh; */
-    width:80%;
-    /* max-height: 50vh; */
-    /* height: 50vh; */
-    /* height: 60%; */
-    height: calc(100vh - 350px - 70%);
-    /* height: calc(100vh - 60vh); */
-    background-size: cover;
-    /* background-size: ; */
-    background-position: center center;
-    justify-content: center;
-    /* width:50vh; */
-    display:flex;
-    align-items: center;
-    overflow:hidden;
-    margin: 0 auto;
+  background-image: url("../../images/bg.gif");
+  /* background-size: 50vh; */
+  width: 80%;
+  /* max-height: 50vh; */
+  /* height: 50vh; */
+  /* height: 60%; */
+  height: calc(100vh - 350px - 70%);
+  /* height: calc(100vh - 60vh); */
+  background-size: cover;
+  /* background-size: ; */
+  background-position: center center;
+  justify-content: center;
+  /* width:50vh; */
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  margin: 0 auto;
 }
 
-.sprite-sheet-mobile{
-    width: 70%;
-    /* max-height: calc(100vh - 550px - 70%); */
-    max-height: 38vh;
-    top: 35px;
-    /* max-height: calc(100vh - 60vh - 30%); */
-    /* max-height: 50vh; */
-    justify-content: center;
-    position: relative;
-    margin:15%;
-    /* margin: auto; */
+.sprite-sheet-mobile {
+  width: 70%;
+  /* max-height: calc(100vh - 550px - 70%); */
+  max-height: 38vh;
+  top: 35px;
+  /* max-height: calc(100vh - 60vh - 30%); */
+  /* max-height: 50vh; */
+  justify-content: center;
+  position: relative;
+  margin: 15%;
+  /* margin: auto; */
 }
-
 
 .progress-bar[aria-valuenow="0"] {
   transition: none;
-} 
+}
