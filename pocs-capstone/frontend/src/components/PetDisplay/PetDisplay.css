@@ -1,7 +1,8 @@
 /* flex container */
 .pet-display-extra {
-  width: 40%;
-  /* height: auto; */
+  width: 40vw;
+  top: 0;
+  height: auto;
   display: flex;
   align-items: stretch;
   justify-content: flex-start;
@@ -12,11 +13,12 @@
 
 .pet-display {
   display: flex;
-  position: 0;
+  top: 0;
   flex: auto;
   justify-content: center;
   align-items: center;
-  height: auto;
+  height: fit-content;
+  max-height: max-content;
 }
 
 .p-sprite-display {
