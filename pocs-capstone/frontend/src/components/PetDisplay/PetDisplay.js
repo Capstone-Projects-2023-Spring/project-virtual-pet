@@ -17,6 +17,9 @@ import white_H_gif from '../../images/white_happy_gif.gif'
 import white_S_gif from '../../images/white_sad_gif.gif'
 import tux_H_gif from '../../images/tux_happy_gif.gif'
 import tux_S_gif from '../../images/tux_sad_gif.gif'
+import gray_N_prop from '../../images/propeller_hat.gif'
+import gray_H_prop from '../../images/prop_happy.gif'
+import gray_S_prop from '../../images/prop_sad.gif'
 import dingSound from '../../audio/dingsound.mp3'
 
 import { useDrop } from "react-dnd";
@@ -223,7 +226,19 @@ const PetDisplay = () => {
                             }
                             return
                         case 1:
-                            if (mood === 'N') {
+                            if(level_info.LEVEL >= 20){
+                                if(mood==='N'){
+                                    setAvatarImage(gray_N_prop);
+                               } else if(mood==='H'){
+                                    setAvatarImage(gray_H_prop);
+                                    // setAvatarImage(`gray_${mood}_gif`)
+                                    // console.log(`gray_${mood}_gif`)
+                               } else {
+                                setAvatarImage(gray_S_prop);
+                               }
+                               return
+                            }
+                            if(mood==='N'){
                                 setAvatarImage(gray_cat);
                             } else if (mood === 'H') {
                                 setAvatarImage(gray_H_gif);
@@ -292,8 +307,8 @@ const PetDisplay = () => {
                     return ''
             }
         }
-        getavatarImage(contextHandler?.avatarInfo);
-    }, [mood])
+    getavatarImage(contextHandler?.avatarInfo);
+    },[mood, level_info.LEVEL])
 
 
     const retAvatarImage = () => {
