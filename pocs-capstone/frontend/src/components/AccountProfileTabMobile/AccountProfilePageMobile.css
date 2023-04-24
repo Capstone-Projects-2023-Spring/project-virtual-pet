@@ -7,6 +7,18 @@
     margin-top: auto;
     margin-bottom: auto;
 }
+/* Iphone 12 Pro Max ShoutOut Mary */
+@media only screen and (min-height: 926px) {
+    .account-profile-container-mobile {
+        /* margin: 10px; */
+        /* width: 100vw;
+        height: 100vh; */
+        /* justify-content: center;
+        align-items: center; */
+        margin-top: 80px;
+        margin-bottom: 80px;
+    }
+}
 
 .profile-account-button-mobile {
     width: 80vw;
