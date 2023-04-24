@@ -19,6 +19,13 @@ import tux_cat from "../images/tux_cat_scaled_5x_pngcrushed.png";
 const AVATAR_URL = "/avatar/";
 const PETNAME_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
 
+var YESTERDAY = new Date(Date.now() - 86400000);
+var TODAY = new Date();
+YESTERDAY = new Date(YESTERDAY.toLocaleString('en-US', { timeZone: 'America/New_York' }).split(',')[0])
+TODAY = new Date(TODAY.toLocaleString('en-US', { timeZone: 'America/New_York' }).split(',')[0])
+
+
+
 const AnimateChoice = () => {
   const axiosPrivate = useAxiosPrivate();
   //    const handlers = useContext(PetSelectionContext);//
@@ -63,8 +70,8 @@ const AnimateChoice = () => {
       updatedShowTextBox[index] = false;
       setShowTextBox(updatedShowTextBox);
 
-      const currentDate = new Date().toISOString().slice(0, 10);
-      const last_feed = currentDate;
+      const currentDate = new Date().toISOString().split('T')[0]
+      const last_feed = YESTERDAY.toISOString().split('T')[0];
       const last_interaction = currentDate;
       const total_xp = 1;
 
