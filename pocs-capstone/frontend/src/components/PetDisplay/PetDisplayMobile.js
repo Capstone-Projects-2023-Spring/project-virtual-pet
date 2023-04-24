@@ -213,6 +213,18 @@ const PetDisplay = () => {
               }
               return;
             case 1:
+              if(level_info.LEVEL >= 20){
+                if(mood==='N'){
+                    setAvatarImage(gray_N_prop);
+               } else if(mood==='H'){
+                    setAvatarImage(gray_H_prop);
+                    // setAvatarImage(`gray_${mood}_gif`)
+                    // console.log(`gray_${mood}_gif`)
+               } else {
+                setAvatarImage(gray_S_prop);
+               }
+               return
+            }
               if (mood === "N") {
                 setAvatarImage(gray_cat);
               } else if (mood === "H") {
