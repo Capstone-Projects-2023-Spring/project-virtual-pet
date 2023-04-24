@@ -49,6 +49,10 @@
           message: "Thanks for subscribing to push notifications!",
         },
       });
+      OneSignal.getUserId().then(playerId => {
+        //Send the playerId to your server to associate it with the user
+        console.log("Here is the user's device/browser id:", playerId);
+      });
     });
   </script>
 </head>
