@@ -1,7 +1,7 @@
 
 import '../PageDisplay/PageDisplay.css'
 import { CloseButton, Stack, Badge, Form, ListGroup } from 'react-bootstrap';
-import CreateTaskForm from '../PageDisplay/CreateTaskForm';
+import CreateTaskForm from '../PageDisplay/Task/CreateTaskForm';
 import { useState, useContext } from 'react'
 import TaskListContext from '../../context/TaskListContext';
 

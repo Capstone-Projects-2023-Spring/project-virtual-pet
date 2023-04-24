@@ -1,11 +1,11 @@
-import './PageDisplay.css'
+import '../PageDisplay.css'
 import './TaskPage.css'
 import CreateTaskForm from './CreateTaskForm';
 import TaskList from './TaskList'
-import UserContext from "../../context/UserContext";
+import UserContext from "../../../context/UserContext";
 import { useState, useContext } from 'react';
 import { Tab, Tabs, Button, Stack, Card, Dropdown, Form, ListGroup, CloseButton } from 'react-bootstrap';
-import useAxiosPrivate from "../../hooks/useAxiosPrivate";
+import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
 
 // { taskList, newTitle, newDesc, newSize, newDate, setAvatarInfo, setInventory, setTaskList, handleCompleteCheck, handleTitleChange, handleDescChange, handleSizeChange, handleDateChange, addTask, deleteTask }
 const TaskPage = () => {

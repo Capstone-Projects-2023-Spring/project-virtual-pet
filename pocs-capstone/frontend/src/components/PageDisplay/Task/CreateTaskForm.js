@@ -1,10 +1,10 @@
 import { Tooltip, OverlayTrigger, Stack, Form, Button, Modal, Image, Dropdown, ListGroup, CloseButton } from 'react-bootstrap';
 
-import GlobalContext from "../../context/GlobalContext.js";
-import UserContext from "../../context/UserContext";
+import GlobalContext from "../../../context/GlobalContext.js";
+import UserContext from "../../../context/UserContext.js";
 import React, { useContext, useState, useEffect } from 'react'
-import useAxiosPrivate from "../../hooks/useAxiosPrivate";
-import infoicon from '../../images/info_icon.png'
+import useAxiosPrivate from "../../../hooks/useAxiosPrivate.js";
+import infoicon from '../../../images/info_icon.png'
 
 import * as yup from "yup";
 import * as formik from 'formik'

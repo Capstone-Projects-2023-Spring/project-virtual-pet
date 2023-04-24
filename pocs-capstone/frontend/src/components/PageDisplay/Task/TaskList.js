@@ -1,7 +1,7 @@
 
 import { ListGroup, Stack, Button } from 'react-bootstrap';
 import TaskItem from './TaskItem'
-import GlobalContext from "../../context/GlobalContext.js";
+import GlobalContext from "../../../context/GlobalContext.js";
 import { useContext, useState } from 'react'
 import './TaskPage.css'
 

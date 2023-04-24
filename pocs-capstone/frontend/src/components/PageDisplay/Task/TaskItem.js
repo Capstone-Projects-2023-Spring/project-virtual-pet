@@ -1,5 +1,5 @@
 
-import './PageDisplay.css'
+import '../PageDisplay.css'
 import { CloseButton, Stack, Badge, Form, ListGroup } from 'react-bootstrap'
 import CreateTaskForm from './CreateTaskForm'
 import TaskTagAdd from './TaskTagAdd'

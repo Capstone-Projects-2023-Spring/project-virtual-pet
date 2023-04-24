@@ -1,9 +1,9 @@
 import { Form, Button, Modal, Dropdown } from 'react-bootstrap';
 
-import GlobalContext from "../../context/GlobalContext.js";
-import UserContext from "../../context/UserContext";
+import GlobalContext from "../../../context/GlobalContext.js";
+import UserContext from "../../../context/UserContext";
 import React, { useContext, useState, useEffect } from 'react'
-import useAxiosPrivate from "../../hooks/useAxiosPrivate";
+import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
 
 
 const CustomMenu = React.forwardRef(
