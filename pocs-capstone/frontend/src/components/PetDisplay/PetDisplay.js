@@ -329,7 +329,7 @@ const PetDisplay = () => {
         console.log("MOOD------>", mood)
         
     getavatarImage(contextHandler?.avatarInfo);
-    },[mood, level_info.LEVEL, click])
+    },[mood, level_info.LEVEL])
 
 
   const retAvatarImage = () => {
@@ -395,7 +395,7 @@ const PetDisplay = () => {
         <div className="Board">
           <div className="p-sprite-display">
             <img src={bgimage} alt="background" className="bg-sprite" />
-            <img src={avatarImage} className="p-sprite"></img>
+            <img src={avatarImage} className="p-sprite" onClick={handleClick}></img>
           </div>
         </div>
         <div className="pbar-exp">
