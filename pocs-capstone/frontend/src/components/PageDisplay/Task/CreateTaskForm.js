@@ -386,6 +386,7 @@ function CreateTaskForm({ showCreateTask, setShowCreateTask, task }) {
                 </Form.Group>
 
               </Form>
+              
 
               {tags.length !== 0 ?
                 <div className="center-tasks-tags">
