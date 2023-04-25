@@ -21,7 +21,15 @@ img {
   width: 1040;
 }
 
-
+.Board {
+  width: 500px;
+  height: 500px;
+  /* border: 2px solid black; */
+  display: flex;
+  flex-flow: column nowrap;
+  align-self: center;
+  justify-self: center;
+}
 
 .Candy-Quantity {
 
