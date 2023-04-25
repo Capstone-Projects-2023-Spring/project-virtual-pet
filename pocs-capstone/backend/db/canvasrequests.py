@@ -206,7 +206,6 @@ def parse_assignments(assignments, course_title):
                       'description': description,
                       'course_id': a['course_id'],
                       'assignment_id': a['id'],
-                      'tags': [course_title]
                       })
     return tasks
 

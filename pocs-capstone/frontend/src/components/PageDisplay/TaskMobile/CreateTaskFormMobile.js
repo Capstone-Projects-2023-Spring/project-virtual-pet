@@ -10,21 +10,7 @@ import * as yup from "yup";
 import * as formik from 'formik'
 
 const CustomMenu = React.forwardRef(
-  ({ style, className, 'aria-labelledby': labeledBy, tags, setTags, tagValue, setTagValue, tagError, setTagError, globalTags, task, handlers }, ref) => {
-
-    // User selects pre-existing global tag to apply to the task item
-    const addGlobalTag = (gTag) => {
-
-      if (gTag.trim() !== "" && !tags.find(tagItem => tagItem === gTag.trim())) {
-        const newTags = tags.concat(gTag)
-        setTags(newTags)
-        if (task) {
-          handlers?.updateTask(task.task_id, { ...task, tagList: newTags })
-        }
-      }
-      setTagError("")
-    }
-
+  ({ style, className, 'aria-labelledby': labeledBy, tagValue, setTagValue, tagError, globalTags, addGlobalTag }, ref) => {
     return (
       <div
         ref={ref}
@@ -45,7 +31,7 @@ const CustomMenu = React.forwardRef(
         </Form.Control.Feedback>
 
         <ListGroup className="tasks-dropdown-tags-mobile">
-          {globalTags.map((gTag, index) => <Button variant="light" type="button" className="tag-select-mobile" onClick={(e) => addGlobalTag(gTag)}>{gTag}</Button>)}
+          {globalTags.map((gTag, index) => <Button key={index} variant="light" type="button" className="tag-select-mobile" onClick={(e) => addGlobalTag(gTag)}>{gTag}</Button>)}
         </ListGroup>
       </div>
     );
@@ -69,39 +55,62 @@ function CreateTaskFormMobile({ showCreateTask, setShowCreateTask, task }) {
   // console.log("TASK, tags, and global state", task, tags, userHandler?.userInfo?.tags)
 
   // trigger useEffect on mount and when there are changes to userInfo --> from the TaskPage component, userinfo is updated when tags are deleted from the global list
-  // This useEffect is called whenever the user deletes a tag from the GLOBAL tag list -> said tag should be removed from the tag list of INDIVIDUAL task items 
+  // trigger useEFfect when canvas tasks are loaded - updates global tag list 
+  // conflict between remove tag and 
   useEffect(() => {
-    // check it's the updating version of the CreateTaskForm
-    const found = tags.every(t => userHandler?.userInfo?.tags?.includes(t))
-    // Check to make sure this is the 'update task' version of CreateTaskForm - rendered from TaskItem rather than the TaskPage AddTask button
-    // also make sure there is a discrepancy - dont just run this for every task
-    // important to add third condition : makes sure you're not comparing to an empty global list of tags - else value of found will turn out different 
-    if (task && !found && userHandler?.userInfo?.tags) {
-      // go through each tag the task owns and only return tags exist in the global tag list
-      const removeTags = tags.filter(t => userHandler?.userInfo?.tags?.includes(t))
+    if (userHandler?.userInfo?.tags && task) {
 
-      setTags(removeTags)
-      axiosPrivate.put(`/tasks/${task.task_id}/`, { ...task, tags: removeTags })
-        .then(r => {
+      // check it's the updating version of the CreateTaskForm
+      const found = tags.every(t => userHandler?.userInfo?.tags?.includes(t))
 
-          // Get is needed because when a tag is removed from the global list,
-          // too many useEffect trigger for different task items, 
-          // and the setTaskList updates too many times in a row, undoing prev changes from other useeffect state calls
-          axiosPrivate.get(`/tasks/`)
+      // Check to make sure this is the 'update task' version of CreateTaskForm - rendered from TaskItem rather than the TaskPage AddTask button
+      // also make sure it's not run for every task
+      // important to add third condition : makes sure you're not comparing to an empty global list of tags - else value of found will turn out different 
+      if (task && !found) {
+        // go through each tag the task owns and only return tags exist in the global tag list
+        const removeTags = tags.filter(t => userHandler?.userInfo?.tags?.includes(t))
+        setTags(removeTags)
+        axiosPrivate.put(`/tasks/${task.task_id}/`, { ...task, tags: removeTags })
+          .then(r => {
+            // Get is needed because when a tag is removed from the global list,
+            // too many useEffect trigger for different task items, 
+            // and the setTaskList updates too many times in a row, undoing prev changes from other useeffect state calls
+            axiosPrivate.get(`/tasks/`)
+              .then(r => {
+                handlers?.setTaskList(r.data)
+              })
+              .catch((err) => {
+                console.log("setting task error", err);
+              })
+          })
+          .catch((err) => {
+            console.log("CANT UPDATE TASKLIST?", err);
+          });
+      }
+
+      if (task.course_title) {
+        // If the task is a canvas assignment, not in the task's current tags list, and is IN the global list 
+
+        if (task.course_title && !task.tags.find(t => task.course_title) && userHandler?.userInfo?.tags.find(t => t === task.course_title)) {
+          const newTags = tags.concat(task.course_title)
+          setTags(newTags)
+          axiosPrivate.put(`/tasks/${task.task_id}/`, { ...task, tags: newTags })
             .then(r => {
-              handlers?.setTaskList(r.data)
+              axiosPrivate.get(`/tasks/`)
+                .then(r => {
+                  handlers?.setTaskList(r.data)
+                })
+                .catch((err) => {
+                  console.log("setting task error", err);
+                })
             })
             .catch((err) => {
-              console.log("setting task error", err);
-            })
-        })
-        .catch((err) => {
-          console.log("CANT UPDATE TASKLIST?", err);
-        });
+              console.log("CANT UPDATE TASKLIST?", err);
+            });
 
-
+        }
+      }
     }
-
   }, [userHandler.userInfo])
 
 
@@ -184,6 +193,18 @@ function CreateTaskFormMobile({ showCreateTask, setShowCreateTask, task }) {
       setTags([])
     }
     setShowCreateTask(false);
+  }
+  // User selects pre-existing global tag to apply to the task item
+  const addGlobalTag = (gTag) => {
+
+    if (gTag.trim() !== "" && !tags.find(tagItem => tagItem === gTag.trim())) {
+      const newTags = tags.concat(gTag)
+      setTags(newTags)
+      if (task) {
+        handlers?.updateTask(task.task_id, { ...task, tagList: newTags })
+      }
+    }
+    setTagError("")
   }
 
   return (
@@ -339,23 +360,20 @@ function CreateTaskFormMobile({ showCreateTask, setShowCreateTask, task }) {
               </div>
  */}
 
-              <Form onSubmit={handleTagSubmit}>
+              <Form onSubmit={handleTagSubmit} style={{ marginBottom: '10px' }}>
                 <Form.Group controlId="validationFormik05">
                   <div><Form.Label>Tags</Form.Label></div>
-                  <Dropdown className="d-inline mx-2" autoClose="outside">
+                  <Dropdown className="d-inline" autoClose="outside">
                     <Dropdown.Toggle drop="down-centered" className="add-tag-dropdown-mobile" id="dropdown-autoclose-outside dropdown-button-drop-down-centered">
                       Add Tags
                     </Dropdown.Toggle>
 
                     <Dropdown.Menu as={CustomMenu}
-                      tags={tags}
-                      setTags={setTags}
                       tagValue={tagValue}
                       setTagValue={setTagValue}
                       tagError={tagError}
-                      setTagError={setTagError}
                       globalTags={userHandler?.userInfo?.tags}
-                      task={task}
+                      addGlobalTag={addGlobalTag}
                     >
                       {userHandler?.userInfo?.tags?.map((tagItem, index) =>
                         <Dropdown.Item key={index} eventKey={index}>{tagItem}</Dropdown.Item>
@@ -365,20 +383,25 @@ function CreateTaskFormMobile({ showCreateTask, setShowCreateTask, task }) {
                 </Form.Group>
               </Form>
 
-              <ul className='tasks-tags-mobile'>
-                <div>
-                  {tags.map((tagItem, index) => {
-                    return (
-                      <li key={index}>
-                        <CloseButton onClick={() => deleteTag(index)} />
-                        {tagItem}
-                      </li>
-                    )
-                  })}
+              {tags.length !== 0 ?
+                <div className="center-tasks-tags-mobile">
+                  <ul className='tasks-tags-mobile'>
 
+                    {tags.map((tagItem, index) => {
+                      return (
+                        <li key={index}>
+                          {task?.course_title === tagItem && userHandler?.userInfo?.canvas_tags.find(cT => cT === tagItem) ? null : <CloseButton onClick={() => deleteTag(index)} />}
+                          {tagItem}
+                        </li>
+                      )
+                    })}
+
+                  </ul>
                 </div>
+                :
+                null
+              }
 
-              </ul>
               <div className="submit-button-modal-mobile">
                 <Button onClick={handleSubmit} className="col-md-5 mx-auto" type="submit">{buttonText}</Button>
               </div>

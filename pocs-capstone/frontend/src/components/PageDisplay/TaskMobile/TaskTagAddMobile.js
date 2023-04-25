@@ -10,7 +10,6 @@ const CustomMenu = React.forwardRef(
     ({ style, className, 'aria-labelledby': labeledBy, tagValue, setTagValue, tagError, globalTags, addGlobalTag }, ref) => {
 
 
-
         return (
             <div
                 ref={ref}
@@ -30,8 +29,8 @@ const CustomMenu = React.forwardRef(
                     {tagError}
                 </Form.Control.Feedback>
 
-                <ListGroup className="tasks-dropdown-tags">
-                    {globalTags.map((gTag, index) => <Button key={index} variant="light" type="button" className="tag-select" onClick={(e) => addGlobalTag(gTag)}>{gTag}</Button>)}
+                <ListGroup className="tasks-dropdown-tags-mobile">
+                    {globalTags.map((gTag, index) => <Button key={index} variant="light" type="button" className="tag-select-mobile" onClick={(e) => addGlobalTag(gTag)}>{gTag}</Button>)}
                 </ListGroup>
             </div>
         );
@@ -39,7 +38,7 @@ const CustomMenu = React.forwardRef(
 );
 
 
-function TaskTagAdd({ showCreateTask, setShowCreateTask, task }) {
+function TaskTagAddMobile({ showCreateTask, setShowCreateTask, task }) {
     const axiosPrivate = useAxiosPrivate();
     const handlers = useContext(GlobalContext)
     const userHandler = useContext(UserContext)
@@ -108,7 +107,6 @@ function TaskTagAdd({ showCreateTask, setShowCreateTask, task }) {
                 }
             }
         }
-
     }, [userHandler.userInfo])
 
 
@@ -117,6 +115,7 @@ function TaskTagAdd({ showCreateTask, setShowCreateTask, task }) {
         handleClose()
         setTagValue("")
     }
+
 
     // Adding user submitted tags to tag state and updating global list of tags + tag validation
     const handleTagSubmit = (e) => {
@@ -176,7 +175,7 @@ function TaskTagAdd({ showCreateTask, setShowCreateTask, task }) {
     }
 
     return (
-        <Modal backdrop="static" className="createtask-modal" show={showCreateTask} onHide={(e) => { handleClose(); console.log("ON HIDE", e) }}>
+        <Modal centered backdrop="static" className="createtask-modal-mobile" show={showCreateTask} onHide={(e) => { handleClose(); console.log("ON HIDE", e) }}>
             <Modal.Header closeButton>
                 <Modal.Title>{title}</Modal.Title>
             </Modal.Header>
@@ -185,7 +184,7 @@ function TaskTagAdd({ showCreateTask, setShowCreateTask, task }) {
                     <Form.Group controlId="validationFormik05">
                         <Form.Label>{task.title}</Form.Label>
                         <Dropdown className="d-inline" autoClose="outside">
-                            <Dropdown.Toggle className="add-tag-dropdown" id="dropdown-autoclose-outside dropdown-button-drop-down-centered">
+                            <Dropdown.Toggle drop="down-centered" className="add-tag-dropdown-mobile" id="dropdown-autoclose-outside dropdown-button-drop-down-centered">
                                 Add Tags
                             </Dropdown.Toggle>
 
@@ -201,13 +200,12 @@ function TaskTagAdd({ showCreateTask, setShowCreateTask, task }) {
                                 )}
                             </Dropdown.Menu>
                         </Dropdown>
-
                     </Form.Group>
-
                 </Form>
+
                 {tags.length !== 0 ?
-                    <div className="center-tasks-tags">
-                        <ul className='tasks-tags'>
+                    <div className="center-tasks-tags-mobile">
+                        <ul className='tasks-tags-mobile'>
 
                             {tags.map((tagItem, index) => {
                                 return (
@@ -223,7 +221,7 @@ function TaskTagAdd({ showCreateTask, setShowCreateTask, task }) {
                     :
                     null
                 }
-                <div className="submit-button-modal">
+                <div className="submit-button-modal-mobile">
                     <Button onClick={handleSubmit} className="col-md-5 mx-auto" type="submit">{buttonText}</Button>
                 </div>
 
@@ -233,7 +231,7 @@ function TaskTagAdd({ showCreateTask, setShowCreateTask, task }) {
 }
 
 
-export default TaskTagAdd
+export default TaskTagAddMobile
 
 
 

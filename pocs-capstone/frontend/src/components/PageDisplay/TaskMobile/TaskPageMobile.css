@@ -90,6 +90,7 @@
 .createtask-modal-mobile #validationFormik02, 
 .createtask-modal-mobile #validationFormik03, 
 .createtask-modal-mobile #validationFormik04,
+.createtask-modal-mobile #validationFormik05,
 .add-tag-dropdown-mobile {
     font-size: calc(1.5vw + 1vh);
 }
@@ -201,12 +202,25 @@
 }
 
 /* selected tags added to task item */
-.tasks-tags-mobile {
+/* .tasks-tags-mobile {
     overflow: scroll;
     max-height: 15vh;
-    /* padding: 5px; */
+
+} */
+
+.center-tasks-tags-mobile {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: scroll;
+    max-height: 15vh;
+    margin: 15px 0px;
+    border-radius: .375rem;
+    border: 1px solid #ced4da;
+    width: 100%;
 
 }
+
 
 /* button to add from global tag list */
 .tag-select-mobile.list-group-item {

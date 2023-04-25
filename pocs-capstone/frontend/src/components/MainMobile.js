@@ -61,7 +61,7 @@ const MainMobile = () => {
         // combine with global tag list - make sure it's unique
         const updateGlobalTags = userInfo.tags.concat(uniqueCourses.filter((item) => userInfo.tags.indexOf(item) < 0))
         // console.log(updateGlobalTags, "GLOBAL TAGS")
-        const updatedUser = { ...userInfo, tags: updateGlobalTags }
+        const updatedUser = { ...userInfo, tags: updateGlobalTags, canvas_tags: uniqueCourses }
         axiosPrivate.put(`/user-data/${userInfo.id}/`, updatedUser)
           .then((response) => {
             setUserInfo(updatedUser);

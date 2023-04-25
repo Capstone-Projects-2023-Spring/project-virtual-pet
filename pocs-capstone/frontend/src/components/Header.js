@@ -37,7 +37,8 @@ const Header = ({ }) => {
         //return state and navigate to main
 
         // fetch unique list of courses
-        const uniqueCourses = [...new Set(response.data.map(item => item.course_title))]
+        const uniqueCourses = [...new Set(response.data.map(item => item.course_title))] //.map(cT => { return {'canvasTag': cT}})
+
         // // combine with global tag list - make sure it's unique
         const updateGlobalTags = userInfo.tags.concat(uniqueCourses.filter((item) => userInfo.tags.indexOf(item) < 0))
         // console.log("GLOBAL TAGSSs", updateGlobalTags, "UNIQUE COURSES", uniqueCourses)
@@ -45,7 +46,8 @@ const Header = ({ }) => {
         // setUpdateTag(updateGlobalTags)
         const updatedUser = {
           ...userInfo,
-          tags: updateGlobalTags
+          tags: updateGlobalTags,
+          canvas_tags: uniqueCourses
         }
         // console.log("UPDATED USER", updatedUser)
         axiosPrivate.put(`/user-data/${userInfo.id}/`, updatedUser)

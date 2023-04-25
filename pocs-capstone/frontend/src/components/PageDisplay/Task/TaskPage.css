@@ -8,10 +8,10 @@
     letter-spacing: 0.5px;
     border-width: 0px;
     text-decoration: none;
-    
+
 }
 
-.tasklist-position{
+.tasklist-position {
     display: flex;
     flex-direction: column;
     min-width: 100%;
@@ -253,25 +253,27 @@
 
 
 
-.createtask-modal .modal-dialog{
+.createtask-modal .modal-dialog {
     width: 20vw;
     height: 50vh;
     /* height: 50vh; */
     font-size: calc(0.5vw + 0.5vh);
 }
 
-.createtask-modal #validationFormik01, 
-.createtask-modal #validationFormik02, 
-.createtask-modal #validationFormik03, 
+.createtask-modal #validationFormik01,
+.createtask-modal #validationFormik02,
+.createtask-modal #validationFormik03,
 .createtask-modal #validationFormik04,
 .createtask-modal #validationFormik05,
 .add-tag-dropdown {
     font-size: calc(0.5vw + 0.5vh);
 }
 
+
 .createtask-modal .modal-title {
     font-size: calc(1vw + 0.5vh);
 }
+
 .createtask-modal .modal-header {
     padding: 14px;
 }
@@ -282,8 +284,12 @@
     justify-content: center;
 }
 
+.submit-button-modal .btn {
+    font-size: calc(0.5vw + 0.5vh);
+}
 
-/* Tags Dropdown CSS */
+
+/* Tags Dropdown CSS - TaskPage CSS*/
 .tag-type-checkoff {
     margin: 5px 15px;
 }
@@ -292,12 +298,15 @@
     border-radius: 0px;
 }
 
-.tag-checkoff .form-check-input, .tag-type-checkoff .form-check-input{
-    width:1vw;
-    height:1vw;
+.tag-checkoff .form-check-input,
+.tag-type-checkoff .form-check-input {
+    width: 1vw;
+    height: 1vw;
 }
 
-.tag-type-checkoff .form-check-label, .tag-checkoff .form-check-label, .clear-tags .btn {
+.tag-type-checkoff .form-check-label,
+.tag-checkoff .form-check-label,
+.clear-tags .btn {
     font-size: calc(0.5vw + 0.5vh);
 }
 
@@ -311,7 +320,7 @@
     align-items: center;
     justify-content: center;
     margin: 10px 0px 0px 0px;
-    
+
 }
 
 /* For the Task edit / create component tag dropdown*/
@@ -321,10 +330,16 @@
     border-radius: 0px;
 }
 
-.tasks-tags {
+.center-tasks-tags {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     overflow: scroll;
     max-height: 15vh;
-    /* padding: 5px; */
+    margin: 15px 0px;
+    border-radius: .375rem;
+    border: 1px solid #ced4da;
+    width: 100%;
 
 }
 
@@ -337,12 +352,13 @@
     font-size: calc(0.5vw + 0.5vh);
     text-align: start;
     border-radius: 0px !important;
-    
+
 }
 
 /* add tags toggle */
 .add-tag-dropdown {
     width: 100%;
+    text-align: start;
 }
 
 /* padding around buttons */

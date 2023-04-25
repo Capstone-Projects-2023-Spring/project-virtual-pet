@@ -93,6 +93,7 @@ class NewUser(AbstractBaseUser, PermissionsMixin):  # TODO rename to something l
     tutorial = models.BooleanField(default=True)
     demo_canvas = models.BooleanField(default=False)
     tags = models.JSONField(default=list, null=True, blank=True)
+    canvas_tags = models.JSONField(default=list, null=True, blank=True)
 
 
 

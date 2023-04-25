@@ -104,7 +104,7 @@ const TaskPage = () => {
                                                     <Form onSubmit={e => e.preventDefault()}>
                                                         <Stack direction="horizontal">
                                                             <Form.Check checked={getChecked(tagItem)} type="checkbox" label={tagItem} onChange={(e) => { handleTagCheck(e, tagItem) }} />
-                                                            <CloseButton onClick={() => deleteTagGlobal(tagItem)} />
+                                                            { userHandler?.userInfo?.canvas_tags.find(t=> t ===tagItem) ? null : <CloseButton onClick={() => deleteTagGlobal(tagItem)} />}
                                                         </Stack>
 
                                                     </Form>

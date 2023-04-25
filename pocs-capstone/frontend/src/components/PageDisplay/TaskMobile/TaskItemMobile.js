@@ -2,6 +2,7 @@
 // import './PageDisplay.css'
 import { CloseButton, Stack, Badge, Form, ListGroup } from 'react-bootstrap';
 import CreateTaskFormMobile from './CreateTaskFormMobile';
+import TaskTagAddMobile from './TaskTagAddMobile'
 import TaskNotice from './TaskNoticeMobile'
 import { useState } from 'react';
 import "./TaskPageMobile.css";
@@ -72,7 +73,7 @@ const TaskItemMobile = ({ task, updateTask, deleteTask }) => {
                                         <div className="fw-bold">Course {task.course_id}</div>
                                     </div>
                                 </ListGroup.Item> */}
-                                <ListGroup.Item className='task-item'>
+                                <ListGroup.Item className='task-item' action onClick={handleShow}>
                                     <div className="ms-2 me-auto">
                                         <div>
                                             <div className="fw-bold task-title-mobile task-description">{task.title}</div>
@@ -97,8 +98,9 @@ const TaskItemMobile = ({ task, updateTask, deleteTask }) => {
                                         <></>
                                 }
                             </ListGroup >
+                            <TaskTagAddMobile {...{ showCreateTask, setShowCreateTask, task }} />
                             {/* KEEP THIS - although you cant edit canvas tasks still needs the useEffect which triggers on global tag deletion */}
-                            <CreateTaskFormMobile {...{ showCreateTask, setShowCreateTask, task }} />
+                            {/* <CreateTaskFormMobile {...{ showCreateTask, setShowCreateTask, task }} /> */}
                         </>
                     ) :
 
