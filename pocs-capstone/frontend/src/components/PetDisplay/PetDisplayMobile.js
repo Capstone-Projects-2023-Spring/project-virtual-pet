@@ -165,9 +165,7 @@ const PetDisplay = () => {
           );
           if (task_delta < 0) {
             setMood(SAD);
-            moodHandler?.setPetMoodDesc(
-              "You've gotten so much done! I'm so happy! :D"
-            );
+            moodHandler?.setPetMoodDesc("I'm stressed. You have overdue tasks... please complete them :(")
             console.log("TASK SAD");
             return;
           }
