@@ -1,3 +1,17 @@
+/* Iphone 12 Pro Max ShoutOut Mary */
+@media only screen and (min-width: 428px) {
+    .account-profile-container-mobile {
+        /* margin: 10px; */
+        /* width: 100vw;
+        height: 100vh; */
+        /* justify-content: center;
+        align-items: center; */
+        margin-top: 60px;
+        margin-bottom: 65px;
+    }
+}
+
+
 .account-profile-container-mobile {
     /* margin: 10px; */
     /* width: 100vw;
@@ -10,7 +24,7 @@
 
 .profile-account-button-mobile {
     width: 80vw;
-    margin: 10px;
+    margin: 15px;
     background-color: pink;
     color:black;   
 }
@@ -21,7 +35,7 @@
     align-items: center; */
     /* margin:10px; */
     width: 80vw;
-    margin: 10px;
+    margin: 15px;
     background-color: pink;
     color:black;
     
@@ -31,7 +45,7 @@
 .canvas-button-mobile {
     
     width: 80vw;
-    margin: 10px;
+    margin: 15px;
     background-color: pink;
     color:black;
 
@@ -39,7 +53,7 @@
 
 .logout-button-mobile {
     width: 80vw;
-    margin: 10px;
+    margin: 15px;
     background-color: pink;
     color:black;
     
