@@ -195,9 +195,7 @@ const PetDisplay = () => {
           );
           if (task_delta < 0) {
             setMood(SAD);
-            moodHandler?.setPetMoodDesc(
-              "You've gotten so much done! I'm so happy! :D"
-            );
+            moodHandler?.setPetMoodDesc("I'm stressed. You have overdue tasks... please complete them :(");
             console.log("TASK SAD");
             return;
           }
@@ -339,7 +337,7 @@ const PetDisplay = () => {
 
   return (
     <div className="pet-display-mobile">
-      <Card.Header className="pet-name">
+      <Card.Header style={{fontSize: "calc(0.8vw + 1.4vh"}} className="pet-name">
         {contextHandler?.avatarInfo.pet_name}
       </Card.Header>
       {/* <div className="pet-display-mobile-wrapper"> */}
@@ -349,6 +347,21 @@ const PetDisplay = () => {
         <div>
           <img src={avatarImage} className="sprite-sheet-mobile" onClick={handleClick}></img>
         </div>
+        {/* <div>
+          {/* <img src={avatarImage} className="sprite-sheet-mobile"></img> */}
+          {/* before 10 - 150, before 20 - 175 , before 30 - 200*, before 40  - 250, before 50 - 300 */}
+          {/* {level_info.LEVEL < 10 && level_info.LEVEL > 0   && <img src={avatarImage} style={{height:"150px",width:"150px", marginBottom:"-35px"}} className="sprite-sheet-mobile" ></img>}
+          {level_info.LEVEL < 20 && level_info.LEVEL >= 10 && <img src={avatarImage} style={{height:"175px",width:"175px", marginBottom:"-15px"}} className="sprite-sheet-mobile"></img>}
+          {level_info.LEVEL < 30 && level_info.LEVEL >= 20 && <img src={avatarImage} style={{height:"200px",width:"200px", marginBottom:"5px"}} className="sprite-sheet-mobile"></img>}
+          {level_info.LEVEL < 40 && level_info.LEVEL >= 30 && <img src={avatarImage} style={{height:"250px",width:"250px"}} className="sprite-sheet-mobile"></img>}
+          {level_info.LEVEL < 50 && level_info.LEVEL >= 40 && <img src={avatarImage} style={{height:"300px",width:"300px", marginBottom:"90px"}} className="sprite-sheet-mobile"></img>} */}
+          {/* You can view the pet size images below and alter if needed */}
+          {/* <img src={avatarImage} className="sprite-sheet-mobile"style={{height:"150px",width:"150px",marginBottom:"-35px"}}></img>  */}
+          {/* <img src={avatarImage} className="sprite-sheet-mobile"style={{height:"175px",width:"175px",marginBottom:"-15px"}}></img>  */}
+          {/* <img src={avatarImage} className="sprite-sheet-mobile"style={{height:"200px",width:"200px",marginBottom:"5px"}}></img>  */}
+          {/* <img src={avatarImage} className="sprite-sheet-mobile"style={{height:"250px",width:"250px"}}></img>  */}
+          {/* <img src={avatarImage} className="sprite-sheet-mobile"style={{height:"300px",width:"300px",marginBottom:"90px"}}></img>  */}
+        {/* </div> */}
       </div>
       <div className="mobileBar">
         <span className="pbar-text-mobile">LV.{level_info.LEVEL} </span>
