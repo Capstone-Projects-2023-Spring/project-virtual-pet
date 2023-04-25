@@ -184,7 +184,7 @@ function TaskTagAddMobile({ showCreateTask, setShowCreateTask, task }) {
                     <Form.Group controlId="validationFormik05">
                         <Form.Label>{task.title}</Form.Label>
                         <Dropdown className="d-inline" autoClose="outside">
-                            <Dropdown.Toggle drop="down-centered" className="add-tag-dropdown-mobile" id="dropdown-autoclose-outside dropdown-button-drop-down-centered">
+                            <Dropdown.Toggle drop="down-centered" className="add-tag-dropdown-mobile">
                                 Add Tags
                             </Dropdown.Toggle>
 
@@ -203,21 +203,24 @@ function TaskTagAddMobile({ showCreateTask, setShowCreateTask, task }) {
                     </Form.Group>
                 </Form>
 
+
+
                 {tags.length !== 0 ?
-                    <div className="center-tasks-tags-mobile">
-                        <ul className='tasks-tags-mobile'>
-
-                            {tags.map((tagItem, index) => {
-                                return (
-                                    <li key={index}>
-                                        {task?.course_title === tagItem && userHandler?.userInfo?.canvas_tags.find(cT => cT === tagItem) ? null : <CloseButton onClick={() => deleteTag(index)} />}
+                    <ListGroup className="center-tasks-tags-mobile">
+                        {tags.map((tagItem, index) => {
+                            return (
+                                <ListGroup.Item key={index} className="tasks-tags-items-mobile">
+                                    <div className="tasks-tags-items-taskpage-label">
                                         {tagItem}
-                                    </li>
-                                )
-                            })}
+                                    </div>
+                                    <div className="tasks-tags-items-taskpage-delete">
+                                        {task?.course_title === tagItem && userHandler?.userInfo?.canvas_tags.find(cT => cT === tagItem) ? null : <CloseButton onClick={() => deleteTag(index)} />}
+                                    </div>
+                                </ListGroup.Item>
+                            )
+                        })}
 
-                        </ul>
-                    </div>
+                    </ListGroup>
                     :
                     null
                 }

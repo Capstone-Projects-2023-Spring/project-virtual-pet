@@ -383,21 +383,23 @@ function CreateTaskFormMobile({ showCreateTask, setShowCreateTask, task }) {
                 </Form.Group>
               </Form>
 
+
               {tags.length !== 0 ?
-                <div className="center-tasks-tags-mobile">
-                  <ul className='tasks-tags-mobile'>
-
-                    {tags.map((tagItem, index) => {
-                      return (
-                        <li key={index}>
-                          {task?.course_title === tagItem && userHandler?.userInfo?.canvas_tags.find(cT => cT === tagItem) ? null : <CloseButton onClick={() => deleteTag(index)} />}
+                <ListGroup className="center-tasks-tags-mobile">
+                  {tags.map((tagItem, index) => {
+                    return (
+                      <ListGroup.Item key={index} className="tasks-tags-items-mobile">
+                        <div className='tasks-tags-items-taskpage-label'>
                           {tagItem}
-                        </li>
-                      )
-                    })}
+                        </div>
+                        <div className="tasks-tags-items-taskpage-delete">
+                          {task?.course_title && userHandler?.userInfo?.canvas_tags.find(cT => cT === tagItem) ? null : <CloseButton onClick={() => deleteTag(index)} />}
+                        </div>
+                      </ListGroup.Item>
+                    )
+                  })}
 
-                  </ul>
-                </div>
+                </ListGroup>
                 :
                 null
               }

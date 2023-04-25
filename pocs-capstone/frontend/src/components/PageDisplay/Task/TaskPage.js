@@ -91,23 +91,41 @@ const TaskPage = () => {
 
                                 <Dropdown.Menu>
                                     <Form onSubmit={e => e.preventDefault()} className='tag-type-checkoff'>
-                                        <Stack direction="vertical">
-                                            <Form.Check checked={getCheckedType('canvas')} type="checkbox" label='Canvas Assignemnts' onChange={(e) => { handleTaskCheck(e, 'canvas') }} />
-                                            <Form.Check checked={getCheckedType('usertasks')} type="checkbox" label='My Tasks' onChange={(e) => { handleTaskCheck(e, 'usertasks') }} />
-                                        </Stack>
 
+                                            <div className="tasks-tags-items-taskpage-check">
+                                                <div>
+                                                    <Form.Check checked={getCheckedType('canvas')} type="checkbox" onChange={(e) => { handleTaskCheck(e, 'canvas') }} />
+                                                </div>
+                                                <div className="tasks-tags-items-taskpage-label">
+                                                    Canvas Assignments
+                                                </div>
+                                            </div>
+                                            <div className="tasks-tags-items-taskpage-check">
+                                                <div>
+                                                    <Form.Check checked={getCheckedType('usertasks')} type="checkbox" onChange={(e) => { handleTaskCheck(e, 'usertasks') }} />
+                                                </div>
+                                                <div className="tasks-tags-items-taskpage-label">
+                                                    My Tasks
+                                                </div>
+                                            </div>
                                     </Form>
-                                    <ListGroup className="dropdown-tags">
+                                    <ListGroup className="tasks-dropdown-tags">
                                         {userHandler?.userInfo?.tags?.map((tagItem, index) => {
                                             return (
-                                                <ListGroup.Item key={index} className="tag-checkoff">
-                                                    <Form onSubmit={e => e.preventDefault()}>
-                                                        <Stack direction="horizontal">
-                                                            <Form.Check checked={getChecked(tagItem)} type="checkbox" label={tagItem} onChange={(e) => { handleTagCheck(e, tagItem) }} />
-                                                            { userHandler?.userInfo?.canvas_tags.find(t=> t ===tagItem) ? null : <CloseButton onClick={() => deleteTagGlobal(tagItem)} />}
-                                                        </Stack>
-
-                                                    </Form>
+                                                <ListGroup.Item key={index} className="tag-checkoff tasks-tags-items-taskpage">
+                                                    <div className="tasks-tags-items-taskpage-check">
+                                                        <div style={{ margin: '5px' }}>
+                                                            <Form onSubmit={e => e.preventDefault()} >
+                                                                <Form.Check checked={getChecked(tagItem)} type="checkbox" onChange={(e) => { handleTagCheck(e, tagItem) }} />
+                                                            </Form>
+                                                        </div>
+                                                        <div className="tasks-tags-items-taskpage-label">
+                                                            {tagItem}
+                                                        </div>
+                                                    </div>
+                                                    <div className="tasks-tags-items-taskpage-delete" style={{ paddingRight: '10px' }}>
+                                                        {userHandler?.userInfo?.canvas_tags.find(t => t === tagItem) ? null : <CloseButton onClick={() => deleteTagGlobal(tagItem)} />}
+                                                    </div>
                                                 </ListGroup.Item>
                                             )
                                         })}

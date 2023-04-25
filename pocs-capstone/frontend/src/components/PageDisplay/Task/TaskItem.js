@@ -78,8 +78,8 @@ const TaskItem = ({ task, updateTask, deleteTask }) => {
                             <div className="fw-bold">Course {task.course_id}</div>
                         </div>
                     </ListGroup.Item> */}
-                        <ListGroup.Item className='task-item' action onClick={handleShow}>
-                            {/* <ListGroup.Item className='task-item'> */}
+                            <ListGroup.Item className='task-item' action onClick={handleShow}>
+                                {/* <ListGroup.Item className='task-item'> */}
                                 <div className="ms-2 me-auto">
                                     <div className="fw-bold task-title task-description">{task.title}</div>
                                     <div className="task-description">Course: {task.course_title}</div>

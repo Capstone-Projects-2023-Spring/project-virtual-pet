@@ -8,7 +8,6 @@
     letter-spacing: 0.5px;
     border-width: 0px;
     text-decoration: none;
-
 }
 
 .to-tabs .nav-link.active {
@@ -285,6 +284,14 @@
 /* Tags Dropdown CSS - TaskPage CSS*/
 .tag-type-checkoff {
     margin: 5px 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+    /* border-radius: 0px !important; */
+    font-size: calc(0.5vw + 0.5vh);
+    
+    
 }
 
 .tag-checkoff.list-group-item {
@@ -318,23 +325,60 @@
 
 /* For the Task edit / create component tag dropdown*/
 .tasks-dropdown-tags {
-    max-height: 40vh;
+    max-height: 30vh;
     overflow: scroll;
-    border-radius: 0px;
+    border-radius: .375rem;
+    border: 1px solid #ced4da;
+    overflow-wrap: anywhere;
 }
 
 .center-tasks-tags {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+
     overflow: scroll;
     max-height: 15vh;
     margin: 15px 0px;
     border-radius: .375rem;
     border: 1px solid #ced4da;
     width: 100%;
+    overflow-wrap: anywhere;
 
 }
+
+.tasks-tags-items-taskpage {
+  
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 0px !important;
+    font-size: calc(0.5vw + 0.5vh);
+}
+
+.tasks-tags-items-taskpage.list-group-item {
+    padding: 2px 5px;
+}
+
+
+.tasks-tags-items {
+    display: flex;
+    justify-content: space-between;
+
+}
+
+
+
+
+.tasks-tags-items-taskpage-label {
+    margin: 5px;
+}
+
+.tasks-tags-items-taskpage-check,
+.tasks-tags-items-taskpage-delete,
+.tasks-tags-items-taskpage-label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 
 /* button to add from global tag list */
 .tag-select.list-group-item {

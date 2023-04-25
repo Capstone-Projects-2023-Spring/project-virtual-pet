@@ -386,23 +386,24 @@ function CreateTaskForm({ showCreateTask, setShowCreateTask, task }) {
                 </Form.Group>
 
               </Form>
-              
+
 
               {tags.length !== 0 ?
-                <div className="center-tasks-tags">
-                  <ul className='tasks-tags'>
-
-                    {tags.map((tagItem, index) => {
-                      return (
-                        <li key={index}>
-
+                <ListGroup className="center-tasks-tags">
+                  {tags.map((tagItem, index) => {
+                    return (
+                      <ListGroup.Item key={index} className="tasks-tags-items">
+                        <div className="tasks-tags-items-taskpage-label">
                           {tagItem}
+                        </div>
+                        <div className="tasks-tags-items-taskpage-delete">
                           {task?.course_title && userHandler?.userInfo?.canvas_tags.find(cT => cT === tagItem) ? null : <CloseButton onClick={() => deleteTag(index)} />}
-                        </li>
-                      )
-                    })}
-                  </ul>
-                </div>
+                        </div>
+                      </ListGroup.Item>
+                    )
+                  })}
+
+                </ListGroup>
                 :
                 null
               }
