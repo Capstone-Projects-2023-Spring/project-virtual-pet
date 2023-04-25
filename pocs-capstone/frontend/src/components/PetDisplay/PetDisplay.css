@@ -21,15 +21,14 @@
   max-height: max-content;
 }
 
-.Board {
+/* .Board {
   width: 100%;
   height: 500px;
-  /* border: 2px solid black; */
   display: flex;
   flex-flow: column nowrap;
   align-self: center;
   justify-self: center;
-}
+} */
 
 .p-sprite-display {
   display: flex;

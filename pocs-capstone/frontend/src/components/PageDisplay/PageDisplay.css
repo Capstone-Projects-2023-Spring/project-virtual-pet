@@ -37,9 +37,7 @@
 
 .mini-page {
     display: flex;
-    flex-direction: row;
     justify-content: center;
-    min-width: 100%;
     align-items: center;
     height: auto;
     margin: 0px;
