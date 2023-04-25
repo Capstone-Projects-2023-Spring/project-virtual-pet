@@ -337,7 +337,7 @@ const PetDisplay = () => {
 
   return (
     <div className="pet-display-mobile">
-      <Card.Header className="pet-name">
+      <Card.Header style={{fontSize: "calc(0.8vw + 1.4vh"}} className="pet-name">
         {contextHandler?.avatarInfo.pet_name}
       </Card.Header>
       {/* <div className="pet-display-mobile-wrapper"> */}
