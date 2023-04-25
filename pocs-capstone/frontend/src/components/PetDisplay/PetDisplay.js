@@ -23,6 +23,10 @@ import { useContext, useEffect, useRef, useState } from "react";
 
 import bgimage from "../../images/bg.gif";
 import ProgressBar from "react-bootstrap/ProgressBar";
+import orange_click from '../../images/orange_cat_hi_scaled_5x_pngcrushed.png'
+import gray_click from '../../images/gray_cat_hi_scaled_5x_pngcrushed.png'
+import white_click from '../../images/white_cat_hi_scaled_5x_pngcrushed.png'
+import tux_click from '../../images/tux_cat_hi_scaled_5x_pngcrushed.png'
 
 import CalculatePetLevel from "../../algos/calculatePetLevel";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
@@ -67,6 +71,7 @@ const WEIGHTS = [
 
 const PetDisplay = () => {
   //TODO - shouldn't call calc-pet-lev 3 times
+    const [click, setClick] = useState(true);
   const axiosPrivate = useAxiosPrivate();
   const [mood, setMood] = useState(NEUTRAL); //H = happy, S = Sad, N = Neutral
   const [mooddesc, setMoodDesc] = useState("");
@@ -100,10 +105,32 @@ const PetDisplay = () => {
     contextHandler?.setSpritesheetInstance(spritesheet);
   }
 
-  const handleClick = (spritesheet) => {
-    spritesheet.goToAndPlay(1);
-    spritesheet.pause();
-  };
+    const handleClick = () => {
+        setClick(true);
+        switch (contextHandler?.avatarInfo.avatar_type) {
+            case 'CT':
+                // console.log(pet.palette);
+                switch (contextHandler?.avatarInfo.palette) {
+                    case 0:
+                        setAvatarImage(orange_click);
+                        break;
+                    case 1:
+                        setAvatarImage(gray_click);
+                        break;
+                    case 2:
+                        setAvatarImage(white_click);
+                        break;
+                    case 3:
+                        setAvatarImage(tux_click);
+                        break;
+                }
+         }
+        setTimeout(() => {
+          setAvatarImage(getavatarImage(contextHandler?.avatarInfo));
+          console.log(getavatarImage(contextHandler?.avatarInfo))
+        }, 1500);
+        setClick(false);
+      };
 
   function dateDelta(date1, date2) {
     return Math.floor((date1 - date2) / (1000 * 60 * 60 * 24));
@@ -196,85 +223,82 @@ const PetDisplay = () => {
     }
   }, [contextHandler]);
 
-  //TEMP USE EFFECT TO SEE MOOD
-  //Mary, plug in your state changes here!!
-  useEffect(() => {
-    console.log("MOOD------>", mood);
-    const getavatarImage = (pet) => {
-      switch (pet.avatar_type) {
-        case "CT":
-          console.log(pet.palette);
-          switch (pet.palette) {
-            case 0:
-              if (mood === "N") {
-                setAvatarImage(orange_cat);
-                //} else {
-                //    setAvatarImage(`orange_${mood}_gif`)
-                // console.log(`orange_${mood}_gif`)
-              } else if (mood === "H") {
-                setAvatarImage(orange_H_gif);
-              } else {
-                setAvatarImage(orange_S_gif);
-              }
-              return;
-            case 1:
-              if (level_info.LEVEL >= 20) {
-                if (mood === "N") {
-                  setAvatarImage(gray_N_prop);
-                } else if (mood === "H") {
-                  setAvatarImage(gray_H_prop);
-                  // setAvatarImage(`gray_${mood}_gif`)
-                  // console.log(`gray_${mood}_gif`)
-                } else {
-                  setAvatarImage(gray_S_prop);
-                }
-                return;
-              }
-              if (mood === "N") {
-                setAvatarImage(gray_cat);
-              } else if (mood === "H") {
-                setAvatarImage(gray_H_gif);
-                // setAvatarImage(`gray_${mood}_gif`)
-                // console.log(`gray_${mood}_gif`)
-              } else {
-                setAvatarImage(gray_S_gif);
-              }
-              return;
-            case 2:
-            case 1:
-              if (mood === "N") {
-                setAvatarImage(white_cat);
-              } else if (mood === "H") {
-                setAvatarImage(white_H_gif);
-                // setAvatarImage(`gray_${mood}_gif`)
-                // console.log(`gray_${mood}_gif`)
-              } else {
-                setAvatarImage(white_S_gif);
-              }
-              return;
-            case 3:
-            case 1:
-              if (mood === "N") {
-                setAvatarImage(tux_cat);
-              } else if (mood === "H") {
-                setAvatarImage(tux_H_gif);
-                // setAvatarImage(`gray_${mood}_gif`)
-                // console.log(`gray_${mood}_gif`)
-              } else {
-                setAvatarImage(tux_S_gif);
-              }
-              return;
-            // case 2:
-            //     if(mood==='N'){
-            //         setAvatarImage(orange_cat);
-            //    //} else {
-            //     //    setAvatarImage(`orange_${mood}_gif`)
-            //        // console.log(`orange_${mood}_gif`)
-            //    } else if (mood === 'H'){
-            //         setAvatarImage(orange_H_gif);
-            //    } else {
-            //         setAvatarImage(orange_S_gif);
-            //    }
+
+        const getavatarImage = (pet) => {
+            switch (pet.avatar_type) {
+                case 'CT':
+                    console.log(pet.palette);
+                    switch (pet.palette) {
+                        case 0:
+                            if (mood === 'N') {
+                                setAvatarImage(orange_cat);
+                                //} else {
+                                //    setAvatarImage(`orange_${mood}_gif`)
+                                // console.log(`orange_${mood}_gif`)
+                            } else if (mood === 'H') {
+                                setAvatarImage(orange_H_gif);
+                            } else {
+                                setAvatarImage(orange_S_gif);
+                            }
+                            return
+                        case 1:
+                            if(level_info.LEVEL >= 20){
+                                if(mood==='N'){
+                                    setAvatarImage(gray_N_prop);
+                               } else if(mood==='H'){
+                                    setAvatarImage(gray_H_prop);
+                                    // setAvatarImage(`gray_${mood}_gif`)
+                                    // console.log(`gray_${mood}_gif`)
+                               } else {
+                                setAvatarImage(gray_S_prop);
+                               }
+                               return
+                            }
+                            if(mood==='N'){
+                                setAvatarImage(gray_cat);
+                            } else if (mood === 'H') {
+                                setAvatarImage(gray_H_gif);
+                                // setAvatarImage(`gray_${mood}_gif`)
+                                // console.log(`gray_${mood}_gif`)
+                            } else {
+                                setAvatarImage(gray_S_gif);
+                            }
+                            return
+                        case 2:
+                        case 1:
+                            if (mood === 'N') {
+                                setAvatarImage(white_cat);
+                            } else if (mood === 'H') {
+                                setAvatarImage(white_H_gif);
+                                // setAvatarImage(`gray_${mood}_gif`)
+                                // console.log(`gray_${mood}_gif`)
+                            } else {
+                                setAvatarImage(white_S_gif);
+                            }
+                            return
+                        case 3:
+                        case 1:
+                            if (mood === 'N') {
+                                setAvatarImage(tux_cat);
+                            } else if (mood === 'H') {
+                                setAvatarImage(tux_H_gif);
+                                // setAvatarImage(`gray_${mood}_gif`)
+                                // console.log(`gray_${mood}_gif`)
+                            } else {
+                                setAvatarImage(tux_S_gif);
+                            }
+                            return
+                        // case 2:
+                        //     if(mood==='N'){
+                        //         setAvatarImage(orange_cat);
+                        //    //} else {
+                        //     //    setAvatarImage(`orange_${mood}_gif`)
+                        //        // console.log(`orange_${mood}_gif`)
+                        //    } else if (mood === 'H'){
+                        //         setAvatarImage(orange_H_gif);
+                        //    } else {
+                        //         setAvatarImage(orange_S_gif);
+                        //    }
 
             // switch(mood){
             //         case 'N':
@@ -290,16 +314,23 @@ const PetDisplay = () => {
             // return graysheet;
           }
 
-        case "DG":
-          return "";
-        case "CR":
-          return "";
-        case "RK":
-          return "";
-      }
-    };
+
+                case 'DG':
+                    return ''
+                case 'CR':
+                    return ''
+                case 'RK':
+                    return ''
+            }
+        }
+    //TEMP USE EFFECT TO SEE MOOD
+    //Mary, plug in your state changes here!!
+    useEffect(() => {
+        console.log("MOOD------>", mood)
+        
     getavatarImage(contextHandler?.avatarInfo);
-  }, [mood, level_info.LEVEL]);
+    },[mood, level_info.LEVEL])
+
 
   const retAvatarImage = () => {
     return avatarImage;
@@ -364,7 +395,7 @@ const PetDisplay = () => {
         <div className="Board">
           <div className="p-sprite-display">
             <img src={bgimage} alt="background" className="bg-sprite" />
-            <img src={avatarImage} className="p-sprite"></img>
+            <img src={avatarImage} className="p-sprite" onClick={handleClick}></img>
           </div>
         </div>
         <div className="pbar-exp">
