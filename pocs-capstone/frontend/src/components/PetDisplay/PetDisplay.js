@@ -21,6 +21,10 @@ import gray_N_prop from '../../images/propeller_hat.gif'
 import gray_H_prop from '../../images/prop_happy.gif'
 import gray_S_prop from '../../images/prop_sad.gif'
 import dingSound from '../../audio/dingsound.mp3'
+import orange_click from '../../images/orange_cat_hi_scaled_5x_pngcrushed.png'
+import gray_click from '../../images/gray_cat_hi_scaled_5x_pngcrushed.png'
+import white_click from '../../images/white_cat_hi_scaled_5x_pngcrushed.png'
+import tux_click from '../../images/tux_cat_hi_scaled_5x_pngcrushed.png'
 
 import { useDrop } from "react-dnd";
 import { useContext, useEffect, useRef, useState } from 'react';
@@ -75,6 +79,7 @@ const PetDisplay = () => {
 
 
     //TODO - shouldn't call calc-pet-lev 3 times
+    const [click, setClick] = useState(true);
     const axiosPrivate = useAxiosPrivate();
     const [mood, setMood] = useState(NEUTRAL); //H = happy, S = Sad, N = Neutral
     const [mooddesc, setMoodDesc] = useState("");
@@ -106,10 +111,32 @@ const PetDisplay = () => {
         contextHandler?.setSpritesheetInstance(spritesheet);
     }
 
-    const handleClick = (spritesheet) => {
-        spritesheet.goToAndPlay(1);
-        spritesheet.pause();
-    }
+    const handleClick = () => {
+        setClick(true);
+        switch (contextHandler?.avatarInfo.avatar_type) {
+            case 'CT':
+                // console.log(pet.palette);
+                switch (contextHandler?.avatarInfo.palette) {
+                    case 0:
+                        setAvatarImage(orange_click);
+                        break;
+                    case 1:
+                        setAvatarImage(gray_click);
+                        break;
+                    case 2:
+                        setAvatarImage(white_click);
+                        break;
+                    case 3:
+                        setAvatarImage(tux_click);
+                        break;
+                }
+         }
+        setTimeout(() => {
+          setAvatarImage(getavatarImage(contextHandler?.avatarInfo));
+          console.log(getavatarImage(contextHandler?.avatarInfo))
+        }, 1500);
+        setClick(false);
+      };
 
     function dateDelta(date1, date2) {
         return Math.floor((date1 - date2) / (1000 * 60 * 60 * 24))
@@ -204,10 +231,7 @@ const PetDisplay = () => {
     }
         , [contextHandler]);
 
-    //TEMP USE EFFECT TO SEE MOOD
-    //Mary, plug in your state changes here!!
-    useEffect(() => {
-        console.log("MOOD------>", mood)
+
         const getavatarImage = (pet) => {
             switch (pet.avatar_type) {
                 case 'CT':
@@ -307,8 +331,13 @@ const PetDisplay = () => {
                     return ''
             }
         }
+    //TEMP USE EFFECT TO SEE MOOD
+    //Mary, plug in your state changes here!!
+    useEffect(() => {
+        console.log("MOOD------>", mood)
+        
     getavatarImage(contextHandler?.avatarInfo);
-    },[mood, level_info.LEVEL])
+    },[mood, level_info.LEVEL, click])
 
 
     const retAvatarImage = () => {
