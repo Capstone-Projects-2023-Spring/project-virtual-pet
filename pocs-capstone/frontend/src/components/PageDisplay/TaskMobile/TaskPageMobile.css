@@ -201,6 +201,8 @@
 .dropdown-tags-mobile {
     max-height: 20vh;
     overflow: scroll;
+    border-radius: .375rem;
+    border: 1px solid #ced4da;
 }
 
 

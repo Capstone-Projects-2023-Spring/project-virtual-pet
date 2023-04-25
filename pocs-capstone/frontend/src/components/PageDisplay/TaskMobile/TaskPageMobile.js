@@ -104,7 +104,7 @@ const TaskPageMobile = () => {
                         </div> */}
                         <div className="ms-auto">
                             <Dropdown className="d-inline mx-2" autoClose="outside">
-                                <Dropdown.Toggle id="dropdown-autoclose-outside" drop="end">
+                                <Dropdown.Toggle drop="down-centered" id="dropdown-autoclose-outside">
                                     T
                                 </Dropdown.Toggle>
 

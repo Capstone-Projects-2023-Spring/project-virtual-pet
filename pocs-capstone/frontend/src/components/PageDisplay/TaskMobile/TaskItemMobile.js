@@ -21,8 +21,8 @@ const TaskItemMobile = ({ task, updateTask, deleteTask }) => {
         const mon_diff = due_date.getMonth() - today_date.getMonth()
         const date_diff = Math.round((Date.parse(due_date) - Date.parse(today_date)) / 86400000) + 1
 
-        const [mag, format] = (mon_diff === 0 && year_diff === 0) ? [date_diff, 'day'] : mon_diff < 12 && year_diff === 0 ? [mon_diff, 'month'] : [year_diff, 'year']
-        return mag > 0 ? (mag === 1 ? `in ${mag} ${format}` : `in ${mag} ${format}s`) : mag < 0 ? (mag === -1 ? `${Math.abs(mag)} ${format} ago` : `${Math.abs(mag)} ${format}s ago`) : ``
+        const [mag, format] = (mon_diff <= 1 && year_diff === 0) ? [date_diff, 'day'] : mon_diff < 12 && year_diff === 0 ? [mon_diff, 'month'] : [year_diff, 'year']
+        return mag > 0 ? (mag === 1 ? `in ${mag} ${format}` : `in ${mag} ${format}s`) : mag < 0 ? (mag === -1 ? `${Math.abs(mag)} ${format} ago` : `${Math.abs(mag)} ${format}s ago`) : `Today`
 
     }
 

@@ -90,7 +90,6 @@ function CreateTaskFormMobile({ showCreateTask, setShowCreateTask, task }) {
 
       if (task.course_title) {
         // If the task is a canvas assignment, not in the task's current tags list, and is IN the global list 
-
         if (task.course_title && !task.tags.find(t => task.course_title) && userHandler?.userInfo?.tags.find(t => t === task.course_title)) {
           const newTags = tags.concat(task.course_title)
           setTags(newTags)
