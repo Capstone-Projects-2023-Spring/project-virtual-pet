@@ -3,7 +3,7 @@ import PageDisplay from "./PageDisplay/PageDisplay.js";
 //import useAuth from '../hooks/useAuth.js'
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect, useRef, useContext } from "react";
-import { useWindowWidth } from "@react-hook/window-size";
+import { useWindowHeight, useWindowWidth } from "@react-hook/window-size";
 import useAxiosPrivate from "../hooks/useAxiosPrivate.js";
 import "./Main.css";
 import PopulateInv from "./Inventory/PopulateInv";
@@ -20,6 +20,7 @@ import expGain from '../audio/expgain.mp3';
 const Main = () => {
   const axiosPrivate = useAxiosPrivate();
   const [avatarInfo, setAvatar] = useState({});
+  const height = useWindowHeight();
   const width = useWindowWidth();
   const nav = useNavigate();
 
@@ -408,6 +409,7 @@ const Main = () => {
     leveledUp, 
     setLeveledUp,
     prev_level_info,
+    height,
     width,
     taskList,
     addTask,

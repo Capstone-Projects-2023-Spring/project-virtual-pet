@@ -43,8 +43,8 @@ const PageDisplay = () => {
 
                     </Tab>
                     <Tab eventKey="calendar" title="Calendar">
-                        <div style={{width: "1000px", margin:"50px"}}>
-                        <CalendarPageDesktop />
+                        <div style={{padding:"2vh"}}>
+                        <CalendarPageDesktop/>
                         </div>
                     </Tab>
                     <Tab eventKey="inventory" title="Inventory">
