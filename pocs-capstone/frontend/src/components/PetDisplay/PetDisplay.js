@@ -387,8 +387,8 @@ const PetDisplay = () => {
 
   return (
     <div className="pet-display">
-      <Card style={{ width: "25rem" }}>
-        <Card.Header className="pet-name">
+      <Card style={{ width: "25rem"}}>
+        <Card.Header style={{fontSize: "calc(0.8vw + 1.4vh"}} className="pet-name">
           {contextHandler?.avatarInfo.pet_name}
         </Card.Header>
 
