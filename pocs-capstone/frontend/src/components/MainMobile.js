@@ -8,12 +8,13 @@ import InventoryBoxMobile from "./Inventory/InventoryBoxMobile.js";
 import CalendarPageMobile from "./CalendarMobile/CalendarPageMobile.js";
 import TaskPageMobile from "./PageDisplay/TaskMobile/TaskPageMobile.js";
 import AccountProfilePageMobile from "./AccountProfileTabMobile/AccountProfilePageMobile";
-import canvas_bug from "../images/canvas_bug.png";
+import canvas_bug_mobile from "../images/canvas_bug_mobile.png";
 import useAxiosPrivate from "../hooks/useAxiosPrivate";
 import UserContext from "../context/UserContext";
 import { Tabs, Tab } from '@material-ui/core';
 import InventoryIcon from '@mui/icons-material/Inventory';
-import { List, PersonPin, CalendarToday, } from '@material-ui/icons';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import {List, CalendarToday, } from '@material-ui/icons';
 import { useNavigate } from "react-router-dom";
 import { Modal, ModalBody } from "react-bootstrap";
 
@@ -104,7 +105,6 @@ const MainMobile = () => {
       });
   }
 
-
     return (
         <div className="container-m" width={handlers?.width}>
             <MobilePetMoodContext.Provider value={moodHandlers} >
@@ -129,38 +129,40 @@ const MainMobile = () => {
             </div>
             </MobilePetMoodContext.Provider>
 
-      <div className="tab-container">
-        <Tabs value={activeTab} onChange={(event, newValue) => setActiveTab(newValue)}>
-          <Tab icon={<List />} />
-          <Tab icon={<CalendarToday />} />
-          <Tab icon={<InventoryIcon />} />
-          <Tab icon={<PersonPin />} />
+            <div className="tab-container" height={handlers?.height} >
+          <Tabs value={activeTab} onChange={(event, newValue) => setActiveTab(newValue)}>
+            <Tab icon={<List />} />
+            <Tab icon={<CalendarToday />} />
+            <Tab icon={<InventoryIcon />} />
+            <Tab icon={<AccountCircleIcon/>} />
+            </Tabs>
 
 
           {userInfo.canvas_token !== "" && userInfo.canvas_token !== "BADTOKEN" ? (
 
-            <div >
-              <button className="container-canvas-logo" onClick={getCourses}>
-                <img
-                  className={
+                <div flex="1">
+                  <button className="container-canvas-logo" onClick={getCourses}>
+                    <img
+                      className={
+                        retrievingAssignments ? "canvas-loading" : "logo-canvas"
+                      }
+                      src={canvas_bug_mobile}
+                      alt="CanvasBug"
+                      //style={{gridRow:'2'}}
+                    ></img>
+                  </button>
+                  {/* <span style={{ color: "white" }}>{nameError}</span> */}
+                </div>
+              ) : (
+                <div>
+                  <button className="container-canvas-logo" onClick={getCourses} width="0"/>
+                </div>
+              )} 
 
-                    retrievingAssignments ? "canvas-loading" : "logo-canvas"
-                  }
-                  alt="CanvasBug"
-                  src={canvas_bug}
-                //style={{gridRow:'2'}}
-                ></img>
-              </button>
-              {/* <span style={{ color: "white" }}>{nameError}</span> */}
-            </div>
-          ) : (
-            <div></div>
-          )}
-
-        </Tabs>
+          
+        </div>            
       </div>
-    </div>
-  );
+    );
 };
 
 export default MainMobile;

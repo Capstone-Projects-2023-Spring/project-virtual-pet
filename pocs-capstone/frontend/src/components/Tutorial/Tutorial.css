@@ -103,14 +103,6 @@
   background-color: antiquewhite;
   max-width: 95vw;
 }
-/* 
-html,
-body {
-  height: 100vh;
-  width: 100vw;
-  background-color: rgb(255, 198, 198);
-  overflow: hidden;
-} */
 @media (min-height: 667px) {
   .alice-container {
     max-height: 100vh;
@@ -178,6 +170,7 @@ body {
     padding-top: 20px;
     bottom: 0;
   }
+
   .header-tut {
     top: 10;
     background-color: bisque;
@@ -252,12 +245,10 @@ body {
     max-width: 20vw;
   }
 
-  .card {
+  .tut-card-about {
     background-color: rgb(255, 214, 214);
     flex: 1 1 auto;
     width: 0;
-    max-width: 20vw;
-    font-size: 20px;
     height: auto;
     display: flex;
     align-items: stretch;
@@ -265,77 +256,31 @@ body {
     flex-direction: column;
   }
 
-  .card-title-mobile {
+  .tut-card-about-mobile {
+    background-color: rgb(255, 214, 214);
+    flex: 1 1 auto;
+    width: 90vw;
+    height: 280px;
+    margin-top: -10px;
+    margin-bottom: 25px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    font-size: 12px;
+    overflow: hidden;
+  }
+
+  .tut-card-title-mobile {
     font-size: 20px;
     margin-top: 10px;
   }
 
-  .card-body-mobile {
+  .tut-card-body-mobile {
     margin-top: -10px;
-    font-size: 16px;
     overflow: hidden;
   }
 }
-
-.landingpage {
-  width: 100vw;
-  display: flex;
-  align-items: stretch;
-  justify-content: flex-start;
-  flex-direction: column;
-  height: 100%;
-  background-color: rgb(255, 198, 198);
-  /* padding: 10px; */
-}
-
-.landingpage-mobile {
-  height: 100vh;
-  width: 100vw;
-  display: flex;
-  align-items: stretch;
-  justify-content: flex-start;
-  flex-direction: column;
-  background-color: rgb(255, 198, 198);
-  padding: 10px;
-  overflow: hidden;
-}
-
-.card {
-  background-color: rgb(255, 214, 214);
-  flex: 1 1 auto;
-  width: 0;
-  height: auto;
-  display: flex;
-  align-items: stretch;
-  justify-content: flex-start;
-  flex-direction: column;
-}
-
-.card-about-mobile {
-  background-color: rgb(255, 214, 214);
-  flex: 1 1 auto;
-  width: 90vw;
-  height: 280px;
-  margin-top: -10px;
-  margin-bottom: 25px;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  font-size: 12px;
-  overflow: hidden;
-}
-
-.card-title-mobile {
-  font-size: 20px;
-  margin-top: 10px;
-}
-
-.card-body-mobile {
-  margin-top: -10px;
-  overflow: hidden;
-}
-
-.landingbutton-register-mobile {
+.tut-submit-button {
   cursor: pointer;
   padding: 8px;
   margin: 5px;
@@ -347,55 +292,7 @@ body {
   position: relative;
 }
 
-.landingbutton-login-mobile {
-  cursor: pointer;
-  padding: 8px;
-  margin: 5px;
-  background: rgb(172, 65, 100);
-  color: #ffffff;
-  border-radius: 10px;
-  font-size: 20px;
-  transition: all 0.1s ease-in;
-  position: relative;
-}
-
-.landingbutton {
-  cursor: pointer;
-  /*border: 1px solid #1a202c;
-  ;*/
-  /*display:block;*/
-  padding: 8px;
-  text-align: center;
-  align-self: center;
-  justify-content: center;
-  display: inline-block;
-  width: 10%;
-  /* height:20vmax; */
-  /*width:auto;*/
-  margin: 5px;
-  background: rgb(172, 65, 100);
-  color: #ffffff;
-  border-radius: 10px;
-  font-size: 20px;
-  transition: all 0.1s ease-in;
-  position: relative;
-}
-
-.image {
-  /* position: absolute; */
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  height: 500px;
-  width: 500px;
-  align-items: center;
-  /* top:auto; */
-  /* top: 30px;
-  left: 30px; */
-  /* top: 220px; */
-}
-
-.image-kitty-mobile {
+.tut-image-kitty-mobile {
   margin-left: auto;
   margin-right: auto;
   margin-top: -70px;
@@ -403,7 +300,8 @@ body {
   width: 300px;
   justify-content: center;
 }
-.landingbutton:hover {
+
+.tut-landingbutton:hover {
   background: #3a0422;
   color: #ffffff;
 }

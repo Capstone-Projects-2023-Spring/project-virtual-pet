@@ -11,13 +11,6 @@
 
 }
 
-.tasklist-position {
-    display: flex;
-    flex-direction: column;
-    min-width: 100%;
-    min-height: 50%;
-}
-
 .to-tabs .nav-link.active {
     background-color: rgba(255, 255, 255, 0);
     color: rgb(43, 99, 158);
@@ -55,7 +48,7 @@
 .task-scroll {
     /* min-height: 20vh; */
     min-height: 85vh;
-    max-height: 100%;
+    max-height: 85vh;
     border-radius: 0px !important;
 
     margin-bottom: 10px;
