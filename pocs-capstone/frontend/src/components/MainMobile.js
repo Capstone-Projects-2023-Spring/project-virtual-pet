@@ -66,7 +66,7 @@ const MainMobile = () => {
         axiosPrivate.put(`/user-data/${userInfo.id}/`, updatedUser)
           .then((response) => {
             setUserInfo(updatedUser);
-            resetSubmitTokenState("");
+            resetSubmitTokenState("Please reload tasks!");
             nav(0)
           })
           .catch((err) => {
