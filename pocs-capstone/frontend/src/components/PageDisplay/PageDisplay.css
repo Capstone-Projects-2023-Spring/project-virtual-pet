@@ -2,7 +2,7 @@
 .page-display {
     width: 60vw;
     max-width: 60vw;
-    height: 100vh;
+    height: 100% ;
     display: flex;
     align-items: stretch;
     justify-content: flex-start;
