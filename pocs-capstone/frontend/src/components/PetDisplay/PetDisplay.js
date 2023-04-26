@@ -1,10 +1,7 @@
-import PetSprite from "./PetSprite.js";
 import Card from "react-bootstrap/Card";
 import ListGroup from "react-bootstrap/ListGroup";
 import "./PetDisplay.css";
 import "../Inventory/Inventory.css";
-// import orangesheet from '../../../src/images/orange_happy_sheet.png'
-// import graysheet from '../../../src/images/gray_happy_sheet.png'
 import orange_H_gif from "../../images/orange_happy_gif.gif";
 import orange_S_gif from "../../images/orange_sad_gif.gif";
 import gray_H_gif from "../../images/gray_happy_gif.gif";
@@ -22,14 +19,16 @@ import gray_H_prop from "../../images/prop_happy.gif";
 import gray_S_prop from "../../images/prop_sad.gif";
 import dingSound from "../../audio/dingsound.mp3";
 
-import { useDrop } from "react-dnd";
 import { useContext, useEffect, useRef, useState } from "react";
-import Spritesheet from "react-responsive-spritesheet";
+
 import bgimage from "../../images/bg.gif";
 import ProgressBar from "react-bootstrap/ProgressBar";
-import CalculateXP from "../../algos/assignXP";
+import orange_click from "../../images/orange_cat_hi_scaled_5x_pngcrushed.png";
+import gray_click from "../../images/gray_cat_hi_scaled_5x_pngcrushed.png";
+import white_click from "../../images/white_cat_hi_scaled_5x_pngcrushed.png";
+import tux_click from "../../images/tux_cat_hi_scaled_5x_pngcrushed.png";
+
 import CalculatePetLevel from "../../algos/calculatePetLevel";
-//import AvatarContext from "../../context/AvatarContext";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 import GlobalContext from "../../context/GlobalContext.js";
 // (next level - remainder) / (next level) //
@@ -40,7 +39,16 @@ const HAPPY = "H";
 
 const TASK_URL = "/tasks/";
 const USER_URL = "/user-data/";
-const TODAY = new Date();
+var YESTERDAY = new Date(Date.now() - 86400000);
+var TODAY = new Date();
+YESTERDAY = new Date(
+  YESTERDAY.toLocaleString("en-US", { timeZone: "America/New_York" }).split(
+    ","
+  )[0]
+);
+TODAY = new Date(
+  TODAY.toLocaleString("en-US", { timeZone: "America/New_York" }).split(",")[0]
+);
 
 const WEIGHTS = [
   "15 paperclips",
@@ -72,6 +80,7 @@ const WEIGHTS = [
 
 const PetDisplay = () => {
   //TODO - shouldn't call calc-pet-lev 3 times
+  const [click, setClick] = useState(true);
   const axiosPrivate = useAxiosPrivate();
   const [mood, setMood] = useState(NEUTRAL); //H = happy, S = Sad, N = Neutral
   const [mooddesc, setMoodDesc] = useState("");
@@ -105,9 +114,31 @@ const PetDisplay = () => {
     contextHandler?.setSpritesheetInstance(spritesheet);
   }
 
-  const handleClick = (spritesheet) => {
-    spritesheet.goToAndPlay(1);
-    spritesheet.pause();
+  const handleClick = () => {
+    setClick(true);
+    switch (contextHandler?.avatarInfo.avatar_type) {
+      case "CT":
+        // console.log(pet.palette);
+        switch (contextHandler?.avatarInfo.palette) {
+          case 0:
+            setAvatarImage(orange_click);
+            break;
+          case 1:
+            setAvatarImage(gray_click);
+            break;
+          case 2:
+            setAvatarImage(white_click);
+            break;
+          case 3:
+            setAvatarImage(tux_click);
+            break;
+        }
+    }
+    setTimeout(() => {
+      setAvatarImage(getavatarImage(contextHandler?.avatarInfo));
+      console.log(getavatarImage(contextHandler?.avatarInfo));
+    }, 1500);
+    setClick(false);
   };
 
   function dateDelta(date1, date2) {
@@ -133,9 +164,7 @@ const PetDisplay = () => {
       const birthday_delta = dateDelta(birthday, TODAY);
       if (birthday_delta < 1 && birthday_delta >= 0) {
         setMood(HAPPY);
-        setMoodDesc(
-          "I'm so happy it's your birthday!! Yippee!!"
-        );
+        setMoodDesc("I'm so happy it's your birthday!! Yippee!!");
         console.log("BIRTHDAY HAPPY:", birthday_delta);
         return;
       }
@@ -190,7 +219,7 @@ const PetDisplay = () => {
           if (task_delta < 0) {
             setMood(SAD);
             setMoodDesc(
-              "You've gotten so much done! I'm so happy! :D"
+              "I'm stressed. You have overdue tasks... please complete them :("
             );
             console.log("TASK SAD");
             return;
@@ -209,116 +238,115 @@ const PetDisplay = () => {
         return;
       }
       setMood(HAPPY); //TODO we'll check grades here as well
-      setMoodDesc(
-        "You've gotten so much done! I'm so happy! :D"
-      );
+      setMoodDesc("You've gotten so much done! I'm so happy! :D");
       console.log("TASK HAPPY");
       return;
     }
   }, [contextHandler]);
 
+  const getavatarImage = (pet) => {
+    switch (pet.avatar_type) {
+      case "CT":
+        console.log(pet.palette);
+        switch (pet.palette) {
+          case 0:
+            if (mood === "N") {
+              setAvatarImage(orange_cat);
+              //} else {
+              //    setAvatarImage(`orange_${mood}_gif`)
+              // console.log(`orange_${mood}_gif`)
+            } else if (mood === "H") {
+              setAvatarImage(orange_H_gif);
+            } else {
+              setAvatarImage(orange_S_gif);
+            }
+            return;
+          case 1:
+            if (level_info.LEVEL >= 20) {
+              if (mood === "N") {
+                setAvatarImage(gray_N_prop);
+              } else if (mood === "H") {
+                setAvatarImage(gray_H_prop);
+                // setAvatarImage(`gray_${mood}_gif`)
+                // console.log(`gray_${mood}_gif`)
+              } else {
+                setAvatarImage(gray_S_prop);
+              }
+              return;
+            }
+            if (mood === "N") {
+              setAvatarImage(gray_cat);
+            } else if (mood === "H") {
+              setAvatarImage(gray_H_gif);
+              // setAvatarImage(`gray_${mood}_gif`)
+              // console.log(`gray_${mood}_gif`)
+            } else {
+              setAvatarImage(gray_S_gif);
+            }
+            return;
+          case 2:
+          case 1:
+            if (mood === "N") {
+              setAvatarImage(white_cat);
+            } else if (mood === "H") {
+              setAvatarImage(white_H_gif);
+              // setAvatarImage(`gray_${mood}_gif`)
+              // console.log(`gray_${mood}_gif`)
+            } else {
+              setAvatarImage(white_S_gif);
+            }
+            return;
+          case 3:
+          case 1:
+            if (mood === "N") {
+              setAvatarImage(tux_cat);
+            } else if (mood === "H") {
+              setAvatarImage(tux_H_gif);
+              // setAvatarImage(`gray_${mood}_gif`)
+              // console.log(`gray_${mood}_gif`)
+            } else {
+              setAvatarImage(tux_S_gif);
+            }
+            return;
+          // case 2:
+          //     if(mood==='N'){
+          //         setAvatarImage(orange_cat);
+          //    //} else {
+          //     //    setAvatarImage(`orange_${mood}_gif`)
+          //        // console.log(`orange_${mood}_gif`)
+          //    } else if (mood === 'H'){
+          //         setAvatarImage(orange_H_gif);
+          //    } else {
+          //         setAvatarImage(orange_S_gif);
+          //    }
+
+          // switch(mood){
+          //         case 'N':
+          //             setAvatarImage(gray_cat);
+          //         case 'H':
+          //             setAvatarImage(gray_H_gif);
+          //         case 'S':
+          //             setAvatarImage(gray_S_gif);
+          //   //  }
+
+          // CHANGE TO IMAGE OF OTHER CAT (black palette)
+          // return require('../../images/graycat.png')
+          // return graysheet;
+        }
+
+      case "DG":
+        return "";
+      case "CR":
+        return "";
+      case "RK":
+        return "";
+    }
+  };
   //TEMP USE EFFECT TO SEE MOOD
   //Mary, plug in your state changes here!!
   useEffect(() => {
     console.log("MOOD------>", mood);
-    const getavatarImage = (pet) => {
-      switch (pet.avatar_type) {
-        case "CT":
-          console.log(pet.palette);
-          switch (pet.palette) {
-            case 0:
-              if (mood === "N") {
-                setAvatarImage(orange_cat);
-                //} else {
-                //    setAvatarImage(`orange_${mood}_gif`)
-                // console.log(`orange_${mood}_gif`)
-              } else if (mood === "H") {
-                setAvatarImage(orange_H_gif);
-              } else {
-                setAvatarImage(orange_S_gif);
-              }
-              return;
-            case 1:
-              if (level_info.LEVEL >= 20) {
-                if (mood === "N") {
-                  setAvatarImage(gray_N_prop);
-                } else if (mood === "H") {
-                  setAvatarImage(gray_H_prop);
-                  // setAvatarImage(`gray_${mood}_gif`)
-                  // console.log(`gray_${mood}_gif`)
-                } else {
-                  setAvatarImage(gray_S_prop);
-                }
-                return;
-              }
-              if (mood === "N") {
-                setAvatarImage(gray_cat);
-              } else if (mood === "H") {
-                setAvatarImage(gray_H_gif);
-                // setAvatarImage(`gray_${mood}_gif`)
-                // console.log(`gray_${mood}_gif`)
-              } else {
-                setAvatarImage(gray_S_gif);
-              }
-              return;
-            case 2:
-            case 1:
-              if (mood === "N") {
-                setAvatarImage(white_cat);
-              } else if (mood === "H") {
-                setAvatarImage(white_H_gif);
-                // setAvatarImage(`gray_${mood}_gif`)
-                // console.log(`gray_${mood}_gif`)
-              } else {
-                setAvatarImage(white_S_gif);
-              }
-              return;
-            case 3:
-            case 1:
-              if (mood === "N") {
-                setAvatarImage(tux_cat);
-              } else if (mood === "H") {
-                setAvatarImage(tux_H_gif);
-                // setAvatarImage(`gray_${mood}_gif`)
-                // console.log(`gray_${mood}_gif`)
-              } else {
-                setAvatarImage(tux_S_gif);
-              }
-              return;
-            // case 2:
-            //     if(mood==='N'){
-            //         setAvatarImage(orange_cat);
-            //    //} else {
-            //     //    setAvatarImage(`orange_${mood}_gif`)
-            //        // console.log(`orange_${mood}_gif`)
-            //    } else if (mood === 'H'){
-            //         setAvatarImage(orange_H_gif);
-            //    } else {
-            //         setAvatarImage(orange_S_gif);
-            //    }
 
-            // switch(mood){
-            //         case 'N':
-            //             setAvatarImage(gray_cat);
-            //         case 'H':
-            //             setAvatarImage(gray_H_gif);
-            //         case 'S':
-            //             setAvatarImage(gray_S_gif);
-            //   //  }
-
-            // CHANGE TO IMAGE OF OTHER CAT (black palette)
-            // return require('../../images/graycat.png')
-            // return graysheet;
-          }
-
-        case "DG":
-          return "";
-        case "CR":
-          return "";
-        case "RK":
-          return "";
-      }
-    };
     getavatarImage(contextHandler?.avatarInfo);
   }, [mood, level_info.LEVEL]);
 
@@ -378,14 +406,21 @@ const PetDisplay = () => {
   return (
     <div className="pet-display">
       <Card style={{ width: "25rem" }}>
-        <Card.Header className="pet-name">
+        <Card.Header
+          style={{ fontSize: "calc(0.8vw + 1.4vh" }}
+          className="pet-name"
+        >
           {contextHandler?.avatarInfo.pet_name}
         </Card.Header>
 
         <div className="Board">
           <div className="p-sprite-display">
             <img src={bgimage} alt="background" className="bg-sprite" />
-            <img src={avatarImage} className="p-sprite"></img>
+            <img
+              src={avatarImage}
+              className="p-sprite"
+              onClick={handleClick}
+            ></img>
           </div>
         </div>
         <div className="pbar-exp">
