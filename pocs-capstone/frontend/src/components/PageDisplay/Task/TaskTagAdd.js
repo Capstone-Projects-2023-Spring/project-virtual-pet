@@ -216,7 +216,7 @@ function TaskTagAdd({ showCreateTask, setShowCreateTask, task }) {
                                         {tagItem}
                                     </div>
                                     <div className="tasks-tags-items-taskpage-delete">
-                                        {task?.course_title === tagItem && userHandler?.userInfo?.canvas_tags.find(cT => cT === tagItem) ? null : <CloseButton onClick={() => deleteTag(index)} />}
+                                        {task?.course_title === tagItem && userHandler?.userInfo?.canvas_tags?.find(cT => cT === tagItem) ? null : <CloseButton onClick={() => deleteTag(index)} />}
                                     </div>
                                 </ListGroup.Item>
                             )

@@ -143,7 +143,7 @@ const TaskPageMobile = () => {
                                                         </div>
                                                     </div>
                                                     <div className="tasks-tags-items-taskpage-delete" style={{ paddingRight: '10px' }}>
-                                                        {userHandler?.userInfo?.canvas_tags.find(t => t === tagItem) ? null : <CloseButton onClick={() => deleteTagGlobal(tagItem)} />}
+                                                        {userHandler?.userInfo?.canvas_tags?.find(t => t === tagItem) ? null : <CloseButton onClick={() => deleteTagGlobal(tagItem)} />}
                                                     </div>
 
                                                 </ListGroup.Item>

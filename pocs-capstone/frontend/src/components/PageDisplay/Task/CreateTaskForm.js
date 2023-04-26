@@ -90,7 +90,7 @@ function CreateTaskForm({ showCreateTask, setShowCreateTask, task }) {
       if (task.course_title) {
         // If the task is a canvas assignment, not in the task's current tags list, and is IN the global list 
 
-        if (task.course_title && !task.tags.find(t => task.course_title) && userHandler?.userInfo?.tags.find(t => t === task.course_title)) {
+        if (task.course_title && !task.tags.find(t => task.course_title) && userHandler?.userInfo?.tags?.find(t => t === task.course_title)) {
           const newTags = tags.concat(task.course_title)
           setTags(newTags)
           axiosPrivate.put(`/tasks/${task.task_id}/`, { ...task, tags: newTags })
@@ -119,7 +119,7 @@ function CreateTaskForm({ showCreateTask, setShowCreateTask, task }) {
 
       }
     }
-  }, [userHandler.userInfo])
+  }, [userHandler?.userInfo])
 
 
 
@@ -397,7 +397,7 @@ function CreateTaskForm({ showCreateTask, setShowCreateTask, task }) {
                           {tagItem}
                         </div>
                         <div className="tasks-tags-items-taskpage-delete">
-                          {task?.course_title && userHandler?.userInfo?.canvas_tags.find(cT => cT === tagItem) ? null : <CloseButton onClick={() => deleteTag(index)} />}
+                          {task?.course_title && userHandler?.userInfo?.canvas_tags?.find(cT => cT === tagItem) ? null : <CloseButton onClick={() => deleteTag(index)} />}
                         </div>
                       </ListGroup.Item>
                     )
