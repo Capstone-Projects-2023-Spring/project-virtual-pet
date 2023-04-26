@@ -59,6 +59,8 @@ const Header = ({ }) => {
           })
           .catch((err) => {
             console.log("NAH?", err);
+            resetSubmitTokenState("Please reload tasks!");
+            nav(0)
           });
 
 

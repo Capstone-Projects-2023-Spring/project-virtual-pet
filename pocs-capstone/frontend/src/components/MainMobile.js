@@ -71,6 +71,8 @@ const MainMobile = () => {
           })
           .catch((err) => {
             console.log(err);
+            resetSubmitTokenState("Please reload tasks!");
+            nav(0)
           });
 
       })
