@@ -83,7 +83,7 @@ const TaskItem = ({ task, updateTask, deleteTask }) => {
                                 <div className="ms-2 me-auto">
                                     <div className="fw-bold task-title task-description">{task.title}</div>
                                     <div className="task-description">Course: {task.course_title}</div>
-                                    <div className="task-description"><b>{task.tags}</b></div>
+                                    {/* <div className="task-description"><b>{task.tags}</b></div> */}
                                     <div className='task-description'>{task.description}</div>
                                     {task.due_date ?
                                         <div className='due-date'>Due {calculateDueDate(task.due_date)}</div> :
@@ -122,7 +122,7 @@ const TaskItem = ({ task, updateTask, deleteTask }) => {
                                     <div className="fw-bold task-description">
                                         <Stack direction="horizontal" gap={2}>
                                             <div className='task-title'>{task.title}</div>
-                                            <div>{task.tags}</div>
+                                            {/* <div>{task.tags}</div> */}
                                             <div><Badge bg="secondary">Size: {task.task_type}</Badge></div>
                                             <div><Badge bg="secondary">Level: {task.task_level}</Badge></div>
                                         </Stack>
