@@ -45,11 +45,80 @@ const Main = () => {
   const baseURL = `/tasks/`
 
   useEffect(() => {
-    window.OneSignal = window.OneSignal |
-      OneSignal.init({
-        appId: "03d68522-7024-4cff-a04b-8f49eb789abe",
-        safari_web_id: "web.onesignal.auto.4da9f50a-e5cd-4bfe-8999-da1af6f61d49",
-      });
+    OneSignal.init({
+      appId: "03d68522-7024-4cff-a04b-8f49eb789abe",
+      safari_web_id: "web.onesignal.auto.4da9f50a-e5cd-4bfe-8999-da1af6f61d49",
+
+      allowLocalhostAsSecureOrigin: false, // change to true for testing on localhost, false for https site
+
+      autoRegister: false, //prompt user first
+      autoResubscribe: true, //if user clears cache, they'll be automatically resubscribed without being asked
+      path: "/",
+      serviceWorkerPath: "OneSignalSDKWorker.js",
+      serviceWorkerParam: {
+        scope: "/"
+      },
+      subdomainName: null,
+      promptOptions: { //set to true to enable prompt instead of (or addition to) bell
+        autoPrompt: false,
+        native: {
+          enabled: false,
+          autoPrompt: false,
+          pageViews: 1,
+          timeDelay: 0,
+        },
+      },
+      welcomeNotification: { //specify welcome notification message
+        disable: false,
+        title: "Welcome to Study Buddy!",
+        message: "Thanks for subscribing to push notifications!",
+        url: "https://studybuddy.life/?_osp=do_not_open"
+      },
+      notifyButton: { // subscription bell in lower right corner; goes away after subscribing
+        enable: true,
+        size: "medium",
+        position: "bottom-right",
+        showCredit: false,
+        displayPredicate: () => OneSignal.isPushNotificationsEnabled().then(isEnabled => isEnabled ? false : true), //make it go away when user subscribes
+        offset: { //adjust where notification bell appears on screen
+          bottom: "15px",
+          left: "15px",
+          right: "15px"
+        },
+        colors: {
+          "circle.background": "#d73c3c",
+          "circle.foreground": "#ffc6c6",
+          "badge.background": "black",
+          "badge.foreground": "white",
+          "badge.bordercolor": "black",
+          "pulse.color": "#ffc6c6",
+          "dialog.button.background.hovering": "#d73c3c",
+          "dialog.button.background.active": "#d73c3c",
+          "dialog.button.background": "#d73c3c",
+          "dialog.button.foreground": "white"
+        },
+        text: {
+          "tip.state.unsubscribed": "Subscribe to notifications",
+          "tip.state.subscribed": "You're subscribed to notifications",
+          "tip.state.blocked": "You've blocked notifications",
+          "message.prenotify": "Subscribe to notifications",
+          "message.action.subscribing": "Thanks for subscribing!",
+          "message.action.subscribed": "Thanks for subscribing!",
+          "message.action.resubscribed": "Thanks for subscribing!",
+          "message.action.unsubscribed": "You won't receive notifications again",
+          "dialog.main.title": "Manage Notifications",
+          "dialog.main.button.subscribe": "Subscribe",
+          "dialog.main.button.unsubscribe": "Unsubscribe",
+          "dialog.blocked.title": "Unblock Notifications",
+          "dialog.blocked.message": "Click here to learn how to unblock notifications."
+        }
+      },
+      persistNotification: false, // on non-mobile Chrome, the notification will not go away automatically unless this is false
+      notificationClickHandlerMatch: "exact",
+      notificationClickHandlerAction: "navigate",
+
+    });
+
     OneSignal.getUserId().then(playerId => {
       //Send the playerId to your server to associate it with the user
       console.log("Here is the user's device/browser id:", playerId);
