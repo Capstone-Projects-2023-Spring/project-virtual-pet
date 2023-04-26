@@ -14,6 +14,7 @@ import gray_cat from "../images/gray_neutral_scaled_5x_pngcrushed.png";
 import orange_cat from "../images/orange_neutral_scaled_5x_pngcrushed.png";
 import white_cat from "../images/whitecat_scaled_5x_pngcrushed.png";
 import tux_cat from "../images/tux_cat_scaled_5x_pngcrushed.png";
+import pet_rock from "../images/pet_rock_scaled_5x_pngcrushed.png"
 //import selectpet from './selectpet'
 
 const AVATAR_URL = "/avatar/";
@@ -36,7 +37,7 @@ const AnimateChoice = () => {
   const [enteredText, setEnteredText] = useState("");
 
   const [nameError, setNameError] = useState("");
-  const petType = "CT";
+  const [petType, setPetType] = useState("");
   const navigator = useNavigate();
   const width = useWindowWidth();
   const textChangeHandler = (i) => {
@@ -68,13 +69,19 @@ const AnimateChoice = () => {
       setSubmittedText(enteredText);
       const updatedShowTextBox = [...showTextBox];
       updatedShowTextBox[index] = false;
-      setShowTextBox(updatedShowTextBox);
+      setShowTextBox(updatedShowTextBox); 
 
       const currentDate = new Date().toISOString().split('T')[0]
       const last_feed = YESTERDAY.toISOString().split('T')[0];
       const last_interaction = currentDate;
       const total_xp = 1;
-
+      console.log("selected index:", selectedIndex);
+      if(selectedIndex === 4){
+        setPetType("RK")
+      } else {
+        setPetType("CT")
+      }
+      console.log("petType:", petType)
       const petInfo = {
         avatar_type: petType,
         last_interaction,
@@ -99,6 +106,7 @@ const AnimateChoice = () => {
 
   const handleSelect = (selectedPet) => {
     setSelectedIndex(selectedPet);
+    
   };
 
   /*      axios.post('http://127.0.0.1:8000/avatar/', petInfo)
@@ -176,6 +184,15 @@ const AnimateChoice = () => {
               index={3}
               ref={spriteRefs[3]}
             ></img>
+          </Carousel.Item>
+          <Carousel.Item>
+            <img
+              src = {pet_rock}
+              alt = "rock"
+              className="sprite-container"
+              index={4}
+              ref={spriteRefs[4]}>
+              </img>
           </Carousel.Item>
         </Carousel>
         {/* </div> */}

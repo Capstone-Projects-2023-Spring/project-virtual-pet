@@ -27,7 +27,7 @@ import orange_click from '../../images/orange_cat_hi_scaled_5x_pngcrushed.png'
 import gray_click from '../../images/gray_cat_hi_scaled_5x_pngcrushed.png'
 import white_click from '../../images/white_cat_hi_scaled_5x_pngcrushed.png'
 import tux_click from '../../images/tux_cat_hi_scaled_5x_pngcrushed.png'
-
+import pet_rock from "../../images/pet_rock_scaled_5x_pngcrushed.png"
 import CalculatePetLevel from "../../algos/calculatePetLevel";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 import GlobalContext from "../../context/GlobalContext.js";
@@ -320,7 +320,8 @@ const PetDisplay = () => {
                 case 'CR':
                     return ''
                 case 'RK':
-                    return ''
+                  setAvatarImage(pet_rock);
+                    return
             }
         }
     //TEMP USE EFFECT TO SEE MOOD

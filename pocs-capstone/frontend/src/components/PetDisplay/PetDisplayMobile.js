@@ -35,6 +35,7 @@ import orange_click from '../../images/orange_cat_hi_scaled_5x_pngcrushed.png'
 import gray_click from '../../images/gray_cat_hi_scaled_5x_pngcrushed.png'
 import white_click from '../../images/white_cat_hi_scaled_5x_pngcrushed.png'
 import tux_click from '../../images/tux_cat_hi_scaled_5x_pngcrushed.png'
+import pet_rock from "../../images/pet_rock_scaled_5x_pngcrushed.png"
 // (next level - remainder) / (next level) //
 import dingSound from "../../audio/dingsound.mp3";
 
@@ -73,6 +74,7 @@ const PetDisplay = () => {
   //const [next_level, setNextLevel] = useState(CalculatePetLevel(avatar_handler.avatarInfo.total_xp).REMAINDER);
   const [level_info, setLevelInfo] = useState(
     CalculatePetLevel(contextHandler?.avatarInfo.total_xp)
+    
   );
   // const [ratio,setRatio] = useState(level_info.NEXT_LEVEL-level_info.REMAINDER/level_info.NEXT_LEVEL ) //TODO susss
 
@@ -292,7 +294,8 @@ const PetDisplay = () => {
       case "CR":
         return "";
       case "RK":
-        return "";
+        setAvatarImage(pet_rock);
+        return
     }
   };
 
