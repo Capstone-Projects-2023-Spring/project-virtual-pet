@@ -6,6 +6,7 @@ import { useState, useEffect, useRef, useContext } from "react";
 import { useWindowWidth } from "@react-hook/window-size";
 import useAxiosPrivate from "../hooks/useAxiosPrivate.js";
 import "./Main.css";
+import OneSignal from 'react-onesignal';
 
 import PopulateInv from "./Inventory/PopulateInv";
 import LockedInv from "./Inventory/LockedInv.js";
@@ -41,6 +42,18 @@ const Main = () => {
   const userContext = useContext(UserContext)
 
   const baseURL = `/tasks/`
+
+  useEffect(() => {
+    window.OneSignal = window.OneSignal |
+      OneSignal.init({
+        appId: "03d68522-7024-4cff-a04b-8f49eb789abe",
+        safari_web_id: "web.onesignal.auto.4da9f50a-e5cd-4bfe-8999-da1af6f61d49",
+      });
+    OneSignal.getUserId().then(playerId => {
+      //Send the playerId to your server to associate it with the user
+      console.log("Here is the user's device/browser id:", playerId);
+    })
+  }, []);
 
   let spriteSheetRef = useRef(null);
   useEffect(() => {
@@ -252,7 +265,7 @@ const Main = () => {
   }
 
   // const handlers = {
-    
+
   // }
 
 
@@ -339,7 +352,7 @@ const Main = () => {
   // Moved from PetDisplay - passed base type and level when called in Candy
   const getExp = (candy_base_type, candy_level) => {
     console.log("HELLOOOERONKEJRNGEKJRG")
-  
+
     const received_xp = CalculateXP(candy_base_type, candy_level);
 
 
@@ -347,10 +360,10 @@ const Main = () => {
 
     const today = new Date();
     const todayString = today.toISOString().split("T")[0];
-    
+
     const prevLevel = CalculatePetLevel(avatarInfo.total_xp)
     setPrevLevelInfo(prevLevel)
-   
+
     const updatedAvatar = {
       ...avatarInfo,
       total_xp: total_xp,
@@ -358,21 +371,21 @@ const Main = () => {
     };
 
     console.log("PREV LEVEL", prevLevel)
-  
+
     axiosPrivate
       .patch(`/avatar/${avatarInfo.avatar_id}/`, updatedAvatar)
-      .then((response) => { 
-        
+      .then((response) => {
+
         const nextLevel = CalculatePetLevel(response.data.total_xp)
-        if (prevLevel.LEVEL < nextLevel.LEVEL){
+        if (prevLevel.LEVEL < nextLevel.LEVEL) {
           setLeveledUp(true)
         }
-      
+
         setAvatar(response.data); //change this to add to previous state instead of replacing completely (in case of >1 avatar for 1 user)
         gainExpAudio.play()
         getLevel(avatarInfo.total_xp);
 
-        
+
       })
       .catch((err) => {
         console.log(err);
@@ -399,7 +412,7 @@ const Main = () => {
     animateSpriteSheet,
     setSpritesheetInstance,
     getExp,
-    leveledUp, 
+    leveledUp,
     setLeveledUp,
     prev_level_info,
     width,
