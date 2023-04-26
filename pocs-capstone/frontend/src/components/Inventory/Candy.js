@@ -111,8 +111,8 @@ function Candy({ id, quantity, candy_base_type, candy_level }) {
             <>
                 < OverlayTrigger placement='bottom' overlay={
                 < Tooltip className="tooltip-item" >
-                    <span>Candy Base Type: <strong>?</strong> </span>
-                    <span>Candy Level: <strong>?</strong></span>
+                    <span>Candy Base Type: <strong>{candy_base_type}</strong> </span>
+                    <span>Candy Level: <strong>{candy_level}</strong></span>
                 </Tooltip >
                 } >
                 <div className="grid-item" >

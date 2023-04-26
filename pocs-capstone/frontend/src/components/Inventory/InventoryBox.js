@@ -13,16 +13,31 @@ function InventoryBox() {
     const contextHandler = useContext(GlobalContext);
 
     // sort inventory into their types
-    let small = contextHandler?.inventory.filter(i => i.candy_base_type === 'S').sort((a, b) => a.candy_level - b.candy_level)
-    let medium = contextHandler?.inventory.filter(i => i.candy_base_type === 'M').sort((a, b) => a.candy_level - b.candy_level)
-    let large = contextHandler?.inventory.filter(i => i.candy_base_type === 'L').sort((a, b) => a.candy_level - b.candy_level)
-    let cake = contextHandler?.inventory.filter(i => i.candy_base_type === 'C').sort((a, b) => a.candy_level - b.candy_level)
+    // let small = contextHandler?.inventory.filter(i => i.candy_base_type === 'S').sort((a, b) => a.candy_level - b.candy_level)
+    // let medium = contextHandler?.inventory.filter(i => i.candy_base_type === 'M').sort((a, b) => a.candy_level - b.candy_level)
+    // let large = contextHandler?.inventory.filter(i => i.candy_base_type === 'L').sort((a, b) => a.candy_level - b.candy_level)
+    // let cake = contextHandler?.inventory.filter(i => i.candy_base_type === 'C').sort((a, b) => a.candy_level - b.candy_level)
 
+    // let candies = {
+    //     "Small": small,
+    //     "Medium": medium,
+    //     "Large": large,
+    //     "Cake": cake
+    // }
+
+    // Sort inventory by level
+    let levelOne = contextHandler?.inventory.filter(i => i.candy_level === 1).sort((a, b) => a.candy_level - b.candy_level)
+    let levelTwo = contextHandler?.inventory.filter(i => i.candy_level === 2).sort((a, b) => a.candy_level - b.candy_level)
+    let levelThree = contextHandler?.inventory.filter(i => i.candy_level === 3).sort((a, b) => a.candy_level - b.candy_level)
+    let levelFour = contextHandler?.inventory.filter(i => i.candy_level === 4).sort((a, b) => a.candy_level - b.candy_level)
+    let levelFive = contextHandler?.inventory.filter(i => i.candy_level === 5).sort((a,b) => a.candy_level - b.candy_level)
+    
     let candies = {
-        "Small": small,
-        "Medium": medium,
-        "Large": large,
-        "Cake": cake
+        "levelOne": levelOne,
+        "levelTwo": levelTwo,
+        "levelThree": levelThree,
+        "levelFour": levelFour,
+        "levelFive": levelFive
     }
 
     return (
@@ -33,12 +48,6 @@ function InventoryBox() {
                         <Stack direction="horizontal" gap={3}>
                             <div className='inventory-header'>
                                 ITEMS
-                            </div>
-                            <div className="ms-auto">
-                                <Button variant="primary" onClick={contextHandler?.postFullInventory}>+ Populate Inv.</Button>
-                            </div>
-                            <div>
-                                <Button variant="danger" onClick={contextHandler?.deleteAll}>- Delete All</Button>
                             </div>
                         </Stack>
                     </Card.Header>

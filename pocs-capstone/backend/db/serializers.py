@@ -30,7 +30,9 @@ class UserDataSerializer(serializers.ModelSerializer):
                   'first_name',
                   'join_date',
                   'birthday',
-                  'bio']
+                  'bio',
+                  'tags',
+                  'canvas_tags']
 
 
 """

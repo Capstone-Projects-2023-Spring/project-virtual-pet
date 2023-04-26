@@ -1,0 +1,31 @@
+/*Any size*/
+
+/* .welcome-header {
+  font-size: 20px;
+} */
+
+/*Tiny phone*/
+/* @media (min-height: 667px) {
+  .section-login-register {
+    max-height: 100vh;
+    font-size: medium;
+  }
+} */
+
+/*Larger phone*/
+/* @media (min-height: 800px) {
+  .section-login-register{
+    font-size: medium;
+    }
+} */
+
+/*desktop styles*/
+/* @media (min-width: 1130px) {
+  .welcome-header {
+    font-size: 28px;
+  }
+} 
+*/
+
+
+

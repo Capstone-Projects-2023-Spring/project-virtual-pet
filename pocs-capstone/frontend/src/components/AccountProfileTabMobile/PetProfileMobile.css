@@ -1,0 +1,9 @@
+.petprofile-modal-mobile {
+    width: 100vw;
+    height: 100vh;
+    font-size: calc(1.5vw + 1vh);
+}
+
+.petprofile-modal-mobile #validationFormik01, .createtask-modal-mobile #validationFormik02, .createtask-modal-mobile #validationFormik03, .createtask-modal-mobile #validationFormik04 {
+    font-size: calc(1.5vw + 1vh);
+}

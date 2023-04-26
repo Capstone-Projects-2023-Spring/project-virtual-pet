@@ -87,9 +87,14 @@ class NewUser(AbstractBaseUser, PermissionsMixin):  # TODO rename to something l
     is_staff = models.BooleanField(default=False)
     # TODO if we want email verification to activate user we change this to false
     is_active = models.BooleanField(default=True)
-    canvas_token = models.CharField(max_length=512, default="")
+
+    # Add blank=True field - allow canvas_token to remain "" when patches are made 
+    canvas_token = models.CharField(max_length=512, default="", blank=True)
     tutorial = models.BooleanField(default=True)
     demo_canvas = models.BooleanField(default=False)
+    tags = models.JSONField(default=list, null=True, blank=True)
+    canvas_tags = models.JSONField(default=list, null=True, blank=True)
+
 
 
     objects = CustomAccountManager()
@@ -223,7 +228,7 @@ class Task(models.Model):
         max_length=256, default=None, null=True, blank=True)
     course_title = models.CharField(
         max_length=256, default=None, null=True, blank=True)
-    tags = models.JSONField(default=None, null=True, blank=True)
+    tags = models.JSONField(default=list, null=False, blank=True)
 
 
 

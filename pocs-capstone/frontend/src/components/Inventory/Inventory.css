@@ -100,7 +100,8 @@ img {
 
   /* grid-template-columns: auto auto auto auto auto; */
   /* https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-rows */
-  grid-template-columns: repeat(auto-fill, 180px);
+  /* grid-template-columns: repeat(auto-fill, 180px); */
+  grid-template-columns: 1fr 1fr 1fr 1fr;
 
   grid-auto-rows: 170px;
 
@@ -119,17 +120,136 @@ img {
 
   /* grid-template-columns: auto auto auto auto auto; */
   /* https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-rows */
-  grid-template-columns: repeat(auto-fill, 70px);
+  /* grid-template-columns: repeat(auto-fill, 70px); */
+  grid-template-columns: 1fr 1fr 1fr 1fr;
 
   grid-auto-rows: 78px;
   overflow: hidden;
   /* height: 20px;
   width: 20px; */
 
-
-
-
 }
+
+/* Iphone SE 2nd Gen */
+@media only screen and (min-height: 667px) { 
+  .inventory-wrapper-sizes-mobile {
+
+    display: grid;
+    justify-content: space-evenly;
+    justify-items: center;
+    align-content: space-evenly;
+    align-items: center;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    padding-left: 30px;
+    padding-right: 30px;
+    /* overflow: scroll; */
+    
+  
+    /* grid-template-columns: auto auto auto auto auto; */
+    /* https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-rows */
+    grid-template-columns: repeat(auto-fill, 65px);
+  
+    grid-auto-rows: 60px;
+    /* overflow: hidden; */
+    /* padding-top: -30px;
+    padding-bottom: -30px; */
+    /* height: 20px;
+    width: 20px; */
+  
+  }
+}
+
+/* iphone 12 jay */
+@media only screen and (min-width: 390px) {
+  .inventory-wrapper-sizes-mobile {
+
+    display: grid;
+    justify-content: space-evenly;
+    justify-items: center;
+    align-content: space-evenly;
+    align-items: center;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    /* padding: auto; */
+    /* padding-left: 30px;
+    padding-right: 30px; */
+    /* overflow: scroll; */
+    
+  
+    /* grid-template-columns: auto auto auto auto auto; */
+    /* https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-rows */
+    /* grid-template-columns: repeat(auto-fill, 65px); */
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  
+    grid-auto-rows: 65px;
+    /* overflow: hidden; */
+    /* padding-top: -30px;
+    padding-bottom: -30px; */
+    /* height: 20px;
+    width: 20px; */
+  
+  }
+}
+
+
+/* Iphone 12 Pro Max ShoutOut Mary */
+/* @media only screen and (min-height: 926px) { */
+@media only screen and (min-width: 428px) {
+  .inventory-wrapper-sizes-mobile {
+
+    display: grid;
+    justify-content: space-evenly;
+    justify-items: center;
+    align-content: space-evenly;
+    align-items: center;
+    
+  
+    /* grid-template-columns: auto auto auto auto auto; */
+    /* https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-rows */
+    /* grid-template-columns: repeat(auto-fill, 90px); */
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+  
+    grid-auto-rows: 65px;
+    /* overflow: hidden; */
+    /* padding-top: 14px;
+    padding-bottom: 14px; */
+    /* height: 20px;
+    width: 20px; */
+  
+  }
+}
+
+/* Ipad */
+@media only screen and (min-height: 1080px) {
+  .inventory-wrapper-sizes-mobile {
+
+    display: grid;
+    justify-content: space-evenly;
+    justify-items: center;
+    align-content: space-evenly;
+    align-items: center;
+    
+  
+    /* grid-template-columns: auto auto auto auto auto; */
+    /* https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-rows */
+    grid-template-columns: repeat(auto-fill, 120px);
+  
+    grid-auto-rows: 90px;
+    overflow: hidden;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    padding-left: 130px;
+    padding-right: 130px;
+    /* height: 20px;
+    width: 20px; */
+  
+  }
+}
+
 
 
 /*  Wrap around badge AND grid item */
@@ -206,7 +326,6 @@ img {
 .grid-item:hover {
   border: 3px solid rgba(33, 33, 33, 0.747);
 }
-
 .grid-item-mobile {
   background-color: rgba(255, 255, 255, 0.8);
   border: 3px solid rgba(255, 192, 203, 0);
@@ -219,11 +338,120 @@ img {
   -webkit-transition: all .2s ease-in;
   transition: all .2s ease-in;
 
-  width: 70px;
-  height: 70px;
+  width: 55px;
+  height: 55px;
+  
+  /* width: calc(15vw + 15vh);
+  height: calc(15vw + 15vh); */
+  
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+/* Iphone SE 2nd Gen */
+@media only screen and (min-height: 667px) {
+  .grid-item-mobile {
+    background-color: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(255, 192, 203, 0);
+    box-shadow: 0 2px 10px -2px rgb(65, 65, 65);
+    border-radius: 20px;
+  
+    /* https://stackoverflow.com/questions/14350126/transition-color-fade-on-hover */
+    -moz-transition: all .2s ease-in;
+    -o-transition: all .2s ease-in;
+    -webkit-transition: all .2s ease-in;
+    transition: all .2s ease-in;
+  
+    width: 55px;
+    height: 55px;
+    
+    /* width: calc(15vw + 15vh);
+    height: calc(15vw + 15vh); */
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+/* iphone 12 jay */
+@media only screen and (min-width: 390px) {
+  .grid-item-mobile {
+    background-color: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(255, 192, 203, 0);
+    box-shadow: 0 2px 10px -2px rgb(65, 65, 65);
+    border-radius: 20px;
+  
+    /* https://stackoverflow.com/questions/14350126/transition-color-fade-on-hover */
+    -moz-transition: all .2s ease-in;
+    -o-transition: all .2s ease-in;
+    -webkit-transition: all .2s ease-in;
+    transition: all .2s ease-in;
+  
+    width: 70px;
+    height: 70px;
+    
+    /* width: calc(15vw + 15vh);
+    height: calc(15vw + 15vh); */
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+/* Iphone 12 Pro Max ShoutOut Mary */
+/* @media only screen and (min-height: 926px) { */
+  @media only screen and (min-width: 428px) {
+  .grid-item-mobile {
+    background-color: rgba(255, 255, 255, 0.8);
+    border: 3px solid rgba(255, 192, 203, 0);
+    box-shadow: 0 5px 10px -4px rgb(65, 65, 65);
+    border-radius: 20px;
+  
+    /* https://stackoverflow.com/questions/14350126/transition-color-fade-on-hover */
+    -moz-transition: all .2s ease-in;
+    -o-transition: all .2s ease-in;
+    -webkit-transition: all .2s ease-in;
+    transition: all .2s ease-in;
+  
+    width: 75px;
+    height: 75px;
+    
+    /* width: calc(15vw + 15vh);
+    height: calc(15vw + 15vh); */
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+/* Ipad */
+@media only screen and (min-height: 1080px) {
+  .grid-item-mobile {
+    background-color: rgba(255, 255, 255, 0.8);
+    border: 3px solid rgba(255, 192, 203, 0);
+    box-shadow: 0 5px 10px -4px rgb(65, 65, 65);
+    border-radius: 20px;
+  
+    /* https://stackoverflow.com/questions/14350126/transition-color-fade-on-hover */
+    -moz-transition: all .2s ease-in;
+    -o-transition: all .2s ease-in;
+    -webkit-transition: all .2s ease-in;
+    transition: all .2s ease-in;
+  
+    width: 90px;
+    height: 90px;
+    
+    /* width: calc(15vw + 15vh);
+    height: calc(15vw + 15vh); */
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }
 
 .candy-photo {
@@ -251,6 +479,68 @@ img {
   
   
 }
+/* iphone se */
+@media only screen and (min-height: 667px) {
+  .candy-photo-mobile {
+    width: 45px;
+    height: auto;
+    pointer-events: none;
+    /* user-select: none; */
+    /*-webkit-user-select: none; /* Safari */
+    /*-khtml-user-select: none; /* Konqueror HTML */
+    /*-moz-user-select: none; /* Firefox */
+    /*-ms-user-select: none; /*Internet Explorer/Edge*/
+    
+  }
+}
+/* iphone 12 jay */
+@media only screen and (min-width: 390px) {
+  .candy-photo-mobile {
+    width: 60px;
+    height: auto;
+    pointer-events: none;
+    /* user-select: none; */
+    /*-webkit-user-select: none; /* Safari */
+    /*-khtml-user-select: none; /* Konqueror HTML */
+    /*-moz-user-select: none; /* Firefox */
+    /*-ms-user-select: none; /*Internet Explorer/Edge*/
+    
+  }
+}
+
+
+/* Iphone 12 Pro Max ShoutOut Mary */
+/* @media only screen and (min-height: 926px) { */
+  @media only screen and (min-width: 428px) {
+  .candy-photo-mobile {
+    width: 55px;
+    height: auto;
+    pointer-events: none;
+    /* user-select: none; */
+    /*-webkit-user-select: none; /* Safari */
+    /*-khtml-user-select: none; /* Konqueror HTML */
+    /*-moz-user-select: none; /* Firefox */
+    /*-ms-user-select: none; /*Internet Explorer/Edge*/
+    
+    
+  }
+}
+
+/* Ipad */
+@media only screen and (min-height: 1080px) {
+  .candy-photo-mobile {
+    width: 80px;
+    height: auto;
+    pointer-events: none;
+    /* user-select: none; */
+    /*-webkit-user-select: none; /* Safari */
+    /*-khtml-user-select: none; /* Konqueror HTML */
+    /*-moz-user-select: none; /* Firefox */
+    /*-ms-user-select: none; /*Internet Explorer/Edge*/
+  
+  }
+}
+
 
 .candy-wrapper {
   width: 130px;
@@ -314,6 +604,86 @@ img {
   -ms-user-select: none; /* Internet Explorer/Edge */
 
 }
+/* Iphone 12 SE 2nd Gen */
+@media only screen and (min-height: 667px) {
+  .candy-q-mobile {
+    font-size: 12px;
+    width: 22px;
+    height: 22px;
+    padding: 4.7px;
+    position: absolute;
+    top: -1.5px;
+    right: -7px;
+    pointer-events: none;
+    user-select: none; /* supported by Chrome and Opera */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+  
+  }
+}
+/* iphone 12 jay */
+@media only screen and (min-width: 390px) {
+  .candy-q-mobile {
+    font-size: 12px;
+    width: 22px;
+    height: 22px;
+    padding: 4.7px;
+    position: absolute;
+    top: -1.5px;
+    right: -7px;
+    pointer-events: none;
+    user-select: none; /* supported by Chrome and Opera */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+  
+  }
+}
+/* Iphone 12 Pro Max ShoutOut Mary */
+/* @media only screen and (min-height: 926px) { */
+@media only screen and (min-width: 428px) {
+  .candy-q-mobile {
+    font-size: 14px;
+    width: 26px;
+    height: 26px;
+    padding: 4.7px;
+    /* padding-top: -4px; */
+    position: absolute;
+    top: -1.5px;
+    right: -3.5px;
+    pointer-events: none;
+    user-select: none; /* supported by Chrome and Opera */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+  
+  }
+}
+/* Ipad */
+@media only screen and (min-height: 1080px) {
+  .candy-q-mobile {
+    font-size: 20px;
+    width: 32px;
+    height: 32px;
+    padding: 4.5px;
+    /* padding-top: -4px; */
+    position: absolute;
+    top: -4.5px;
+    right: -10px;
+    pointer-events: none;
+    user-select: none; /* supported by Chrome and Opera */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+  
+  }
+}
+
 
 
 .space-candy-types {

@@ -3,7 +3,7 @@ import PageDisplay from "./PageDisplay/PageDisplay.js";
 //import useAuth from '../hooks/useAuth.js'
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect, useRef, useContext } from "react";
-import { useWindowWidth } from "@react-hook/window-size";
+import { useWindowHeight, useWindowWidth } from "@react-hook/window-size";
 import useAxiosPrivate from "../hooks/useAxiosPrivate.js";
 import "./Main.css";
 import OneSignal from 'react-onesignal';
@@ -22,6 +22,7 @@ import expGain from '../audio/expgain.mp3';
 const Main = () => {
   const axiosPrivate = useAxiosPrivate();
   const [avatarInfo, setAvatar] = useState({});
+  const height = useWindowHeight();
   const width = useWindowWidth();
   const nav = useNavigate();
 
@@ -100,13 +101,13 @@ const Main = () => {
   }, [])
 
   const updateTask = (id, newTask) => {
+
+    // console.log("Getting caled?", id, newTask)
     const taskItem = taskList.find(t => t.task_id === id)
-
-
 
     const taskItemChanged = newTask == null ?
       { ...taskItem, completed: !taskItem.completed, completed_date: (taskItem.completed_date === null ? new Date().toISOString().split('T')[0] : null) } :
-      { ...taskItem, title: newTask.title, due_date: newTask.due_date === '' ? null : newTask.due_date, task_type: newTask.size, description: newTask.description, task_level: newTask.level }
+      { ...taskItem, title: newTask.title, due_date: newTask.due_date === '' ? null : newTask.due_date, task_type: newTask.size, description: newTask.description, task_level: newTask.level, tags: newTask.tagList }
 
 
     // Has the user recieved a candy for this task already?
@@ -117,6 +118,7 @@ const Main = () => {
     axiosPrivate.put(`${baseURL}${id}/`, taskItemChanged)
       .then(r => {
         setTaskList(taskList.map(t => t.task_id === id ? r.data : t))
+        console.log(`Task updated: ${r.data.tags}`)
       })
   }
 
@@ -213,6 +215,15 @@ const Main = () => {
   }
 
   const addTask = (formValues) => {
+    // var d = new Date();
+    // console.log("INITIAL DATE", d)
+
+    // d.setMinutes(d.getMinutes() - 1);
+    // d.setDate(6)
+
+    // console.log("CREATED TSAK ON ", d)
+
+    console.log("NEW TASK", formValues)
 
     const taskLevelD = determineTaskLevel(userContext.userInfo.join_date)
 
@@ -220,6 +231,7 @@ const Main = () => {
       title: formValues.title,
       due_date: formValues.due_date === "" ? null : formValues.due_date,
       created_date: new Date().toISOString(),
+      // created_date: d,
       completed_date: null,
       completed: false,
       active: true,
@@ -229,14 +241,14 @@ const Main = () => {
       recurring_time_delta: 0,
       description: formValues.description,
       course_id: 0,
-      assignment_id: 0
+      assignment_id: 0,
+      tags: formValues.tagList
+
     }
-
-    // console.log("NEW TASK", newTask)
-
     axiosPrivate.post(baseURL, newTask)
       .then(r => {
         setTaskList(taskList.concat(r.data))
+        console.log(`New Task added: ${r.data}`)
       })
   }
 
@@ -249,9 +261,10 @@ const Main = () => {
   }
 
   const deleteAllTasks = (completedTasks) => {
-    // delete all completed tasks
+
     if (completedTasks.length) {
       completedTasks.forEach(t => {
+
         axiosPrivate.delete(`${baseURL}${t.task_id}/`)
           .catch(e => {
             console.log("ERROR TASKS", e)
@@ -259,14 +272,11 @@ const Main = () => {
       })
     }
 
-    // keep non completed tasks 
+    // keep non completed tasks
     const keepTasks = taskList.filter(task => !task.completed)
     setTaskList(keepTasks)
   }
 
-  // const handlers = {
-
-  // }
 
 
 
@@ -415,8 +425,10 @@ const Main = () => {
     leveledUp,
     setLeveledUp,
     prev_level_info,
+    height,
     width,
     taskList,
+    setTaskList,
     addTask,
     deleteTask,
     deleteAllTasks,

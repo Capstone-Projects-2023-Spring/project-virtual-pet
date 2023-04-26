@@ -8,7 +8,6 @@
     letter-spacing: 0.5px;
     border-width: 0px;
     text-decoration: none;
-    
 }
 
 .to-tabs .nav-link.active {
@@ -31,6 +30,7 @@
 /* Tab content height for TaskPage Component only */
 #justify-tab-example-tabpane-tasks {
     height: 98%;
+    background-color: rgb(255, 198, 198);
 }
 
 /* Grid wrapper for TaskPage component */
@@ -177,7 +177,6 @@
 
 
 
-
 .completed-checkbox input[type="checkbox"]:checked {
     background-color: rgba(180, 180, 180, 0.783);
     border-color: rgba(179, 41, 75, 0);
@@ -237,4 +236,169 @@
     -o-transition: all .2s ease-in;
     -webkit-transition: all .2s ease-in;
     transition: all .2s ease-in;
+}
+
+
+.task-notice-modal .modal-dialog {
+    margin-top: 30vh;
+}
+
+
+
+.createtask-modal .modal-dialog {
+    width: 20vw;
+    height: 50vh;
+    /* height: 50vh; */
+    font-size: calc(0.5vw + 0.5vh);
+}
+
+.createtask-modal #validationFormik01,
+.createtask-modal #validationFormik02,
+.createtask-modal #validationFormik03,
+.createtask-modal #validationFormik04,
+.createtask-modal #validationFormik05,
+.add-tag-dropdown {
+    font-size: calc(0.5vw + 0.5vh);
+}
+
+
+.createtask-modal .modal-title {
+    font-size: calc(1vw + 0.5vh);
+}
+
+.createtask-modal .modal-header {
+    padding: 14px;
+}
+
+.submit-button-modal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.submit-button-modal .btn {
+    font-size: calc(0.5vw + 0.5vh);
+}
+
+
+/* Tags Dropdown CSS - TaskPage CSS*/
+.tag-type-checkoff {
+    margin: 5px 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+    /* border-radius: 0px !important; */
+    font-size: calc(0.5vw + 0.5vh);
+    
+    
+}
+
+.tag-checkoff.list-group-item {
+    border-radius: 0px;
+}
+
+.tag-checkoff .form-check-input,
+.tag-type-checkoff .form-check-input {
+    width: 1vw;
+    height: 1vw;
+}
+
+.tag-type-checkoff .form-check-label,
+.tag-checkoff .form-check-label,
+.clear-tags .btn {
+    font-size: calc(0.5vw + 0.5vh);
+}
+
+.tag-checkoff .btn-close {
+    width: 0.5rem;
+    height: 0.5rem;
+}
+
+.clear-tags {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px 0px 0px 0px;
+
+}
+
+/* For the Task edit / create component tag dropdown*/
+.tasks-dropdown-tags {
+    max-height: 30vh;
+    overflow: scroll;
+    border-radius: .375rem;
+    border: 1px solid #ced4da;
+    overflow-wrap: anywhere;
+}
+
+.center-tasks-tags {
+
+    overflow: scroll;
+    max-height: 15vh;
+    margin: 15px 0px;
+    border-radius: .375rem;
+    border: 1px solid #ced4da;
+    width: 100%;
+    overflow-wrap: anywhere;
+
+}
+
+.tasks-tags-items-taskpage {
+  
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 0px !important;
+    font-size: calc(0.5vw + 0.5vh);
+}
+
+.tasks-tags-items-taskpage.list-group-item {
+    padding: 2px 5px;
+}
+
+
+.tasks-tags-items {
+    display: flex;
+    justify-content: space-between;
+
+}
+
+
+
+
+.tasks-tags-items-taskpage-label {
+    margin: 5px;
+}
+
+.tasks-tags-items-taskpage-check,
+.tasks-tags-items-taskpage-delete,
+.tasks-tags-items-taskpage-label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* button to add from global tag list */
+.tag-select.list-group-item {
+    border-radius: 0px;
+}
+
+.tag-select.btn {
+    font-size: calc(0.5vw + 0.5vh);
+    text-align: start;
+    border-radius: 0px !important;
+
+}
+
+/* add tags toggle */
+.add-tag-dropdown {
+    width: 100%;
+    text-align: start;
+}
+
+/* padding around buttons */
+.dropdown-menu.show {
+    padding: 10px;
 }

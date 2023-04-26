@@ -5,8 +5,10 @@ import {
   faInfoCircle,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import "./Register.css";
 import axios from "../../api/axios";
 import { Form } from "react-bootstrap";
+import { useWindowWidth, useWindowHeight } from "@react-hook/window-size";
 
 const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%._&*]).{8,24}$/;
@@ -15,6 +17,9 @@ const EMAIL_REGEX = /^[a-zA-Z0-9._]+@(?:[a-zA-Z0-9]+\.)+[A-Za-z]+$/;
 const REGISTER_URL = "/register/";
 
 const Register = () => {
+  const width = useWindowWidth();
+  const height = useWindowHeight();
+
   const userRef = useRef();
   const errRef = useRef();
 
@@ -145,7 +150,12 @@ const Register = () => {
             >
               {errMsg}
             </p>
-            <h1>Welcome to Study Buddy!</h1>
+            {height < 600 ? (
+              ""
+            ) : (
+              <h1 className="welcome-header">Welcome to Study Buddy!</h1>
+            )}
+            {/* <h1 className="welcome-header">Welcome to Study Buddy!</h1> */}
             <form onSubmit={handleSubmit} className="form-login-register">
               <label className="label-login-register" htmlFor="username">
                 Username:
@@ -296,16 +306,27 @@ const Register = () => {
                 <FontAwesomeIcon icon={faInfoCircle} />
                 Must match the first password input field.
               </p>
-              <label className="label-first-name-register" htmlFor="first_name">
-                First Name:
-              </label>
-              <input
-                type="text"
-                id="first_name"
-                autoComplete="off"
-                onChange={(e) => setFirstName(e.target.value)}
-                value={first_name}
-              />
+              {height < 844 ? (
+                ""
+              ) : (
+                <label
+                  className="label-first-name-register"
+                  htmlFor="first_name"
+                >
+                  First Name:
+                </label>
+              )}
+              {height < 844 ? (
+                ""
+              ) : (
+                <input
+                  type="text"
+                  id="first_name"
+                  autoComplete="off"
+                  onChange={(e) => setFirstName(e.target.value)}
+                  value={first_name}
+                />
+              )}
               <Form.Group
                 className="birthday-form"
                 controlId="validationCustom03"
@@ -322,22 +343,29 @@ const Register = () => {
                   Please provide your birthday.
                 </Form.Control.Feedback>
               </Form.Group>
-
-              <label
-                className="label-bio-register"
-                htmlFor="user_bio"
-                maxLength={32}
-              >
-                Tell us about yourself!
-              </label>
-              <textarea
-                type="text"
-                rows="4"
-                id="user_bio"
-                onChange={handleBioChange}
-                value={userBio}
-              />
-
+              {height < 800 ? (
+                ""
+              ) : (
+                <label
+                  className="label-bio-register"
+                  htmlFor="user_bio"
+                  maxLength={32}
+                >
+                  Tell us about yourself!
+                </label>
+              )}
+              {height < 800 ? (
+                ""
+              ) : (
+                <textarea
+                  className="bio-textarea"
+                  type="text"
+                  rows="2"
+                  id="user_bio"
+                  onChange={handleBioChange}
+                  value={userBio}
+                />
+              )}
               <button
                 disabled={
                   !validName || !validPassword || !validEmail || !validMatch

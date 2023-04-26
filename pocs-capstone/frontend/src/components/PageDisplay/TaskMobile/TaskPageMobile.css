@@ -1,4 +1,3 @@
-
 .task-title-mobile {
     font-size: calc(1.5vw + 1vh);
     margin-right: 10px;
@@ -76,13 +75,23 @@
 }
 
 
+.task-notice-modal-mobile,
 .createtask-modal-mobile {
     width: 100vw;
     height: 80vh;
     font-size: calc(1.5vw + 1vh);
 }
 
-.createtask-modal-mobile #validationFormik01, .createtask-modal-mobile #validationFormik02, .createtask-modal-mobile #validationFormik03, .createtask-modal-mobile #validationFormik04 {
+.task-notice-modal-title-mobile {
+    font-size: 5vw;
+}
+
+.createtask-modal-mobile #validationFormik01,
+.createtask-modal-mobile #validationFormik02,
+.createtask-modal-mobile #validationFormik03,
+.createtask-modal-mobile #validationFormik04,
+.createtask-modal-mobile #validationFormik05,
+.add-tag-dropdown-mobile {
     font-size: calc(1.5vw + 1vh);
 }
 
@@ -95,7 +104,7 @@
     letter-spacing: 0.5px;
     border-width: 0px;
     text-decoration: none;
-    
+
 }
 
 .to-tabs-mobile .nav-link.active {
@@ -121,4 +130,145 @@
 
 .task-scroll-mobile {
     overflow: auto;
+}
+
+
+.createtask-modal-mobile .modal-title {
+    font-size: calc(2vw + 1vh);
+}
+
+
+.submit-button-modal-mobile {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.submit-button-modal-mobile .btn {
+    font-size: calc(2vw + 1vh);
+}
+
+/* Tags Dropdown CSS */
+.tag-type-checkoff-mobile {
+    margin: 5px 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+    font-size: calc(1vw + 0.75vh);
+}
+
+.tag-checkoff-mobile.list-group-item {
+    /* border-radius: 0px; */
+    /* display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0px !important;
+    font-size: calc(0.5vw + 0.5vh); */
+    /* padding: 10px 15px; */
+    border-radius: 0px;
+    /* font-size: calc(1vw + 0.75vh); */
+    overflow-wrap: anywhere;
+
+}
+
+.tag-checkoff-mobile .form-check-input,
+.tag-type-checkoff-mobile .form-check-input {
+    width: 4vw;
+    height: 4vw;
+}
+
+.tag-type-checkoff-mobile .form-check-label,
+.tag-checkoff-mobile .form-check-label,
+.clear-tags-mobile .btn {
+    font-size: calc(1vw + 0.75vh);
+}
+
+.tag-checkoff-mobile .btn-close,
+.tasks-tags-mobile .btn-close {
+    width: 0.25rem;
+    height: 0.25rem;
+}
+
+.clear-tags-mobile {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px 0px 0px 0px;
+}
+
+/* dropdown for tags globallist TaskPage */
+.dropdown-tags-mobile {
+    max-height: 20vh;
+    overflow: scroll;
+    border-radius: .375rem;
+    border: 1px solid #ced4da;
+}
+
+
+
+/* For the Task edit / create component tag dropdown*/
+.tasks-dropdown-tags-mobile {
+    max-height: 230vh;
+    overflow: scroll;
+    border-radius: .375rem;
+    border: 1px solid #ced4da;
+    overflow-wrap: anywhere;
+}
+
+/* selected tags added to task item */
+/* .tasks-tags-mobile {
+    overflow: scroll;
+    max-height: 15vh;
+
+} */
+
+.center-tasks-tags-mobile {
+    overflow: scroll;
+    max-height: 15vh;
+    margin: 15px 0px;
+    border-radius: .375rem;
+    border: 1px solid #ced4da;
+    width: 100%;
+    overflow-wrap: anywhere;
+
+}
+
+.tasks-tags-items-taskpage-mobile {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 0px !important;
+    font-size: calc(1vw + 0.75vh);
+}
+
+.tasks-tags-items-taskpage-mobile.list-group-item {
+    padding: 1px 2px;   
+}
+
+.tasks-tags-items-mobile {
+    display: flex;
+    justify-content: space-between;
+}
+
+/* button to add from global tag list */
+.tag-select-mobile.list-group-item {
+    border-radius: 0px;    
+}
+
+.tag-select-mobile.btn {
+    font-size: calc(1vw + 0.75vh);
+    text-align: start;
+    border-radius: 0px !important;
+
+}
+
+/* add tags toggle */
+.add-tag-dropdown-mobile {
+    width: 100%;
+}
+
+/* padding around buttons */
+.dropdown-menu.show {
+    padding: 10px;
 }

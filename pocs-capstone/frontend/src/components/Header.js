@@ -10,17 +10,15 @@ import UserContext from "../context/UserContext";
 
 const COURSES_URL = "/canvas/";
 
-const Header = ({  }) => {
+const Header = ({ }) => {
   const axiosPrivate = useAxiosPrivate();
   const nav = useNavigate();
-  const {userInfo,setUserInfo} = useContext(UserContext)
+  const { userInfo, setUserInfo } = useContext(UserContext)
   //  const [submittedText, setSubmittedText] = useState(null);
   const [nameError, setNameError] = useState("");
 
   const [tokenReady, setTokenReady] = useState(false);
   const [retrievingAssignments, setRetrievingAssignments] = useState(false);
-
- 
 
   const resetSubmitTokenState = (text) => {
     setRetrievingAssignments(false);
@@ -35,12 +33,41 @@ const Header = ({  }) => {
       .get(COURSES_URL)
       .then((response) => {
         //we were successful
+        // console.log("RESPONSE", response)
         //return state and navigate to main
-        resetSubmitTokenState("Please reload tasks!");
-        nav(0)       
+
+        // fetch unique list of courses
+        const uniqueCourses = [...new Set(response.data.map(item => item.course_title))] //.map(cT => { return {'canvasTag': cT}})
+
+        // // combine with global tag list - make sure it's unique
+        const updateGlobalTags = userInfo.tags.concat(uniqueCourses.filter((item) => userInfo.tags.indexOf(item) < 0))
+        // console.log("GLOBAL TAGSSs", updateGlobalTags, "UNIQUE COURSES", uniqueCourses)
+
+        // setUpdateTag(updateGlobalTags)
+        const updatedUser = {
+          ...userInfo,
+          tags: updateGlobalTags,
+          canvas_tags: uniqueCourses
+        }
+        // console.log("UPDATED USER", updatedUser)
+        axiosPrivate.put(`/user-data/${userInfo.id}/`, updatedUser)
+          .then((response) => {
+            console.log("WHY AINT THIS HAPPENING?", response)
+            setUserInfo(updatedUser);
+            resetSubmitTokenState("Please reload tasks!");
+            nav(0)
+          })
+          .catch((err) => {
+            console.log("NAH?", err);
+            resetSubmitTokenState("Please reload tasks!");
+            nav(0)
+          });
+
+
+
       })
       .catch((err) => {
-        console.log(err);
+        console.log("?", err);
         resetSubmitTokenState(
           "Error getting assignments. Please check your token and try again."
         );
@@ -50,15 +77,36 @@ const Header = ({  }) => {
           canvas_token: "BADTOKEN"
         }
 
-        axiosPrivate.patch(url,tok )
-        .then((response) => {
-          console.log(response.data);
-          setUserInfo(response.data);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+        axiosPrivate.patch(url, tok)
+          .then((response) => {
+            console.log(response.data);
+            setUserInfo(response.data);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
       });
+
+
+    // const uniqueCourses = [...new Set(response.data.map(item => item.course_title))]
+
+    // // combine with global tag list - make sure it's unique
+    // const updateGlobalTags = userInfo.tags.concat(uniqueCourses.filter((item) => userInfo.tags.indexOf(item) < 0))
+    // console.log("GLOBAL TAGS", updateGlobalTags, "UNIQUE COURSES", uniqueCourses)
+
+    // const updatedUser = {
+    //   ...userInfo,
+    //   tags: updateGlobalTags
+    // }
+    // console.log("UPDATED USER", updatedUser)
+    // axiosPrivate.patch(`/user-data/${userInfo.id}/`, updatedUser)
+    //   .then((response) => {
+    //     console.log("WHY AINT THIS HAPPENING?", response)
+    //     setUserInfo(updatedUser);
+    //   })
+    //   .catch((err) => {
+    //     console.log("NAH?", err);
+    //   });
   }
 
   const headerStyle = {
@@ -97,14 +145,14 @@ const Header = ({  }) => {
 
         {userInfo.canvas_token !== "" && userInfo.canvas_token !== "BADTOKEN" ? (
           <div style={{ display: "grid", gridAutoFlow: "column" }}>
-            <button className="container-canvas-logo" onClick={getCourses}>
+            <button type="button" className="container-canvas-logo" onClick={getCourses}>
               <img
                 className={
                   retrievingAssignments ? "canvas-loading" : "logo-canvas"
                 }
                 alt="CanvasBug"
                 src={canvas_bug}
-                //style={{gridRow:'2'}}
+              //style={{gridRow:'2'}}
               ></img>
             </button>
             <span style={{ color: "white" }}>{nameError}</span>
