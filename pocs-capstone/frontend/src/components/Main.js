@@ -87,12 +87,13 @@ const Main = () => {
   }, [])
 
   const updateTask = (id, newTask) => {
+
     // console.log("Getting caled?", id, newTask)
     const taskItem = taskList.find(t => t.task_id === id)
 
     const taskItemChanged = newTask == null ?
       { ...taskItem, completed: !taskItem.completed, completed_date: (taskItem.completed_date === null ? new Date().toISOString().split('T')[0] : null) } :
-      { ...taskItem, title: newTask.title, due_date: newTask.due_date === '' ? null : newTask.due_date, task_type: newTask.size, description: newTask.description, task_level: newTask.level }
+      { ...taskItem, title: newTask.title, due_date: newTask.due_date === '' ? null : newTask.due_date, task_type: newTask.size, description: newTask.description, task_level: newTask.level, tags: newTask.tagList }
 
 
     // Has the user recieved a candy for this task already?
@@ -103,6 +104,7 @@ const Main = () => {
     axiosPrivate.put(`${baseURL}${id}/`, taskItemChanged)
       .then(r => {
         setTaskList(taskList.map(t => t.task_id === id ? r.data : t))
+        console.log(`Task updated: ${r.data.tags}`)
       })
   }
 
@@ -207,7 +209,7 @@ const Main = () => {
 
     // console.log("CREATED TSAK ON ", d)
 
-
+    console.log("NEW TASK", formValues)
 
     const taskLevelD = determineTaskLevel(userContext.userInfo.join_date)
 
@@ -225,14 +227,14 @@ const Main = () => {
       recurring_time_delta: 0,
       description: formValues.description,
       course_id: 0,
-      assignment_id: 0
+      assignment_id: 0,
+      tags: formValues.tagList
+
     }
-
-    console.log("NEW TASK", newTask)
-
     axiosPrivate.post(baseURL, newTask)
       .then(r => {
         setTaskList(taskList.concat(r.data))
+        console.log(`New Task added: ${r.data}`)
       })
   }
 
@@ -412,6 +414,7 @@ const Main = () => {
     height,
     width,
     taskList,
+    setTaskList,
     addTask,
     deleteTask,
     deleteAllTasks,

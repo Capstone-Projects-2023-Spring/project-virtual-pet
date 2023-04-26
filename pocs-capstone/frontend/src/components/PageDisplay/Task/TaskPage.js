@@ -1,12 +1,14 @@
 import '../PageDisplay.css'
-import CreateTaskFormMobile from './CreateTaskFormMobile';
-import TaskListMobile from './TaskListMobile'
+import './TaskPage.css'
+import CreateTaskForm from './CreateTaskForm';
+import TaskList from './TaskList'
 import UserContext from "../../../context/UserContext";
 import { useState, useContext } from 'react';
 import { Tab, Tabs, Button, Stack, Card, Dropdown, Form, ListGroup, CloseButton } from 'react-bootstrap';
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
 
-const TaskPageMobile = () => {
+// { taskList, newTitle, newDesc, newSize, newDate, setAvatarInfo, setInventory, setTaskList, handleCompleteCheck, handleTitleChange, handleDescChange, handleSizeChange, handleDateChange, addTask, deleteTask }
+const TaskPage = () => {
     const userHandler = useContext(UserContext)
     const axiosPrivate = useAxiosPrivate()
     const [selectedTags, setSelectedTags] = useState([])
@@ -32,6 +34,7 @@ const TaskPageMobile = () => {
             });
 
     }
+
     const handleTagCheck = (e, tagItem) => {
         if (e.target.checked && !selectedTags.find(t => t === tagItem)) {
             setSelectedTags(selectedTags.concat(tagItem))
@@ -47,10 +50,10 @@ const TaskPageMobile = () => {
     }
 
     const getCheckedType = (tagItem) => {
-
         // if tagItem exists in the selectedTags list, it has been checked off. Return true.
         return taskTypes.find(t => t === tagItem) ? true : false
     }
+
 
     const handleTaskCheck = (e, typeItem) => {
         if (e.target.checked && !taskTypes.find(type => type === typeItem)) {
@@ -62,33 +65,13 @@ const TaskPageMobile = () => {
     }
 
     return (
+        <div className="mini-page">
+            <Card className='tasklist-position'>
+                <Card.Header>
+                    <Stack direction="horizontal" gap={3}>
 
-        <div className="mini-page" style={{ marginBottom: "20px" }} >
-            <Card className='tasklist-position' >
-                <Card.Header >
-
-                    {/* <div className="ms-auto"> */}
-                    <Stack direction="horizontal">
-                        <div>
-                            <Tabs
-                                id="controlled-tab-example"
-                                defaultActiveKey="all"
-                                activeKey={filterTodo === true ? 'all' : 'completed'}
-                                onSelect={(f) => {
-                                    setFilterTodo(f === 'all' ? true : false)
-                                }}
-                                fill
-                                className="mb-6 to-tabs-mobile">
-
-                                <Tab eventKey="all" title="Active">
-                                    {/* <Sonnet /> */}
-                                </Tab>
-                                <Tab eventKey="completed" title="Completed" className="ms-auto">
-                                    {/* <Sonnet /> */}
-                                </Tab>
-
-                            </Tabs>
-
+                        <div className='to-do-header'>
+                            TO-DO
                         </div>
                         {/* <div>
                             Global tags:
@@ -99,39 +82,37 @@ const TaskPageMobile = () => {
                                     </p>
                                 )
                             })}
-
-
                         </div> */}
                         <div className="ms-auto">
                             <Dropdown className="d-inline mx-2" autoClose="outside">
-                                <Dropdown.Toggle drop="down-centered" id="dropdown-autoclose-outside">
-                                    T
+                                <Dropdown.Toggle id="dropdown-autoclose-outside">
+                                    Tags
                                 </Dropdown.Toggle>
 
                                 <Dropdown.Menu>
-                                    <Form onSubmit={e => e.preventDefault()} className='tag-type-checkoff-mobile'>
-                                        <div className="tasks-tags-items-taskpage-check">
-                                            <div>
-                                                <Form.Check checked={getCheckedType('canvas')} type="checkbox" onChange={(e) => { handleTaskCheck(e, 'canvas') }} />
-                                            </div>
-                                            <div className="tasks-tags-items-taskpage-label">
-                                                Canvas Assignments
-                                            </div>
-                                        </div>
-                                        <div className="tasks-tags-items-taskpage-check">
-                                            <div>
-                                                <Form.Check checked={getCheckedType('usertasks')} type="checkbox" onChange={(e) => { handleTaskCheck(e, 'usertasks') }} />
-                                            </div>
-                                            <div className="tasks-tags-items-taskpage-label">
-                                                My Tasks
-                                            </div>
-                                        </div>
+                                    <Form onSubmit={e => e.preventDefault()} className='tag-type-checkoff'>
 
+                                            <div className="tasks-tags-items-taskpage-check">
+                                                <div>
+                                                    <Form.Check checked={getCheckedType('canvas')} type="checkbox" onChange={(e) => { handleTaskCheck(e, 'canvas') }} />
+                                                </div>
+                                                <div className="tasks-tags-items-taskpage-label">
+                                                    Canvas Assignments
+                                                </div>
+                                            </div>
+                                            <div className="tasks-tags-items-taskpage-check">
+                                                <div>
+                                                    <Form.Check checked={getCheckedType('usertasks')} type="checkbox" onChange={(e) => { handleTaskCheck(e, 'usertasks') }} />
+                                                </div>
+                                                <div className="tasks-tags-items-taskpage-label">
+                                                    My Tasks
+                                                </div>
+                                            </div>
                                     </Form>
-                                    <ListGroup className="dropdown-tags-mobile">
+                                    <ListGroup className="tasks-dropdown-tags">
                                         {userHandler?.userInfo?.tags?.map((tagItem, index) => {
                                             return (
-                                                <ListGroup.Item key={index} className="tag-checkoff-mobile tasks-tags-items-taskpage-mobile">
+                                                <ListGroup.Item key={index} className="tag-checkoff tasks-tags-items-taskpage">
                                                     <div className="tasks-tags-items-taskpage-check">
                                                         <div style={{ margin: '5px' }}>
                                                             <Form onSubmit={e => e.preventDefault()} >
@@ -145,43 +126,53 @@ const TaskPageMobile = () => {
                                                     <div className="tasks-tags-items-taskpage-delete" style={{ paddingRight: '10px' }}>
                                                         {userHandler?.userInfo?.canvas_tags?.find(t => t === tagItem) ? null : <CloseButton onClick={() => deleteTagGlobal(tagItem)} />}
                                                     </div>
-
                                                 </ListGroup.Item>
-
                                             )
                                         })}
                                     </ListGroup>
                                     <Form onSubmit={e => e.preventDefault()}>
-                                        <div className="clear-tags-mobile">
+                                        <div className="clear-tags">
                                             <Button onClick={() => { setSelectedTags([]); setTaskTypes([]) }}>Clear Tags</Button>
                                         </div>
 
                                     </Form>
                                 </Dropdown.Menu>
                             </Dropdown>
-
                         </div>
+
+                        <div >
+                            <Tabs
+                                id="controlled-tab-example"
+                                defaultActiveKey="all"
+                                activeKey={filterTodo === true ? 'all' : 'completed'}
+                                onSelect={(f) => {
+                                    setFilterTodo(f === 'all' ? true : false)
+                                }}
+
+                                className="mb-3 to-tabs">
+                                <Tab eventKey="all" title="Active">
+                                </Tab>
+                                <Tab eventKey="completed" title="Completed">
+                                </Tab>
+
+                            </Tabs>
+                        </div>
+
                         <div>
-                            <Button variant="primary" onClick={handleShow}>+</Button>
-
+                            <Button variant="primary" onClick={handleShow}>+ Create Task</Button>
                         </div>
-
-
-
                     </Stack>
-
-
-
                 </Card.Header>
 
-                <TaskListMobile showAll={filterTodo} filterTags={selectedTags} filterTaskType={taskTypes} />
+                <TaskList showAll={filterTodo} filterTags={selectedTags} filterTaskType={taskTypes} />
 
             </Card>
 
-            <CreateTaskFormMobile {...{ showCreateTask, setShowCreateTask }} />
+            <CreateTaskForm {...{ showCreateTask, setShowCreateTask }} />
 
         </div>
+
     )
 }
 
-export default TaskPageMobile
+export default TaskPage

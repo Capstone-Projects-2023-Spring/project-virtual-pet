@@ -1,9 +1,9 @@
 import { Tooltip, OverlayTrigger, Stack, Form, Button, Modal, Image, Dropdown, ListGroup, CloseButton } from 'react-bootstrap';
 
 import GlobalContext from "../../../context/GlobalContext.js";
-import UserContext from "../../../context/UserContext";
+import UserContext from "../../../context/UserContext.js";
 import React, { useContext, useState, useEffect } from 'react'
-import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
+import useAxiosPrivate from "../../../hooks/useAxiosPrivate.js";
 import infoicon from '../../../images/info_icon.png'
 
 import * as yup from "yup";
@@ -11,6 +11,7 @@ import * as formik from 'formik'
 
 const CustomMenu = React.forwardRef(
   ({ style, className, 'aria-labelledby': labeledBy, tagValue, setTagValue, tagError, globalTags, addGlobalTag }, ref) => {
+
     return (
       <div
         ref={ref}
@@ -29,9 +30,8 @@ const CustomMenu = React.forwardRef(
         <Form.Control.Feedback type="invalid">
           {tagError}
         </Form.Control.Feedback>
-
-        <ListGroup className="tasks-dropdown-tags-mobile">
-          {globalTags.map((gTag, index) => <Button key={index} variant="light" type="button" className="tag-select-mobile" onClick={(e) => addGlobalTag(gTag)}>{gTag}</Button>)}
+        <ListGroup className="tasks-dropdown-tags">
+          {globalTags.map((gTag, index) => <Button key={index} variant="light" type="button" className="tag-select" onClick={(e) => addGlobalTag(gTag)}>{gTag}</Button>)}
         </ListGroup>
       </div>
     );
@@ -39,7 +39,7 @@ const CustomMenu = React.forwardRef(
 );
 
 
-function CreateTaskFormMobile({ showCreateTask, setShowCreateTask, task }) {
+function CreateTaskForm({ showCreateTask, setShowCreateTask, task }) {
   const axiosPrivate = useAxiosPrivate();
   const handlers = useContext(GlobalContext)
   const userHandler = useContext(UserContext)
@@ -55,8 +55,7 @@ function CreateTaskFormMobile({ showCreateTask, setShowCreateTask, task }) {
   // console.log("TASK, tags, and global state", task, tags, userHandler?.userInfo?.tags)
 
   // trigger useEffect on mount and when there are changes to userInfo --> from the TaskPage component, userinfo is updated when tags are deleted from the global list
-  // trigger useEFfect when canvas tasks are loaded - updates global tag list 
-  // conflict between remove tag and 
+  // This useEffect is called whenever the user deletes a tag from the GLOBAL tag list -> said tag should be removed from the tag list of INDIVIDUAL task items 
   useEffect(() => {
     if (userHandler?.userInfo?.tags && task) {
 
@@ -90,11 +89,15 @@ function CreateTaskFormMobile({ showCreateTask, setShowCreateTask, task }) {
 
       if (task.course_title) {
         // If the task is a canvas assignment, not in the task's current tags list, and is IN the global list 
+
         if (task.course_title && !task.tags.find(t => task.course_title) && userHandler?.userInfo?.tags?.find(t => t === task.course_title)) {
           const newTags = tags.concat(task.course_title)
           setTags(newTags)
           axiosPrivate.put(`/tasks/${task.task_id}/`, { ...task, tags: newTags })
             .then(r => {
+              // Get is needed because when a tag is removed from the global list,
+              // too many useEffect trigger for different task items, 
+              // and the setTaskList updates too many times in a row, undoing prev changes from other useeffect state calls
               axiosPrivate.get(`/tasks/`)
                 .then(r => {
                   handlers?.setTaskList(r.data)
@@ -107,10 +110,16 @@ function CreateTaskFormMobile({ showCreateTask, setShowCreateTask, task }) {
               console.log("CANT UPDATE TASKLIST?", err);
             });
 
+          // console.log("\nLOOKING AT CANVAS TASK", task, " TITLE : ", task.course_title, "\nIN LOCAL TAGS ALREADY?: ", task.tags.find(t => task.course_title), "\nGLOBAL TAGS:", userHandler?.userInfo?.tags, "\n IS IT IN GLOBAL TAGS?", userHandler?.userInfo?.tags.find(t => t === task.course_title))
+          // console.log("ADD TAG< IT NEEDS IT!!!\n")
         }
+        else {
+          // console.log("\nLOOKING AT CANVAS TASK", task, " TITLE : ", task.course_title, "\nIN LOCAL TAGS ALREADY?: ", task.tags.find(t => task.course_title), "\nGLOBAL TAGS:", userHandler?.userInfo?.tags, "\n IS IT IN GLOBAL TAGS?", userHandler?.userInfo?.tags.find(t => t === task.course_title), "\n")
+        }
+
       }
     }
-  }, [userHandler.userInfo])
+  }, [userHandler?.userInfo])
 
 
 
@@ -193,22 +202,22 @@ function CreateTaskFormMobile({ showCreateTask, setShowCreateTask, task }) {
     }
     setShowCreateTask(false);
   }
-  // User selects pre-existing global tag to apply to the task item
-  const addGlobalTag = (gTag) => {
 
+  const addGlobalTag = (gTag) => {
     if (gTag.trim() !== "" && !tags.find(tagItem => tagItem === gTag.trim())) {
       const newTags = tags.concat(gTag)
       setTags(newTags)
       if (task) {
+
         handlers?.updateTask(task.task_id, { ...task, tagList: newTags })
       }
     }
     setTagError("")
   }
 
-  return (
-    <Modal centered className="createtask-modal-mobile" backdrop="static" show={showCreateTask} onHide={(e) => { handleClose() }}>
 
+  return (
+    <Modal backdrop="static" className="createtask-modal" show={showCreateTask} onHide={(e) => { handleClose() }}>
       <Modal.Header closeButton>
         <Modal.Title>{title}</Modal.Title>
       </Modal.Header>
@@ -268,8 +277,6 @@ function CreateTaskFormMobile({ showCreateTask, setShowCreateTask, task }) {
 
                   </Form.Group>
 
-                  <br />
-
                   <Form.Group controlId="validationFormik02">
                     <Form.Label>Description</Form.Label>
 
@@ -287,9 +294,6 @@ function CreateTaskFormMobile({ showCreateTask, setShowCreateTask, task }) {
                     </Form.Control.Feedback>
 
                   </Form.Group>
-
-                  <br />
-
 
                   <Form.Group controlId="validationFormik03">
                     <Form.Label>Time to Complete Task</Form.Label>
@@ -326,9 +330,6 @@ function CreateTaskFormMobile({ showCreateTask, setShowCreateTask, task }) {
                     </Form.Control.Feedback>
                   </Form.Group>
 
-
-                  <br />
-
                   <Form.Group controlId="validationFormik04">
                     <Form.Label>Due Date</Form.Label>
                     <Form.Control
@@ -343,7 +344,7 @@ function CreateTaskFormMobile({ showCreateTask, setShowCreateTask, task }) {
                       This is a CAKE task! It should take at least 3 days to finish. Please pick another date.
                     </Form.Control.Feedback>
                   </Form.Group>
-                  <br />
+
                 </Stack>
               </Form>
               {/* <div>
@@ -358,16 +359,18 @@ function CreateTaskFormMobile({ showCreateTask, setShowCreateTask, task }) {
                 </ul>
               </div>
  */}
-
+              <br />
               <Form onSubmit={handleTagSubmit} style={{ marginBottom: '10px' }}>
                 <Form.Group controlId="validationFormik05">
-                  <div><Form.Label>Tags</Form.Label></div>
-                  <Dropdown className="d-inline" autoClose="outside">
-                    <Dropdown.Toggle drop="down-centered" className="add-tag-dropdown-mobile" id="dropdown-autoclose-outside dropdown-button-drop-down-centered">
+                  <Form.Label>Tags</Form.Label>
+
+                  <Dropdown className="d-inline" autoClose="outside" >
+
+                    <Dropdown.Toggle drop="down-centered" className="add-tag-dropdown" id="dropdown-autoclose-outside dropdown-button-drop-down-centered">
                       Add Tags
                     </Dropdown.Toggle>
-
-                    <Dropdown.Menu as={CustomMenu}
+                    <Dropdown.Menu
+                      as={CustomMenu}
                       tagValue={tagValue}
                       setTagValue={setTagValue}
                       tagError={tagError}
@@ -379,16 +382,18 @@ function CreateTaskFormMobile({ showCreateTask, setShowCreateTask, task }) {
                       )}
                     </Dropdown.Menu>
                   </Dropdown>
+
                 </Form.Group>
+
               </Form>
 
 
               {tags.length !== 0 ?
-                <ListGroup className="center-tasks-tags-mobile">
+                <ListGroup className="center-tasks-tags">
                   {tags.map((tagItem, index) => {
                     return (
-                      <ListGroup.Item key={index} className="tasks-tags-items-mobile">
-                        <div className='tasks-tags-items-taskpage-label'>
+                      <ListGroup.Item key={index} className="tasks-tags-items">
+                        <div className="tasks-tags-items-taskpage-label">
                           {tagItem}
                         </div>
                         <div className="tasks-tags-items-taskpage-delete">
@@ -403,8 +408,9 @@ function CreateTaskFormMobile({ showCreateTask, setShowCreateTask, task }) {
                 null
               }
 
-              <div className="submit-button-modal-mobile">
-                <Button onClick={handleSubmit} className="col-md-5 mx-auto" type="submit">{buttonText}</Button>
+
+              <div className="submit-button-modal">
+                <Button onClick={handleSubmit} className="col-md-8" type="submit">{buttonText}</Button>
               </div>
 
             </>
@@ -415,16 +421,8 @@ function CreateTaskFormMobile({ showCreateTask, setShowCreateTask, task }) {
   );
 }
 
-export default CreateTaskFormMobile
 
-
-
-
-
-
-
-
-
+export default CreateTaskForm
 
 
 

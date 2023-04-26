@@ -103,7 +103,6 @@
   background-color: antiquewhite;
   max-width: 95vw;
 }
-
 @media (min-height: 667px) {
   .alice-container {
     max-height: 100vh;

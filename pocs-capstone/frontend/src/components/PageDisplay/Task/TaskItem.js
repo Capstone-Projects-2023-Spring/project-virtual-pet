@@ -1,17 +1,19 @@
 
-import './PageDisplay.css'
+import '../PageDisplay.css'
 import { CloseButton, Stack, Badge, Form, ListGroup } from 'react-bootstrap'
 import CreateTaskForm from './CreateTaskForm'
+import TaskTagAdd from './TaskTagAdd'
 import TaskNotice from './TaskNotice'
 import { useState } from 'react'
 
+
 const TaskItem = ({ task, updateTask, deleteTask }) => {
+
     const [showCreateTask, setShowCreateTask] = useState(false);
     const [showNotice, setShowNotice] = useState(false)
 
-    const handleClose = () => setShowCreateTask(false);
-    const handleShow = () => setShowCreateTask(true);
 
+    const handleShow = () => setShowCreateTask(true);
 
     const calculateDueDate = (date) => {
         const today_date = new Date()
@@ -65,7 +67,6 @@ const TaskItem = ({ task, updateTask, deleteTask }) => {
     const computeStyle = `mb-3 ${task.completed ? "completed-checkbox" : "noncompleted-checkbox"}`
 
     return (
-
         <>
             {
                 task.course_id !== 0 && task.assignment_id !== 0 ?
@@ -77,10 +78,12 @@ const TaskItem = ({ task, updateTask, deleteTask }) => {
                             <div className="fw-bold">Course {task.course_id}</div>
                         </div>
                     </ListGroup.Item> */}
-                            <ListGroup.Item className='task-item'>
+                            <ListGroup.Item className='task-item' action onClick={handleShow}>
+                                {/* <ListGroup.Item className='task-item'> */}
                                 <div className="ms-2 me-auto">
                                     <div className="fw-bold task-title task-description">{task.title}</div>
                                     <div className="task-description">Course: {task.course_title}</div>
+                                    {/* <div className="task-description"><b>{task.tags}</b></div> */}
                                     <div className='task-description'>{task.description}</div>
                                     {task.due_date ?
                                         <div className='due-date'>Due {calculateDueDate(task.due_date)}</div> :
@@ -97,11 +100,12 @@ const TaskItem = ({ task, updateTask, deleteTask }) => {
                                     <></>
                             }
                         </ListGroup >
-                        <CreateTaskForm {...{ showCreateTask, handleClose, task }} />
+                        <TaskTagAdd {...{ showCreateTask, setShowCreateTask, task }} />
+
+                        {/* KEEP THIS - although you cant edit canvas tasks still needs the useEffect which triggers on global tag deletion */}
+                        {/* <CreateTaskForm {...{ showCreateTask, setShowCreateTask, task }} /> */}
                     </>
                     :
-
-
                     <>
                         <ListGroup horizontal className="my-2 list-group-task">
                             <ListGroup.Item className='check-box-task' style={task.completed ? { backgroundColor: `rgba(233, 233, 233, 0.352)` } : { backgroundColor: `rgba(233, 139, 139, 0.352)` }}>
@@ -118,6 +122,7 @@ const TaskItem = ({ task, updateTask, deleteTask }) => {
                                     <div className="fw-bold task-description">
                                         <Stack direction="horizontal" gap={2}>
                                             <div className='task-title'>{task.title}</div>
+                                            {/* <div>{task.tags}</div> */}
                                             <div><Badge bg="secondary">Size: {task.task_type}</Badge></div>
                                             <div><Badge bg="secondary">Level: {task.task_level}</Badge></div>
                                         </Stack>
@@ -136,7 +141,7 @@ const TaskItem = ({ task, updateTask, deleteTask }) => {
                             </ListGroup.Item>
 
                         </ListGroup >
-                        <CreateTaskForm {...{ showCreateTask, handleClose, task }} />
+                        <CreateTaskForm {...{ showCreateTask, setShowCreateTask, task }} />
                         <TaskNotice showNotice={showNotice} setShowNotice={setShowNotice} task={task} />
                     </>
             }
