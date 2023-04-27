@@ -347,4 +347,33 @@
     font-family: pixelFont;
     color:rgb(255, 214, 214)
   }
+
+  .tut-card-about-mobile {
+    background-color: rgb(255, 214, 214);
+    flex: 1 1 auto;
+    width: 90vw;
+    height: 280px;
+    margin-top: -10px;
+    margin-bottom: 25px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    font-size: 12px;
+    overflow: hidden;
+  }
+
+  .tut-card-title-mobile {
+    font-size: 20px;
+    margin-top: 10px;
+  }
+
+  .tut-card-body-mobile {
+    margin-top: -10px;
+    overflow: hidden;
+  }
+}
+
+html,
+body {
+    background-color: rgb(255, 198, 198)
 }

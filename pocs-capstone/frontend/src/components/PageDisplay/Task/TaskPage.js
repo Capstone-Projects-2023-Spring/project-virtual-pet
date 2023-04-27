@@ -6,6 +6,7 @@ import UserContext from "../../../context/UserContext";
 import { useState, useContext } from 'react';
 import { Tab, Tabs, Button, Stack, Card, Dropdown, Form, ListGroup, CloseButton } from 'react-bootstrap';
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
+import FilterAltIcon from '@mui/icons-material/FilterAlt';
 
 // { taskList, newTitle, newDesc, newSize, newDate, setAvatarInfo, setInventory, setTaskList, handleCompleteCheck, handleTitleChange, handleDescChange, handleSizeChange, handleDateChange, addTask, deleteTask }
 const TaskPage = () => {
@@ -83,10 +84,29 @@ const TaskPage = () => {
                                 )
                             })}
                         </div> */}
+
+                        <div >
+                            <Tabs
+                                id="controlled-tab-example"
+                                defaultActiveKey="all"
+                                activeKey={filterTodo === true ? 'all' : 'completed'}
+                                onSelect={(f) => {
+                                    setFilterTodo(f === 'all' ? true : false)
+                                }}
+
+                                className="mb-3 to-tabs">
+                                <Tab eventKey="all" title="Active">
+                                </Tab>
+                                <Tab eventKey="completed" title="Completed">
+                                </Tab>
+
+                            </Tabs>
+                        </div>
+
                         <div className="ms-auto">
                             <Dropdown className="d-inline mx-2" autoClose="outside">
                                 <Dropdown.Toggle id="dropdown-autoclose-outside">
-                                    Tags
+                                    {<FilterAltIcon/>}
                                 </Dropdown.Toggle>
 
                                 <Dropdown.Menu>
@@ -138,24 +158,6 @@ const TaskPage = () => {
                                     </Form>
                                 </Dropdown.Menu>
                             </Dropdown>
-                        </div>
-
-                        <div >
-                            <Tabs
-                                id="controlled-tab-example"
-                                defaultActiveKey="all"
-                                activeKey={filterTodo === true ? 'all' : 'completed'}
-                                onSelect={(f) => {
-                                    setFilterTodo(f === 'all' ? true : false)
-                                }}
-
-                                className="mb-3 to-tabs">
-                                <Tab eventKey="all" title="Active">
-                                </Tab>
-                                <Tab eventKey="completed" title="Completed">
-                                </Tab>
-
-                            </Tabs>
                         </div>
 
                         <div>

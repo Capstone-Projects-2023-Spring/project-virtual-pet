@@ -27,7 +27,7 @@ import orange_click from "../../images/orange_cat_hi_scaled_5x_pngcrushed.png";
 import gray_click from "../../images/gray_cat_hi_scaled_5x_pngcrushed.png";
 import white_click from "../../images/white_cat_hi_scaled_5x_pngcrushed.png";
 import tux_click from "../../images/tux_cat_hi_scaled_5x_pngcrushed.png";
-
+import pet_rock from "../../images/pet_rock_scaled_5x_pngcrushed.png"
 import CalculatePetLevel from "../../algos/calculatePetLevel";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 import GlobalContext from "../../context/GlobalContext.js";
@@ -244,81 +244,82 @@ const PetDisplay = () => {
     }
   }, [contextHandler]);
 
-  const getavatarImage = (pet) => {
-    switch (pet.avatar_type) {
-      case "CT":
-        console.log(pet.palette);
-        switch (pet.palette) {
-          case 0:
-            if (mood === "N") {
-              setAvatarImage(orange_cat);
-              //} else {
-              //    setAvatarImage(`orange_${mood}_gif`)
-              // console.log(`orange_${mood}_gif`)
-            } else if (mood === "H") {
-              setAvatarImage(orange_H_gif);
-            } else {
-              setAvatarImage(orange_S_gif);
-            }
-            return;
-          case 1:
-            if (level_info.LEVEL >= 20) {
-              if (mood === "N") {
-                setAvatarImage(gray_N_prop);
-              } else if (mood === "H") {
-                setAvatarImage(gray_H_prop);
-                // setAvatarImage(`gray_${mood}_gif`)
-                // console.log(`gray_${mood}_gif`)
-              } else {
-                setAvatarImage(gray_S_prop);
-              }
-              return;
-            }
-            if (mood === "N") {
-              setAvatarImage(gray_cat);
-            } else if (mood === "H") {
-              setAvatarImage(gray_H_gif);
-              // setAvatarImage(`gray_${mood}_gif`)
-              // console.log(`gray_${mood}_gif`)
-            } else {
-              setAvatarImage(gray_S_gif);
-            }
-            return;
-          case 2:
-          case 1:
-            if (mood === "N") {
-              setAvatarImage(white_cat);
-            } else if (mood === "H") {
-              setAvatarImage(white_H_gif);
-              // setAvatarImage(`gray_${mood}_gif`)
-              // console.log(`gray_${mood}_gif`)
-            } else {
-              setAvatarImage(white_S_gif);
-            }
-            return;
-          case 3:
-          case 1:
-            if (mood === "N") {
-              setAvatarImage(tux_cat);
-            } else if (mood === "H") {
-              setAvatarImage(tux_H_gif);
-              // setAvatarImage(`gray_${mood}_gif`)
-              // console.log(`gray_${mood}_gif`)
-            } else {
-              setAvatarImage(tux_S_gif);
-            }
-            return;
-          // case 2:
-          //     if(mood==='N'){
-          //         setAvatarImage(orange_cat);
-          //    //} else {
-          //     //    setAvatarImage(`orange_${mood}_gif`)
-          //        // console.log(`orange_${mood}_gif`)
-          //    } else if (mood === 'H'){
-          //         setAvatarImage(orange_H_gif);
-          //    } else {
-          //         setAvatarImage(orange_S_gif);
-          //    }
+        const getavatarImage = (pet) => {
+            switch (pet.avatar_type) {
+                case 'CT':
+                    console.log(pet.palette);
+                    switch (pet.palette) {
+                        case 0:
+                            if (mood === 'N') {
+                                setAvatarImage(orange_cat);
+                                //} else {
+                                //    setAvatarImage(`orange_${mood}_gif`)
+                                // console.log(`orange_${mood}_gif`)
+                            } else if (mood === 'H') {
+                                setAvatarImage(orange_H_gif);
+                            } else {
+                                setAvatarImage(orange_S_gif);
+                            }
+                            return
+                        case 1:
+                            if(level_info.LEVEL >= 20){
+                                if(mood==='N'){
+                                    setAvatarImage(gray_N_prop);
+                               } else if(mood==='H'){
+                                    setAvatarImage(gray_H_prop);
+                                    // setAvatarImage(`gray_${mood}_gif`)
+                                    // console.log(`gray_${mood}_gif`)
+                               } else {
+                                setAvatarImage(gray_S_prop);
+                               }
+                               return
+                            }
+                            if(mood==='N'){
+                                setAvatarImage(gray_cat);
+                            } else if (mood === 'H') {
+                                setAvatarImage(gray_H_gif);
+                                // setAvatarImage(`gray_${mood}_gif`)
+                                // console.log(`gray_${mood}_gif`)
+                            } else {
+                                setAvatarImage(gray_S_gif);
+                            }
+                            return
+                        case 2:
+                            if (mood === 'N') {
+                                setAvatarImage(white_cat);
+                            } else if (mood === 'H') {
+                                setAvatarImage(white_H_gif);
+                                // setAvatarImage(`gray_${mood}_gif`)
+                                // console.log(`gray_${mood}_gif`)
+                            } else {
+                                setAvatarImage(white_S_gif);
+                            }
+                            return
+                        case 3:
+                            if (mood === 'N') {
+                                setAvatarImage(tux_cat);
+                            } else if (mood === 'H') {
+                                setAvatarImage(tux_H_gif);
+                                // setAvatarImage(`gray_${mood}_gif`)
+                                // console.log(`gray_${mood}_gif`)
+                            } else {
+                                setAvatarImage(tux_S_gif);
+                            }
+                            return
+                        case 4:
+                          setAvatarImage(pet_rock);
+                          return;
+                        // case 2:
+                        //     if(mood==='N'){
+                        //         setAvatarImage(orange_cat);
+                        //    //} else {
+                        //     //    setAvatarImage(`orange_${mood}_gif`)
+                        //        // console.log(`orange_${mood}_gif`)
+                        //    } else if (mood === 'H'){
+                        //         setAvatarImage(orange_H_gif);
+                        //    } else {
+                        //         setAvatarImage(orange_S_gif);
+                        //    }
 
           // switch(mood){
           //         case 'N':
@@ -334,19 +335,20 @@ const PetDisplay = () => {
           // return graysheet;
         }
 
-      case "DG":
-        return "";
-      case "CR":
-        return "";
-      case "RK":
-        return "";
-    }
-  };
-  //TEMP USE EFFECT TO SEE MOOD
-  //Mary, plug in your state changes here!!
-  useEffect(() => {
-    console.log("MOOD------>", mood);
 
+                case 'DG':
+                    return ''
+                case 'CR':
+                    return ''
+                case 'RK':
+                    return ''
+            }
+        }
+    //TEMP USE EFFECT TO SEE MOOD
+    //Mary, plug in your state changes here!!
+    useEffect(() => {
+        console.log("MOOD------>", mood)
+        
     getavatarImage(contextHandler?.avatarInfo);
   }, [mood, level_info.LEVEL]);
 
