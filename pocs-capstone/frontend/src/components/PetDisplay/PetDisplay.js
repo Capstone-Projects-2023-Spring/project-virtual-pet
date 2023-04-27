@@ -288,6 +288,9 @@ const PetDisplay = () => {
                                 setAvatarImage(tux_S_gif);
                             }
                             return
+                        case 4:
+                          setAvatarImage(pet_rock);
+                          return;
                         // case 2:
                         //     if(mood==='N'){
                         //         setAvatarImage(orange_cat);
@@ -319,9 +322,6 @@ const PetDisplay = () => {
                     return ''
                 case 'CR':
                     return ''
-                case 'RK':
-                  setAvatarImage(pet_rock);
-                    return
             }
         }
     //TEMP USE EFFECT TO SEE MOOD

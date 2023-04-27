@@ -287,15 +287,14 @@ const PetDisplay = () => {
               setAvatarImage(tux_S_gif);
             }
             return;
+          case 4:
+            setAvatarImage(pet_rock);
+            return;
         }
-
       case "DG":
         return "";
       case "CR":
         return "";
-      case "RK":
-        setAvatarImage(pet_rock);
-        return
     }
   };
 

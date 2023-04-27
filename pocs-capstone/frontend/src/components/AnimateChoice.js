@@ -37,7 +37,7 @@ const AnimateChoice = () => {
   const [enteredText, setEnteredText] = useState("");
 
   const [nameError, setNameError] = useState("");
-  const [petType, setPetType] = useState("");
+  const petType = "CT";
   const navigator = useNavigate();
   const width = useWindowWidth();
   const textChangeHandler = (i) => {
@@ -75,13 +75,6 @@ const AnimateChoice = () => {
       const last_feed = YESTERDAY.toISOString().split('T')[0];
       const last_interaction = currentDate;
       const total_xp = 1;
-      console.log("selected index:", selectedIndex);
-      if(selectedIndex === 4){
-        setPetType("RK")
-      } else {
-        setPetType("CT")
-      }
-      console.log("petType:", petType)
       const petInfo = {
         avatar_type: petType,
         last_interaction,
