@@ -6,6 +6,8 @@ import { useState, useEffect, useRef, useContext } from "react";
 import { useWindowHeight, useWindowWidth } from "@react-hook/window-size";
 import useAxiosPrivate from "../hooks/useAxiosPrivate.js";
 import "./Main.css";
+import OneSignal from 'react-onesignal';
+
 import PopulateInv from "./Inventory/PopulateInv";
 import LockedInv from "./Inventory/LockedInv.js";
 import AvatarContext from "../context/AvatarContext";
@@ -41,6 +43,87 @@ const Main = () => {
   const userContext = useContext(UserContext)
 
   const baseURL = `/tasks/`
+
+  useEffect(() => {
+    OneSignal.init({
+      appId: "03d68522-7024-4cff-a04b-8f49eb789abe",
+      safari_web_id: "web.onesignal.auto.4da9f50a-e5cd-4bfe-8999-da1af6f61d49",
+
+      allowLocalhostAsSecureOrigin: false, // change to true for testing on localhost, false for https site
+
+      autoRegister: false, //prompt user first
+      autoResubscribe: true, //if user clears cache, they'll be automatically resubscribed without being asked
+      path: "/",
+      serviceWorkerPath: "OneSignalSDKWorker.js",
+      serviceWorkerParam: {
+        scope: "/"
+      },
+      subdomainName: null,
+      promptOptions: { //set to true to enable prompt instead of (or addition to) bell
+        autoPrompt: false,
+        native: {
+          enabled: false,
+          autoPrompt: false,
+          pageViews: 1,
+          timeDelay: 0,
+        },
+      },
+      welcomeNotification: { //specify welcome notification message
+        disable: false,
+        title: "Welcome to Study Buddy!",
+        message: "Thanks for subscribing to push notifications!",
+        url: "https://studybuddy.life/?_osp=do_not_open"
+      },
+      notifyButton: { // subscription bell in lower right corner; goes away after subscribing
+        enable: true,
+        size: "medium",
+        position: "bottom-right",
+        showCredit: false,
+        displayPredicate: () => OneSignal.isPushNotificationsEnabled().then(isEnabled => isEnabled ? false : true), //make it go away when user subscribes
+        offset: { //adjust where notification bell appears on screen
+          bottom: "15px",
+          left: "15px",
+          right: "15px"
+        },
+        colors: {
+          "circle.background": "#d73c3c",
+          "circle.foreground": "#ffc6c6",
+          "badge.background": "black",
+          "badge.foreground": "white",
+          "badge.bordercolor": "black",
+          "pulse.color": "#ffc6c6",
+          "dialog.button.background.hovering": "#d73c3c",
+          "dialog.button.background.active": "#d73c3c",
+          "dialog.button.background": "#d73c3c",
+          "dialog.button.foreground": "white"
+        },
+        text: {
+          "tip.state.unsubscribed": "Subscribe to notifications",
+          "tip.state.subscribed": "You're subscribed to notifications",
+          "tip.state.blocked": "You've blocked notifications",
+          "message.prenotify": "Subscribe to notifications",
+          "message.action.subscribing": "Thanks for subscribing!",
+          "message.action.subscribed": "Thanks for subscribing!",
+          "message.action.resubscribed": "Thanks for subscribing!",
+          "message.action.unsubscribed": "You won't receive notifications again",
+          "dialog.main.title": "Manage Notifications",
+          "dialog.main.button.subscribe": "Subscribe",
+          "dialog.main.button.unsubscribe": "Unsubscribe",
+          "dialog.blocked.title": "Unblock Notifications",
+          "dialog.blocked.message": "Click here to learn how to unblock notifications."
+        }
+      },
+      persistNotification: false, // on non-mobile Chrome, the notification will not go away automatically unless this is false
+      notificationClickHandlerMatch: "exact",
+      notificationClickHandlerAction: "navigate",
+
+    });
+
+    OneSignal.getUserId().then(playerId => {
+      //Send the playerId to your server to associate it with the user
+      console.log("Here is the user's device/browser id:", playerId);
+    })
+  }, []);
 
   let spriteSheetRef = useRef(null);
   useEffect(() => {
@@ -204,7 +287,7 @@ const Main = () => {
     // var d = new Date();
     // console.log("INITIAL DATE", d)
 
-    // d.setMinutes(d.getMinutes() - 1);   
+    // d.setMinutes(d.getMinutes() - 1);
     // d.setDate(6)
 
     // console.log("CREATED TSAK ON ", d)
@@ -250,7 +333,7 @@ const Main = () => {
 
     if (completedTasks.length) {
       completedTasks.forEach(t => {
-        
+
         axiosPrivate.delete(`${baseURL}${t.task_id}/`)
           .catch(e => {
             console.log("ERROR TASKS", e)
@@ -258,7 +341,7 @@ const Main = () => {
       })
     }
 
-    // keep non completed tasks 
+    // keep non completed tasks
     const keepTasks = taskList.filter(task => !task.completed)
     setTaskList(keepTasks)
   }
@@ -348,7 +431,7 @@ const Main = () => {
   // Moved from PetDisplay - passed base type and level when called in Candy
   const getExp = (candy_base_type, candy_level) => {
     console.log("HELLOOOERONKEJRNGEKJRG")
-  
+
     const received_xp = CalculateXP(candy_base_type, candy_level);
 
 
@@ -356,10 +439,10 @@ const Main = () => {
 
     const today = new Date();
     const todayString = today.toISOString().split("T")[0];
-    
+
     const prevLevel = CalculatePetLevel(avatarInfo.total_xp)
     setPrevLevelInfo(prevLevel)
-   
+
     const updatedAvatar = {
       ...avatarInfo,
       total_xp: total_xp,
@@ -367,21 +450,21 @@ const Main = () => {
     };
 
     console.log("PREV LEVEL", prevLevel)
-  
+
     axiosPrivate
       .patch(`/avatar/${avatarInfo.avatar_id}/`, updatedAvatar)
-      .then((response) => { 
-        
+      .then((response) => {
+
         const nextLevel = CalculatePetLevel(response.data.total_xp)
-        if (prevLevel.LEVEL < nextLevel.LEVEL){
+        if (prevLevel.LEVEL < nextLevel.LEVEL) {
           setLeveledUp(true)
         }
-      
+
         setAvatar(response.data); //change this to add to previous state instead of replacing completely (in case of >1 avatar for 1 user)
         gainExpAudio.play()
         getLevel(avatarInfo.total_xp);
 
-        
+
       })
       .catch((err) => {
         console.log(err);
@@ -408,7 +491,7 @@ const Main = () => {
     animateSpriteSheet,
     setSpritesheetInstance,
     getExp,
-    leveledUp, 
+    leveledUp,
     setLeveledUp,
     prev_level_info,
     height,
@@ -449,5 +532,3 @@ const Main = () => {
   }
 };
 export default Main;
-
-
