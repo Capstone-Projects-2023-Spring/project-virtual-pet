@@ -49,6 +49,7 @@ const CanvasIntegrationPage = () => {
   useEffect(() => {
     if (tokenReady) {
       nav("/");
+      
       //console.log("TOKEN READY????---------->", tokenReady);
       /* //Don't need to do this here anymore
       axiosPrivate

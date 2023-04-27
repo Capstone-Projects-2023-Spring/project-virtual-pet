@@ -1,5 +1,5 @@
 import "./PageDisplay.css"
-import TaskPage from "./TaskPage";
+import TaskPage from "./Task/TaskPage";
 import TaskPageMobile from "./TaskMobile/TaskPageMobile"
 import CalendarPageDesktop from "../CalendarDeskop/CalendarPageDeskop";
 import PetProfPage from "./PetProfPage";

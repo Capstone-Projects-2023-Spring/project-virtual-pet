@@ -70,3 +70,7 @@ self.addEventListener('message', (event) => {
 });
 
 // Any other custom service worker logic can go here.
+
+self.addEventListener('push', (event) => {
+  console.log(event.data);
+});

@@ -1,21 +1,28 @@
 
 import { ListGroup, Stack, Button } from 'react-bootstrap';
 import TaskItem from './TaskItem'
-// import TaskListContext from '../../context/TaskListContext'
-import GlobalContext from "../../context/GlobalContext.js";
+import GlobalContext from "../../../context/GlobalContext.js";
 import { useContext, useState } from 'react'
 import './TaskPage.css'
 
-const TaskList = ({ filter }) => {
+const TaskList = ({ showAll, filterTags, filterTaskType }) => {
     const handlers = useContext(GlobalContext)
-    const showTasks = filter === 'all' ?
-        handlers?.taskList.filter(task => !task.completed) :
-        handlers?.taskList.filter(task => task.completed)
+
+    const taskFilterCondition = (item) => {
+        if (filterTaskType.length === 1) {
+            return filterTaskType[0] === 'canvas' ? item.course_id !== 0 && item.assignment_id !== 0 : item.course_id === 0 && item.assignment_id === 0
+        }
+        return true
+    }
+    const showTasks = handlers?.taskList.filter(task => task.completed !== showAll).filter(task => filterTags.every(fT => task.tags?.includes(fT))).filter(taskFilterCondition)
 
     const taskListHandlers = {
         updateTask: handlers.updateTask,
-        deleteTask: handlers.deleteTask,
+        deleteTask: handlers.deleteTask
     }
+
+    // console.log(`TASKS: ${showTasks}`)
+    
 
     return (
         <>
@@ -27,8 +34,8 @@ const TaskList = ({ filter }) => {
                         </ListGroup.Item>
                     </ListGroup>
                     :
-                    <>        
-                        {filter === 'completed' ?
+                    <>
+                        {showAll === false ?
                             (
                                 <div className='delete-com-tasks "mb-2"'>
                                     <Stack className="col-md-5 mx-auto">
@@ -46,7 +53,6 @@ const TaskList = ({ filter }) => {
             }
         </>
     )
-
 }
 
 
