@@ -265,7 +265,6 @@ const PetDisplay = () => {
                             }
                             return
                         case 2:
-                        case 1:
                             if (mood === 'N') {
                                 setAvatarImage(white_cat);
                             } else if (mood === 'H') {
@@ -277,7 +276,6 @@ const PetDisplay = () => {
                             }
                             return
                         case 3:
-                        case 1:
                             if (mood === 'N') {
                                 setAvatarImage(tux_cat);
                             } else if (mood === 'H') {

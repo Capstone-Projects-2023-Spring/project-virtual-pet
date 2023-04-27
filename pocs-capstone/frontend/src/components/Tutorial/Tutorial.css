@@ -306,3 +306,8 @@
   background: #3a0422;
   color: #ffffff;
 }
+
+html,
+body {
+    background-color: rgb(255, 198, 198)
+}
