@@ -1,6 +1,6 @@
 from django.test import TestCase
 from django.urls import reverse
-import json
+
 
 class CustomUserCreateViewTest(TestCase):
     registerData = {
@@ -12,7 +12,6 @@ class CustomUserCreateViewTest(TestCase):
     
     def test_view_url_exists_at_desired_location(self):    
         response = self.client.post( '/api/register/', self.registerData)
-        print("RESPONSE", response)
         self.assertEqual(response.status_code, 201)
     
     # This may be working because 405 means not authorized but also no clue b/ anyone should be able to register

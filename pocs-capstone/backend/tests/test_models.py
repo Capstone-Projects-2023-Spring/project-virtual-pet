@@ -19,7 +19,11 @@ class NewUserModelTest(TestCase):
             is_staff = False,
             is_active = True,
             canvas_token = "12345",
-            tutorial = True
+            tutorial = True,
+            demo_canvas = False,
+            tags = None,
+            canvas_tags = None
+ 
 
         )
 
@@ -75,7 +79,12 @@ class AvatarModelTest(TestCase):
             birthday = "2023-05-30",
             bio = "I like turtles",
             is_staff = False,
-            is_active = True
+            is_active = True,
+            canvas_token = "12345",
+            tutorial = True,
+            demo_canvas = False,
+            tags = None,
+            canvas_tags = None
         )
 
         Avatar.objects.create(
@@ -121,7 +130,12 @@ class InventoryModelTest(TestCase):
             birthday = "2023-05-30",
             bio = "I like turtles",
             is_staff = False,
-            is_active = True
+            is_active = True,
+            canvas_token = "12345",
+            tutorial = True,
+            demo_canvas = False,
+            tags = None,
+            canvas_tags = None
         )
 
         Inventory.objects.create(
@@ -154,7 +168,12 @@ class TaskModelTest(TestCase):
             birthday = "2023-05-30",
             bio = "I like turtles",
             is_staff = False,
-            is_active = True
+            is_active = True,
+            canvas_token = "12345",
+            tutorial = True,
+            demo_canvas = False,
+            tags = None,
+            canvas_tags = None
         )
 
         Task.objects.create(
