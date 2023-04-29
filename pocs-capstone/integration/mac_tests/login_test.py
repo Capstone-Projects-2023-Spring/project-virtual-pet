@@ -7,7 +7,7 @@ from time import sleep
 # where
 URL = "https://studybuddy.life"
 # wat
-DRIVER_PATH = "./chromedrivers/chromedriver_112"
+DRIVER_PATH = "../chromedrivers/chromedriver_112_mac"
 
 # passing these ptions will keep the window open when the script completes
 options = webdriver.ChromeOptions()

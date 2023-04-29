@@ -20,7 +20,7 @@ from selenium.webdriver.common.by import By
 URL = "https://studybuddy.life"
 # wat
 # must change to the correct driver !!!
-DRIVER_PATH = "./chromedrivers/chromedriver_112_mac"
+DRIVER_PATH = "../chromedrivers/chromedriver_112_mac"
 
 # passing these ptions will keep the window open when the script completes
 options = webdriver.ChromeOptions()
