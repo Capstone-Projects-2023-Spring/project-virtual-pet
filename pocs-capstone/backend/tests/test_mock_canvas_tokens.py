@@ -1,4 +1,4 @@
-from django.test import TestCase, override_settings
+from django.test import TestCase
 from db.models import NewUser
 from django.utils import timezone
 from db.studybuddyemail import send_email
@@ -208,7 +208,3 @@ class TestCanvasMockData(TestCase):
         for task in _tasks_for_mock1:
             task["completed_date"] = "2023-06-01"
         self.assertEqual((_tasks_for_mock1,200), result)
-
-    
-
-    
