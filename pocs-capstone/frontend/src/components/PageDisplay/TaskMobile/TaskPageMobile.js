@@ -5,6 +5,7 @@ import UserContext from "../../../context/UserContext";
 import { useState, useContext } from 'react';
 import { Tab, Tabs, Button, Stack, Card, Dropdown, Form, ListGroup, CloseButton } from 'react-bootstrap';
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
+import FilterAltIcon from '@mui/icons-material/FilterAlt';
 
 const TaskPageMobile = () => {
     const userHandler = useContext(UserContext)
@@ -105,7 +106,7 @@ const TaskPageMobile = () => {
                         <div className="ms-auto">
                             <Dropdown className="d-inline mx-2" autoClose="outside">
                                 <Dropdown.Toggle drop="down-centered" id="dropdown-autoclose-outside">
-                                    T
+                                    {<FilterAltIcon/>}
                                 </Dropdown.Toggle>
 
                                 <Dropdown.Menu>

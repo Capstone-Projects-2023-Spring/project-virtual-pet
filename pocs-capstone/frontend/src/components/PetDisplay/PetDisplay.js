@@ -23,11 +23,11 @@ import { useContext, useEffect, useRef, useState } from "react";
 
 import bgimage from "../../images/bg.gif";
 import ProgressBar from "react-bootstrap/ProgressBar";
-import orange_click from '../../images/orange_cat_hi_scaled_5x_pngcrushed.png'
-import gray_click from '../../images/gray_cat_hi_scaled_5x_pngcrushed.png'
-import white_click from '../../images/white_cat_hi_scaled_5x_pngcrushed.png'
-import tux_click from '../../images/tux_cat_hi_scaled_5x_pngcrushed.png'
-
+import orange_click from "../../images/orange_cat_hi_scaled_5x_pngcrushed.png";
+import gray_click from "../../images/gray_cat_hi_scaled_5x_pngcrushed.png";
+import white_click from "../../images/white_cat_hi_scaled_5x_pngcrushed.png";
+import tux_click from "../../images/tux_cat_hi_scaled_5x_pngcrushed.png";
+import pet_rock from "../../images/pet_rock_scaled_5x_pngcrushed.png"
 import CalculatePetLevel from "../../algos/calculatePetLevel";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 import GlobalContext from "../../context/GlobalContext.js";
@@ -39,7 +39,16 @@ const HAPPY = "H";
 
 const TASK_URL = "/tasks/";
 const USER_URL = "/user-data/";
-const TODAY = new Date();
+var YESTERDAY = new Date(Date.now() - 86400000);
+var TODAY = new Date();
+YESTERDAY = new Date(
+  YESTERDAY.toLocaleString("en-US", { timeZone: "America/New_York" }).split(
+    ","
+  )[0]
+);
+TODAY = new Date(
+  TODAY.toLocaleString("en-US", { timeZone: "America/New_York" }).split(",")[0]
+);
 
 const WEIGHTS = [
   "15 paperclips",
@@ -71,7 +80,7 @@ const WEIGHTS = [
 
 const PetDisplay = () => {
   //TODO - shouldn't call calc-pet-lev 3 times
-    const [click, setClick] = useState(true);
+  const [click, setClick] = useState(true);
   const axiosPrivate = useAxiosPrivate();
   const [mood, setMood] = useState(NEUTRAL); //H = happy, S = Sad, N = Neutral
   const [mooddesc, setMoodDesc] = useState("");
@@ -105,32 +114,32 @@ const PetDisplay = () => {
     contextHandler?.setSpritesheetInstance(spritesheet);
   }
 
-    const handleClick = () => {
-        setClick(true);
-        switch (contextHandler?.avatarInfo.avatar_type) {
-            case 'CT':
-                // console.log(pet.palette);
-                switch (contextHandler?.avatarInfo.palette) {
-                    case 0:
-                        setAvatarImage(orange_click);
-                        break;
-                    case 1:
-                        setAvatarImage(gray_click);
-                        break;
-                    case 2:
-                        setAvatarImage(white_click);
-                        break;
-                    case 3:
-                        setAvatarImage(tux_click);
-                        break;
-                }
-         }
-        setTimeout(() => {
-          setAvatarImage(getavatarImage(contextHandler?.avatarInfo));
-          console.log(getavatarImage(contextHandler?.avatarInfo))
-        }, 1500);
-        setClick(false);
-      };
+  const handleClick = () => {
+    setClick(true);
+    switch (contextHandler?.avatarInfo.avatar_type) {
+      case "CT":
+        // console.log(pet.palette);
+        switch (contextHandler?.avatarInfo.palette) {
+          case 0:
+            setAvatarImage(orange_click);
+            break;
+          case 1:
+            setAvatarImage(gray_click);
+            break;
+          case 2:
+            setAvatarImage(white_click);
+            break;
+          case 3:
+            setAvatarImage(tux_click);
+            break;
+        }
+    }
+    setTimeout(() => {
+      setAvatarImage(getavatarImage(contextHandler?.avatarInfo));
+      console.log(getavatarImage(contextHandler?.avatarInfo));
+    }, 1500);
+    setClick(false);
+  };
 
   function dateDelta(date1, date2) {
     return Math.floor((date1 - date2) / (1000 * 60 * 60 * 24));
@@ -138,10 +147,11 @@ const PetDisplay = () => {
 
   //We should calculate the pets modd on change of state
   /*
-    if it's you're birthday, your pet is happy
-    if pet hasn't been fed in a while but tasks are complete pet is neutral
-    if pet tasks are overdue, pet is sad
-  */
+        if it's you're birthday, your pet is happy
+        if pet hasn't been fed in a while but tasks are complete pet is neutral
+        if pet tasks are overdue, pet is sad
+    */
+
   useEffect(() => {
     var tasks;
     var user;
@@ -161,10 +171,15 @@ const PetDisplay = () => {
     });
 
     const last_interaction = contextHandler.avatarInfo.last_interaction;
-    const last_feed = new Date(contextHandler.avatarInfo.last_feed);
+    var last_feed = new Date(contextHandler.avatarInfo.last_feed);
+    last_feed = new Date(
+      last_feed
+        .toLocaleString("en-US", { timeZone: "America/New_York" })
+        .split(",")[0]
+    );
 
     const feed_delta = dateDelta(TODAY, last_feed); //elapsed time since last feed
-    console.log("FEED DELTA", feed_delta, TODAY, last_feed);
+    console.log("FEED DELTA", feed_delta, last_feed, TODAY);
     if (feed_delta <= 3 && feed_delta > 1) {
       setMood(NEUTRAL);
       setMoodDesc("I'm feeling content.");
@@ -175,8 +190,8 @@ const PetDisplay = () => {
       console.log("FEED HAPPY", feed_delta);
     } else {
       setMood(SAD);
-      console.log("FEED SAD", feed_delta);
       setMoodDesc("I'm hungry :(");
+      console.log("FEED SAD", feed_delta);
       feed_flag = true;
     }
 
@@ -186,8 +201,14 @@ const PetDisplay = () => {
       tasks = response?.data;
       tasks.forEach((item) => {
         if (!item.completed) {
-          const due = new Date(item.due_date);
+          const _due = item.due_date.split("-");
+          console.log("_due----->", _due);
+
+          var due = new Date(_due[0], Number(_due[1]) - 1, _due[2]);
+
           const task_delta = dateDelta(due, TODAY);
+
+          console.log("ITEM DUE DATE:", item.due_date);
           console.log(
             "TASK DELTA----->",
             task_delta,
@@ -197,10 +218,10 @@ const PetDisplay = () => {
           );
           if (task_delta < 0) {
             setMood(SAD);
-            console.log("TASK SAD");
             setMoodDesc(
               "I'm stressed. You have overdue tasks... please complete them :("
             );
+            console.log("TASK SAD");
             return;
           }
         }
@@ -222,7 +243,6 @@ const PetDisplay = () => {
       return;
     }
   }, [contextHandler]);
-
 
         const getavatarImage = (pet) => {
             switch (pet.avatar_type) {
@@ -265,7 +285,6 @@ const PetDisplay = () => {
                             }
                             return
                         case 2:
-                        case 1:
                             if (mood === 'N') {
                                 setAvatarImage(white_cat);
                             } else if (mood === 'H') {
@@ -277,7 +296,6 @@ const PetDisplay = () => {
                             }
                             return
                         case 3:
-                        case 1:
                             if (mood === 'N') {
                                 setAvatarImage(tux_cat);
                             } else if (mood === 'H') {
@@ -288,6 +306,9 @@ const PetDisplay = () => {
                                 setAvatarImage(tux_S_gif);
                             }
                             return
+                        case 4:
+                          setAvatarImage(pet_rock);
+                          return;
                         // case 2:
                         //     if(mood==='N'){
                         //         setAvatarImage(orange_cat);
@@ -300,19 +321,19 @@ const PetDisplay = () => {
                         //         setAvatarImage(orange_S_gif);
                         //    }
 
-            // switch(mood){
-            //         case 'N':
-            //             setAvatarImage(gray_cat);
-            //         case 'H':
-            //             setAvatarImage(gray_H_gif);
-            //         case 'S':
-            //             setAvatarImage(gray_S_gif);
-            //   //  }
+          // switch(mood){
+          //         case 'N':
+          //             setAvatarImage(gray_cat);
+          //         case 'H':
+          //             setAvatarImage(gray_H_gif);
+          //         case 'S':
+          //             setAvatarImage(gray_S_gif);
+          //   //  }
 
-            // CHANGE TO IMAGE OF OTHER CAT (black palette)
-            // return require('../../images/graycat.png')
-            // return graysheet;
-          }
+          // CHANGE TO IMAGE OF OTHER CAT (black palette)
+          // return require('../../images/graycat.png')
+          // return graysheet;
+        }
 
 
                 case 'DG':
@@ -329,8 +350,7 @@ const PetDisplay = () => {
         console.log("MOOD------>", mood)
         
     getavatarImage(contextHandler?.avatarInfo);
-    },[mood, level_info.LEVEL])
-
+  }, [mood, level_info.LEVEL]);
 
   const retAvatarImage = () => {
     return avatarImage;
@@ -387,15 +407,22 @@ const PetDisplay = () => {
 
   return (
     <div className="pet-display">
-      <Card style={{ width: "25rem"}}>
-        <Card.Header style={{fontSize: "calc(0.8vw + 1.4vh"}} className="pet-name">
+      <Card style={{ width: "25rem" }}>
+        <Card.Header
+          style={{ fontSize: "calc(0.8vw + 1.4vh" }}
+          className="pet-name"
+        >
           {contextHandler?.avatarInfo.pet_name}
         </Card.Header>
 
         <div className="Board">
           <div className="p-sprite-display">
             <img src={bgimage} alt="background" className="bg-sprite" />
-            <img src={avatarImage} className="p-sprite" onClick={handleClick}></img>
+            <img
+              src={avatarImage}
+              className="p-sprite"
+              onClick={handleClick}
+            ></img>
           </div>
         </div>
         <div className="pbar-exp">

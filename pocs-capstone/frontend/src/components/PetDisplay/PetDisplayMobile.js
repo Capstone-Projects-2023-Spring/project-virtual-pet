@@ -28,13 +28,14 @@ import white_H_gif from "../../images/white_happy_gif.gif";
 import white_S_gif from "../../images/white_sad_gif.gif";
 import tux_H_gif from "../../images/tux_happy_gif.gif";
 import tux_S_gif from "../../images/tux_sad_gif.gif";
-import gray_N_prop from '../../images/propeller_hat.gif'
-import gray_H_prop from '../../images/prop_happy.gif'
-import gray_S_prop from '../../images/prop_sad.gif'
-import orange_click from '../../images/orange_cat_hi_scaled_5x_pngcrushed.png'
-import gray_click from '../../images/gray_cat_hi_scaled_5x_pngcrushed.png'
-import white_click from '../../images/white_cat_hi_scaled_5x_pngcrushed.png'
-import tux_click from '../../images/tux_cat_hi_scaled_5x_pngcrushed.png'
+import gray_N_prop from "../../images/propeller_hat.gif";
+import gray_H_prop from "../../images/prop_happy.gif";
+import gray_S_prop from "../../images/prop_sad.gif";
+import orange_click from "../../images/orange_cat_hi_scaled_5x_pngcrushed.png";
+import gray_click from "../../images/gray_cat_hi_scaled_5x_pngcrushed.png";
+import white_click from "../../images/white_cat_hi_scaled_5x_pngcrushed.png";
+import tux_click from "../../images/tux_cat_hi_scaled_5x_pngcrushed.png";
+import pet_rock from "../../images/pet_rock_scaled_5x_pngcrushed.png"
 // (next level - remainder) / (next level) //
 import dingSound from "../../audio/dingsound.mp3";
 
@@ -73,6 +74,7 @@ const PetDisplay = () => {
   //const [next_level, setNextLevel] = useState(CalculatePetLevel(avatar_handler.avatarInfo.total_xp).REMAINDER);
   const [level_info, setLevelInfo] = useState(
     CalculatePetLevel(contextHandler?.avatarInfo.total_xp)
+    
   );
   // const [ratio,setRatio] = useState(level_info.NEXT_LEVEL-level_info.REMAINDER/level_info.NEXT_LEVEL ) //TODO susss
 
@@ -93,26 +95,26 @@ const PetDisplay = () => {
   const handleClick = () => {
     setClick(true);
     switch (contextHandler?.avatarInfo.avatar_type) {
-        case 'CT':
-            // console.log(pet.palette);
-            switch (contextHandler?.avatarInfo.palette) {
-                case 0:
-                    setAvatarImage(orange_click);
-                    break;
-                case 1:
-                    setAvatarImage(gray_click);
-                    break;
-                case 2:
-                    setAvatarImage(white_click);
-                    break;
-                case 3:
-                    setAvatarImage(tux_click);
-                    break;
-            }
-     }
+      case "CT":
+        // console.log(pet.palette);
+        switch (contextHandler?.avatarInfo.palette) {
+          case 0:
+            setAvatarImage(orange_click);
+            break;
+          case 1:
+            setAvatarImage(gray_click);
+            break;
+          case 2:
+            setAvatarImage(white_click);
+            break;
+          case 3:
+            setAvatarImage(tux_click);
+            break;
+        }
+    }
     setTimeout(() => {
       setAvatarImage(getavatarImage(contextHandler?.avatarInfo));
-      console.log(getavatarImage(contextHandler?.avatarInfo))
+      console.log(getavatarImage(contextHandler?.avatarInfo));
     }, 2000);
     setClick(false);
   };
@@ -195,7 +197,9 @@ const PetDisplay = () => {
           );
           if (task_delta < 0) {
             setMood(SAD);
-            moodHandler?.setPetMoodDesc("I'm stressed. You have overdue tasks... please complete them :(");
+            moodHandler?.setPetMoodDesc(
+              "I'm stressed. You have overdue tasks... please complete them :("
+            );
             console.log("TASK SAD");
             return;
           }
@@ -213,7 +217,9 @@ const PetDisplay = () => {
         return;
       }
       setMood(HAPPY); //TODO we'll check grades here as well
-      moodHandler?.setPetMoodDesc("You've gotten so much done! I'm so happy! :D");
+      moodHandler?.setPetMoodDesc(
+        "You've gotten so much done! I'm so happy! :D"
+      );
       console.log("TASK HAPPY");
       return;
     }
@@ -237,18 +243,18 @@ const PetDisplay = () => {
             }
             return;
           case 1:
-            if(level_info.LEVEL >= 20){
-              if(mood==='N'){
-                  setAvatarImage(gray_N_prop);
-             } else if(mood==='H'){
-                  setAvatarImage(gray_H_prop);
-                  // setAvatarImage(`gray_${mood}_gif`)
-                  // console.log(`gray_${mood}_gif`)
-             } else {
-              setAvatarImage(gray_S_prop);
-             }
-             return
-          }
+            if (level_info.LEVEL >= 20) {
+              if (mood === "N") {
+                setAvatarImage(gray_N_prop);
+              } else if (mood === "H") {
+                setAvatarImage(gray_H_prop);
+                // setAvatarImage(`gray_${mood}_gif`)
+                // console.log(`gray_${mood}_gif`)
+              } else {
+                setAvatarImage(gray_S_prop);
+              }
+              return;
+            }
             if (mood === "N") {
               setAvatarImage(gray_cat);
             } else if (mood === "H") {
@@ -260,7 +266,6 @@ const PetDisplay = () => {
             }
             return;
           case 2:
-          case 1:
             if (mood === "N") {
               setAvatarImage(white_cat);
             } else if (mood === "H") {
@@ -272,7 +277,6 @@ const PetDisplay = () => {
             }
             return;
           case 3:
-          case 1:
             if (mood === "N") {
               setAvatarImage(tux_cat);
             } else if (mood === "H") {
@@ -283,13 +287,13 @@ const PetDisplay = () => {
               setAvatarImage(tux_S_gif);
             }
             return;
+          case 4:
+            setAvatarImage(pet_rock);
+            return;
         }
-
       case "DG":
         return "";
       case "CR":
-        return "";
-      case "RK":
         return "";
     }
   };
@@ -337,7 +341,10 @@ const PetDisplay = () => {
 
   return (
     <div className="pet-display-mobile">
-      <Card.Header style={{fontSize: "calc(0.8vw + 1.4vh"}} className="pet-name">
+      <Card.Header
+        style={{ fontSize: "calc(0.8vw + 1.4vh" }}
+        className="pet-name"
+      >
         {contextHandler?.avatarInfo.pet_name}
       </Card.Header>
       {/* <div className="pet-display-mobile-wrapper"> */}
@@ -345,22 +352,26 @@ const PetDisplay = () => {
         className="pet-container-mobile" /*style={{width:'${handler.width}px'}}*/
       >
         <div>
-          <img src={avatarImage} className="sprite-sheet-mobile" onClick={handleClick}></img>
+          <img
+            src={avatarImage}
+            className="sprite-sheet-mobile"
+            onClick={handleClick}
+          ></img>
         </div>
         {/* <div>
           {/* <img src={avatarImage} className="sprite-sheet-mobile"></img> */}
-          {/* before 10 - 150, before 20 - 175 , before 30 - 200*, before 40  - 250, before 50 - 300 */}
-          {/* {level_info.LEVEL < 10 && level_info.LEVEL > 0   && <img src={avatarImage} style={{height:"150px",width:"150px", marginBottom:"-35px"}} className="sprite-sheet-mobile" ></img>}
+        {/* before 10 - 150, before 20 - 175 , before 30 - 200*, before 40  - 250, before 50 - 300 */}
+        {/* {level_info.LEVEL < 10 && level_info.LEVEL > 0   && <img src={avatarImage} style={{height:"150px",width:"150px", marginBottom:"-35px"}} className="sprite-sheet-mobile" ></img>}
           {level_info.LEVEL < 20 && level_info.LEVEL >= 10 && <img src={avatarImage} style={{height:"175px",width:"175px", marginBottom:"-15px"}} className="sprite-sheet-mobile"></img>}
           {level_info.LEVEL < 30 && level_info.LEVEL >= 20 && <img src={avatarImage} style={{height:"200px",width:"200px", marginBottom:"5px"}} className="sprite-sheet-mobile"></img>}
           {level_info.LEVEL < 40 && level_info.LEVEL >= 30 && <img src={avatarImage} style={{height:"250px",width:"250px"}} className="sprite-sheet-mobile"></img>}
           {level_info.LEVEL < 50 && level_info.LEVEL >= 40 && <img src={avatarImage} style={{height:"300px",width:"300px", marginBottom:"90px"}} className="sprite-sheet-mobile"></img>} */}
-          {/* You can view the pet size images below and alter if needed */}
-          {/* <img src={avatarImage} className="sprite-sheet-mobile"style={{height:"150px",width:"150px",marginBottom:"-35px"}}></img>  */}
-          {/* <img src={avatarImage} className="sprite-sheet-mobile"style={{height:"175px",width:"175px",marginBottom:"-15px"}}></img>  */}
-          {/* <img src={avatarImage} className="sprite-sheet-mobile"style={{height:"200px",width:"200px",marginBottom:"5px"}}></img>  */}
-          {/* <img src={avatarImage} className="sprite-sheet-mobile"style={{height:"250px",width:"250px"}}></img>  */}
-          {/* <img src={avatarImage} className="sprite-sheet-mobile"style={{height:"300px",width:"300px",marginBottom:"90px"}}></img>  */}
+        {/* You can view the pet size images below and alter if needed */}
+        {/* <img src={avatarImage} className="sprite-sheet-mobile"style={{height:"150px",width:"150px",marginBottom:"-35px"}}></img>  */}
+        {/* <img src={avatarImage} className="sprite-sheet-mobile"style={{height:"175px",width:"175px",marginBottom:"-15px"}}></img>  */}
+        {/* <img src={avatarImage} className="sprite-sheet-mobile"style={{height:"200px",width:"200px",marginBottom:"5px"}}></img>  */}
+        {/* <img src={avatarImage} className="sprite-sheet-mobile"style={{height:"250px",width:"250px"}}></img>  */}
+        {/* <img src={avatarImage} className="sprite-sheet-mobile"style={{height:"300px",width:"300px",marginBottom:"90px"}}></img>  */}
         {/* </div> */}
       </div>
       <div className="mobileBar">

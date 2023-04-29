@@ -4,30 +4,29 @@
 }
 
 .alice-container {
-  max-height: 100vh;
-  height: auto;
+  max-height: 100%;
+  height: 100vh;
   background-color: rgb(255, 198, 198);
   display: flex;
   flex-direction: column;
   position: relative;
   align-items: center;
-  bottom: 0;
 }
 
 .padding-container {
   height: auto;
   margin: auto;
-  padding-bottom: 10px;
+  /* padding-bottom: 10px; */
   background-color: rgb(255, 198, 198);
   bottom: 0;
 }
-
+/*
 .alice-carousel {
   height: auto;
   flex-direction: column;
   background-color: rgb(255, 198, 198);
-  max-height: 90vh;
-}
+  max-height: 90%;
+}*/
 
 .alice-box {
   height: auto;
@@ -57,8 +56,8 @@
   margin-right: auto;
   border-width: 5px;
   border-style: double;
-  padding-left: 10px;
-  padding-right: 10px;
+  /* padding-left: 10px;
+  padding-right: 10px; */
 }
 
 .header-text-tut {
@@ -82,8 +81,8 @@
 .tut-text {
   max-width: 100px;
   font-family: pixelFont;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  /* padding-top: 10px;
+  padding-bottom: 10px; */
   text-align: center;
   justify-self: center;
 }
@@ -97,8 +96,8 @@
   margin-right: auto;
   border-width: 5px;
   border-style: double;
-  padding-left: 10px;
-  padding-right: 10px;
+  /* padding-left: 10px;
+  padding-right: 10px; */
   font-size: 14px;
   background-color: antiquewhite;
   max-width: 95vw;
@@ -106,30 +105,28 @@
 @media (min-height: 667px) {
   .alice-container {
     max-height: 100vh;
+    min-height: 100vh;
     height: auto;
     background-color: rgb(255, 198, 198);
     display: flex;
     flex-direction: column;
     position: relative;
     align-items: center;
-    padding-top: 10px;
-    bottom: 0;
   }
 }
 
 /*Mary's Phone*/
 @media (min-height: 800px) {
   .alice-container {
-    max-height: 100vh;
+    max-height: 90%;
     height: auto;
     background-color: rgb(255, 198, 198);
     display: flex;
     flex-direction: column;
     position: relative;
     align-items: center;
-    padding-top: 50px;
+
     bottom: 0;
-    height: 100vh;
   }
 
   .tut-image {
@@ -138,7 +135,7 @@
     display: block;
     margin: auto;
     width: auto;
-    max-height: 70vh;
+    max-height: 60vh;
     /*padding-top: 70px;*/
     /* padding-bottom: 20px;*/
     max-width: 100%;
@@ -150,26 +147,124 @@
     display: block;
     margin: auto;
     width: auto;
-    max-height: 75vh;
+    max-height: 70vh;
     max-width: 100%;
-    padding-top: 2vh;
-    padding-bottom: 20vh;
+    /* padding-top: 2vh;
+    padding-bottom: 20vh; */
   }
 }
 
+
+.tut-card-about {
+  background-color: rgb(255, 214, 214);
+  flex: 1 1 auto;
+  width: 90vw;
+  height: 280px;
+  margin-top: -10px;
+  margin-bottom: 25px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  font-size: 14px;
+  overflow-wrap: break-word;
+}
+
+.tut-card-title-mobile {
+  font-size: 20px;
+  margin-top: 10px;
+  font-family: pixelFont;
+}
+
+.tut-card-body-mobile {
+  margin-top: -10px;
+  overflow: hidden;
+  width: 90vw;
+  font-family: pixelFont;
+}
+
+.tut-submit-button {
+  cursor: pointer;
+  /* padding: 8px;
+  margin: 5px; */
+  background: rgb(172, 65, 100);
+  color: #ffffff;
+  border-radius: 10px;
+  font-size: 20px;
+  transition: all 0.1s ease-in;
+  position: relative;
+}
+
+.tut-image-kitty-mobile {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: -70px;
+  height: 300px;
+  width: 300px;
+  justify-content: center;
+}
+
+.tut-landingbutton:hover {
+  background: #3a0422;
+  color: #ffffff;
+}
+
+.proceed-header{
+  font-size: 50px;
+  font-family: pixelFont;
+}
+
+.tut-submit-button{
+  font-family: pixelFont;
+  color:rgb(255, 214, 214)
+}
+
+
 /*desktop styles*/
 @media (min-width: 1130px) {
+  .proceed-header{
+    font-size: 50px;
+    font-family: pixelFont;
+  }
+  .tut-card-about{
+
+    background-color: rgb(255, 214, 214);
+    flex: 1 1 auto;
+    max-width: 50vw;
+    height: auto;
+    max-height: 60vh; 
+    margin-top: -10px;
+    margin-bottom: 25px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    font-size: 20px;
+    overflow-wrap: break-word;
+  }
+  .tut-card-title-mobile {
+    font-size: 34px;
+    font-family: pixelFont;
+    margin-top: 10px;
+  }
+  
+  .tut-card-body-mobile {
+    margin-top: -10px;
+    overflow: hidden;
+    max-width: 50vw;
+    font-size: 30px;
+    font-family: pixelFont;
+  }
+
   .alice-container {
-    max-height: 100vh;
-    height: 100vh;
+    max-height: 90vh;
+    height: 90vh;
     background-color: rgb(255, 198, 198);
     display: flex;
     flex-direction: column;
     position: relative;
     align-items: center;
-    padding-top: 20px;
     bottom: 0;
   }
+
 
   .header-tut {
     top: 10;
@@ -178,11 +273,12 @@
     max-width: 30vw;
     margin-left: auto;
     margin-right: auto;
+
     border-width: 5px;
     border-style: double;
 
-    padding-left: 10px;
-    padding-right: 10px;
+    /* padding-left: 10px;
+    padding-right: 10px; */
   }
 
   .header-text-tut {
@@ -207,6 +303,7 @@
     justify-content: center;
     align-items: center;
     text-align: center;
+    padding-top: 10px;
   }
 
   .tut-image {
@@ -239,21 +336,16 @@
     margin-right: auto;
     border-width: 5px;
     border-style: double;
-    padding-left: 10px;
-    padding-right: 10px;
+    /* padding-left: 10px;
+    padding-right: 10px; */
     background-color: antiquewhite;
     max-width: 20vw;
   }
-
-  .tut-card-about {
-    background-color: rgb(255, 214, 214);
-    flex: 1 1 auto;
-    width: 0;
-    height: auto;
-    display: flex;
-    align-items: stretch;
-    justify-content: flex-start;
-    flex-direction: column;
+  .tut-submit-button{
+    min-width: 20vw;
+    min-height: 10vh;
+    font-family: pixelFont;
+    color:rgb(255, 214, 214)
   }
 
   .tut-card-about-mobile {
@@ -280,28 +372,8 @@
     overflow: hidden;
   }
 }
-.tut-submit-button {
-  cursor: pointer;
-  padding: 8px;
-  margin: 5px;
-  background: rgb(172, 65, 100);
-  color: #ffffff;
-  border-radius: 10px;
-  font-size: 20px;
-  transition: all 0.1s ease-in;
-  position: relative;
-}
 
-.tut-image-kitty-mobile {
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: -70px;
-  height: 300px;
-  width: 300px;
-  justify-content: center;
-}
-
-.tut-landingbutton:hover {
-  background: #3a0422;
-  color: #ffffff;
+html,
+body {
+    background-color: rgb(255, 198, 198)
 }
