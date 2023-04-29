@@ -4,84 +4,75 @@ sidebar_position: 5
 
 # Use-Case Descriptions
 
-### Use Case 1
-
-<i> As a user, I want to use the resources I've collected in the application to progress my avatar. </i>
-
-1. The user navigates to the InventoryPage in the PageDisplay portion of the screen on the right. The inventory data is fetched through an API call.
-2. The user views a set of acquired rewards on the InventoryPage in the form of ‘candies’ which are contained as Items in an ItemGrid in the Inventory.
-3. The user drags a 'candy' to the avatar, and the Inventory is updated to reflect the removal of a candy. An API call updates the inventory list.
-3. The user drops the 'candy' onto their avatar on the lefthand side of the screen, and it shows an eating animation and a satisfied animation.
-4. The avatarInfo is updated which contains the EXP data, which causes the progress bar to update, increasing when the ‘candy’ is consumed.
+### Use Case 1 - Account Creation
 
 
-### Use Case 2
+<i>As a user, it is important that I can create an account so that I can maintain my pet’s growth and my task progress.</i>
 
-<i> As a user, I want to link Canvas to my Virtual Pet.</i> 
+1. Upon accessing the web application for the first time at studybuddy.life, the user is directed to a landing page. There are buttons for creating an account and logging in.
+2. The user selects the 'Register' button to access the account registration form.
+3. The user inputs their username, email address, password, and other optional fields, and clicks the 'Sign Up' button to submit the form. If the information is valid, the user is notified that their account creation was successful.
+4. The user selects the 'Sign In' link to access the sign-in page, and enters in their email and password.
+5. Since the user is logging in for the first time, they are redirected to a pet selection page where they can click through a carousel of different cats and a rock.
+6. The user chooses the rock and names it.
+7. The site redirects the user to the home page of the site where they can see their pet at level 0.
 
-1. The user creates an account and profile as described in Use Case 8.
-2. The user navigates to the Canvas Integration section of the site.
-3. The user signs on through SSO.
-4. Courses as assignment data are imported into the user's info.
+### Use Case 2 - Signing In
 
-### Use Case 3
 
-<i>As a user, I want to quickly monitor my progress by assessing the mood of my avatar.</i>
+<i>As a user, I want to be able to log into an account to view my my progress and tasks.</i> 
 
-1. User has set up Canvas integration and has neglected an assignment.
-2. As the assignment gets closer, the avatar becomes visibly hungry in a comically over-the-top-fashion.
-3. When the due date for the assignment passes, the avatar becomes visibly upset.
-4. Experience and rewards gained in the application now have a multiplier that is less than one.
-5. The user can now retroactively complete the assignment and the multiplier will be returned to the previous state.
-6. This will be reflected in the avatar's apparent mood. 
+1. The user accesses the site by going to 'studybuddy.life'. 
+2. The user selects the 'Login' button to access the sign-in page.
+3. The user enters their email address and password.
+4. If the credentials are valid, The user is redirected to the home page where they can see their pet and their tasks. If not, the user will be notified that the credentials are invalid. 
 
-### Use Case 4
+### Use Case 3 - Feeding the Pet
 
-<i> As a user, I want to create a schedule and be encouraged by my Virtual Pet to adhere to the schedule.</i>
+<i>As a user, I want to keep my pet happy and help it grow by completing tasks and receiving candies.</i>
 
-1. The user logs into their profile.
-2. User navigates to the “Create Task” tab.
-3. User fills out a form with types of milestones and calendar information regarding due dates. These can be explicit calendar entries based on a particular date, or recur on a regular time interval.
-4. The backend for the site builds a set of events for the avatar based on these milestones.
+1.  The user navigates to the inventory page.
+2.  The user can see their collection of candies. Candy types are based on completion of tasks of different sizes and levels.
+3.  The user clicks and holds a candy to feed their pet. As a result, the pet becomes visibly happy and it gains EXP.
 
-### Use Case 5
 
-<i>As a user, I want to have my study app stay up to date on my progress towards my study goals.</i>
+### Use Case 4 - Canvas Integration
 
-1. The user logs into their profile.
-2. From the homepage, the user can select a specific task to see more information.
-3. After selecting a task, the user may update their progress by indicating they are halfway through, a quarter of the way through, etc.
-4. After progressing further towards completing a task, the user’s pet will receive EXP in the form of candy towards its next level.
+<i>As a user, I want to import my Canvas assignments.</i>
 
-### Use Case 6
+1. The user navigates to the 'Canvas Integration' page.
+2. The user reads a set of instructions guiding them on how to import Canvas assignments using a token.
+3. The user copies and pastes their token into an input box and submits.
+4. Once the token is successfully saved, a button with the canvas logo will appear in the header for desktop and footer for mobile.
+5. The user can click the button to import their assignments for the first time, or update existing Canvas assignments.
+6. Once the assignments are imported, the user sees them listed on the task page.
 
-<i> As a user, I want to be able to track my pet’s growth and my progress towards reaching my study goals.</i>
+### Use Case 5 - Task Creation
+
+<i>As a user, I want to create my own tasks.</i>
 
 1. The user logs into their profile.
-2. The user can always see their pet's progress towards the next level in the form of a progress bar on the left side of the page.
-3. The user navigates to the ‘Pet Profile’ page.
-4. From this page, the user can see a list of their current tasks and can select a specific task to see more information.
-6. After selecting their task, the user will see statistics about their progress towards completing that task, including the time remaining before the deadline.
+2. The user selects the “Create Task” button on the task page.
+3. The user fills out the 'Create Task' form with information like a title, description, estimated time to complete a task, a due date, and tags for sorting.
+4. The user selects the 'Create' button. They can now see this task on the task page.
 
-### Use Case 7
+### Use Case 6 - Task Filtering 
 
-<i> As a user, I want to be able to log into an account so that my progress and tasks will be saved.</i>
+<i>As a user, I want my study app to help me organize and keep track of my tasks by allowing me to update and sort them.</i>
 
-1. The system requests the user to log in or create an account.
-2. The user enters their email address and password.
-3. The system validates the user’s credentials and grants access to the application.
+1. The user logs into their profile. They want to add the tag 'Capstone' to some tasks.
+2. From the task page, the user selects a task to open the 'Edit Task' form.
+3. The user selects the 'Add Tags' button on the bottom of the form and adds the tag 'Capstone'.
+4. The user selects the 'Save' button to update their task.
+5. The user repeats steps 2-4 with other tasks.
+6. From the task page, the user selects the filter button next to the 'Create Task' button and sorts tasks by the 'Capstone' tag. 
 
-### Use Case 8
+### Use Case 7 - Improve Pet Mood
 
-<i> As a user, it is important that I can create an account so that I can maintain my pet’s growth and my task progress.</i>
+<i>As a user, I want to help improve my pet's mood if I forget to complete a task</i>
 
-1.  Upon accessing the web application for the first time, the user is given the option to create 
-     an account.
-2.  The user inputs their email address and creates a password to create their account.
-3. After creating the account, the user sees a page allowing them to choose a pet out of a 
-     selection of avatars.
-4. The user selects a pet.
-5. The site automatically navigates to the Canvas Integration tab.
-6. The user chooses whether to integrate with their Canvas account.
-7. The user now has access to creating tasks and growing their pet.
+1. The user has an overdue task. As a result, the pet is visibly upset.
+2. The user checks off the assignment as finished and receives a candy.
+3. The user feeds their pet as described in Use Case 3.
+4. The pet's mood improves and becomes visibly happy.
 
