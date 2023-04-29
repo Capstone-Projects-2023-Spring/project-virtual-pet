@@ -19,6 +19,7 @@ from selenium.webdriver.common.by import By
 # where
 URL = "https://studybuddy.life"
 # wat
+# must change to the correct driver !!!
 DRIVER_PATH = "./chromedrivers/chromedriver_112_mac"
 
 # passing these ptions will keep the window open when the script completes
@@ -29,6 +30,7 @@ options.add_experimental_option("detach", True)
 driver = webdriver.Chrome(executable_path=DRIVER_PATH, options=options)
 # Always wait 10 seconds for object to load/come into view
 driver.implicitly_wait(10) 
+# bypasses a bug with landing page layout
 driver.set_window_size(900, 1080)
 # Navigate to the URL
 driver.get(URL)
@@ -39,7 +41,7 @@ driver.get(URL)
 register_button = driver.find_element(By.ID, "register")
 # Click the button 
 register_button.click()
-
+# we always want the desktop version for testing
 driver.maximize_window()
 
 """
