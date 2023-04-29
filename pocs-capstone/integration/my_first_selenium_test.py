@@ -19,7 +19,7 @@ from selenium.webdriver.common.by import By
 # where
 URL = "https://studybuddy.life"
 # wat
-DRIVER_PATH = "./chromedrivers/chromedriver_112"
+DRIVER_PATH = "./chromedrivers/chromedriver_112_mac"
 
 # passing these ptions will keep the window open when the script completes
 options = webdriver.ChromeOptions()
@@ -29,13 +29,18 @@ options.add_experimental_option("detach", True)
 driver = webdriver.Chrome(executable_path=DRIVER_PATH, options=options)
 # Always wait 10 seconds for object to load/come into view
 driver.implicitly_wait(10) 
+driver.set_window_size(900, 1080)
 # Navigate to the URL
 driver.get(URL)
+
+
 
 # Create an object representation of the register button
 register_button = driver.find_element(By.ID, "register")
 # Click the button 
 register_button.click()
+
+driver.maximize_window()
 
 """
 NOTE:
