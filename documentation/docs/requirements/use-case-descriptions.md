@@ -60,12 +60,9 @@ sidebar_position: 5
 
 <i>As a user, I want my study app to help me organize and keep track of my tasks by allowing me to update and sort them.</i>
 
-1. The user logs into their profile. They want to add the tag 'Capstone' to some tasks.
-2. From the task page, the user selects a task to open the 'Edit Task' form.
-3. The user selects the 'Add Tags' button on the bottom of the form and adds the tag 'Capstone'.
-4. The user selects the 'Save' button to update their task.
-5. The user repeats steps 2-4 with other tasks.
-6. From the task page, the user selects the filter button next to the 'Create Task' button and sorts tasks by the 'Capstone' tag. 
+1. The user logs into their profile. They want to view their Canvas courses and user-made tasks separately. 
+2. From the task page, the user selects the filter button next to the 'Create Task' button and sorts tasks by the 'Canvas Assignments' tag. The user can now see all their Canvas assignments.
+3. The user un-checks the 'Canvas Assignment' tag and checks the 'My Tasks' tag. They can now only see the tasks they've made.
 
 ### Use Case 7 - Improve Pet Mood
 
