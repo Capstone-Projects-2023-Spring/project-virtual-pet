@@ -191,7 +191,10 @@ class TaskModelTest(TestCase):
             recurring_time_delta = 2, 
             description = "Quiz 1",
             course_id = 4321,
-            assignment_id = 21
+            assignment_id = 21,
+            received = False,
+            unique_canvas_tag = "ceramics",
+            course_title = "Da Best Course"
         )
 
     def test_title_max_length(self):
@@ -203,6 +206,16 @@ class TaskModelTest(TestCase):
         task = Task.objects.get(task_id=1)
         max_length = task._meta.get_field('task_type').max_length
         self.assertEqual(max_length, 1)
+
+    def test_unique_canvas_tag_max_length(self):
+        task = Task.objects.get(task_id=1)
+        max_length = task._meta.get_field('unique_canvas_tag').max_length
+        self.assertEqual(max_length, 256)
+    
+    def test_course_title_max_length(self):
+        task = Task.objects.get(task_id=1)
+        max_length = task._meta.get_field('course_title').max_length
+        self.assertEqual(max_length, 256)
 
     def test_object_name_is_actual_name_(self):
         task = Task.objects.get(task_id=1)
