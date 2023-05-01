@@ -1,0 +1,20 @@
+AUTOMATED ACCEPTANCE TESTS USING SELENIUM
+Note that this covers all manual acceptance tests except Canvas integration (which requires a real user's token), clicking on the pet (which requires observation of an animation), and notifications (which require user's permission and cannot be fully automated)
+Tests were run on the desktop version of Study Buddy on Mac in Chrome drivers using Selenium
+
+
+launch_test | Acceptance test 1: PASSED
+register_test | Acceptance test 2: PASSED
+login_test_correct | Acceptance test 3: PASSED
+login_test_incorrect | Acceptance test 4: PASSED
+pet_select_noname_test | Acceptance test 5: PASSED
+pet_select_test | Acceptance test 6: PASSED
+logout_test | Acceptance test 7: PASSED
+petprofile_empty_test | Acceptance test 8: PASSED
+petprofile_test | Acceptance test 9: PASSED
+account_info_empty_test | Acceptance test 10: PASSED
+account_info_changed_test | Acceptance test 11: PASSED
+create_task_test | Acceptance test 12: PASSED
+complete_task_test | Acceptance test 13: PASSED
+delete_task_test | Acceptance test 14: PASSED
+feed_test | Acceptance test 15: PASSED
