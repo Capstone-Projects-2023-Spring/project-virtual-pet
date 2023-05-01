@@ -1,7 +1,6 @@
 alabaster==0.7.13
 asgiref==3.5.0
 async-generator==1.10
-attrs==22.2.0
 autopep8==2.0.2
 Babel==2.11.0
 bcrypt==3.2.0
