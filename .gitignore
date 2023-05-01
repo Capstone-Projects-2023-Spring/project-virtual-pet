@@ -8,6 +8,7 @@
 .env.test.local
 .env.production.local
 .env
+node_modules
 pocs-capstone/backend/.env
 pocs-capstone/backend/tutorial-env/
 pocs-capstone/backend/db/__pycache__/
@@ -115,12 +116,8 @@ pocs-capstone/backend/db/__pycache__/studybuddyemail.cpython-310.pyc
 pocs-capstone/backend/deleteme.txt
 pocs-capstone/backend/database/db.sqlite3
 pocs-capstone/backend/database/db.sqlite3
-<<<<<<< HEAD
 pocs-capstone/frontend/src/components/Tutorial/Tutorial-screenshots/original screenshots/account-management.png
 pocs-capstone/frontend/src/components/Tutorial/Tutorial-screenshots/original screenshots/active-tasks.png
 pocs-capstone/frontend/src/components/Tutorial/Tutorial-screenshots/original screenshots/calendar.png
 pocs-capstone/frontend/src/components/Tutorial/Tutorial-screenshots/original screenshots/completed-tasks.png
 pocs-capstone/frontend/src/components/Tutorial/Tutorial-screenshots/original screenshots/inventory.png
-=======
-pocs-capstone/backend/database/db.sqlite3
->>>>>>> 3a1ba266853308c94e3837d2bd4323a740956152
