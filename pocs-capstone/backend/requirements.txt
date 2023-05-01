@@ -12,7 +12,6 @@ cffi==1.15.1
 chardet==4.0.0
 click==8.0.3
 colorama==0.4.5
-command-not-found==0.3
 contourpy==1.0.7
 coreapi==2.3.3
 coreschema==0.0.4
