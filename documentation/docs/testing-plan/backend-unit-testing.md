@@ -7,7 +7,7 @@ sidebar_position: 4
     
 <summary>Backend Coverage Report</summary>
     
-<img width="764" alt="backend-tests" src="https://user-images.githubusercontent.com/43662352/235539294-aca59a84-1310-4cb0-a1db-2ee7066ac4b1.png">
+<img width="764" alt="backend-tests" src="https://user-images.githubusercontent.com/43662352/235539294-aca59a84-1310-4cb0-a1db-2ee7066ac4b1.png"/>
 
 </details>
 
