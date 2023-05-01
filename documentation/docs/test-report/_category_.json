@@ -1,8 +1,0 @@
-{
-    "label": "Test Report",
-    "position": 9,
-    "link": {
-      "type": "generated-index",
-      "description": "Report of acceptance, integration, and unit tests run."
-    }
-  }
