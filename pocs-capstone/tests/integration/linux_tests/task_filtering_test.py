@@ -5,7 +5,7 @@ from selenium.webdriver.common.action_chains import ActionChains
 from selenium.common.exceptions import NoSuchElementException
 from time import sleep
 
-from login_test import login_test
+from tests.integration.linux_tests.setup_login import login_test
 
 # wat
 DRIVER_PATH = "./chromedrivers/chromedriver_112_linux"

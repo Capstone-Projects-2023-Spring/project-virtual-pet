@@ -3,45 +3,27 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.action_chains import ActionChains
 from time import sleep
+from setup_login import setup_login
 
 
-def login_test():
-    DRIVER_PATH = "./chromedrivers/chromedriver_112_mac"
+driver = setup_login()
 
-    # passing these ptions will keep the window open when the script completes
-    options = webdriver.ChromeOptions()
-    options.add_experimental_option("detach", True)
+driver.find_element(By.XPATH, '//*[@id="basic-nav-dropdown"]/div/img').click()
 
-    # Our driver object is LITERALLY a browser we control programatically
-    driver = webdriver.Chrome(executable_path=DRIVER_PATH, options=options)
-    login_test(driver)
-    # where
-    URL = "https://studybuddy.life"
+driver.find_element(By.XPATH, '//*[@id="root"]/main/div[1]/div/div[3]/div/div/a[3]').click()
 
-    driver.implicitly_wait(10)
-    # fixes a bug in landing page
-    driver.set_window_size(900, 1080)
-    # Navigate to the URL
-    driver.get(URL)
+driver.find_element(By.XPATH, '//*[@id="root"]/main/div[2]/div/form/input').send_keys("canvastoken")
 
-    # Click the button
-    login_button = driver.find_element(By.ID, "login")
-    login_button.click()
-    # Let's go bigger, go bolder
+sleep(2)
 
-    driver.maximize_window()
+driver.find_element(By.XPATH, '//*[@id="root"]/main/div[2]/div/form/input').send_keys("\n")
 
-    email = driver.find_element(By.ID, "email")
-    email.send_keys("mock@user.one")
+sleep(2)
 
-    password = driver.find_element(By.ID, "password")
-    password.send_keys("Asecurepassword123!")
+driver.find_element(By.XPATH, '//*[@id="root"]/main/div[1]/div/div[2]/button').click()
 
-    login_button = driver.find_element(
-        By.XPATH, "//*[@id='root']/div/section/form/button")
-    login_button.click()
-    return driver
+sleep(2)
 
+print("TEST PASSED!")
 
-driver = login_test()
-
+driver.quit()   

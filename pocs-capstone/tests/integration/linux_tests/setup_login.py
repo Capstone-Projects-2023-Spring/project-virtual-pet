@@ -4,12 +4,32 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.action_chains import ActionChains
 from time import sleep
 
+"""
+default platform is mac, other allowed arguments are linux and windows. Will assign
+correct driver, login to website, and return the driver.
+"""
 
-def login_test(driver):
+def setup_login(platform="mac"):
+
+    if platform=="mac":
+        DRIVER_PATH = "./chromedrivers/chromedriver_112_mac"
+    elif platform == "linux":
+        DRIVER_PATH = "./chromedrivers/chromedriver_112_linux"
+    elif platform == "windows":
+        DRIVER_PATH == "./chromedrivers/chromedriver_112_windows"
+    else:
+        return None
+    
+    # passing these ptions will keep the window open when the script completes
+    options = webdriver.ChromeOptions()
+    options.add_experimental_option("detach", True)
+
+    # Our driver object is LITERALLY a browser we control programatically
+    driver = webdriver.Chrome(executable_path=DRIVER_PATH, options=options)
+
     # where
     URL = "https://studybuddy.life"
 
-    # Always wait 10 seconds for object to load/come into view
     driver.implicitly_wait(10)
     # fixes a bug in landing page
     driver.set_window_size(900, 1080)
@@ -32,16 +52,5 @@ def login_test(driver):
     login_button = driver.find_element(
         By.XPATH, "//*[@id='root']/div/section/form/button")
     login_button.click()
-
-
-if __name__ == "__main__":
-    # wat
-    DRIVER_PATH = "../chromedrivers/chromedriver_112_linux"
-
-    # passing these ptions will keep the window open when the script completes
-    options = webdriver.ChromeOptions()
-    options.add_experimental_option("detach", True)
-
-    # Our driver object is LITERALLY a browser we control programatically
-    driver = webdriver.Chrome(executable_path=DRIVER_PATH, options=options)
-    login_test(driver)
+    
+    return driver
