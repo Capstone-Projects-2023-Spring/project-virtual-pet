@@ -50,6 +50,7 @@ python3 selenium_script_use_case_2.py
 # Use Case 1 - Account Creation
 
 <details open="True">
+
 <summary>As a user, it is important that I can create an account so that I can maintain my pet’s growth and my task progress</summary>
 
 - 1. Upon accessing the web application for the first time at studybuddy.life, the user is directed to a landing page. There are buttons for creating an account and logging in.
@@ -71,6 +72,7 @@ python3 selenium_script_use_case_2.py
 # Use Case 2 - Signing In
 
 <details open="True">
+
 <summary>As a user, I want to be able to log into an account to view my my progress and tasks.</summary>
 
 - 1. The user accesses the site by going to 'studybuddy.life'. 
@@ -89,6 +91,7 @@ python3 selenium_script_use_case_2.py
 # Use Case 3 - Feeding the Pet
 
 <details open="True">
+
 <summary>As a user, I want to keep my pet happy and help it grow by completing tasks and receiving candies.</summary>
 
 - 1. The user navigates to the inventory page.
@@ -106,6 +109,7 @@ python3 selenium_script_use_case_2.py
 # Use Case 4 - Canvas Integration
 
 <details open="True">
+
 <summary>As a user, I want to import my Canvas assignments.</summary>
 
 - 1. The user navigates to the 'Canvas Integration' page.
@@ -114,6 +118,7 @@ python3 selenium_script_use_case_2.py
 - 4. Once the token is successfully saved, a button with the canvas logo will appear in the header for desktop and footer for mobile.
 - 5. The user can click the button to import their assignments for the first time, or update existing Canvas assignments.
 - 6. Once the assignments are imported, the user sees them listed on the task page.
+
 </details>
 
 ## Assertions 
@@ -125,6 +130,7 @@ python3 selenium_script_use_case_2.py
 # Use Case 5 - Task Creation
 
 <details open="True">
+
 <summary>As a user, I want to create my own tasks.</summary>
 
 - 1. The user logs into their profile.
@@ -143,11 +149,13 @@ python3 selenium_script_use_case_2.py
 # Use Case 6 - Task Filtering 
 
 <details open="True">
+
 <summary> As a user, I want my study app to help me organize and keep track of my tasks by allowing me to update and sort them. </summary>
 
 - 1. The user logs into their profile. They want to view their Canvas courses and user-made tasks separately. 
 - 2. From the task page, the user selects the filter button next to the 'Create Task' button and sorts tasks by the 'Canvas Assignments' tag. The user can now see all their Canvas assignments.
 - 3. The user un-checks the 'Canvas Assignment' tag and checks the 'My Tasks' tag. They can now only see the tasks they've made.
+
 </details>
 
 ## Assertions 
@@ -159,6 +167,7 @@ python3 selenium_script_use_case_2.py
 # Use Case 7 - Improve Pet Mood
 
 <details open="True">
+
 <summary> As a user, I want to help improve my pet's mood if I forget to complete a task</summary>
 
 - 1. The user has an overdue task. As a result, the pet is visibly upset.
