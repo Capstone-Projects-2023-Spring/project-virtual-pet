@@ -218,7 +218,7 @@ title Canvas Integration
     6. Once the assignments are imported, the user sees them listed on the task page.
 
 
-## Use Case 5 - Task Creation
+## Use Case 5 
 **As a user, I want to create my own tasks.**
 
 
