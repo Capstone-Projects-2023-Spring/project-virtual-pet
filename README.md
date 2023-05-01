@@ -17,15 +17,7 @@
    * On iOS: Open Safari and navigate to the site. Press the "Share" button and select "Add to Home Screen" from the popup. Lastly, tap "Add" in the top right corner to finish installing the PWA. It will now be on your home screen.
    * On Android: Open Chrome and navigate to the site. Press the "three dot" icon in the upper right to open the menu. Select "Add to Home screen." Press the "Add" button in the popup. The PWA is now installed and available on your home screen.
 ![Study buddy pwa instructions!](https://user-images.githubusercontent.com/73796086/227796829-3a226862-e33f-45ff-bac6-83efcccd883a.png)
-* The following pages are functional: Register, Login, Home, Account, Canvas Integration, and Logout. 
-    * On the Home page, you'll see your chosen pet and its name. You can modify the pet's name and bio by clicking on the Profile tab.
-    * You can add tasks in the Tasks tab. When you check a task off, it is marked completed and you earn a candy.
-    * To view your inventory of candies earned from completing tasks, go to the Inventory tab. You can feed your pet by dragging and dropping candies onto it, and watch the progress bar fill up. 
-    * The Calendar and Progress tabs are currently under development. 
-    * On the Canvas Integration page, you can follow directions to generate and upload a Canvas API token to import your assignments from Canvas into the application.
 * If you encounter any bugs or issues, please visit our <a href="https://capstone-projects-2023-spring.github.io/project-virtual-pet/">documentation site</a> and click on the "Report Bug" button located on the right-hand side of the page. This will take you to a feedback form where you can provide details about the problem you encountered.
-  * Points of contact: Mary Clay (mary.clay@temple.edu) & Alexander Russakoff (alexander.russakoff@temple.edu)
-* For QA testing purposes, please reference the [Acceptance Testing document](https://docs.google.com/spreadsheets/d/1cuUb6Kp730-dWrmaLGF4BwymjM5wOjrheQmZXhBRBhs/edit?usp=sharing).
 
 ## Keywords
 
