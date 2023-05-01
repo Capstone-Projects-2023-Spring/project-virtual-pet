@@ -86,53 +86,53 @@ The tests are also outlined below for reference:
        </tr>
          <tr>
       <td>13</td>
-      <td>"Create a Task. On the homepage, click the Tasks tab. Click &quot;Create Task&quot;. Enter details about Task (name, description, due date). Click &quot;Create Task&quot;."</td>
+      <td>Create a Task. On the homepage, click the Tasks tab. Click &quot;Create Task&quot;. Enter details about Task (name, description, due date). Click &quot;Create Task&quot;.</td>
       <td>You should see the new Task in the Task list, under the Active tab.</td>
     </tr>
     <tr>
       <td>14</td>
-      <td>"Delete a Task. On the homepage, click the Tasks tab. From either the Active or Completed tabs, choose a Task you would like to delete. Click the &quot;x&quot; to the right of the task to delete."</td>
+      <td>Delete a Task. On the homepage, click the Tasks tab. From either the Active or Completed tabs, choose a Task you would like to delete. Click the &quot;x&quot; to the right of the task to delete.</td>
       <td>You should no longer see the deleted Task in the Task list.</td>
     </tr>
     <tr>
       <td>15</td>
-      <td>"Complete a Task. On the Task page, click the checkbox next to a Task."</td>
-      <td>&quot;In the Inventory tab of the homepage, a new candy is shown. Task moved from Active to Completed section of Tasks.&quot;</td>
+      <td>Complete a Task. On the Task page, click the checkbox next to a Task.</td>
+      <td>In the Inventory tab of the homepage, a new candy is shown. Task moved from Active to Completed section of Tasks.</td>
     </tr>
     <tr>
       <td>16</td>
-      <td>"Feed pet a candy. On the homepage, navigate to the Inventory tab to open the Inventory. Click and hold down on a (colored, not gray) candy to feed your pet."</td>
-      <td>"You should see a confetti animation on the candy. Your pet should react by displaying a happy animation. The progress bar below the pet should fill from left to right. The candy should no longer be present in the Inventory."</td>
+      <td>Feed pet a candy. On the homepage, navigate to the Inventory tab to open the Inventory. Click and hold down on a (colored, not gray) candy to feed your pet.</td>
+      <td>You should see a confetti animation on the candy. Your pet should react by displaying a happy animation. The progress bar below the pet should fill from left to right. The candy should no longer be present in the Inventory.</td>
     </tr>
     <tr>
       <td>17</td>
-      <td>"Canvas Integration - valid token. Click user icon in the top right, beside your username. Click &quot;Canvas Integration&quot; to navigate to the Canvas Integration page. From the Canvas Integration page, follow the instructions for securely entering your API key. Enter a valid token, then click Submit."</td>
-      <td>"You should see a loading screen and be redirected to the homepage. You should see the Canvas icon spinning to indicate the tasks are importing, which may take some time. After a bit of time, you should see your Canvas assignments in the Tasks list. You are unable to check off your Canvas tasks manually."</td>
+      <td>Canvas Integration - valid token. Click user icon in the top right, beside your username. Click "Canvas Integration" to navigate to the Canvas Integration page. From the Canvas Integration page, follow the instructions for securely entering your API key. Enter a valid token, then click Submit.</td>
+      <td>You should see a loading screen and be redirected to the homepage. You should see the Canvas icon spinning to indicate the tasks are importing, which may take some time. After a bit of time, you should see your Canvas assignments in the Tasks list. You are unable to check off your Canvas tasks manually.</td>
     </tr>
     <tr>
       <td>18</td>
-      <td>"Canvas Integration - invalid token. Click user icon in the top right, beside your username. Click &quot;Canvas Integration&quot; to navigate to the Canvas Integration page. Enter a non-valid token, such as &quot;hello&quot;. Then click Submit."</td>
-      <td>"You should receive a warning that you must enter a valid token."</td>
+      <td>Canvas Integration - invalid token. Click user icon in the top right, beside your username. Click &quot;Canvas Integration&quot; to navigate to the Canvas Integration page. Enter a non-valid token, such as &quot;hello&quot;. Then click Submit.</td>
+      <td>You should receive a warning that you must enter a valid token.</td>
     </tr>
     <tr>
       <td>19</td>
-      <td>"Canvas Integration - updating. Click Canvas icon in the top left from the Main page."</td>
-      <td>"The icon should begin spinning. When done, any updates to assignments through Canvas should reflect in corresponding Task's details. No imported assignments should be repeated. Any submitted tasks should be reflected by being removed from the To-Do list and a candy should be present in the Inventory."</td>
+      <td>Canvas Integration - updating. Click Canvas icon in the top left from the Main page.</td>
+      <td>The icon should begin spinning. When done, any updates to assignments through Canvas should reflect in corresponding Task's details. No imported assignments should be repeated. Any submitted tasks should be reflected by being removed from the To-Do list and a candy should be present in the Inventory.</td>
     </tr>
      <tr>
           <td>20</td>
-          <td>"Click on pet. Click on pet from the main page."</td>
-          <td>"The pet should animate with a speech bubble saying ""Hi!"""</td>
+          <td>Click on pet. Click on pet from the main page.</td>
+          <td>The pet should animate with a speech bubble saying ""Hi!""</td>
         </tr>
         <tr>
           <td>21</td>
-          <td>"Level up. Turn your volume up. Feed pet candies until pet levels up."</td>
-          <td>"There should be a sound associated with leveling up. At level 20, the pet gains a propeller hat."</td>
+          <td>Level up. Turn your volume up. Feed pet candies until pet levels up.</td>
+          <td>There should be a sound associated with leveling up. At level 20, the pet gains a propeller hat.</td>
         </tr>
         <tr>
           <td>22</td>
-          <td>"Notifications. Once logged in (make sure it's a non-private browser), click the notification bell in the bottom right corner."</td>
-          <td>"A native prompt the subscribe to notifications should pop up. Clicking ""Allow"" should trigger a ""Welcome to Study Buddy!"" notification."</td>
+          <td>Notifications. Once logged in (make sure it's a non-private browser), click the notification bell in the bottom right corner.</td>
+          <td>A native prompt the subscribe to notifications should pop up. Clicking "Allow" should trigger a "Welcome to Study Buddy!" notification.</td>
         </tr>
       </tbody>
     </table>
