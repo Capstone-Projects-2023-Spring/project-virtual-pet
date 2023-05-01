@@ -75,13 +75,13 @@ Test: Checks the size of the field allocated for the bio text
 Returns: True if the first_name max length matches the expected max length, otherwise false
 ```
 
-#### *test_bio_label(self)*
+#### *def test_bio_label(self)*
 ```
 Test: Checks the text for the bio label
 Returns: True if the bio label text label matches the expected label output, otherwise false
 ```
 
-#### *test_canvas_token_max_length(self)*
+#### *def test_canvas_token_max_length(self)*
 ```
 Test: Checks the size of the field allocated for the canvas_token text
 Returns: True if the canvas_token max length matches the expected max length, otherwise false
