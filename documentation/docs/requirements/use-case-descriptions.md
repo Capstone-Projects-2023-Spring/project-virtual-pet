@@ -15,10 +15,10 @@ sidebar_position: 5
 4. The user selects the 'Sign In' link to access the sign-in page, and enters in their email and password.
 5. Since the user is logging in for the first time, they are redirected to a pet selection page where they can click through a carousel of different cats and a rock.
 6. The user chooses the rock and names it.
-7. The site redirects the user to the home page of the site where they can see their pet at level 0.
+7. The site redirects the user to the home page of the site where they can see their pet at level.
+
 
 ### Use Case 2 - Signing In
-
 
 <i>As a user, I want to be able to log into an account to view my my progress and tasks.</i> 
 
@@ -31,9 +31,9 @@ sidebar_position: 5
 
 <i>As a user, I want to keep my pet happy and help it grow by completing tasks and receiving candies.</i>
 
-1.  The user navigates to the inventory page.
-2.  The user can see their collection of candies. Candy types are based on completion of tasks of different sizes and levels.
-3.  The user clicks and holds a candy to feed their pet. As a result, the pet becomes visibly happy and it gains EXP.
+1. The user navigates to the inventory page.
+2. The user can see their collection of candies. Candy types are based on completion of tasks of different sizes and levels.
+3. The user clicks and holds a candy to feed their pet. As a result, the pet becomes visibly happy and it gains EXP.
 
 
 ### Use Case 4 - Canvas Integration
