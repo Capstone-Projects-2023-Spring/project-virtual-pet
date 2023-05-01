@@ -16,7 +16,7 @@ def setup_login(platform="windows"):
     elif platform == "linux":
         DRIVER_PATH = "./chromedrivers/chromedriver_112_linux"
     elif platform == "windows":
-        DRIVER_PATH == "./chromedrivers/chromedriver_112_windows"
+        DRIVER_PATH == "./chromedrivers/chromedriver_112_windows.exe"
     else:
         return None
     

@@ -8,7 +8,7 @@ from time import sleep
 default platform is linux, other allowed arguments are mac and windows. Will assign
 correct driver, login to website, and return the driver.
 """
-
+  
 def setup_login(platform="linux"):
 
     if platform=="mac":
@@ -16,7 +16,7 @@ def setup_login(platform="linux"):
     elif platform == "linux":
         DRIVER_PATH = "./chromedrivers/chromedriver_112_linux"
     elif platform == "windows":
-        DRIVER_PATH == "./chromedrivers/chromedriver_112_windows"
+        DRIVER_PATH == "./chromedrivers/chromedriver_112_windows.exe"
     else:
         return None
     
