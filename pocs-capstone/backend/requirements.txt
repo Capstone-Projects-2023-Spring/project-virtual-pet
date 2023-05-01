@@ -114,7 +114,7 @@ toml==0.10.1
 tomli==2.0.1
 typing_extensions==4.4.0
 uritemplate==4.1.1
-urllib3==1.25.11
+urllib3==1.26.15
 wcwidth==0.2.6
 Werkzeug==1.0.1
 whichcraft==0.6.1
