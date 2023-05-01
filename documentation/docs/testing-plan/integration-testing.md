@@ -28,7 +28,7 @@ task.save()
 ```python
 
 WebDriver driver = new ChromeDriver();
-driver.get("http://127.0.0.1:3000)
+driver.get("https://studybuddy.life)
 title = 'Study Buddies'
 assertIs(title, driver.title, "Compare expected title with true title.")
 
@@ -60,14 +60,13 @@ python3 selenium_script_use_case_2.py
 - 6. The user chooses the rock and names it.
 - 7. The site redirects the user to the home page of the site where they can see their pet at level.
 
-
 </details>
-
-<br></br>
 
 ## Assertions
 1. Upon choosing a pet the user is routed to the home page. 
 2. Upon completing account creation the user's information is correctly integrated into the final landing page in the process.
+
+<br></br>
 
 # Use Case 2 - Signing In
 
@@ -81,13 +80,11 @@ python3 selenium_script_use_case_2.py
 
 </details>
 
-<br></br>
-
 ## Assertions 
 1. The correct user credentials are displayed on the pet selection page. 
 2. The updated list of pets is shown, and each picture is aligned with the correct information.
 
-
+<br></br>
 
 # Use Case 3 - Feeding the Pet
 
@@ -100,11 +97,11 @@ python3 selenium_script_use_case_2.py
 
 </details>
 
-<br></br>
-
 ## Assertions
 1. Experience shows the expected quantity.
 2. Inventory is updated to the expected quantity.
+
+<br></br>
 
 # Use Case 4 - Canvas Integration
 
@@ -119,13 +116,11 @@ python3 selenium_script_use_case_2.py
 - 6. Once the assignments are imported, the user sees them listed on the task page.
 </details>
 
-<br></br>
-
 ## Assertions 
 1. Each page contains the correct title, verifying that we are routing through the pages correctly.
 2. The expected courses are listed under tasks. 
 
-
+<br></br>
 
 # Use Case 5 - Task Creation
 
@@ -139,36 +134,32 @@ python3 selenium_script_use_case_2.py
 
 </details>
 
-<br></br>
-
-
 ## Assertions 
 1. The task component is viewable, and contains the correct values.
 2. The calendar component is updated on the correct date.
 
+<br></br>
 
 # Use Case 6 - Task Filtering 
 
 <details open="True">
 <summary> As a user, I want my study app to help me organize and keep track of my tasks by allowing me to update and sort them. </summary>
 
-
 - 1. The user logs into their profile. They want to view their Canvas courses and user-made tasks separately. 
 - 2. From the task page, the user selects the filter button next to the 'Create Task' button and sorts tasks by the 'Canvas Assignments' tag. The user can now see all their Canvas assignments.
 - 3. The user un-checks the 'Canvas Assignment' tag and checks the 'My Tasks' tag. They can now only see the tasks they've made.
 </details>
 
-<br></br>
-
 ## Assertions 
 1. The correct task types are displayed
+
+<br></br>
 
 
 # Use Case 7 - Improve Pet Mood
 
 <details open="True">
 <summary> As a user, I want to help improve my pet's mood if I forget to complete a task</summary>
-
 
 - 1. The user has an overdue task. As a result, the pet is visibly upset.
 - 2. The user checks off the assignment as finished and receives a candy.
@@ -177,16 +168,8 @@ python3 selenium_script_use_case_2.py
 
 </details>
 
-<br></br>
-
 ## Assertions
-1. Multiplier reads the correct value when decreased
-2. Multiplier reads the correct value when increased
-3. Pet mood is accurate at steps 3 and 6
+1. Pet mood is negative when tasks are overdue.
+2. Pet mood improves when overdue task is completed.
+3. Pet mood improves when pet is fed.
 
-
-
-Use Case 5 
-## Assertions 
-1. The task is correctly updated based on level of completion (each stage will be asserted). 
-2. The inventory is updated with the correct candy.
