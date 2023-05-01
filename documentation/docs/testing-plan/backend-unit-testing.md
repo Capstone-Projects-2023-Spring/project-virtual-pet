@@ -9,7 +9,7 @@ sidebar_position: 4
 <br></br>
 
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>Coverage report</title>
     <link rel="icon" sizes="32x32" href="favicon_32.png"/>
     <link rel="stylesheet" href="style.css" type="text/css"/>
@@ -22,7 +22,7 @@ sidebar_position: 4
             <span class="pc_cov">80%</span>
         </h1>
         <aside id="help_panel_wrapper">
-            <input id="help_panel_state" type="checkbox">
+            <input id="help_panel_state" type="checkbox"/>
             <label for="help_panel_state">
                 <img id="keyboard_icon" src="keybd_closed.png" alt="Show/hide keyboard shortcuts" />
             </label>
@@ -224,6 +224,7 @@ sidebar_position: 4
         No items found using the specified filter.
     </p>
 </main>
+
 <footer>
     <div class="content">
         <p>
@@ -239,6 +240,7 @@ sidebar_position: 4
         <button type="button" class="button_show_hide_help" data-shortcut="?"/>
     </aside>
 </footer>
+
 </body>
 
 </details>
