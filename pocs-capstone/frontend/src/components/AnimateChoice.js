@@ -10,6 +10,8 @@ import { useNavigate } from "react-router-dom";
 import { useWindowWidth } from "@react-hook/window-size";
 import { faColonSign } from "@fortawesome/free-solid-svg-icons";
 import Carousel from "react-bootstrap/Carousel";
+import brown_dog from "../images/brown_dog_scaled_8x.png";
+import white_dog from "../images/white_dog_scaled_8x.png";
 import gray_cat from "../images/gray_neutral_scaled_5x_pngcrushed.png";
 import orange_cat from "../images/orange_neutral_scaled_5x_pngcrushed.png";
 import white_cat from "../images/whitecat_scaled_5x_pngcrushed.png";
@@ -114,7 +116,7 @@ const AnimateChoice = () => {
   //contains sprite sheets
   return (
     <div className="petsprite-body">
-      <Card style={{ width: width }}>
+      <Card className= "choose-card" style={{ width: width, marginTop: "25px"}}>
         <Card.Header className="pet-choice">
           <center>
             <h1>CHOOSE YOUR PET</h1>
@@ -133,11 +135,29 @@ const AnimateChoice = () => {
         >
           <Carousel.Item>
             <img
+              src = {brown_dog}
+              alt = "browndog"
+              className="sprite-container"
+              index={0}
+              ref={spriteRefs[0]}>
+              </img>
+          </Carousel.Item>
+          <Carousel.Item>
+            <img
+              src = {white_dog}
+              alt = "whitedog"
+              className="sprite-container"
+              index={1}
+              ref={spriteRefs[1]}>
+              </img>
+          </Carousel.Item>
+          <Carousel.Item>
+            <img
               src={orange_cat}
               alt="orange"
               className="sprite-container"
-              index={0}
-              ref={spriteRefs[0]}
+              index={2}
+              ref={spriteRefs[2]}
             ></img>
             {/* <p></p><p></p> */}
             {/* <button className = 'button' onClick={() => handleClick(0)}> Select</button> */}
@@ -151,8 +171,8 @@ const AnimateChoice = () => {
               src={gray_cat}
               alt="gray"
               className="sprite-container"
-              index={1}
-              ref={spriteRefs[1]}
+              index={3}
+              ref={spriteRefs[3]}
             ></img>
             {/* <button className = 'button' onClick={() => handleClick(1)}> Select</button> */}
             {/* <form key={1} onSubmit={(event) => handleSubmit(event, 1)}>
@@ -165,8 +185,8 @@ const AnimateChoice = () => {
               src={white_cat}
               alt="white"
               className="sprite-container"
-              index={2}
-              ref={spriteRefs[2]}
+              index={4}
+              ref={spriteRefs[4]}
             ></img>
           </Carousel.Item>
           <Carousel.Item>
@@ -174,8 +194,8 @@ const AnimateChoice = () => {
               src={tux_cat}
               alt="tux"
               className="sprite-container"
-              index={3}
-              ref={spriteRefs[3]}
+              index={5}
+              ref={spriteRefs[5]}
             ></img>
           </Carousel.Item>
           <Carousel.Item>
@@ -183,8 +203,8 @@ const AnimateChoice = () => {
               src = {pet_rock}
               alt = "rock"
               className="sprite-container"
-              index={4}
-              ref={spriteRefs[4]}>
+              index={6}
+              ref={spriteRefs[6]}>
               </img>
           </Carousel.Item>
         </Carousel>

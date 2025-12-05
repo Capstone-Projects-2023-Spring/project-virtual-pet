@@ -11,10 +11,10 @@ import AccountProfilePageMobile from "./AccountProfileTabMobile/AccountProfilePa
 import canvas_bug_mobile from "../images/canvas_bug_mobile.png";
 import useAxiosPrivate from "../hooks/useAxiosPrivate";
 import UserContext from "../context/UserContext";
-import { Tabs, Tab } from '@material-ui/core';
+import { Tabs, Tab } from '@mui/material';
 import InventoryIcon from '@mui/icons-material/Inventory';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import {List, CalendarToday, } from '@material-ui/icons';
+import {List, CalendarToday, } from '@mui/icons-material';
 import { useNavigate } from "react-router-dom";
 import { Modal, ModalBody } from "react-bootstrap";
 

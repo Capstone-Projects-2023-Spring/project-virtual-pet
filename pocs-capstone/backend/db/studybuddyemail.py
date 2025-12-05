@@ -15,7 +15,7 @@ def send_email(email_reciever):
 
     load_dotenv(find_dotenv())
 
-    email_sender = 'studybuddyverify@gmail.com'
+    email_sender = 'productivitypet101@gmail.com'
     email_password =  os.getenv('GMAIL_PASSWORD')
     email_reciever = email_reciever
 

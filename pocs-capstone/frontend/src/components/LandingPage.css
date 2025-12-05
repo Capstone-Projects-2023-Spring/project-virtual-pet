@@ -22,8 +22,10 @@
 
 }
 
-.card {
+.landing-card {
     background-color: rgb(255, 214, 214);
+    border: 6px rgb(172, 65, 100) solid;
+    border-radius: 30px;
     flex: 1 1 auto;
     width: 0;
     height: auto;
@@ -98,7 +100,7 @@
     background: rgb(172, 65, 100);
     color: #ffffff;
     border-radius: 10px;
-    font-size: 20px;
+    font-size: 30px;
     transition: all 0.1s ease-in;
     position: relative;
 }
@@ -130,4 +132,12 @@
 .landingbutton:hover {
     background: #3a0422;
     color: #ffffff;
+}
+.titlebox {
+    border: 8px rgb(172, 65, 100) solid;
+    padding: 20px;
+    display: inline-block;
+    border-radius: 35px;
+    font-size: 2.5rem;
+    background-color: rgb(255, 214, 214);
 }

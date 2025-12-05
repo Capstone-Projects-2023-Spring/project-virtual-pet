@@ -15,6 +15,7 @@ import integrate_canvas from "./Tutorial-screenshots/circle-canvas-integration.p
 import canvas_button from "./Tutorial-screenshots/circle-canvas-button.png";
 
 import kittycat from "../../images/orangecat.png";
+import browndog from "../../images/brown_dog_centered_8x.png";
 
 //import Card from "react-bootstrap/Card";
 import { useState, useRef, useEffect } from "react";
@@ -137,7 +138,7 @@ const Tutorial = () => {
     <div className="alice-box">
       {" "}
       <div className="header-tut">
-        <div className="header-text-tut">How To Use Study Buddy!</div>
+        <div className="header-text-tut">How To Use Task Pet!</div>
       </div>
       <img className="tut-image" alt="active tasks" src={active_tasks}></img>
       <div className="tut-textbox">
@@ -258,14 +259,14 @@ const Tutorial = () => {
 
     <div className="alice-box">
       <div className="proceed-header">
-        <h1 style={{ fontSize: 40 }}>
-          <center>WELCOME TO STUDY BUDDY!</center>
+        <h1 style={{ fontSize: 50 }}>
+          <center>WELCOME TO TASK PET!</center>
         </h1>
       </div>
-      <img src={kittycat} alt="cat" className="tut-image-kitty-mobile" />
+      <img src={browndog} alt="browndog" className="tut-image-kitty-mobile" />
       <center>
         <Card className="tut-card-about">
-          <Card.Title className="tut-card-title-mobile">Thank you!</Card.Title>
+          <Card.Title className="tut-card-title-mobile" style={{fontSize: "1.4rem", fontWeight: "bold"}}>Thank you!</Card.Title>
           <Card.Body className="tut-card-body-mobile">{TUT_TEXT[10]}</Card.Body>
         </Card>
       </center>

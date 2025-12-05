@@ -18,11 +18,20 @@ import gray_N_prop from "../../images/propeller_hat.gif";
 import gray_H_prop from "../../images/prop_happy.gif";
 import gray_S_prop from "../../images/prop_sad.gif";
 import dingSound from "../../audio/dingsound.mp3";
+import brown_dog from "../../images/brown_dog_scaled_8x.png";
+import browndog_H_gif from "../../images/brown_dog_happy_scaled_8x.gif";
+import browndog_S_gif from "../../images/brown_dog_sad_scaled_8x.gif";
+import white_dog from "../../images/white_dog_scaled_8x.png";
+import whitedog_H_gif from "../../images/white_dog_happy_scaled_8x.gif";
+import whitedog_S_gif from "../../images/white_dog_sad_scaled_8x.gif";
+
 
 import { useContext, useEffect, useRef, useState } from "react";
 
-import bgimage from "../../images/bg.gif";
+import bgimage from "../../images/background.png";
 import ProgressBar from "react-bootstrap/ProgressBar";
+import browndog_click from "../../images/brown_dog_hi_b_scaled_8x.png";
+import whitedog_click from "../../images/white_dog_hi_b_scaled_8x.png";
 import orange_click from "../../images/orange_cat_hi_scaled_5x_pngcrushed.png";
 import gray_click from "../../images/gray_cat_hi_scaled_5x_pngcrushed.png";
 import white_click from "../../images/white_cat_hi_scaled_5x_pngcrushed.png";
@@ -121,15 +130,21 @@ const PetDisplay = () => {
         // console.log(pet.palette);
         switch (contextHandler?.avatarInfo.palette) {
           case 0:
-            setAvatarImage(orange_click);
+            setAvatarImage(browndog_click);
             break;
           case 1:
-            setAvatarImage(gray_click);
+            setAvatarImage(whitedog_click);
             break;
           case 2:
-            setAvatarImage(white_click);
+            setAvatarImage(orange_click);
             break;
           case 3:
+            setAvatarImage(gray_click);
+            break;
+          case 4:
+            setAvatarImage(white_click);
+            break;
+          case 5:
             setAvatarImage(tux_click);
             break;
         }
@@ -251,14 +266,14 @@ const PetDisplay = () => {
                     switch (pet.palette) {
                         case 0:
                             if (mood === 'N') {
-                                setAvatarImage(orange_cat);
+                                setAvatarImage(brown_dog);
                                 //} else {
                                 //    setAvatarImage(`orange_${mood}_gif`)
                                 // console.log(`orange_${mood}_gif`)
                             } else if (mood === 'H') {
-                                setAvatarImage(orange_H_gif);
+                                setAvatarImage(browndog_H_gif);
                             } else {
-                                setAvatarImage(orange_S_gif);
+                                setAvatarImage(browndog_S_gif);
                             }
                             return
                         case 1:
@@ -275,6 +290,28 @@ const PetDisplay = () => {
                                return
                             }
                             if(mood==='N'){
+                                setAvatarImage(white_dog);
+                            } else if (mood === 'H') {
+                                setAvatarImage(whitedog_H_gif);
+                                // setAvatarImage(`gray_${mood}_gif`)
+                                // console.log(`gray_${mood}_gif`)
+                            } else {
+                                setAvatarImage(whitedog_S_gif);
+                            }
+                            return
+                        case 2:
+                            if (mood === 'N') {
+                                setAvatarImage(orange_cat);
+                            } else if (mood === 'H') {
+                                setAvatarImage(orange_H_gif);
+                                // setAvatarImage(`gray_${mood}_gif`)
+                                // console.log(`gray_${mood}_gif`)
+                            } else {
+                                setAvatarImage(orange_S_gif);
+                            }
+                            return
+                        case 3:
+                            if (mood === 'N') {
                                 setAvatarImage(gray_cat);
                             } else if (mood === 'H') {
                                 setAvatarImage(gray_H_gif);
@@ -284,7 +321,7 @@ const PetDisplay = () => {
                                 setAvatarImage(gray_S_gif);
                             }
                             return
-                        case 2:
+                        case 4:
                             if (mood === 'N') {
                                 setAvatarImage(white_cat);
                             } else if (mood === 'H') {
@@ -295,7 +332,7 @@ const PetDisplay = () => {
                                 setAvatarImage(white_S_gif);
                             }
                             return
-                        case 3:
+                        case 5:
                             if (mood === 'N') {
                                 setAvatarImage(tux_cat);
                             } else if (mood === 'H') {
@@ -306,9 +343,9 @@ const PetDisplay = () => {
                                 setAvatarImage(tux_S_gif);
                             }
                             return
-                        case 4:
+                        case 6:
                           setAvatarImage(pet_rock);
-                          return;
+                          return
                         // case 2:
                         //     if(mood==='N'){
                         //         setAvatarImage(orange_cat);
@@ -407,7 +444,7 @@ const PetDisplay = () => {
 
   return (
     <div className="pet-display">
-      <Card style={{ width: "25rem" }}>
+      <Card style={{ width: "42rem" }}>
         <Card.Header
           style={{ fontSize: "calc(0.8vw + 1.4vh" }}
           className="pet-name"

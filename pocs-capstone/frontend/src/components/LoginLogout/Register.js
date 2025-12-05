@@ -153,7 +153,7 @@ const Register = () => {
             {height < 600 ? (
               ""
             ) : (
-              <h1 className="welcome-header">Welcome to Study Buddy!</h1>
+              <h1 className="welcome-header">Welcome to Task Pet!</h1>
             )}
             {/* <h1 className="welcome-header">Welcome to Study Buddy!</h1> */}
             <form onSubmit={handleSubmit} className="form-login-register">

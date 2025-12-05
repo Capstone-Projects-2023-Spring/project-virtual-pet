@@ -58,6 +58,9 @@
     align-items: stretch;
     justify-content: flex-start;
     flex-direction: column;
+    border: 8px rgb(172, 65, 100) solid;
+    border-radius: 35px;
+    padding: 10px;
 }
 
 @media (max-width: 1130px){

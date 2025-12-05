@@ -47,7 +47,8 @@ img {
 
 .inventory-header {
   font-weight: bold;
-  font-size: calc(2vw+.4vw);
+  font-size: calc(0.75vw + 1.1vh);
+  color: rgb(172, 65, 100);
 }
 
 .inventory-box {
