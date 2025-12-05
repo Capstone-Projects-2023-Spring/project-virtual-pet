@@ -128,3 +128,12 @@
 .react-calendar--selectRange .react-calendar__tile--hover {
   background-color: #e6e6e6;
 }
+
+.event-dot {
+  width: 6px;
+  height: 6px;
+  background-color: rgb(179, 40, 244);
+  border-radius: 50%;
+  margin: 2px auto 0 auto;
+  display: block;
+}

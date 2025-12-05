@@ -24,6 +24,8 @@ import CanvasIntegrationPage from './components/CanvasIntegrationPage.js'
 import AccountPage from './components/AccountPage'
 import PetProfPage from './components/PageDisplay/PetProfPage.js'
 import Tutorial from './components/Tutorial/Tutorial.js'
+import DeleteAccount from './components/DeleteAccount.js'
+import { Delete } from '@mui/icons-material'
 
 function App(){
 
@@ -40,15 +42,16 @@ function App(){
         <Route element={<PersistLogin />}>
           <Route element = {<RequireAuth/>}>
             <Route path="/" element = {<Layout/>}>
-            <Route path="/" element={<Main/>}/>
-            <Route path = "/loader" element={<Loader/>}/>
-            <Route path = "/pet_selection" element ={<AnimateChoice/>}/>
-            <Route path = "/canvas_integration" element = {<CanvasIntegrationPage/>}/>
-            <Route path = "/account" element={<AccountPage/>}/>
-            {/* <Route path = "/petprofile" element={<CanvasIntegrationPage/>}/> */}
+              <Route path="/" element={<Main/>}/>
+              <Route path = "/loader" element={<Loader/>}/>
+              <Route path = "/pet_selection" element ={<AnimateChoice/>}/>
+              <Route path = "/canvas_integration" element = {<CanvasIntegrationPage/>}/>
+              <Route path = "/account" element={<AccountPage/>}/>
+              <Route path = "/delete_account" element={<DeleteAccount/>}/>
+              {/* <Route path = "/petprofile" element={<CanvasIntegrationPage/>}/> */}
+            </Route>
           </Route>
         </Route>
-      </Route>
 
     </Routes>
 

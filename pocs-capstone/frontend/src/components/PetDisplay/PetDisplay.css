@@ -41,6 +41,7 @@
   flex: 1 1 auto;
   width: 0;
   height: auto;
+  border: 6px rgb(172, 65, 100) solid;
 
   /* top: 0;
     left: 0; */
@@ -105,7 +106,7 @@
 .pbar-exp {
   display: flex;
   align-items: center;
-  background-color: rgb(255, 255, 255);
+  background-color: rgb(237, 169, 192);
 }
 
 .pet-desc {
@@ -115,11 +116,12 @@
 }
 
 .pet-desc-text {
-  font-size: calc(0.7vw + 1.4vh);
+  font-size: calc(0.5vw + 1.4vh);
   padding: 5px;
   margin: 5px;
   text-align: left;
   height: 15vh;
+  
 }
 
 /* EXP RATIO  */
@@ -146,7 +148,7 @@
 }
 
 .pd-bg {
-  background-color: rgb(237, 237, 237);
+  background-color: rgb(250, 217, 217);
 }
 
 .pet-display .card {
@@ -154,6 +156,7 @@
   /* border-color: black; */
   border-radius: 0px;
   border-width: 1px;
+  background-color: rgb(250, 217, 217);
   /* background-color: black; */
 }
 

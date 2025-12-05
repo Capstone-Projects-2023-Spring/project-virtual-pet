@@ -18,6 +18,7 @@ app_name = 'db'
 
 urlpatterns = [
     path('api/register/',CustomUserCreate.as_view(),name="create_user"),
+    path('api/delete/',DeleteUserView.as_view(),name="delete_user"),
     path('api/logout/blacklist',BlacklistTokenView.as_view(),name="blacklist"),
     path('api/canvas/',CanvasView.as_view(),name="pose-canvas-tasks"),
     path('api/', include(router.urls)),

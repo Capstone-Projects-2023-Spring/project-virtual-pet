@@ -115,7 +115,7 @@ cd <your-path>/sb/frontend
 ```bash
 npm install 
 npm run build 
-nmp start
+npm start
 ```
 8. In your browser, navigate in the search bar to <a href="http://localhost:3000">http://localhost:3000</a>.
 

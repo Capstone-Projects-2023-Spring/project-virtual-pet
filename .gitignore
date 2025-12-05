@@ -11,6 +11,7 @@
 node_modules
 pocs-capstone/backend/.env
 pocs-capstone/backend/tutorial-env/
+pocs-capstone/backend/henry_env/
 pocs-capstone/backend/db/__pycache__/
 pocs-capstone/backend/db/migrations/
 pocs-capstone/backend/backend/__pycache__/
@@ -121,3 +122,4 @@ pocs-capstone/frontend/src/components/Tutorial/Tutorial-screenshots/original scr
 pocs-capstone/frontend/src/components/Tutorial/Tutorial-screenshots/original screenshots/calendar.png
 pocs-capstone/frontend/src/components/Tutorial/Tutorial-screenshots/original screenshots/completed-tasks.png
 pocs-capstone/frontend/src/components/Tutorial/Tutorial-screenshots/original screenshots/inventory.png
+pocs-capstone/backend/venv/*

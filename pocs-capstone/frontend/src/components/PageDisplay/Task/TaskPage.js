@@ -15,7 +15,7 @@ const TaskPage = () => {
     const [selectedTags, setSelectedTags] = useState([])
     const [taskTypes, setTaskTypes] = useState([])
     const [showCreateTask, setShowCreateTask] = useState(false);
-    const [filterTodo, setFilterTodo] = useState(true)
+    const [filterTodo, setFilterTodo] = useState("all")
 
     const handleShow = () => setShowCreateTask(true);
 
@@ -50,15 +50,12 @@ const TaskPage = () => {
         return selectedTags.find(t => t === tagItem) ? true : false
     }
 
-    const getCheckedType = (tagItem) => {
-        // if tagItem exists in the selectedTags list, it has been checked off. Return true.
-        return taskTypes.find(t => t === tagItem) ? true : false
-    }
+    const getCheckedType = (tagItem) => {return taskTypes.includes(tagItem)};
 
 
     const handleTaskCheck = (e, typeItem) => {
-        if (e.target.checked && !taskTypes.find(type => type === typeItem)) {
-            setTaskTypes(taskTypes.concat(typeItem))
+        if (e.target.checked && !taskTypes.includes(typeItem)) {
+            setTaskTypes([...taskTypes, typeItem])
         }
         else {
             setTaskTypes(taskTypes.filter(type => type !== typeItem))
@@ -88,16 +85,16 @@ const TaskPage = () => {
                         <div >
                             <Tabs
                                 id="controlled-tab-example"
-                                defaultActiveKey="all"
-                                activeKey={filterTodo === true ? 'all' : 'completed'}
+                                activeKey={filterTodo}
                                 onSelect={(f) => {
-                                    setFilterTodo(f === 'all' ? true : false)
+                                    setFilterTodo(f)
                                 }}
-
                                 className="mb-3 to-tabs">
                                 <Tab eventKey="all" title="Active">
                                 </Tab>
                                 <Tab eventKey="completed" title="Completed">
+                                </Tab>
+                                <Tab eventKey="pastdue" title="Past Due">
                                 </Tab>
 
                             </Tabs>

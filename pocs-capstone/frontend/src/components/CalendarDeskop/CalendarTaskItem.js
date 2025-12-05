@@ -37,7 +37,7 @@ const CalendarTaskItem = ({ task, updateTask, deleteTask }) => {
                                 <ListGroup.Item className='course-id'>
                                     <div>
 
-                                        <div className="fw-bold">Course {task.course_id}</div>
+                                        <div className="fw-bold">Course: {task.course_title}</div>
                                     </div>
                                 </ListGroup.Item>
                                 <ListGroup.Item className='task-item'>

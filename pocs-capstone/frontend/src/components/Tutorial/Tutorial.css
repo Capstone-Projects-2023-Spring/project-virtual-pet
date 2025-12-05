@@ -49,7 +49,7 @@
 
 .header-tut {
   top: 0;
-  background-color: bisque;
+  background-color: rgb(172, 65, 100);
   border: rgb(33, 33, 33);
   max-width: 95vw;
   margin-left: auto;
@@ -98,9 +98,10 @@
   border-style: double;
   /* padding-left: 10px;
   padding-right: 10px; */
-  font-size: 14px;
+  font-size: 20px;
   background-color: antiquewhite;
   max-width: 95vw;
+  border-radius: 10px;
 }
 @media (min-height: 667px) {
   .alice-container {
@@ -167,6 +168,8 @@
   flex-direction: column;
   font-size: 14px;
   overflow-wrap: break-word;
+  border: 8px rgb(172, 65, 100) solid;
+  border-radius: 35px;
 }
 
 .tut-card-title-mobile {
@@ -189,7 +192,8 @@
   background: rgb(172, 65, 100);
   color: #ffffff;
   border-radius: 10px;
-  font-size: 20px;
+  border-color: rgb(172, 65, 100);
+  font-size: 26px;
   transition: all 0.1s ease-in;
   position: relative;
 }
@@ -198,7 +202,8 @@
   margin-left: auto;
   margin-right: auto;
   margin-top: -70px;
-  height: 300px;
+  margin-bottom: -20px;
+  height: 400px;
   width: 300px;
   justify-content: center;
 }
@@ -224,6 +229,10 @@
   .proceed-header{
     font-size: 50px;
     font-family: pixelFont;
+    border: 8px rgb(172, 65, 100) solid;
+    padding: 10px;
+    border-radius: 35px;
+    background-color: rgb(251, 216, 216);
   }
   .tut-card-about{
 
@@ -273,9 +282,10 @@
     max-width: 30vw;
     margin-left: auto;
     margin-right: auto;
-
+    padding: 10px;
     border-width: 5px;
     border-style: double;
+    border-radius: 10px;
 
     /* padding-left: 10px;
     padding-right: 10px; */
@@ -287,7 +297,7 @@
     align-items: center;
     font-family: pixelFont;
     font-weight: bold;
-    font-size: 18px;
+    font-size: 25px;
   }
 
   .alice-carousel {
@@ -312,9 +322,14 @@
     display: block;
     margin: auto;
     width: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
     max-height: 75vh;
     max-width: 100%;
     border-style: ridge;
+    border-color: rgb(172, 65, 100);
+    border-width: 5px;
+    border-radius: 10px;
   }
 
   .tut-imagebox {
@@ -335,11 +350,12 @@
     margin-left: auto;
     margin-right: auto;
     border-width: 5px;
+    padding: 12px;
     border-style: double;
     /* padding-left: 10px;
     padding-right: 10px; */
-    background-color: antiquewhite;
-    max-width: 20vw;
+    background-color: bisque;
+    max-width: 40vw;
   }
   .tut-submit-button{
     min-width: 20vw;
