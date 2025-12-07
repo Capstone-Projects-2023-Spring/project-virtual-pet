@@ -15,6 +15,10 @@ from rest_framework_simplejwt.tokens import RefreshToken
 from db.studybuddyemail import send_email
 import db.canvasrequests as canvas
 import pprint
+from db.studybuddyemail import send_email
+from db.assignment_reminder_email import send_assignment_reminder_email 
+import db.canvasrequests as canvas
+import pprint
 
 pp = pprint.PrettyPrinter(indent=2)
 
@@ -258,10 +262,20 @@ class CustomUserCreate(APIView):
         if registration_serializer.is_valid():
             newuser = registration_serializer.save()
             if newuser:
-                try:
-                    send_email(request.data['email'])
-                except:
-                    print("Oops! Registration email failed to send")
+                user_email = request.data.get('email')
+
+                if user_email:
+                    try:
+                        send_email(user_email)
+                    except Exception as e:
+                        print(f"Oops! Registration email failed to send: {e}")
+
+                    # Canvas assignments reminder email
+                    try:
+                        send_assignment_reminder_email(user_email, days_ahead=7)
+                    except Exception as e:
+                        print(f"Oops! Assignment reminder email failed to send: {e}")
+
                 return Response(status=status.HTTP_201_CREATED)
 
         print(registration_serializer.errors)
@@ -393,6 +407,19 @@ class TaskViewSet(viewsets.ModelViewSet):
         _user = self.request.user
         return Task.objects.filter(user=_user)
 
+class DeleteUserView(APIView):
+    permission_classes = [IsAuthenticated,]
+
+    def delete(self, request):
+
+        try:
+            user = request.user
+            print("Deleteing user:", user)
+            user.delete()
+            return Response(status=status.HTTP_204_NO_CONTENT)
+        except Exception as e:
+            print(e)
+            return Response(status=status.HTTP_400_BAD_REQUEST)
 
 class AvatarViewSet(viewsets.ModelViewSet):
 

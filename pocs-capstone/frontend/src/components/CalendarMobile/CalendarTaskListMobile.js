@@ -62,7 +62,6 @@ function CalendarTaskListMobile (props) {
         "Large": large,
         "Medium": medium,
         "Small": small
-      
     }
   
   return (

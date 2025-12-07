@@ -7,7 +7,7 @@
     align-items: stretch;
     justify-content: flex-start;
     flex-direction: column;
-    background-color: rgb(255, 198, 198);
+    background-color: rgb(237, 169, 192);
     padding: 10px;
     overflow-x: hidden;
     overflow-y: hidden;
@@ -17,7 +17,7 @@
 .pg-tabs.nav-tabs,
 .pg-tabs .nav-link {
     background-color: rgba(245, 190, 205, 0.486);
-    color: rgb(217, 91, 91);
+    color: rgb(172, 65, 100);
     font-size: calc(1.3vw + 1vh);
     font-weight: bold;
     margin: 0px;
@@ -29,11 +29,11 @@
 
 
 .pg-tabs .nav-link.active {
-    color: rgb(215, 60, 60);
+    color: rgb(172, 65, 100);
 }
 
 .pg-tabs .nav-link:hover {
-    color: rgb(215, 60, 60);
+    color: rgb(172, 65, 100);
 }
 
 .mini-page {
@@ -50,7 +50,7 @@
 /* make the tabs height the max of the parent */
 .tab-content {
     height: 100%;
-    background-color: rgb(255, 255, 255);
+    background-color: rgb(237, 169, 192);
 }
 
 
@@ -73,12 +73,14 @@
 
 .to-do-header {
     font-weight: bold;
-    font-size: calc(2vw+.4vw);
+    font-size: calc(0.75vw + 1.1vh);
+    color: rgb(172, 65, 100);
 }
 
 .pet-profile-header {
     font-weight: bold;
-    font-size: calc(3vw+.4vw);
+    font-size: calc(0.75vw + 1.1vh);
     margin: 0 auto;
     text-align: center;
+    color: rgb(172, 65, 100);
 }

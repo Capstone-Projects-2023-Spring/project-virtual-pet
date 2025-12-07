@@ -14,7 +14,35 @@ const TaskList = ({ showAll, filterTags, filterTaskType }) => {
         }
         return true
     }
-    const showTasks = handlers?.taskList.filter(task => task.completed !== showAll).filter(task => filterTags.every(fT => task.tags?.includes(fT))).filter(taskFilterCondition)
+    let showTasks = handlers?.taskList.filter(task => {
+        const now = new Date();
+        const due = task.due_date ? new Date(task.due_date) : null;
+
+        if (showAll === 'all') {
+            if (task.completed) return false;
+            if (due && due < now) return false;
+        }
+        if (showAll === 'completed' && !task.completed) {
+            return false;
+        }
+        if (showAll === 'pastdue') {
+            if (task.completed) return false;
+            if (!due) return false;
+            if (due >= now) return false;
+        }
+
+        if (!taskFilterCondition(task)) return false;
+
+        if (filterTags.length > 0 && !filterTags.some(fT => task.tags?.includes(fT))) return false;
+
+        return true;
+    });
+
+    showTasks = showTasks.sort((a, b) => {
+        const da = a.due_date ? new Date(a.due_date) : Infinity;
+        const db = b.due_date ? new Date(b.due_date) : Infinity;
+        return da - db;
+    });
 
     const taskListHandlers = {
         updateTask: handlers.updateTask,
@@ -22,14 +50,14 @@ const TaskList = ({ showAll, filterTags, filterTaskType }) => {
     }
 
     // console.log(`TASKS: ${showTasks}`)
-    
+
 
     return (
         <>
             {
                 showTasks.length === 0 ?
                     <ListGroup className='tasklist-position' variant="flush">
-                        <ListGroup.Item className="d-flex justify-content-between align-items-start" style={{backgroundColor:'rgb(255, 214, 214'}}>
+                        <ListGroup.Item className="d-flex justify-content-between align-items-start" style={{ backgroundColor: 'rgb(255, 214, 214' }}>
                             No tasks!
                         </ListGroup.Item>
                     </ListGroup>

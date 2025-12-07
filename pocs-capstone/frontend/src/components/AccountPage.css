@@ -21,6 +21,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    color: rgb(172, 65, 100);
 }
 
 .form-content {

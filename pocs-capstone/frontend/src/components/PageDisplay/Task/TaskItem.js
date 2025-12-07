@@ -79,16 +79,33 @@ const TaskItem = ({ task, updateTask, deleteTask }) => {
                         </div>
                     </ListGroup.Item> */}
                             <ListGroup.Item className='task-item' action onClick={handleShow}>
-                                {/* <ListGroup.Item className='task-item'> */}
-                                <div className="ms-2 me-auto">
-                                    <div className="fw-bold task-title task-description">{task.title}</div>
-                                    <div className="task-description">Course: {task.course_title}</div>
-                                    {/* <div className="task-description"><b>{task.tags}</b></div> */}
-                                    <div className='task-description'>{task.description}</div>
-                                    {task.due_date ?
-                                        <div className='due-date'>Due {calculateDueDate(task.due_date)}</div> :
-                                        <></>
-                                    }
+                                <div className="d-flex justify-content-between align-items-start w-100">
+                                    
+                                    {/* LEFT SIDE – Title, Course, Description, Due Date */}
+                                    <div className="ms-2 me-auto">
+                                        <div className="fw-bold task-title task-description">{task.title}</div>
+                                        <div className="task-description text-muted small">Course: {task.course_title}</div>
+                                        <div className="task-description text-truncate" style={{ maxWidth: '400px' }}>
+                                            {task.description}
+                                        </div>
+                                        {task.due_date ? (
+                                            <div className='due-date text-danger fw-semibold'>
+                                                Due {calculateDueDate(task.due_date)}
+                                            </div>
+                                        ) : null}
+                                    </div>
+
+                                    {/* RIGHT SIDE – Task Type Badge */}
+                                    <div className="text-end">
+                                        {task.task_type === 'C' && 
+                                            <span className="badge bg-danger text-white fs-6">TEST</span>}
+                                        {task.task_type === 'L' && 
+                                            <span className="badge bg-primary text-white fs-6">QUIZ</span>}
+                                        {task.task_type === 'M' && 
+                                            <span className="badge bg-success text-white fs-6">HW</span>}
+                                        {(!task.task_type || !['C','L','M'].includes(task.task_type)) && 
+                                            <span className="badge bg-secondary text-white fs-6">TASK</span>}
+                                    </div>
                                 </div>
                             </ListGroup.Item>
                             {

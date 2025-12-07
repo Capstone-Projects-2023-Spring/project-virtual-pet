@@ -11,7 +11,7 @@ import { Form } from "react-bootstrap";
 import { useWindowWidth, useWindowHeight } from "@react-hook/window-size";
 
 const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
-const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%._&*]).{8,24}$/;
+const PWD_REGEX = /^^(?=.*[a-zA-Z])(?=.*[0-9]).{8,24}$$/;
 const EMAIL_REGEX = /^[a-zA-Z0-9._]+@(?:[a-zA-Z0-9]+\.)+[A-Za-z]+$/;
 
 const REGISTER_URL = "/register/";
@@ -153,7 +153,7 @@ const Register = () => {
             {height < 600 ? (
               ""
             ) : (
-              <h1 className="welcome-header">Welcome to Study Buddy!</h1>
+              <h1 className="welcome-header">Welcome to Task Pet!</h1>
             )}
             {/* <h1 className="welcome-header">Welcome to Study Buddy!</h1> */}
             <form onSubmit={handleSubmit} className="form-login-register">
@@ -261,15 +261,8 @@ const Register = () => {
                 <FontAwesomeIcon icon={faInfoCircle} />
                 8 to 24 characters.
                 <br />
-                Must include uppercase and lowercase letters, a number and a
-                special character.
+                Must include at least one letter and one number.
                 <br />
-                Allowed special characters:{" "}
-                <span aria-label="exclamation mark">!</span>{" "}
-                <span aria-label="at symbol">@</span>{" "}
-                <span aria-label="hashtag">#</span>{" "}
-                <span aria-label="dollar sign">$</span>{" "}
-                <span aria-label="percent">%</span>
               </p>
 
               <label

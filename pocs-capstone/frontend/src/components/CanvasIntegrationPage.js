@@ -149,13 +149,13 @@ const CanvasIntegrationPage = () => {
           {/* <Card style={{ width: width }}> */}
          {/* </>   <Card.Header className="pet-choice"> */}
          <div className="landingpage">
-        <h1><center>ADD YOUR CANVAS ACCOUNT!</center></h1>
+        <h1 style={{ marginTop: "25px"}}><center><div className= "titlebox">ADD YOUR CANVAS ACCOUNT!</div></center></h1>
             {/* </Card.Header>{" "} */}
           {/* </Card> */}
           <hr />
           <center><Card className = "canvas_card" style={{width: '30rem'}}>
           <Card.Title>
-            Follow these steps to link your Canvas account with Study Buddy! {" "}
+            Follow these steps to link your Canvas account with Task Pet! {" "}
           </Card.Title>
           <Card.Body >
             <p>
@@ -170,7 +170,7 @@ const CanvasIntegrationPage = () => {
             bottom!
             <p></p> Select "New access token".
             <p></p> <img src={new_access_token} alt="+ New access token"></img>
-            <p></p> 4. Enter a purpose and expiration date (ex. study buddy, and
+            <p></p> 4. Enter a purpose and expiration date (ex. task pet, and
             the end of your semester date).
             <p></p> Select "Generate token", and copy and paste it here!
             <div>
@@ -190,6 +190,7 @@ const CanvasIntegrationPage = () => {
             <input
               className="input"
               type="text"
+              style= {{width: '15rem', marginTop: '10px', fontSize: '1.25rem', marginBottom: '-15px'}}
               placeholder="Enter token here!"
               value={canvas_token}
               disabled={retrievingAssignments ? true : false}
@@ -198,6 +199,7 @@ const CanvasIntegrationPage = () => {
             <button
               className="button"
               type="submit"
+              style= {{fontSize: '1.25rem', padding: '8px'}}
               disabled={retrievingAssignments ? true : false}
             >
               {submitText}

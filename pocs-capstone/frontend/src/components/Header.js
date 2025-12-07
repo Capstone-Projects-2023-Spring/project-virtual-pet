@@ -1,5 +1,6 @@
 import "./Header.css";
-import logo from "../images/orangecat.png";
+//import logo from "../images/orangecat.png";
+import logo from "../images/brown_dog_centered_8x.png";
 import usericon from "../images/user_icon.png";
 import canvas_bug from "../images/canvas_bug.png";
 import { useState, useEffect, useContext } from "react";
@@ -136,10 +137,10 @@ const Header = ({ }) => {
       <Stack direction="horizontal" gap={3}>
         <div className="header-position">
           <a href="/">
-            <img className="logo-sb" src={logo} alt="study buddy logo" />
+            <img className="logo-sb" src={logo} alt="productivity pet logo" />
           </a>
           <Navbar.Brand href="/" className="App-link ml-5 header-text">
-            My Study Buddy
+            My Pet
           </Navbar.Brand>
         </div>
 
@@ -170,6 +171,7 @@ const Header = ({ }) => {
             </NavDropdown.Item>
             <NavDropdown.Divider />
             <NavDropdown.Item href="/logout">Logout</NavDropdown.Item>
+            <NavDropdown.Item href="/delete_account">Delete Account</NavDropdown.Item>
           </NavDropdown>
         </div>
       </Stack>

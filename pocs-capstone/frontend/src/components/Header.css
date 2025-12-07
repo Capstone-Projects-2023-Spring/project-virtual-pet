@@ -23,7 +23,7 @@
 }   
 
 .header-whole {
-    background-color: rgb(33, 33, 33);
+    background-color: rgb(172, 65, 100);
 }
 
 
@@ -42,7 +42,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgb(33, 33, 33);
+    background-color: rgb(172, 65, 100);
 }
 
 .header-text {
@@ -63,7 +63,7 @@
 
 .App-link:hover,
 .App-link {
-    color: #6e7172;
+    color: #ffffff;
     font-weight: bold;
 }
 

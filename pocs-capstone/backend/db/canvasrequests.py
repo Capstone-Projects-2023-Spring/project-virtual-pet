@@ -2,6 +2,7 @@
 import requests
 import bs4 as bs
 import pprint
+from datetime import datetime, timezone
 # import re
 # from dateutil import parser
 pp = pprint.PrettyPrinter(indent=2)
@@ -39,12 +40,41 @@ def get_courses(canvas_token):  # later we'll add userId as a parameter
 
     if status == 200:
         course_id_list = []  # a list of all the user's courses (their ids)
-
+        current_date = datetime.now().date()
+        closest_end_date = None
+        closest_start_date = None
+        
         for course_entry in courses_data:
-            course = (course_entry['id'], course_entry['name'])
-            course_id_list.append(course)
-
-        return course_id_list, status
+            course_end_date = None
+            if course_entry['end_at'] is not None:
+                course_end_date = datetime.fromisoformat(course_entry['end_at'][:-1]).date()
+                if course_end_date >= current_date:
+                    if closest_end_date is None or course_end_date < closest_end_date:
+                        closest_end_date = course_end_date
+        
+        if closest_end_date is not None:
+            for course_entry in courses_data:
+                course_start_date = None
+                if course_entry['start_at'] is not None:
+                    course_start_date = datetime.fromisoformat(course_entry['start_at'][:-1]).date()
+                    if course_start_date <= closest_end_date:
+                        if closest_start_date is None or course_start_date > closest_start_date:
+                            closest_start_date = course_start_date
+                
+        if closest_start_date is None:
+            closest_start_date = current_date
+            
+        for course_entry in courses_data:
+            created_date = datetime.fromisoformat(course_entry['created_at'][:-1]).date()
+            difference = abs((created_date - closest_start_date).days)
+            difference_to_today = abs((created_date - current_date).days)
+            if difference < 35 and difference_to_today < 200:
+                course = (course_entry['id'], course_entry['name'])
+                course_id_list.append(course)
+        print(course_id_list)
+        if len(course_id_list) > 0:
+            return course_id_list, status
+        return None, status
     return None, status
 
 
@@ -168,36 +198,90 @@ def get_course_info(canvas_token, course_id):
     course_url = BASE_URL + '/courses/' + str(course_id)
     return canvas_request(url=course_url, headers=auth_header, params={})
 
+'''Given an assignment, Detects the type based on Canvas data. Returns a single char code'''
+
+def detect_task_type(assignment):
+
+    name = (assignment.get('name') or "").lower()
+    description = (assignment.get('description') or "").lower()
+    submission_types = assignment.get('submission_types', [])
+
+    # 1. Canvas Quizzes
+    if assignment.get('quiz_id') is not None or "online_quiz" in submission_types:
+        return 'Q'  # Quiz
+
+    # 2. Keyword matching in title
+    if any(word in name for word in ['final exam', 'midterm', 'final test', 'exam', 'test', 'mid-term', 'final']):
+        return 'C'
+    if 'quiz' in name or 'vsq' in name:
+        return 'L'
+    if any(word in name for word in ['homework', 'hw ', 'assignment', 'problem set', 'pset', 'discussion', 'forum']):
+        return 'M'
+
+    # 3. Check description
+    if description:
+        if any(word in description for word in ['final exam', 'midterm', 'final test', 'exam', 'test', 'mid-term', 'final']):
+            return 'C'
+        if 'quiz' in description or 'vsq' in description:
+            return 'L'
+
+    # 4. Default
+    return 'S'  # Most things are homework/assignments
+
 
 '''Given a course ID and assignment ID, return a dict of assignment information for that particular assignment'''
 
 
 def parse_assignments(assignments, course_title):
-
     tasks = []
+    format_string = "%Y-%m-%dT%H:%M:%SZ"
+    current_UTC = datetime.now(timezone.utc)
 
     for a in assignments:
         submission_details = {}
 
         due = a['due_at']
         submission_details = a['submission']
+        graded = None
+
+        if submission_details.get('grade','Done') is not None:
+            if submission_details.get('grade','Done') != 'Done':
+                graded = True
+            else:
+                if a['submission_types'] == ['none'] and due == None:
+                    graded = True
+                else:
+                    graded = False
+        else:
+            if a['submission_types'] == ['none'] and due == None:
+                graded = True
+            else:
+                graded = False
 
         submitted = submission_details['submitted_at']
 
         if due != None:
             due = due[0:10]  # hack into a string UwU
+
         if submitted != None:
             submitted = submitted[0:10]  # hack into a string UwU
+        elif submitted == None and graded == True:
+            if submission_details.get('graded_at', None) is not None:
+                submitted = submission_details['graded_at'][0:10]
+            else: 
+                submitted = current_UTC.strftime(format_string)[0:10]
+        
 
         try:
             description = bs.BeautifulSoup(a['description'], 'lxml').get_text()
         except Exception as e:
             description = ""
 
+        task_type = detect_task_type(a)
+
         tasks.append({'title': a['name'] or "No title.",
                       'due_date': due,
-
-                      'task_type': 'S',
+                      'task_type': task_type,
                       # 'task_level': 1, # TODO - this should be set here!
                       # 'recurring': 'false',
                       # 'recurring_time_delta': 0,
@@ -228,5 +312,4 @@ def get_all_assignments(canvas_token):
         #    all_assignments.append(assignment_info) # add each assignment dict from this course to list
         _assignments = parse_assignments(assignments, course[1])
         all_assignments = all_assignments+_assignments
-
     return all_assignments, status
